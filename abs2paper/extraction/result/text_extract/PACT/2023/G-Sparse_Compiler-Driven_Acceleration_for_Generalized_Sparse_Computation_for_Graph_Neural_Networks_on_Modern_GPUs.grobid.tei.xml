@@ -1,0 +1,1765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">G-Sparse: Compiler-Driven Acceleration for Generalized Sparse Computation for Graph Neural Networks on Modern GPUs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-10-21">2023-10-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,106.45,208.54,31.65,9.70;1,138.09,206.52,1.77,7.49"><forename type="first">Yue</forename><surname>Jin</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,206.23,208.54,71.13,9.70"><forename type="first">Chengying</forename><surname>Huan</surname></persName>
+							<email>huanchengying@iscas.ac.cn</email>
+						</author>
+						<author>
+							<persName coords="1,346.76,208.54,52.24,9.70"><forename type="first">Heng</forename><surname>Zhang</surname></persName>
+							<email>zhangheng17@iscas.ac.cn</email>
+						</author>
+						<author>
+							<persName coords="1,465.41,208.54,59.12,9.70;1,524.53,206.52,1.77,7.49"><forename type="first">Yongchao</forename><surname>Liu</surname></persName>
+							<email>yongchao.ly@antgroup.com</email>
+						</author>
+						<author>
+							<persName coords="1,80.29,255.85,90.19,9.70"><forename type="first">Shuaiwen</forename><forename type="middle">Leon</forename><surname>Song</surname></persName>
+							<email>shuaiwen.song@sydney.edu.au</email>
+						</author>
+						<author>
+							<persName coords="1,202.52,255.85,39.66,9.70"><forename type="first">Rui</forename><surname>Zhao</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,282.89,255.85,46.06,9.70;1,328.95,253.82,1.77,7.49"><forename type="first">Yao</forename><surname>Zhang</surname></persName>
+							<email>zhanyao@microsoft.com</email>
+						</author>
+						<author>
+							<persName><forename type="first">Changhua</forename><surname>He</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,460.29,255.85,69.15,9.70"><forename type="first">Wenguang</forename><surname>Chen</surname></persName>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">University of Sydney</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">G-Sparse: Compiler-Driven Acceleration for Generalized Sparse Computation for Graph Neural Networks on Modern GPUs</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="137" to="149"/>
+							<date type="published" when="2023-10-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">93BEB947DE4F9B67B26CE750814C58B3</idno>
+					<idno type="DOI">10.1109/pact58117.2023.00020</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>domain specific language compiler</term>
+					<term>GPU</term>
+					<term>SpMM</term>
+					<term>SDDMM</term>
+					<term>graph neural network</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Graph Neural Network (GNN) learning over non-Euclidean graph data has recently drawn a rapid increase of interest in many domains. Generalized sparse computation is crucial for maximizing the performance of GNN learning, while most recent GNNs primarily focused on optimizing coarse-grained parallelism associated with nodes, edges, and additional feature dimensions. However, efficiently implementing generalized sparse computation is challenging. The performance optimization of generalized sparse computation lacking in-depth architectureaware design is seldom supported by existing Domain-Specific Languages (DSLs) and is hard to be tuned by experts, which involves substantial trial and error. In this work, we propose G-Sparse, a new compiler framework that extends the popular Halide compiler to enable effective acceleration for generalized sparse computations for GNNs through compiler-driven optimizations and auto-tuning. To facilitate generalized sparse computations, G-Sparse separates algorithms from schedules and introduces several novel sparse computation optimization techniques for modern GPUs, including two-dimensional shared memory optimizations and efficient cost-driven design space exploration and auto-tuning. Extensive evaluation against highlyoptimized state-of-the-art sparse computation kernels and on endto-end GNN training and inference efficiency has demonstrated that our proposed G-Sparse achieves up to a 4.75× speedup over the state-of-the-art sparse kernels, and a training and inference speedup of 1.37× ∼ 2.25× over three popular GNN frameworks including GCN, GraphSAGE, and GAT. The source code of G-Sparse is publicly available at https://github.com/ TuGraph-family/tugraph-db/tree/master/learn.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Graph Neural Network (GNN) is an emerging field in deep learning and have been applied to a wide range of real-world applications, including but not limited to bioinformatics <ref type="bibr" coords="1,283.57,658.73,10.14,8.82" target="#b12">[1]</ref>, social science <ref type="bibr" coords="1,115.49,669.97,9.87,8.82" target="#b13">[2]</ref>, recommendation systems <ref type="bibr" coords="1,230.30,669.97,9.87,8.82">[3]</ref>, and quantum chemistry <ref type="bibr" coords="1,100.39,681.21,10.01,8.82">[4]</ref>. Graph-structured representation learning using † Corresponding authors; ‡ The authors contributed to this work when they worked in Ant Group.</p><p>GNN models is crucial for many real-world graph-related applications, such as node classification <ref type="bibr" coords="1,443.98,318.98,10.96,8.82">[5]</ref>- <ref type="bibr" coords="1,458.59,318.98,14.61,8.82" target="#b21">[10]</ref>, graph isomorphism <ref type="bibr" coords="1,314.19,330.22,14.64,8.82" target="#b22">[11]</ref>, and diffusion patterns <ref type="bibr" coords="1,424.11,330.22,14.64,8.82">[12]</ref>. In contrast to conventional deep learning models like DNNs, which rely heavily on dense matrix operations, GNNs involve message-aware propagation operations that recursively update each vertex's features based on its neighbors. When working with real-world graph datasets, their sparsity and irregularity pose performance and design challenges for recent state-of-the-art frameworks, such as TensorFlow <ref type="bibr" coords="1,361.55,408.89,14.35,8.82" target="#b24">[13]</ref>, PyTorch <ref type="bibr" coords="1,417.55,408.89,14.35,8.82">[14]</ref>, and MXNet <ref type="bibr" coords="1,487.46,408.89,14.35,8.82">[15]</ref>.</p><p>Generally, the computational patterns of GNNs can be described using message-passing primitives. For instance, DGL <ref type="bibr" coords="1,336.46,442.60,15.40,8.82" target="#b27">[16]</ref> introduces generalized sparse computations, specifically generalized Sampled Dense-Dense Matrix Multiplication (g-SDDMM) and generalized Sparse Matrix-Matrix Multiplication (g-SpMM), to express these message-passing primitives. As illustrated in Figure <ref type="figure" coords="1,388.88,487.55,4.59,8.82">1</ref> as an example, the aggregation of features for target vertices from neighboring vertices can be represented as an SpMM operation when performing an aggregating sum operation. Similarly, the aggregation of features for target edges can be represented as an SDDMM operation between the source vertex features and the target vertex features. These operations are considered generalized because the aggregation type in GNNs can include sum, max, and so on. However, these operations lead to a large overhead of GNN training. The SpMM-and SDDMM-like operations account for more than 60% of the total execution time <ref type="bibr" coords="1,443.91,599.93,14.64,8.82" target="#b28">[17]</ref>, <ref type="bibr" coords="1,465.83,599.93,14.64,8.82" target="#b29">[18]</ref>, and become the bottleneck of improving GNN learning speed, motivating us to accelerate them.</p><p>Challenges: There exist three challenges to optimizing the SpMM-and SDDMM-like operations, including the limitation of current sparse matrix computation optimizations, computational libraries, and Domain-Specific Languages.</p><p>Firstly, compared with conventional dense matrix calculations that employ easy-to-use tensor-driven parallelism, sparse matrix operations are more challenging due to their irregular workload, sparse memory access, and limited data reuse. As n1 1 x x n2 2 x x n3 3 x x n4 6 x x 0 0 0 1 0 0 0 1 0 0 0 1 0 1 0 1 1 1 0 0 n4 0 1 0 0 0 * 1 x x n1 2 x x n2 3 x x n3 4 x x 5 x x = x x x x x x x x x 6 x x n4 x x x Adjacent Matrix Feature Matrix Feature Matirx Fig. <ref type="figure" coords="2,78.16,127.05,3.57,8.82">1</ref>: A g-SpMM operation in GNNs with an aggregate sum.</p><p>On the left, we aggregate feature vectors of vertex n 1 , n 2 and n 3 to the vertex n 4 . On the right, we represent the graph as an adjacent matrix so that the features of vertices are computed as an SpMM.</p><p>a result, accelerating sparse matrix computation on modern accelerators is essential and challenging for efficient GNN training and inference. To improve the performance of sparse computations in GNN, DGL <ref type="bibr" coords="2,167.40,225.65,15.29,8.82" target="#b27">[16]</ref> and FeatGraph <ref type="bibr" coords="2,241.72,225.65,15.29,8.82" target="#b30">[19]</ref> attempt to leverage node-centric and edge-centric parallelism. These works bridge GPU-accelerated graph processing and GNN learning by transforming graph data into specific structures and performing scattering and gathering operations along edges and vertices. However, these efforts largely ignore the systematic optimization opportunities presented by the architectural features of the underlying hardware, such as load balancing, shared memory tiling, and register tiling, which have been proven significant for GNN sparse matrix performance. Moreover, their performance is difficult to tune without providing in-depth systematic task scheduling approaches and programming interfaces.</p><p>Secondly, although cuSPARSE <ref type="bibr" coords="2,191.71,361.08,15.66,8.82">[20]</ref> and Sputnik <ref type="bibr" coords="2,260.02,361.08,15.66,8.82" target="#b32">[21]</ref> have considered load balancing and other sparse-specific optimizations, they are mainly targeted for scientific computations and conventional Deep Neural Networks (DNNs) such as Transformers <ref type="bibr" coords="2,111.52,406.03,15.29,8.82">[22]</ref> and ResNet-50 <ref type="bibr" coords="2,186.23,406.03,14.07,8.82" target="#b34">[23]</ref>, and provide very limited support for the operators in GNNs. For instance, in g-SpMM, they only support the case of aggregated summation for source node, and cannot support the case of the edge with more than one feature as input or max as an aggregation function. In particular, even though this operation in GNNs does not require the value array in the CSR sparse matrix, filling the CSR value array with the full assignment value of 1.0 in these existing computational libraries is still compulsory. These redundant computations and memory-accessing operations can bring significant performance degradation to the GNN training procedure.</p><p>Finally, existing Domain-Specific Languages (DSLs) such as TVM <ref type="bibr" coords="2,94.65,552.69,14.07,8.82" target="#b35">[24]</ref>, Halide <ref type="bibr" coords="2,142.93,552.69,14.07,8.82" target="#b36">[25]</ref>, and Ansor <ref type="bibr" coords="2,205.54,552.69,15.29,8.82" target="#b37">[26]</ref> separate algorithms from the schedule and utilize autotuning strategies for efficient automatic code generation, but are not efficient for GNNs. These DSLs mainly target the image processing and natural language processing domain, which commonly utilize interval analysis <ref type="bibr" coords="2,93.18,608.88,15.29,8.82" target="#b38">[27]</ref> and provide support for processing regular dense matrices. However, the optimization for sparse computations in the GNN DSL domain is still very limited. One of the reasons is that the DSLs cannot deal with the non-rectangular buffer boundary inference problem in sparse computations. Moreover, they lack sophisticated system optimizations and corresponding autotuning strategies for GNNs and their sparse computations, for example, not supporting sparse-specific optimizations such as row load balancing, adaptive warp shuffle, and hierarchical memory tiling optimizations.</p><p>To address these technical challenges, we propose G-Sparse, a compiler-driven approach for enabling highly effective acceleration of generalized sparse computations in GNNs running on modern GPUs. G-Sparse is a new DSL that extends Halide, and it is capable of efficiently and automatically generating highly optimized code for general sparse kernels. The performance of kernels generated within seconds can surpass the code manually optimized by experts over several weeks. In summary, we make the following contributions:</p><p>• We present 2-D shared memory tiling, 1-D register tiling, and row load balancing optimizations for g-SpMM operations in GNNs. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. BACKGROUND A. Sparse Matrix Computations in GNNs</head><p>GNNs represent an emerging field in deep learning that differs from traditional machine learning techniques. While conventional machine learning primarily focuses on dense matrix computations for image and video analysis, GNNs predominantly operate on irregular and sparse graph datasets, necessitating not only dense matrix computations but also large-scale sparse matrix computations.</p><p>The computational patterns of GNNs can be characterized using message-passing primitives. According to their operations over edges and vertices, we categorize them as g-SDDMM and g-SpMM, the same as DGL <ref type="bibr" coords="2,426.70,489.07,14.58,8.82" target="#b27">[16]</ref>, which are widely used for GNN learning. Specifically, g-SpMM calculates the target node representation by aggregating the messages from node and neighbor features, and its inbound edge features. In contrast, g-SDDMM computes the edge representation by gathering its original features, and the features of its incident nodes.</p><p>Given a graph G(V, E) with a node set V and an edge set E, let X u represent the feature (or embedding) of node u ∈ V , and Y eu,v represent the feature (or embedding) of edge e u,v ∈ E, where u is the source node and v is the destination node. Definition 1 (g-SDDMM). We define the output edge embedding Z eu,v of generalized sampled dense-dense matrix multiplication as</p><formula xml:id="formula_0">Z eu,v = lhs ⊕ rhs (1)</formula><p>where ⊕ is a binary operator that could be add, sub, mul, div, or dot, etc. And inputs lhs and rhs can be any of X u , X v and Y eu,v .</p><p>Definition 2 (g-SpMM). The generalized sparse matrix-matrix multiplication computes the embedding of the output node</p><formula xml:id="formula_1">Z v as Z v = Φ u∈N (v) (X u ⊕ Y eu,v )<label>(2)</label></formula><p>where N (v) is the set of inbound neighbors of v, Φ is a reduce operator over N (v), and ⊕ is also a binary operator but differs slightly from that in Eq. ( <ref type="formula" coords="3,160.47,146.13,3.31,8.82" target="#formula_6">1</ref>). The operation of Φ can be sum, mean, max or min.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. GPU Architecture</head><p>During GNN training and inference, the role of GPUs is as accelerators to complement available CPUs by offloading their portions of the workload. These accelerators follow a single instruction multiple data (SIMD) model, and represent a class of hardware enabling massive thread-level parallelism. Using NVIDIA generations as an example, a GPU consists of a number of streaming multiprocessors (SMs), each of which includes a total of thousands of Compute Unified Device Architecture (CUDA) cores. For ease of programming, these thread lanes are organized in the form of warp, block, and grid. Commonly, a warp of 32 threads executes the same instruction in parallel on consecutive data.</p><p>a) Shared and Global Memory in GPUs: The internal bandwidth of GPU cores accessing global memory is highspeed, e.g., up to 720GB/s for NVIDIA Tesla P100. The shared memory resides on the GPU chip, and each block corresponds to a shared memory unit. Shared memory units are much faster (approximately 1.7TB/s) to access than global memory, and they can be explicitly managed for on-chip data caching and maintaining data locality. This results in fewer global memory transactions and overall performance improvement.</p><p>b) Coalesced Access to Global Memory: The efficiency of global memory access can be measured by calculating the ratio of the transactions actual used to the transactions issued. On CUDA-capable GPU architectures, the concurrent global memory accesses of threads within a warp coalesce into multiple transactions equivalent to the number of 32-byte transactions. For example, in the reducing operations for g-SpMM and the dot reducing operations for g-SDDMM with node or edge parallelism, the threads of a warp only load one element (4 bytes as a floating-point element) once for accessing the nonzero elements in each row of the sparse matrix. However, this results in 28 bytes being wasted in a single 32-byte transaction, leading to a global memory load efficiency of only 1/8.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Tensor Compiler</head><p>To accelerate the training and inference of deep learning models, compiler-based DSLs are widely exploited to efficiently enhance the computational processes of algorithms and offer a useful abstraction of scheduling optimizations such as tiling, vectorization, and thread binding. As a result, optimization code can be rapidly implemented and verified. Frameworks like TVM <ref type="bibr" coords="3,60.42,668.46,14.07,8.82" target="#b35">[24]</ref>, Halide <ref type="bibr" coords="3,109.03,668.46,14.07,8.82" target="#b36">[25]</ref>, and other similar compiler frameworks <ref type="bibr" coords="3,280.01,668.46,14.07,8.82" target="#b37">[26]</ref>, <ref type="bibr" coords="3,60.42,679.69,15.63,8.82" target="#b39">[28]</ref>- <ref type="bibr" coords="3,79.96,679.69,15.63,8.82" target="#b42">[31]</ref> have demonstrated strong performance in accelerating DNNs and image analysis applications. FeatGraph <ref type="bibr" coords="3,256.74,690.93,15.51,8.82" target="#b30">[19]</ref> is the </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.rowP tr</head><p>The row entry array in A.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.colIdx</head><p>The column indices array in A.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.values</head><p>The value array in A. balancedIdx</p><p>The row index array for A.rowP tr. m</p><p>The number of rows in A. n</p><p>The number of columns in A. nnz</p><p>The number of nonzero elements in A.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>nnzP erRow</head><p>Non-zero elements for each row in A.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>U</head><p>The input dense matrix.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>O</head><p>The output dense matrix.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>kM T ile</head><p>The tiling size in the row dimension.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>kN T ile</head><p>The tiling size in the column dimension. kN nzT ile the tiling size in each nnzP erRow. only framework to employ TVM IR to implement generalized sparse computations in GNNs, achieving performance comparable to that of cuSPARSE. However, these works only study coarse-grained parallelism at the level of node, edge, and feature dimensions, which significantly limits the attainable performance of GNNs.</p><p>In contrast, our G-Sparse compiler integrates sparsespecific optimizations like 2-D shared memory tiling and introduces a novel NN-based cost model, enabling auto-tuning for GNN performance and achieving much better results than the other tensor compilers mentioned above.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. SYSTEM DESIGN</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Overview</head><p>Figure <ref type="figure" coords="3,350.21,548.10,4.59,8.82">2</ref> illustrates the workflow pipeline of the G-Sparse DSL compiler. In contrast to conventional GNN system optimization, we leverage compiler techniques to enhance the performance of g-SpMM and g-SDMM operations and enable autotuning. This includes optimizing GPU memory access, workload balancing, and SIMD-aware execution. In the following sections, we discuss g-SpMM and g-SDDMM optimizations and their corresponding schedules using our extended G-Sparse DSL.</p><p>For g-SpMM, we introduce the buffer-bound inference technique to enable 2-D shared memory optimization, the buffer binding index expression to facilitate row load balancing optimization, and the 1-D stride register tiling to optimize data reuse at the register level. As demonstrated in Table <ref type="table" coords="3,518.84,694.22,5.74,8.82" target="#tab_2">II</ref>  optimizations, which have not been employed by previous DSLs, are crucial for enhancing the performance of sparse computations. We adopt DGL's g-SpMM interface, which employs the CSR format for the adjacent sparse matrix in g-SpMM.</p><p>For g-SDDMM, we apply the warp shuffle optimization <ref type="bibr" coords="4,280.87,376.31,15.29,8.82" target="#b43">[32]</ref> and our autotuning strategy with a more extensive search space to achieve better performance. Warp shuffle functions utilize registers, rather than shared or global memory, for thread communication within a warp and have been used in sparse linear algebra acceleration <ref type="bibr" coords="4,190.07,432.50,14.27,8.82" target="#b29">[18]</ref>, <ref type="bibr" coords="4,211.17,432.50,14.27,8.82" target="#b44">[33]</ref>. We adopt DGL's g-SDDMM interface, which employs the COO format for the sparse matrix in g-SDDMM.</p><p>Lastly, we introduce our autotuning approach that incorporates the genetic search algorithm with an extensive search space. This enables the automatic search for optimal results without human intervention. Table <ref type="table" coords="4,190.42,500.02,3.06,8.82" target="#tab_1">I</ref> presents the notations used in our system implementations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. G-SpMM Optimizations</head><p>We implement g-SpMM algorithms in Halide DSL and introduce 2-D shared memory tiling, row load balancing, and 1-D register tiling optimizations. As an illustration, Figure <ref type="figure" coords="4,291.40,566.51,4.76,8.82">4</ref> shows the SpMM DSL and Figure <ref type="figure" coords="4,198.55,577.75,4.76,8.82" target="#fig_1">5</ref> shows the CUDA code generated by the DSL. a) 2-D Shared Memory Tiling with Buffer Bound Inference: The G-Sparse compiler aims to optimize memory hierarchy tiling for g-SpMM computations. As shown in Figure <ref type="figure" coords="4,88.53,634.07,3.58,8.82">3</ref>, we reuse the column index array and values array of the sparse matrix in the GPU shared memory to prevent accessing global memory every time when computing the same row of the output matrix. Additionally, preloading the sparse matrix with the GPU coalesced threads into the shared memory allows us to avoid wasting global memory transactions if we Fig. <ref type="figure" coords="4,379.74,408.60,3.64,8.82">4</ref>: The SpMM DSL description.</p><p>were to serially read the sparse matrix values in one row, as mentioned in Section II-B0b. This improves performance.</p><p>The G-Sparse compiler implements this optimization by extending the Halide DSL. Halide employs interval analysis to infer the loop extent and allocation size, recursively inferring from the output loop extent and allocation size back to each function. However, Halide can only analyze the bounds of a variable and a parameter, not buffer access. When Halide encounters a situation it cannot infer, given the row index is i, it pessimistically assumes that the bound is infinite, which is</p><formula xml:id="formula_2">bounds(A.rowP tr(i)) = [−inf, +inf ]</formula><p>. As a result, the bound analysis of the non-rectangular buffer A.colIdx cannot proceed, and in the end, Halide can only perform the most pessimistic analysis and then load the entire A.colIdx before computing the kNnzTile. Although this approach can make the global memory load of A.colIdx efficient (Section II-B0b), it will cause repeated calculations and loading, and the entire nnz elements are often too large for the GPU's shared memory. For instance, REDDIT has approximately 114 million non-zero elements, while the shared memory size of the NVIDIA GPU V100 is only 96K.</p><p>To address this issue, we introduce non-rectangular buffer bound inference to determine the bound and allocation size Binding mi and ri to GPU threads while loading A.colIdx 8:</p><p>for mi ← 0 to mextent in parallel do for ri ← 0 to kextent in parallel do for mi ← 0 to mextent in parallel do <ref type="bibr" coords="5,316.11,214.15,9.57,7.06">13:</ref> for ri ← 0 to kextent do O(i,j) ← sum(U(i,colIdxTile(start+reduceDomain)))</p><p>Recall that A.rowPtr(i) is a scalar integer value and has a single point interval for each row. Therefore, the bounds of A.colIdx are calculated as follows:</p><p>[A.rowP tr(i) + min(reduceDomain),</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.rowP tr(i) + max(reduceDomain)]</head><p>Line 11 in Algorithm 1 shows that we preload A.colIdx for kMTile rows and with kNnzTile indices of non-zero elements for each row, the inner reduction dimension iterating from 0 to kNnzTile -1. For each row, the preload size is only related to the size of reduceDomain domain. We get the loop extent and allocation size is [min(ri), max(ri)]. Therefore, the loop extent for A.colIdx each row is equal to ri's loop extent: min(nnzP erRow −ro×kN nzT ile, kN nzT ile), where nnzPerRow means the number of non-zero elements per row and ro means the outer reduction dimension split from nnzPerRow with a factor kNnzTile.</p><p>We find that this loop extent has a constant upper bound kNnzTile. Therefore, we can optimistically allocate kNnzTile shared memory size for A.colIdx each row in Algorithm 1 (line 5). Instead of pessimistically putting all of A.colIdx into shared memory as Halide will do, we only put chunks of kNnzTile size into shared memory while still maintaining the check of the dynamic memory bounds in the computation.</p><p>b) Row Load Balancing with Buffer Binding Index: Sputnik <ref type="bibr" coords="5,349.33,549.61,15.91,8.82" target="#b32">[21]</ref> observes that the NVIDIA Volta thread block scheduler employs a round-robin strategy. Therefore, Sputnik uses row swizzle load balancing for sparse matrix multiplication to balance the workload. It first sorts the row indices based on the number of non-zero items in each row and stores the sorted indices in an array called balancedIdx. As a result, the first GPU thread block will compute on balancedIdx[0], which points to the longest row, and the second GPU block will compute the second-longest row.</p><p>To incorporate this row load balancing strategy into our DSL, we introduce the bind buffer (line 5 in Figure <ref type="figure" coords="5,509.34,661.96,3.82,8.82">4</ref>) schedule primitive and a corresponding lowering pass to support indexing with a buffer. We use the BindBuffer function (lines 1-3 in Algorithm 2) to bind each row index access expression exprM Algorithm 2 Lowering pass for buffer binding index. return halideExprs with the balancedIdx buffer, which stores the row indices sorted by nnzPerRow. Lines 4-11 in Algorithm 2 shows the lowering pass. Internally, the computation iterates through the expressions to find every expression associated with a bound buffer, and replaces it with the row indices expression, and then invokes the loading expression of balancedIdx buffer with indices. As a result in the CUDA code shown in Figure <ref type="figure" coords="6,291.69,275.37,4.59,8.82" target="#fig_1">5</ref> (lines <ref type="bibr" coords="6,82.88,286.60,29.71,8.82">23 -24)</ref>, when the rowPtr is requested with an indexed GPU thread block vm, its index vm needs to be replaced with balancedIdx <ref type="bibr" coords="6,119.83,310.04,21.66,7.86">[vm]</ref>.</p><p>This way, when we assign GPU blocks to each row of the output matrix, the ith ∈ {0, m} GPU block is responsible for computing the balancedIdx[i]th row of the sparse matrix, instead of the ith row. As Figure <ref type="figure" coords="6,188.80,354.38,4.59,8.82">3</ref> illustrates, the A.rowPtr is indirectly accessed from the balancedIdx buffer.</p><p>c) 1-D Stride Register Tiling: Besides using shared memory preload, the other way is to reuse the value of the sparse matrix in the register when computing the result, i.e., register tiling, which is 1-dimension here.</p><p>As shown in Figure <ref type="figure" coords="6,150.17,422.67,3.57,8.82">3</ref>, we compute the output in registers using 1-D tiling. During the register tiling computations, we load the A.colIdx into the register from the shared memory. Since the row dimension remains constant, the register value of A.colIdx is reused in the tiling computations for different values of the input matrix U, thereby reducing the memory access of A.colIdx.</p><p>Additionally, rather than performing tiling in the continuous memory of the output matrix, we do tiling across a specific length of elements. This approach is necessary to ensure that the global memory access of the dense output matrix is contiguous and coalescing when accessed using GPU threads. If we were to tile adjacent elements, the global memory access with threads would be in stride but not coalescing, resulting in wasted global memory access transactions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. G-SDDMM Optimizations a) Adaptive Warp Shuffles:</head><p>A g-SDDMM operation is depicted in Figure <ref type="figure" coords="6,132.60,627.49,3.46,8.82">6</ref>. G-Sparse's g-SDDMM kernels follow the edge parallel paradigm and tune the size of edge parallelism and the lane width inside the warp shuffle. We assign a specific number of edges to a block, use adaptive lanes for computing features to intermediate results, and apply warp shuffle instructions to reduce intermediate results in registers. Algorithm 3 provides simplified pseudo kernel code for comput-0 0 0 1 0 0 0 1 0 0 0 1 0 1 0 1 1 1 0 0 0 1 0 0 0</p><formula xml:id="formula_3">• ( t 1 t 2 t 1 t 2 * t 1 t 2 t 1 t 2 ) t 1 t 2 t 1 t 2 t 1 t 2 r Adjacent Matrix A Feature Matrix U Feature Matrix V stage1 stage2</formula><p>Fig. <ref type="figure" coords="6,332.52,141.27,3.68,8.82">6</ref>: A g-SDDMM operation. In stage 1 , threads t 1 and t 2 separately compute the partial dot product result of matrix U and V . Stage 2 uses warp shuffle to sum up the partial results in t 1 and t 2 to get the final result r.</p><p>Algorithm 3 Adaptive warp shuffle. for all ro ← 0 to extent do 5:</p><p>regInThread ← sum(load(U ) * load(V )) Use warp shuffle to sum up the regInThread in each thread.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>6:</head><p>for all ri ← 0 to adaptiveLaneW idth do 7:</p><p>regResult ← sum(warp shuffle(regInThread, ri))  ing g-SDDMM within a warp. Within adaptiveLaneW idth number of lanes in a warp, line 5 computes a dot product between vertex feature matrix U and another vertex feature matrix V , storing the result into the register regInT hread. Lines 6 -7 accumulate the results in regInT hread within the lanes to yield the final result regResult. The g-SDDMM is implemented in our DSL, as demonstrated in Figure <ref type="figure" coords="6,516.05,541.89,3.45,8.82" target="#fig_5">7</ref>. Figure <ref type="figure" coords="6,314.25,553.13,4.78,8.82">8</ref> also presents the specific CUDA code generated by our G-Sparse compiler.</p><p>Although DGL and FeatGraph utilize techniques like warp shuffles, we find that DGL does not apply autotuning, and FeatGraph applies tuning only with the size of GPU blocks. Moreover, they do not apply warp shuffles for feature lengths less than the warp size of 32, thus not achieving optimal performance in some cases. Additionally, the lane width of warp shuffles for different feature lengths is fixed at 32 for both DGL and FeatGraph. However, as Table IV in Section IV-D demonstrates, 32 is not always the optimal lane width. We use an adaptive shuffling lane width for warp shuffle, ranging from 2 to 32 (powers of two), to achieve the best performance.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Autotuning with Cost Model a) Cost Model:</head><p>To make performance tuning easy in the search space, task schedules over the GPU threads can be abstracted using the DSL compiler. The following hyperparameters constitute the search space:</p><p>• kMTile and kNTile represent the thread block tiling sizes for row and column dimensions of the output matrix, respectively. • kNnzTile represents the shared memory tiling size in each nnzPerRow. • kNRegTile denotes the size of 1-D stride register tiling.</p><p>• kLaneWidth represents the lane width of warp shuffles.</p><p>• Whether to use row load balancing, 2-D shared-memory optimizations for A.colIdx or A.values, and warp shuffles. Nevertheless, the search space is so large that recent GNN models are hard to tune. Taking executing g-SpMM operations over REDDIT dataset as an example. When the length of features equals 256, the size of the search space could be estimated as 1.5 billion sizes. Conducting a brute-force search will take weeks or even months with every candidate's real run time on specific architectures.</p><p>To address this challenge, we propose an autotuning method based on a cost model-driven technique. Inspired by <ref type="bibr" coords="7,278.75,647.33,14.64,8.82" target="#b37">[26]</ref>, <ref type="bibr" coords="7,59.89,658.57,14.64,8.82" target="#b45">[34]</ref>, <ref type="bibr" coords="7,82.79,658.57,14.64,8.82" target="#b46">[35]</ref>, our cost model improves their performance on sparse matrix operations with a neural network structure and training target. Most of the previous works are designed for dense matrix computations. In contrast, our cost model return costMetrics is designed specifically for sparse matrix computations. We ultilize metrics calculated in Algorithm 4 for g-Spmm and g-SDDMM respectively. Additionally, we also add the shape information of the input and output matrix to the metrics for training. While previous works aim to predict the schedules directly, we use the cost model to predict the cost of each schedule in the search space and then fine-tune it with genetic search or random sampling. Finally, we choose the best configuration from the fine-tuned options.</p><p>Our cost model employs a simple and trainable DNN. As illustrated in Figure <ref type="figure" coords="7,392.02,497.59,3.45,8.82">9</ref>, the first layer of our model structure is a log function, followed by a second layer consisting of batch normalization <ref type="bibr" coords="7,367.91,520.07,15.29,8.82" target="#b47">[36]</ref> and three dense layers. The final layer is the normalization layer. The loss is calculated using mean squared error, and we normalize the real data to better reflect the true trend: loss = MSE(predict y , normalize(y)). P redict y represents the predicted cost, while normalize(y) refers to the normalization of the actual cost, specifically representing the run time observed on the hardware. Ultimately, we utilize the Pearson correlation coefficient to measure the accuracy of our training and prediction. b) Genetic Search and Random Sampling: After the cost model predicts the cost of the schedules in the search space, we choose 5 to 20 schedules that exhibit the lowest cost values as predicted by the cost model to fine-tune the performance with genetic search and random sampling algorithms.</p><p>We customize a genetic search algorithm to search for the optimal schedule, similar to the approach in <ref type="bibr" coords="7,512.87,694.92,14.64,8.82" target="#b36">[25]</ref>. The population size is set at 16, the elite size is 6, and the search concludes after three generations of breeding. We employ a roulette wheel algorithm for candidate selection during the crossover. The mutation probability is set at 20% to escape local optima.</p><p>Furthermore, crossover and mutation procedures can generate invalid configurations (e.g., the number of threads exceeding 1024). In such cases, we choose the most similar yet valid candidate from the remaining candidates, where similarity is measured by Euclidean distance. A candidate is returned once it has only one gene differing from the invalid candidate. Consequently, the time complexity of the similarity calculation is linear to the generation size, and the best time complexity is constant. Lastly, a multi-threaded compilation of the schedules is used to accelerate the process.</p><p>Fitness: The fitness is designed as the reciprocal of the execution time on the GPU hardware:</p><formula xml:id="formula_4">fitness = 1/execution time(candidate) (<label>3</label></formula><formula xml:id="formula_5">)</formula><p>The candidate is executed 10 times, and we take the average time results of these runs. Before that, we execute once to warm up. Random sampling: We employ random sampling to find the optimal performance when requiring a fast search time. After trimming the search space, we randomly sample the remaining candidates. Three candidates are selected and executed. Ultimately, the best-performing candidate is chosen as the final schedule.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. EVALUATIONS</head><p>In Section IV-A, we evaluate the performance of g-SpMM and g-SDDMM. In Section IV-B, the ablation study shows the importance of our optimizations. In Section IV-C, the productivity of our DSL compiler is compared to the human expert. In Section IV-D, we evaluate the autotuning with the cost model. Finally, in Section IV-E we evaluate the GNN model end-to-end training and inference performance.</p><p>Evaluation Environment: For all experiments, we maintain a consistent setup. We utilize an NVIDIA V100 GPU with 16GB of device memory and employ CUDA 11.1. Sparse tensors feature 32-bit indices, while dense tensors use 32-bit floating-point values in row-major format.</p><p>Benchmarks: All g-SpMM kernels and g-SDDMM kernels have been tested using the REDDIT dataset from Hamilton et al. <ref type="bibr" coords="8,86.58,577.96,10.14,8.82" target="#b17">[6]</ref>, as well as the OGBN-PROTEINS and OGBN-PRODUCTS datasets from the Open Graph Benchmarks <ref type="bibr" coords="8,280.30,589.19,14.25,8.82" target="#b48">[37]</ref>. In the REDDIT dataset, nodes represent forum posts, while edges indicate that users have commented on both connected posts. The OGBN-PROTEINS dataset features nodes as proteins and edges as biologically meaningful associations between them. In the OGBN-PRODUCTS dataset, nodes symbolize products purchased on Amazon, and edges signify that the connected products were bought together. These three datasets are widely used as benchmarks for evaluating GNN models. Basic statistics for each dataset are provided in Table <ref type="table" coords="8,269.58,690.33,8.77,8.82" target="#tab_8">III</ref>. Evaluation Methodology: We evaluate G-Sparse by comparing it with state-of-the-art GPU implementations, including DGL v0.9.1 <ref type="bibr" coords="8,396.59,165.02,14.57,8.82" target="#b27">[16]</ref>, FeatGraph <ref type="bibr" coords="8,461.45,165.02,14.57,8.82" target="#b30">[19]</ref>, Sputnik <ref type="bibr" coords="8,515.77,165.02,14.57,8.82" target="#b32">[21]</ref>, and cuSPARSE <ref type="bibr" coords="8,359.62,176.26,14.07,8.82">[20]</ref>, to demonstrate its performance advantages in kernel performance benchmarks, end-to-end model training, and inference benchmarks. We use DGL to conduct performance evaluations and integrate G-Sparse kernel implementations into DGL for comparison. In end-to-end model benchmarks, DGL employs the cuSPARSE vendor library whenever possible.</p><p>To ensure fairness, all kernel execution measurements are initiated from DGL's Python interface, as performance overhead exists when calling native functions from Python.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Overall Performance</head><p>We investigate the kernel performance of g-SpMM and g-SDDMM under various scenarios by comparing them across different feature lengths ranging from 1 to 1024, with each length being a multiple of 2, for each dataset.</p><p>a) G-SpMM Performance: For simplicity, we focus on the g-SpMM with the copy_lhs binary operation and the sum reduction type, which can be supported by cuSPARSE.</p><p>As illustrated in Figures 10, our performance surpasses cuSPARSE, DGL, FeatGraph, and Sputnik for most tested datasets and feature lengths.</p><p>Compared to the DGL with cuSPARSE implementation, our kernels achieve an average speedup of 3.2×, 2.6×, and 1.5× on REDDIT, OGBN-PROTEINS, and OGBN-PRODUCTS, respectively. We observe a greater acceleration on the REDDIT dataset, likely because it is more unbalanced than OGBN-PROTEINS and has more non-zeros per row on average than OGBN-PRODUCTS, as Table <ref type="table" coords="8,430.07,480.16,6.63,8.82" target="#tab_10">V</ref> shows. Consequently, our row balance and data reuse optimizations have a more significant impact on its performance.</p><p>Compared to FeatGraph, we achieve up to a 3.4× speedup and an average of 1.9× speedup. FeatGraph's performance is comparable to cuSPARSE but falls short when the feature length is smaller than 32. Although both FeatGraph and the latest version of DGL apply the same optimization techniques, FeatGraph can adjust and tune the number of CUDA blocks for different datasets and feature lengths, resulting in higher performance than DGL.</p><p>Compared to Sputnik, we obtain up to a 2.1× speedup and an average of 1.4× speedup. While Sputnik employs hierarchical 1-D dimensional tiling, we utilize 2-D shared memory optimization, which offers better data reuse efficiency. Furthermore, Sputnik does not apply the 1-D stride register tiling as we do.</p><p>b) G-SDDMM Performance: G-Sparse consistently outperforms or matches DGL and FeatGraph for g-SDDMM kernels in all tested cases. Figure <ref type="figure" coords="8,443.65,694.20,4.59,8.82">6</ref> illustrates the performance Fig. <ref type="figure" coords="9,78.66,452.04,8.06,8.82" target="#fig_3">10</ref>: G-SpMM and g-SDDMM benchmarks for REDDIT, OGBN-PROTEINS and OGBN-PRODUCTS datasets. When the feature length is 512 (g-SpMM) and 1024 (g-SpMM and g-SDDMM), we encountered out-of-memory on both of the baselines and G-Sparse on OGBN-PRODUCTS. comparison for g-SDDMM kernels. G-Sparse achieves approximately 1.02× to 3.37× speedup and an average of 1.46× speedup over DGL.</p><p>Although both DGL and FeatGraph employ warp shuffle optimizations, we achieve higher performance for feature lengths smaller than 32. This is because DGL and FeatGraph only apply warp shuffle optimizations for feature lengths equal to or greater than 32. Since the lane width of warp shuffles can be an integer multiple of 2, we can perform warp shuffles for feature lengths ranging from 2 to 32.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Ablation Study</head><p>We conduct an ablation test for g-SpMM and g-SDDMM kernels with different feature lengths on the REDDIT dataset.</p><p>As shown in Table <ref type="table" coords="9,147.22,669.74,5.83,8.82" target="#tab_2">II</ref>, 2-D shared memory tiling and row balancing greatly impact performance and do not exhibit significant performance changes with variations in feature   lengths. We observe that warp shuffles provide considerable benefits for g-SDDMM kernels but are not robust to the size of the feature lengths.</p><p>Conversely, 1-D stride register tiling influences approximately 10% of the performance and shows no benefit when the feature length is 8. We find that this is likely because when the feature length is smaller than the warp size of 32, the GPU warp is not fully utilized, leaving no room for register tiling.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Productivity</head><p>Our G-Sparse implementations are not only more efficient but also require fewer lines of code compared to DGL. G-Sparse codes are 3.6× and 4.4× shorter than DGL without counting DGL's utility code lines while achieving 2.5× and 1.45× average speedup over DGL for g-SpMM and g-SDDMM computations, respectively.</p><p>In terms of details, DGL requires 313 core code lines along with an additional 176 code lines for g-SpMM computations, while our G-Sparse implementation only needs 86 core code lines. For g-SDDMM computations, DGL requires 319 core code lines with the same extra utility code lines, while our G-Sparse implementation only needs 72 core code lines.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Autotuning Evaluation</head><p>We apply autotuning across all experiments to obtain the best-performing kernel. Our autotuning system combines a cost model with a genetic search algorithm, taking approximately 8 to 20 seconds for each experiment. Table VI shows the autotuning time of g-SpMM for the REDDIT dataset. Autotuning results can be saved and reused, allowing us to save time when autotuning the same dataset and the operations with the same shapes.</p><p>We compare autotuning results with those obtained by domain experts who manually tuned the scheduling over several days. As seen in Figure <ref type="figure" coords="10,150.97,95.22,7.65,8.82" target="#fig_3">10</ref>, kernels with autotuning outperform those without autotuning in all cases, achieving a maximum speedup of 3.7×. This can be attributed to the fact that autotuning combines domain expertise with comprehensive search spaces that are too large for experts to consider every aspect thoroughly.</p><p>We find that autotuning is more adept at identifying the optimal solution for allocating GPU resources, such as the number of threads per block and number of registers, which are often mutually constrained, compared to domain experts. As demonstrated in Table <ref type="table" coords="10,163.15,208.31,8.25,8.82" target="#tab_9">IV</ref>, the optimal number of threads for warp shuffle in g-SDDMM does not always equal the feature length or 32 (the warp size). Because more warp shuffle instructions require more threads and registers, and the total number of threads and registers is limited, autotuning is employed to discover the best configuration. Moreover, the performance is close between G-Sparse and G-Sparse without autotuning on Figures <ref type="figure" coords="10,174.87,286.98,15.49,8.82" target="#fig_3">10(e</ref>) and 10(f). We observe that, in these cases, the schedules of autotuning are highly consistent with those written by our experts. Overall, autotuning leads to higher or the same performance as the experiments without autotuning in all cases. We train the cost model using three different kernels on the REDDIT dataset. Each kernel has approximately 20 to 1500 performance samples, depending on its search space size. For training results, we predict the performance of training samples and then measure their correlation with real performance measurements. For testing results, correlation coefficients are calculated using different kernels that were not part of the training process on all three datasets. This process is repeated for g-SpMM and g-SDDMM, respectively. As observed, even though the cost model is trained on the REDDIT dataset, the training correlation reaches 0.88 and 0.99, while the inference correlation achieves 0.74 and 0.89 for g-SpMM and g-SDDMM, respectively. This indicates the relatively good generalization of our cost model. Figure <ref type="figure" coords="10,350.03,263.09,9.18,8.82" target="#fig_9">11</ref> demonstrates that the cost model is more efficient than random sampling. With the same number of trials (three), the best performance of the kernel from the cost model achieves a 1.0× to 2.9× speedup on REDDIT compared to the random sampling method. When the feature length is less than 8, there are only tens or hundreds of candidates to try, so the cost model and random sampling exhibit little difference.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. GNN Model Evaluation</head><p>Herein, we compare the end-to-end performance of GCN <ref type="bibr" coords="10,537.82,367.84,9.75,8.82">[5]</ref>, GAT <ref type="bibr" coords="10,335.62,379.07,14.64,8.82" target="#b49">[38]</ref>, and GraphSage <ref type="bibr" coords="10,420.29,379.07,11.14,8.82" target="#b17">[6]</ref> models with different kernels on the REDDIT dataset. The G-Sparse implementations are integrated into DGL for performance testing, and DGL utilizes the cuSPARSE library if cuSPARSE supports the computation. In all three models, the number of layers is two, and the hidden size is 256 for each layer. GCN and GraphSage use g-SpMM with the aggregation type of sum, while can also use other types such as mean and max. GAT employs both g-SpMM and g-SDDMM with more aggregation types and incorporates both vertex and edge feature embeddings.</p><p>The full-batched training is used for all models. The reasons come from two aspects. On one hand, our core interest lies in the performance improvement brought by the accelerated sparse computations and the full-batched training has a stable speed per epoch. On the other hand, the current implementation of G-Sparse still has one limitation that uses the number of non-zeros in the sparse matrix as the input feature to our DNNbased autotuner (refer to Algorithm 4). We plan to overcome this limitation in our future work to integrate DSL compilation with autotuning techniques to effectively accelerate samplingbased GNN learning. Nonetheless, the mini-batched training is supposed to demonstrate consistent acceleration results with the full-batched, since the overhead of graph sampling in mini-batched training can be removed or hidden in practice. For instance, two popular approaches can be used. One is to generate sub-graph examples beforehand and store them on disk for future use in training/inference <ref type="bibr" coords="10,464.01,671.72,14.99,8.82" target="#b50">[39]</ref>- <ref type="bibr" coords="10,482.74,671.72,14.99,8.82" target="#b52">[41]</ref>. The other is to exploit parallel data prefetching in data loaders <ref type="bibr" coords="10,511.24,682.96,14.51,8.82" target="#b27">[16]</ref>, <ref type="bibr" coords="10,532.67,682.96,14.51,8.82" target="#b53">[42]</ref>, <ref type="bibr" coords="10,313.65,694.20,14.35,8.82" target="#b54">[43]</ref>.  <ref type="bibr" coords="11,108.79,116.72,12.48,7.06">[20]</ref> no no no middle Sputnik <ref type="bibr" coords="11,103.52,125.15,12.48,7.06" target="#b32">[21]</ref> no no no high DGL <ref type="bibr" coords="11,99.56,133.58,12.48,7.06" target="#b27">[16]</ref> yes no no middle FeatGraph <ref type="bibr" coords="11,107.68,142.01,12.48,7.06" target="#b30">[19]</ref> yes yes limited middle G-Sparse yes yes yes high We have verified that the training accuracy and the test accuracy obtained by using our kernels in DGL, within the same number of epochs, match that of DGL for each pair of the model and dataset. We trained the three models with 200 epochs to check for accuracy. The test accuracy of G-Sparse matches that of the original DGL implementations -94.0% for GCN, 93.7% for GraphSage (full batch), and 93.1% for GAT.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. RELATED WORK</head><p>Sparse computations in GNNs dominate the overall runtime in training and inference. Recently, a few implementations have been proposed to speed up the sparse computations in GNNs. DGL <ref type="bibr" coords="11,113.15,366.91,15.90,8.82" target="#b27">[16]</ref> and FeatGraph <ref type="bibr" coords="11,192.97,366.91,15.90,8.82" target="#b30">[19]</ref> utilize node and edge parallelism and perform thread-level parallelism for feature dimension <ref type="bibr" coords="11,104.31,389.39,14.64,8.82" target="#b55">[44]</ref>. DGL employs the cuSPARSE <ref type="bibr" coords="11,250.86,389.39,15.91,8.82">[20]</ref> library when the latter supports the required computation. Table <ref type="table" coords="11,280.18,400.62,16.04,8.82" target="#tab_13">VIII</ref> compares the features of G-Sparse with both DGL and FeatGraph.</p><p>Sputnik <ref type="bibr" coords="11,101.76,434.80,15.48,8.82" target="#b32">[21]</ref> primarily targets DNNs and introduces shared memory optimization, vector instructions, GPU row swizzle load balancing, and other optimization techniques. Table <ref type="table" coords="11,280.17,457.28,16.04,8.82" target="#tab_13">VIII</ref> compares the features of G-Sparse with Sputnik. spECK <ref type="bibr" coords="11,280.91,468.52,15.29,8.82" target="#b56">[45]</ref> optimizes the load balancing problem for sparse computation. Ge-SpMM <ref type="bibr" coords="11,105.54,490.99,15.91,8.82" target="#b29">[18]</ref> optimizes the performance of g-SpMM for GNNs, supporting generic SpMM sparse computation and using the coalesced row caching method to access global memory efficiently. ES-SpMM <ref type="bibr" coords="11,179.98,524.70,15.41,8.82" target="#b57">[46]</ref> co-designs edge sampling and SpMM kernel to fit the graph into shared memory, reusing data to accelerate sparse computations. FusedMM <ref type="bibr" coords="11,252.34,547.18,15.33,8.82" target="#b28">[17]</ref> mainly supports generic GNN sparse computation on CPUs, optimizing load balancing and efficient use of memory bandwidth.</p><p>Halide <ref type="bibr" coords="11,97.12,581.36,14.07,8.82" target="#b36">[25]</ref>, TVM <ref type="bibr" coords="11,141.24,581.36,14.07,8.82" target="#b35">[24]</ref>, Cortex <ref type="bibr" coords="11,189.82,581.36,14.07,8.82" target="#b39">[28]</ref>, AKG <ref type="bibr" coords="11,233.44,581.36,14.07,8.82" target="#b40">[29]</ref>, Triton <ref type="bibr" coords="11,279.79,581.36,14.07,8.82" target="#b41">[30]</ref>, Ansor <ref type="bibr" coords="11,85.48,592.60,14.07,8.82" target="#b37">[26]</ref>, and Tiramisu <ref type="bibr" coords="11,158.66,592.60,15.29,8.82" target="#b42">[31]</ref> are all DSL compilers targeting image processing and DNNs, primarily consisting of dense matrix computations. TACO <ref type="bibr" coords="11,170.92,615.07,15.51,8.82" target="#b58">[47]</ref> is a tensor algebra compiler capable of expressing sparse computations. Scheduled TACO <ref type="bibr" coords="11,60.21,637.55,15.63,8.82" target="#b59">[48]</ref> supports split, collapse, and reorder schedules. However, scheduled TACO does not support non-rectangular buffer bound inference and bound bind index expression introduced by us for sparse computations.</p><p>We implement G-Sparse as a DSL by extending Halide to describe the computations in GNNs. Additionally, we integrate more optimizations into the schedule strategy, including data reuse and row balancing, and introduce autotuning to obtain optimal results by exploring more schedule space.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUSIONS</head><p>We propose G-Sparse to accelerate generalized sparse computation in GNNs, which utilizes DSL compiler to separate the algorithm and schedule. G-Sparse extends Halide by introducing non-rectangular buffer bound inference and buffer binding index to enable DSL description and code generation for sparse kernels. Furthermore, G-Sparse introduces 2-D shared memory tiling, row balancing, 1-D stride register tiling, adaptive warp shuffles, and other optimizations in the schedule to increase data reuse efficiency and improve row balancing significantly. G-Sparse introduces a novel DNNbased cost model combined with genetic search autotuning, which can automatically search for optimal results without human intervention. As a result, our kernels get up to 4.75× faster than previous technologies. By integrating G-Sparse into the DGL, we end up with a model training and inference performance speedup of 1.37× ∼ 2.25× compared to DGL.</p><p>Our autotuning still takes seconds to generate the optimal program, and is only used on GPU hardware. Using autotuning to generate optimally performant programs for a wide variety of hardware, datasets, and GNN models on time is one of the future research directions. Finally, we believe that compilerdriven acceleration technologies like our G-Sparse will play an important role in propelling the development of large graph models that serve as the foundation models in graph intelligence.</p><p>• Run-time environment: Linux • Hardware: NVIDIA V100 or P100 GPUs.</p><p>• Output: The output is provided in the output stream.</p><p>• How much disk space is required (approximately)?:</p><p>10 GB for datasets. </p><p>The source code, benchmarks, and Python package are provided at https://doi.org/10.5281/zenodo.8254020, and (2) Download the source files g-sparse.zip and gpc-1.0-cp310-cp310-linux_x86_64.whl from the above URL.</p><p>• Hardware dependencies: NVIDIA V100 or P100 GPUs.</p><p>• Software dependencies: CUDA 11.1/11.7, DGL 0.9.1/1.0.0, PyTorch 1.9.0/2.0.0, and Python 3.10.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Installation</head><p>A Python package is provided for installation, and users can run the command pip install gpc-1. 0-cp310-cp310-linux\_x86\_64.whl to make it.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Experiment Workflow</head><p>First, download the source codes and install the Python package as described in Section B. Second, extract the contents of the g-sparse.zip file to a designated directory. Finally, (1) to evaluate the kernels, run the script run_kernels.sh in the benchmarks directory, and (2) to evaluate the GAT, GCN and GraphSAGE models, run the script run.sh in the benchmarks/gat, benchmarks/gcn, and benchmarks/graphsage directories, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Evaluation and Expected Results</head><p>To get the results, execute the run_kernels.sh and run.sh scripts located in the benchmarks directories. The execution will generate performance results, which will be displayed in the output stream of the terminal.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,67.03,153.44,483.24,8.82;4,67.03,164.68,483.22,8.82"><head>Fig. 2 :Fig. 3 :</head><label>23</label><figDesc>Fig. 2: G-Sparse compilation pipeline. Section III-B describes 2-D shared memory tiling, row land balancing, and 1-D register tiling. Section III-C describes adaptive warp shuffle. Section III-D describes the NN-based cost model and autotuning.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="5,80.73,538.12,195.12,8.82;5,60.29,558.06,236.15,8.82;5,60.29,569.30,237.17,8.82;5,60.29,580.54,236.00,8.82;5,60.01,591.77,236.28,8.82;5,60.29,603.01,237.80,8.96;5,60.29,614.25,235.99,8.96;5,60.29,625.49,236.00,8.82;5,60.29,636.73,236.28,8.82;5,60.29,647.96,60.14,8.82"><head>Fig. 5 :</head><label>5</label><figDesc>Fig. 5: The generated SpMM pseudo-CUDA code.for A.colIdx. Since the access to A.colIdx is an integer scalar value, we assert that for every access of the same index, the bound is a single point, which is a scalar integer value A.rowPtr(i). Concerning A.colIdx, the loop bounds and allocation size are determined by the expression A.rowP tr(i)+ reduceDomain, where reduceDomain represents a reduction dimension that iterates from 0 to the number of non-zero elements minus one. At this point, for every row, A.colIdx has the bounds:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,316.11,175.19,9.57,7.06;5,367.83,174.53,144.93,7.94;5,316.11,184.56,9.57,7.06;5,367.83,183.56,184.93,8.43;5,329.90,193.12,60.22,8.23;5,316.11,204.78,9.57,7.06"><head>10 :</head><label>10</label><figDesc>check if we reach the bounds of A.colIdx 11: colIdxTile(mi,ri) ← A.colIdx(A.rowPtr(mi) + reduceDomain) 12:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="5,316.11,223.51,9.57,7.06;5,367.83,222.85,144.93,7.94;5,316.11,232.88,9.57,7.06"><head>14 :</head><label>14</label><figDesc>check if we reach the bounds of A.colIdx 15:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,351.40,454.52,161.69,8.82"><head>Fig. 7 :</head><label>7</label><figDesc>Fig. 7: The SDDMM DSL and schedules.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,62.98,78.46,191.89,5.50;7,62.98,85.95,93.56,5.50;7,62.98,93.44,109.29,5.50;7,62.98,100.93,191.88,5.50;7,62.98,108.42,176.15,5.50;7,62.98,116.57,2.34,4.41;7,81.80,115.92,51.13,5.50;7,62.98,124.06,2.34,4.41;7,85.74,130.90,196.66,6.65;7,71.50,131.37,6.37,4.68;7,62.98,139.05,2.34,4.41;7,101.47,139.54,3.93,5.50;7,85.54,145.88,196.66,6.65;7,71.50,146.35,6.37,4.68;7,62.98,153.38,18.82,5.50;7,60.64,160.87,135.23,5.50"><head>1 2 float 4 / 6 resultIntm += 7 u 8 * 9 } 10 /</head><label>24678910</label><figDesc>__global__ void warp_shuffle_sddmm(u, v, out) { / Calculate the partial results in parallel. 5 for (int ro = 0; ro &lt; outerLimit; ro++) { [threadIdx.x+ro * adaptiveLaneWidth+rowidx * featLen] → v[threadIdx.x+ro * adaptiveLaneWidth+colidx * featLen] → / Reduce to the final result.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="7,59.89,218.68,235.99,8.82;7,59.89,229.92,235.99,8.82;7,59.89,241.15,236.00,8.82;7,59.55,252.39,236.27,8.82"><head>11 for( 13 } 14 outFig. 8 :Fig. 9 :</head><label>11131489</label><figDesc>Fig.8: The generated SDMM pseudo-CUDA code. While warp shuffle is used by previous works in which the lane width is fixed at 32, G-Sparse introduces adaptive warp shuffle in which the lane width is adaptive for different feature lengths.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="10,60.62,508.76,235.99,8.82;10,60.29,520.00,121.21,8.82"><head>Fig. 11 :</head><label>11</label><figDesc>Fig. 11: Kernel speedups of cost model than random sampling with the same number of trials.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="2,324.63,242.45,227.35,98.72"><head>•</head><label></label><figDesc>We propose the adaptive warp shuffle optimization technique for g-SDDMM operations in GNNs.</figDesc><table /><note>• We integrate the aforementioned optimization strategies into Halide, a DSL compiler for image-processing tasks.• We develop a novel DNN-based cost model to predict performance and combine it with two auto-tuning methods (i.e., genetic search and random sampling) for automatically generating highly-optimized sparse kernels tailored for various GNN models.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="3,344.54,72.77,174.65,39.93"><head>TABLE I :</head><label>I</label><figDesc>List of notations used in the paper</figDesc><table coords="3,348.44,92.06,137.98,20.64"><row><cell>Notation</cell><cell>Description</cell></row><row><cell>A</cell><cell>The sparse matrix.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="3,313.73,236.22,236.29,139.79"><head>TABLE II</head><label>II</label><figDesc></figDesc><table coords="3,314.02,236.22,236.00,139.79"><row><cell cols="4">: Ablation study. The 2-D shared memory tiling</cell></row><row><cell cols="4">and row balancing optimizations show the greatest impact on</cell></row><row><cell cols="4">performance for g-SpMM. Whether to use warp shuffles is</cell></row><row><cell>critical for g-SDDMM.</cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="2">g-SpMM</cell><cell></cell><cell></cell></row><row><cell>Feature Length</cell><cell>8</cell><cell>64</cell><cell>512</cell></row><row><cell>2-D Shared Memory Tiling</cell><cell>63.17%</cell><cell cols="2">67.54% 60.14%</cell></row><row><cell>Row Load Balancing</cell><cell>53.90%</cell><cell cols="2">58.01% 57.03%</cell></row><row><cell>1-D Stride Register Tiling</cell><cell cols="3">100.71% 82.80% 89.61%</cell></row><row><cell cols="2">g-SDDMM</cell><cell></cell><cell></cell></row><row><cell>Feature Length</cell><cell>8</cell><cell>64</cell><cell>512</cell></row><row><cell>Adaptive Warp Shuffles</cell><cell>74.16%</cell><cell cols="2">44.52% 20.53%</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="3,524.57,694.22,25.45,8.82"><head></head><label></label><figDesc>, these</figDesc><table coords="4,74.12,76.32,470.10,59.51"><row><cell>Sparse DSL</cell><cell>Halide IR</cell><cell>2-D Shared Memory Tiling</cell><cell>Row Load Balancing</cell><cell>1-D Register Tiling</cell><cell>Adaptive warp shuffle</cell><cell>Halide Code Generation</cell></row><row><cell>Autotuning</cell><cell></cell><cell></cell><cell>Cost Model</cell><cell></cell><cell></cell><cell>GPU</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="8,329.12,72.75,205.10,56.65"><head>TABLE III :</head><label>III</label><figDesc>Graph dataset statistics.</figDesc><table coords="8,329.12,92.16,205.10,37.24"><row><cell>Dataset</cell><cell># Nodes</cell><cell># Edges</cell><cell>Sparsity( % )</cell></row><row><cell>REDDIT</cell><cell>232,965</cell><cell>114,615,892</cell><cell>99.789</cell></row><row><cell>OGBN-PROTEINS</cell><cell>132,534</cell><cell>79,122,504</cell><cell>99.550</cell></row><row><cell>OGBN-PRODUCTS</cell><cell cols="2">2,449,029 123,718,280</cell><cell>99.998</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9" coords="9,313.44,72.75,236.28,100.69"><head>TABLE IV :</head><label>IV</label><figDesc>Autotuned schedule option for g-SDDMM on REDDIT. The optimal width of G-Sparse lanes varies with the feature length, while DGL uses fixed lane width 32.</figDesc><table coords="9,335.67,114.64,189.49,58.79"><row><cell>Feature length</cell><cell>G-Sparse threads</cell><cell cols="2">Lane Width</cell></row><row><cell></cell><cell></cell><cell cols="2">G-Sparse DGL</cell></row><row><cell>8</cell><cell>128</cell><cell>2</cell><cell>N/A</cell></row><row><cell>32</cell><cell>32</cell><cell>4</cell><cell>32</cell></row><row><cell>128</cell><cell>8</cell><cell>1 6</cell><cell>3 2</cell></row><row><cell>512</cell><cell>4</cell><cell>3 2</cell><cell>3 2</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10" coords="9,313.43,187.89,236.28,67.89"><head>TABLE V :</head><label>V</label><figDesc>Row length coefficient of variation(COV) and average non zeros per row(AVG).</figDesc><table coords="9,372.63,218.55,115.57,37.23"><row><cell>Dataset</cell><cell cols="2">COV AVG</cell></row><row><cell>REDDIT</cell><cell>1.63</cell><cell>492</cell></row><row><cell>OGBN-PROTEINS</cell><cell>1.04</cell><cell>597</cell></row><row><cell>OGBN-PRODUCTS</cell><cell>1.88</cell><cell>51</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11" coords="9,314.08,270.24,235.00,62.07"><head>TABLE VI :</head><label>VI</label><figDesc>Autotuning time taken of g-SpMM on REDDIT.</figDesc><table coords="9,319.00,289.41,225.45,42.90"><row><cell cols="4">Feature Length Cost Model Inference (s) Genetic Search (s) Total (s)</cell></row><row><cell>8</cell><cell>1.74</cell><cell>7.03</cell><cell>8.77</cell></row><row><cell>16</cell><cell>1.77</cell><cell>7.77</cell><cell>9.54</cell></row><row><cell>32</cell><cell>1.76</cell><cell>8.45</cell><cell>10.21</cell></row><row><cell>64</cell><cell>1.76</cell><cell>9.79</cell><cell>11.55</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_12" coords="10,313.36,72.75,236.28,98.07"><head>TABLE VII :</head><label>VII</label><figDesc>End-to-end training (one epoch) and inference speedups on REDDIT, where GraphSage uses full batch.</figDesc><table coords="10,327.78,103.40,205.10,67.41"><row><cell></cell><cell>Model</cell><cell>DGL (s)</cell><cell cols="2">G-Sparse (s) Speedup</cell></row><row><cell></cell><cell>GCN</cell><cell>0.4165</cell><cell>0.2742</cell><cell>1.52×</cell></row><row><cell>Training</cell><cell>GAT</cell><cell>0.5832</cell><cell>0.4243</cell><cell>1.37×</cell></row><row><cell></cell><cell>GraphSage</cell><cell>0.5509</cell><cell>0.2520</cell><cell>2.19×</cell></row><row><cell></cell><cell>GCN</cell><cell>0.2094</cell><cell>0.1274</cell><cell>1.64×</cell></row><row><cell>Inference</cell><cell>GAT</cell><cell>0.2858</cell><cell>0.1971</cell><cell>1.45×</cell></row><row><cell></cell><cell>GraphSage</cell><cell>0.2688</cell><cell>0.1197</cell><cell>2.25×</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_13" coords="11,59.87,72.75,236.49,51.03"><head>TABLE VIII :</head><label>VIII</label><figDesc>Feature comparison of G-Sparse with other works</figDesc><table coords="11,72.31,103.40,209.17,20.38"><row><cell>GNNs Flexibility Autotuning Efficiency</cell></row><row><cell>cuSPARSE</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_14" coords="11,59.74,170.64,236.46,53.94"><head></head><label></label><figDesc>Table VII displays the average time required for running inference and an epoch of training. The table demonstrates that DGL with G-Sparse outperforms the original DGL for all models, with the average speedup of 1.69× for training and 1.78× for inference.</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_15" coords="12,60.55,128.89,236.33,97.23"><head>•</head><label></label><figDesc>How much time is needed to prepare workflow (approximately)?: 20 minutes. • How much time is needed to complete experiments (approximately)?: 20 minutes. • Publicly available?: Yes • Archived (provide DOI)?: 10.5281/zenodo.8254020</figDesc><table coords="12,60.55,202.86,107.32,23.26"><row><cell cols="2">B. Description</cell><cell></cell></row><row><cell>• How</cell><cell>to</cell><cell>access:</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 14:39:06 UTC from IEEE Xplore. Restrictions apply.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_1">// SpMM DSL Description.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_2">Buffer&lt;int&gt; rowPtr, colIdx, values, input;</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENT</head><p>We thank the anonymous reviewers for their valuable comments and suggestions. The authors from Chinese Academy of Sciences are both in the Institute of Software. This work is supported by Ant Group through Ant Research Intern Program, the National Science Foundation of China (NSFC) Grant No. 62002350 and the Youth Innovation Promotion Association of Chinese Academy of Sciences, China.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>APPENDIX</head><p>This appendix outlines a set of guidelines for conducting artifact evaluation. We begin by detailing the artifact check-list and the evaluation environment, and then present a step-by-step workflow for evaluating and reporting the results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Artifact Check-list (Meta-Information)</head><p>• Algorithm: Compiler-driven sparse computations for Graph Neural Networks on GPUs. </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="4,324.38,215.94,118.00,5.50" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Func spmm(&quot;spmm&quot;), out(&quot;out</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,324.38,223.43,43.27,5.50" xml:id="b1">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Var</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,324.38,230.92,176.99,5.50" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Expr nnzPerRow = rowPtr(vm + 1) -rowPtr</title>
+		<imprint/>
+	</monogr>
+	<note>vm</note>
+</biblStruct>
+
+<biblStruct coords="4,324.38,245.91,133.73,5.50" xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Expr col = colIdx(rowPtr(vm) + k)</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,324.38,260.89,220.26,6.65" xml:id="b4">
+	<monogr>
+		<title level="m" type="main">+= input(vn, col) * values(rowPtr(vm) + k)</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,324.38,283.37,94.40,5.50;4,315.01,290.86,119.50,5.50" xml:id="b5">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">Buffer&lt;int&gt;</title>
+		<imprint/>
+	</monogr>
+	<note>13 vm.bind_buffer(balancedIdx</note>
+</biblStruct>
+
+<biblStruct coords="4,324.38,298.35,94.40,5.50" xml:id="b6">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Var</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,324.38,305.84,47.20,5.50;4,315.01,313.34,170.63,6.65;4,340.11,320.83,169.13,5.50" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">RVar ko, ki; 16 out.split(vn, no, ni, kRegisterTileSize * kNTileSize)</title>
+		<imprint/>
+	</monogr>
+	<note>split(ni, nii, ni, kNTileSize</note>
+</biblStruct>
+
+<biblStruct coords="4,325.87,321.29,6.37,4.68;4,315.01,328.32,143.09,5.50" xml:id="b8">
+	<monogr>
+		<title level="m">→ 17 out</title>
+				<meeting><address><addrLine>split(vm, mo, mi, kMTileSize</addrLine></address></meeting>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,324.38,350.80,173.06,5.50;4,315.01,358.29,225.69,5.50" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">split(k, ko, ki, kNnzTileSize) 21 out.gpu_blocks(mo, no).gpu_threads(ni)</title>
+		<imprint/>
+		<respStmt>
+			<orgName>spmm.update(</orgName>
+		</respStmt>
+	</monogr>
+	<note>gpu_threads(mi</note>
+</biblStruct>
+
+<biblStruct coords="4,324.38,365.78,90.47,5.50;4,340.11,373.27,204.53,5.50" xml:id="b10">
+	<monogr>
+		<title level="m">colIdx.compute_at(spmm, ko).store_in(MemoryType::GPUShared).gpu_threads(_0)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="4,325.87,373.74,6.37,4.68;4,315.01,380.76,99.83,5.50;4,340.11,388.26,204.53,5.50" xml:id="b11">
+	<monogr>
+		<title level="m">→ 23 values.compute_at(spmm, ko).store_in(MemoryType::GPUShared).gpu_threads(_0)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,77.72,582.66,219.10,7.06;12,77.72,590.96,219.77,7.18;12,77.72,599.52,87.70,7.06" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Modeling polypharmacy side effects with graph convolutional networks</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zitnik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Agrawal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Leskovec</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Bioinformatics</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">13</biblScope>
+			<biblScope unit="page" from="457" to="466" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,77.72,607.96,218.83,7.06;12,77.72,616.39,220.17,7.06;12,77.72,624.69,218.80,7.18" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Modeling relational data with graph convolutional networks</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Schlichtkrull</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">N</forename><surname>Kipf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Bloem</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Van Den</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Berg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Titov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Welling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European Semantic Web Conference</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="593" to="607" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,77.72,633.26,218.83,7.06;12,77.57,641.69,218.97,7.06;12,77.72,649.99,219.10,7.18;12,77.59,658.42,219.89,7.19;12,77.72,666.97,40.08,7.06" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Graph convolutional neural networks for web-scale recommender systems</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ying</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Eksombatchai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">L</forename><surname>Hamilton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Leskovec</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</title>
+				<meeting>the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="974" to="983" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,77.72,675.42,219.77,7.06;12,76.72,683.72,219.83,7.18;12,77.47,692.15,204.51,7.19" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Neural message passing for quantum chemistry</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gilmer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Schoenholz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">F</forename><surname>Riley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Vinyals</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">E</forename><surname>Dahl</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1263" to="1272" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,73.65,218.83,7.06;12,331.00,82.07,94.92,7.06" xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Semi-supervised classification with graph convolutional networks</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">N</forename><surname>Kipf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Welling</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,90.64,218.83,7.06;12,331.00,98.94,218.83,7.18;12,330.75,107.37,220.20,7.18;12,330.44,115.93,16.86,7.06" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Inductive representation learning on large graphs</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">L</forename><surname>Hamilton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ying</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Leskovec</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 31st International Conference on Neural Information Processing Systems</title>
+				<meeting>the 31st International Conference on Neural Information Processing Systems</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1025" to="1035" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,124.50,218.83,7.06;12,331.00,132.80,218.83,7.19;12,330.75,141.23,146.44,7.18" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Fastgcn: fast learning with graph convolutional networks via importance sampling</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Xiao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,149.92,218.83,7.06;12,331.00,158.22,218.84,7.19;12,331.00,166.65,129.18,7.18" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Adaptive sampling towards fast graph representation learning</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Rong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Huang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="4558" to="4567" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,175.35,219.76,7.06;12,330.73,183.78,220.44,7.06;12,331.00,192.08,206.56,7.19" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Multi-aspect heterogeneous graph augmentation</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Shang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM Web Conference 2023</title>
+				<meeting>the ACM Web Conference 2023</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="39" to="48" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,200.77,219.77,7.06;12,331.00,209.20,219.03,7.06;12,331.00,217.50,218.83,7.19;12,330.75,225.93,220.02,7.19;12,331.00,234.49,28.84,7.06" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">T-gcn: A sampling based streaming graph neural network system with hybrid architecture</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Huan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">L</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Parallel Architectures and Compilation Techniques</title>
+				<meeting>the International Conference on Parallel Architectures and Compilation Techniques</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="69" to="82" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,243.06,218.84,7.06;12,331.00,251.36,218.83,7.18;12,330.77,259.79,69.35,7.19" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">How powerful are graph neural networks?</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Leskovec</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jegelka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,268.48,219.88,7.06;12,331.00,276.91,220.08,7.06;12,331.00,285.21,219.77,7.18;12,330.81,293.77,43.51,7.06" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Hagen: Homophily-aware graph convolutional recurrent network for crime forecasting</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Yue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Shahabi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,302.34,219.77,7.06;12,331.00,310.64,220.08,7.18;12,331.00,318.89,218.83,7.49;12,330.81,327.49,217.88,7.18" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Tensorflow: A system for largescale machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Abadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Barham</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Dean</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Devin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ghemawat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Irving</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Isard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">12th {USENIX} Symposium on Operating Systems Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page" from="265" to="283" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,336.19,219.77,7.06;12,330.77,344.49,219.07,7.18;12,331.00,352.92,218.84,7.18;12,331.00,361.35,201.04,7.18" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Pytorch: An imperative style, high-performance deep learning library</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Paszke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Gross</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Massa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Lerer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Bradbury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Chanan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Killeen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Gimelshein</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Antiga</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="8024" to="8035" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,370.04,219.77,7.06;12,331.00,378.47,218.84,7.06;12,331.00,386.77,218.83,7.18;12,331.00,395.20,76.08,7.18" xml:id="b26">
+	<monogr>
+		<title level="m" type="main">Mxnet: A flexible and efficient machine learning library for heterogeneous distributed systems</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1512.01274</idno>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,331.00,403.90,219.77,7.06;12,331.00,412.20,218.84,7.19;12,331.00,420.76,124.93,7.06" xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Deep graph library: Towards efficient and scalable deep learning on graphs</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Gai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Ma</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,429.32,218.83,7.06;12,331.00,437.75,218.83,7.06;12,330.81,446.05,219.02,7.18;12,330.50,454.48,115.44,7.18" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Fusedmm: A unified sddmm-spmm kernel for graph embedding and graph neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">K</forename><surname>Rahman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">H</forename><surname>Sujon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Parallel and Distributed Processing Symposium (IPDPS)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="256" to="266" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,463.18,218.83,7.06;12,331.00,471.61,220.16,7.06;12,331.00,479.91,220.14,7.18;12,330.75,488.34,182.71,7.19" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Ge-spmm: General-purpose sparse matrix-matrix multiplication on gpus for graph neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC20: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,497.03,219.77,7.06;12,331.00,505.46,218.83,7.06;12,331.00,513.76,218.83,7.18;12,330.76,522.19,220.00,7.19;12,331.00,530.75,48.32,7.06" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Featgraph: A flexible and efficient backend for graph neural network systems</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC20: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,539.32,218.83,7.06;12,331.00,547.74,219.25,7.06;12,331.00,556.17,60.03,7.06" xml:id="b31">
+	<monogr>
+		<title level="m" type="main">The api reference guide for cusparse, the cuda sparse matrix library</title>
+		<ptr target="https://docs.nvidia.com/cuda/cusparse/index.html" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+		<respStmt>
+			<orgName>NVIDIA</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,564.74,218.96,7.06;12,331.00,573.04,218.82,7.19;12,330.75,581.47,220.39,7.19" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Sparse gpu kernels for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zaharia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Young</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Elsen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC20: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,590.17,219.77,7.06;12,331.00,598.47,218.83,7.18;12,330.75,606.90,192.59,7.19" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Attention is all you need</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ł</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Polosukhin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="5998" to="6008" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,615.59,218.83,7.06;12,331.00,623.89,218.84,7.18;12,331.00,632.32,138.55,7.18" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Deep residual learning for image recognition</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<meeting>the IEEE Conference on Computer Vision and Pattern Recognition</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="770" to="778" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,641.02,219.77,7.06;12,331.00,649.32,218.83,7.18;12,331.00,657.75,218.83,7.19;12,331.00,666.18,220.14,7.18;12,331.00,674.73,28.09,7.06" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Tvm: An automated end-to-end optimizing compiler for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cowan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Ceze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">13th USENIX Symposium on Operating Systems Design and Implementation (OSDI 18)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="578" to="594" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,331.00,683.30,218.83,7.06;12,331.00,691.73,218.83,7.06;12,300.00,748.70,12.00,7.83;12,117.32,765.07,410.83,6.48;13,76.15,72.80,220.16,7.06;13,75.70,81.10,174.12,7.18" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">at 14:39:06 UTC from IEEE Xplore. Restrictions apply. parallelism, locality, and recomputation in image processing pipelines</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ragan-Kelley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Paris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Durand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Acm Sigplan Notices</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="519" to="530" />
+			<date type="published" when="2013">June 03,2025. 2013</date>
+		</imprint>
+	</monogr>
+	<note>Halide: A language and compiler for optimizing 148 licensed use limited to: HUNAN UNIVERSITY</note>
+</biblStruct>
+
+<biblStruct coords="13,76.15,90.64,219.77,7.06;13,76.15,98.94,218.96,7.18;13,76.15,107.37,218.83,7.19;13,75.97,115.80,209.91,7.19" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Ansor: Generating high-performance tensor programs for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Haj-Ali</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Zhuo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Sen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">14th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="863" to="879" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,125.21,218.83,7.19;13,76.15,133.64,74.00,7.19" xml:id="b38">
+	<monogr>
+		<title level="m" type="main">Introduction to interval analysis</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">E</forename><surname>Moore</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">B</forename><surname>Kearfott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">J</forename><surname>Cloud</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<publisher>SIAM</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,143.18,218.96,7.06;13,76.15,151.48,219.76,7.18;13,76.15,160.03,16.86,7.06" xml:id="b39">
+	<monogr>
+		<title level="m" type="main">Cortex: A compiler for recursive deep learning models</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Fegade</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">B</forename><surname>Gibbons</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">C</forename><surname>Mowry</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2011.01383</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="13,76.15,169.44,219.76,7.06;13,75.72,177.74,219.26,7.18;13,76.16,186.17,218.83,7.19;13,76.16,194.60,218.83,7.18;13,75.95,203.03,188.72,7.18" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Akg: Automatic kernel generation for neural processing units using polyhedral transformations</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Nie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Geng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 42nd ACM SIGPLAN International Conference on Programming Language Design and Implementation</title>
+				<meeting>the 42nd ACM SIGPLAN International Conference on Programming Language Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1233" to="1248" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,212.57,218.83,7.06;13,76.15,220.87,218.82,7.19;13,76.15,229.30,218.83,7.18;13,76.15,237.73,147.29,7.19" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Triton: An intermediate language and compiler for tiled neural network computations</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Tillet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H.-T</forename><surname>Kung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Cox</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 3rd ACM SIGPLAN International Workshop on Machine Learning and Programming Languages</title>
+				<meeting>the 3rd ACM SIGPLAN International Workshop on Machine Learning and Programming Languages</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="10" to="19" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,247.27,219.77,7.06;13,76.15,255.69,218.83,7.06;13,76.15,264.00,218.84,7.18;13,76.03,272.42,220.27,7.18" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Tiramisu: A polyhedral compiler for expressing fast and portable code</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ray</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">B</forename><surname>Romdhane</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Del Sozzo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Akkas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Suriana</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,290.39,219.88,7.06;13,76.15,298.82,173.80,7.06" xml:id="b43">
+	<monogr>
+		<title level="m" type="main">Cuda c++ programming guide</title>
+		<ptr target="https://docs.nvidia.com/cuda/cuda-c-programming-guide/" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+		<respStmt>
+			<orgName>NVIDIA</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,308.23,218.97,7.06;13,76.15,316.53,218.83,7.19;13,75.91,324.96,219.08,7.18;13,75.65,333.39,104.62,7.19" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Lightspmv: Faster csr-based sparse matrix-vector multiplication on cuda-enabled gpus</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Schmidt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 IEEE 26th International Conference on Application-specific Systems, Architectures and Processors (ASAP)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="82" to="89" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,342.93,219.77,7.06;13,76.15,351.23,218.84,7.18;13,76.15,359.66,218.84,7.19;13,75.74,368.09,200.53,7.18" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Learning to optimize halide with tree search and random programs</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T.-M</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gharbi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Steiner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Johnson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Fatahalian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Durand</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Graphics (TOG)</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1" to="12" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,377.62,219.77,7.06;13,76.15,385.93,218.83,7.18;13,76.15,394.35,102.98,7.18" xml:id="b46">
+	<monogr>
+		<title level="m" type="main">Learning to optimize tensor programs</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Ceze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Krishnamurthy</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1805.08166</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="13,76.15,403.89,219.02,7.06;13,76.15,412.19,218.83,7.18;13,76.15,420.62,160.13,7.19" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Batch normalization: Accelerating deep network training by reducing internal covariate shift</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ioffe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Szegedy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<publisher>PMLR</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="448" to="456" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,430.16,218.83,7.06;13,76.01,438.59,218.97,7.06;13,76.15,446.89,218.82,7.19;13,76.03,455.32,119.07,7.19" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Open graph benchmark: Datasets for machine learning on graphs</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Fey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zitnik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Catasta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Leskovec</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 34th International Conference on Neural Information Processing Systems</title>
+				<meeting>the 34th International Conference on Neural Information Processing Systems</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,464.86,218.83,7.06;13,75.72,473.16,219.26,7.18;13,76.15,481.59,109.56,7.18" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Graph attention networks</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Veličković</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Cucurull</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Casanova</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Romero</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Liò</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Bengio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,491.13,218.83,7.06;13,76.15,499.43,218.83,7.19;13,75.91,507.86,188.84,7.19" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Link prediction based on graph neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 32nd International Conference on Neural Information Processing Systems</title>
+				<meeting>the 32nd International Conference on Neural Information Processing Systems</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="5171" to="5181" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,517.40,219.09,7.06;13,76.15,525.82,220.17,7.06;13,76.15,534.12,219.77,7.19;13,75.72,542.68,165.94,7.06" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Labeling trick: A theory of using graph neural networks for multi-node representation learning</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Jin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<editor>
+			<persName><forename type="first">A</forename><surname>Beygelzimer</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Y</forename><surname>Dauphin</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><surname>Liang</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><forename type="middle">W</forename><surname>Vaughan</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,552.09,218.83,7.06;13,76.15,560.52,220.17,7.06;13,75.92,568.82,179.89,7.18" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Algorithm and system co-design for efficient subgraph-based graph representation learning</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. VLDB Endow</title>
+				<meeting>VLDB Endow</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="2788" to="2796" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,578.36,218.84,7.06;13,76.15,586.66,218.83,7.18;13,75.74,595.09,220.56,7.18;13,76.15,603.65,55.07,7.06" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Efficient data loader for fast sampling-based gnn training on large graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Miao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="2541" to="2556" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,613.06,219.76,7.06;13,75.16,621.36,219.83,7.19;13,75.92,629.79,139.81,7.19" xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Aligraph: A comprehensive graph neural network platform</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Ai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. VLDB Endow</title>
+				<meeting>VLDB Endow</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="2094" to="2105" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,639.33,218.83,7.06;13,76.15,647.63,218.83,7.19;13,75.92,656.06,131.88,7.18" xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Design principles for sparse matrix multiplication on the gpu</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European Conference on Parallel Processing</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="672" to="687" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,76.15,665.59,220.08,7.06;13,76.15,674.02,220.16,7.06;13,76.15,682.32,218.83,7.18;13,76.15,690.75,182.24,7.18" xml:id="b56">
+	<analytic>
+		<title level="a" type="main">speck: Accelerating gpu sparse matrix-matrix multiplication through lightweight analysis</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Parger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Mlakar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Steinberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="362" to="375" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.51,72.80,220.08,7.06;13,330.51,81.11,219.76,7.18;13,330.51,89.66,16.86,7.06" xml:id="b57">
+	<monogr>
+		<title level="m" type="main">Accelerating spmm kernel with cachefirst edge sampling for gnn inference</title>
+		<author>
+			<persName coords=""><forename type="first">C.-Y</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Ceze</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2104.10716</idno>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="13,330.51,98.09,218.83,7.06;13,330.51,106.39,218.84,7.18;13,330.30,114.82,153.33,7.18" xml:id="b58">
+	<analytic>
+		<title level="a" type="main">The tensor algebra compiler</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lugato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OOPSLA</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="1" to="29" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.51,123.37,219.77,7.06;13,330.51,131.80,218.83,7.06;13,330.51,140.10,218.83,7.18;13,330.27,148.53,197.46,7.18" xml:id="b59">
+	<analytic>
+		<title level="a" type="main">A sparse iteration space transformation framework for sparse tensor algebra</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Senanayake</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Wilson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kjolstad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OOPSLA</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="1" to="30" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">A 118 GOPS/mm 2 3D eDRAM TensorCore Architecture for Large-scale Matrix Multiplication</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,122.44,158.31,64.92,9.81"><forename type="first">Mengtian</forename><surname>Yang</surname></persName>
+							<email>mengtian.yang@utexas.edu</email>
+						</author>
+						<author>
+							<persName coords="1,278.92,158.31,57.11,9.81"><forename type="first">Yipeng</forename><surname>Wang</surname></persName>
+							<email>yipeng.wang@utexas.edu</email>
+						</author>
+						<author>
+							<persName coords="1,418.94,158.31,84.91,9.81"><forename type="first">Jaydeep</forename><forename type="middle">P</forename><surname>Kulkarni</surname></persName>
+							<email>jaydeep@austin.utexas.edu</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Texas at Austin</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">University of Texas at Austin</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">University of Texas at Austin</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">A 118 GOPS/mm 2 3D eDRAM TensorCore Architecture for Large-scale Matrix Multiplication</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">7E779EBECACAE213A197121FA040FCCD</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>ML accelerator</term>
+					<term>matrix multiplication</term>
+					<term>monolithic 3D</term>
+					<term>eDRAM</term>
+					<term>Compute-in-memory</term>
+					<term>CIM</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The computational demands for recent large transformer-based language models and Neural Radiance Fields (NeRF) have rapidly increased, impacting applications like conversational AI and Mixed Reality (MR). Current accelerator architectures struggle to cope with the vast computational requirements, creating a gap with slowly growing hardware resources. This paper proposes repurposing memory components as highdensity computational units, leveraging recent advancements in Back-End-Of-Line (BEOL) transistors and monolithic 3D integration techniques. An ultra-high density monolithic 3D eDRAM is presented as a reconfigurable matrix multiplication unit, codesigned with analog computation circuits, achieving energy efficiency up to 2.41 TOPS/W, performance up to 1.71 TOPS on bfloat16, and compute intensity up to 118 GOPS/mm 2 . A comprehensive multi-cube(core) architecture is also devised and optimized with bit stationary tensorcore dataflow. We evaluate the proposed architecture on state-of-the-art machine learning models: NeRF and LLaMa-7B, improving the computation density by up to 6.59x and 1.12x compared with GPU and state-of-the-art vector processor designs, respectively.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>In recent years, the surge in the adoption of large transformer-based language models and Neural Radiance Fields (NeRF) based rendering has been closely tied to their intensive computational demands. While these tools have spearheaded breakthroughs in fields like natural language processing (NLP) and 3D reconstruction, such as conversational AI and MR <ref type="bibr" coords="1,144.72,531.62,10.05,8.92" target="#b0">[1]</ref>, <ref type="bibr" coords="1,162.90,531.62,10.05,8.92" target="#b1">[2]</ref>, the computational challenges they introduce cannot be overlooked. For instance, to achieve high-quality responses, models necessitate more than 175 billion parameters and a staggering computational power in the ballpark of hundreds of petaflops <ref type="bibr" coords="1,188.41,577.04,10.05,8.92" target="#b2">[3]</ref>. The sheer magnitude of these models stretches the limits of present-day accelerator architectures, underscoring the pressing need for extreme compute throughput.</p><p>Currently, most commercial products depend primarily on off-chip DRAM access and centralized matrix multiplication units. Further improvement of computation resources are limited by area and power density. Recent explorations involve implementing Single Instruction, Multiple Data (SIMD) units placed near High Bandwidth Memory (HBM) IO boundaries for machine learning workloads <ref type="bibr" coords="1,188.64,691.03,10.05,8.92" target="#b3">[4]</ref>, <ref type="bibr" coords="1,206.39,691.03,10.05,8.92" target="#b4">[5]</ref>, which extends the computation to off-chip. However, further exploration of increasing flexible on-chip computation units is necessary to address the rapidly changing requirements on the algorithmic side effectively.</p><p>In modern System-on-Chips (SoCs), a significant portion of the on-chip area is consumed by memory, which restricts the available area for computation, thereby limiting the chip's overall throughput potential. To address this, we propose repurposing memory components as high-density computational units that benefit from innovations in Back-End-Of-Line (BEOL) transistors and monolithic 3D integration methods. As Fig. <ref type="figure" coords="1,331.73,494.51,4.73,8.92" target="#fig_0">1</ref> shows, Our proposal is focused on the potential of ultrahigh density, monolithic-3D embedded DRAM (eDRAM) as a powerful compute engine for matrix multiplication. We aim to co-design a compact eDRAM integrated with analog compute circuits, thereby amplifying data reuse and curbing energy consumption. The emergence of monolithic 3D integration of BEOL transistors for high-density tasks further bolsters this approach. By facilitating matrix multiplication across dimensions that transcend 2D limitations, this vertical integration not only facilitates substantial data reuse benefits but also opens up new opportunities for architectural advancements.</p><p>In this paper, we first introduce the eDRAM tensor core circuit and its 3D BEOL integration. We then present a dataflow supporting INT8 and BF16 general-purpose matrix multiplication. Subsequently, we assess the advantages of this approach over the traditional processors in terms of critical metrics such as energy efficiency, performance, and compute intensity. In addition, we devise a comprehensive architecture, including cache, datapath, and DRAM access components. Moreover, we evaluate the effectiveness of the proposed ap- proach using state-of-the-art machine learning models such as NeRF and LLaMA-7B language model. II. 3D EDRAM TENSOR CORE CIRCUIT AND DATAFLOW Monolithic 3D memory technology offers higher bit-density and higher energy efficiency compared to tiled 2D memories and other 3D integration methods <ref type="bibr" coords="2,187.11,138.15,10.05,8.92" target="#b5">[6]</ref>, thus meeting the density and energy efficiency needs of future ML workloads, exhibiting low write energy, and high write endurance due to many weight and activation updates (write operations) in each layer's computation. Monolithic 3D silicon SRAMs face low temperature processing challenges, incur higher transistor count and leakage current compared to other back-end integrated resistive, magnetic, and phase change memories <ref type="bibr" coords="2,243.67,217.66,10.05,8.92" target="#b6">[7]</ref>. Although commercially available, these memories exhibit poor writeendurance (10 4 -10 6 ), and high write-energy (&gt;10pJ), limiting their use in large scale accelerator designs requiring frequent, energy-efficient weight/activation updates.</p><p>A promising 3D memory technology suitable for extremescale designs is eDRAM, which employs back-end integrationcompatible Indium Gallium Zinc Oxide (IGZO) transistors <ref type="bibr" coords="2,282.19,297.10,10.05,8.92" target="#b7">[8]</ref>. eDRAM features an intrinsic contention-free write mechanism, resulting in a low write energy (approximately 1pJ). Furthermore, IGZO eDRAM has shown an impressive 6-8 orders of magnitude higher write-endurance compared to other back-end integrated memories <ref type="bibr" coords="2,139.77,353.89,10.05,8.92" target="#b8">[9]</ref>, <ref type="bibr" coords="2,157.00,353.89,14.51,8.92" target="#b9">[10]</ref>. Consequently, IGZO eDRAM presents a distinct value proposition characterized by low write energy, high write endurance, and remarkable bit density.</p><p>This work introduces a monolithic 3D eDRAM approach using BEOL-integrated 2T only gain-cell bitcell topology to maximize memory density. Fig. <ref type="figure" coords="2,181.51,410.62,4.73,8.92" target="#fig_2">2</ref> illustrates our inner-product style dataflow that extends from traditional 2D Compute-inmemory (CIM) <ref type="bibr" coords="2,123.73,433.33,15.77,8.92" target="#b10">[11]</ref> dataflow. Within this framework, 3D weights are retained in the columns of the 3D eDRAM array for inner product matrix multiplication. Inputs are fed into  the read-wordline (RWL) systematically. On the bit cell level, WBL and WWL are routed along the X and Y axes, while RBL extends in the Z direction. The write access transistor is utilized for writing one multiplier (b 22 in Fig. <ref type="figure" coords="2,511.06,346.80,3.94,8.92" target="#fig_4">5</ref>) into the 3D array, while the complement of another multiplier (ā 12 in Fig. <ref type="figure" coords="2,333.34,369.51,3.94,8.92" target="#fig_4">5</ref>) is fed through the RWL and performs multiplication through the read operation. The outcome of the multiplication process determines the discharging action of the readbitline (RBL), resulting in layer-wise accumulation similar to previous models. In this operational mode, the weight remains static within the array, reducing the requirement for high input bandwidth. However, unlike 3T <ref type="bibr" coords="2,485.41,437.65,15.77,8.92" target="#b11">[12]</ref> cell designs, 2T cell designs exhibit RBL limited bitline swing due to the unselected cell sneak-path leakage current, which could impose computation accuracy issues. Additionally, a small voltage swing implies an insufficient read-sensing margin.</p><p>To surmount these challenges, we propose a higher performance outer-product dataflow which is shown in Fig. <ref type="figure" coords="2,524.58,515.30,4.73,8.92">3</ref> when reconfiguring the 3D eDRAM cache as TensorCore. This mode of operation feeds and broadcasts 2D multipliers through the array in the X and Y directions while results accumulate in the Z direction, enabling parallel outer product matrix multiplication. Instead of performing multiplication through read operation in inner-product dataflow, this proposed dataflow uses the memory write stage for multiplication to achieve a full RBL swing, leakage-free accumulation. Meanwhile, outer-production achieves the best parallelism among result matrix elements, maximizing the utilization of all 3D RBLs. In executing multiply and accumulate (MAC) operations, WBL is initially pre-discharged, and WWL is set high to discharge all storage nodes. Concurrently, RWLs are driven to the ground, and RBL is precharged to Vcc. Single-bit multiplier values are then delivered to WBL as pulses and WWL as steady voltages. A storage node charges only when both WBL and WWL are high, which completes a one-bit multiplication. The read access transistor discharges the RBL when the multiplication result is '1', facilitating accumulation in the Z direction. The partial sum is then converted into the digital domain using a 2bit ADC and sense amplifier. The accumulation phase can also be digitally designed using a set of digital adder trees to access the storage node, but this would demand using complementary P and N devices-based logic using IGZO BEOL, which is challenging to realize. Multi-bit functionality can be achieved by integrating a shift-and-add unit for each Z column. This bit-serial approach allows multipliers to be flexibly defined by digital control, easing mapping to the machine learning library.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. 3D EDRAM TENSOR CORE ARCHITECTURE</head><p>Fig. <ref type="figure" coords="3,84.31,431.99,4.73,8.92">4</ref> depicts the high-level architecture of the 3D eDRAM TensorCore. The complete architecture comprises 4x4 3D TensorCubes, with each cube featuring a 64x64x4 3D eDRAM computation array. A single cube is capable of performing a matrix multiplication of dimensions 64x4 by 4x64. Consequently, the entire architecture can process matrix multiplications with a tile size of 256x4 by 4x256. To present the architecture design comprehensively, we will proceed in a bottom-up manner, initially explaining the dataflow to support int8 and bfloat16, then elucidating the accumulation pattern within one matrix multiplication tile and the matrix tiling approach for large-scale matrix multiplication on the entire architecture.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Bit stationary dataflow</head><p>The 3D eDRAM TensorCore is capable of performing 1bit matrix multiplication, as demonstrated in section II. To facilitate multi-bit input for both multipliers, we propose a bitstationary dataflow for int8 and bfloat16 matrix multiplication. This proposed dataflow establishes a temporal mapping for multi-bit multiplication, breaking it down into multiple 1-bit matrix multiplications. As a the 3D eDRAM Tensor-Core becomes capable of executing multi-bit computations effectively.</p><p>1) Support for INT8: Fig. <ref type="figure" coords="3,436.83,73.74,4.73,8.92" target="#fig_4">5</ref> illustrates the detailed bitstationary dataflow employed in the proposed 3D eDRAM TensorCore for performing signed int8 multiply-add operations along the Z direction. To facilitate analysis, we focus on a single element in the result matrix and illustrate the computation dataflow accordingly. In Fig. <ref type="figure" coords="3,457.11,130.53,4.73,8.92" target="#fig_4">5</ref> (a), each Z-directional layer receives two 8-bit signed integer numbers as multipliers, with the signed multiplication results accumulating into the partial sum. Fig. <ref type="figure" coords="3,382.02,164.60,4.73,8.92" target="#fig_4">5</ref> (b) provides a temporal breakdown of the bit-stationary dataflow. The computation begins with the least significant bit (LSB) of input b, while the bit of input a is initially stationed at the LSB. As the processing of input b bits finishes, we shift the bit of input a to the next position and repeat the iteration for all bits of input b. The iteration continues until we reach the most significant bit (MSB) for both input a and b, at which point the computation finishes.</p><p>The shift-add logic requires modification to support signed multi-bit multiplication and addition. To achieve this, we incorporate the Baugh-Wooley algorithm, which efficiently handles sign bits for single multiplication, into our shift-add logic. This integration enables our logic to handle signed multiplication and addition. Fig. <ref type="figure" coords="3,390.37,314.82,16.33,8.92" target="#fig_4">5 (c</ref>) illustrates the implementation of a 4-layer signed accumulation logic for bit-stationary dataflow. The accumulated result is initially read out by an ADC and further processed based on the current bit for input a and b. If both of the current input a bit and the current input b bit are MSB (Most Significant Bit) or neither of them is MSB, we take the obtained result and pass it to the next shift logic. Otherwise, we pass 4 − result to the shift logic. The shift logic performs a left shift on the passed value by the sum of the current a bit and b bit, and the shifted value is then accumulated into the partial sum. Upon completion of the last accumulation for the output result, we add the final value by 1024 and flip the MSB bit to obtain the correct final accumulation result.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2) Support for BF16:</head><p>To implement the in-memory accumulation of floating-point numbers, the exponents of multiplication results must be identical. We propose a matrix prealignment technique that aligns the input from one of the input matrices to ensure a consistent exponent for each vertical  plane. Under this scheme, during the data preparation stage, an exponent target will be identified for each vertical plane. This is usually the maximum exponent for all multiplication results within the plane. Following this, every element of one of the matrices will be subjected to a left shift, based on the target and the corresponding exponent of the element from the other matrix. Once accumulation has been completed, the result is returned to the standard floating-point format. In the case of BF 16, the exponent comprises 8 bits, with the sign and mantissa taking up the remaining 8 bits. This is compatible with the INT8 architecture that was proposed previously.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Tiling for large scale computation</head><p>To support large-scale matrix multiplication, which is a common operation in machine learning applications, an efficient tiling method is essential. Fig. <ref type="figure" coords="4,211.13,364.56,4.73,8.92" target="#fig_5">6</ref> illustrates the tiling pattern employed in the 3D eDRAM TensorCore architecture. Our approach involves partitioning the computation based on an output stationary pattern. Each tile focuses on completing the computation for a single 256x256 output block. Within each tile, a subtitling technique in an outer-product style is utilized to maximize the utilization of multiplication and accumulation components while minimizing bandwidth and data-preparation overhead. During the computation in the 3D TensorCore, current subtiles are stored in the cache, while the next subtiles are pre-fetched into a separate ping-pong cache. Leveraging the bit-stationary dataflow and bit-level data reuse, the memory and cache bandwidth requirements are significantly reduced. Notably, the subtiles stored in the cache can be maintained for 64 accumulation steps before switching, allowing for fully overlapped cache fetching and yielding higher compute performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. EVALUATION</head><p>Our design is assessed using Hspice simulation, under the TSMC 40nm technology. We chose three distinct benchmarks to evaluate our design effectively: a 4096x4096 general matrix multiplication (GEMM 4096), the NeRF model, and the LLaMA-7B model. In the case of the machine learning models, our primary focus is on deconstructing the layers and conducting a detailed layer-wise assessment, with exclusive attention given to the matrix-multiplication and convolutional layers. The on-chip cache latency/energy and the off-chip DRAM latency are included in the simulation based on the Cacti simulator.  A. Architecture simulation Fig. <ref type="figure" coords="4,343.44,213.96,4.73,8.92" target="#fig_6">7</ref> shows the simulation results on three benchmarks for both INT8 and BF16 datatype. The CubeOnly column indicates the upper bound of performance and energy efficiency, which is determined by executing all 16 TensorCubes simultaneously and measuring the corresponding performance and efficiency. This value serves as an upper bound for this architecture, as it accounts for the full utilization of computation units without considering any cache overhead.</p><p>Based on the results shown in Fig. <ref type="figure" coords="4,473.34,304.62,3.55,8.92" target="#fig_6">7</ref>, it is evident that this architecture demonstrates exceptional proficiency in executing extensive matrix multiplications with near-optimal performance and energy efficiency. Specifically, it achieves a throughput of 2.56 (1.71) TOPS and 2.41 (2.41) TOPS/W for INT8 (BF16) precision. Furthermore, this architecture shows its ability to efficiently handle large-scale machine learning models such as the NeRF model for mixed reality and the LLaMA-7B model for language processing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Dataflow comparison: inner-product and outer-product</head><p>Fig. <ref type="figure" coords="4,341.29,426.20,4.73,8.92" target="#fig_7">8</ref> illustrates the comparison between inner-product style dataflow and outer-product style dataflow in our architecture design. The energy breakdown in Fig. <ref type="figure" coords="4,476.14,448.92,3.75,8.92" target="#fig_7">8</ref>(a)(b) reveals that the 3D eDRAM array itself exhibits a considerably higher energy consumption when operating in inner-product style.   Specifically, the 3D eDRAM array accounts for 52% of the total energy consumption in inner-product style dataflow, while it only consumes 8% in outer-product style dataflow. Fig. <ref type="figure" coords="5,85.41,279.80,3.75,8.92" target="#fig_7">8</ref>(c)(d) shows the energy/latency overhead for innerproduct style dataflow vs outer-product style dataflow. Results show that inner-product style dataflow could consume up to 1.90x more energy and 1.49x more latency compared with outer-product style dataflow.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Compare with hardware</head><p>Fig. <ref type="figure" coords="5,81.98,358.37,3.94,8.92" target="#fig_8">9</ref> compares our result with CPU, GPU, RISCV vector coprocessor <ref type="bibr" coords="5,106.64,369.73,14.51,8.92" target="#b12">[13]</ref>. We scale technology and normalize it to 40nm to compare the energy/area efficiency. Our proposed design achieves decent energy efficiency for 2.41 TOPS/W BF16 precision and great area efficiency at 118(79) GOPS/mm 2 for BF16(INT8) precision.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. RELATED WORKS</head><p>For previous 3D architecture works, Para-Net <ref type="bibr" coords="5,253.91,448.52,15.77,8.92" target="#b13">[14]</ref> introduces a method for improving convolutional neural network (CNN) performance by leveraging data-level parallelism on a 3D processing-in-memory (PIM) architecture. It addresses the main challenge of data movement in CNNs, resulting in improved processing time and cache efficiency. M3D-LIME <ref type="bibr" coords="5,82.59,516.66,15.77,8.92" target="#b14">[15]</ref> integrates Si-based CMOS logic, resistive randomaccess memory (RRAM)-based computing-in-memory (CIM), and ternary content-addressable memory (TCAM) layers in a monolithic 3D structure, and demonstrates significant energy efficiency in one-shot learning tasks. 3D-stacked Logic-in-Memory (LiM) Accelerator <ref type="bibr" coords="5,174.19,573.45,15.77,8.92" target="#b15">[16]</ref> introduced a 3D-stacked Logic-in-Memory Accelerator for sparse matrix multiplication by applying customized content addressable memory (CAM) hardware structure to exploit the inherent sparse data patterns and model the LiM based hardware accelerator layers that are stacked in between DRAM dies for the efficient sparse matrix operations.</p><p>For eDRAM-based accelerator design, eDRAM-CIM <ref type="bibr" coords="5,279.48,653.04,15.77,8.92" target="#b16">[17]</ref> illustrates the practicability for eDRAM-based CIM design by proposing the matrix multiplication accelerator with 1T1C bit cells. The 4T2C eDRAM CIM design <ref type="bibr" coords="5,204.45,687.11,15.77,8.92" target="#b17">[18]</ref> proposed a matrixvector multiplication engine with ternary weight support and improved retention time. Gain-Cell CIM <ref type="bibr" coords="5,485.48,72.87,15.77,8.92" target="#b18">[19]</ref> presented a leakage and read bitline swing aware eDRAM CIM design based on 2T1C eDRAM bit cells by using the intrinsic RBL capacitors to perform CIM computations within the limited available RBL swing in a 2T1C eDRAM.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUSION</head><p>We explored architecture design with recent advancements in Back-End-Of-Line (BEOL) transistors and monolithic 3D integration techniques. A high-performance matrix multiplication unit based on ultra-high density monolithic 3D eDRAM is proposed and co-designed with analog CIM circuits. By optimizing with outer-product style bit-stationary dataflow, the simulation results show that the proposed architecture achieves significant energy efficiency, performance, and area efficiency.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,315.70,354.31,235.62,7.13"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Design overview of proposed 3D eDRAM TensorCore architecture.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="1,302.00,748.70,8.00,7.83;1,96.87,23.38,418.27,9.79;1,46.00,748.70,112.52,7.83;1,46.00,756.70,122.22,7.83;1,11.95,715.81,7.05,16.19;1,11.95,700.28,7.05,13.72;1,11.95,683.50,7.05,14.97;1,11.95,639.44,7.05,42.26;1,11.95,600.22,7.05,37.41;1,11.95,590.00,7.05,8.42;1,11.95,573.42,7.05,14.78;1,11.95,529.51,7.05,42.10;1,11.95,489.98,7.05,37.72;1,11.95,470.93,7.05,17.25;1,11.95,456.89,7.05,12.23;1,11.95,425.97,7.05,29.11;1,11.95,404.10,7.05,20.06;1,11.95,398.62,7.05,3.68;1,11.95,297.86,7.05,98.94;1,11.95,273.19,7.05,22.86;1,11.95,257.66,7.05,13.72;1,11.95,252.18,7.05,3.68;1,11.95,236.01,7.05,14.36;1,11.95,128.72,7.05,105.48"><head></head><label></label><figDesc>International Conference on High Performance Computing, Data, and Analytics (HiPC) 2640-0316/23/$31.00 ©2023 IEEE DOI 10.1109/HiPC58850.2023.00020 2023 IEEE 30th International Conference on High Performance Computing, Data, and Analytics (HiPC) | 979-8-3503-8322-5/23/$31.00 ©2023 IEEE | DOI: 10.1109/HIPC58850.2023.00020</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="2,81.60,696.73,189.49,7.13"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Extend from 2D to 3D: inner-product style dataflow.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="2,321.24,299.18,225.01,7.13"><head>… c 11 c 12 c 21 c 22 Fig. 3 .</head><label>12223</label><figDesc>Fig. 3. Proposed 3D eDRAM TensorCore: outer-product style dataflow.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="3,315.78,698.10,236.05,7.13"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Multi-bit multiplication and accumulation on proposed architecture.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="4,85.45,163.80,183.79,7.13"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Tiling pattern for large-scale matrix multiplication.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="4,314.54,169.24,238.51,7.13;4,314.54,177.76,238.50,7.13;4,314.54,186.28,154.73,7.13"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. (a) Simulation results of performance (TOPS). (b) Energy efficiency (TOPS/W) for the proposed design. The CubeOnly column means the maximum performance/energy efficiency for 16 cubes.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="4,314.54,662.14,238.50,7.13;4,314.54,670.65,238.50,7.13;4,314.54,679.17,238.50,7.13;4,314.54,687.69,238.50,7.13;4,314.54,696.21,122.30,7.13"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Comparison results for inner-product style dataflow and outer-product style dataflow. (a) Energy breakdown for GEMM 4096 in inner-product style dataflow. (b) Energy breakdown for GEMM 4096 in outer-product style dataflow. (c) Energy comparison for three evaluated models. (d) Latency comparison for three evaluated models.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="5,56.74,223.58,238.50,7.13;5,56.74,232.10,158.86,7.13"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Throughput, energy efficiency, and area efficiency comparison with CPU/GPU/Vector processor (Normalised to 40nm).</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:21:52 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGEMENT</head><p>We thank the UT iMAGINE consortium for supporting this research project.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="5,331.48,306.34,221.16,7.26;5,331.48,314.86,106.14,7.26" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Llama: Open and efficient foundation language models</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Touvron</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2302.13971</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,323.38,221.16,7.26;5,331.48,331.90,175.55,7.26" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Nerf: Representing scenes as neural radiance fields for view synthesis</title>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Mildenhall</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the ACM</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,340.41,221.17,7.26;5,331.48,348.93,166.73,7.26" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Language models are few-shot learners</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Brown</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">33</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,357.45,221.17,7.26;5,331.48,365.97,209.39,7.26" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Aquabolt-xl: Samsung hbm2-pim with in-memory processing for ml accelerators and beyond</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Kim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">HCS</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,374.49,221.16,7.26;5,331.48,383.00,164.14,7.26" xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Newton: A dram-maker&apos;s accelerator-in-memory (aim) architecture for machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>He</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>MICRO</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,391.65,221.16,7.13;5,331.48,400.04,151.82,7.26" xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Energy-Efficient Monolithic Three-Dimensional On-Chip Memory Architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">K</forename><surname>Jha</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<publisher>TNANO</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,408.56,221.16,7.26;5,331.48,417.08,39.74,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">FerroElectronics for Edge Intelligence</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Keshavarzi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Micro</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,425.59,221.16,7.26;5,331.48,434.24,221.16,7.13;5,331.48,442.63,91.03,7.26" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Capacitor-less, long-retention (¿400s) dram cell paving the way towards low-power and high-density monolithic 3d dram</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Belmonte</surname></persName>
+		</author>
+		<editor>IEEE IEDM</editor>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,451.15,221.17,7.26;5,331.48,459.67,106.72,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">3D-Stacked CAAC-In-Ga-Zn Oxide FETs with Gate Length of 72nm</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Oota</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEDM</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,468.19,221.16,7.26;5,331.48,475.28,221.16,8.82;5,331.48,485.22,162.86,7.26" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Tailoring igzo-tft architecture for capacitorless dram, demonstrating &gt; 10 3 s retention, &gt; 10 11 cycles endurance and lg scalability down to 14nm</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Belmonte</surname></persName>
+		</author>
+		<editor>IEEE IEDM</editor>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,493.74,221.16,7.26;5,331.48,502.39,221.15,7.13;5,331.48,510.78,122.93,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Igzo cim: Enabling in-memory computations using multilevel capacitorless indium-gallium-zinc-oxide-based embedded dram technology</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Raman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE JXCDC</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,519.30,221.16,7.26;5,331.48,527.94,221.16,7.13;5,331.48,536.33,221.16,7.26;5,331.48,544.98,37.98,7.13" xml:id="b11">
+	<monogr>
+		<title level="m" type="main">15.3 a 65nm 3t dynamic analog ram-based computing-inmemory macro and cnn accelerator with retention enhancement, adaptive analog sparsity and 44tops/w system energy efficiency</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Chen</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<publisher>ISSCC. IEEE</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,553.37,221.17,7.26;5,331.48,562.01,221.16,7.13;5,331.48,570.40,65.97,7.26" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Ara: A 1-ghz+ scalable and energy-efficient riscv vector processor with multiprecision floating-point support in 22-nm fd-soi</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cavalcante</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<publisher>TVLSI</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,578.92,221.16,7.26;5,331.48,587.44,179.27,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Exploiting parallelism for cnn applications on 3d stacked processing-in-memory architecture</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">TPDS</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,595.96,221.16,7.26;5,331.48,604.48,183.60,7.26" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Monolithic 3d integration of logic, memory and computingin-memory for one-shot learning</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEDM</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<publisher>IEEE</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,612.99,221.17,7.26;5,331.48,621.51,174.69,7.26" xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Accelerating sparse matrix-matrix multiplication with 3d-stacked logic-in-memory hardware</title>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Zhu</surname></persName>
+		</author>
+		<editor>HPEC</editor>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,630.03,221.16,7.26;5,331.48,638.68,221.15,7.13;5,331.48,647.07,185.36,7.26" xml:id="b16">
+	<monogr>
+		<title level="m" type="main">16.2 edram-cim: Compute-in-memory design with reconfigurable embedded-dynamic-memory array realizing adaptive data converters and charge-domain computing</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Xie</surname></persName>
+		</author>
+		<editor>ISSCC</editor>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,655.58,221.16,7.26;5,331.48,664.10,216.36,7.26" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">A logic-compatible edram compute-in-memory with embedded adcs for processing neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Yu</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<publisher>IEEE TCAS-I</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="5,331.48,672.62,221.17,7.26;5,331.48,681.27,221.15,7.13;5,331.48,689.66,218.77,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Gain-cell cim: Leakage and bitline swing aware 2t1c gain-cell edram compute in memory design with bitline precharge dacs and compact schmitt trigger adcs</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Xie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">VLSI Symposium. IEEE</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

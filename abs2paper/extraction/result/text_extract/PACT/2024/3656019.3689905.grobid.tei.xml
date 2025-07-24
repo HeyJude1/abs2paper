@@ -1,0 +1,1624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">ZeD: A Generalized Accelerator for Variably Sparse Matrix Computations in ML</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2024-10-13">2024-10-13</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,108.95,131.50,66.79,10.59"><forename type="first">Pranav</forename><surname>Dangi</surname></persName>
+							<email>dangi@comp.nus.edu.sg</email>
+							<idno type="ORCID">0009-0004-1339-6048</idno>
+						</author>
+						<author>
+							<persName coords="1,276.40,131.50,56.70,10.59;1,333.11,129.24,1.00,7.77"><forename type="first">Zhenyu</forename><surname>Bai</surname></persName>
+							<email>zhenyu.bai@nus.edu.sg</email>
+							<idno type="ORCID">0000-0003-1143-0762</idno>
+						</author>
+						<author>
+							<persName coords="1,438.08,131.50,65.14,10.59"><forename type="first">Rohan</forename><surname>Juneja</surname></persName>
+							<idno type="ORCID">0000-0002-6015-1084</idno>
+						</author>
+						<author>
+							<persName coords="1,165.34,189.89,117.17,10.59"><forename type="first">Dhananjaya</forename><surname>Wijerathne</surname></persName>
+							<idno type="ORCID">0000-0003-3181-2514</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Tulika</forename><surname>Mitra</surname></persName>
+							<idno type="ORCID">0000-0003-4136-4188</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">National University</orgName>
+								<address>
+									<country>Singapore Singapore</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">National University of Singapore</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">National University</orgName>
+								<address>
+									<country>Singapore Singapore</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">National University</orgName>
+								<address>
+									<country>Singapore Singapore</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution">National</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">ZeD: A Generalized Accelerator for Variably Sparse Matrix Computations in ML</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 2024 International Conference on Parallel Architectures and Compilation Techniques</title>
+						<meeting>the 2024 International Conference on Parallel Architectures and Compilation Techniques						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="246" to="257"/>
+							<date type="published" when="2024-10-13" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">C60472E3D2908DD72E3176688C081745</idno>
+					<idno type="DOI">10.1145/3656019.3689905</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Sparse Tensor Computations</term>
+					<term>Machine Learning Hardware</term>
+					<term>Sparse Compression Formats</term>
+					<term>Hardware Acceleration</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Modern Machine Learning (ML) models employ sparsity to mitigate storage and computation costs; but it gives rise to irregular and unstructured sparse matrix operations that dominate the execution time and require specialized accelerators to meet the performance and energy targets. Contemporary sparse matrix accelerators, optimized for extreme sparsity, frequently fall short in addressing the variable and moderate degrees of sparsity prevalent in most ML models. Variable sparsity leads to inefficiency in the storage and processing of matrices. In response to this challenge, we propose an adaptive and generalized architecture design, ZeD, capable of accommodating the variably sparse matrix computations in ML models. Our innovative design integrates a bit-tree compression format and zero-detection hardware, resulting in highly efficient packing, storage, retrieval, and processing of sparse matrices. Furthermore, we propose a matrix row reorganization strategy based on sparsity similarity to substantially enhance memory reuse. Synthesis results of ZeD demonstrate a 3.2× improvement in performance per area over state-of-the-art solutions across a spectrum of ML workloads characterized by wide-ranging sparsities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CCS Concepts</head><p>• Computer systems organization → Special purpose systems.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>ACM Reference Format: Pranav Dangi, Zhenyu Bai, Rohan Juneja, Dhananjaya Wijerathne, and Tulika Mitra. 2024. ZeD: A Generalized Accelerator for Variably Sparse Matrix Computations in ML. In International Conference on Parallel Architectures and</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>The escalating demands for storage and computing resources in machine learning (ML) have outpaced the development of specialized accelerator architectures tailored to address these challenges. A substantial portion of the computational workload in ML models is attributed to convolutions in convolutional neural networks (CNN) and attention mechanisms in models such as Transformers (e.g., Vision Transformers (ViT) and Natural Language Processing models like GPT). These operations fundamentally rely on matrix multiplications <ref type="bibr" coords="1,345.53,383.68,13.40,7.94" target="#b16">[17,</ref><ref type="bibr" coords="1,360.94,383.68,10.27,7.94" target="#b19">20,</ref><ref type="bibr" coords="1,373.23,383.68,10.05,7.94" target="#b23">24]</ref>. A widely adopted strategy to mitigate computation, communication, and storage needs for matrix multiplications is to employ sparsification and quantization techniques <ref type="bibr" coords="1,522.38,405.60,9.33,7.94" target="#b2">[3,</ref><ref type="bibr" coords="1,533.96,405.60,6.22,7.94" target="#b8">9]</ref>.</p><p>Sparsification in model weights is achieved through pruning, which reduces the model size by trimming redundant weights and activations while trying to retain accuracy. Sparsity in activations often arises due to zero-valued results from non-linear functions like the rectified linear unit (ReLU). Inherently, this sparsification is unstructured, creating random sparsity patterns and hence introducing irregularity in memory access and processing, leading to inefficient inference performance. To make the model more hardware-friendly, prior works have attempted to resort to structured sparsity <ref type="bibr" coords="1,391.02,515.19,9.43,7.94" target="#b2">[3,</ref><ref type="bibr" coords="1,402.97,515.19,10.35,7.94" target="#b22">23,</ref><ref type="bibr" coords="1,415.84,515.19,10.21,7.94" target="#b25">26]</ref>. This requires sparsification under hardware-aware constraints where pre-defined structures that can arguably benefit from data locality are incorporated into the pruning mechanism. Unfortunately, these constraints reduce freedom on the software side, where ML research and new ML models are constrained within hardware-defined boundaries, which exposes accuracy-compression trade-offs. In fact, recent Transformer works show that, when pruning with a similar accuracy target, unstructured sparsity achieves 90% compression while structured sparsity reaches only 70% compression <ref type="bibr" coords="1,427.56,613.82,13.22,7.94" target="#b19">[20]</ref>. Moreover, enforcing such structure on dynamically generated sparse matrices like activations or attention masks is often not feasible. It is imperative to study unstructured sparsity despite its irregularity.</p><p>Contemporary sparse matrix accelerators are often optimized for hyper sparsity (&gt; 99.9% sparsity); consequently, they frequently fall short of addressing the variable and relatively lower degrees of sparsity prevalent in most ML models. Figure <ref type="figure" coords="1,485.82,690.53,4.17,7.94" target="#fig_0">1</ref> shows the current landscape of sparse matrix workloads, where ML workloads lie in the moderate sparsity regions, while scientific computing matrices belong to the extreme case of hyper-sparse matrices. We observe the variation in the degrees of sparsity across various matrices from ML and popular scientific workloads, This includes scientific matrices from SuiteSparse <ref type="bibr" coords="2,145.48,317.87,10.58,8.02" target="#b6">[7,</ref><ref type="bibr" coords="2,158.30,317.93,10.21,7.94" target="#b41">42]</ref>; sparse BERT and DeiT models <ref type="bibr" coords="2,279.29,317.93,15.74,7.94" target="#b21">[22,</ref><ref type="bibr" coords="2,53.59,328.89,11.52,7.94" target="#b40">41]</ref> representing NLP and ViT applications; and different layers of ResNet50 <ref type="bibr" coords="2,89.25,339.85,14.85,7.94" target="#b11">[12]</ref> for CNNs. Clearly, sparse matrices from scientific computing are hyper-sparse (&gt; 99.9% sparsity), whereas matrices from ML workloads are only moderately sparse (≤ 90% sparsity), with a large variation in sparsity between different models and even within one model. This unstructured sparsity of variable degrees in ML is challenging from both storage and computation perspectives. Storage Challenge. Traditional sparse matrix accelerators, tailored for hyper-sparse matrices, often utilize coordinate-based formats such as Compressed Sparse Row (CSR) and Coordinate Lists (COO) <ref type="bibr" coords="2,79.32,438.48,13.50,7.94" target="#b14">[15,</ref><ref type="bibr" coords="2,95.06,438.48,10.31,7.94" target="#b26">27,</ref><ref type="bibr" coords="2,107.61,438.48,10.31,7.94" target="#b36">37,</ref><ref type="bibr" coords="2,120.16,438.48,10.13,7.94" target="#b41">42]</ref>. These formats encode the positions of each non-zero element using elaborate metadata, allowing the accelerator to access the non-zero elements with minimal additional hardware. While these formats excel with hyper-sparse matrices containing only a few non-zeros, the associated metadata overhead becomes significant as the density of the matrices increases, incurring substantial storage and memory traffic overhead.</p><p>Further, in the inference of ML models, sparsification is often coupled with quantization, which compresses numerical values by reducing their bit-width without substantial loss in accuracy. In the context of quantized sparse models, where the actual data size undergoes significant reduction (e.g., 4-bit precision), the high overhead imposed by metadata from sparsification becomes dominant. This is because while quantization reduces the cost of storing the numerical values of the data elements, the metadata overhead remains constant, amplifying the relative inefficiency of these formats.</p><p>Figure <ref type="figure" coords="2,88.88,624.78,4.09,7.94" target="#fig_1">2</ref> compares the overall storage costs of different layers of a sparse ML model ResNet50, encoded with various sparse matrix formats normalized against the uncompressed dense matrix at 8-bit and 4-bit precisions. The variation in storage costs among these formats is influenced by the meta-data overhead, which depends on the degree of sparsity. The CSR and COO formats tend to exhibit considerably high overhead. Interestingly and counterintuitively, the compressed models in CSR/COO formats are sometimes even Bit-tree:</p><p>Dense: 5, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 6, 5 Compressed: 5, 4, 3, 4, 7, 6, 5</p><p>Coordinates: 0, 1, 3, 12, 13, 14, 15 Bitmap:</p><p>1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, less efficient than just using the dense format with all the zeros included. CSR/COO metadata can bloat the storage requirement by up to 2-3X in such cases compared to the simple, dense format. As the trend towards quantized model inference gains momentum, where the ML models move towards extremely low precisions <ref type="bibr" coords="2,519.53,493.27,9.26,7.94" target="#b1">[2,</ref><ref type="bibr" coords="2,531.04,493.27,10.07,7.94" target="#b24">25]</ref>, the impact of this overhead becomes more pronounced, exacerbating the inefficiencies of CSR and COO formats. On the other hand, these coordinate-based sparse formats relieve the hardware from needing any costly additional indexing circuitry, work well with state-of-the-art sparse dataflows, and are thus widely used. However, the inadequacies of these coordinate-based formats underscore the pressing need to explore sparse representation techniques that incur minimal overhead across a broader range of sparsity while effectively handling irregularities for efficient processing by the hardware accelerator.</p><p>The bitmap format uses one bit per element to indicate whether the element is zero, making its storage complexity dependent solely on the size of the input matrices rather than their sparsity, which allows for better compression in moderately sparse matrices. We adopt a hierarchical bit-tree storage format to extend this to a wider range of sparsity while maintaining low storage costs and enabling streamlined processing. Figure <ref type="figure" coords="2,470.09,679.57,4.25,7.94" target="#fig_2">3</ref> illustrates the bit-tree format, which can be deemed as a lossless compression of the bitmap format, with its origins in Huffman trees <ref type="bibr" coords="2,496.11,701.49,13.34,7.94" target="#b34">[35]</ref>. The bit-tree  <ref type="figure" coords="3,200.87,210.55,3.13,7.94" target="#fig_1">2</ref>, as their metadata size primarily depends on the matrix size and not the degree of sparsity.</p><p>Computational Challenge. Table <ref type="table" coords="3,193.96,232.47,4.12,7.94" target="#tab_0">1</ref> categorizes prior accelerators based on the application domain and the achieved or expected sparsity level to maintain optimal accuracy and efficiency. In this context, efficiency serves as a qualitative proxy for the achieved performance relative to the area, power, and memory bandwidth. Contemporary ML accelerators predominantly adopt structured sparsity <ref type="bibr" coords="3,85.30,298.22,9.38,7.94" target="#b0">[1,</ref><ref type="bibr" coords="3,96.92,298.22,6.16,7.94" target="#b2">3,</ref><ref type="bibr" coords="3,105.33,298.22,6.16,7.94" target="#b7">8,</ref><ref type="bibr" coords="3,113.73,298.22,10.33,7.94" target="#b22">23,</ref><ref type="bibr" coords="3,126.31,298.22,11.56,7.94" target="#b25">26]</ref> to achieve significant hardware efficiency, although this leads to limited and lower compression achieved for the same accuracy.</p><p>One of the basic building blocks of existing sparse matrix computations involves indexing into non-zero elements of operands by comparing their indices (i.e. metadata) <ref type="bibr" coords="3,214.65,353.02,13.60,7.94" target="#b15">[16,</ref><ref type="bibr" coords="3,231.16,353.02,11.59,7.94" target="#b20">21]</ref> and frequent random access of the sparse vectors (matrix rows). Sparse tensor algebra accelerators for scientific computing <ref type="bibr" coords="3,213.53,374.94,9.23,7.94" target="#b3">[4,</ref><ref type="bibr" coords="3,224.64,374.94,10.27,7.94" target="#b9">10,</ref><ref type="bibr" coords="3,236.78,374.94,10.27,7.94" target="#b28">29,</ref><ref type="bibr" coords="3,248.93,374.94,10.27,7.94" target="#b32">33,</ref><ref type="bibr" coords="3,261.07,374.94,11.47,7.94" target="#b41">42]</ref> using CSR/COO formats demonstrate high efficiency even for unstructured data due to novel dataflows, compression formats, and memory access techniques. However, they are tailored to matrices within the hyper-sparse domain. When targeting moderate to low unstructured sparsity like what is seen in ML workloads <ref type="bibr" coords="3,229.25,429.73,13.40,7.94" target="#b13">[14,</ref><ref type="bibr" coords="3,244.69,429.73,10.27,7.94" target="#b14">15,</ref><ref type="bibr" coords="3,257.00,429.73,10.27,7.94" target="#b16">17,</ref><ref type="bibr" coords="3,269.32,429.73,10.27,7.94" target="#b21">22,</ref><ref type="bibr" coords="3,281.63,429.73,10.05,7.94" target="#b26">27]</ref>, they do not exhibit the same level of efficacy due to high overhead for metadata access. The growing number of non-zero elements per row increases random access and escalates metadata indexing and comparisons per essential compute operation, directly affecting performance and efficiency. This demonstrates that employing techniques tailored for extreme cases to address broader problems results in unforeseen inefficiencies. Due to the variability of machine learning workloads, it is crucial to develop efficient and general methods for retrieving and processing the non-zeros.</p><p>While bit-sparse formats like bitmaps and bit-trees offer efficient storage alternatives, they are challenging from an accelerator design perspective. Conventional bitmaps require dynamic decoding of arbitrarily long binary vectors to access non-zero elements, introducing complexity, reducing scalability, and hindering hardware acceleration. As mentioned earlier, prior works use the CSR or COO formats for this reason. We overcome this issue by adopting the bittree format that allows us to skip consecutive zeros systematically during processing. More importantly, we achieve this with minimal hardware overhead by carefully designing the packing strategy of bit-trees, circumventing the hardware complexities normally associated with bitmap access. Furthermore, we analyze the memory access patterns of the matrices to reorganize their execution and substantially enhance memory reuse, thereby alleviating the memory bottlenecks inherent to sparse dataflows.</p><p>Contribution: We present ZeD<ref type="foot" coords="3,443.76,85.64,3.38,6.44" target="#foot_0">1</ref> , a generalized architecture designed to accelerate variably sparse and unstructured machine learning workloads. Our contributions include the following:</p><p>• We mitigate storage and memory traffic overheads by adopting highly efficient bit-tree structures for packing the sparse metadata of the compressed matrix. • We design a low overhead, multi-pass, parallel zero skipping mechanism to retrieve and process non-zeros from bit-trees. • We study the parallelism of the dataflow and memory-access patterns in the sparse matrices to propose a pre-processing mechanism that reorganizes and groups execution of input rows to maximize memory reuse. Overall, ZeD proposes a general and efficient architecture that harnesses wide-ranging sparsity within unstructured data to achieve 3.2× better performance/area than prior state-of-the-art accelerators and a 3.4× reduction in memory traffic.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Storage Format &amp; Dataflow</head><p>In this section, we first discuss various sparse storage formats and then introduce the hierarchical bit-tree storage format. Following this, we present our optimized algorithm, which utilizes a dataflow designed to exploit bit-tree sparsity and accommodate variable unstructured sparsity in matrices. Our approach includes an outputstationary, tiled, row-wise product matrix multiplication dataflow tailored to the bit-tree storage format. Finally, we propose an offline row access reorganization and grouping strategy to alleviate memory traffic bottlenecks associated with the dataflow.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Hierarchical Bit-Tree Storage Format</head><p>Figure <ref type="figure" coords="3,344.18,413.42,4.25,7.94">5</ref> presents the trend of the storage costs of the dense and commonly used sparse formats <ref type="bibr" coords="3,438.24,424.38,13.60,7.94" target="#b9">[10,</ref><ref type="bibr" coords="3,454.63,424.38,10.35,7.94" target="#b14">15,</ref><ref type="bibr" coords="3,467.77,424.38,10.35,7.94" target="#b16">17,</ref><ref type="bibr" coords="3,480.91,424.38,10.35,7.94" target="#b26">27,</ref><ref type="bibr" coords="3,494.05,424.38,10.35,7.94" target="#b31">32,</ref><ref type="bibr" coords="3,507.19,424.38,11.59,7.94" target="#b37">38]</ref> for a 𝑀 × 𝑁 matrix with varying density. Coordinate-based formats (CSR and COO) use meta-data, typically an entire list or pointers to store the coordinates of each non-zero element. The coordinate is used to index non-zero elements during matrix multiplication to effectively compute only the non-zero products. The size of the largest matrices in the target application domain determines the number of bits allocated for this coordinate encoding. This can lead to significant, unexpected overhead for the variable sparsity levels commonly encountered in ML workloads, sometimes even exceeding the storage cost of the dense format (Figure <ref type="figure" coords="3,518.37,533.97,2.94,7.94" target="#fig_1">2</ref>).</p><p>In contrast, bit-sparse formats like Bitmaps employ a simple binary encoding for non-zero elements, resulting in a consistent storage overhead regardless of sparsity level. This makes them highly suitable for a wide range of sparse matrices from a compressed storage perspective. However, conventional bitmaps require dynamic decoding of arbitrarily long binary vectors to access nonzero elements, introducing complexity, reducing scalability, and hindering hardware acceleration.</p><p>Efforts have been directed towards utilizing coarse-grained pointers and bitmaps <ref type="bibr" coords="3,378.38,643.56,13.54,7.94" target="#b15">[16,</ref><ref type="bibr" coords="3,394.16,643.56,10.33,7.94" target="#b18">19,</ref><ref type="bibr" coords="3,406.72,643.56,10.15,7.94" target="#b37">38]</ref>, which involve compressing and skipping larger, entirely zero tiles within the matrix. This hierarchical organization aims to eliminate completely zero tiles during matrix operations on conventional dataflow architectures. However,  this approach struggles to tackle sparsity effectively. It necessitates storing and computing all zeroes within a block that contains at least one non-zero element, resulting in performance and efficiency degradation. This drawback becomes particularly apparent in moderately sparse matrices where nearly every block may contain at least one non-zero element. Skipping at a coarser granularity needs to be combined with compression and skipping at a finer granularity to avoid any zero-valued storage and computations.</p><p>We adopt a hierarchical bit-tree format that encodes sequences of consecutive zeros as a single zero at a higher level, similar to hierarchical Run-Length Encoding used in Huffman trees <ref type="bibr" coords="4,267.59,474.77,13.43,7.94" target="#b34">[35]</ref>, to address the challenges associated with variable sparsity. Bit-trees evolve from bitmaps by encoding packs of consecutive zeros in the bitmap as a single zero at a higher level. Figure <ref type="figure" coords="4,222.82,507.64,4.09,7.94">5</ref> illustrates that the bit-tree offers the most compact memory footprint across varying densities, except in the cases of hypersparse and dense matrices.</p><p>Bit-trees can be designed with an arbitrary number of levels, recursively condensing sequences of multiple zeros into a single zero. Based on experimental evaluation, we encode/pack a sequence of four zeros as a single zero. The greater the number of levels, the more efficient the encoding for matrices with higher sparsity. For the purpose of this discussion, focusing on moderate sparsity, we use a two-level bit-tree with the levels denoted as l1 and l2, illustrated in Figure <ref type="figure" coords="4,131.38,617.23,3.16,7.94">4</ref>(a). In this representation, a group of four consecutive elements at l2 is referred to as a "leaf", and a non-zero leaf exhibits one-to-one mapping with its corresponding actual values in the uncompressed matrix. The compressed values stored in memory do not consist of any zeroes with the exception of a small amount of zeroes required for padding at the end of a tile's storage to maintain memory alignment. Decoding operates inversely; each non-zero element in l1 corresponds to a leaf in l2 with one or more non-zero values, while every zero in l1 corresponds to four consecutive zeros in l2 that do not need to be stored or computed. We present a sensitivity analysis of the storage format parameters in the experimental evaluations.</p><p>Given the binary nature, the storage cost of bit-tree is similar to a naïve bitmap for moderate sparsities. In fact, it is better at higher sparsities and is significantly more amenable to hardware decoding. To the best of our knowledge, ours is the first work to introduce bit-trees for accelerating sparse matrix multiplication. Capstan <ref type="bibr" coords="4,543.61,324.16,14.60,7.94" target="#b31">[32]</ref> employs bit-trees for vectorizing addition on non-zeroes clustered along the diagonal in hyper-sparse matrices. However, their approach calculates addresses explicitly by nesting iterations over multiple levels for these extremely sparse matrices, which becomes inefficient at medium sparsity levels. In contrast, we use the knowledge of the relative positioning of non-zeroes in the tree and exploit data locality within bit-trees through our dataflow. We introduce low-cost architectural support to efficiently retrieve the required data at different levels during matrix multiplication. More specifically, we use simple, myopic zero-detection hardware that employs multiple passes on four-bit sequences to find the non-zeroes' relative positions at each level of the tree. These relative positions help us dynamically map the non-zero values to their desired compute positions. This localized zero-detection facilitates parallel and efficient sparse vector operations in our dataflow, ensuring performance efficiency and scalability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Dataflow and Memory Access</head><p>We customize the dataflow, the corresponding tiling strategy, and the memory access patterns to optimize performance for retrieving and processing on non-zeroes in the bit-tree. Our observation indicates that the packing of non-zero elements in the bit-tree aligns well with the state-of-the-art row-wise sparse matrix multiplication dataflow <ref type="bibr" coords="4,351.78,589.17,9.34,7.94" target="#b3">[4,</ref><ref type="bibr" coords="4,363.36,589.17,10.31,7.94" target="#b12">13,</ref><ref type="bibr" coords="4,375.91,589.17,10.31,7.94" target="#b32">33,</ref><ref type="bibr" coords="4,388.46,589.17,10.13,7.94" target="#b41">42]</ref>. Additionally, while traversing bit-trees using our tiling strategy, we also reorganize the accessing of the rows based on sparsity patterns, alleviating known irregular memory access issues associated with the dataflow. matches the storage format and tailoring an architecture accordingly are critical factors in addressing inefficiencies and bottlenecks in sparse matrix multiplication. Prior accelerators utilizing innerproduct and outer-product dataflows face inefficiencies with sparse inner-join, irregular merging of large partial sum matrices, significant on-chip memory requirements, and challenges related to load imbalance <ref type="bibr" coords="5,94.47,153.55,13.61,7.94" target="#b10">[11,</ref><ref type="bibr" coords="5,110.80,153.55,10.35,7.94" target="#b28">29,</ref><ref type="bibr" coords="5,123.88,153.55,10.21,7.94" target="#b32">33]</ref>. These dataflows have limited parallelism and are also not suitable for handling bit-trees.</p><p>Gustavson's algorithm <ref type="bibr" coords="5,150.85,175.46,14.85,7.94" target="#b12">[13]</ref> enables row-wise product, an efficient and highly parallel algorithm for sparse matrix multiplication used by some state-of-the-art works <ref type="bibr" coords="5,190.28,197.38,9.43,7.94" target="#b3">[4,</ref><ref type="bibr" coords="5,201.95,197.38,10.34,7.94" target="#b32">33,</ref><ref type="bibr" coords="5,214.54,197.38,10.19,7.94" target="#b41">42]</ref>. Here, all the nonzero elements from a single row of the stationary matrix (input 1) are multiplied by the non-zero entries from the corresponding rows of the streaming matrix (input 2). The row indices of the streaming matrix are determined by the column positions of the non-zero values from the stationary matrix, as shown in Figure <ref type="figure" coords="5,260.47,252.18,13.07,7.94">4(b)</ref>. The sparse vectors (partial sums) thus produced are accumulated in the corresponding row of the output matrix.</p><p>While the adoption of row-wise product undeniably mitigates many of the inefficiencies with prior dataflows, it still has a few drawbacks. Notably, it has the issue of random and frequent irregular accesses to the streaming rows. Further, it exhibits inefficiencies in the sparse vector addition process required to merge partial sum rows. This necessitates the accelerators using Gustavson's dataflow to use high-radix mergers, reconfigurable interconnects, and high-bandwidth memory resources <ref type="bibr" coords="5,200.52,361.77,13.50,7.94" target="#b26">[27,</ref><ref type="bibr" coords="5,216.27,361.77,10.31,7.94" target="#b32">33,</ref><ref type="bibr" coords="5,228.82,361.77,10.13,7.94" target="#b41">42]</ref>.</p><p>The challenges posed by partial sum mergers and irregular streaming become more pronounced as we transition from hypersparse matrices to relatively denser matrices characterized by a higher number of non-zero elements (nnz) per row. A greater nnz per row implies increased irregular off-chip traffic associated with the streaming matrix and a higher number of index comparison operations for each partial sum row merge operation required to generate the final output row. Recognizing these issues, we present an algorithm that identifies sparsity patterns to reorganize and group the execution order of stationary matrix rows, mitigating the irregularity in accessing streaming matrix rows during inference. Moreover, we introduce a multi-pass zero-detection mechanism on bit-trees in hardware to effectively address partial sum merging bottlenecks by circumventing explicit addressing through low-overhead control logic.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.2">Row Access Reorganization:</head><p>The conventional method for computing row-wise product faces a memory bottleneck when fetching streaming rows <ref type="bibr" coords="5,148.56,564.51,13.61,7.94" target="#b12">[13,</ref><ref type="bibr" coords="5,165.01,564.51,10.35,7.94" target="#b32">33,</ref><ref type="bibr" coords="5,178.21,564.51,10.20,7.94" target="#b41">42]</ref>. This occurs because while row-wise product reduces output partial sum traffic, it comes at the cost of heightened traffic of the streaming matrix. During sparse matrix multiplication, these streaming matrix rows are accessed frequently and randomly depending on the positions of non-zero elements in the stationary matrix, as depicted in Figure <ref type="figure" coords="5,263.05,619.30,13.07,7.94">4(b)</ref>. For instance, computing the highlighted output row in the figure necessitates accessing both the first and fifth rows in the streaming matrix. Although these rows are retrieved on-chip, it's uncertain whether they will be utilized for the subsequent output row's calculation, which is totally contingent upon the non-zero coordinates of the next stationary row. Our objective here is to maximize the reuse of these on-chip fetched rows, thereby decreasing off-chip traffic and minimizing the likelihood of main memory access stalls when a row is not present on-chip. To achieve this, we propose a metric to evaluate streaming row traffic based on stationary rows' characteristics. The execution order of stationary input rows is reorganized according to their dissimilarity. Similar rows are processed sequentially, improving data reuse and reducing off-chip traffic for streaming rows. Importantly, this reorganization is informed by a thorough analysis of the dataflow and does not require any information about the streaming matrix.</p><p>The row-wise product dataflow enables parallelism at multiple levels. Processing one stationary row independently produces one output row, and we face no sequential interdependency between the execution of different rows in the stationary matrix. This parallelism inherent in row-wise product yields the ability to process rows out of order. We define a dissimilarity index between every ordered pair of stationary matrix rows. Revisiting the dataflow, dissimilarity, in this context, quantifies the additional streaming rows that must be retrieved when consecutively processing stationary rows. Specifically, it is the number of positions in the second row that lack a corresponding non-zero value in the first row. For instance, in Figure <ref type="figure" coords="5,389.24,306.97,3.10,7.94">4</ref>(c), the dissimilarity between row 1 and row 2 is 1. This is because the streaming row required by row 2 isn't already fetched during the execution of row 1. The dissimilarity index is defined for every pair of consecutively executing rows in a matrix. Our approach employs this dissimilarity awareness at the row level to efficiently execute stationary input matrix rows based on memory-access patterns. During the processing of the 𝑛 + 1'th row, streaming rows corresponding to these additional non-zeros over the 𝑛'th row necessitate fetching from the main memory for multiplication. The dissimilarity index for an entire matrix is thus the sum of dissimilarities between each pair of consecutive rows. We leverage this dissimilarity metric to establish an optimization criterion for offline reorganizing and grouping of stationary rows.</p><p>Analogous to the principle of batching, where on-chip-fetched weights are reused, reorganizing the execution of stationary matrix optimizes the reuse of streaming rows already fetched. For each row in the stationary input matrix, if there exists a hypothetical parent row with no dissimilarities, the row is absorbed as a sub-pattern of the parent pattern. This implies that processing a row after its parent row wouldn't necessitate extra off-chip access. For example, in Figure <ref type="figure" coords="5,354.86,526.15,3.09,7.94" target="#fig_1">2</ref>(c), no additional access would be needed if row 2 is executed after row n+1. Analyzing the rows results in a set of distinct patterns with dissimilarity indexes greater than zero, labeled as p1, p2, p3... pn, as depicted in Figure <ref type="figure" coords="5,465.69,559.03,3.13,7.94">4</ref>. By leveraging insights into global patterns in the matrix and considering the maximum available streaming rows storage capacity on-chip, we can reorder stationary row access to maximize data reuse. Parent patterns typically contain a higher number of non-zero elements, where most of the latency in fetching streaming rows can be efficiently masked. Subsequently, processing all sub-patterns of a parent pattern sequentially reduces redundant off-chip traffic significantly.</p><p>We then analyze the dissimilarity among the parent patterns within the matrix. We group rows with lower dissimilarities into balanced clusters for processing. For instance, if executing pattern p2 after p1 requires two additional streaming row accesses, while executing pattern p3 after p2 requires three extra accesses, it's logical to execute them in the sequence p1, p2, p3. Moreover, if patterns pn and p1 exhibit high dissimilarity (indicating minimal reuse), we segregate such patterns into separate groups. These groups do not benefit from sequential processing and can be processed in parallel. Hence, patterns with lower dissimilarities are organized into balanced clusters, taking advantage of the row-wise independence of the stationary side. This reorganized and grouped execution collectively diminishes random access to the streaming matrix, consequently reducing unnecessary memory traffic.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Memory Access Optimizations</head><p>2.3.1 Output Workspace: Kjolstad et al. <ref type="bibr" coords="6,211.03,266.01,14.66,7.94" target="#b20">[21]</ref> introduced the notion of a workspace as a temporary tensor, typically dense, allowing for rapid insertion and random access in sparse matrix operations. When integrated at an architectural level, this workspace in the local memory is mapped to the main memory either as sparse or dense tensors, with explicitly decoupled data orchestration <ref type="bibr" coords="6,269.33,320.80,13.29,7.94" target="#b29">[30]</ref>. A dense output workspace enables efficient and only essential processing over non-zeroes in the input matrix while requiring minimal additional hardware for indexing into the workspace. In our execution model, this indexing translates to output partial sum redirection, which is already performed by the zero detection hardware in conjunction with crossbars, helping us exploit data locality. Further, upon analyzing the ML workloads, we find that, given the moderate sparsities on the inputs, the average sparsity of output matrices is merely 8.1%. Given our prior analysis of storage formats for variably sparse matrices, it becomes evident that maintaining a dense workspace for these matrices is preferable not only for quick insertion and access but also from storage and on-chip traffic standpoints. We further elaborate output workspaces through our tiling strategy ahead. matrix with a compressed 𝐾 × 𝑁 (streaming) matrix. The stationary matrix is processed one row at a time, involving sequential access to non-zero elements and parsing the associated bit-tree to decode the relative position of the next non-zero. These positions are then utilized to retrieve streaming rows and their respective bit-trees for multiplication. The streaming matrix is partitioned into chunks with c=16 columns, and rows within a chunk are called row-slices.</p><p>A chunk comprises M row-slices (line 4), and a slice encompasses four l1 nodes or up to four l2 leaves of the bit-tree, corresponding to 16 values in the original matrix. While processing all the row slices of a streaming matrix chunk, the corresponding partial sum (psum) slice of the output row remains stationary for accumulation, forming the output workspace (line 11). Each processing element that processes one output row has one output workspace register file. Streaming slices (line 8) within a chunk are managed using a scratchpad between successive executions of the stationary rows. The row-access reorganization strategy explained earlier is applied to the stationary matrix to maximize the reuse of streaming slices within the scratchpad. This tiling of the sparse matrix according to its actual dimensions is data-agnostic and is known as coordinate space tiling <ref type="bibr" coords="6,517.93,486.26,13.22,7.94" target="#b15">[16]</ref>. When adopting coordinate-space tiling, we face a challenge when fetching the bit-tree l1 of a completely zero slice, necessitating a flush before resuming computation for the next row-slice. This could result in stalls when handling large hyper-sparse matrices, as they are unsuitable for efficient processing with two-level bit-trees and require higher-order bit-trees. ZeD's algorithm is generalizable and scalable to such hyper-sparse matrices, only requiring multiplexing of the same microarchitecture to support the higher-order bit-trees.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Experimental Evaluation 3.1 Workloads</head><p>We analyze our architectural decisions, corresponding performance, utilization, and ZeD memory traffic across a wide range of realworld ML workloads. In order to showcase the effectiveness of our approach and underscore the importance of segregating pruning algorithms from the hardware they operate on, we examine various machine learning models. We choose models that are pruned using state-of-the-art unstructured pruning techniques, resulting in less than 1% accuracy loss. These techniques are oblivious of the  We select the ResNet50 model on the ImageNet-1K dataset pruned to an average of 80% sparsity <ref type="bibr" coords="7,108.44,334.59,13.22,7.94" target="#b11">[12]</ref>. Given the variations in sparsity within a model, we evaluate Resnet50 at two granularities: we look at its individual layers (R9, R19, up to R49) as well as the average performance on the entire model (Resnet50). Like prior works, the convolution operations in the CNN model are mapped as matrix multiplication operations using a Toeplitz transform <ref type="bibr" coords="7,193.57,389.39,9.39,7.94" target="#b5">[6]</ref>. We consider the sparsedense score-value matrix multiplication for evaluating sparse attention <ref type="bibr" coords="7,83.44,411.30,13.61,7.94" target="#b23">[24,</ref><ref type="bibr" coords="7,99.82,411.30,10.20,7.94" target="#b35">36]</ref>. To obtain the sparse scores, we use the pruned BERT-Base model (language) from <ref type="bibr" coords="7,183.20,422.26,13.43,7.94" target="#b11">[12]</ref>, evaluated on the SQuAD dataset with a context length of 384 and the DeiT-Base model (vision) from <ref type="bibr" coords="7,95.00,444.18,14.85,7.94" target="#b40">[41]</ref> that is aggressively pruned to up to 90% sparsity. Additionally, we introduce two synthetic workloads designed to exhibit characteristics absent in these limited real-world models. Syn1 simulates a relatively denser matrix multiplication scenario, whereas Syn2 is meant to demonstrate the efficacy of our approach in efficiently processing dense stationary and sparse streaming matrices. The actual sparsity levels and the dimensions of the matrices are shown in Table <ref type="table" coords="7,125.57,520.89,3.07,7.94" target="#tab_1">2</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">State-of-the-art Baselines:</head><p>We use three state-of-the-art accelerators for comparison, Dual Side Sparse Tensor Core (DSTC) <ref type="bibr" coords="7,170.97,566.72,13.22,7.94" target="#b37">[38]</ref>, Eyeriss <ref type="bibr" coords="7,217.46,566.72,13.22,7.94" target="#b16">[17]</ref>, &amp; Flexagon <ref type="bibr" coords="7,278.89,566.72,13.23,7.94" target="#b26">[27]</ref>. DSTC introduces zero skipping to the tensor-core architecture using a tiled bitmap format. It implements an outer-product matrix multiplication on tensor cores of a GPU where the adapted bitmap allows it to skip warps corresponding to entirely sparse tiles of the output matrix. The sparse version (v2) of Eyeriss implements an inner-product matrix multiplication. It stores weights and activations using a CSC format and implements a comparison-based skipping to eliminate ineffectual accesses and computations on weights corresponding to zeroes in activations. Flexagon introduces a reconfigurable Network-on-Chip (NoC) that can support multiple kinds of dataflow while using the CSR format for its architecture. We choose the three architectures to cover the fundamental techniques utilized in contemporary sparse accelerators in the literature. DSTC encompasses all the functionalities of sparsitysupporting tensor-core variant architectures while employing a low-cost bitmap format <ref type="bibr" coords="7,405.49,367.47,13.31,7.94" target="#b37">[38]</ref>. Eyeriss shows skipping through CSR storage <ref type="bibr" coords="7,347.52,378.43,13.49,7.94" target="#b16">[17]</ref>. Meanwhile, Flexagon, through reconfigurability, incorporates characteristics from various hyper-sparse matrix accelerators and tailors them for deep learning tasks <ref type="bibr" coords="7,493.70,400.34,13.36,7.94" target="#b26">[27]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Evaluation Framework</head><p>We design ZeD in RTL, and synthesize it with a target frequency of 500MHz using the Synopsys Design Compiler on a commercial 22nm technology node for area and power estimations. We use a subset of evaluation inputs to determine an average activity level for ZeD's components and finally use a 15% higher activity level for conservative power estimates. For further exploration and evaluation of design-tradeoffs, we develop a cycle-accurate simulator for ZeD. To better understand ZeD's results, we also model ZeD-naive without row-reorganization. We estimate the performance, memory traffic, and utilization of various components of the architecture using the cycle-accurate simulator. We use an eight-PE model of ZeD with a total of 50KB on-chip SRAM to store the stationary non-zeroes, streaming matrix rows, output partial sums, and corresponding bit-trees. The SRAM is paired with a 16GB/s off-chip DRAM memory. We use CACTI 7.0 <ref type="bibr" coords="7,446.44,588.64,10.43,7.94" target="#b4">[5]</ref> to model these memories at the same tech node. We model the baseline architectures with the same theoretical peak performance (corresponding to 64 INT8 MAC units) and then compare the achieved performance and efficiency. We use Sparseloop <ref type="bibr" coords="7,360.57,643.43,14.77,7.94" target="#b39">[40]</ref> to model DSTC-like, Eyeriss-like, and representative dense tensor core-like baselines. Sparseloop also reports the area and energy consumption of these architectures. We use the STONNE <ref type="bibr" coords="7,354.88,676.31,14.85,7.94" target="#b27">[28]</ref> simulator and the numbers reported in the paper for Flexagon's performance, power, and area results. We model  the available configurations of Flexagon with a 64-unit wide multiplier network and scale up the performance for the other dataflow configurations according to the original paper for a fair comparison.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Experimental Results</head><p>We first evaluate the on-chip area and power consumption of ZeD.</p><p>As seen earlier, bit-trees require negligible storage space compared to their pointer-based CSR counterparts. Figure <ref type="figure" coords="8,236.80,421.19,4.25,7.94" target="#fig_7">9</ref> demonstrates a breakdown of the total 0.235mm 2 on-chip area of ZeD. The onchip SRAM, which stores the non-zeroes in the stationary row, output workspace, bit-trees, and the streaming matrix rows, takes up 62% of the on-chip area. The collective footprint of the nonzero detection units in each PE (NZD) contributes to merely 3% of the total area. Moreover, only 4.5% of the total 59mW of on-chip power is consumed by the non-zero detection units, which shows its outstanding performance with minimal overheads. This analysis further validates that our approach of using a non-elaborate, highly compressed format and introducing additional hardware on-chip to detect and process the compressed values dynamically is more efficient than storing the matrices in a comparatively elaborate elaborate CSR format.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4.1">Performance Analysis:</head><p>We next evaluate the performance of ZeD with respect to the state-of-the-art accelerators on the workloads from Table <ref type="table" coords="8,116.73,602.01,3.06,7.94" target="#tab_1">2</ref>. Compared to the dense baseline, ZeD achieves a maximum speedup of 13.4x and a gmean speedup of 5.9x. Figure <ref type="figure" coords="8,68.06,623.92,4.17,7.94">8</ref> compares the speedup various accelerators can achieve over the dense baseline. DSTC uses multiple bitmaps and relies on a costly global buffer for extensive partial sum aggregations associated with outer-product, which reduces scalability and can cause significant slowdowns when dealing with moderately sparse inputs that accumulate to very dense outputs. Owing to this inefficient dataflow and inefficient bitmap access, ZeD constantly offers more than 2x speedup and gmean 3.5x speedup over DSTC. Eyeriss employs costly comparisons to skip accessing and processing weights corresponding to zero-valued activations. Further, the CSC format that enables this skipping optimization proves to be quite costly, leading to a higher on-chip resource requirement but achieving only modest speedups for most of the workloads. Consequently, ZeD sees a gmean 2.9x speedup on Eyeriss. Flexagon's reconfigurable NoCs enable it to statically reconfigure its architecture's data flow to align with specific sparsity patterns' requirements, thereby demonstrating efficient handling of variable sparsities. Sparse attention matrices like BERT and DeiT require decoding and streaming in non-zeroes only from the first input matrix. Despite high sparsity, these computations maintain regularity as the second input matrix is dense, enabling strided access and streamlined merging. In contrast to DSTC, Flexagon and ZeD employ a similar execution model in this context. Still, overall, ZeD attains gmean 1.2x speedup on Flexagon across such workloads.</p><p>To put Flexagon's performance into perspective, we conduct an iso-area performance comparison of the different accelerators for our workloads. Flexagon consumes more than 3x the area of DSTC and more than 2.2x the area of ZeD, as shown in Figure <ref type="figure" coords="8,534.55,612.18,3.13,7.94">8</ref>. The reconfigurable interconnects help mitigate irregularity but come at the cost of significantly higher area and power consumption, as also noted in the original work <ref type="bibr" coords="8,444.13,645.06,13.42,7.94" target="#b26">[27]</ref>. Further, Flexagon's use of compressed-sparse rather than bit-sparse formats requires higher on-chip memory and area requirements and unnecessary memory traffic in an already memory-intensive task. The memory requirements are further accentuated given the redundancy required to support all kinds of dataflow on the architecture. ZeD achieves gmean 2.7x better performance per area across the evaluated workloads on Flexagon, attributed to our low-cost algorithm-architecture codesign that can handle matrices with variable sparsities efficiently. Overall, ZeD achieves gmean 3.2x better performance per area over the three baselines for all the workloads in Figure <ref type="figure" coords="9,234.87,290.32,6.76,7.94" target="#fig_8">10</ref>. For a holistic analysis, we also compare the Energy Delay Product (EDP) of ZeD to Flexagon. Figure <ref type="figure" coords="9,128.44,312.24,8.51,7.94" target="#fig_9">11</ref> highlights the significant EDP benefits of ZeD over Flexagon across the wide range of input matrices.</p><p>Ablation Studies: To better understand the enhancements from ZeD's architecture and row-reorganization, we conduct ablation studies to demonstrate these improvements separately. A naive ZeD (ZeD-naive) model without reorganization shows a gmean 2.62× improvement over the baselines, which can be solely attributed to ZeD architecture. Further, introducing row-reorganization reduces the proportion of memory access stalls from 34% to about 19% of the overall execution time (40% reduction). This improvement translates to an additional 1.25x performance increase (up to 1.7×) over the ZeD-naive model. Combined, these result in the gmean 3.2× improvement in iso-area performance over the baselines.</p><p>Since row-reorganization can currently only be applied offline, transformer matrices with dynamic sparsity, such as DeiT and BERT, do not incorporate row-reorganization for fair final results. However, recent research <ref type="bibr" coords="9,146.23,487.58,14.60,7.94" target="#b40">[41]</ref> indicates the potential for static sparsity in transformers, which, if incorporated, would enable ZeD to achieve an additional 1.4× speedup in these evaluations. The benefits of row-reorganization are particularly noticeable in matrices like R29, R39, and R49, where the weights have higher sparsity, causing significant dissimilarity and stalls in ZeD-naive.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.4.2</head><p>Sensitivity to storage format parameters: ZeD's architecture design is primarily influenced by the packing size of the last-level leaf node and the width of the row slice. Figure <ref type="figure" coords="9,266.18,580.74,8.45,7.94" target="#fig_9">11</ref> illustrates the impact of varying the row-slice width from 8 bits to 64 bits for four-element leafs. The utilization of ZeD compute elements reaches its peak at a slice width of 16 bits, with a notable decrease as we increase the slice width to 64 bits. Working with very small row slices risks encountering a larger number of entirely zero slices in the first pass on the bitree L1. This can lead to unnecessary stalls when transitioning to the next row slice within a chunk of the matrix without any computing. Conversely, larger row slices, implying larger tiles, are more susceptible to load imbalance due to uneven distribution of non-zero elements. This can result in congestion at leaf accumulators, requiring large decoupling buffers or reduced compute utilization. Furthermore, larger row slices diminish the effectiveness of the row reorganization strategy due to the increased probability of dissimilarity between two rows.</p><p>By exploring the different packing strategies in a leaf, we find that the average utilization of compute elements across these configurations stays within 3% of the optimum. Nevertheless, packing 2-bits in a leaf entails more complex control and crossbar logic, whereas 8-bit leaves demand more complex zero-detection logic and increased padding requirements. Our analysis suggests that a 16-bit slice of 4 four-bit leaves achieves the highest efficiency. Caveat: On processing a sparse matrix multiplication with hyper-sparse scientific matrices using the same leaf sizes and tiling strategies, ZeD suffers from low utilization. We see only 28% utilization for one such test application, pointing to the need for scaling up to higher-level bit-trees and/or larger tiles. As discussed earlier, the scope of this work is variably sparse ML workloads with &lt; 99% sparsity. Pruning aims to trim redundant weights and activations in ML models while preserving essential information, leading to moderately sparse matrices compared to the inherently sparse scientific matrices. However, it is worth highlighting that our algorithm and architecture can easily adapt and generalize to handle hyper-sparse matrices. This adaptability requires straightforward modifications to packing levels and tiling in the software, along with adding more parallel hardware units for zero detection. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Related Works</head><p>Storage Formats: We categorize prior research according to their use of various sparse storage formats. There has been lots of industry adoption <ref type="bibr" coords="10,99.56,177.46,14.60,7.94" target="#b25">[26]</ref> and research <ref type="bibr" coords="10,162.45,177.46,13.40,7.94" target="#b22">[23,</ref><ref type="bibr" coords="10,177.48,177.46,11.47,7.94" target="#b38">39]</ref> on utilizing structured sparse formats, particularly in ML. As discussed earlier, these formats enable regular processing but expose the accuracy-compression tradeoff due to hardware-enforced limitations.</p><p>In recent literature, the CSR format and its modified versions have emerged as the most prevalent sparse storage formats <ref type="bibr" coords="10,285.60,232.25,9.43,7.94" target="#b3">[4,</ref><ref type="bibr" coords="10,53.59,243.21,10.32,7.94" target="#b9">10,</ref><ref type="bibr" coords="10,66.15,243.21,10.32,7.94" target="#b17">18,</ref><ref type="bibr" coords="10,78.72,243.21,7.86,7.94" target="#b30">[31]</ref><ref type="bibr" coords="10,86.58,243.21,3.93,7.94" target="#b31">[32]</ref><ref type="bibr" coords="10,90.51,243.21,11.79,7.94" target="#b32">[33]</ref><ref type="bibr" coords="10,104.54,243.21,11.54,7.94" target="#b41">42]</ref> for unstructured sparse matrices. These formats and associated accelerators are typically tailored for hyper-sparse computations in high-performance and scientific computing domains, often implemented on distributed scale-out systems. While these coordinate-pointer-based formats efficiently store and index matrices within scientific computing, our prior analysis reveals their inefficiency when evaluated with moderately sparse workloads. Some works like Flexagon <ref type="bibr" coords="10,179.00,319.92,13.49,7.94" target="#b26">[27]</ref>, EIE <ref type="bibr" coords="10,213.95,319.92,13.49,7.94" target="#b14">[15]</ref>, and Eyeriss <ref type="bibr" coords="10,279.20,319.92,14.85,7.94" target="#b16">[17]</ref> have adopted these formats for handling sparse ML workloads. Our comparison and analysis of these works in the previous section reveal that while the utilization of CSR-like formats, coupled with architectural enhancements, can yield satisfactory performance, it comes at the expense of increased on-chip resource utilization due to higher storage requirements and associated traffic. Additionally, these formats exacerbate the memory bottleneck, which is particularly bad for tasks like Sparse Matrix Multiplication, which is already bandwidth-bound.</p><p>While less prevalent, some bitmap-based storage formats have also been adopted previously, particularly in response to the inefficiencies observed in the CSR format <ref type="bibr" coords="10,193.52,451.43,13.52,7.94" target="#b10">[11,</ref><ref type="bibr" coords="10,209.28,451.43,10.32,7.94" target="#b30">31,</ref><ref type="bibr" coords="10,221.85,451.43,10.14,7.94" target="#b37">38]</ref>. Although these approaches are efficient in terms of storage, they often lack a mature indexing strategy and encounter limitations of the bitmap when indexing longer run-length of zeroes in sparse operands, necessitating expensive comparisons to eliminate ineffective compute.</p><p>ExTensor <ref type="bibr" coords="10,99.57,506.22,13.22,7.94" target="#b15">[16]</ref>, DSTC <ref type="bibr" coords="10,141.61,506.22,13.22,7.94" target="#b37">[38]</ref>, and SMASH <ref type="bibr" coords="10,206.11,506.22,14.60,7.94" target="#b18">[19]</ref> employ hierarchical storage techniques to facilitate skipping at coarser granularities. ExTensor uses a tiled CSR format to hierarchically intersect and eliminate all zero dimensions of computations across tensor tiles. DSTC and SMASH utilize hierarchical bitmaps for this elimination. SMASH incorporates hardware-accelerated explicit indexing into non-zero blocks using a bitmap management unit that exposes itself to the sparse application in software as an ISA extension. DSTC facilitates hierarchical bitmap-based operations while utilizing an outer-product matrix multiplication approach to skip entirely zero output tiles. While skipping at a coarser granularity proves effective for hyper-sparse matrices, it introduces inefficiencies for denser matrices, where they are forced to store and compute on a lot of zeroes with a higher likelihood of encountering non-zeros in each tile. Moreover, these approaches often depend on using explicit comparisons for intersections or costly output accumulations, failing to fully leverage their storage capabilities with an efficient dataflow and architecture. Fibertree <ref type="bibr" coords="10,186.55,692.53,14.72,7.94" target="#b33">[34]</ref> introduces a hierarchical storage abstraction for sparse matrices, allowing partitioning and processing of matrices at multiple granularities. This abstraction offers flexibility and expressibility for working with sparse tensors. Fibertrees can be realized in hardware using various sparse storage techniques, including CSR and even bit-trees.</p><p>Our proposed algorithm and architecture can seamlessly integrate at the lowest level within the hierarchy of these abstractions. This demonstrates ZeD's adaptability and generalized capability, showing its potential to enhance existing coarse-grained skipping techniques for various sparse matrix acceleration architectures.</p><p>Sparse Dataflows: Sparse accelerators can be broadly classified based on the dataflows they employ: Eyeriss <ref type="bibr" coords="10,481.78,208.34,14.70,7.94" target="#b16">[17]</ref> and SIGMA <ref type="bibr" coords="10,543.50,208.34,14.71,7.94" target="#b30">[31]</ref> utilize a naive inner product approach to compare and eliminate ineffective computations. SpArch <ref type="bibr" coords="10,440.66,230.26,14.68,7.94" target="#b42">[43]</ref> and OuterSPACE <ref type="bibr" coords="10,521.76,230.26,14.68,7.94" target="#b28">[29]</ref> accelerate SpMM using an outer-product dataflow similar to DSTC. They face challenges due to the high output partial sum merging cost. MatRaptor <ref type="bibr" coords="10,360.24,263.14,13.49,7.94" target="#b32">[33]</ref>, InnerSP <ref type="bibr" coords="10,411.31,263.14,9.52,7.94" target="#b3">[4]</ref>, and GAMMA <ref type="bibr" coords="10,479.14,263.14,14.85,7.94" target="#b41">[42]</ref> employ different storage, preprocessing techniques and merging hardware for their row-wise product dataflow implementations. Flexagon resorts to reconfigurability to efficiently support the three major dataflows mentioned here. The evaluation against Flexagon, DSTC, and Eyeriss thus encapsulates the major contributions of the other works and provides a comprehensive understanding of ZeD.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>We present ZeD, with generalized architecture design considerations to tackle variable, unstructured, and random sparsity in ML models. We highlight the inefficiencies of contemporary sparse accelerators in handling matrices with variable degrees of sparsity. We exploit sparsity by efficient packing, storage, retrieval, and consequent traversal of highly compressed bit-tree structures and sparsity-pattern-based memory accesses. Our techniques combining a row-wise product dataflow with a bit-tree compression format and zero detection hardware enable parallelism at multiple granularities. The algorithmic and architectural enhancements enable efficient processing of matrices across a wide spectrum of sparsities commonly seen in ML workloads.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,113.58,234.06,120.68,7.70"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Variation in sparsity</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="2,317.96,247.07,241.85,7.70;2,317.96,258.03,240.43,7.70;2,317.96,268.99,102.96,7.70"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Comparison of storage costs of various sparse formats, normalized to the dense format (uncompressed) for 8-bit and 4-bit precisions.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="2,317.96,408.28,240.43,7.70;2,317.96,419.24,193.97,7.70"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Types of sparse metadata: Coordinate-based (for CSR, COO), and Bit-sparse (for Bitmap, Bit-tree)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="4,53.80,197.56,504.41,7.70;4,53.80,208.52,181.62,7.70;4,53.80,232.38,240.25,90.83"><head>Figure 4 :Figure 5 :</head><label>45</label><figDesc>Figure 4: (a) Illustration of a 2-level bit-tree: 4 non-zeroes in a 16-element slice. (b) Working of row-wise product (c) Extracting Streaming Patterns from a Stationary Matrix</figDesc><graphic coords="4,53.80,232.38,240.25,90.83" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,106.84,129.29,134.16,7.70"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: Tiled Row-wise product</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,69.12,290.37,473.76,7.70;7,53.80,312.67,240.25,7.94;7,53.80,323.63,240.25,7.94;7,53.80,334.59,241.23,7.94;7,53.47,345.55,242.10,7.94;7,53.80,356.51,240.25,7.94;7,53.80,367.47,240.24,7.94;7,53.80,378.43,240.25,7.94;7,53.80,389.39,241.76,7.94;7,53.80,400.34,241.76,7.94;7,53.80,411.30,240.25,7.94;7,53.80,422.26,240.25,7.94;7,53.80,433.22,241.76,7.94;7,53.80,444.18,241.63,7.94;7,53.48,455.14,240.56,7.94;7,53.80,466.10,241.63,7.94;7,53.80,476.99,241.23,8.02;7,53.47,487.95,240.58,8.02;7,53.80,498.97,241.76,7.94;7,53.80,509.93,240.25,7.94;7,53.80,520.89,77.91,7.94"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: (a) Architectural Overview: datapath (black) &amp; control flow (red) (b) Working of various components of a PEhardware, rendering absolute freedom in pruning. We select the ResNet50 model on the ImageNet-1K dataset pruned to an average of 80% sparsity<ref type="bibr" coords="7,108.44,334.59,13.22,7.94" target="#b11">[12]</ref>. Given the variations in sparsity within a model, we evaluate Resnet50 at two granularities: we look at its individual layers (R9, R19, up to R49) as well as the average performance on the entire model (Resnet50). Like prior works, the convolution operations in the CNN model are mapped as matrix multiplication operations using a Toeplitz transform<ref type="bibr" coords="7,193.57,389.39,9.39,7.94" target="#b5">[6]</ref>. We consider the sparsedense score-value matrix multiplication for evaluating sparse attention<ref type="bibr" coords="7,83.44,411.30,13.61,7.94" target="#b23">[24,</ref><ref type="bibr" coords="7,99.82,411.30,10.20,7.94" target="#b35">36]</ref>. To obtain the sparse scores, we use the pruned BERT-Base model (language) from<ref type="bibr" coords="7,183.20,422.26,13.43,7.94" target="#b11">[12]</ref>, evaluated on the SQuAD dataset with a context length of 384 and the DeiT-Base model (vision) from<ref type="bibr" coords="7,95.00,444.18,14.85,7.94" target="#b40">[41]</ref> that is aggressively pruned to up to 90% sparsity. Additionally, we introduce two synthetic workloads designed to exhibit characteristics absent in these limited real-world models. Syn1 simulates a relatively denser matrix multiplication scenario, whereas Syn2 is meant to demonstrate the efficacy of our approach in efficiently processing dense stationary and sparse streaming matrices. The actual sparsity levels and the dimensions of the matrices are shown in Table2.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="8,107.55,314.51,132.75,7.70"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: Breakdown of ZeD area</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="8,317.96,354.07,240.25,7.70;8,317.96,365.03,190.57,7.70"><head>Figure 10 :</head><label>10</label><figDesc>Figure 10: Application-wise Performance per Area of the architectures, normalized to the dense baseline</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="9,53.80,207.56,240.24,7.70;9,53.80,218.52,207.68,7.70"><head>Figure 11 :</head><label>11</label><figDesc>Figure 11: (a) EDP of ZeD normalized to Flexagon (lower is better); (b) Sensitivity to storage format parameters</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="3,53.80,85.43,240.58,133.07"><head>Table 1 :</head><label>1</label><figDesc>Categorization of Sparse Acceleratorshierarchically encodes the zeros in a bitmap, allowing the runtime skipping of sequences (packs) of zeros systematically. Bit-sparse formats like Bitmaps and Bit-Trees maintain a consistently low storage overhead, as shown in Figure</figDesc><table coords="3,59.87,85.43,226.70,48.11"><row><cell>Work</cell><cell>Type</cell><cell>Efficiency</cell><cell>Sparsity Level</cell><cell>Application</cell></row><row><cell>[3, 23, 26]</cell><cell>Structured</cell><cell>High</cell><cell>Low</cell><cell>CNN</cell></row><row><cell>[8, 24]</cell><cell>Structured</cell><cell>High</cell><cell>Low</cell><cell>Sparse Attention</cell></row><row><cell>[29, 33, 42]</cell><cell>Unstructured</cell><cell>High</cell><cell>Hyper-sparse</cell><cell>Scientific Computing</cell></row><row><cell>[15, 17, 27]</cell><cell>Unstructured</cell><cell>Low</cell><cell>High</cell><cell>CNN</cell></row><row><cell>[14, 22, 27]</cell><cell>Unstructured</cell><cell>Low</cell><cell>High</cell><cell>Sparse Attention</cell></row><row><cell>ZeD (Ours)</cell><cell>Unstructured</cell><cell>High</cell><cell>Low to High</cell><cell>CNN, Sparse Attention</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="6,53.47,86.02,496.03,617.96"><head>Table 2 :</head><label>2</label><figDesc>Algorithm 1 Output-Stationary, Tiled Row-wise Product 1: Input: Matrix 𝑀𝐾, Matrix 𝐾𝑁 2: Output: Matrix 𝐶 ∈ R 𝑀 ×𝑁 3: for all chunks in matrix 𝐶 do Tiled Row-Wise Product on Bit-Trees: Through Figure6and Algorithm 1, we detail the data movement and tiling strategy employed for the multiplication of a compressed 𝑀 × 𝐾 (stationary) Workload Sparsities and Dimensions</figDesc><table coords="6,258.29,539.24,35.76,7.94"><row><cell>⊲ Figure 6</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="8,59.03,90.22,484.76,209.29"><head></head><label></label><figDesc>Speedup with respect to the dense baseline. Inset: Area of the architectures normalized to the dense baseline</figDesc><table coords="8,59.03,90.22,484.19,209.29"><row><cell></cell><cell></cell><cell></cell><cell>DSTC</cell><cell cols="2">Eyeriss</cell><cell>Flexagon</cell><cell cols="3">ZeD-naive</cell><cell>ZeD</cell></row><row><cell>Normalized Speedup</cell><cell>5x 10x</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>Norm. Area</cell><cell>1x 2x 3x</cell><cell>Architecture</cell></row><row><cell></cell><cell>0</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell>R9</cell><cell>R19</cell><cell>R29</cell><cell>R39</cell><cell>R49</cell><cell>Resnet50</cell><cell>DeiT</cell><cell cols="2">BERT</cell><cell>Syn1</cell><cell>Syn2</cell><cell>gmean</cell></row><row><cell cols="2">20% SRAM Figure 8: 0% Area</cell><cell>40% crossbars 61%</cell><cell>60% 11% MAC</cell><cell>80% 13% FIFOs</cell><cell>100% 3% NZD 12%</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">for Efficient, General Zero Detection</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1">.2.1 Row-wise Product Dataflow: In the literature, various accelerators utilize different dataflows for sparse matrix multiplication. These dataflows are typically categorized based on the operand that remains stationary and the sequence in which matrix dimensions are traversed [</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="33" xml:id="foot_2"><ref type="bibr" coords="4,391.66,682.32,10.09,7.94" target="#b16">17,</ref><ref type="bibr" coords="4,403.98,682.32,10.09,7.94" target="#b32">33]</ref>. Selecting an appropriate dataflow that</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>We thank the Shepherd &amp; the anonymous reviewers for their invaluable feedback, which helped improve the work. This research is supported by the National Research Foundation, Singapore, under its Competitive Research Programme Award NRF-CRP23-2019-0003.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="10,333.39,583.24,225.99,6.18;10,333.39,591.16,225.05,6.23;10,333.39,599.13,225.26,6.23;10,333.39,607.15,75.34,6.18" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">CRISP: Hybrid Structured Sparsity for Class-Aware Model Pruning</title>
+		<author>
+			<persName coords=""><forename type="first">Shivam</forename><surname>Aggarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kuluhan</forename><surname>Binici</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tulika</forename><surname>Mitra</surname></persName>
+		</author>
+		<idno type="DOI">10.23919/DATE58400.2024.10546782</idno>
+		<ptr target="https://doi.org/10.23919/DATE58400.2024.10546782" />
+	</analytic>
+	<monogr>
+		<title level="m">2024 Design, Automation &amp; Test in Europe Conference &amp; Exhibition (DATE)</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,333.39,615.12,224.81,6.18;10,333.39,623.09,224.81,6.18;10,333.39,631.06,225.88,6.18;10,333.39,639.03,164.96,6.18" xml:id="b1">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Shivam</forename><surname>Aggarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jakob</forename><surname>Hans</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alessandro</forename><surname>Damsgaard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Giuseppe</forename><surname>Pappalardo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><forename type="middle">B</forename><surname>Franco</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michaela</forename><surname>Preußer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tulika</forename><surname>Blott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Mitra</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2311.12359[cs.CV</idno>
+		<ptr target="https://arxiv.org/abs/2311.12359" />
+		<title level="m">Shedding the Bits: Pushing the Boundaries of Quantization with Minifloats on FPGAs</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,333.39,647.00,225.89,6.18;10,333.39,654.92,224.81,6.23;10,333.39,662.89,192.05,6.23" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">ERIDANUS: Efficiently Running Inference of DNNs Using Systolic Arrays</title>
+		<author>
+			<persName coords=""><forename type="first">Bahar</forename><surname>Asgari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramyad</forename><surname>Hadidi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hyesoon</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sudhakar</forename><surname>Yalamanchili</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MM.2019.2930057</idno>
+		<ptr target="https://doi.org/10.1109/MM.2019.2930057" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Micro</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="page" from="46" to="54" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,333.39,670.91,224.99,6.18;10,333.39,678.88,224.94,6.18;10,333.39,686.80,224.81,6.23;10,333.39,694.77,225.58,6.23;10,333.39,702.79,176.50,6.18" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">InnerSP: A Memory Efficient Sparse Matrix Multiplication Accelerator with Locality-Aware Inner Product Processing</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Baek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Hwang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Heo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Huh</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/PACT52795.2021.00016</idno>
+		<ptr target="https://doi.org/10.1109/PACT52795.2021.00016" />
+	</analytic>
+	<monogr>
+		<title level="m">2021 30th International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+				<meeting><address><addrLine>Los Alamitos, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="116" to="128" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,89.10,225.58,6.18;11,69.23,97.07,224.81,6.18;11,69.23,104.99,224.81,6.23;11,69.07,113.01,159.79,6.18" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">CACTI 7: New Tools for Interconnect Exploration in Innovative Off-Chip Memories</title>
+		<author>
+			<persName coords=""><forename type="first">Rajeev</forename><surname>Balasubramonian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><forename type="middle">B</forename><surname>Kahng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naveen</forename><surname>Muralimanohar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Shafiee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vaishnav</forename><surname>Srinivas</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3085572</idno>
+		<ptr target="https://doi.org/10.1145/3085572" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Archit. Code Optim</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">14</biblScope>
+			<biblScope unit="page">25</biblScope>
+			<date type="published" when="2017-06">2017. jun 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,120.98,224.81,6.18;11,69.03,128.95,225.02,6.18;11,69.23,136.87,225.26,6.23;11,69.23,144.89,55.20,6.18" xml:id="b5">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Sharan</forename><surname>Chetlur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cliff</forename><surname>Woolley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Philippe</forename><surname>Vandermersch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><forename type="middle">M</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Tran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bryan</forename><surname>Catanzaro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Evan</forename><surname>Shelhamer</surname></persName>
+		</author>
+		<idno>ArXiv abs/1410.0759</idno>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+		<title level="m">Efficient Primitives for Deep Learning</title>
+				<imprint>
+			<date type="published" when="2014">2014. 2014</date>
+			<biblScope unit="page">12330432</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,152.86,225.99,6.18;11,69.23,160.78,225.58,6.23;11,68.99,168.80,181.31,6.18" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Algorithm 1000: SuiteSparse:GraphBLAS: Graph Algorithms in the Language of Sparse Linear Algebra</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3322125</idno>
+		<ptr target="https://doi.org/10.1145/3322125" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="issue">44</biblScope>
+			<biblScope unit="page">25</biblScope>
+			<date type="published" when="2019-12">2019. dec 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,176.77,224.81,6.18;11,69.23,184.74,225.99,6.18;11,69.23,192.71,224.81,6.18;11,69.23,200.63,224.81,6.23;11,69.23,208.60,225.88,6.23;11,69.23,216.62,136.09,6.18" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Adaptable Butterfly Accelerator for Attention-Based NNs via Hardware and Algorithm Co-Design</title>
+		<author>
+			<persName coords=""><forename type="first">Hongxiang</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Chau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stylianos</forename><forename type="middle">I</forename><surname>Venieris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Royson</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandros</forename><surname>Kouris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wayne</forename><surname>Luk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicholas</forename><forename type="middle">D</forename><surname>Lane</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohamed</forename><forename type="middle">S</forename><surname>Abdelfattah</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MICRO56248.2022.00050</idno>
+		<ptr target="https://doi.org/10.1109/MICRO56248.2022.00050" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 55th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 55th Annual IEEE/ACM International Symposium on Microarchitecture<address><addrLine>Chicago, Illinois, USA) (MICRO &apos;22</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="599" to="615" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,224.59,225.58,6.18;11,69.23,232.56,224.81,6.18;11,69.23,240.53,129.10,6.18" xml:id="b8">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Amir</forename><surname>Gholami</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sehoon</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhen</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhewei</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><forename type="middle">W</forename><surname>Mahoney</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kurt</forename><surname>Keutzer</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2103.13630[cs.CV]</idno>
+		<title level="m">A Survey of Quantization Methods for Efficient Neural Network Inference</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,248.50,225.99,6.18;11,69.23,256.47,225.99,6.18;11,69.23,264.39,225.57,6.23;11,69.23,272.36,225.63,6.23;11,69.01,280.38,72.76,6.18" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">SparseP: Towards Efficient Sparse Matrix Vector Multiplication on Real Processing</title>
+		<author>
+			<persName coords=""><forename type="first">Christina</forename><surname>Giannoula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ivan</forename><surname>Fernandez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Juan</forename><forename type="middle">Gómez</forename><surname>Luna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nectarios</forename><surname>Koziris</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3508041</idno>
+		<ptr target="https://doi.org/10.1145/3508041" />
+	</analytic>
+	<monogr>
+		<title level="j">Memory Architectures. Proc. ACM Meas. Anal. Comput. Syst</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">21</biblScope>
+			<biblScope unit="page">49</biblScope>
+			<date type="published" when="2022-02">2022. feb 2022</date>
+		</imprint>
+	</monogr>
+	<note>Georgios Goumas, and Onur Mutlu</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,288.35,225.89,6.18;11,69.23,296.32,225.89,6.18;11,69.23,304.24,225.51,6.23;11,69.23,312.21,225.99,6.23;11,69.23,320.23,224.97,6.18" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">SparTen: A Sparse Tensor Accelerator for Convolutional Neural Networks</title>
+		<author>
+			<persName coords=""><forename type="first">Ashish</forename><surname>Gondimalla</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Noah</forename><surname>Chesnut</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mithuna</forename><surname>Thottethodi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">N</forename><surname>Vijaykumar</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3352460.3358291</idno>
+		<ptr target="https://doi.org/10.1145/3352460.3358291" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 52nd Annual IEEE/ACM International Symposium on Microarchitecture<address><addrLine>Columbus, OH, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="151" to="165" />
+		</imprint>
+	</monogr>
+	<note>MICRO &apos;52)</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,328.20,224.99,6.18;11,69.23,336.17,225.99,6.18;11,69.23,344.14,225.88,6.18;11,69.23,352.11,70.39,6.18" xml:id="b11">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Manas</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Efe</forename><surname>Camci</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rudy</forename><surname>Vishandi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abhishek</forename><surname>Keneta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ritwik</forename><surname>Vaidyanathan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chuan-Sheng</forename><surname>Kanodia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Foo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Min</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lin</forename><surname>Jie</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2209.14624[cs.LG]</idno>
+		<title level="m">Is Complexity Required for Neural Network Pruning? A Case Study on Global Magnitude Pruning</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,360.08,224.81,6.18;11,69.23,368.00,225.89,6.23;11,69.23,376.02,106.66,6.18" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Two Fast Algorithms for Sparse Matrices: Multiplication and Permuted Transposition</title>
+		<author>
+			<persName coords=""><forename type="first">Fred</forename><forename type="middle">G</forename><surname>Gustavson</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/355791.355796</idno>
+		<ptr target="https://doi.org/10.1145/355791.355796" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="250" to="269" />
+			<date type="published" when="1978-09">1978. sep 1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,383.99,224.81,6.18;11,69.23,391.96,224.81,6.18;11,69.12,399.93,226.10,6.18;11,69.23,407.85,224.81,6.23;11,69.23,415.82,225.63,6.23;11,69.23,423.84,29.19,6.18" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Accelerating Attention Mechanisms in Neural Networks with Approximation</title>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Tae</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sungjun</forename><surname>Ham</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Seonghak</forename><surname>Jung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Young</forename><forename type="middle">H</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yeonhong</forename><surname>Oh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yoonho</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jung-Hun</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sanghee</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kyoung</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jae</forename><forename type="middle">W</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Deog-Kyoon</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Jeong</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020. 2020</date>
+			<biblScope unit="page">211296403</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,431.81,225.58,6.18;11,69.23,439.78,224.81,6.18;11,69.23,447.70,224.81,6.23;11,69.23,455.67,225.64,6.23;11,69.01,463.69,87.40,6.18" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">EIE: efficient inference engine on compressed deep neural network</title>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xingyu</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huizi</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jing</forename><surname>Pu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ardavan</forename><surname>Pedram</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><forename type="middle">A</forename><surname>Horowitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ISCA.2016.30</idno>
+		<ptr target="https://doi.org/10.1109/ISCA.2016.30" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 43rd International Symposium on Computer Architecture</title>
+				<meeting>the 43rd International Symposium on Computer Architecture<address><addrLine>Seoul, Republic of Korea</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="243" to="254" />
+		</imprint>
+	</monogr>
+	<note>ISCA &apos;16)</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,471.66,224.95,6.18;11,69.12,479.63,225.74,6.18;11,68.99,487.55,225.05,6.23;11,69.23,495.52,225.23,6.23;11,68.81,503.49,226.31,6.23;11,69.23,511.51,113.14,6.18" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">ExTensor: An Accelerator for Sparse Tensor Algebra</title>
+		<author>
+			<persName coords=""><forename type="first">Kartik</forename><surname>Hegde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hadi</forename><surname>Asghari-Moghaddam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Neal</forename><surname>Crago</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aamer</forename><surname>Jaleel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edgar</forename><surname>Solomonik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><forename type="middle">W</forename><surname>Fletcher</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3352460.3358275</idno>
+		<ptr target="https://doi.org/10.1145/3352460.3358275" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 52nd Annual IEEE/ACM International Symposium on Microarchitecture<address><addrLine>Columbus, OH, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="319" to="333" />
+		</imprint>
+	</monogr>
+	<note>MICRO &apos;52)</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,519.48,225.63,6.18;11,68.99,527.45,226.13,6.18;11,69.23,535.37,225.58,6.23;11,69.23,543.39,177.35,6.18" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Eyeriss v2: A Flexible Accelerator for Emerging Deep Neural Networks on Mobile Devices</title>
+		<author>
+			<persName coords=""><forename type="first">Tien-Ju</forename><surname>Yu Hsin Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">S</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivienne</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sze</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Journal on Emerging and Selected Topics in Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">131771552</biblScope>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,551.36,224.94,6.18;11,69.23,559.28,224.81,6.23;11,69.23,567.25,181.75,6.23" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Optimizing Sparse Matrix Vector Multiplication on SMP</title>
+		<author>
+			<persName coords=""><forename type="first">Eun-Jin</forename><surname>Im</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katherine</forename><forename type="middle">A</forename><surname>Yelick</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="m">SIAM Conference on Parallel Processing for Scientific Computing</title>
+				<imprint>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="page">42432358</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,575.27,225.99,6.18;11,69.23,583.24,224.81,6.18;11,69.23,591.21,224.81,6.18;11,69.23,599.18,224.81,6.18;11,69.23,607.10,225.51,6.23;11,69.23,615.07,225.58,6.23;11,69.23,623.09,202.69,6.18" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">SMASH: Co-designing Software Compression and Hardware-Accelerated Indexing for Efficient Sparse Matrix Operations</title>
+		<author>
+			<persName coords=""><forename type="first">Konstantinos</forename><surname>Kanellopoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nandita</forename><surname>Vijaykumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christina</forename><surname>Giannoula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roknoddin</forename><surname>Azizi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Skanda</forename><surname>Koppula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nika</forename><surname>Mansouri Ghiasi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Taha</forename><surname>Shahroodi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Juan</forename><forename type="middle">Gomez</forename><surname>Luna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Onur</forename><surname>Mutlu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3352460.3358286</idno>
+		<ptr target="https://doi.org/10.1145/3352460.3358286" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 52nd Annual IEEE/ACM International Symposium on Microarchitecture<address><addrLine>Columbus, OH, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="600" to="614" />
+		</imprint>
+	</monogr>
+	<note>MICRO &apos;52)</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,631.06,224.81,6.18;11,69.03,639.03,226.19,6.18;11,69.23,647.00,224.81,6.18;11,69.03,654.97,166.83,6.18" xml:id="b19">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Sehoon</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Coleman</forename><surname>Hooper</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thanakul</forename><surname>Wattanawong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Minwoo</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruohan</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hasan</forename><surname>Genc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Grace</forename><surname>Dinh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qijing</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kurt</forename><surname>Keutzer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><forename type="middle">W</forename><surname>Mahoney</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yakun</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sophia</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Amir</forename><surname>Gholami</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2302.14017[cs.CL]</idno>
+		<title level="m">Full Stack Optimization of Transformer Inference: a Survey</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,662.94,225.89,6.18;11,69.03,670.86,225.02,6.23;11,69.23,678.83,225.58,6.23;11,69.23,686.80,110.31,6.23" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Tensor algebra compilation with workspaces</title>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Willow</forename><surname>Ahrens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shoaib</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 IEEE/ACM International Symposium on Code Generation and Optimization</title>
+				<meeting>the 2019 IEEE/ACM International Symposium on Code Generation and Optimization<address><addrLine>Washington, DC, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2019">2019. 2019</date>
+			<biblScope unit="page" from="180" to="192" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,694.82,224.81,6.18;11,69.23,702.79,225.63,6.18;11,333.39,89.10,224.81,6.18;11,333.39,97.02,224.81,6.23;11,333.39,104.99,224.81,6.23;11,333.39,113.01,225.88,6.18;11,333.39,120.98,139.27,6.18" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">The Optimal BERT Surgeon: Scalable and Accurate Second-Order Pruning for Large Language Models</title>
+		<author>
+			<persName coords=""><forename type="first">Eldar</forename><surname>Kurtic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Campos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tuan</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Elias</forename><surname>Frantar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><surname>Kurtz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benjamin</forename><surname>Fineran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Goin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Alistarh</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/2022.emnlp-main.279</idno>
+		<ptr target="https://doi.org/10.18653/v1/2022.emnlp-main.279" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing</title>
+				<editor>
+			<persName><forename type="first">Zornitsa</forename><surname>Goldberg</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Yue</forename><surname>Kozareva</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Zhang</surname></persName>
+		</editor>
+		<meeting>the 2022 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Abu Dhabi, United Arab Emirates</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="4163" to="4181" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,128.95,225.99,6.18;11,333.39,136.87,225.51,6.23;11,333.39,144.84,224.81,6.23;11,333.39,152.86,225.26,6.18;11,333.39,160.83,66.68,6.18" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">S2TA: Exploiting Structured Sparsity for Energy-Efficient Mobile CNN Acceleration</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">N</forename><surname>Whatmough</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Mattina</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA53966.2022.00049</idno>
+		<ptr target="https://doi.org/10.1109/HPCA53966.2022.00049" />
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE International Symposium on High-Performance Computer Architecture (HPCA)</title>
+				<meeting><address><addrLine>Los Alamitos, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="573" to="586" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,168.80,224.81,6.18;11,333.39,176.77,224.81,6.18;11,333.39,184.69,224.81,6.23;11,333.39,192.66,224.81,6.23;11,333.39,200.68,225.88,6.18;11,333.23,208.65,62.16,6.18" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Sanger: A Co-Design Framework for Enabling Sparse Attention using Reconfigurable Architecture</title>
+		<author>
+			<persName coords=""><forename type="first">Liqiang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yicheng</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hangrui</forename><surname>Bi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zizhang</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yun</forename><surname>Liang</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3466752.3480125</idno>
+		<ptr target="https://doi.org/10.1145/3466752.3480125" />
+	</analytic>
+	<monogr>
+		<title level="m">MICRO-54: 54th Annual IEEE/ACM International Symposium on Microarchitecture (Virtual Event, Greece) (MICRO &apos;21)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="977" to="991" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,216.62,224.81,6.18;11,333.39,224.59,224.81,6.18;11,333.39,232.56,215.93,6.18" xml:id="b24">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Shuming</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongyu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lingxiao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenhui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaohan</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Li</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruiping</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jilong</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Furu</forename><surname>Wei</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2402.17764[cs.CL]</idno>
+		<title level="m">The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,240.53,224.81,6.18;11,333.16,248.50,225.04,6.18;11,333.39,256.47,124.01,6.18" xml:id="b25">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Asit</forename><surname>Mishra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jorge</forename><forename type="middle">Albericio</forename><surname>Latorre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeff</forename><surname>Pool</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Darko</forename><surname>Stosic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dusan</forename><surname>Stosic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ganesh</forename><surname>Venkatesh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chong</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paulius</forename><surname>Micikevicius</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2104.08378[cs.LG]</idno>
+		<title level="m">Accelerating Sparse Deep Neural Networks</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,264.44,225.58,6.18;11,333.39,272.41,225.99,6.18;11,333.39,280.33,225.51,6.23;11,333.39,288.30,225.50,6.23;11,333.39,296.27,225.23,6.23;11,332.97,304.24,226.00,6.23;11,333.39,312.26,143.19,6.18" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Flexagon: A Multi-dataflow Sparse-Sparse Matrix Multiplication Accelerator for Efficient DNN Processing</title>
+		<author>
+			<persName coords=""><forename type="first">Francisco</forename><surname>Muñoz Martínez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Raveesh</forename><surname>Garg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>José</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manuel</forename><forename type="middle">E</forename><surname>Abellán</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Acacio</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Krishna</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3582016.3582069</idno>
+		<ptr target="https://doi.org/10.1145/3582016.3582069" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems<address><addrLine>Vancouver, BC, Canada; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="252" to="265" />
+		</imprint>
+	</monogr>
+	<note>ASPLOS 2023)</note>
+</biblStruct>
+
+<biblStruct coords="11,333.39,320.23,225.99,6.18;11,333.39,328.20,224.94,6.18;11,333.39,336.12,224.81,6.23;11,333.39,344.09,225.89,6.23;11,333.39,352.11,16.21,6.18" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">STONNE: Enabling Cycle-Level Microarchitectural Simulation for DNN Inference Accelerators</title>
+		<author>
+			<persName coords=""><forename type="first">Francisco</forename><surname>Muñoz-Martínez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">José</forename><forename type="middle">L</forename><surname>Abellán</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manuel</forename><forename type="middle">E</forename><surname>Acacio</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Krishna</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/IISWC53511.2021.00028</idno>
+		<ptr target="https://doi.org/10.1109/IISWC53511.2021.00028" />
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Symposium on Workload Characterization (IISWC)</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="201" to="213" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,360.08,225.99,6.18;11,333.39,368.05,225.58,6.18;11,333.39,376.02,225.99,6.18;11,333.39,383.94,224.81,6.23;11,333.39,391.91,225.26,6.23;11,333.39,399.93,50.47,6.18" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">OuterSPACE: An Outer Product Based Sparse Matrix Multiplication Accelerator</title>
+		<author>
+			<persName coords=""><forename type="first">Subhankar</forename><surname>Pal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Beaumont</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dong-Hyeon</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aporva</forename><surname>Amarnath</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siying</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chaitali</forename><surname>Chakrabarti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hun-Seok</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Blaauw</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Mudge</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ronald</forename><surname>Dreslinski</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA.2018.00067</idno>
+		<ptr target="https://doi.org/10.1109/HPCA.2018.00067" />
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="724" to="736" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,407.90,225.57,6.18;11,333.39,415.87,224.81,6.18;11,333.39,423.84,224.81,6.18;11,333.39,431.76,224.81,6.23;11,333.39,439.73,224.81,6.23;11,333.39,447.70,225.99,6.23;11,333.39,455.72,214.97,6.18" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Buffets: An Efficient and Composable Storage Idiom for Explicit Decoupled Data Orchestration</title>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sophia</forename><surname>Yakun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Neal</forename><surname>Clemons</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kartik</forename><surname>Crago</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rangharajan</forename><surname>Hegde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stephen</forename><forename type="middle">W</forename><surname>Venkatesan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><forename type="middle">W</forename><surname>Keckler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><surname>Fletcher</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Emer</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3297858.3304025</idno>
+		<ptr target="https://doi.org/10.1145/3297858.3304025" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems<address><addrLine>Providence, RI, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="137" to="151" />
+		</imprint>
+	</monogr>
+	<note>Association for Computing Machinery</note>
+</biblStruct>
+
+<biblStruct coords="11,333.39,463.69,225.99,6.18;11,333.22,471.66,224.99,6.18;11,333.39,479.63,225.89,6.18;11,333.39,487.55,224.81,6.23;11,332.97,495.52,180.10,6.23" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">SIGMA: A Sparse and Irregular GEMM Accelerator with Flexible Interconnects for DNN Training</title>
+		<author>
+			<persName coords=""><forename type="first">Eric</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ananda</forename><surname>Samajdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hyoukjun</forename><surname>Kwon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vineet</forename><surname>Nadella</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sudarshan</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dipankar</forename><surname>Das</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bharat</forename><surname>Kaul</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Krishna</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA47549.2020.00015</idno>
+		<ptr target="https://doi.org/10.1109/HPCA47549.2020.00015" />
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="58" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,503.54,225.58,6.18;11,333.39,511.46,225.27,6.23;11,333.39,519.43,224.81,6.23;11,333.39,527.40,225.57,6.23;11,333.39,535.42,177.81,6.18" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Capstan: A Vector RDA for Sparsity</title>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Rucker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><surname>Vilim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tian</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yaqi</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Raghu</forename><surname>Prabhakar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kunle</forename><surname>Olukotun</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3466752.3480047</idno>
+		<ptr target="https://doi.org/10.1145/3466752.3480047" />
+	</analytic>
+	<monogr>
+		<title level="m">MICRO-54: 54th Annual IEEE/ACM International Symposium on Microarchitecture (Virtual Event, Greece) (MICRO &apos;21)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1022" to="1035" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,543.39,225.89,6.18;11,333.39,551.36,225.99,6.18;11,332.72,559.28,226.18,6.23;11,333.39,567.25,221.77,6.23" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">MatRaptor: A Sparse-Sparse Matrix Multiplication Accelerator Based on Row-Wise Product</title>
+		<author>
+			<persName coords=""><forename type="first">Nitish</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanchen</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Albonesi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiru</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MICRO50266.2020.00068</idno>
+		<ptr target="https://doi.org/10.1109/MICRO50266.2020.00068" />
+	</analytic>
+	<monogr>
+		<title level="m">2020 53rd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="766" to="780" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,575.22,224.81,6.23;11,333.39,583.19,225.88,6.23;11,333.39,591.21,81.35,6.18" xml:id="b33">
+	<monogr>
+		<title level="m" type="main">Efficient Processing of Deep Neural Networks</title>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Sze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><forename type="middle">H</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">J</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">S</forename><surname>Emer</surname></persName>
+		</author>
+		<ptr target="https://books.google.com.sg/books?id=iJ05zwEACAAJ" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>Springer International Publishing</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,599.13,225.51,6.23;11,333.39,607.10,225.89,6.23;11,333.39,615.12,114.16,6.18" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">On the Construction of Huffman Trees</title>
+		<author>
+			<persName coords=""><forename type="first">Jan</forename><surname>Van Leeuwen</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="m">International Colloquium on Automata, Languages and Programming</title>
+				<imprint>
+			<date type="published" when="1976">1976</date>
+			<biblScope unit="page">37417891</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,623.09,225.58,6.18;11,333.15,631.06,225.06,6.18;11,333.39,638.98,199.83,6.23" xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Attention is all you need. Advances in neural information processing systems</title>
+		<author>
+			<persName coords=""><forename type="first">Ashish</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Noam</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Niki</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jakob</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Llion</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aidan</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Łukasz</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Illia</forename><surname>Polosukhin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+			<biblScope unit="page">30</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,647.00,225.99,6.18;11,333.39,654.92,224.81,6.23;11,333.39,662.89,224.81,6.23;11,333.15,670.91,216.45,6.18" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">SpAtten: Efficient Sparse Attention Architecture with Cascade Token and Head Pruning</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Han</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA51647.2021.00018</idno>
+		<ptr target="https://doi.org/10.1109/HPCA51647.2021.00018" />
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Symposium on High-Performance Computer Architecture (HPCA)</title>
+				<meeting><address><addrLine>Los Alamitos, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="97" to="110" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,678.88,225.88,6.18;11,333.39,686.80,224.81,6.23;11,333.39,694.77,225.58,6.23;11,333.23,702.79,166.01,6.18" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Dual-side sparse tensor core</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiqiang</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cong</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunxin</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingwen</forename><surname>Leng</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ISCA52012.2021.00088</idno>
+		<ptr target="https://doi.org/10.1109/ISCA52012.2021.00088" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 48th Annual International Symposium on Computer Architecture (Virtual Event, Spain) (ISCA &apos;21)</title>
+				<meeting>the 48th Annual International Symposium on Computer Architecture (Virtual Event, Spain) (ISCA &apos;21)</meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1083" to="1095" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,89.10,225.99,6.18;12,69.23,97.07,224.81,6.18;12,68.98,104.99,225.06,6.23;12,69.23,112.96,224.81,6.23;12,68.49,120.93,226.63,6.23;12,69.23,128.95,113.14,6.18" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">HighLight: Efficient and Flexible DNN Acceleration with Hierarchical Structured Sparsity</title>
+		<author>
+			<persName coords=""><forename type="first">Nellie</forename><surname>Yannan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Po-An</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saurav</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Angshuman</forename><surname>Muralidharan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivienne</forename><surname>Parashar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><surname>Sze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Emer</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3613424.3623786</idno>
+		<ptr target="https://doi.org/10.1145/3613424.3623786" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 56th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 56th Annual IEEE/ACM International Symposium on Microarchitecture<address><addrLine>Toronto, ON, Canada,) (MICRO &apos;23; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1106" to="1120" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,136.92,225.88,6.18;12,69.23,144.89,225.99,6.18;12,69.23,152.81,224.81,6.23;12,69.23,160.78,225.89,6.23;12,69.23,168.80,135.10,6.18" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Sparseloop: An Analytical, Energy-Focused Design Space Exploration Methodology for Sparse Tensor Accelerators</title>
+		<author>
+			<persName coords=""><forename type="first">Nellie</forename><surname>Yannan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Po-An</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Angshuman</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivienne</forename><surname>Parashar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">S</forename><surname>Sze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Emer</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ISPASS51385.2021.00043</idno>
+		<ptr target="https://doi.org/10.1109/ISPASS51385.2021.00043" />
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS)</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="232" to="234" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,176.77,225.99,6.18;12,69.23,184.74,224.95,6.18;12,333.39,89.05,224.81,6.23;12,333.39,97.02,225.89,6.23;12,333.39,105.04,142.62,6.18" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">ViT-CoD: Vision Transformer Acceleration via Dedicated Algorithm and Accelerator Co-Design</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Lin</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA56546.2023.10071027</idno>
+		<ptr target="https://doi.org/10.1109/HPCA56546.2023.10071027" />
+	</analytic>
+	<monogr>
+		<title level="m">2023 IEEE International Symposium on High-Performance Computer Architecture (HPCA)</title>
+				<meeting><address><addrLine>Los Alamitos, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="273" to="286" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,113.01,225.63,6.18;12,333.39,120.98,224.81,6.18;12,333.39,128.90,224.81,6.23;12,333.39,136.87,225.88,6.23;12,333.15,144.89,225.87,6.18;12,333.17,152.86,97.00,6.18" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Gamma: leveraging Gustavson&apos;s algorithm to accelerate sparse matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Guowei</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nithya</forename><surname>Attaluri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">S</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Sanchez</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3445814.3446702</idno>
+		<ptr target="https://doi.org/10.1145/3445814.3446702" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (Virtual, USA) (ASPLOS &apos;21)</title>
+				<meeting>the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (Virtual, USA) (ASPLOS &apos;21)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="687" to="701" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,160.83,225.63,6.18;12,333.39,168.75,224.81,6.23;12,333.39,176.72,225.63,6.23;12,333.17,184.74,116.75,6.18" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">SpArch: Efficient Architecture for Sparse Matrix Multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Zhekai</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanrui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA47549.2020.00030</idno>
+		<ptr target="https://doi.org/10.1109/HPCA47549.2020.00030" />
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="261" to="274" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

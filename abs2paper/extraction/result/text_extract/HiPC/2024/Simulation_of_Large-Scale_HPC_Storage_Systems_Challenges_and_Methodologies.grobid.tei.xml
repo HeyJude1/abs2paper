@@ -1,0 +1,1410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Simulation of Large-Scale HPC Storage Systems: Challenges and Methodologies</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2024-12-18">2024-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,155.52,182.40,61.14,8.57;1,216.66,180.36,1.27,6.31"><forename type="first">Julien</forename><surname>Monniot</surname></persName>
+							<email>julien.monniot@inria.fr</email>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Rennes</orgName>
+								<address>
+									<settlement>Inria</settlement>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution" key="instit1">CNRS</orgName>
+								<orgName type="institution" key="instit2">IRISA -Rennes</orgName>
+								<address>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,226.86,182.40,65.37,8.57;1,292.22,180.36,1.27,6.31"><roleName>Franc ¸ois</roleName><forename type="first">François</forename><surname>Tessier</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Rennes</orgName>
+								<address>
+									<settlement>Inria</settlement>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution" key="instit1">CNRS</orgName>
+								<orgName type="institution" key="instit2">IRISA -Rennes</orgName>
+								<address>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,302.42,182.40,64.01,8.57;1,366.43,180.36,1.70,6.31"><forename type="first">Henri</forename><surname>Casanova</surname></persName>
+							<email>henric@hawaii.edu</email>
+							<affiliation key="aff2">
+								<orgName type="institution">University of Hawai&apos;i -Honolulu</orgName>
+								<address>
+									<region>HI</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,376.21,182.40,65.52,8.57;1,441.73,180.36,1.27,6.31"><forename type="first">Gabriel</forename><surname>Antoniu</surname></persName>
+							<email>gabriel.antoniu@inria.fr</email>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Rennes</orgName>
+								<address>
+									<settlement>Inria</settlement>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution" key="instit1">CNRS</orgName>
+								<orgName type="institution" key="instit2">IRISA -Rennes</orgName>
+								<address>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Simulation of Large-Scale HPC Storage Systems: Challenges and Methodologies</title>
+					</analytic>
+					<monogr>
+						<title level="m">2024 IEEE 31st International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="232" to="242"/>
+							<date type="published" when="2024-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">359981F41651A4588472C003830E8F7F</idno>
+					<idno type="DOI">10.1109/hipc62374.2024.00031</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>HPC</term>
+					<term>Storage</term>
+					<term>Modeling</term>
+					<term>Simulation 232</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>As the scale of production HPC platforms increases, so does the computing and I/O performance gap, exacerbating the storage bottleneck. High-performance storage systems have been developed to alleviate this bottleneck, but many questions remain concerning their architecture, implementation, and configuration. Answering these questions via experimental campaigns proves arduous. First, some answers are required before deploying the system. Second, once a system hits production the experimental scope is limited by the system's specific configuration and by constraints of production use. In this work we identify challenges posed by the design and validation of a storage simulator. We then propose solutions implemented in FIVES, a simulator of HPC workloads on platforms that comprise a parallel file system. We show how our simulator can be instantiated and calibrated for the accurate simulation of a production Lustre deployment.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>As increasingly powerful HPC systems are being deployed the gap between compute and I/O performance keeps widening. This is seen plainly by the evolution of the ratio between compute power and I/O bandwidth of the top three machines in Top500 <ref type="bibr" coords="1,109.03,472.56,9.54,7.79" target="#b0">[1]</ref>, which has decreased by ∼10x over the last 13 years (see Figure <ref type="figure" coords="1,135.83,483.35,3.24,7.79" target="#fig_0">1</ref>). At the same time, the recent shift from compute-centric to data-centric applications and workflows has resulted in a so-called "data deluge", the effect of which has been observed in major supercomputing centers. For instance, at the National Energy Research Scientific Computing Center (NERSC) the volume of data stored by applications increased by ∼41x between 2010 and 2021, with an annual growth rate estimated at 30% <ref type="bibr" coords="1,135.74,558.84,9.54,7.79" target="#b1">[2]</ref>. To alleviate the storage bottleneck, high-performance storage systems, vertically and/or horizontally scaled, have been installed alongside compute partitions. Vertical scaling consists in enhancing the storage infrastructure with additional fast storage layers based on flash memory or non-volatile memory <ref type="bibr" coords="1,330.41,312.52,9.54,7.79" target="#b2">[3]</ref>. This is done in emerging systems like DAOS <ref type="bibr" coords="1,516.89,312.52,10.48,7.79" target="#b3">[4]</ref> but also in mainstream parallel file systems like Lustre. Horizontal scaling consists in increasing the number of storage devices. For instance, this is the approach used by Orion <ref type="bibr" coords="1,513.14,344.88,9.54,7.79" target="#b4">[5]</ref>, the 700PB parallel file system deployed on the Frontier supercomputer at Oak Ridge National Laboratory, which features 47,700 hard disks. The integration of I/O forwarding nodes into the interconnect also provides more gateways for I/O transit, reducing contention and increasing bandwidth. These developments have led to significant performance gains, at the cost of higher system complexity.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Date</head><p>The architecture, implementation, configuration and efficient use of these high-performance storage systems open up many research questions. However, providing sound answers requires conducting comprehensive experiments, which often proves arduous. This is in part because some challenges, such as the sizing of the infrastructure, need answers upstream of the storage system design, before an actual system is available. One approach is to analyze job execution historical data, collected on other previously available systems. Unfortunately, this data is strongly tied to the particular features of those systems and of their application workloads. Even when a system is accessible for experimental purposes, the limitations imposed by its implementation and/or its production use reduces the scope of experiments that can be carried out to answer questions in areas such as storage-aware job scheduling, resource allocation, file system configuration or storage system's energy consumption. For instance, consider Lustre <ref type="bibr" coords="1,513.47,603.71,9.54,7.79" target="#b5">[6]</ref>, the most widely deployed file system on supercomputers to date. The provisioning of a Lustre-based storage system, the choice of a data striping policy, or the development of strategies for mitigating contention are well-known questions that can only be answered via extensive experimental campaigns <ref type="bibr" coords="1,511.98,657.63,9.54,7.79" target="#b6">[7]</ref>. But running the necessary experiments at scale on a production system is a difficult proposition as these experiments would not only disrupt the system's production use, but could also lead to prohibitive resource and energy consumption.</p><p>Simulation is a promising approach to overcome the above experimental obstacles. It provides a way to 1) evaluate possible architecture designs and configurations before the system is deployed; 2) evaluate a wide range of I/O and storage resource management algorithms; and 3) perform post-mortem analysis of a decommissioned storage system and draw lessons from it. The simulation of parallel and distributed systems has long been an active field, enabling reproducible experiments for arbitrary scenarios in a way that is less time-, labor-, and resource-intensive than real-world experiments. However, there have been few attempts at simulating high-performance storage systems in a way that is both accurate and fast.</p><p>In this work, we first identify the main challenges for the design and validation of an accurate simulator of highperformance storage systems, ranging from the question of which data the simulator should take as input to the difficulty of achieving a desirable trade-off between simulation accuracy and simulation speed. We then propose solutions for these challenges, which we implement as part of FIVES, a "Simulator for Scheduling on Storage Systems at Scale" (five "S"). The goal of FIVES is to be sufficiently accurate for its output to inform file system configuration and design decisions. This goal is partly achieved via an automated simulation calibration method. Our contributions in this work are as follows:</p><p>• The identification of key challenges for the accurate and fast simulation of high-performance storage systems; • A simulation abstraction for a distributed storage system;</p><p>• The design and implementation of the FIVES simulator;</p><p>• A method for automatically calibrating FIVES using Bayesian optimization; • An experimental evaluation of FIVES for simulating a production Lustre deployment and workload.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. SIMULATION CHALLENGES FOR HPC STORAGE</head><p>We have identified four key challenges for the accurate simulation of high-performance storage systems in HPC platforms. The first two are specific to this domain, while the last two are relevant to the simulation of parallel and distributed computing systems in general.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #1</head><p>Input data is hard to find, often incomplete or imprecise, and not usable out-of-the-box.</p><p>Assuming that an accurate high-performance storage system simulator is available, it must be provided input data that describes the workload to be simulated. Several "workload traces" have been collected on HPC platforms from various logs and produced by various monitoring tools (batch scheduler logs, I/O traces, parallel file system logs, . . . ). The goal is to combine these traces to construct a complete workload description that can be provided as input to the simulator. Unfortunately, not all necessary traces are always available for a single platform, and one often must work with incomplete data. Even if all the necessary data is available, it must be carefully curated because it contains artefacts due to incidents or misuses of the platforms, or to limitations or bugs of the monitoring tools <ref type="bibr" coords="2,378.83,84.05,9.54,7.79" target="#b7">[8]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #2</head><p>A simulator cannot be accurate for every I/O workload.</p><p>The heterogeneity of I/O workloads executed on real-world systems is high <ref type="bibr" coords="2,381.21,145.99,9.54,7.79" target="#b8">[9]</ref>. Furthermore, an inspection of actual application traces shows that many jobs are outliers, with behaviors (due to bugs, due to idiosyncratic implementations) that are hard to model and thus to simulate. This is because a program can implement I/O in many different ways, including ways that are vastly sub-optimal. In addition, even if we were to design a job model with enough flexibility to represent such a wide array of I/O behaviors, it would be very complex to benefit from it. Indeed, we don't have enough knowledge about the jobs to match each of them with a correct configuration of the model (see Challenge #1 above).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #3</head><p>The level of details of the simulation must be chosen to achieve a sensible accuracy/scalability trade-off.</p><p>A natural approach is to implement a simulator's simulation models with high levels of details in order to reproduce near-exact real-world behaviors. In many cases, such as the simulation of large HPC workloads and systems, doing so can lead to prohibitive time and space complexity due to large numbers of simulated discrete events. Furthermore, not all information is always available to implement highly detailed simulation models. For these reasons, one must instead resort to implementing less detailed, and thus likely less accurate, simulation models. The challenge is that for each component of the target system one must choose an appropriate level of detail at which to model this component, so that, overall, the simulator achieves sufficient levels of accuracy and of scalability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #4</head><p>Calibrating a simulator with respect to ground-truth data<ref type="foot" coords="2,533.19,488.27,3.15,5.45" target="#foot_0">1</ref> so as to maximize simulation accuracy is difficult.</p><p>All simulation models in a simulator come with configuration parameters, and appropriate values must be chosen for these parameters. Because simulation models are often not implemented at a high level of details, model parameter values cannot simply be picked based on the hardware specification of the system being simulated. For instance, say that a realworld network topology is abstracted away as a single macrolink. The latency and bandwidth values of this macro-link that maximize simulation accuracy are some complex functions of the latencies and bandwidths of the individual network links in the real-world network topology. In general, parameter values must be calibrated so that the simulator's accuracy is maximized with respect to available ground-truth data. This amounts to solving a multi-variate optimization problem in which the objective function is some simulation accuracy metric and the variables are the simulation model parameters. In the field of parallel and distributed computing, simulation calibration is often not performed and, when it is, it is mostly a labor-intensive and manual process <ref type="bibr" coords="3,208.10,127.03,13.78,7.79" target="#b9">[10]</ref>.</p><p>To the best of our knowledge, there is no validated simulator of high-performance storage systems for which the above challenges have been addressed satisfactorily.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. RELATED WORK</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. I/O and Storage Systems Analysis</head><p>The evaluation of high-performance storage systems has been actively pursued because, as applications' I/O requirements continue to grow, storage systems need to be studied and optimized throughout their lifetimes <ref type="bibr" coords="3,220.30,245.14,9.54,7.79" target="#b1">[2]</ref>. Multiple studies have focused on analyzing the behavior of specific storage system deployments over months of production usage <ref type="bibr" coords="3,277.88,266.71,13.78,7.79" target="#b10">[11]</ref>, <ref type="bibr" coords="3,68.61,277.49,13.78,7.79" target="#b11">[12]</ref>, <ref type="bibr" coords="3,89.71,277.49,13.78,7.79" target="#b12">[13]</ref>, <ref type="bibr" coords="3,110.80,277.49,13.78,7.79" target="#b13">[14]</ref>, <ref type="bibr" coords="3,131.91,277.49,9.54,7.79" target="#b7">[8]</ref>, <ref type="bibr" coords="3,148.51,277.49,13.78,7.79" target="#b14">[15]</ref>. The goal of most of these works is to provide guidance to users and administrators of these specific deployments, without attempting to generalize to other hardware architectures or other low-level configurations of the system. They also require access to a significant volume of logs, often collected from multiple sources inside the studied systems (in <ref type="bibr" coords="3,113.37,342.20,9.54,7.79" target="#b7">[8]</ref>, fives different logs were used). Other studies strive for more generalizable conclusions <ref type="bibr" coords="3,218.02,352.99,13.78,7.79" target="#b15">[16]</ref>, <ref type="bibr" coords="3,237.34,352.99,13.78,7.79" target="#b16">[17]</ref>, sometimes providing methods for tuning file system or application configuration parameters <ref type="bibr" coords="3,148.39,374.56,9.54,7.79" target="#b6">[7]</ref>, <ref type="bibr" coords="3,163.81,374.56,13.78,7.79" target="#b17">[18]</ref>. These works, however, require extensive access to an already deployed file system, and are limited to configuration parameter tuning (no changes in the hardware infrastructure).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Simulation Approaches</head><p>Given the advantages of simulations over real-world experiments, it is not surprising that many parallel and distributed computing researchers have developed simulators, even though relatively few have focused on the simulation of distributed storage systems <ref type="bibr" coords="3,129.33,482.74,13.78,7.79" target="#b18">[19]</ref>, <ref type="bibr" coords="3,149.69,482.74,13.78,7.79" target="#b19">[20]</ref>, <ref type="bibr" coords="3,170.06,482.74,13.78,7.79" target="#b20">[21]</ref>, <ref type="bibr" coords="3,190.42,482.74,13.78,7.79" target="#b21">[22]</ref>.</p><p>Any simulator must implement simulation models that mimic the behavior of the components of actual systems. The most natural approach is to implement these models with a high level of details, in an attempt to reproduce "microscopic" real behaviors and achieve the highest possible accuracy (packet-level network simulation, cycle-accurate CPU simulation, block-level I/O device simulation). However, this is at the expense of scalability as the number of discrete events is typically proportional to the size of the workload being simulated. This scalability issue is problematic when wanting to simulate HPC workloads with large compute and data volumes. One solution is to use Parallel Discrete Event Simulation (PDES) <ref type="bibr" coords="3,144.08,623.13,14.97,7.79" target="#b22">[23]</ref> by which the simulation itself is a parallel application that executes on an HPC cluster <ref type="bibr" coords="3,258.21,633.91,13.78,7.79" target="#b23">[24]</ref>, <ref type="bibr" coords="3,277.88,633.91,13.78,7.79" target="#b24">[25]</ref>, <ref type="bibr" coords="3,68.61,644.69,13.78,7.79" target="#b25">[26]</ref>. This approach is used in <ref type="bibr" coords="3,181.65,644.69,13.78,7.79" target="#b19">[20]</ref>, which, like this work, focuses on simulating a high-performance storage system. However, achieving high parallel efficiency with PDES is known to be challenging and, when simulating large systems and long-running workloads, the resource expenses for conducting extensive experimental campaigns can be prohibitive (in this work, for instance, we execute thousands of simulations).</p><p>The way to increase simulation scalability is to employ less detailed simulation models. These models aim to capture "macroscopic" behaviors of real-world systems, with time and space complexities orders of magnitude lower than those of the "microscopic" models discussed earlier. In the specific context of the simulation of high-performance storage systems, previous authors have developed simulators with such models <ref type="bibr" coords="3,343.48,191.66,13.78,7.79" target="#b18">[19]</ref>, <ref type="bibr" coords="3,363.81,191.66,13.78,7.79" target="#b20">[21]</ref>, <ref type="bibr" coords="3,384.15,191.66,13.78,7.79" target="#b21">[22]</ref>. These simulators are developed from scratch using a generic discrete-event simulation framework (namely SimPy <ref type="bibr" coords="3,374.83,213.23,13.48,7.79" target="#b26">[27]</ref>). However, considerable effort has been invested by the community in the development of discreteevent simulation frameworks for easing the development of simulators of parallel and distributed computing systems <ref type="bibr" coords="3,523.67,245.58,13.78,7.79" target="#b27">[28]</ref>, <ref type="bibr" coords="3,314.40,256.36,13.78,7.79" target="#b28">[29]</ref>, <ref type="bibr" coords="3,335.47,256.36,13.78,7.79" target="#b29">[30]</ref>, <ref type="bibr" coords="3,356.53,256.36,13.78,7.79" target="#b30">[31]</ref>, <ref type="bibr" coords="3,377.60,256.36,13.78,7.79" target="#b31">[32]</ref>, <ref type="bibr" coords="3,398.67,256.36,13.78,7.79" target="#b32">[33]</ref>, <ref type="bibr" coords="3,419.74,256.36,13.78,7.79" target="#b33">[34]</ref>. But these frameworks typically only provide simplistic simulation models of I/O resources and do not provide out-of-the-box solutions for the simulation of high-performance storage systems.</p><p>This work aims to address the challenges posed by the simulation of high-performance storage systems described in Section II. To do so we propose an architecture and an implementation of a storage system simulator called FIVES. In contrast to the aforementioned simulators, FIVES builds on (and contributes to) existing and well-established parallel and distributed computing simulation frameworks: WRENCH <ref type="bibr" coords="3,525.92,364.13,14.97,7.79" target="#b32">[33]</ref> and SimGrid <ref type="bibr" coords="3,365.40,374.92,13.78,7.79" target="#b33">[34]</ref>. We chose these frameworks because they are widely-used, provide the necessary simulation abstractions and models for this work, and have been the object of thorough validation studies that have demonstrated that they can achieve high accuracy <ref type="bibr" coords="3,366.92,418.06,13.78,7.79" target="#b34">[35]</ref>, <ref type="bibr" coords="3,386.52,418.06,13.78,7.79" target="#b35">[36]</ref>, <ref type="bibr" coords="3,406.11,418.06,13.78,7.79" target="#b36">[37]</ref>, <ref type="bibr" coords="3,425.70,418.06,13.78,7.79" target="#b37">[38]</ref>, <ref type="bibr" coords="3,445.30,418.06,13.78,7.79" target="#b38">[39]</ref>, <ref type="bibr" coords="3,464.89,418.06,13.78,7.79" target="#b39">[40]</ref>, <ref type="bibr" coords="3,484.48,418.06,13.78,7.79" target="#b40">[41]</ref>, <ref type="bibr" coords="3,504.08,418.06,13.78,7.79" target="#b32">[33]</ref>, <ref type="bibr" coords="3,523.67,418.06,13.78,7.79" target="#b9">[10]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. THE FIVES SIMULATOR A. FIVES conceptual architecture</head><p>We consider that an HPC system comprises three main conceptual elements as depicted in Figure <ref type="figure" coords="3,458.08,472.30,7.32,7.79" target="#fig_1">2a</ref>: a Job Manager, an Orchestrator and an Infrastructure. The Job Manager receives user requests with compute resources and time demands, creates a job for each request, and submits jobs for execution to the Orchestrator. The Orchestrator implements scheduling policies by which jobs are assigned to particular hardware resources in the Infrastructure. We describe these conceptual elements in more details hereafter.</p><p>1) Infrastructure: The Infrastructure represents a simulated hardware platform, such as the one depicted in Figure <ref type="figure" coords="3,509.33,569.20,3.37,7.79" target="#fig_2">3</ref>. In this example the compute partition consists of homogeneous compute nodes interconnected via a Dragonfly network topology, and is defined by the number of compute nodes, their compute speed and number of cores, and the bandwidth and latency of the network links. Other network topologies are already available in SimGrid, and more can be manually implemented as needed. The storage partition comprises homogeneous storage nodes interconnected via a star topology, and is defined by the number of storage nodes and the bandwidth and latency  2) Job Manager: The Job Manager is in charge of interpreting the resource demands in each user request, creating jobs, and sending these jobs to the Orchestrator. We define a job as a set of compute and I/O operations caused by the execution of one or more applications. These are to be executed on a set of resources on the Infrastructure (specified as a desired number of nodes and cores) that are requested for a given time period. A reservation corresponds to a job for which the requested resources have been allocated. During a reservation one or more applications may run, each with a known start and end timestamp within the bounds of the reservation.</p><p>3) Orchestrator: The Orchestrator is responsible for scheduling submitted jobs and their I/O operations. It thus must employ both a job scheduling algorithm and a striping policy for allocating storage resources and distributing data to disks. Although users can provide their own implementations of these algorithms, we have already implemented several algorithms in FIVES, described in the next section, which correspond to a large spectrum of relevant use cases (i.e., classical job scheduling algorithms, the striping policy of the Lustre file system).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. FIVES Implementation</head><p>FIVES is implemented using the WRENCH <ref type="bibr" coords="4,243.88,657.68,14.97,7.79" target="#b32">[33]</ref> and Sim-Grid <ref type="bibr" coords="4,91.51,668.47,14.97,7.79" target="#b33">[34]</ref> state-of-the-art simulation frameworks. SimGrid provides foundational simulation abstractions for sequential concurrent processes that use compute, network, and storage hardware resources, using scalable and validated simulation models. WRENCH builds on top of SimGrid to implement high-level simulation abstractions of "Services" to which "Jobs" can be submitted and perform "Actions." Using these abstractions, simulators of complex workloads and systems can be implemented with minimal effort.</p><p>1) Main Simulation Components: Figure <ref type="figure" coords="4,486.26,290.32,8.99,7.79" target="#fig_1">2b</ref> depicts the simulation components used to implement the conceptual architecture described in Section IV-A, and shows the workflow of the simulation. The figure indicates which components are native to WRENCH and which are developed in FIVES.</p><p>The entry point component of FIVES is the Controller, which manages job executions throughout the simulation. It takes as input a dataset that specifies the jobs whose executions are to be simulated on the HPC platform, with an arrival date for each job. At the onset of the simulation, the Controller creates a set of jobs to simulate based on the job dataset. It submits each job for execution to the Batch Compute Service configured to use a particular job scheduling algorithm. WRENCH already comes with several such algorithms, and in this work we use its (default) conservative backfilling implementation <ref type="bibr" coords="4,353.50,452.43,13.78,7.79" target="#b41">[42]</ref>. The Controller acknowledges job completions until the execution of the entire workload has been simulated, and outputs timestamped job execution, I/O operation and I/O resource usage events. The Controller incurs no load during the simulation, but requires a few seconds before and after, while instantiating the jobs and computing the final metrics.</p><p>The jobs submitted by the Controller are executed on a simulated HPC system such as the one shown in Figure <ref type="figure" coords="4,534.71,528.26,3.37,7.79" target="#fig_2">3</ref>. SimGrid provides a powerful API for describing arbitrary hardware platforms to be simulated that includes compute, network, and storage resources. Using this API, the FIVES user can implement the Infrastructure conceptual element described in the previous section for any target hardware configuration. Building on top of SimGrid, WRENCH offers high-level services implemented in simulation that manages the simulated hardware resources: a Compute Service manages compute nodes (called Compute Hosts), while a Simple Storage Service manages storage nodes (called Storage Hosts). However, the Simple Storage Service implemented in WRENCH, which answers file read/write/delete/copy requests over the network, can only run on a single host and manage file systems on disks attached to that host. To get around this limitation, which makes the framework unsuitable for modeling distributed storage systems, we introduce a new type of storage service that we have contributed to WRENCH: the Compound Storage Service (CSS).</p><p>2) Compound Storage Service: A CSS (see Figure <ref type="figure" coords="5,273.14,127.39,3.74,7.79" target="#fig_3">4</ref>) aggregates and provides a high-level interface to multiple Simple Storage Services on multiple hosts. Files stored on the CSS are transparently distributed and/or striped across any subset of the Simple Storage Services, and the CSS keeps track of the location of each file and file stripe. It intercepts requests for read, write, copy or delete operations in order to redirect them to the appropriate Simple Storage Services.</p><p>The CSS abstraction implements all core mechanisms for simulating a parallel file system. Custom policies, such as the striping policy, are provided through the Allocator component. This makes it possible to use the generic CSS abstraction and instantiate it to simulate a particular parallel file systems, as explained in Section V-B3. Once a simulator has been implemented, it must be instantiated to be representative of a real-world system of interest. For this study, we selected Theta at the Argonne National Laboratory, a 11.7-PetaFLOPS Cray XC40 HPC system that ran for almost 6 years until the end of 2023, producing a significant number of major scientific results. Theta featured 4,392 compute nodes (Intel KNL) interconnected via an Aries network with a Dragonfly topology. The choice of Theta was motivated by its hosting of a 10 PB Lustre file system, the most widespread storage system on Top500 machines to date. In addition, unless explicitly specified at compile time, applications running on Theta were monitored with the Darshan <ref type="bibr" coords="5,101.16,572.30,14.97,7.79" target="#b42">[43]</ref> I/O monitoring tool, which has yielded a valuable dataset with years of I/O execution traces. An aggregated version of these traces is publicly available online <ref type="bibr" coords="5,257.50,593.87,13.78,7.79" target="#b43">[44]</ref>.</p><p>A. Background 1) Darshan: Darshan <ref type="bibr" coords="5,161.99,623.68,14.97,7.79" target="#b42">[43]</ref> is a monitoring tool for recording the I/O performed by an application with low overhead. Information is collected at a high level of detail, down to the granularity of the data chunks written by a process. Darshan is deployed on several top-tier supercomputers, such as those at Argonne National Laboratory or at NERSC, where the majority of applications are monitored. However, for reasons specific to these institutions (confidentiality, data control), raw data is not publicly distributed. Only aggregated data is available, providing a global view of job I/Os but omitting information such as the number of files written or the number of processes that took part in I/O. Overall, for a given job, the information made available is job start and end times, volumes of data read and written, and time spent performing I/O (plus other information not relevant to this work).</p><p>2) The Lustre Parallel File System: Lustre is an opensource parallel file system (PFS) that has been maintained and evolved for over twenty years. As depicted in Figure <ref type="figure" coords="5,527.75,203.83,3.37,7.79">5</ref>, a Lustre file system consists of I/O servers called OSS (Object Storage Servers) and disks called OST (Object Storage Targets). The number of OSTs managed by an OSS is variable ranging from one on the Theta supercomputer at Argonne National Laboratory, to three on Frontier at Oak Ridge National Laboratory, or higher on other systems. Following the same model, metadata is managed by metadata servers (MDS) and targets (MDT). All storage resources are accessed via so-called LNET nodes, which correspond to the I/O forwarding nodes found in many HPC systems. These LNET nodes are generally part of the interconnection network and access the Lustre file system via a dedicated network interface. Fig. <ref type="figure" coords="5,397.51,469.38,3.50,7.79">5</ref>: Lustre architecture Data written to a Lustre file system is striped across the OSTs, allowing performance gain by aggregating bandwidth from multiple OSTs and possibly OSSs. Striping a file is a two steps process. First, Lustre creates an ordered list of usable OSTs. Second, Lustre distributes file parts on a subset of this list according to a striping layout. Selecting and ordering which OST(s) will be used is achieved using one of two allocation strategies: round-robin or weighted. The roundrobin strategy is used in most cases. The weighted strategy implements a bias towards selecting the least used OSTs first and is triggered on rare occasions, when free-space imbalance between OSTs is above some threshold.</p><p>Lustre's default striping layout takes two main parameters: the stripe count which defines the number of OSTs on which the stripes will be distributed and the stripe size, which defines the granularity at which the data is divided into chunks of identical size inside the stripes. The stripe count and the stripe size have default values, although they can be changed by the user, on a per-file or per-directory basis. On Theta, the stripe count was set to 1 and the stripe size was set to 1MB. Section V-B3 describes our implementation of the Lustre's striping policy in the FIVES Allocator component.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Simulator Instantiation</head><p>Given the characteristics of the platform to be simulated and the information available regarding the jobs whose executions are to be reproduced on that platform, one must make various decisions regarding how the simulator should be instantiated. In what follows we discuss the three main decision axes when using FIVES to simulate the Theta platform and workload.</p><p>1) Job execution: When submitting a job to the Batch Compute Service, FIVES uses the real-world walltime and resource requirements of each reservation and respects the actual interval between subsequent job submissions, as available in the job trace. The start date of a job, however, is conditioned by the conservative backfilling job scheduling algorithm implemented in WRENCH. These start dates can thus be different from start dates that were driven by the specific batch scheduler configuration deployed on the real-world platform. Each job is defined by a runtime that we estimate based on the information present in the workload trace, and bound by the reservation walltime. Each I/O phase is subdivided in a variable number of individual read or write WRENCH actions, executed collectively from a subset of the job's compute nodes. Each action internally spawns multiple actual reads and writes to the storage system, depending on the job's I/O volume. The typical number of simulated reads or writes for a job can be approximated as F × H × S H , where F (1 ≤ F ≤ 10 2 ) is the number of files, H (1 ≤ H ≤ 10 1 ) is the number of participating compute nodes and S H (1 ≤ S H ≤ 10 2 ) is the number of stripes accessed by each host, similar for all hosts ±1. S H is bounded by the number of OSTs in use and the number of file chunks allowed on each OST for simulation scalability reasons (see Section V-B3). This approximation is an underestimation of the number of I/O accesses that jobs performed on the real system. Despite this underestimation, our results demonstrate that our simulations are in line with real-world behaviors.</p><p>We assume that all reads and writes from a job are on the PFS. Some might be local since the Theta compute nodes feature node-local SSD, but the workload trace does not distinguish between local and non-local I/O. Furthermore, for a given job, the trace does not specify the number of files (F ) and the number of compute nodes that are involved in I/O operations (H). We consider that F and H are parameters that must be calibrated based on observed real-world job executions. We assume that, for all jobs, the ratio of the total I/O volume to the total number of files, and the ratio of the number of compute nodes involved in I/O operations to the number of compute nodes allocated to the job, are based on fixed constants for reads and writes. In other words, we need to calibrate only 4 parameters (2 for reads, and 2 for writes), instead of 4n parameters where n is the number of jobs, which would render the calibration problem intractable due to high dimensionality. This choice leads to a smaller range of possible I/O behaviors among the simulated jobs, which at the moment we consider better than to allow more randomness, as our data doesn't currently provide us with details on the matter.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #1: Lesson learned</head><p>Making assumptions and abstracting away certain I/O behaviors is unavoidable because the information contained in I/O monitoring datasets is not comprehensive. Some of these assumptions, however, cause simulated workloads to be less heterogeneous than their real-world counterparts.</p><p>2) Disk contention model: SimGrid implements a default naive fair-share model for disk bandwidth, but users are advised to provide their own model for bandwidth degradation as a function of the number of concurrent I/O operations. This degradation depends on the mix of read and write operations and occurs both on HDDs and SSDs, with various behaviors that depend on many architecture-and workloadspecific characteristics <ref type="bibr" coords="6,401.68,276.87,13.78,7.79" target="#b36">[37]</ref>, <ref type="bibr" coords="6,423.08,276.87,13.78,7.79" target="#b44">[45]</ref>. Producing a general such model is outside the scope of this paper. Instead, we developed an empirical model derived from experiments we conducted on Seagate ST1000NX0443 SATA HDDs. The results (omitted due to space limitations) show that going from a single access to concurrent accesses causes an initial sharp decrease in bandwidth. But as concurrency increases, contention from each additional I/O operation has less impact and the bandwidth deterioration curve flattens out. It turns out that this behavior is modeled accurately (for our experimental results) using a model that includes a logarithmic component. Specifically, in FIVES, we model the instantaneous bandwidth (read or write) of a disk as:</p><formula xml:id="formula_0">bw = bw max * 1 C + log n ,</formula><p>where bw max is the maximum achievable disk bandwidth, n is the number of ongoing concurrent I/O operations, and C is a constant. Difference choices for the C value makes the model more linear or more logarithmic. Values for bw max and C must then be calibrated based on observed real-world job executions.</p><p>3) Striping Policy: The Allocator component provides the Compound Storage Service with a striping policy. Since Theta's storage system is a Lustre PFS, we have implemented in FIVES the internal striping policy based on Lustre's open source code. It handles both round-robin and weighted allocation strategies, with recommended default parameters for choosing between strategies, and accepts stripe size and stripe count parameters. It is important to note that the Darshan data source used in this study does not contain the stripe count and stripe size parameters used for each file. In our simulations, we resort to calibrating these values based on the following rules:</p><p>• stripe count: All jobs with a mean I/O bandwidth (bw job ) below a calibrated threshold use the same static default value for all I/Os (set to 1 in this paper as it is the default stripe count on Theta). Jobs above the threshold use a dynamic value computed as alt stripe count × bw job /threshold. The alt stripe count and the threshold values are different for reads and writes. • stripe size: This value is manually configured in the range [50, 100] MB. For simulation scalability reasons, this is higher than Lustre's default value of (1MB) to limit the number of simulation objects being created. For the same reason, FIVES can be configured so that the number of file parts on each OST is bounded by a user-specified values (F OST ). If using the stripe size default value in conjunction with a large file size L ends up exceeding F OST , the stripe size is instead set to L / (F OST × stripe count) on a per-job basis. We pick F OST so that one invocation of FIVES in our experimental evaluations takes at most 20min on a 2.5GHz core.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #3: Lesson learned</head><p>Each simulation model must abstract away some of the details of the real-world component it simulates for two reasons that can apply simultaneously: (i) because some of the details of the real-world system and/or workload are unknown and (ii) because of simulation scalability concerns.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. SIMULATOR CALIBRATION AND VALIDATION</head><p>Calibrating a simulator is essential for it to produce accurate results. The calibration process consists in determining simulation parameter values that make the simulated behavior as close as possible to the real-world We have identified several parameters to calibrate, as detailed in the next section. One way of determining values for these parameters is to vary each of them in successive simulation runs until a sufficient level of correlation between simulated and real performance is reached. However, this is a prohibitively long process due to the size of the parameter space and the non-zero simulation execution time. Instead, we use Bayesian Optimization (BO), a proven technique for parameter search that helps reduce the exploration space. In FIVES, we chose to work with the Ax framework <ref type="bibr" coords="7,111.88,490.16,13.78,7.79" target="#b45">[46]</ref>, using 50-80 iterations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Calibration parameters</head><p>FIVES is configured via dozens of parameters that pertain to the hardware platform, the jobs to be simulated, and the storage system. We have empirically determined which parameters play a significant role in the simulation output when simulating our production workload, leading us to identify 17 parameters that should be calibrated:</p><p>• Platform bandwidths (R/W on disks, network link between compute and storage partition) -3 parameters • Jobs file count (coefficient applied to job's mean bandwidth to determine read and write file counts for each I/O phase) -2 parameters (R/W) • Number of compute nodes participating in I/Os of each job -2 parameters (R/W) • Disk contention model coefficients -2 parameters (R/W)</p><p>• Striping model parameters (stripe size and count values, adjusted per jobs and for R/W operations and metadata access overhead) -7 parameters • Maximum file parts count on OSTs -1 parameter Ranges of possible values for these parameters are loosely defined based on approximate knowledge of the platform, workload, and storage system. But for some parameters, as explained in Section V-B, the range is constrained for simulation scalability reasons. Some of the parameters that are not calibrated are set to their known values (e.g., the total number of compute nodes, the number of disks per storage node). Others have been empirically determined to have little impact on the simulation output provided they are set to reasonable guesses. For instance, the network latency is set to the same value (24 µs) for all links, and only deviations from this value by orders of magnitude impact the simulation output.</p><p>1) Calibration loss function: The calibration process aims at minimizing a loss function that quantifies the simulator's accuracy. We define our loss function as the Mean Absolute Error of the percentage difference between the cumulative I/O time of each simulated job and its real-world counterpart. We use this percentage difference so that the impact of jobs with very long I/O on the loss function is not larger than that of jobs with shorter I/O. Formally, our loss function is defined as:</p><formula xml:id="formula_1">loss = 1 N * N i=1 |R IO i − S IO i | R IO i ,</formula><p>where N is the number of jobs, R IO i (resp. S IO i ) is the real (resp. simulated) I/O duration for job i.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Selecting calibration data</head><p>We find that our workload dataset includes either highly under-performing or over-performing jobs in terms of mean I/O bandwidth, e.g., ranging between 0.1MB/s and 3.5GB/s for reads. For our generic job model to be applicable, it is thus necessary to filter out outliers (mean read or write bandwidth ≥ 90 th percentile or ≤ 10 th percentile, I/O volume &gt; 10TB), which corresponds to ≈ 29% of the jobs in the original dataset. The reason why we designed a generic job model, which cannot capture idiosyncratic behaviors of these outlier jobs, is that the workload dataset lacks the necessary information for attempting to model these behaviors. The remaining 82% of the jobs, however, can be simulated so that trends and correlations of simulated behaviors are in line with real-world behaviors. But still, we find that the calibration process is sensitive to the heterogeneity of the job dataset. Therefore, we sort jobs into bandwidth classes: fast jobs (mean bandwidth ≥ 75 th percentile), slow jobs (mean bandwidth ≤ 25 th percentile), and regular jobs in-between. Simulation parameters shared among all jobs (e.g., platform parameters) are calibrated using regular jobs only (and fixed for further calibrations). Jobspecific parameters are calibrated independently for each class.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Validation Procedure</head><p>We use the obtained calibration to run simulations on every single month of the dataset, and evaluate simulation accuracy using Pearson correlations between simulated and real job I/O times. We are particularly interested in minimum values and variance in correlations for read and write times. The month that was used for obtaining the calibration serves as a control, the expectation being to get near perfect Pearson correlations between real and simulated I/O times. The other simulation runs let us observe whether the calibration generalizes, since the workload exhibit variations throughout the year.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #4: Lesson learned</head><p>Defining the set of calibration parameters is not straightforward as one must determine which parameters have a significant influence on the simulation output to reduce the dimensionality of the calibration problem. Choices must also be made regarding which subset of the ground-truth data should be used for computing the calibration, requiring some method to define and exclude outliers.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. EVALUATION</head><p>In this section we quantify the simulation accuracy of the calibrated FIVES simulator. Direct comparison is not feasible between our results and that obtained with previously proposed simulators <ref type="bibr" coords="8,109.70,344.81,13.78,7.79" target="#b18">[19]</ref>, <ref type="bibr" coords="8,129.88,344.81,13.78,7.79" target="#b19">[20]</ref>, <ref type="bibr" coords="8,150.06,344.81,13.78,7.79" target="#b20">[21]</ref>, <ref type="bibr" coords="8,170.23,344.81,13.78,7.79" target="#b21">[22]</ref>, some of which have actually not been validated against real-world ground-truth data. For instance, neither <ref type="bibr" coords="8,123.24,366.38,14.97,7.79" target="#b18">[19]</ref> nor <ref type="bibr" coords="8,154.47,366.38,14.97,7.79" target="#b21">[22]</ref> offer a network and I/O bandwidth model which could be used as part of a feedback loop during the simulation, which make them fundamentally incompatible with FIVES. In <ref type="bibr" coords="8,127.37,398.73,13.78,7.79" target="#b19">[20]</ref>, the authors present a simulator closer to FIVES, but which is able to model the execution of only a very limited number of applications at a time, and requires an unspecified, but consequent, cluster of nodes to execute. Due to these fundamental design and implementation differences (and others: supported input traces, simulated platform models, storage allocation algorithms, output metrics, . . . ), performing sound comparisons would require extensive modification of these previously proposed simulators to augment their existing capabilities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Simulation calibration results</head><p>For calibration and validation of FIVES we consider one year of Darshan traces from the Theta system at Argonne. We choose the year 2022 because it is recent and representative of peak machine usage. Out of 18,086 individual jobs, ≈7,000 do not contain actual I/O activity, and we filtered out another ≈6,000 jobs based on the criteria defined in Section VI-B, leaving us with ≈5,000 suitable jobs. Computing the calibration using the full year as ground-truth data is computationally intensive, and our experiments show that it brings only small accuracy gains when compared to using a single month. In all results below, the calibration was computed using data from the month of November, considering only jobs in the regular class. We picked this month because it has a significant number of regular jobs (366 jobs) and is representative of the job heterogeneity seen in the full dataset. We use Pearson's correlation between simulated and real cumulative I/O times in order to report on the quality of the calibration. While this metric doesn't fully validate accuracy, it helps make sure that FIVES captures a satisfactory trend of the time spent in I/O, which is relevant for a simulation of large periods of time and thousands of jobs.</p><p>Figure <ref type="figure" coords="8,352.03,148.53,4.49,7.79" target="#fig_5">6</ref> shows, for each job of the regular class from November 2022, the cumulative real I/O time (x-axis) extracted from Darshan traces and the FIVES-simulated cumulative I/O time (y-axis). This corresponds to the month that was used for calibrating the simulator, and we thus expect high accuracy. Most data points are close to the target diagonal, depicted as a red straight line, and the Pearson's correlation between simulated and real cumulative I/O times is 0.98.  For the year of 2022, excluding the month of November, Figure <ref type="figure" coords="8,343.15,483.18,4.49,7.79" target="#fig_6">7</ref> shows the I/O volumes (bytes) vs. the I/O time (seconds) for each real regular job (green) and its simulated counterpart (grey). We observe that simulated jobs almost all fall within the same job class as that of their real jobs counterparts (92% of jobs). Most of the simulated jobs falling outside of the class bounds form a horizontal pattern (dotted box in the figure). The same pattern, although contained within the class, is present in the real traces. Because these ≈ 200 jobs process almost exactly the same I/O volume and have mostly sequential job IDs, we conjecture that they come from the same application, executed multiple times under various platform conditions and/or with slightly different input parameters. However, the traces do not contain enough details to determine clear differences between these jobs, which is especially challenging for the calibration of FIVES (same, incomplete, input values for n jobs, but different expected outcomes). Another observation from this figure is that simulated jobs occupy a narrower diagonal than real jobs, which spread on the entire width of the 25-75 th percentile domain. This is because, as explained in Section V-B1, we do not have full information regarding the behavior of each individual job and make assumptions that make the job mix more homogeneous than in the real world. We could mitigate this by adding artificial noise to the models, but that would make the simulator non-deterministic, which is not desirable before reaching more confidence in the results.   <ref type="figure" coords="9,196.32,413.34,3.37,7.79" target="#fig_5">6</ref>, but shows results for the whole year of 2022 and includes the three job classes (≈ 1, 250 slow jobs in blue, ≈ 2, 500 regular jobs in grey and ≈ 1, 250 fast jobs in red). The pattern first observed in Figure <ref type="figure" coords="9,286.16,445.69,4.49,7.79" target="#fig_6">7</ref> is once again shown inside a black-bordered box. This cluster causes the Pearson correlation on I/O time to drop to 0.43 for the regular jobs, while it would be 0.71 without it. An examination of the workload traces reveals that this cluster corresponds to a single job, which is executed more than 200 times and has a somewhat unique I/O behavior. The calibration procedure attempts to find a single configuration of the parameters that best fit all jobs on average, and the many invocations of this single job end up suffering from lower simulation accuracy. Because our simulator doesn't seem to be a good fit for this type of job, and it was repeated so many times over two months of our studied dataset, the impact is significant. Results also highlight a global high level of accuracy for slow jobs, with a Pearson correlation at 0.83. By contrast, fast jobs experience the worse correlation, at 0.52, although the overall trend is correct. This is because, as explained in Section V-B, to increase the scalability of FIVES we place artificial bounds on several parameters, such as the stripe count and the number of files. This can lead to the execution of jobs with highly optimized I/O implementations to be simulated with lower levels of performance than in the real world. Note that our calibration of FIVES is for a particular trade-off between accuracy and scalability, which has allowed us to run large numbers of simulations as necessary for performing this research. For a given production use case, scalability could be reduced to increase accuracy, either overall or for particular job classes.</p><p>The results presented above are a first valuable step towards informing architecture and configuration of storage systems. However, FIVES's job-level accuracy is limited by the level of detail of the traces, which in turn limits the accuracy of a generic job model. Addressing this issue would require access to trace datasets with more complete per-job information, so that more detailed job models can be developed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Challenge #2: Lesson learned</head><p>The high degree of I/O behavior heterogeneity among jobs makes it impossible to design a simulator that is accurate for all jobs. But it is possible to define job classes and achieve desirable trade-offs between simulation scalability and simulation accuracy for each class.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VIII. CONCLUSION</head><p>This work has presented the FIVES simulator of highperformance storage systems, which was developed using but also has contributed to state-of-the-art simulation frameworks. We have identified four challenges for the accurate simulation of high-performance storage systems, and have shown possible approaches for addressing these challenges. These include methods for modeling job I/Os, for coping with job heterogeneity, and for automating simulator calibration. An experimental evaluation based on one year's worth of supercomputer traces has allowed us to quantify achievable levels of simulation accuracy. Furthermore, we confirmed the coherence of our results with short experiments, including varying the number of OSTs in our platform model. This led to expected results in terms of bandwidth impact, conforming to our initial evaluation of FIVES. Although we have performed our investigation in the context of the Lustre file system, we believe the proposed methodologies and the FIVES simulator itself can be applied to a broad range of production settings.</p><p>The main direction for future work is the development of approaches for better handling the heterogeneity of job I/O behaviors. In this work we have resorted to defining job classes based on average I/O performance to handle this heterogeneity, which has proved effective but has limitations. We have defined our three jobs classes in a somewhat arbitrary manner, but it is likely that better classes could be defined. Developing a methodology to automatically pick the appropriate number of classes and the criteria for defining these classes would be a key advance. Regardless, within each job class there is still heterogeneity in the patterns of I/O operations (e.g., the number and frequency of distinct I/O phases throughout a job's execution). In this work we have not considered these patterns because the needed information was not present in our workload traces. As a result, within a job class, simulated job behaviors are artificially more homogeneous than in the 9</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,68.89,697.54,226.49,7.79;1,68.89,708.32,207.01,7.79"><head>Fig. 1 :</head><label>1</label><figDesc>Fig. 1: Historical ratio of I/O bandwidth (GBps) to compute power (TFlops) of the top 3 systems of the Top500 list.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,214.23,172.80,174.22,7.79"><head>Fig. 2 :</head><label>2</label><figDesc>Fig. 2: FIVES architecture and implementation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,90.36,383.69,184.69,7.79"><head>Fig. 3 :</head><label>3</label><figDesc>Fig. 3: FIVES's Infrastructure conceptual element.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,104.72,403.03,155.31,7.79"><head>Fig. 4 :</head><label>4</label><figDesc>Fig. 4: CSS implementation in WRENCH</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="8,355.94,413.70,10.01,10.96;8,389.76,413.76,10.01,10.96;8,423.57,413.76,10.00,10.96;8,457.38,413.70,10.01,10.96;8,491.20,413.70,10.00,10.96;8,402.15,420.37,70.28,10.96;8,340.86,401.34,10.00,10.96;8,340.86,366.72,10.00,10.96;8,340.86,332.04,10.00,10.96;8,340.86,297.31,10.00,10.96;8,340.86,262.64,10.00,10.96;8,330.02,352.92,10.96,20.48;8,330.02,321.80,10.96,29.28;8,330.02,311.74,10.96,8.22;8,330.02,295.72,10.96,14.18;8,330.02,286.34,10.96,7.54;8,374.65,244.52,11.95,10.96;8,374.65,253.02,78.24,10.96"><head></head><label></label><figDesc>I/O Time (s) Jobs Sim. I/O == Real I/O target</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="8,314.79,440.34,226.49,7.79;8,314.79,451.13,91.75,7.79"><head>Fig. 6 :</head><label>6</label><figDesc>Fig. 6: Simulated vs. real cumulative I/O time for regular jobs of Nov. 2022 (366 jobs).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="9,74.56,372.42,226.49,7.79;9,74.56,383.20,226.49,7.79;9,74.56,393.98,59.03,7.79"><head>Fig. 7 :</head><label>7</label><figDesc>Fig. 7: Cumulative I/O volume vs. I/O time for real (green) and simulated (grey) regular jobs. Year of 2022, excl. training set (November).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="9,83.55,413.34,217.50,7.79;9,74.56,423.84,226.48,8.08;9,74.56,434.62,226.48,8.08;9,74.56,445.53,226.49,7.95;9,74.56,456.48,226.49,7.79;9,74.56,467.26,226.49,7.79;9,74.56,477.89,226.49,7.95;9,74.56,488.83,226.49,7.79;9,74.56,499.62,226.49,7.79;9,74.56,510.40,226.49,7.79;9,74.56,521.19,226.49,7.79;9,74.56,531.97,226.49,7.79;9,74.56,542.76,226.49,7.79;9,74.56,553.54,226.49,7.79;9,74.56,564.33,226.49,7.79;9,74.56,575.11,226.49,7.79;9,74.56,585.90,226.49,7.79;9,74.56,596.52,226.49,7.95;9,74.56,607.30,226.49,7.95;9,74.56,618.25,226.49,7.79;9,74.56,629.04,226.26,7.79;9,74.56,639.82,226.49,7.79;9,74.56,650.44,226.48,7.95;9,74.56,661.39,226.49,7.79;9,74.56,672.17,226.49,7.79"><head>Figure 8</head><label>8</label><figDesc>Figure 8  is similar to Figure6, but shows results for the whole year of 2022 and includes the three job classes (≈ 1, 250 slow jobs in blue, ≈ 2, 500 regular jobs in grey and ≈ 1, 250 fast jobs in red). The pattern first observed in Figure7is once again shown inside a black-bordered box. This cluster causes the Pearson correlation on I/O time to drop to 0.43 for the regular jobs, while it would be 0.71 without it. An examination of the workload traces reveals that this cluster corresponds to a single job, which is executed more than 200 times and has a somewhat unique I/O behavior. The calibration procedure attempts to find a single configuration of the parameters that best fit all jobs on average, and the many invocations of this single job end up suffering from lower simulation accuracy. Because our simulator doesn't seem to be a good fit for this type of job, and it was repeated so many times over two months of our studied dataset, the impact is significant. Results also highlight a global high level of accuracy for slow jobs, with a Pearson correlation at 0.83. By contrast, fast jobs experience the worse correlation, at 0.52, although the overall trend is correct. This is because, as explained in Section V-B, to increase the scalability of FIVES we place artificial bounds on several parameters, such as the stripe count and the number of files. This can lead to the execution of jobs with highly optimized I/O implementations to be simulated with lower levels of performance than in the</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">The reality of the modeled system behavior.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_1">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 03:28:09 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENT</head><p>As part of the "France 2030" initiative, this work has benefited from a State grant managed by the French National Research Agency (Agence Nationale de la Recherche) attributed to the Exa-DoST project of the NumPEx PEPR program, reference: ANR-22-EXNU-0004. This research has also been supported in part by the NCSA-Inria-ANL-BSC-JSC-Riken-UTK Joint-Laboratory on Extreme Scale Computing (JLESC). The Darshan input data was generated from resources of the Argonne Leadership Computing Facility, which is a DOE Office of Science User Facility supported under Contract DE-AC02-06CH11357.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>real world. An important future research direction will be to augment FIVES so that it supports arbitrary I/O operation patterns and to calibrate it based on ground-truth data that does contain information regarding these patterns.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="10,85.13,499.90,128.37,6.23" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Top500 ranking</title>
+		<ptr target="https://www.top500.org/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,85.13,508.05,210.00,6.23;10,85.13,516.14,210.00,6.23;10,85.13,524.10,210.01,6.36;10,85.13,532.32,203.89,6.23" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Storage 2020: A Vision for the Future of HPC Storage</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Lockwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Hazen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Koziol</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Canon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Antypas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Balewski</surname></persName>
+		</author>
+		<ptr target="https://escholarship.org/uc/item/744479dp#author" />
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+		<respStmt>
+			<orgName>Lawrence Berkeley National Laboratory</orgName>
+		</respStmt>
+	</monogr>
+	<note>in Report: LBNL-2001072</note>
+</biblStruct>
+
+<biblStruct coords="10,85.13,540.47,210.01,6.23;10,85.13,548.43,210.01,6.36;10,85.13,556.52,210.01,6.36;10,85.13,564.61,98.83,6.36" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Basic performance measurements of the intel optane dc persistent memory module</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Izraelevitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Memaripour</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><forename type="middle">J</forename><surname>Soh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">R</forename><surname>Dulloor</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1903.05714</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="10,85.13,572.89,210.00,6.23;10,85.13,580.98,210.00,6.23;10,85.13,588.94,210.01,6.20;10,85.13,597.02,161.57,6.36" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Daos and friends: A proposal for an exascale storage system</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Lofstead</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Jimenez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Maltzahn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Koziol</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Bent</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Barton</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC &apos;16: Proc. of the Int. Conf. for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="585" to="596" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,85.13,605.30,210.00,6.23;10,85.13,613.16,210.01,6.46;10,85.13,621.35,210.00,6.36;10,85.13,629.57,38.47,6.23" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Orion: A distributed file system for {Non-Volatile} main memory and {RDMA-Capable} networks</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Izraelevitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Swanson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">17th USENIX Conf. on File and Storage Technologies</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="221" to="234" />
+		</imprint>
+	</monogr>
+	<note>FAST 19</note>
+</biblStruct>
+
+<biblStruct coords="10,85.13,637.72,210.00,6.23;10,85.13,645.68,109.95,6.36" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Lustre: Building a file system for 1,000-node clusters</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Schwan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Linux Symp</title>
+				<meeting>of the Linux Symp</meeting>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="page">9</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,85.13,653.96,210.01,6.23;10,85.13,662.05,210.00,6.23;10,85.13,670.01,210.01,6.36;10,85.13,678.23,84.06,6.23" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Lustre i/o performance investigations on hazel hen: experiments and heuristics</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Seiz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Offenhäuser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Andersson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Hötzer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Hierl</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Nestler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Resch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The J. of Supercomputing</title>
+		<imprint>
+			<biblScope unit="volume">77</biblScope>
+			<biblScope unit="issue">11</biblScope>
+			<biblScope unit="page" from="12508" to="12536" />
+			<date type="published" when="2021-11">Nov. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,295.79,210.01,6.23;10,331.40,303.87,210.01,6.23;10,331.40,311.83,210.01,6.36;10,331.40,319.92,210.01,6.36;10,331.40,328.14,201.71,6.23" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Characterization and identification of hpc applications at leadership computing facility</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Lewis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Kettimuthu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Harms</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Carns</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Rao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Foster</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">E</forename><surname>Papka</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3392717.3392774</idno>
+		<ptr target="https://dl.acm.org/doi/10.1145/3392717.3392774" />
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 34th ACM Int. Conf. on Supercomputing</title>
+				<meeting>of the 34th ACM Int. Conf. on Supercomputing<address><addrLine>Barcelona Spain</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2020-06">Jun. 2020</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,336.48,210.01,6.23;10,331.40,344.57,210.01,6.23;10,331.40,352.53,210.01,6.20;10,331.40,360.62,210.01,6.36;10,331.40,368.84,210.01,6.23;10,331.40,376.92,119.91,6.23" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Scientific user behavior and data-sharing trends in a petascale file system</title>
+		<author>
+			<persName coords=""><forename type="first">S.-H</forename><surname>Lim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Sim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gunasekaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Vazhkudai</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3126908.3126924</idno>
+		<ptr target="https://doi.org/10.1145/3126908.3126924" />
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Int. Conf. for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;17</title>
+				<meeting>of the Int. Conf. for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;17<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2017-11">Nov. 2017</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,385.27,210.00,6.23;10,331.40,393.35,210.01,6.23;10,331.40,401.31,210.00,6.36;10,331.40,409.40,210.01,6.36;10,331.40,417.62,153.52,6.23" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Automated Calibration of Parallel and Distributed Computing Simulators: A Case Study</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Mcdonald</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Horzela</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Suter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Casanova</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2403.13918" />
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 25th IEEE Int. Workshop on Parallel and Distributed Scientific and Engineering Computing (PDSEC)</title>
+				<meeting>of the 25th IEEE Int. Workshop on Parallel and Distributed Scientific and Engineering Computing (PDSEC)</meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,425.96,210.01,6.23;10,331.40,433.92,210.01,6.36;10,331.40,442.01,210.01,6.20;10,331.40,450.23,57.16,6.23" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">A year in the life of a parallel file system</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">K</forename><surname>Lockwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Snyder</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Byna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Carns</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">J</forename><surname>Wright</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC18: Int. Conf. for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="931" to="943" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,458.57,210.01,6.23;10,331.40,466.66,210.01,6.23;10,331.40,474.62,210.00,6.36;10,331.40,482.70,180.11,6.36" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Understanding hpc application i/o behavior using system level statistics</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">K</forename><surname>Paul</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Faaland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Moody</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Gonsiorowski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Mohror</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">R</forename><surname>Butt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE 27th Int. Conf. on High Performance Computing, Data, and Analytics (HiPC)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="202" to="211" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,491.17,210.01,6.23;10,331.40,499.26,210.01,6.23;10,331.40,507.35,210.01,6.23;10,331.40,515.31,210.01,6.36;10,331.40,523.40,210.01,6.36;10,331.40,531.62,210.01,6.23;10,331.40,539.71,125.30,6.23" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Access patterns and performance behaviors of multi-layer supercomputer i/o subsystems under production load</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">L</forename><surname>Bez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">M</forename><surname>Karimi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">K</forename><surname>Paul</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Byna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Carns</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Oral</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Hanley</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3502181.3531461</idno>
+		<ptr target="https://dl.acm.org/doi/10.1145/3502181.3531461" />
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 31st Int. Symp. on High-Performance Parallel and Distributed Computing</title>
+				<meeting>of the 31st Int. Symp. on High-Performance Parallel and Distributed Computing<address><addrLine>Minneapolis MN USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2022-06">Jun. 2022</date>
+			<biblScope unit="page" from="43" to="55" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,548.05,210.01,6.23;10,331.40,556.01,210.01,6.36;10,331.40,564.10,210.01,6.36;10,331.40,572.31,46.37,6.23" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Understanding data motion in the modern hpc data center</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">K</forename><surname>Lockwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Snyder</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Byna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Carns</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">J</forename><surname>Wright</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE/ACM Fourth Int. Parallel Data Systems Workshop (PDSW)</title>
+				<imprint>
+			<date type="published" when="2019-11">Nov. 2019</date>
+			<biblScope unit="page" from="74" to="83" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,580.65,210.00,6.23;10,331.40,588.74,210.01,6.23;10,331.40,596.70,210.01,6.36;10,331.40,604.79,210.01,6.36;10,331.40,613.01,210.01,6.23;10,331.40,621.10,125.30,6.23" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">An analysis of system balance and architectural trends based on top500 supercomputers</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Sim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Vazhkudai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">R</forename><surname>Butt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Kim</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3432261.3432263</idno>
+		<ptr target="https://dl.acm.org/doi/10.1145/3432261.3432263" />
+	</analytic>
+	<monogr>
+		<title level="m">The Int. Conf. on High Performance Computing in Asia-Pacific Region. Virtual Event Republic of Korea</title>
+				<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2021-01">Jan. 2021</date>
+			<biblScope unit="page" from="11" to="22" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,629.44,210.01,6.23;10,331.40,637.40,210.01,6.36;10,331.40,645.49,164.49,6.36" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">The role of storage target allocation in applications&apos; i/o performance with beegfs</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Boito</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Pallez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Teylo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE Int. Conf. on Cluster Computing (CLUSTER)</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="267" to="277" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.40,653.96,210.00,6.23;10,331.40,662.05,210.01,6.23;10,331.40,670.00,210.01,6.36;10,331.40,678.09,210.01,6.36;11,85.19,73.54,210.00,6.23;11,85.19,81.63,52.13,6.23" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">I/O Characterization and Performance Evaluation of BeeGFS for Deep Learning</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Chowdhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Heer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Paredes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Moody</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Goldstone</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Mohror</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3337821.3337902</idno>
+		<ptr target="https://dl.acm.org/doi/10.1145/3337821.3337902" />
+	</analytic>
+	<monogr>
+		<title level="m">Proc. Int. Conf. on Parallel Processing (ICPP)</title>
+				<meeting>Int. Conf. on Parallel essing (ICPP)</meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2019-08">Aug. 2019</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,90.25,210.00,6.23;11,85.19,98.21,210.01,6.36;11,85.19,106.30,134.83,6.36" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Optimizing i/o performance of hpc applications with autotuning</title>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Behzad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Byna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Prabhat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Snir</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. on Parallel Computing</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1" to="15" />
+			<date type="published" when="2019-03">Mar. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,115.06,210.01,6.23;11,85.19,123.02,210.01,6.36;11,85.19,131.24,42.78,6.23" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Towards a fast multi-tier storage system simulator</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>San-Lucas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">L</forename><surname>Abad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE Ecuador Technical Chapters Meeting</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="5" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,139.86,210.00,6.23;11,85.19,147.95,210.00,6.23;11,85.19,155.91,210.00,6.36;11,85.19,164.13,8.99,6.23" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Evaluating burst buffer placement in hpc systems</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Khetawat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Zimmer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Mueller</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Atchley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Vazhkudai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Mubarak</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE Int. Conf. on Cluster Computing (CLUSTER)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,172.76,210.01,6.23;11,85.19,180.85,210.00,6.23;11,85.19,188.80,210.00,6.36;11,85.19,197.02,210.00,6.23;11,85.19,205.11,153.91,6.23" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Online detection of failures generated by storage simulator</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Arzymatov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Hushchyn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Sapronov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Belavin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Gremyachikh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Karpov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Ustyuzhanin</surname></persName>
+		</author>
+		<idno type="DOI">10.1088/1742-6596/1740/1/012052</idno>
+		<ptr target="https://dx.doi.org/10.1088/1742-6596/1740/1/012052" />
+	</analytic>
+	<monogr>
+		<title level="j">J. of Physics: Conf. Series</title>
+		<imprint>
+			<biblScope unit="volume">1740</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">12052</biblScope>
+			<date type="published" when="2021-01">jan 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,213.74,210.00,6.23;11,85.19,221.83,210.01,6.23;11,85.19,229.79,210.00,6.36;11,85.19,238.00,210.00,6.23;11,85.19,246.09,148.34,6.23" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Supporting dynamic allocation of heterogeneous storage resources on hpc systems</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Monniot</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Tessier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Robert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Antoniu</surname></persName>
+		</author>
+		<idno type="DOI">10.1002/cpe.7890</idno>
+		<ptr target="https://onlinelibrary.wiley.com/doi/abs/10.1002/cpe.7890" />
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="issue">28</biblScope>
+			<biblScope unit="page">e7890</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,254.59,210.01,6.36;11,85.19,262.81,105.55,6.23" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Parallel discrete event simulation</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">M</forename><surname>Fujimoto</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="30" to="53" />
+			<date type="published" when="1990-10">oct 1990</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,271.44,210.00,6.23;11,85.19,279.53,210.00,6.23;11,85.19,287.48,210.01,6.36" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">CODES: Enabling Co-Design of Multilayer Exascale Storage Architectures</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Cope</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Lang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Carns</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Carothers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ross</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Workshop on Emerging Supercomputing Technologies</title>
+				<meeting>of the Workshop on Emerging Supercomputing Technologies</meeting>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,296.24,210.01,6.23;11,85.19,304.20,210.00,6.20;11,85.19,312.42,57.16,6.23" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">xSim: The extreme-scale simulator</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Böhm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Engelmann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Int. Conf. on High Performance Computing &amp; Simulation</title>
+				<meeting>of the Int. Conf. on High Performance Computing &amp; Simulation</meeting>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="280" to="286" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,321.05,210.00,6.23;11,85.19,329.14,210.00,6.23;11,85.19,337.09,210.01,6.36;11,85.19,345.31,76.57,6.23" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">SST: A Scalable Parallel Framework for Architecture-Level Performance, Power, Area and Thermal Simulation</title>
+		<author>
+			<persName coords=""><forename type="first">M.-Y</forename><surname>Hsieh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Riesen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Thompson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Rodrigues</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Computer J</title>
+		<imprint>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="181" to="191" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,353.94,210.00,6.23;11,85.19,362.03,71.49,6.23" xml:id="b26">
+	<monogr>
+		<title level="m" type="main">SimPy: Discrete event simulation for Python</title>
+		<ptr target="https://simpy.readthedocs.io/en/latest/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,370.66,210.00,6.23;11,85.19,378.75,210.00,6.23;11,85.19,386.70,210.01,6.36;11,85.19,394.79,174.34,6.36" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">GridSim: A Toolkit for the Modeling and Simulation of Distributed Resource Management and Scheduling for Grid Computing</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Buyya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Murshed</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">13-15</biblScope>
+			<biblScope unit="page" from="1175" to="1220" />
+			<date type="published" when="2002-12">Dec. 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,403.55,210.00,6.23;11,85.19,411.64,210.00,6.23;11,85.19,419.73,210.00,6.23;11,85.19,427.69,210.00,6.36;11,85.19,435.90,41.58,6.23" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">CloudSim: A Toolkit for Modeling and Simulation of Cloud Computing Environments and Evaluation of Resource Provisioning Algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">N</forename><surname>Calheiros</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ranjan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Beloglazov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">A F</forename><surname>De Rose</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Buyya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Software: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">41</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="23" to="50" />
+			<date type="published" when="2011-01">Jan. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,444.53,210.00,6.23;11,85.19,452.49,210.00,6.36;11,85.19,460.58,133.83,6.36" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Dynamic Cloud Provisioning for Scientific Grid Workflows</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ostermann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Prodan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Fahringer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 11th ACM/IEEE Int. Conf. on Grid Computing</title>
+				<meeting>of the 11th ACM/IEEE Int. Conf. on Grid Computing</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="97" to="104" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,469.34,210.01,6.23;11,85.19,477.30,210.01,6.36;11,85.19,485.39,126.12,6.36" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">DISSECT-CF: A simulator to foster energy-aware scheduling in infrastructure clouds</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Kecskemeti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Simulation Modelling Practice and Theory</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="page" from="188" to="218" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,494.14,210.00,6.23;11,85.19,502.10,210.01,6.36;11,85.19,510.19,131.82,6.36" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">iFogSim: A Tool for Simulating Cloud and Fog Applications</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><forename type="middle">U</forename><surname>Yousuf Khan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">Rahim</forename><surname>Soomro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">Nawaz</forename><surname>Brohi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Int. Conf. on Cyber Resilience</title>
+				<meeting>of the Int. Conf. on Cyber Resilience</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="05" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,518.95,210.01,6.23;11,85.19,527.04,210.00,6.23;11,85.19,535.12,210.00,6.23;11,85.19,543.08,210.01,6.36;11,85.19,551.30,31.28,6.23" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Developing Accurate and Scalable Simulators of Production Workflow Management Systems with WRENCH</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Casanova</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ferreira Da Silva</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Tanaka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Pandey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Jethwani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Koch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Albrecht</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Oeth</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Suter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Future Generation Computer Systems</title>
+		<imprint>
+			<biblScope unit="volume">112</biblScope>
+			<biblScope unit="page" from="162" to="175" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,559.93,210.00,6.23;11,85.19,568.02,210.01,6.23;11,85.19,575.98,210.01,6.36;11,85.19,584.19,210.00,6.23;11,85.19,592.28,76.73,6.23" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Versatile, scalable, and accurate simulation of distributed applications and platforms</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Casanova</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Giersch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Quinson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Suter</surname></persName>
+		</author>
+		<ptr target="http://hal.inria.fr/hal-01017319" />
+	</analytic>
+	<monogr>
+		<title level="j">J. of Parallel and Distributed Computing</title>
+		<imprint>
+			<biblScope unit="volume">74</biblScope>
+			<biblScope unit="issue">10</biblScope>
+			<biblScope unit="page" from="2899" to="2917" />
+			<date type="published" when="2014-06">Jun. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,600.91,210.00,6.23;11,85.19,609.00,210.00,6.23;11,85.19,616.96,210.01,6.36;11,85.19,625.18,35.59,6.23" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">On the Validity of Flow-level TCP Network Models for Grid and Cloud Simulations</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Velho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Mello Schnorr</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Casanova</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. on Modeling and Computer Simulation</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,633.80,210.00,6.23;11,85.19,641.76,210.01,6.36;11,85.19,649.85,126.99,6.36" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Accuracy Study and Improvement of Network Simulation in the SimGrid Framework</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Velho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2nd Intl. Conf. on Simulation Tools and Techniques</title>
+				<meeting>of the 2nd Intl. Conf. on Simulation Tools and Techniques</meeting>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,85.19,658.61,210.00,6.23;11,85.19,666.57,210.01,6.36;11,330.52,73.07,210.00,6.20;11,330.52,81.29,57.16,6.23" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Adding storage simulation capacities to the simgrid toolkit: Concepts, models, and api</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Lebre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Suter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Veyre</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 15th IEEE/ACM Int. Symp. on Cluster, Cloud and Grid Computing</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="251" to="260" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,89.38,210.00,6.23;11,330.52,97.34,210.01,6.36;11,330.52,105.43,210.00,6.36;11,330.52,113.64,34.87,6.23" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Simulating MPI applications: the SMPI approach</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Degomme</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Markomanolis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Quinson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Stillwell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Suter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="2387" to="2400" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,121.73,210.00,6.23;11,330.52,129.69,210.00,6.36;11,330.52,137.78,186.69,6.36" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Cooling Energy Integration in SimGrid</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Rizvi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Toha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Lunar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Adnan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Alim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Al</forename><surname>Islam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2017 Int. Conf. on Networking, Systems and Security (NSysS</title>
+				<meeting>of the 2017 Int. Conf. on Networking, Systems and Security (NSysS</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="132" to="137" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,146.00,210.01,6.23;11,330.52,154.09,210.00,6.23;11,330.52,162.05,210.01,6.36;11,330.52,170.13,188.94,6.36" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Faithful performance prediction of a dynamic task-based runtime system for heterogeneous multi-core architectures</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Stanisic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Thibault</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Videau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-F</forename><surname>Méhaut</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="issue">16</biblScope>
+			<biblScope unit="page" from="4075" to="4090" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,178.35,210.01,6.23;11,330.52,186.44,210.00,6.23;11,330.52,194.40,210.00,6.36;11,330.52,202.62,16.18,6.23" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Fast and Faithful Performance Prediction of MPI Applications: the HPL Case Study</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Cornebize</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Legrand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">C</forename><surname>Heinrich</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2019 IEEE Int. Conf. on Cluster Computing</title>
+				<meeting>of the 2019 IEEE Int. Conf. on Cluster Computing</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,210.71,210.01,6.23;11,330.52,218.79,210.01,6.23;11,330.52,226.75,210.00,6.36;11,330.52,234.97,45.65,6.23" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Utilization, predictability, workloads, and user runtime estimates in scheduling the ibm sp2 with backfilling</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Mu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Feitelson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="529" to="543" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,243.06,210.00,6.23;11,330.52,251.02,210.01,6.36;11,330.52,259.11,153.44,6.36" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">24/7 characterization of petascale i/o workloads</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Carns</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Latham</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ross</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Iskra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Lang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Riley</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2009 IEEE Int. Conf. on Cluster Computing and Workshops</title>
+				<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,267.33,210.01,6.23;11,330.52,275.41,15.77,6.23" xml:id="b43">
+	<monogr>
+		<title level="m" type="main">Argonne national laboratory data catalog</title>
+		<ptr target="https://reports.alcf.anl.gov/data/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,283.50,210.01,6.23;11,330.52,291.46,210.01,6.36;11,330.52,299.55,210.00,6.36;11,330.52,307.77,133.41,6.23" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">A Parametric I/O Model for Modern Storage Devices</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">I</forename><surname>Papon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Athanassoulis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 17th Int. Workshop on Data Management on New Hardware (DAMON)</title>
+				<meeting>of the 17th Int. Workshop on Data Management on New Hardware (DAMON)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.52,315.86,175.64,6.23" xml:id="b45">
+	<monogr>
+		<title level="m" type="main">Adaptive Experimentation Platform</title>
+		<ptr target="https://ax.dev/" />
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

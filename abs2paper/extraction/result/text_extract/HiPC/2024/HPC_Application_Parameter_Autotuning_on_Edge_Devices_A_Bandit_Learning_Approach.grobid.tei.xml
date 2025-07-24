@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">HPC Application Parameter Autotuning on Edge Devices: A Bandit Learning Approach</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2024-12-18">2024-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,85.13,166.57,60.15,8.83"><forename type="first">Abrar</forename><surname>Hossain</surname></persName>
+							<email>abrar.hossain@utoledo.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical Engineering and Computer Science</orgName>
+								<orgName type="institution">The University of Toledo</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Abdel-Hameed A.</forename><surname>Badawy</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,278.08,166.57,88.91,8.83"><forename type="first">Mohammad</forename><forename type="middle">A</forename><surname>Islam</surname></persName>
+							<email>mislam@uta.edu</email>
+							<affiliation key="aff2">
+								<orgName type="department">Department of Computer Science and Engineering</orgName>
+								<orgName type="institution">The University of Texas</orgName>
+								<address>
+									<settlement>Arlington</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,377.13,166.57,57.49,8.83"><forename type="first">Tapasya</forename><surname>Patki</surname></persName>
+							<email>patki1@llnl.gov</email>
+							<affiliation key="aff3">
+								<orgName type="department">Center for Applied Scientific Computing</orgName>
+								<orgName type="institution">Lawrence Livermore National Laboratory</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,444.77,166.57,67.98,8.83"><forename type="first">Kishwar</forename><surname>Ahmed</surname></persName>
+							<email>1kishwar.ahmed@utoledo.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Electrical Engineering and Computer Science</orgName>
+								<orgName type="institution">The University of Toledo</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">HPC Application Parameter Autotuning on Edge Devices: A Bandit Learning Approach</title>
+					</analytic>
+					<monogr>
+						<title level="m">2024 IEEE 31st International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="12" to="22"/>
+							<date type="published" when="2024-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">9E0BC77C2BEEB2866DE939C78BD5C74A</idno>
+					<idno type="DOI">10.1109/hipc62374.2024.00011</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>HPC Parameter Autotuning</term>
+					<term>Edge Devices</term>
+					<term>Multi-Armed Bandit</term>
+					<term>HPC Applications</term>
+					<term>Performance Modeling</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The growing necessity for enhanced processing capabilities in edge devices with limited resources has led us to develop effective methods for improving high-performance computing (HPC) applications. In this paper, we introduce LASP (Lightweight Autotuning of Scientific Application Parameters), a novel strategy designed to address the parameter search space challenge in edge devices. Our strategy employs a multiarmed bandit (MAB) technique focused on online exploration and exploitation. Notably, LASP takes a dynamic approach, adapting seamlessly to changing environments. We tested LASP with four HPC applications: Lulesh, Kripke, Clomp, and Hypre. Its lightweight nature makes it particularly well-suited for resource-constrained edge devices. By employing the MAB framework to efficiently navigate the search space, we achieved significant performance improvements while adhering to the stringent computational limits of edge devices. Our experimental results demonstrate the effectiveness of LASP in optimizing parameter search on edge devices.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Motivation. Edge devices have been gaining popularity as a platform to execute computational workloads for widespread availability and increasing computational power <ref type="bibr" coords="1,248.39,500.55,9.84,8.03" target="#b0">[1]</ref>. According to a recent report <ref type="bibr" coords="1,157.17,511.67,9.84,8.03" target="#b1">[2]</ref>, the market of edge-to-process application data is expected to grow by 75% by 2026. Edge computing processes workload generated by end users nearby, thereby achieving low end-to-end latency and high bandwidth. High-performance computing (HPC) applications are characterized by their need for extensive computational resources and efficient performance. Edge devices can be used for scientific application execution due to their increasing processing capabilities. Recent U.S. DOE and Europe HPC reports <ref type="bibr" coords="1,284.60,600.59,10.80,8.03" target="#b2">[3]</ref> outline the opportunities to solve scientific applications on the backdrop of emerging edge computing technologies. However, limited and heterogeneous distributed edge resources present unique challenges to HPC execution on edge devices.</p><p>HPC applications involve complex parameter configurations <ref type="bibr" coords="1,84.34,667.46,9.84,8.03" target="#b3">[4]</ref>, which significantly affect their performance, contributing towards performance degradation and sometimes even causing non-execution faults <ref type="bibr" coords="1,197.88,689.69,9.84,8.03" target="#b4">[5]</ref>. As such, it becomes challenging for the users to evaluate the impact of various tunable parameters on the execution time and understand their effects on each other <ref type="bibr" coords="1,419.45,420.53,9.84,8.03" target="#b5">[6]</ref>. Application users must invest considerable effort in searching for the optimal values for all parameters to attain the least execution time <ref type="bibr" coords="1,501.38,442.76,9.84,8.03" target="#b6">[7]</ref>. Because manual tuning is time-consuming and labor-intensive and prone to significant error, the automatic tuning of configuration parameters for HPC applications has been a significant subject of study for the past several years <ref type="bibr" coords="1,464.51,487.22,9.84,8.03" target="#b7">[8]</ref>, <ref type="bibr" coords="1,483.17,487.22,9.84,8.03" target="#b8">[9]</ref>. We propose an innovative approach where HPC applications are initially executed on edge devices to determine optimal applicationlevel parameters. The edge devices can efficiently identify the best parameters by running these applications at low fidelity (LF), which demands fewer computational resources. These parameters are then transferred to traditional HPC platforms for execution at high fidelity (HF). This method significantly reduces the time and energy typically spent on parameter tuning on traditional HPC systems, leading to more efficient overall execution of HPC applications. Our approach is illustrated in Fig. <ref type="figure" coords="1,390.65,609.48,3.47,8.03" target="#fig_0">1</ref>, where edge devices act as a preliminary stage for parameter optimization before the final execution on HPC clusters.</p><p>Notably, existing parameter autotuning techniques have been developed primarily for traditional HPC systems, which themselves demand significant computational resources. Our motivating experiments on four HPC applications on edge devices show the unique challenges HPC parameter autotuning presents on edge platforms. By leveraging edge devices, this paper aims to enhance the efficiency and performance of traditional HPC applications. Our method, based on stochastic techniques for application-level parameters, is portable across various edge and HPC platforms, though some tuning may be required for hardware-level parameters.</p><p>Limitations of state-of-the-art approaches. Traditional parameter tuning methods are either exhaustive, time-consuming, or based on heuristics that may not capture the nuances of different application scenarios and the resource-constrained nature and volatility of the edge devices. Existing knowledgebased tuning involves domain experts manually adjusting parameters based on experience and intuition. While this can be effective, it is time-consuming, not scalable, and heavily relies on expert availability, while heuristic approaches utilize rulebased methods <ref type="bibr" coords="2,120.16,218.07,14.20,8.03" target="#b9">[10]</ref>, <ref type="bibr" coords="2,140.78,218.07,15.43,8.03" target="#b10">[11]</ref> to select parameters. These methods are faster but often need more flexibility to adapt to different application needs or changes in the computing environment, and thus, usually get stuck at local optima. Both manual and heuristic methods do not scale well with the increasing complexity of HPC systems <ref type="bibr" coords="2,171.51,273.64,9.84,8.03" target="#b3">[4]</ref>.</p><p>To tackle these challenges, state-of-the-art solutions have employed variants of learning-based approaches <ref type="bibr" coords="2,255.11,295.87,14.20,8.03" target="#b11">[12]</ref>, <ref type="bibr" coords="2,277.60,295.87,14.20,8.03" target="#b12">[13]</ref>. Recently, the effectiveness of configuration autotuning has been demonstrated by more advanced learning techniques such as utilizing machine learning (ML) techniques <ref type="bibr" coords="2,254.43,329.22,14.20,8.03" target="#b13">[14]</ref>, <ref type="bibr" coords="2,277.60,329.22,14.20,8.03" target="#b14">[15]</ref>. However, these models also come with their own overhead costs, making them non-ideal for edge devices. While numerous HPC applications may undergo multiple executions, the input type or size can vary over time. The optimal configuration evolves with changes in input type, input size, or the integration of incremental algorithmic improvements into the application code base <ref type="bibr" coords="2,162.34,407.02,14.20,8.03" target="#b15">[16]</ref>. Consequently, the cumulative cost of autotuning increases over time, and autotuning efforts may demand substantial resources on large-scale systems, resulting in the dedication of millions of node hours for autotuning on expensive supercomputers <ref type="bibr" coords="2,215.80,451.48,14.20,8.03" target="#b16">[17]</ref>. Simultaneously, the correlation with workload type and input dataset size in big data applications fluctuates, leading to the frequent initiation of time-consuming model retraining tasks <ref type="bibr" coords="2,223.76,484.82,14.20,8.03" target="#b17">[18]</ref>.</p><p>Predictive models can provide quicker solutions but often require substantial training data and are usually limited by the accuracy of their underlying models. They also face challenges in generalizing across different HPC applications and may require retraining for different environments <ref type="bibr" coords="2,277.60,540.40,14.20,8.03" target="#b18">[19]</ref>. More importantly, these models are generally static, often leading to suboptimal performance or excessive computational costs <ref type="bibr" coords="2,84.19,573.74,14.20,8.03" target="#b19">[20]</ref>. HPC workloads and environments are highly dynamic; therefore, a tuning method that can adapt in real-time to changing conditions is required. However, existing predictive methods do not directly incorporate such dynamic workload in their learning <ref type="bibr" coords="2,126.19,618.20,14.20,8.03" target="#b20">[21]</ref>.</p><p>Many search-based methods <ref type="bibr" coords="2,184.08,629.31,14.20,8.03" target="#b21">[22]</ref>, <ref type="bibr" coords="2,205.89,629.31,10.80,8.03" target="#b7">[8]</ref> achieve satisfactory configuration for many HPC applications. These methods consider the relationship between performance and configuration parameters as a black box technique and employ a specific exploration mechanism to search for the optimal configuration directly. One prominent technique is the Bayesian Optimiza-tion (BO). BO-based techniques and their variations can identify a near-optimal configuration with only a limited number of iterations for various HPC applications <ref type="bibr" coords="2,476.57,95.81,14.20,8.03" target="#b22">[23]</ref>. However, the BO-based techniques have several limitations -(1) Bayesian optimization struggles with the intricate relationship in big data frameworks, requiring numerous iterations for an accurate model <ref type="bibr" coords="2,342.34,140.27,14.41,8.03" target="#b23">[24]</ref>; (2) Vanilla BO prioritizes quick convergence, risking time-consuming sub-optimal configurations due to overlooking evaluation times <ref type="bibr" coords="2,432.03,162.50,14.41,8.03" target="#b20">[21]</ref>; and (3) HPC workload characteristics change over time, necessitating configuration re-tuning, while, Vanilla BO lacks historical knowledge utilization and starts afresh for each task <ref type="bibr" coords="2,462.80,195.84,14.20,8.03" target="#b20">[21]</ref>.</p><p>Key Insights and Contributions. To address the limitations of existing approaches, we propose a novel lightweight and online technique for determining the optimal HPC configuration on resource-constrained edge devices: Lightweight Autotuning of Scientific Application Parameters (LASP). We focus on the challenges of configuration selection in HPC for edge devices.</p><p>Our solution leverages the multi-arm bandit (MAB) technique, offering unique benefits for HPC applications. First, the flexibility of MAB models allows effective application across various HPC scenarios, adapting to specific needs and constraints. Second, to our knowledge, we are the first to apply this approach to autotuning on edge devices. We compare LASP's autotuning effectiveness with the default strategy, where applications run with their default settings, demonstrating LASP's lightweight nature and minimal overhead. Third, MAB models are adaptable, making them suitable for dynamic environments where reward distributions may change over time. This is particularly suitable to the volatile edge environment we are leveraging. Our performance evaluation shows that LASP can identify the best configuration, significantly enhancing HPC application performance on edge devices. Furthermore, our model dynamically adapts to user needs and changes in application behavior, determining the optimal configuration with minimal regret, thus fulfilling MAB properties.</p><p>Organization of the paper. The rest of this paper is organized as follows. In Section II, we present the background and discuss the challenges. In Section III, we formulate the problem and present the objective function. In Section IV, we introduce a lightweight technique for HPC application parameter selection. In Section V, we present results to show performance evaluation in dynamic workload scenarios. In Section VI, we conclude our paper and suggest future directions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. PRELIMINARIES</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Terminology</head><p>We first define essential terms that are used throughout the paper. Tunable parameters include the application-level parameters, which can take on various values or states, markedly affecting the execution time of an application.</p><p>The autotuning search space, or search space, comprises the extensive n-dimensional space created by the range of values that tunable parameters can take. The range of this search space is defined by the potential combinations of tunable parameter configurations, represented by the product of each parameter's possible values (a 1 a 2 ...a n , where n denotes the number of tunable parameters).</p><p>A configuration, or a sample, is a specific combination of parameter values selected within the search space. Sampling or sample evaluation involves running an application using a particular configuration and assessing its runtime. Oracle configuration describes the ideal configuration with minimal execution time or power consumption. While it is intuitive to aim for shorter execution times, we also consider parameter configurations that minimize power consumption of edge device. This is because power is often a limited resource for edge devices, and optimizing for power efficiency is crucial to ensure their effective operation. Identifying the Oracle configuration accurately involves examining all possible configurations in the search space, which is impractical in production settings. However, we conduct an exhaustive search to assess the effectiveness of any given configuration relative to the Oracle configuration. This assessment is quantified as the distance from the Oracle configuration and is defined as follows:</p><p>execution time of a configuration execution time of the Oracle configuration − 1 × 100%.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Multi-Arm Bandit</head><p>The multi-arm bandit (MAB) problem <ref type="bibr" coords="3,220.34,363.17,15.43,8.03" target="#b24">[25]</ref> is fundamental in probability theory and decision-making under uncertainty. It involves a sequential decision-making framework where an agent must choose with limited information. Pure exploration bandit problems aim to minimize the simple regret, defined as the distance from the optimal solution, as quickly as possible in any given setting. The pure-exploration MAB problem has a long history in the stochastic setting <ref type="bibr" coords="3,239.62,440.97,14.20,8.03" target="#b25">[26]</ref>, and was recently extended to the non-stochastic setting <ref type="bibr" coords="3,238.22,452.09,14.20,8.03" target="#b26">[27]</ref>. Similarly, the stochastic pure-exploration infinite-armed bandit problem was studied by Carpentier et al. <ref type="bibr" coords="3,191.06,474.31,14.20,8.03" target="#b27">[28]</ref>, where a pull of each arm i yields an i.i.d. sample in [0, 1] with expectation ν i , and ν i is a loss drawn from a distribution with cumulative distribution function F . Hyperband <ref type="bibr" coords="3,203.57,507.66,15.43,8.03" target="#b28">[29]</ref> works by the best arm identification, i.e., selection of an arm with the highest average payoff in a non-stochastic setting.</p><p>The MAB technique has been applied in solving many real-life problems, including exploration and identification of efficient setting from a given distribution. Some application domains include healthcare, finance <ref type="bibr" coords="3,203.36,574.37,14.20,8.03" target="#b29">[30]</ref>, recommender systems, etc. Naturally, due to their ability to continuously learn and adapt their strategies based on real-time feedback, these approaches have also seen widespread adoption in hyperparameter tuning solutions for neural Networks <ref type="bibr" coords="3,236.29,618.83,14.20,8.03" target="#b30">[31]</ref>.</p><p>In its basic stochastic form, the bandit problem involves a set of K probability distributions, denoted as {D 1 , . . . , D K }, each with associated expected values {µ 1 , . . . , µ K } and variances {σ 2  1 , . . . , σ 2 K }. Initially, these distributions are unknown to the player. These distributions are often likened to the arms of a slot machine, with the agent acting as a gambler whose goal is to maximize rewards by pulling these arms over multiple turns. At each turn t = 1, 2, . . ., the player chooses an arm, indexed by j(t), and receives a reward r(t) ∼ D j(t) . The player's objective is to determine which distribution has the highest expected value and accumulate as much reward as possible. Bandit algorithms guide the player in choosing an arm j(t) at each turn. The primary metric for evaluating these algorithms is the total expected regret, defined for a given turn T as:</p><formula xml:id="formula_0">R T = T µ * − T t=1 µ j(t) ,</formula><p>where µ * = max i=1,...,K µ i is the expected reward from the best arm. Alternatively, the total expected regret can also be expressed as:</p><formula xml:id="formula_1">R T = T µ * − µ j(t) K k=1 E[T k (T )],<label>(1)</label></formula><p>where T k (T ) is a random variable denoting the number of times arm k is played during the first T turns.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Edge Devices as a Surrogate for Autotuning</head><p>The use of edge devices for running HPC applications is increasingly gaining attention. The Waggle sensor platform <ref type="bibr" coords="3,337.25,340.69,15.43,8.03" target="#b31">[32]</ref> is a key example of integrating HPC with edge computing, offering real-time data analysis and modular sensor network capabilities. An extension of this project, The Sage Continuum <ref type="bibr" coords="3,384.01,374.03,15.43,8.03" target="#b32">[33]</ref> offers a distributed, software-defined sensor network that leverages machine learning and edge computing and provides a robust framework for real-time data analysis and sensor management. Bhupendra A. Raut et al. <ref type="bibr" coords="3,325.90,418.49,15.43,8.03" target="#b33">[34]</ref> provides critical insights into optimizing algorithms for edge-computing sensor systems, particularly focusing on the stability and performance of the blockwise Phase Correlation method in estimating cloud motion vectors. Kim et al. <ref type="bibr" coords="3,532.67,451.84,15.43,8.03" target="#b34">[35]</ref> introduces a two-layered scheduling model for edge computing and incorporates "science goals" to align user objectives with resource allocation, thereby offering a nuanced approach to HPC applications in edge systems. The Interconnected Science Ecosystem (INTERSECT) architecture open architecture <ref type="bibr" coords="3,532.67,507.41,15.43,8.03" target="#b35">[36]</ref> is a federated instrument-to-edge-to-center framework that advocates autonomous data handling and processing in scientific research. This architecture aligns closely with the objectives of running HPC applications in edge systems and offers a system of systems and microservice architecture for enhanced scalability and adaptability.</p><p>By processing data close to the source, edge computing can significantly reduce latency and bandwidth requirements, crucial for time-sensitive HPC applications <ref type="bibr" coords="3,476.89,607.40,14.71,8.03" target="#b36">[37]</ref>. Edge devices also enable real-time data processing, which is essential for applications requiring immediate analysis and decision-making. However, these unique advantages present their unique challenges as well. Unlike traditional supercomputing centers, edge devices suffer from limited computational power and memory, posing a challenge for resource-intensive HPC applications. The performance of edge devices can be inconsistent due to their varying specifications and the dynamic nature of edge environments.</p><p>Our proposed HF/LF approach is designed to overcome this challenge and accommodate the dynamic nature of HPC workload and edge environment on which we are performing this autotuning task. Notably, our algorithm, LASP, is applicationagnostic, meaning it can be employed with any application that associates distinct values with its parameters. In a multifidelity context, an application can be executed with varying levels of fidelity settings, such as adjusting the resolution in a numerical simulation or modifying the depth of a machine learning model. For example, the fidelity levels of Hypre is determined by the discretization using m 3 grid points, where m varies from m min = 10 to m max = 100. Due to the algebraic multigrid algorithm's computational complexity of O(m 3 ), the mapping from the fidelity parameter q to m is represented as a linear interpolation between [q min , m 3  min ] and [q max , m 3 max ]. It is to be noted that, there is a trade-off in accuracy due to the shift between low and high fidelity levels, as lower fidelity runs on edge devices are inherently less accurate than those at higher fidelities on traditional HPC systems. However, this trade-off is acceptable, as we are not concerned with the specific results from the low-fidelity runs. Our primary goal is to use these low-fidelity edge device runs to effectively tune the parameters of the model. Importantly, our analysis in Fig. <ref type="figure" coords="4,290.67,495.26,4.63,8.03" target="#fig_1">2</ref> shows that there is a significant overlap between the optimal parameters for both low and high fidelity settings, meaning that the parameters tuned at low fidelity are often effective at high fidelity as well.</p><p>We represent fidelity levels using q ∈ [q min , q max ], where q min and q max indicate the minimum and maximum fidelity values, respectively. The time required for function evaluation is assumed to increase linearly with fidelity q. To optimize efficiency and reduce tuning costs, we utilize lower fidelity settings on edge devices, leveraging their faster, lower-cost performance. These lower fidelity evaluations, g(y, q) where q &lt; q max , serve as approximations of the high-fidelity objective function, g(y, q max ), which runs on traditional HPC systems. The overall goal is to determine the best tuning parameters y to optimize the high-fidelity function g(y, q max ) by using the lower fidelity, edge-based evaluations as proxies, thereby improving the efficiency of HPC tuning. By leveraging this property, LASP can dynamically navigate the parameter space to identify the optimal configuration, regardless of the specific application. To address the dynamic environment, LASP incorporates a reward feedback mechanism, enabling the algorithm to operate in real-time and adapt to changing environments. We simulate this dynamic behavior by tuning four HPC applications, and introducing error measurements into our readings, as described in Section V. Furthermore, in the same section, we demonstrate that our algorithm can yield satisfactory results under varying levels of power and CPU capping, underscoring its robustness and adaptability.</p><p>In this study, we run applications on varying fidelity settings, for example, Lulesh (mesh size = 50, 80), Kripke (Zone size = 32, 64), and Hypre (Grid size = 32, 64). In Fig. <ref type="figure" coords="4,333.90,381.80,3.55,8.03" target="#fig_1">2</ref>(b), we see a significant overlap with the most optimal configurations compared to running them in a low and highfidelity setting. As shown in Fig. <ref type="figure" coords="4,447.70,404.03,13.78,8.03" target="#fig_1">2(a)</ref>, we observed that the top 20 configurations identified through low-fidelity simulations and then transferred to a high-fidelity setting achieved performance within 25% of the optimal configuration (oracle) on the target device.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Challenges in HPC Parameter Search</head><p>Numerous challenges are associated with attaining an efficient parameter search optimization. First, finding the optimal set of parameters necessitates exhaustive exploration within a vast multidimensional search space. For example, popular HPC applications, such as Kripke <ref type="bibr" coords="4,449.39,528.96,15.43,8.03" target="#b37">[38]</ref> and AMG <ref type="bibr" coords="4,510.70,528.96,14.20,8.03" target="#b38">[39]</ref>, have more than 1 million and 5 million tunable hardware and software parameters, respectively. Searching for the most optimal parameters from this vast set is infeasible without an efficient algorithm. Second, conventional parameter search approaches often yield suboptimal configurations, highlighting the importance of capturing the interplay between applicationand hardware-level tuning parameters to achieve maximum performance.</p><p>The significant impact of selecting the right configuration on the application's execution time is demonstrated in Fig. <ref type="figure" coords="4,532.01,640.49,13.78,8.03" target="#fig_2">3(a)</ref>. This figure illustrates the variation in execution times that results from altering only two application-level parameters while keeping all other parameters constant. It is observed that the variance in execution time becomes much more pronounced when more parameters are modified. Fig. <ref type="figure" coords="5,232.64,266.49,4.63,8.03" target="#fig_3">4</ref> illustrates the varying execution times resulting from tuning each parameter individually, reinforcing this key point. Additionally, Fig. <ref type="figure" coords="5,279.29,288.72,11.57,8.03" target="#fig_2">3(b</ref>) provides a distribution of execution times across all sets of configurations.</p><p>This clearly highlights the crucial role of proper configuration selection in achieving optimal runtime performance. Considering that most configurations deviate significantly from the absolute best-performing configuration, it is plausible to hypothesize that the challenge posed by a large search space can be mitigated by swiftly discarding the low-performing configurations, namely configurations with high runtimes. However, identifying these areas proves to be a formidable task, often fraught with the risk of overlooking the optimal configuration.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. PROBLEM FORMULATION</head><p>We assume an independently and identically distributed (i.i.d) rewards model, denoted as stochastic bandits. In our model, we assume a choice of K actions, which we refer to as arms, and which are to be executed over T rounds, where K and T are predefined. During every round, the algorithm selects one arm, leading to the accumulation of a reward specific to that arm. The primary objective of the algorithm is to optimize total reward accumulated throughout the T rounds. The model includes the following assumptions. First, we can only observe the reward associated with the action it chooses and no other information. Specifically, the model needs to be made aware of the potential rewards from other actions that were not selected (a.k.a., bandit feedback <ref type="bibr" coords="5,273.89,590.26,13.89,8.03" target="#b24">[25]</ref>). Second, the reward corresponding to each action is i.i.d. For any given action "a", we assume a reward distribution, D a , over the real numbers. Each time we choose an action, its reward is independently drawn from D a . Initially, these reward distributions are unknown to the algorithm. Third, we assume that the rewards received in each round are constrained within the range [0, 1].</p><p>We include user-defined priorities when selecting the optimal HPC configuration. To include users in the decision framework, we include two parameters -α for execution time and β for power consumption, both ranging within [0, 1]. The user can set these parameters to control the optimization balance, e.g., higher values in α and β indicate higher emphasis on execution time or power consumption, respectively. In our model, we define χ as the parameter space, where χ = {1, . . . , x} is a finite action space; i.e., we set every unique combination of the parameters (configuration) as an arm of the MAB setting.</p><p>We specify a distribution D over pairs (x, r), where x ∈ X denotes the parameter configuration and r ∈ [0, 1] A denotes a vector of rewards. In its basic stochastic form, our formulation involves a set of K probability distributions for each arm, denoted as {D 1 , . . . , D K }, each with associated expected values {µ 1 , . . . , µ K } and variances {σ 2 1 , . . . , σ 2 K }. Initially, these distributions are unknown to the algorithm. During each turn t = 1, 2, . . ., the algorithm chooses an arm, indexed by j(t), and receives a reward r(t) ∼ D j(t) . The objective is to determine the distribution with the highest expected value and to accumulate as much reward as possible in each iteration.</p><p>To model uncertainty, we employ an upper confidence bound (UCB) <ref type="bibr" coords="5,371.53,331.31,15.43,8.03" target="#b39">[40]</ref> technique that employs "optimism under uncertainty". Based on current observations, this technique assumes that every arm represents the best possible outcome. Consequently, the selection of an arm is based on these optimistic estimations. The technique involves initially trying each arm once. Then, for each round, t = 1, . . . , T , the technique selects the arm x(t) that appears to be the most promising. The selection of configurations in each iteration is calculated as follows for a configuration x at iteration t:</p><formula xml:id="formula_2">U CB(x, t) = R x + 2 ln t N x ,<label>(2)</label></formula><p>where R x = f reward (x) is the weighted reward for configuration x, and N x is the count of times configuration x has been selected up to iteration t. Eq. 2 dynamically balances the exploration of new configurations against exploiting those already known to be effective. The proposed model ensures that the reward is inversely proportional to the normalized metrics of execution time and power consumption, thereby aligning with the user's optimization goals.</p><p>After each iteration t, we identify the configuration x with the highest UCB value. The configuration, x * t , is determined as follows:</p><formula xml:id="formula_3">x * t = arg max x U CB(x, t).<label>(3)</label></formula><p>This iterative selection strategy ensures an adaptive balance between exploring untested configurations and exploiting known effective ones. We determine the most frequently selected configuration as follows: for each configuration x ∈ χ do</p><formula xml:id="formula_4">x opt = arg max x N x .<label>(4)</label></formula><formula xml:id="formula_5">5: Calculate weighted reward R x = w τ × 1 µ(τx) + w ρ × 1 µ(ρx) 6:</formula><p>Calculate UCB values for each configuration using: end for 12: return The optimal configuration x opt = arg max x N x After T round of iterations, the algorithm outlined in Section IV outputs the most optimal configuration, x opt . The high-level block diagram of LASP is given in Fig. <ref type="figure" coords="6,257.05,498.37,3.47,8.03">5</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. LIGHTWEIGHT AUTOTUNING OF HPC APPLICATION PARAMETER</head><p>Here, we present the details of LASPa lightweight online HPC application parameter selection algorithm specifically focusing on edge devices. The algorithm is developed based on the MAB framework and tailored to optimize scientific application configurations by balancing execution time and power consumption to facilitate user participation. It systematically explores a defined configuration space, χ, that encompasses all possible combinations of input parameters for the application. The algorithm operates over a set number of iterations, T , and is calibrated using user-defined hyperparameters: weights for execution time (α) and power consumption (β). These weights dictate the algorithm's balance of execution time minimization vs. power consumption reduction. We normalize the execution time (τ ) and power consumption (ρ) based on the MinMax normalization technique. The normalized execution time τ x is calculated as: τ x = τ −τmin τmax−τmin , where τ min and τ max are minimum and maximum execution times, respectively. Similarly, the normalized power consumption ρ x is calculated as: ρ x = ρ−ρmin ρmax−ρmin , where ρ min and ρ max are minimum and maximum power consumption, respectively. The weighted reward function, f reward (x), integrates the normalized execution time and power consumption values. The reward for selecting a configuration x at iteration t, denoted as R x,t , is determined as follows:</p><formula xml:id="formula_6">f reward (x) = α × 1 µ(τ x ) + β × 1 µ(ρ x ) , (<label>5</label></formula><formula xml:id="formula_7">)</formula><p>where R x = f reward (x) is the exploitation term, which is the weighted reward for configuration x. Eq. 5 ensures that the reward is inversely proportional to the normalized metrics of execution time and power consumption, thereby aligning with the user's optimization goals. The UCB in Alg. 1 dynamically balances the exploration of new configurations against exploiting those already known to be effective. The performance of our algorithm is evaluated based on the total reward accrued over T iterations. The expected total reward for a configuration x is determined considering the randomness in execution time, power consumption, and the algorithm's selection strategy and is defined as follows:</p><formula xml:id="formula_8">E[R x ] = E T t=1 R x,t .<label>(6)</label></formula><p>The total regret R n after n evaluations of a evaluations with K configurations is bounded by <ref type="bibr" coords="6,439.70,410.14,14.41,8.03" target="#b24">[25]</ref>:</p><formula xml:id="formula_9">R n ≤ 8 log(n) i:µi&lt;µ * 1 ∆ i + 1 + π 2 3 K i=1 ∆ i ,<label>(7)</label></formula><p>where µ * denotes the highest expected reward (i.e., least execution time) among all configurations, µ i denotes the expected reward of the i-th configuration, and ∆ i = µ * − µ i is the difference between the maximum expected reward and the reward of the i-th configuration. The bound in Eq. 7 indicates that the regret grows logarithmically with the number of evaluations n, which means that the average regret per play R n /n tends to zero as n increases. This demonstrates the efficiency of the UCB-based approach in explorationexploitation scenarios.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Integration with Existing Edge Computing Frameworks</head><p>LASP integrates smoothly with existing edge computing frameworks due to its application-agnostic architecture and compatibility with protocols like CoAP (Constrained Application Protocol) <ref type="bibr" coords="6,393.17,629.03,14.20,8.03" target="#b40">[41]</ref>, enabling efficient communication and coordination between edge devices and HPC systems. However, challenges may arise from hardware differences, dynamic environments, and resource constraints on edge devices, particularly when tuning hardware-level parameters or maintaining real-time feedback. Addressing these requires careful protocol selection and configuration adjustments. As a modular algorithm, LASP can function independently or integrate with existing performance optimization components, as demonstrated in Section 10, showing its effectiveness on devices with varying computational capabilities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Challenges of the Proposed Approach</head><p>Scalability Limitations: One limitation of LASP 's implementation is scalability. As the number of arms (configurations) increases, the UCB algorithm requires exploring a large number of options before it can intelligently determine the optimal configurations. This exploration becomes computationally intensive and inefficient, especially on resourceconstrained edge devices.</p><p>Network and Coordination issues: The presence of multiple volatile edge devices introduces additional challenges, particularly in terms of network issues. Low communication bandwidths between devices can hinder coordination and data transfer, impacting overall system efficiency.</p><p>Scalability with Heterogeneous edge devices: One of the most complex challenges arises when scaling LASP to handle heterogeneous edge devices. These devices often have varying computational power, memory, and network connectivity, which can impact the effectiveness of a one-size-fitsall algorithm like UCB. Handling diverse device capabilities requires adaptive algorithms that can dynamically adjust resource consumption, depending on the device's capabilities and environmental constraints. The varying performance characteristics across devices also increase the difficulty of ensuring that optimal configurations are found efficiently for each device. Future iterations of LASP will explore approaches like multi-level parallelism and resource-aware algorithm designs to better handle heterogeneous environments.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. EVALUATION</head><p>Here, we first discuss details of LASP's execution, followed by performance evaluation against other configuration selection strategies. We then present how different user-level parameters affect LASP, and finally show how LASP can adapt to sensitivity changes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Experimental Setup</head><p>We collected experiment data on the NVIDIA Jetson Nano device, a widely-used edge device in research <ref type="bibr" coords="7,246.80,552.03,15.43,8.03" target="#b41">[42]</ref> and industry. The device's compact size, combined with its robust processing capabilities and power efficiency, makes the Jetson Nano a suitable choice for edge computing applications <ref type="bibr" coords="7,276.85,585.38,14.20,8.03" target="#b42">[43]</ref>.</p><p>The Jetson Nano features a 128-core Maxwell GPU and a Quad-core ARM A57 CPU running at 1.43 GHz. It is optimized for efficient parallel processing and computationintensive tasks. It runs on Ubuntu 20.04 OS and is equipped with 4 GB of 64-bit LPDDR4 RAM with a bandwidth of 25.6 GB/s. It uses a microSD card for storage. The device offers two power modes: MAXN and 5W. In Table <ref type="table" coords="7,273.62,663.32,2.70,8.03" target="#tab_0">I</ref>, we provide a detailed description of each mode's specifications and operating characteristics. This operational mode mimics the typical power constraints encountered in edge computing scenarios <ref type="bibr" coords="7,487.17,174.30,14.20,8.03" target="#b43">[44]</ref>. The highfidelity data used in this study was collected on a system featuring an Intel® Core™ i7-14700 vPro® processor, with 20 cores and 28 threads, and a maximum turbo frequency of 5.3 GHz. The system had 64 GB of DDR5 memory and ran on Ubuntu 24.04 LTS.</p><p>All the autotuning results and shown in the subsequent section are done on the Jetson Nano device to show the efficacy of our lightweight approach to autotuning. Furthermore, to mitigate potential performance interference, we ensured that no extraneous processes were running on the device, apart from the essential kernel processes and our target HPC applications.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. HPC Applications</head><p>Table II lists the HPC applications that we used to evaluate the effectiveness of our proposed techniques. To validate our results, we used applications with both small and larger parameter choices, excluding hardware-level parameters such as power and CPU capping. These applications cover a wideranging variety of science domains and have been used previously to capture the challenges in autotuning diverse HPC applications <ref type="bibr" coords="7,362.87,417.87,14.20,8.03" target="#b44">[45]</ref>.</p><p>Hypre <ref type="bibr" coords="7,356.92,429.06,15.43,8.03" target="#b45">[46]</ref> is a software library for scalable solutions of linear systems, leveraging parallel processing for highperformance computing. It includes the BLOPEX package for solving eigenvalue problems, making it a versatile tool for various scientific applications.</p><p>Clomp <ref type="bibr" coords="7,361.52,484.71,15.43,8.03" target="#b46">[47]</ref> is a C-language benchmark that measures OpenMP overheads and performance impacts due to threading, simulating a typical scientific application inner loop workload under strong scaling conditions to assess the efficiency of various OpenMP scheduling algorithms.</p><p>Lulesh <ref type="bibr" coords="7,367.75,540.35,15.43,8.03" target="#b47">[48]</ref> is a widely used proxy application that originated from the Shock Hydrodynamics Challenge Problem, designed to test the performance of high-performance computing systems and algorithms, and has since become a benchmark in DOE co-design efforts for exascale computing.</p><p>Kripke <ref type="bibr" coords="7,368.84,596.00,15.43,8.03" target="#b37">[38]</ref> is a scalable, 3D deterministic particle transport code that researches the effects of data layout, programming paradigms, and architectures on Sn transport implementation and performance, aiming to optimize solver performance and parallelism.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Execution of LASP</head><p>Here, we show how LASP finds optimal configuration using efficient parameter exploration, where we change the  user's focus on controlling the optimization. We first show how LASP works when we have control over parameters in two dimensions for Lulesh. Next, we show the results for parameters in three dimensions for the application Kripke and Clomp. We also show the efficacy of LASP with multidimensional parameter application Hypre through our regret analysis and sampling efficiency to find the optimal configuration.</p><p>Efficient Configuration Allocation: In Fig. <ref type="figure" coords="8,249.85,427.69,3.47,8.03" target="#fig_7">6</ref>, we show how LASP achieves the optimal configuration. The figure presents a heatmap visualization of the configuration space for Lulesh, focusing on the application-level parameters "Materials in Region" and "Elements in Mesh."(The darker the cell, the more frequently LASP selected it as an optimal configuration.) The figure illustrates the frequency of the LASP's selection of specific configurations -the darker regions indicating a higher selection frequency. We evaluated LASP over 1000 and 500 iterations, observing that in both scenarios, the algorithm effectively converges towards the optimal configuration. It is important to note, however, that the optimal configuration identified by LASP may not always be the most optimal, but close to optimal. This is due to LASP's stochastic nature, which navigates the configuration space based on the reward distribution of configurations. We adapted LASP to optimize both execution time and power consumption simultaneously. Fig. <ref type="figure" coords="8,142.57,616.64,4.63,8.03" target="#fig_7">6</ref> shows that LASP effectively explores the configuration space, consistently identifying configurations that balance both objectives. To test its efficiency, we ran LASP for 500 and 1000 iterations in two representative scenarios. Fig. <ref type="figure" coords="8,79.38,661.10,4.63,8.03" target="#fig_7">6</ref> demonstrates that LASP converges to optimal configurations efficiently within 500 iterations when the parameter configuration dimensions are small (Lulesh, Kripke, Clomp). Whereas, running LASP for 1000 iterations helps it explore near-optimal configurations, which is beneficial for portability when deploying on traditional HPC clusters.</p><p>We performed a similar analysis for Kripke and Clomp, </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Performance Evaluation</head><p>The default values of parameters of these application have been shown in Table <ref type="table" coords="9,147.26,461.40,5.66,8.03" target="#tab_1">II</ref>. We calculate the performance gain under the best configuration P G best as follows:</p><formula xml:id="formula_10">P G best = f default − f best f default • 100%,<label>(8)</label></formula><p>where performance under default configuration is denoted as f default and the performance under the best configuration is denoted as f best .</p><p>In Fig. <ref type="figure" coords="9,103.48,547.88,3.47,8.03">8</ref>, we do this performance gain analysis of the four applications by varying α. At lower α, LASP will work towards finding configurations with lower power consumption. When the user sets the power as the desired objective metric LASP achieves a 10% performance gain for Clomp, 14% for Lulesh, 9% for Hypre and 6% for Kripke. With increased α, LASP will search the configuration space that yields lower execution time.</p><p>LASP achieves significant performance gains performance gain in execution time (α = 0.8) and in power consumption with (α = 0.2). As expected, LASP performs better in smaller parameter spaces compared to bigger ones, as shown in Fig. <ref type="figure" coords="9,93.49,681.29,3.47,8.03">8</ref>. This is because smaller parameter spaces allow for more efficient exploration and convergence to the optimal configuration. However, LASP's fast convergence in finding the optimal configuration makes up for its performance in larger parameter spaces. We run LASP 100 times in order to see the mean distance from the oracle across different runs. The results are demonstrated in Fig. <ref type="figure" coords="9,420.58,400.70,4.63,8.03">9</ref> which shows that LASP can reach within 12% of the optimal configuration even in large parameter spaces, such as those of Hypre, when optimizing for execution time. When optimizing for power consumption, LASP's performance is less effective compared to when execution time as an objective metric. This is because power consumption is saturated by the edge device when running computationally intensive HPC applications, resulting in a less varied reward metric compared to execution time. As a result, LASP's ability to converge to the optimal configuration is impacted.</p><p>We compared our approach against BLISS <ref type="bibr" coords="9,498.65,525.70,14.57,8.03" target="#b15">[16]</ref>,a SOTA machine learning-based optimization method that leverages Bayesian Optimization (BO) to minimize tuning expenses. By creating a diverse pool of streamlined models, Bliss accelerates convergence and utilizes surrogate model predictions to streamline the evaluation of configurations, resulting in significant time savings. While we acknowledge our approach, did not do better in terms of efficiently finding the optimal parameters it is because we prioritized a lightweight approach for it to be applicable resource constrained edge devices. This is proved by our analysis of the CPU and memory footprint of using BLISS and LASP for autotuning on two modes (MAXN and 5W) to demonstrate the dynamic nature of our algorithm. A summary of our findings and a description of these two power modes are given in Fig <ref type="figure" coords="9,432.40,681.31,7.72,8.03" target="#fig_10">10</ref>.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Regret Analysis</head><p>We evaluate the efficiency of our proposed techniques by performing best-run(one time least regret run) regret analyses, as defined in Equation <ref type="formula" coords="10,153.47,612.40,3.47,8.03" target="#formula_1">1</ref>. The results, illustrated in Fig. <ref type="figure" coords="10,283.91,612.40,7.72,8.03" target="#fig_11">11</ref>, showcase the convergence of LASP from an initial trialand-error phase, characterized by suboptimal decision-making, to optimal configuration selection for four distinct applications. By observing the accumulated regret at each iteration, we notice that the regret saturates after a certain number of iterations for all applications. The number of iterations  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>F. Sensitivity Study</head><p>Error in measurement data. We introduce synthetic errors to the measured data to observe the dynamic nature of LASP. To simulate real-world imperfections, we add random noise to our collected data within a range of 5%, 10%, and 15%. As can be seen in Fig. <ref type="figure" coords="10,371.23,356.95,7.72,8.03" target="#fig_13">12</ref>, despite the erroneous feedback to LASP, we are still able to achieve considerable performance gains. This resilience can be attributed to the fact that MAB algorithms are inherently adaptive to change due to their design.</p><p>In this context, the random noise introduced in our experiments also serves as a proxy for network fluctuation anomalies, such as varying latencies or packet loss, which can lead to inconsistent measurements. Despite these additional challenges, LASP's ability to adapt to changing conditions allows it to mitigate the impact of such errors and continue to perform well even in the presence of network irregularities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUDING REMARKS</head><p>In this paper, we introduce LASP, a novel and lightweight autotuning approach for dynamic configuration in resourceconstrained edge systems. LASP stands out due to two key enhancements: firstly, it possesses the ability to learn and predict the configuration space in real-time, adapting swiftly to environmental changes. Secondly, it offers customization in optimizing both execution time and power consumption. To assess its effectiveness and efficiency, we conducted extensive experiments on four well-known HPC applications: Lulesh, Kripke, Clomp, and Hypre, each under varying settings. The results consistently demonstrated that LASP achieved a positive cumulative performance gain in dynamic workload scenarios. This capability is particularly beneficial for leveraging edge devices as proxies to perform the costly autotuning process. Our findings emphasize LASP's suitability for parameter tuning tasks, especially in environments where workloads frequently change.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,315.42,376.95,233.41,6.42;1,315.42,385.29,123.26,6.42;1,315.42,254.50,233.39,107.40"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Framework to leverage edge devices to find the optimal parameters to execute applications on HPC clusters.</figDesc><graphic coords="1,315.42,254.50,233.39,107.40" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,111.21,146.70,8.22,6.42;4,229.43,146.70,8.64,6.42;4,61.89,155.35,233.41,6.42;4,61.89,163.69,233.41,6.42;4,61.89,172.02,233.41,6.42;4,61.89,180.36,233.41,6.42;4,61.89,188.69,233.41,6.42;4,61.89,197.03,77.02,6.42"><head>Fig. 2 .</head><label>2</label><figDesc>Overlap of optimal configurations on low-and high-fidelity setting. (a) The top 20 configurations identified in the low-fidelity setting are compared to the optimal configuration when run on the high-fidelity setting of the target device, and the average distance between them is measured. (b) The number of common configurations out of top 20 configurations for both the low-fidelity and high-fidelity settings.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,355.72,151.26,8.22,6.42;4,473.94,151.26,8.64,6.42;4,306.40,159.92,233.41,6.42;4,306.40,168.25,233.41,6.42;4,306.40,176.59,233.41,6.42;4,306.40,184.92,44.25,6.42"><head>3 .</head><label>3</label><figDesc>Distribution of execution time for Kripke for all sets of configurations. (a) Tuning only two sets of parameters gives wide variance in the execution time. (b) Distribution of execution time for Kripke for all sets of configurations.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,61.31,228.83,233.41,6.42;5,61.31,237.17,43.35,6.42;5,61.31,55.01,296.30,166.67"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Runtime variability of Kripke for different parameters considered independently.</figDesc><graphic coords="5,61.31,55.01,296.30,166.67" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,121.49,191.37,113.45,6.74;6,61.51,210.65,233.42,8.39;6,61.51,222.12,72.68,8.03;6,61.51,233.81,233.41,8.39;6,61.51,245.29,233.41,8.03;6,61.51,256.40,52.17,8.03;6,66.86,269.01,228.07,8.39;6,77.26,280.19,171.52,8.97;6,66.86,291.55,149.05,8.33;6,230.25,288.95,32.18,5.69;6,220.51,296.64,51.64,5.69;6,273.26,291.54,21.66,8.12;6,61.51,63.94,233.38,123.22"><head>Fig. 5 .Algorithm 1</head><label>51</label><figDesc>Fig. 5. Block diagram of the LASP. Algorithm 1 Lightweight Autotuning of Scientific Application Parameters (LASP) Input: Configuration space (χ), total iterations (T ), execution time weight parameter (α), and power consumption weight parameter (β) 1: Initialization: Dictionary for counting selections of each configuration (N x ), reward metrics (τ and ρ) 2: Apply MinMax normalization: τ ← τ −min(τ ) max(τ )−min(τ ) , ρ ←</figDesc><graphic coords="6,61.51,63.94,233.38,123.22" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,66.86,384.90,5.76,6.42;6,95.78,383.40,75.37,8.97;6,183.58,381.65,15.21,5.69;6,186.19,388.49,9.53,5.69;6,66.86,397.18,5.76,6.42;6,95.78,395.62,29.48,8.33;6,66.86,406.79,123.14,8.97;6,190.46,405.33,96.68,10.44;6,63.15,417.91,197.90,8.97;6,63.15,430.53,9.47,6.42"><head>9 : 10 :</head><label>910</label><figDesc>Select the configuration, x t * = arg max x U CB(x, t) Update the selection count N x * ,t = N x * ,t + 1 11:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="8,129.29,224.59,153.27,7.67;8,394.34,224.59,11.79,7.67;8,499.89,224.59,15.48,7.67;8,129.29,234.70,172.56,7.67;8,394.34,234.70,16.21,7.67;8,499.89,234.70,4.42,7.67;8,129.29,244.81,165.12,7.67;8,394.34,244.81,11.79,7.67;8,499.89,244.81,4.42,7.67;8,129.29,254.92,173.54,7.67;8,394.34,254.92,11.79,7.67;8,499.89,254.92,4.42,7.67;8,129.29,265.03,171.39,7.67;8,394.34,265.03,11.79,7.67;8,499.89,265.03,4.42,7.67;8,129.29,275.14,151.10,7.67;8,394.34,275.14,11.79,7.67;8,499.89,275.14,4.42,7.67;8,129.29,285.25,153.55,7.67;8,394.34,285.25,11.79,7.67;8,499.89,285.25,4.42,7.67;8,129.29,295.36,188.16,7.67;8,394.34,295.36,11.79,7.67;8,499.89,295.36,4.42,7.67;8,129.29,305.47,207.51,7.67;8,394.34,305.47,16.21,7.67;8,499.89,305.47,4.42,7.67"><head></head><label></label><figDesc>Defines which smoother to be used 1-2 1 smooth type: Number of smoothing level 0-1 0 smooth num levels: Smoother level count 1-4 3 interp type: Parallel interpolation operator selection 1-3 1 agg num levels: Levels of aggressive coarsening applied 1-10 2</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="8,315.18,585.55,233.41,6.42;8,315.18,593.88,233.41,6.42;8,315.18,602.22,233.41,6.42;8,315.18,610.55,124.55,6.42;8,315.19,463.30,109.91,102.03"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. (a) and (b) Exploration of the parameter space with Power as an objective metric for 1000 and 500 iterations, respectively. (c) and (d) Exploration of the parameter space with execution time as an objective metric for 1000 and 500 iterations, respectively.</figDesc><graphic coords="8,315.19,463.30,109.91,102.03" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="9,61.87,292.37,233.41,6.42;9,61.87,300.70,47.50,6.42;9,61.88,185.03,109.92,87.12"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Efficient exploration of the parameter space for Kripke (a &amp; b) and Clomp (c &amp; d).</figDesc><graphic coords="9,61.88,185.03,109.92,87.12" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="9,344.26,157.21,157.66,6.42;9,312.49,188.34,107.37,86.30"><head>Fig. 8 .Fig. 9 .</head><label>89</label><figDesc>Fig. 8. Performance gain for different applications.</figDesc><graphic coords="9,312.49,188.34,107.37,86.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="10,86.83,292.57,183.88,6.74;10,62.08,318.65,109.91,88.16"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Resource Utilization of LASP compared to BLISS</figDesc><graphic coords="10,62.08,318.65,109.91,88.16" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="10,72.19,542.94,213.16,6.42;10,185.56,429.09,109.91,87.58"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Regret analysis for Lulesh, Kripke, Clomp and Hypre.</figDesc><graphic coords="10,185.56,429.09,109.91,87.58" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="10,321.58,157.99,220.61,6.42;10,431.89,74.65,107.36,62.84"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. Performance analysis with synthetic error in measurement data</figDesc><graphic coords="10,431.89,74.65,107.36,62.84" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="7,326.55,73.79,192.63,65.61"><head>TABLE I SYSTEM</head><label>I</label><figDesc>SPECIFICATIONS FOR MAXN AND 5W MODES</figDesc><table coords="7,326.55,97.86,179.02,41.54"><row><cell>Parameter</cell><cell>MAXN</cell><cell>5W</cell></row><row><cell>Power Budget (watts)</cell><cell>10</cell><cell>5</cell></row><row><cell>Online CPU</cell><cell>4</cell><cell>2</cell></row><row><cell>CPU Max Frequency (MHz)</cell><cell>1479</cell><cell>918</cell></row><row><cell>GPU TPC (MHz)</cell><cell>921.6</cell><cell>640</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="8,70.47,73.24,457.42,148.91"><head>TABLE II HPC</head><label>II</label><figDesc>APPLICATIONS' CONFIGURATION PARAMETER RANGES AND THEIR DEFAULT VALUES.</figDesc><table coords="8,70.47,89.79,457.42,132.36"><row><cell>Application</cell><cell>Parameter Description</cell><cell>Size</cell><cell>Range</cell><cell>Default</cell></row><row><cell>kripke</cell><cell>Layout: data layout and kernel implementation details</cell><cell>216</cell><cell>ZDG, ZGD DGZ, DZG, GDZ, GZD,</cell><cell>DGZ</cell></row><row><cell></cell><cell>Gset: number of energy group sets</cell><cell></cell><cell>1, 2, 3, 8, 16, 32</cell><cell>1</cell></row><row><cell></cell><cell>Dset: number of direction sets</cell><cell></cell><cell>8, 16, 32, 48, 64, 96</cell><cell>8</cell></row><row><cell>lulesh</cell><cell>r: number of regions to run for each domain</cell><cell>128</cell><cell>1-15</cell><cell>11</cell></row><row><cell></cell><cell>s: number of elements of cube mesh</cell><cell></cell><cell>1-8</cell><cell>8</cell></row><row><cell>clomp</cell><cell>partsPerThread: of independent pieces of work per thread</cell><cell>125</cell><cell>10, 20, 50, 70, 90</cell><cell>10</cell></row><row><cell></cell><cell>zonesPerPart: number of zones</cell><cell></cell><cell>100, 300, 500, 700, 900</cell><cell>100</cell></row><row><cell></cell><cell>zoneSize: bytes in zone</cell><cell></cell><cell>32, 128, 512, 1024, 2048</cell><cell>512</cell></row><row><cell>hypre</cell><cell>P x , P y : Processor grid size (x × y)</cell><cell>92160</cell><cell>1 -4</cell><cell>2</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:15:07 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. ACKNOWLEDGMENTS</head><p>This work is supported in part by the U.S. National Science Foundation under grants CNS-2300124, OAC-2411456, CCF-2324915, and ECCS-2152357. This work was performed under the auspices of the U.S. Department of Energy by Lawrence Livermore National Laboratory under Contract DE-AC52-07NA27344 (LLNL-CONF-855652).</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="11,79.23,177.04,216.43,6.42;11,79.23,185.24,168.08,6.56" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Edge computing: Vision and challenges</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE internet of things journal</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,193.75,216.43,6.42;11,79.23,202.08,18.61,6.42;11,123.22,202.08,172.44,6.42;11,79.23,210.42,161.49,6.42" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Pcie vs. 5g: The importance of hpc at the edge</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Mannik</surname></persName>
+		</author>
+		<ptr target="https://onestopsystems.com/blogs/one-stop-systems-blog/pcie-vs-5g-the-importance-of-hpc-at-the-edge" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,218.66,216.43,6.56;11,79.23,227.13,213.65,6.42" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">5g enabled energy innovation: Advanced wireless networks for science</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Beckman</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+		<respStmt>
+			<orgName>ANL and Northwestern Univ.</orgName>
+		</respStmt>
+	</monogr>
+	<note>tech. rep.</note>
+</biblStruct>
+
+<biblStruct coords="11,79.23,235.50,216.43,6.42;11,79.23,243.70,216.43,6.56;11,79.23,252.04,93.43,6.56" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Auto-tuning full applications: A case study</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Tiwari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">K</forename><surname>Hollingsworth</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">J</forename><surname>Quinlan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chame</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Int. J. High Perform. Comput. Appl</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,260.55,216.43,6.42;11,79.23,268.88,216.43,6.42;11,79.23,277.08,33.54,6.39" xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Automated reasoning and detection of specious configuration in large systems with symbolic execution</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Huang</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+	<note>in (OSDI&apos;20</note>
+</biblStruct>
+
+<biblStruct coords="11,79.23,285.59,216.43,6.42;11,79.23,293.79,216.43,6.56;11,79.23,302.26,131.51,6.42" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Software challenges in extreme scale systems</title>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Sarkar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Harrod</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">E</forename><surname>Snavely</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Journal of Physics: Conference Series</title>
+				<imprint>
+			<publisher>IOP Publishing</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="volume">180</biblScope>
+			<biblScope unit="page">12045</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,310.63,216.43,6.42;11,79.23,318.84,216.43,6.56;11,79.23,327.31,216.43,6.42;11,79.23,335.51,152.52,6.56" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">The antarex approach to autotuning and adaptivity for energy efficient hpc systems</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Silvano</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Agosta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Cherubin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Gadioli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Palermo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Bartolini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Benini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Martinovič</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Palkovič</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Slaninová</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. ACM Int. Conf. Comput. Frontiers</title>
+				<meeting>ACM Int. Conf. Comput. Frontiers</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,344.01,216.43,6.42;11,79.23,352.35,216.43,6.42;11,79.23,360.55,127.51,6.56" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Bestconfig: tapping the performance potential of systems via automatic configuration tuning</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Bao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+	<note>in SoCC &apos;17</note>
+</biblStruct>
+
+<biblStruct coords="11,79.23,369.06,216.43,6.42;11,79.23,377.39,216.43,6.42;11,79.23,385.60,205.18,6.56" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">dsimplexed: Adaptive delaunay triangulation for performance modeling and prediction on big data analytics</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Goetsch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">A</forename><surname>Hoque</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Tarkoma</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Big Data</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,394.10,216.43,6.42;11,79.23,402.30,213.04,6.56" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Optimization by simulated annealing</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kirkpatrick</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">D</forename><surname>Gelatt</surname><genName>Jr</genName></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">P</forename><surname>Vecchi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">science</title>
+		<imprint>
+			<biblScope unit="volume">220</biblScope>
+			<biblScope unit="issue">4598</biblScope>
+			<biblScope unit="page" from="671" to="680" />
+			<date type="published" when="1983">1983</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,410.68,216.43,6.56;11,79.23,419.01,210.00,6.56" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Particle swarm optimization</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kennedy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Eberhart</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of ICNN&apos;95-international conference on neural networks</title>
+				<meeting>ICNN&apos;95-international conference on neural networks</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,427.52,216.43,6.42;11,79.23,435.62,216.43,6.66;11,79.23,444.06,216.43,6.56;11,79.23,452.39,198.32,6.56" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">{TVM}: An automated {End-to-End} optimizing compiler for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cowan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Ceze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">13th USENIX Symposium on Operating Systems Design and Implementation (OSDI 18)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,460.90,216.43,6.42;11,79.23,469.23,216.43,6.42;11,79.23,477.44,190.47,6.56" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Rfhoc: A random-forest approach to auto-tuning hadoop&apos;s configuration</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Bei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Eeckhout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Feng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Parallel Distrib. Syst</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,485.94,216.43,6.42;11,79.23,494.15,213.69,6.56" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Efficient Performance Prediction for Apache Spark</title>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">L Y G Y</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Parallel and Distributed Computing</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,502.65,216.43,6.42;11,79.23,510.85,216.43,6.56;11,79.23,519.19,201.70,6.56" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Datasize-aware high dimensional configurations auto-tuning of in-memory cluster computing</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Bei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Qian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. 23rd Int. Conf. Archit. Support Prog</title>
+				<meeting>23rd Int. Conf. Archit. Support Prog</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="564" to="577" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,527.69,216.43,6.42;11,79.23,536.03,216.43,6.42;11,79.23,544.23,74.56,6.56" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Bliss: auto-tuning complex applications using a pool of diverse lightweight learning models</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">B</forename><surname>Roy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Patel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Gadepally</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Tiwari</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">PLDI</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,552.74,216.43,6.42;11,79.23,561.07,216.43,6.42;11,79.23,569.28,187.50,6.56" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Autotuning in High-Performance Computing Applications</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Balaprakash</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Dongarra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gamblin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">K</forename><surname>Hollingsworth</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Norris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Vuduc</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the IEEE</title>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<date type="published" when="2018-11">Nov. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,577.78,216.43,6.42;11,79.23,586.12,216.43,6.42;11,79.23,594.32,120.91,6.56" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">Multitask and transfer learning for autotuning exascale applications</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">M</forename><surname>Sid-Lakhdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">M</forename><surname>Aznaveh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><forename type="middle">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">W</forename><surname>Demmel</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1908.05792</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="11,79.23,602.83,216.43,6.42;11,79.23,611.16,216.43,6.42;11,79.23,619.37,216.43,6.56" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Bootstrapping parameter space exploration for fast tuning</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">J</forename><surname>Thiagarajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Anirudh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Gimenez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Sridhar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Marathe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Emani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Bhatele</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gamblin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ICS 18</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,627.87,216.43,6.42;11,79.23,636.07,212.70,6.56" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Artemis: Automatic runtime tuning using machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Wood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Georgakoudis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Beckingsale</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ISC 2021</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,644.58,216.43,6.42;11,79.23,652.92,216.43,6.42;11,79.23,661.12,191.93,6.56" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Turbo: A costefficient configuration-based auto-tuning approach for cluster-based big data frameworks</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Dou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zheng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Parallel Distrib. Comput</title>
+		<imprint>
+			<biblScope unit="volume">177</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,79.23,669.62,216.43,6.42;11,79.23,677.96,216.43,6.42;11,79.23,686.16,201.47,6.56" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Conex: Efficient exploration of big-data system configurations for better performance</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Krishna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Sullivan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Ray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Software Engineering</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,73.66,216.43,6.42;11,331.37,81.86,216.43,6.56;11,331.37,90.20,33.87,6.56" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Hdconfigor: automatically tuning high dimensional configuration parameters for log search engines</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Dou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zheng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="page">20</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,98.67,216.43,6.42;11,331.37,106.87,216.44,6.56;11,331.37,115.21,215.84,6.56" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Locat: Low-overhead online configuration auto-tuning of spark sql applications</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Hwang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Yu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2022 International Conference on Management of Data</title>
+				<meeting>the 2022 International Conference on Management of Data</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="674" to="684" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,123.54,216.43,6.56;11,331.37,131.88,213.52,6.56" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Introduction to multi-armed bandits</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Slivkins</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Foundations and Trends® in Machine Learning</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="1" to="286" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,140.35,216.43,6.42;11,331.37,148.55,179.28,6.56" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Pure exploration in finitely-armed and continuous-armed bandits</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Bubeck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Munos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Stoltz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Theor. Comput. Sci</title>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,157.02,216.43,6.42;11,331.37,165.22,212.52,6.56" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Non-stochastic best arm identification and hyperparameter optimization</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Jamieson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Talwalkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Artif. Intell. Stat</title>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<publisher>PMLR</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,173.69,216.43,6.42;11,331.37,181.90,150.07,6.56" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Simple regret for infinitely many armed bandits</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Carpentier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Valko</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ICML</title>
+				<imprint>
+			<publisher>PMLR</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="1133" to="1141" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,190.37,216.43,6.42;11,331.37,198.70,216.43,6.42;11,331.37,206.90,187.15,6.56" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Hyperband: A novel bandit-based approach to hyperparameter optimization</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Jamieson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Desalvo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Rostamizadeh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Talwalkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Machine Learning Research</title>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,215.37,216.43,6.42;11,331.37,223.58,216.43,6.56;11,331.37,231.91,109.91,6.56" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Portfolio choices with orthogonal bandit learning</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y.-G</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Zha</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Twenty-fourth international joint conference on artificial intelligence</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,240.38,216.43,6.42;11,331.37,248.59,216.43,6.56;11,331.37,256.92,197.45,6.56" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Input warping for bayesian optimization of non-stationary functions</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Snoek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Swersky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zemel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Adams</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<publisher>PMLR</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="1674" to="1682" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,265.39,216.43,6.42;11,331.37,273.73,216.43,6.42;11,331.37,281.93,216.43,6.56;11,331.37,290.27,92.00,6.56" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Waggle: An open sensor platform for edge computing</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Beckman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Sankaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Catlett</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">J</forename><surname>Ferrier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">L</forename><surname>Jacob</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">E</forename><surname>Papka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE SENSORS</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="3" />
+			<date type="published" when="2016-10-30">2016. October 30 -November 3, 2016. 2016</date>
+			<publisher>IEEE</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,298.73,216.43,6.42;11,331.37,307.07,48.10,6.42" xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Sage: A distributed software-defined sensor network</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">F</forename><surname>Beckman</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,315.41,216.43,6.42;11,331.37,323.61,216.44,6.56;11,331.37,332.08,216.43,6.42;11,331.37,340.28,135.83,6.56" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Optimizing cloud motion estimation on the edge with phase correlation and optical flow</title>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">A</forename><surname>Raut</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Muradyan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Sankaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">C</forename><surname>Jackson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">A</forename><surname>Shahkarami</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Dematties</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Swantek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Conrad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Atmos. Meas. Tech</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,348.75,216.43,6.42;11,331.37,357.09,216.43,6.42;11,331.37,365.29,206.99,6.56" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Goal-driven scheduling model in edge computing for smart city applications</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Shahkarami</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Sankaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Ferrier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Beckman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Parallel and Distributed Computing</title>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,373.76,216.43,6.42;11,331.37,382.10,216.43,6.42;11,331.37,390.30,216.44,6.56;11,331.37,398.63,196.88,6.56" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">INTERSECT: Open federated architecture for the laboratory of the future</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Engelmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Kuchar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Boehm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">J</forename><surname>Brim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Naughton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Atchley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Lange</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Mintz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Arenholz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">CCIS: Accelerating Science and Engineering Discoveries</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">1690</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,407.10,216.43,6.42;11,331.37,415.31,68.90,6.56" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Automating hpc model selection on edge devices</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Hossain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Ahmed</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;23</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,423.78,216.43,6.42;11,331.37,432.11,216.43,6.42;11,331.37,440.45,156.22,6.42" xml:id="b37">
+	<monogr>
+		<title level="m" type="main">Kripke-a massively parallel transport mini-app</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">J</forename><surname>Kunen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">S</forename><surname>Bailey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">N</forename><surname>Brown</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<pubPlace>Livermore, CA</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>Lawrence Livermore National Lab.(LLNL)</orgName>
+		</respStmt>
+	</monogr>
+	<note>tech. rep.. United States</note>
+</biblStruct>
+
+<biblStruct coords="11,331.37,448.78,216.43,6.42;11,331.37,457.12,216.43,6.42;11,331.37,465.46,216.43,6.42;11,331.37,473.79,193.35,6.42" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Quantitative performance assessment of proxy apps and parents</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">F</forename><surname>Richards</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Aziz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Cook</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Finkel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Homerding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Judeman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Mccorquodale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Mintz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Moore</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">tech. rep</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+		<respStmt>
+			<orgName>Lawrence Livermore National Lab.(LLNL)</orgName>
+		</respStmt>
+	</monogr>
+	<note>United States . . .</note>
+</biblStruct>
+
+<biblStruct coords="11,331.37,482.13,216.43,6.42;11,331.37,490.33,209.24,6.56" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Using confidence bounds for exploitation-exploration tradeoffs</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Auer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Machine Learning Research</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<date type="published" when="2002-11">Nov, 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,498.80,216.43,6.42;11,331.37,507.00,216.43,6.56;11,331.37,515.34,132.66,6.56" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Security analysis of iot protocols: A focus in coap</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">A</forename><surname>Rahman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Shah</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 3rd MEC international conference on big data and smart city (ICBDSC)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="7" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,523.81,216.43,6.42;11,331.37,532.14,216.43,6.42;11,331.37,540.35,208.83,6.56" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Characterizing the performance of accelerated jetson edge devices for training deep learning models</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">A</forename><surname>Kesanapalli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Simmhan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proc. ACM Meas. Anal. Comput. Syst</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,548.82,216.43,6.42;11,331.37,557.15,216.43,6.42;11,331.37,565.35,168.10,6.56" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Clustering algorithms on low-power and high-performance devices for edge computing environments</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Lapegna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Balzano</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Meyer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Romano</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sensors</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">16</biblScope>
+			<biblScope unit="page">5395</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,573.82,216.43,6.42;11,331.37,582.16,216.43,6.42;11,331.37,590.36,216.43,6.56" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">End-to-end energy models for edge cloud-based iot platforms: Application to data stream analysis in iot</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A.-C</forename><surname>Orgerie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Rodero</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">L</forename><surname>Amersho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Parashar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-M</forename><surname>Menaud</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Future Gener. Comput. Syst</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,598.83,216.43,6.42;11,331.37,607.17,216.43,6.42;11,331.37,615.50,216.43,6.42;11,331.37,623.71,216.43,6.56" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Performance modeling under resource constraints using deep transfer learning</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Marathe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Anirudh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Bhatele</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Thiagarajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Kailkhura</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-S</forename><surname>Yeom</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Rountree</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gamblin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. Int. Conf. High Perf</title>
+				<meeting>Int. Conf. High Perf</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,632.18,216.43,6.42;11,331.37,640.38,182.70,6.56" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">hypre: A library of high performance preconditioners</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">D</forename><surname>Falgout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">U</forename><forename type="middle">M</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Int. Conf. Comput. Sci</title>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,648.85,216.43,6.42;11,331.37,657.05,216.43,6.56;11,331.37,665.39,187.93,6.56" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Clomp: Accurately characterizing openmp application overheads</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Bronevetsky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gyllenhaal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">R</forename><surname>De Supinski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International journal of parallel programming</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="page" from="250" to="265" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.37,673.86,216.43,6.42;11,331.37,682.19,183.99,6.42" xml:id="b47">
+	<monogr>
+		<title level="m" type="main">Lulesh 2.0 updates and changes</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Karlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Keasler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Neely</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+		<respStmt>
+			<orgName>Lawrence Livermore National Lab.(LLNL)</orgName>
+		</respStmt>
+	</monogr>
+	<note>tech. rep.</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

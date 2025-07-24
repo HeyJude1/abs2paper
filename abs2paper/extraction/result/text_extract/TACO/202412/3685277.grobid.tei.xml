@@ -1,0 +1,2385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">EC-SpMM: Efficient Compilation of SpMM Kernel on GPUs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2023-08-07">2023-08-07</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.77,120.44,62.49,9.82"><forename type="first">Junqing</forename><surname>Lin</surname></persName>
+							<email>linjunqing@mail.ustc.edu.cn</email>
+							<idno type="ORCID">0009-0007-1455-8725</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,198.14,81.17,9.82"><forename type="first">Honghe</forename><surname>Zhang</surname></persName>
+							<email>zhanghonghe@mail.ustc.edu.cn</email>
+							<idno type="ORCID">0009-0000-5707-0606</idno>
+						</author>
+						<author>
+							<persName coords="1,45.63,172.24,71.73,9.82"><forename type="first">Xiaolong</forename><surname>Shi</surname></persName>
+							<email>shixiaolong@mail.ustc.edu.cn</email>
+							<idno type="ORCID">0009-0001-3516-8765</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Jingwei</forename><surname>Sun</surname></persName>
+							<idno type="ORCID">0000-0001-5098-1503</idno>
+						</author>
+						<author>
+							<persName coords="1,45.63,224.04,55.92,9.82"><forename type="first">Xianzhi</forename><surname>Yu</surname></persName>
+							<email>yuxianzhi@huawei.com</email>
+							<idno type="ORCID">0000-0002-1497-5525</idno>
+						</author>
+						<author>
+							<persName coords="1,45.77,249.95,38.59,9.82"><forename type="first">Jun</forename><surname>Yao</surname></persName>
+							<email>yaojun97@huawei.com</email>
+							<idno type="ORCID">0000-0002-6924-2468</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,262.90,97.08,9.82"><forename type="first">Guangzhong</forename><surname>Sun</surname></persName>
+							<email>gzsun@ustc.edu.cn.</email>
+							<idno type="ORCID">0000-0002-0794-7681</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">JINGWEI SUN, Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="laboratory">Huawei Noah&apos;s Ark Lab</orgName>
+								<orgName type="institution">XINZHI WANG</orgName>
+								<address>
+									<settlement>Shenzhen</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="laboratory">Huawei Noah&apos;s Ark Lab</orgName>
+								<address>
+									<settlement>Shenzhen</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="laboratory">Huawei Noah&apos;s Ark Lab</orgName>
+								<address>
+									<settlement>Shenzhen</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff8">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff9">
+								<orgName type="department">Computer Sci-ence and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff10">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff11">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution" key="instit1">Honghe Zhang</orgName>
+								<orgName type="institution" key="instit2">University of Science and Tech-nology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff12">
+								<orgName type="institution" key="instit1">Xianzhi Yu</orgName>
+								<orgName type="institution" key="instit2">Huawei Noah&apos;s Ark Lab</orgName>
+								<address>
+									<settlement>Shenzhen, Guangdong</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff13">
+								<orgName type="laboratory">Huawei Noah&apos;s Ark Lab</orgName>
+								<orgName type="institution">Xinzhi Wang</orgName>
+								<address>
+									<addrLine>Guang-dong</addrLine>
+									<settlement>Shenzhen</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff14">
+								<orgName type="laboratory">Huawei Noah&apos;s Ark Lab</orgName>
+								<address>
+									<settlement>Shenzhen, Guangdong</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff15">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">EC-SpMM: Efficient Compilation of SpMM Kernel on GPUs</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 52nd International Conference on Parallel Processing</title>
+						<meeting>the 52nd International Conference on Parallel Processing						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="21" to="30"/>
+							<date type="published" when="2023-08-07" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">A3A87D1E402A9572075410BD2E165913</idno>
+					<idno type="DOI">10.1145/3605573.3605632</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>CCS Concepts:</term>
+					<term>Computing methodologies → Parallel algorithms</term>
+					<term>Neural networks</term>
+					<term>Sparse-dense matrix multiplication, deep neural network, tensor compiler, GPU</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>As deep neural networks (DNNs) become increasingly large and complicated, pruning techniques are proposed for lower memory footprint and more efficient inference. The most critical kernel to execute pruned sparse DNNs on GPUs is Sparse-dense Matrix Multiplication (SpMM). To maximize the performance of SpMM, despite the high-performance implementation generated from advanced tensor compilers, they often take a long time to iteratively search tuning configurations. Such a long time slows down the cycle of exploring better DNN architectures or pruning algorithms. In this article, we propose LO-SpMM to efficiently generate</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="25" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Along with the great accomplishments of deep learning across various domains, the scale of deep neural networks (DNNs) has grown significantly. While larger models typically exhibit better performance, they also incur higher computation and storage costs. For example, GPT-3 <ref type="bibr" coords="2,400.98,321.45,14.84,9.03" target="#b22">[23]</ref>, with its 175 billion parameters, requires 350 GB memory to store (using FP16 precision) and thus requires five A100 (80 GB) GPUs for inference.</p><p>Given the over-parameterization of large DNNs <ref type="bibr" coords="2,257.56,357.32,14.83,9.03" target="#b29">[30]</ref>, neural network pruning methods have been developed to reduce model size by eliminating redundant parameters with minimal impact on model accuracy. Pruning techniques can be categorized as structured pruning and unstructured pruning <ref type="bibr" coords="2,80.88,393.18,10.38,9.03" target="#b7">[8,</ref><ref type="bibr" coords="2,93.73,393.18,11.45,9.03" target="#b27">28,</ref><ref type="bibr" coords="2,107.65,393.18,11.45,9.03" target="#b38">39,</ref><ref type="bibr" coords="2,121.57,393.18,11.45,9.03" target="#b50">51,</ref><ref type="bibr" coords="2,135.49,393.18,11.26,9.03" target="#b59">59]</ref>. Structured pruning can accelerate inference through off-the-shelf GPU tensor computing libraries, but it often results in a significant accuracy drop due to its strict constraints on the position of pruned elements. Conversely, unstructured pruning can preserve higher accuracy, but the resulting sparse DNNs pose challenges in efficiently leveraging current GPU architectures, as they exhibit irregular memory accesses during inference. To execute the inference of sparse DNNs on GPUs, Sparse-dense Matrix Multiplication (SpMM) is the most critical kernel <ref type="bibr" coords="2,106.97,464.91,15.00,9.03" target="#b23">[24,</ref><ref type="bibr" coords="2,125.72,464.91,11.46,9.03" target="#b35">36,</ref><ref type="bibr" coords="2,140.92,464.91,11.26,9.03" target="#b63">63]</ref>. It is the multiplication of a sparse matrix and a dense matrix. The sparse matrix is the weights of a pruned linear/convolutional/recurrent/attention layer, while the dense matrix is the input data.</p><p>An SpMM kernel can have various implementations based on different tuning configurations. Recent studies of advanced tensor compilers <ref type="bibr" coords="2,226.09,512.73,14.99,9.03" target="#b12">[13,</ref><ref type="bibr" coords="2,243.18,512.73,11.45,9.03" target="#b68">68,</ref><ref type="bibr" coords="2,256.72,512.73,12.81,9.03" target="#b69">69]</ref> show that automatically generated SpMM implementations can achieve excellent performance and outperform hand-crafted libraries (e.g., cuSPARSE). The typical workflow of tensor compilers consists of defining a large search space for tuning configurations, iteratively selecting candidates from this space by a cost model, generating kernel implementations for evaluation, and adjusting the cost model by the evaluation results. It continues until obtaining a satisfactory kernel implementation. However, this workflow does not effectively leverage prior knowledge of the hardware architecture, SpMM algorithm, and input data layout, resulting in unnecessary search costs. Tensor compilers can take several days or weeks to tune a DNN model <ref type="bibr" coords="2,161.89,608.37,14.83,9.03" target="#b70">[70]</ref>. Such a long time slows down the cycle of exploring better DNN architectures or pruning solutions in the AutoML pipeline <ref type="bibr" coords="2,284.35,620.33,15.02,9.03" target="#b9">[10,</ref><ref type="bibr" coords="2,301.86,620.33,11.25,9.03" target="#b36">37]</ref>.</p><p>The search cost of tensor compilers is primarily caused by two factors. First, the implementation of an SpMM kernel constitutes a large search space. For example, an SpMM kernel with shape 73:3 (M, N , K) has M × N possible tiling configurations to explore. Second, evaluating each candidate in the space takes a long time. State-of-the-art implementations of SpMM kernels adopt full loop unrolling and constant propagation <ref type="bibr" coords="3,190.94,106.68,15.00,9.03" target="#b60">[60,</ref><ref type="bibr" coords="3,207.97,106.68,11.25,9.03" target="#b69">69]</ref>, which write all nonzero elements of the sparse matrix into the code as constants. This optimization can effectively accelerate SpMM, but it also brings huge code files and a long compilation time.</p><p>In this article, we propose a method named LO-SpMM to generate high-performance SpMM implementations and minimize the search cost. It optimizes the processes of searching for optimal SpMM implementations from three aspects:</p><p>(1) LO-SpMM conducts a few-shot search for optimal implementations. According to our observation, a large portion of candidates in the search space do not properly leverage GPU hardware, leading to suboptimal performance or even execution failure. LO-SpMM automatically identifies and eliminates these ineffective candidates, using several constraints based on the characteristics of the GPU architecture and the SpMM algorithm. In addition, a learning-based rank model is built to further reduce the remaining candidates.</p><p>Consequently, the search space can be effectively shrunk.</p><p>(2) To avoid the costly compilation and execution for searched SpMM implementations, LO-SpMM constructs proxies as their approximations. A proxy is a simplified version of the original SpMM implementations, exhibiting a similar performance rank as the original. Therefore, by compiling and measuring the proxies, LO-SpMM can quickly estimate the performance rank of searched SpMM implementations.</p><p>(3) Besides focusing on the issue of long search time, LO-SpMM also tries to improve the performance of generated SpMM implementations. Existing tensor compilers primarily focus on loop reordering/tiling/unrolling optimization techniques, which are critical for GEMM (General Matrix Multiplication). In addition to these loop optimizations, LO-SpMM takes the layout of nonzero elements in sparse matrices into account. It adopts a heuristic method to reorder the sparse matrix in SpMM, enabling better memory access performance and load balancing. It also adopts a prefetching technique to reduce the latency caused by cache misses. We evaluate LO-SpMM on typical DNN models, including ResNet, ShuffleNet, MobileNet, and BERT, on NVIDIA RTX 2080Ti and Tesla V100. Compared with the state-of-the-art tensor compilers, our approach can reduce the search time by 281× at most. Compared with cuSPARSE, TVM-S <ref type="bibr" coords="3,78.99,457.97,14.84,9.03" target="#b12">[13]</ref>, Sputnik <ref type="bibr" coords="3,137.38,457.97,14.84,9.03" target="#b23">[24]</ref>, SparTA <ref type="bibr" coords="3,194.37,457.97,14.84,9.03" target="#b69">[69]</ref>, and EC-SpMM <ref type="bibr" coords="3,282.27,457.97,14.85,9.03" target="#b37">[38]</ref>, the performance of SpMM from LO-SpMM achieves 34.70×, 29.32×, 3.00×, 1.10×, and 1.03× average speedup, respectively. We further combine LO-SpMM with SparTA and Rammer <ref type="bibr" coords="3,268.04,481.88,16.34,9.03" target="#b41">[42]</ref> to implement end-to-end sparse DNN inference, and achieve 1.01 × − 3.38× speedup over baseline solutions <ref type="bibr" coords="3,332.37,493.84,10.37,9.03">[3,</ref><ref type="bibr" coords="3,345.23,493.84,11.45,9.03" target="#b12">13,</ref><ref type="bibr" coords="3,359.18,493.84,11.45,9.03" target="#b23">24,</ref><ref type="bibr" coords="3,373.12,493.84,11.46,9.03" target="#b41">42,</ref><ref type="bibr" coords="3,387.08,493.84,11.45,9.03" target="#b46">47,</ref><ref type="bibr" coords="3,401.03,493.84,11.25,9.03" target="#b69">69]</ref>.</p><p>In summary, the main contributions of our article are as follows:</p><p>-We propose a method to automatically prune the search space of tiling for SpMM, based on constraints from prior knowledge of the GPU architecture and programming experience. -We propose a method to construct proxies to replace the evaluation of candidates. The proxies have a similar performance rank as the original SpMM implementations and enable faster evaluations. -We propose a matrix reordering method to adjust the layout of nonzero elements of the sparse matrix in SpMM. It can reduce memory access operations while keeping computational load balancing. -We conduct extensive experiments for sparse DNNs on both consumer-level and high-end GPUs. We validate that our method can achieve comparable or better SpMM kernel performance and significantly reduce the search time, compared with existing tensor compilers.</p><p>73:4</p><p>J. Lin et al. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Overview of LO-SpMM</head><p>The overall framework of LO-SpMM is illustrated in Figure <ref type="figure" coords="4,288.66,248.61,3.41,9.03" target="#fig_0">1</ref>, which consists of two stages: tiling space reduction, and proxy-based evaluation. Given a sparse matrix A of size M × K, and a dense matrix B of size K × N , LO-SpMM aims at quickly generating a high-performance SpMM implementation on a GPU for calculating C = A×B.</p><p>In the first stage, LO-SpMM utilizes a hierarchical 2-dimensional tiling strategy to tile the computations in the SpMM kernel. Different tile sizes form the search space for constructing SpMM implementations. LO-SpMM prunes search space by several constraints, based on criteria such as register resource, hardware utilization, and load balancing. A sparse matrix reordering operation is performed to reduce the memory load in the SpMM kernel before the constraints. The detailed motivation and design of sparse matrix reordering are introduced in Section 4. In addition to the constraints, LO-SpMM can employ a learning-based rank model to sort the remaining candidates and select the top-K candidates for evaluation, thereby further reducing the number of evaluations.</p><p>In the second stage, LO-SpMM generates proxies for the remaining tile sizes, thereafter selecting the corresponding proxy for each tile size and configuring runtime arguments of the proxy for performance evaluation. A proxy is a simplified CUDA code of the original SpMM implementations. It has a lower evaluation cost while keeping a similar relative performance rank as the original SpMM implementations. LO-SpMM selects the Top-1 tile size with optimal proxy performance and subsequently generates code for the SpMM kernel. The details of SpMM implementations are discussed in Section 6.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Tile Space Reduction</head><p>To take full advantage of GPU parallelism, LO-SpMM uses a hierarchical 2-dimensional tiling strategy to divide an SpMM kernel into tiles for processing. The selection of tile size has a critical impact on the performance of the generated SpMM implementation. Since the search space of tile size is vast, an exhaustive search to determine the optimal implementation among all possible sizes incurs significant overhead.</p><p>The implementations of an SpMM kernel with some tile sizes cannot effectively utilize GPUs, leading to suboptimal performance compared to other tile sizes. Therefore, we can reduce the search time by eliminating these underperforming tile sizes. Specifically, LO-SpMM can accurately eliminate low-performance candidates in the search space based on certain constraints, including register resource constraint, hardware utilization constraint, and load balancing constraint. Then, optionally, for the remaining tile sizes, a model is built to estimate their relative performance rank. The estimated top K tile sizes are selected for evaluation. In this way, we can obtain a LO-SpMM: Low-cost Search for High-performance SpMM Kernels on GPUs 73:5 Fig. <ref type="figure" coords="5,62.04,254.14,3.07,8.07">2</ref>. An example of hierarchical 2-dimensional tiling for A * B = C. A is an 8 × 8 sparse matrix and the white cells within A are pruned elements. B and C are 8 × 8 dense matrices. In this example, we assume the device has 2 warps in a thread block, 2 threads in a warp, and tile size (M1, N1) = (4, 4), for simplicity.</p><p>high-performance implementation of an SpMM kernel with few actual evaluations, which greatly reduces the search cost.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Hierarchical 2-Dimensional Tiling</head><p>Hierarchical 2-dimensional tiling follows hierarchical 1-dimensional tiling <ref type="bibr" coords="5,345.69,350.23,16.38,9.03" target="#b23">[24]</ref> with modifications. Instead of processing only part of a row of the output matrix, each thread block in our tiling strategy processes a submatrix of the output matrix. In the tiling process, first, the sparse matrix is divided into multiple A tile , each of which corresponds to M1 rows (could be discontinuous), of the sparse matrix. Then the dense matrix is divided into multiple B tile , each of which corresponds to continuous N 1 columns of the dense matrix. The output of A tile × B tile is a submatrix C tile of size (M1, N 1). Specifically, on GPUs, an SpMM kernel is divided into three hierarchies: thread, warp, and thread block, as shown in Figure <ref type="figure" coords="5,223.26,433.91,3.41,9.03">2</ref>. Each thread processes an output submatrix C thr ead of size (M1, 1), and each warp processes an output submatrix C warp of size (M1, warp_size). Each thread block processes a tile, namely, an output submatrix C block of size (M1, N 1).</p><p>The hierarchical 2-dimensional tiling strategy has the following benefits:</p><p>-Memory accesses within a warp can be merged to improve the efficiency of SpMM.</p><p>-The workload distribution among threads in a thread block is balanced due to processing the same A tile . -Threads are designed to handle multiple output elements, as opposed to just one, thereby reducing memory access to the dense matrix. This also increases the computational work performed per memory access about the dense matrix, which is advantageous for masking the latency inherent in memory accesses.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Register Resource Constraint</head><p>Due to the constraint of GPU register resource, the register usage for both threads and thread blocks within an SpMM implementation is limited. For GPUs, each variable in a thread typically corresponds to a register. When the number of variables in a thread exceeds the maximum number of registers, the exceeded variables are stored in the local memory. The overhead of accessing the local memory is comparable to that of accessing global memory and much higher than that of accessing registers. If a tile size requires exceeding registers and consequently causes local memory access, it is unlikely to exhibit optimal performance. Moreover, the number of thread blocks and threads in a kernel is determined at runtime, thereby the required register resource is also determined at runtime, which is unknown during compilation. As a result, despite successful compilation, an SpMM implementation may fail at runtime with a "too many resources requested for launch" error if the required register resource exceeds the limitation for thread blocks, leading to unnecessary compilation overhead. Therefore, LO-SpMM counts the register usage of the SpMM kernel across different tile sizes, excluding configurations that necessitate an excessive number of registers. Due to the generated SpMM implementations for each tile size being known, we can get the number of variables used in each thread and forecast the register usage. To avoid over-optimization by the compiler, which may increase the register usage and decrease GPU occupancy, we apply the "--maxrregcount" compiler option in NVCC. It limits the register usage per thread to a threshold that is slightly larger than the variable count, without causing local memory accesses. In other words, we can assess the register usage for different tile sizes without any compilation and execution. The required registers for a thread block can be calculated as the product of the register usage per thread and the total number of threads in a thread block. According to the GPU's register capacity, tile sizes of which register demand exceeds the capacity are excluded from the search space. As shown in Figure <ref type="figure" coords="6,400.62,538.86,3.41,9.03" target="#fig_1">3</ref>, assume that the maximum number of registers is 6 in a thread and 24 in a thread block. The search space size is reduced from 64 to 38 after the register resource constraint.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Hardware Utilization Constraint</head><p>The threads within a thread block are organized into warps, which are used as Single Instruction Multiple Threads (SIMT) execution units. If the number of threads in a thread block is not a multiple of the warp size, some warps are only partially utilized, leading to inefficiencies. Meanwhile, a GPU consists of an array of stream multiprocessors, where each thread block is allocated to a stream multiprocessor for execution. When the number of thread blocks is less than the number of stream multiprocessors in a GPU, some stream multiprocessors will be idle, and the hardware resources may not be fully utilized. Therefore, we can further reduce the search space by eliminating tile sizes that would result in insufficient thread blocks.</p><p>LO-SpMM sets the number of threads per block (N 1) to be a multiple of warp size to ensure sufficient warp utilization. Additionally, LO-SpMM calculates the number of thread blocks corresponding to each tile size by Equation ( <ref type="formula" coords="7,205.99,142.55,3.23,9.03" target="#formula_0">1</ref>):</p><formula xml:id="formula_0">block_num = M/M1 × N /N 1 ,<label>(1)</label></formula><p>where (M, N) is the shape of the sparse matrix and (M1, N1) is the tile size. Considering the influence of data reuse and cache access patterns in SpMM implementations, LO-SpMM adopts a relaxed constraint on the number of thread blocks and eliminates tile sizes that result in fewer thread blocks than half of the stream multiprocessor count, rather than the full count. As shown in Figure <ref type="figure" coords="7,434.73,212.94,3.41,9.03" target="#fig_1">3</ref>, assume the warp size is 2 and the number of stream multiprocessors is 8. The search space size is reduced from 38 to 12 after the hardware utilization constraint.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Load Balancing Constraint</head><p>In hierarchical 2-dimensional tiling, load balancing within a thread block is inherently ensured, but load balancing across thread blocks is not guaranteed. A tile size influences the load balancing among different thread blocks from two aspects: (1) the number of non-zero elements in A tile that each thread block processes, and (2) the number of columns in B tile that each thread block processes.</p><p>In the search space, a tile size with the same number of tiles but a more balanced load can be found, which can achieve better performance. Therefore, we should remove tile sizes that do not satisfy a certain load-balancing condition from the search space. For example, in Figure <ref type="figure" coords="7,400.91,356.94,3.41,9.03" target="#fig_1">3</ref>, if M1 is set to 6, the sparse matrix A is divided into two A tile . The first A tile has 6 rows with 22 nonzero elements, while the second A tile only has 2 rows with 8 nonzero elements. In this case, the load of different tiles is imbalanced. However, setting M1 to 4 can keep the same number of tiles and make the load of different A tile more balanced, since each A tile equally has 15 nonzero elements. Likewise, setting N 1 to 6 results in load imbalance among different tiles, where the first B tile has 6 columns, and the second B tile has 2 columns only. Setting N 1 to 4 makes a load of different tiles more balanced while maintaining the same number of tiles since each B tile equally has 4 columns.</p><p>LO-SpMM measures the A tile load balancing using COV row , calculated by the coefficient of variation of number of non-zero elements across different A tile . The B tile load balancing is measured using W AST E col , calculated by the padding ratio of columns in the dense matrix. LO-SpMM sets two thresholds, T H row for COV row and T H col for W AST E col , to exclude tile sizes that cause COV row or W AST E col exceeding the thresholds. We set both T H row and T H col to 0.25. The search space in Figure <ref type="figure" coords="7,109.73,512.36,4.63,9.03" target="#fig_1">3</ref> is reduced from 12 to 6 after the load balancing constraint.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.5">Rank Model</head><p>Numerous factors influence the performance of an SpMM implementation, some of which can be explicitly interpreted and analyzed, such as the aforementioned constraints. However, beyond those constraints, a significant number of candidates remain in the search space that cannot be effectively distinguished using explainable rules. Consequently, we propose constructing a model to estimate the performance of the remaining candidates through machine learning techniques. We select the top K candidates based on these estimates for compilation and execution and identify the optimal candidate as the final output.</p><p>To search for the optimal tile size, we do not care about the absolute performance of each candidate but only need to know the relative performance order of different candidates. Therefore, we 73:8 J. Lin et al. use a rank model to sort tile sizes. We construct a listwise rank model using LambdaMART <ref type="bibr" coords="8,413.32,248.65,16.33,9.03" target="#b10">[11]</ref> as the model. The features used in the rank model are shown in Table <ref type="table" coords="8,321.99,260.61,3.41,9.03" target="#tab_0">1</ref>. An SpMM implementation is represented by schedule information of an SpMM kernel, sparse attribute in the sparse matrix, and tile size. The training dataset is constructed by benchmarking the performance of synthetic SpMM kernels under various tile sizes and sparsity degrees.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Sparse Matrix Reordering</head><p>Unstructured pruning on a DNN leads to a non-uniform distribution of nonzero elements within its weight matrices. This distribution is ill-suited to GPUs, resulting in imbalanced computational loads across different tiles and increased memory access overhead. Reordering the nonzero elements in the sparse matrix can yield a distribution better optimized for SpMM kernel performance.</p><p>In this section, we introduce the motivation for our reordering algorithm, along with the problem formulation and the corresponding algorithm for sparse matrix reordering. The effectiveness of the algorithm is demonstrated through an illustrative example.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Motivation</head><p>The memory access overhead has an important impact on the performance of the kernel. For example, assume an SpMM kernel with dimensions (M, K, N ) = (128, 2048, 128) executed on an RTX 2080Ti. To avoid the influence of other factors on the performance, this kernel is launched within a single thread block by setting the tile size to (128, 128). We evaluate the performance of SpMM with different numbers of non-empty columns (nnc) while fixing the number of non-zero elements (nnz) to 2,048, 3,072, and 4,096, respectively. It is noteworthy that there is a positive correlation between nnc and memory access load because nnc reflects the frequency of accesses to the dense matrix B per thread. As illustrated in Figure <ref type="figure" coords="8,227.18,524.82,3.41,9.03" target="#fig_2">4</ref>, the runtime escalates with an increase in memory access overhead for a fixed nnz. The analysis reveals a performance divergence of up to 10.99× across different memory access overhead under identical computational demands. Since the SpMM kernel is memory-bound, variations in nnz within a tile in this example have negligible impact on the performance of the SpMM kernel. Row reordering of the sparse matrix can reduce memory access overhead while maintaining load balancing, as illustrated in Figure <ref type="figure" coords="8,183.40,596.55,3.41,9.03" target="#fig_3">5</ref>. In this example, each thread computes 4 × 1 output elements, and each thread block computes 4 × 4 output elements. As shown in Figure <ref type="figure" coords="8,350.90,608.51,3.44,9.03" target="#fig_3">5</ref>(a), the sparse matrix A is partitioned into two A tile , with rows 0 − 3 assigned to the first A tile and rows 4 − 7 assigned to the second A tile . The nnc in each A tile is 8, resulting in 8 memory accesses per thread to fetch the corresponding elements of the dense matrix B into registers. To reduce memory accesses per  tile, the sparse matrix can be reordered by grouping rows with similar distributions of non-empty columns within each A tile . This approach reduces the nnc in each A tile , thereby decreasing the number of memory accesses per thread. Figure <ref type="figure" coords="9,236.26,267.92,3.90,9.03" target="#fig_3">5</ref>(b) demonstrates this optimization, which assigns rows 0 − 1 and 4 − 5 to the first A tile , and rows 2 − 3 and 6 − 7 to the second A tile . It reduces the nnc in each A tile to 5. Consequently, each thread performs only 5 memory accesses.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Problem Formulation and Algorithm</head><p>Given a tile size (M1, N 1), sparse matrix reordering solves a constrained optimization problem. Its objective is to reduce the maximum number of memory accesses in all A tile while maintaining load balancing among all A tile . This objective can be formulated as follows: arg min</p><formula xml:id="formula_1">SA t il e max(nnc(SA tile )),<label>(2)</label></formula><p>subject to max(size(SA tile )) ≤ M1, (3)</p><formula xml:id="formula_2">nnz imbalance o f SA tile &lt; α,<label>(4)</label></formula><p>where SA tile is a set of A tile . The size of A tile is limited by M1 so that all threads are constrained to have a close number of registers and write operators.</p><p>Regarding each row as a node and each column as a hyperedge, this problem can be transformed into a constrained hypergraph partitioning problem. The goal of this problem is to minimize the maximum number of hyperedges across all subgraphs while ensuring that the total number of nodes across all hyperedges is similar in each subgraph. This is an NP-hard problem. Therefore, we propose Algorithm 1 to solve this problem approximately. First, we count the number of nonzero elements in the whole sparse matrix and in each row, denoted by nnz_matrix, and nnzs_row, respectively (lines 1-2). Then we sort rows in the sparse matrix by nnzs_row and remove empty rows (lines 3-4). The sparse matrix rows are processed in ascending nnzs_row order. For each row, we merge it with each A tile and sort the TSA tile by the nnc in A tile (lines 9-10). We start with the A tile which has the smallest nnc and is smaller than M1 in size. If the nnz in A tile does not exceed the nnz limitation (T H nnz ), this row is assigned to this A tile . Otherwise, we choose the next A tile to judge. If the nnz of all unfilled A tile is larger than the limitation, then we assign this row to the A tile with the smallest nnc (lines 12-22). In the reordering process, the nnz in each A tile is limited to make nnz among different A tile close, so as to achieve computational load balancing.</p><p>73:10 J. Lin et al. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Effectiveness of Sparse Matrix Reordering</head><p>To evaluate the effectiveness of Algorithm 1, we constructed a comparative analysis of the performance of SpMM implementations under three scenarios: without sparse matrix reordering, using a hypergraph partitioning method, and using our proposed method. In the hypergraph partitioning method, rows and columns are treated as nodes and hyperedges, respectively, with node weights set to the nnz in the row to ensure computation load balancing. Then we use Kahypar <ref type="bibr" coords="10,62.01,504.99,16.35,9.03" target="#b51">[52]</ref> to optimize the connectivity objective. Assume an SpMM kernel is of shape (M, N , K) = (1,024, 1,024, 1,024) and sparsity 98%. It is divided into 32 blocks by row, and each block has 32 rows. The similarity R between two blocks is denoted by the ratio of identical nonzero element positions in the two blocks. The R in paired blocks (block i and block i+16 , i ∈ {0, 1, . . . , 15}) varies from 0 to 0.9 to show the effect of similarity on these methods. Meanwhile, to show the impact of load balancing, the nnz ratio in adjacent blocks (block i and block i+1 , i ∈ {0, 2, . . . , 30}) varies from 1 to 3.</p><p>As shown in Figure <ref type="figure" coords="10,136.24,588.67,3.41,9.03" target="#fig_4">6</ref>, with balanced load, as R increases, the runtime of the SpMM implementation tends to decrease with sparse matrix reordering and remains the same runtime without sparse matrix reordering. As the similarity of the sparse matrix increases, the memory access similarity of each block becomes higher after reordering, enabling fewer memory accesses per block. Moreover, the hypergraph partitioning method produces tiles with variable numbers of non-empty rows and columns when the nnz distribution per block is uneven, causing imbalanced memory access loads among thread blocks. In contrast, our method achieves more effective balance in memory access loads.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Proxy-based Evaluation</head><p>The evaluation of an SpMM implementation mainly consists of two parts: compilation and execution. The usage of full loop unrolling and constant propagation <ref type="bibr" coords="11,303.33,297.73,14.98,9.03" target="#b60">[60,</ref><ref type="bibr" coords="11,320.67,297.73,12.81,9.03" target="#b69">69]</ref> for accelerating an SpMM kernel often results in significantly huge code files and a long compilation time. For example, in the SpMM kernel with the sparsity of 0.7 and shape (3,072, 4,096, 768), with different tile sizes, the compilation time ranges from several hundred to over a thousand seconds, while the execution usually takes a few milliseconds.</p><p>To mitigate the issue of long compilation time, we employ a proxy-based method to evaluate SpMM implementations. A proxy is a simplified program that behaves similarly to the original SpMM implementations but has much shorter code. Meanwhile, one proxy can represent a set of SpMM implementations via setting different runtime arguments. It does not output correct computation results and does not have the same absolute execution time as the original program. It only needs to keep a similar relative performance rank as the original program, so that it can be used to estimate which SpMM implementation has higher performance.</p><p>In the proxy-based evaluation for an SpMM kernel, the generation of the optimal SpMM implementation consists of three stages. In the first stage, LO-SpMM generates a set of proxies to replace the actual performance evaluation. In the second stage, for each tile size, LO-SpMM selects an appropriate proxy and determines the runtime arguments to evaluate proxy performance on the hardware. These arguments, including grid size, block size, and shared memory usage, are tailored to the specific tile size under evaluation. In the final stage, LO-SpMM selects the tile size with the optimal proxy performance and implements the SpMM kernel based on it. The details of proxy generation and runtime arguments configuration are introduced in the following.   implementations share one proxy, thus the number of compilations can be reduced. Thread block functions within an implementation are clustered and represented by a smaller number of proxy thread block functions (PBs), thus the code length can be reduced. By loop block reduction, each PB only reserves a few proxy iterations (PIs), so the code length can be further reduced. Detailed steps are introduced in the following sections.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Proxy Generation</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.1">Kernel Function Reduction.</head><p>In SpMM implementations, hardcoding the tile size as constants in code can reduce redundant computation. However, this approach produces a different code variant for each tile size, requiring repetitive compilations.</p><p>Since our purpose is to compare the relative performance rank of different implementations rather than assessing their absolute performance, we can skip the step of hardcoding tile sizes. This allows us to maintain a single proxy, which can accept different tile sizes as input arguments, to account for multiple SpMM implementations.</p><p>More specifically, with the same vertical tile size M1, SpMM implementations share the same code structure. Hardcoding the horizontal tile size N 1 will generate an SpMM implementation with a specific number of threads and thread blocks. By defining N 1 and related constants as variables, we can create a single proxy to represent multiple implementations. We can then estimate the performance of a given tile size by setting tile-related arguments at runtime. This method enables us to evaluate the performance of SpMM implementations with a variety of tile sizes after just one compilation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.2">Thread Block Function</head><p>Reduction. An SpMM implementation consists of M/M1 thread block functions. Each thread block function is a code snippet for processing a tile of the sparse matrix A. If we can reduce the number of thread block functions to be compiled, the code will be shortened, thereby the compilation cost will also be reduced. We achieve this by partitioning thread block functions into several disjoint clusters. Each cluster contains a set of thread block functions with similar features. According to the feature centroid (namely, the average values of features) of each cluster, a proxy thread block function is constructed to represent all thread block functions within the cluster. Figure <ref type="figure" coords="13,188.44,332.71,3.67,9.03" target="#fig_5">8</ref>(c) illustrates the usage of proxy thread block functions. In the proxy SpMM implementation, it first gets the cluster id of a block and then calls the corresponding proxy thread block function. Compared with the original implementation in Figure <ref type="figure" coords="13,382.44,356.62,3.44,9.03" target="#fig_5">8</ref>(a), the proxy reduces the number of thread block functions from N to N P .</p><p>Since we have conducted sparse matrix reordering, as introduced in Section 4, the operations in different thread block functions are relatively similar. The similarity of two thread block functions can be measured by the Euclidean distance of two features: the number of memory accesses and the number of floating-point operations within a thread block function. These features can be quickly obtained by static code analysis. We then use an agglomerative <ref type="bibr" coords="13,316.67,428.35,16.35,9.03" target="#b44">[45]</ref> method to cluster thread block functions and obtain the feature centroid of each cluster. Given the feature centroid, we construct the corresponding proxy thread block function by repeating a certain number of global memory loads and multiply-add operations until achieving close feature values to the feature centroid.</p><p>The number of clusters, which equals the number of proxy thread block functions, has a crucial impact on the performance accuracy of proxy. On the one hand, if we set an extremely small number of clusters, the proxy will have a too-short code length. This can lead to discrepant instruction fetch miss rates of proxy thread block functions, compared with the original implementation. On the other hand, the number of clusters should not be greater than the product of the number of thread block functions concurrently executed by a stream multiprocessor and the number of stream multiprocessors in a GPU. Although an SpMM implementation can have many thread block functions, only part of them can be concurrently executed by the active thread blocks in a stream multiprocessor. Since one or multiple active thread blocks execute one thread block function, the maximum number of concurrently executed thread block functions can be equal to or fewer than the number of active thread blocks. Based on our experience, we set the number of clusters to 3 × max(NU MS AT B ), where NU MS AT B is an array consisting of the number of active thread blocks in each stream multiprocessor of all SpMM implementations corresponding to a proxy.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1.3">Loop Block Reduction.</head><p>As shown in Figure <ref type="figure" coords="14,259.51,278.00,3.56,9.03" target="#fig_5">8</ref>(b), a thread block function contains an entirely unrolled loop block followed by a result storage step. Since we only need to identify the performance rank across different tile sizes, we do not need to compile and execute all operations in the loop block. Truncating the loop block by the same proportion across different tile sizes has a negligible impact on their performance rank. Therefore, we can replace the original loop block with a truncated version that has shorter code. Specifically, a proxy loop block is constructed by repeating a proxy iteration N NC P times. The proxy iteration includes one global memory load and multiple multiply-add operations. The number of multiply-add operations is determined by the average number of computations among all global memory loads.</p><p>If N NC P is excessively small, it can cause a large gap in the instruction fetch miss rates between the proxy and original implementations, leading to inaccurate performance rank. Fortunately, within a thread block, the instruction fetch miss rates tend to stabilize after reaching a certain threshold of code length. This fact is depicted in Figure <ref type="figure" coords="14,276.68,421.46,4.63,9.03" target="#fig_10">9</ref> for SpMM kernels with different rows of sparse matrix M and iteration counts N NC P , where the column of dense matrix N is 256,000, sparsity is 0.5, and tile size is (M, 256). N NC P * (1 − sparsity) is positively correlated with code length. Based on our experience, we set N NC P to min(N NC, 300 (1−spar sity) ), where N NC denotes the number of non-empty columns in the A tile .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Runtime Arguments Configuration</head><p>A proxy can accept different runtime arguments, including grid size, block size, and shared memory usage, so that one proxy can flexibly represent the implementations resulted from different tile sizes. The grid size and block size arguments can be directly calculated according to the tile size and SpMM shape. The usage of shared memory needs a careful configuration since it is a key factor that affects the performance similarity between the proxy and the original implementation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.1">Relation between Occupancy and Shared Memory.</head><p>To ensure the proxy can keep a similar performance rank as the original SpMM implementation, we try to align their performance in terms of a dimensionless metric (e.g., a ratio between some counts). We select GPU occupancy as the metric since it provides an underlying measurement of GPU hardware utilization <ref type="bibr" coords="14,423.30,608.60,14.82,9.03" target="#b17">[18]</ref>. Occupancy refers to the ratio of active thread blocks on a stream multiprocessor (NU M AT B for short) to its maximum thread block capacity. NU M AT B is determined by available hardware resources, including registers, shared memory, and the number of thread blocks. Due to the LO-SpMM: Low-cost Search for High-performance SpMM Kernels on GPUs 73:15 loop block reduction, the proxy uses fewer registers than the original implementation, leading to higher occupancy. To align the occupancy, we need to adjust register usage, shared memory, and the number of thread blocks. However, the number of thread blocks is determined by the tiling step and cannot be changed during constructing proxy. Moreover, the usage of registers is difficult to precisely control, as it is affected by a complicated mechanism of compiler and runtime. Therefore, we control the occupancy of the proxy by adjusting the allocation of shared memory.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.2">Shared Memory Usage</head><p>Configuration. Specifically, the configuration process involves two steps. First, we calculate NU M AT B of the original implementation based on its register usage and the number of thread blocks, which can be formulated as follows:</p><formula xml:id="formula_3">NU M AT B = min( NU M T B /SMs , reдCapacity/reдU saдe), (<label>5</label></formula><formula xml:id="formula_4">)</formula><p>where SMs is the number of stream multiprocessors in GPU, NU M T B is the number of thread blocks, reдCapacity is the capacity of registers in a stream multiprocessor, and reдU saдe is the usage of registers in a thread block. Next, we calculate the shared memory allocation needed (SharedMemorySize) for each thread block in the proxy to achieve the same occupancy, which is formulated as follows:</p><formula xml:id="formula_5">SharedMemorySize = maxSmemU saдe/NU M AT B − Constant,<label>(6)</label></formula><p>where maxSmemU saдe is the max shared memory usage in a stream multiprocessor. Since CUDA runtime allocates some shared memory for each thread block for management and tracking, we subtract the shared memory usage by a constant that is determined by hardware specification and runtime library version <ref type="bibr" coords="15,143.52,333.51,10.43,9.03" target="#b3">[4]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Implementation</head><p>In this section, we introduce the implementation details of sparse neural networks inference, including SpMM kernel and end-to-end DNN inference.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">SpMM Kernel</head><p>The implementation of thread tile in an SpMM kernel is shown as Algorithm 2. During the code generation process, we entirely unroll lines 7-18 and fill in the corresponding sparse matrix elements, A[a, k], which we can know at compile time, according to the constant propagation technique <ref type="bibr" coords="15,88.48,453.25,14.84,9.03" target="#b60">[60]</ref>. This approach enables the utilization of the constant cache for accessing A values, thereby minimizing random memory accesses caused by sparse indices. The accumulator, Acc, is stored in registers to enable rapid access. To further improve the performance of an SpMM implementation, we incorporate a prefetching technique for the matrix B data. Specifically, we allocate additional registers, enabling simultaneous data prefetching from matrix B while computing the current column of the sparse matrix A (lines 14-18). Besides, to avoid unnecessary memory access to the dense matrix, when</p><formula xml:id="formula_6">nnz of A[ROW list , b] is empty, we do not cache B[b, N thr ead ] in registers.</formula><p>Based on the programming model for GPUs, the implementation of thread tile can be naturally extended to warp tile and block tile, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">End-to-end DNN Inference</head><p>We implement end-to-end inference for sparse neural networks by combining LO-SpMM with SparTA and Rammer. First, we use SparTA to propagate sparse properties of sparse neural networks and obtain networks with higher sparsity. For each SpMM kernel, we obtain the Top-1 SpMM implementation using tiling search reduction, sparse matrix reordering, and proxy-based evaluation. After all SpMM implementations are generated, we optimize the neural network using Rammer. Rammer can improve the DNN performance through operator fusion and operator parallelism. Then, we replace all the GEMM kernels in the neural network with the SpMM kernel implementations from LO-SpMM .</p><p>LO-SpMM also supports the implementation of the sparse Conv2D operator by converting it to a combination of im2col and SpMM. For sparse Conv2D, LO-SpMM does not need to explicitly perform the im2col operator. When implementing Conv2D using SpMM, each reference to an element in the B matrix is replaced with the corresponding element in the original input activation tensor.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Evaluation</head><p>In this section, we first compare LO-SpMM with state-of-the-art SpMM implementations, evaluating the performance of generated SpMM kernels and their corresponding generation compilation time cost. Then we also evaluate the effectiveness of the rank model and proxy. Finally, we integrate LO-SpMM into SparTA and Rammer to evaluate the usefulness of LO-SpMM in end-to-end inference tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.1">Performance of Generated SpMM Kernel</head><p>We compare the performance of SpMM implementations in LO-SpMM with existing solutions, including cuSPARSE, TVM-S, Sputnik, SparTA, and EC-SpMM. Besides, we also take cuBLAS for comparison.</p><p>-cuSPARSE [2] is a vendor library for sparse computing on GPUs; -TVM-S <ref type="bibr" coords="16,101.91,596.16,16.36,9.03" target="#b12">[13]</ref> is the sparse version of TVM with 2,000 searches for each SpMM kernel; -Sputnik <ref type="bibr" coords="16,103.54,608.11,16.37,9.03" target="#b23">[24]</ref> carries out a lot of optimization techniques for SpMM in sparse neural networks; -SparTA <ref type="bibr" coords="16,102.92,620.06,16.36,9.03" target="#b69">[69]</ref> is the state-of-the-art solution to sparse DNN computing; -EC-SpMM <ref type="bibr" coords="16,114.74,632.02,16.36,9.03" target="#b37">[38]</ref> can rapidly generate a high-performance SpMM kernel; -cuBLAS <ref type="bibr" coords="16,105.11,643.98,11.72,9.03" target="#b0">[1]</ref> is a vendor library for dense linear algebra computing on GPUs. We build a benchmark dataset to evaluate the performance of SpMM implementations. We first extract GEMM operators from a variety of neural networks, including BERT <ref type="bibr" coords="17,360.94,476.35,14.85,9.03" target="#b19">[20]</ref>, ResNet50 <ref type="bibr" coords="17,423.02,476.35,14.83,9.03" target="#b26">[27]</ref>, ShufflenetV2 <ref type="bibr" coords="17,99.83,488.30,14.83,9.03" target="#b42">[43]</ref>, and MobilenetV2 <ref type="bibr" coords="17,190.62,488.30,14.84,9.03" target="#b20">[21]</ref>. We convert linear layers to GEMM operators and Conv2D layers to combinations of im2col and GEMM, yielding 41 distinct GEMM shapes. The GEMM kernels are randomly pruned with five sparsity degrees, generating a total of 205 SpMM kernels. The shape of an SpMM kernel is denoted as (M, N , K). In our constructed dataset, the values of M range from 64 to 3,072; N ranges from 512 to 50,176; K ranges from 27 to 3,072.</p><p>The experimental results on 2080Ti and V100 are shown in Figure <ref type="figure" coords="17,324.42,548.08,7.86,9.03" target="#fig_0">10</ref>(a) and (b), respectively. In general, LO-SpMM is 37.75×, 35.24×, 3.32×, 3.43×, 1.10×, 1.06× faster than cuSPARSE, TVM-S, cuBLAS, Sputnik, SparTA, EC-SpMM on 2080Ti, respectively. While on V100, LO-SpMM is 31.65×, 23.40×, 3.30×, 2.56×, 1.09×, 1.00× faster than cuSPARSE, TVM-S, cuBLAS, Sputnik, SparTA, EC-SpMM, respectively.</p><p>Compared to SparTA, LO-SpMM achieves at least 95% relative performance in 93.66% of kernels, and performs better in 79.02% of kernels on 2080Ti. On V100, LO-SpMM achieves at least 95% relative performance in 82.43% of kernels and performs better in 69.27% of kernels. These results indicate that, in most cases, LO-SpMM can achieve comparable or better performance than SparTA.   Due to the usage of the prefetching technique and the exploration of more tiling configurations enabled by proxies, the performance of SpMM implementations in LO-SpMM is higher than EC-SpMM on the 2080Ti and comparable to EC-SpMM on the V100. LO-SpMM performs better at higher sparsity in general. This is due to the fact that reordering is more effective in reducing unnecessary memory accesses when the matrix has higher sparsity. Moreover, LO-SpMM outperforms cuBLAS in all cases, indicating that LO-SpMM can bring practical speedups for sparse DNNs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2">Compilation Time Cost</head><p>Figure <ref type="figure" coords="18,73.66,453.25,9.27,9.03" target="#fig_14">11</ref> shows the compilation time of four methods. By removing poorly performing candidates by constraints and using the proxies to evaluate the performance of each tile size, LO-SpMM can save a significant portion of the search cost. LO-SpMM -Rank uses the rank model to sort the candidates in the search space and then choose the Top-10 candidates for evaluation, further reducing the search cost.</p><p>The average search time normalized by LO-SpMM -Rank is shown in Table <ref type="table" coords="18,366.98,513.03,3.41,9.03" target="#tab_3">2</ref>. Compared with SparTA, LO-SpMM saves search cost by more than an order of magnitude. LO-SpMM also achieves lower cost than EC-SpMM, which is the most effective method for quickly generating SpMM implementations in existing works. LO-SpMM -Rank combines a rank model and only evaluates a subset of candidates, so it can achieve more than 18× improvement on the V100 compared to EC-SpMM.</p><p>Because LO-SpMM , SparTA, and EC-SpMM use a full loop unrolling and constant propagation method to generate SpMM implementations, the code size of an SpMM implementation has a positive correlation to the number of nonzero elements. With the increase in the number of nonzero elements, the SpMM implementation generated by EC-SpMM and SparTA needs more compilation time. Due to the usage of the proxies, the increase in search cost for LO-SpMM is less significant. Meanwhile, the search cost reduction of LO-SpMM on V100 is more than that on 2080Ti, because LO-SpMM: Low-cost Search for High-performance SpMM Kernels on GPUs 73:19  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3">Rank Model and Proxy Performance</head><p>We generate synthetic SpMM implementations for benchmarking performance under various tile sizes and sparsity degrees. The value range of shapes and tile sizes is shown in Table <ref type="table" coords="19,406.40,297.49,3.41,9.03" target="#tab_4">3</ref>. Based on the benchmarking results, we can build a rank model to predict the performance of an SpMM implementation, as introduced in Section 3.5.</p><p>To evaluate the effectiveness of the rank model and constructed proxies, we measure the performance loss (mean absolute percentage error, MAPE) of the searched optimal SpMM implementation. MAPE is calculated by the relative difference between the performance of the candidate selected by LO-SpMM-Rank/LO-SpMM and the real Top-1 performance. The results are shown in Table <ref type="table" coords="19,70.97,381.18,3.41,9.03" target="#tab_5">4</ref>. The performance of the SpMM implementation selected by the proxy-based method is close to that of the optimal kernel implementation. The performance loss is lower than 2.1% on 2080Ti and V100. That is, the proxy-based method greatly reduces the search cost of SpMM implementations on the premise of acceptable performance loss. LO-SpMM -Rank can further reduce the search cost with a slight increase in performance loss.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4">End-to-end Performance</head><p>To illustrate the usefulness of LO-SpMM in a complete inference procedure, we also evaluate the inference time cost of different solutions. We compare LO-SpMM with existing solutions, including Pytorch with jit, TensorRT, SparTA, Sputnik, and EC-SpMM. The value of K in EC-SpMM is set to 10 in the end-to-end experiment. We take two neural network models for evaluation: BERT and ResNet50. In the BERT model, we use movement pruning <ref type="bibr" coords="19,276.18,513.01,16.37,9.03" target="#b50">[51]</ref> to obtain a sparse model with 90.99% sparsity, and its accuracy on the QQP task is reduced from 89.1% to 86.3%. In ResNet50, we use DLTH pruning <ref type="bibr" coords="19,109.12,536.91,11.72,9.03" target="#b7">[8]</ref> without pruning the first Conv2D layer and the last linear layer, resulting in a 90% sparse model with accuracy reduced from 75.7% to 66.0% on ImageNet tasks.</p><p>The batch size for end-to-end inference is 32. In ResNet50, we convert the Conv2D layers to SpMM. Going one step further, we also implement an SpMM version of fused Conv2D+relu for better end-to-end performance. W The experimental results are shown in Figure <ref type="figure" coords="19,381.31,584.74,7.64,9.03" target="#fig_15">12</ref>. Since most of the kernels in pruned BERT can be directly implemented using SpMM, LO-SpMM can achieve a large improvement on BERT. LO-SpMM has 1.84× speedup over TensorRT, 1.34× speedup over SparTA, and 1.16× speedup over EC-SpMM. For the ResNet50 model, LO-SpMM has 1.88× speedup over TensorRT, and is comparable to SparTA and EC-SpMM. The SpMM kernels in ResNet50 have fewer non-empty rows, which lowers the benefit from sparse matrix reordering. It is worth noting that this article mainly focuses on the optimization of compilation time and latency of SpMM kernels. The end-to-end inference experiments validate the feasibility of integrating LO-SpMM into a complete inference procedure. However, the optimization of end-to-end inference involves many other techniques that are beyond the scope of this article. More elaborate optimizations for maximizing the end-to-end performance deserve further investigation in future work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Related Work</head><p>This section reviews and discusses related existing studies along three categories: SpMM kernel for DNN inference, auto-tuning for SpMM kernel, and proxy program.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.1">SpMM Kernel for DNN Inference</head><p>The SpMM kernel is crucial for the efficient inference of pruned DNNs, attracting significant research attention. The performance optimizations of SpMM mainly include three aspects.</p><p>(1) Tiling. Tiling partitions the computation and memory access of SpMM for better data reuse and load balancing. Yang et al. <ref type="bibr" coords="20,174.09,440.65,16.36,9.03" target="#b64">[64]</ref> extend two primary tiling strategies in SpMV for the SpMM problem, row-splitting <ref type="bibr" coords="20,140.12,452.61,10.37,9.03" target="#b5">[6,</ref><ref type="bibr" coords="20,153.14,452.61,8.17,9.03" target="#b8">9]</ref> and merge-based <ref type="bibr" coords="20,236.04,452.61,15.00,9.03" target="#b16">[17,</ref><ref type="bibr" coords="20,253.69,452.61,11.26,9.03" target="#b43">44]</ref>, and implement them on GPUs. AspT <ref type="bibr" coords="20,423.94,452.61,16.34,9.03" target="#b30">[31]</ref> uses adaptive sparse tiling to improve memory reuse. Sputnik <ref type="bibr" coords="20,308.96,464.56,16.36,9.03" target="#b23">[24]</ref> modifies row-splitting <ref type="bibr" coords="20,423.94,464.56,16.35,9.03" target="#b64">[64]</ref> by using multiple thread blocks to process a row of the output matrix for higher parallelism. SparseRT <ref type="bibr" coords="20,86.53,488.47,16.36,9.03" target="#b60">[60]</ref> optimizes load balancing by assigning multiple rows per thread block during tiling.</p><p>(2) Reordering. Reordering the sparse matrix improves the data locality and load balancing of SpMM. Bandwidth-reducing reordering algorithms <ref type="bibr" coords="20,256.58,512.38,15.00,9.03" target="#b15">[16,</ref><ref type="bibr" coords="20,274.38,512.38,11.45,9.03" target="#b24">25,</ref><ref type="bibr" coords="20,288.63,512.38,12.82,9.03" target="#b39">40]</ref> can reduce the matrix bandwidth of symmetric sparse matrices. For asymmetrical sparse matrices, which are common in sparse neural networks, graph partitioning <ref type="bibr" coords="20,194.63,536.29,14.99,9.03" target="#b11">[12,</ref><ref type="bibr" coords="20,212.16,536.29,11.45,9.03" target="#b31">32,</ref><ref type="bibr" coords="20,226.15,536.29,12.82,9.03" target="#b66">66]</ref> can be used to enhance data locality. (3) Extracting regular components. Extracting regular components from a sparse matrix can reduce the storage overhead and enhance data reuse. The polyhedral framework is utilized to mine regular sub-regions, which does not need any indirection array to recover the nonzero coordinates <ref type="bibr" coords="20,45.78,584.11,10.36,9.03" target="#b6">[7,</ref><ref type="bibr" coords="20,58.68,584.11,11.45,9.03" target="#b55">56,</ref><ref type="bibr" coords="20,72.67,584.11,11.26,9.03" target="#b67">67]</ref>. A sparse matrix can be decomposed into submatrices, which are then categorized into multiple categories, each stored and processed independently <ref type="bibr" coords="20,297.77,596.07,14.99,9.03" target="#b13">[14,</ref><ref type="bibr" coords="20,315.25,596.07,11.25,9.03" target="#b61">61]</ref>.</p><p>In this study, the proposed LO-SpMM employs a hierarchical 2-dimensional tiling method, which is a modification of Sputnik <ref type="bibr" coords="20,185.01,619.98,16.73,9.03" target="#b23">[24]</ref>, to obtain better data reuse. Additionally, LO-SpMM integrates a novel row reordering algorithm that minimizes kernel memory access while maintaining load balancing. Given that LO-SpMM enhances data reuse by reordering and eliminates the storage of sparse matrices through full loop unrolling, LO-SpMM does not involve techniques of extracting regular components.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.2">Auto-tuning for SpMM Kernel</head><p>Algorithms and applications typically have optional configurations that profoundly affect their performance. Auto-tuning aims at automatically searching for the optimal configuration with the best performance, under a certain search budget. General-purpose techniques regard auto-tuning as a global optimization of an expensive black-box function. This type of technique includes OpenTuner <ref type="bibr" coords="21,94.90,178.41,10.44,9.03" target="#b4">[5]</ref>, KernelTuner <ref type="bibr" coords="21,164.94,178.41,14.85,9.03" target="#b58">[58]</ref>, KTT <ref type="bibr" coords="21,207.21,178.41,14.84,9.03" target="#b47">[48]</ref>, ATF <ref type="bibr" coords="21,247.75,178.41,14.84,9.03" target="#b49">[50]</ref>, GPTune <ref type="bibr" coords="21,304.14,178.41,14.84,9.03" target="#b40">[41]</ref>, BaCO <ref type="bibr" coords="21,351.46,178.41,14.84,9.03" target="#b28">[29]</ref>, and so on. These techniques also use hardware information <ref type="bibr" coords="21,228.80,190.36,15.00,9.03" target="#b21">[22,</ref><ref type="bibr" coords="21,248.17,190.36,11.46,9.03" target="#b47">48,</ref><ref type="bibr" coords="21,264.00,190.36,12.81,9.03" target="#b56">57]</ref> or provide interfaces for user-defined constraints <ref type="bibr" coords="21,95.53,202.33,15.00,9.03" target="#b28">[29,</ref><ref type="bibr" coords="21,115.01,202.33,11.45,9.03" target="#b40">41,</ref><ref type="bibr" coords="21,130.93,202.33,11.46,9.03" target="#b47">48,</ref><ref type="bibr" coords="21,146.87,202.33,11.46,9.03" target="#b49">50,</ref><ref type="bibr" coords="21,162.80,202.33,12.82,9.03" target="#b58">58]</ref> to refine the search space for faster auto-tuning. Meanwhile, performance models <ref type="bibr" coords="21,134.70,214.28,15.00,9.03" target="#b14">[15,</ref><ref type="bibr" coords="21,153.71,214.28,11.46,9.03" target="#b21">22,</ref><ref type="bibr" coords="21,169.17,214.28,11.46,9.03" target="#b28">29,</ref><ref type="bibr" coords="21,184.64,214.28,11.45,9.03" target="#b40">41,</ref><ref type="bibr" coords="21,200.10,214.28,12.82,9.03" target="#b62">62]</ref> are also used to improve the quality of the searched candidates.</p><p>In the field of deep learning, tensor compilers have been proposed for auto-tuning kernels in DNN inference. TVM and Ansor <ref type="bibr" coords="21,195.64,250.14,15.01,9.03" target="#b12">[13,</ref><ref type="bibr" coords="21,213.94,250.14,12.81,9.03" target="#b68">68]</ref> abstract dense operators into a tensor IR form and auto-tune their implementations. TACO <ref type="bibr" coords="21,210.76,262.10,14.83,9.03" target="#b34">[35]</ref>, SparTA <ref type="bibr" coords="21,264.40,262.10,14.84,9.03" target="#b69">[69]</ref>, and SparseTIR <ref type="bibr" coords="21,346.06,262.10,16.37,9.03" target="#b65">[65]</ref> abstract the sparse operator and then use the abstracted representation to construct the search space. However, these tensor compilers fail to effectively leverage prior knowledge of hardware and algorithms, leading to unnecessary search costs. Besides, they require complete code compilation for measuring performance, which takes a long time for optimized SpMM kernels.</p><p>In this study, the proposed LO-SpMM utilizes GPU hardware features and SpMM algorithm features to constrain the search space and construct a rank model, thereby reducing the number of evaluations. Additionally, LO-SpMM employs proxies to decrease the cost of measurement. These strategies significantly reduce the search overhead for optimizing SpMM.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.3">Proxy Program</head><p>Evaluating parallel programs can be labor-intensive and time-consuming, due to the prolonged runtime, the complicated software stack, and system dependencies. Proxy programs are proposed to mimic the performance characteristics of the target applications and enable convenient performance evaluation <ref type="bibr" coords="21,146.08,429.48,14.99,9.03" target="#b17">[18,</ref><ref type="bibr" coords="21,163.94,429.48,11.46,9.03" target="#b18">19,</ref><ref type="bibr" coords="21,178.27,429.48,11.45,9.03" target="#b48">49,</ref><ref type="bibr" coords="21,192.59,429.48,11.25,9.03" target="#b52">53]</ref>. Low-cost proxy programs can be constructed via partial execution <ref type="bibr" coords="21,90.16,441.43,14.85,9.03" target="#b33">[34]</ref>, sampled simulation <ref type="bibr" coords="21,199.37,441.43,15.01,9.03" target="#b25">[26,</ref><ref type="bibr" coords="21,218.97,441.43,11.25,9.03" target="#b54">55]</ref>, and shrunk datasets <ref type="bibr" coords="21,328.76,441.43,15.01,9.03" target="#b32">[33,</ref><ref type="bibr" coords="21,348.37,441.43,11.45,9.03" target="#b53">54,</ref><ref type="bibr" coords="21,364.41,441.43,11.26,9.03" target="#b56">57]</ref>. PerfProx <ref type="bibr" coords="21,424.11,441.43,16.36,9.03" target="#b45">[46]</ref> generates proxies by leveraging hardware performance counters to monitor and extrapolate database performance.</p><p>In this study, we focus on designing specific proxies tailored for quickly evaluating SpMM on GPUs, rather than developing a proxy synthesis method for general parallel programs. By minimizing the code size of proxies based on the SpMM kernel implementation, we significantly enhance the efficiency of the auto-tuning process.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9">Conclusion</head><p>In this article, we presented LO-SpMM , a framework designed to efficiently generate highperformance SpMM implementations for sparse DNNs on GPUs. LO-SpMM employs a hierarchical 2-dimensional tiling strategy to define the search space for optimal tile sizes, and utilizes a set of constraints and a rank model to effectively prune the search space. Based on the architecture of GPUs and the structure of SpMM implementations, LO-SpMM creates proxies for efficiently evaluating code variants. It considerably diminishes the evaluation cost, accelerating the overall process of producing the optimal SpMM implementation. Furthermore, by reordering the sparse matrix involved in SpMM, LO-SpMM improves the performance of generated SpMM implementations. Compared with the state-of-the-art tensor compilers, our approach can reduce the search time by 281×</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,184.71,208.14,116.65,8.07"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Overview of LO-SpMM .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="6,45.77,271.14,394.50,8.08;6,45.23,281.28,395.03,8.97;6,45.77,292.76,394.49,8.45;6,45.77,304.02,394.53,8.07;6,45.77,314.16,153.38,8.97"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. An example of applying three constraints to an SpMM kernel. (a) Illustration of the SpMM kernel C = A × B. (b) Tiling search space of the SpMM kernel. The 2D coordinates of each cell represent a candidate 2D tile size (M1, N 1).The green, orange, and blue cells are removed by register resource constraint, hardware utilization constraint, and load balancing constraint, respectively. In total, the size of the search space is reduced from 8 × 8 = 64 to 6 (white cells).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="9,45.95,195.14,165.69,8.07;9,45.95,206.10,165.70,8.07;9,45.95,217.06,66.87,8.07"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Runtime under different number of non-empty columns with the same number of nonzero elements.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="9,245.21,195.14,165.64,8.07"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Reduce memory access by reordering.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="11,108.58,217.14,269.27,8.07"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Runtime of SpMM implementations with varying block similarity.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="11,45.95,560.91,396.20,9.03;11,45.95,572.86,394.52,9.03;11,45.95,584.82,394.51,9.03;11,45.95,596.77,394.56,9.03;11,45.95,608.72,358.45,9.03"><head>Figure 8 (</head><label>8</label><figDesc>a) and (b) shows the code structure of the SpMM implementation on GPUs. It is a kernel function consisting of a series of thread block functions. Each thread block function includes an entirely unrolled loop for loading data and computing, and a step of result storing. The code length has a positive correlation to the compilation time. We use proxies to simplify original SpMM implementations at three levels: kernel function, thread block function, and loop block.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="11,407.29,608.72,33.41,9.03;11,45.95,620.68,396.22,9.03;11,45.95,632.64,394.55,9.03;11,45.95,644.31,80.43,10.15;11,126.77,643.73,13.34,10.73;11,140.49,643.73,228.34,10.73;11,369.23,643.73,10.52,10.73;11,380.14,643.73,60.33,9.88;12,45.55,55.82,20.73,8.97;12,396.95,55.82,43.33,8.97"><head></head><label></label><figDesc>Figure 7   illustrates how proxies are constructed from original implementations. Assume SpMM has multiple possible implementations. Each implementation is a kernel function that contains some thread block functions {B 0 , B 1 , . . .}. Each block function contains many iterations {I 0 , I 1 , . . .}. Multiple 73:12 J. Lin et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="12,45.77,281.14,394.53,8.07;12,45.77,292.11,394.49,8.07;12,45.77,303.06,394.48,8.07;12,45.77,314.02,394.50,8.07;12,45.77,324.98,170.63,8.07"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. The process of reducing the original SpMM implementations at three levels, including kernel function reduction, thread block function reduction, and loop block reduction. (1) Kernel function reduction uses one proxy to represent multiple kernel functions. (2) Thread block reduction uses a proxy thread block function to represent multiple thread block functions in each proxy. (3) Loop block reduction reduces the number of iterations in each proxy thread block function.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="13,45.95,261.06,394.51,8.17;13,45.95,272.01,307.74,9.73;13,383.57,272.10,58.27,8.07;13,45.64,283.06,394.83,8.08;13,45.95,294.02,118.70,8.07"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. The code structures of the origin SpMM implementation and proxy. N NC denotes the number of non-empty columns in A tile corresponding to a thread block. (a) Illustration of the kernel function. (b) Illustration of the thread block function. (c) Illustration of the proxy kernel function. (d) Illustration of the proxy thread block function.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="14,45.77,242.06,394.51,8.17;14,45.77,253.01,75.38,8.17"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. The instruction fetch miss in the kernel under different iteration count K with the same number of sparse matrix row M</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="16,45.44,84.51,236.57,8.12;16,56.73,96.99,365.39,8.97;16,56.73,108.67,91.44,8.17;16,48.67,119.42,196.36,9.93;16,48.67,131.38,181.56,9.93;16,48.67,142.82,117.30,10.45;16,48.67,155.29,127.14,8.45;16,48.67,166.72,237.00,10.45;16,48.67,179.20,140.36,9.93;16,48.67,191.15,118.86,8.45;16,48.67,204.35,3.07,5.42;16,71.71,202.12,36.76,8.45;16,48.67,216.30,3.07,5.42;16,72.07,213.55,79.64,8.89;16,45.60,227.26,6.14,5.42;16,87.42,225.03,91.79,8.45;16,45.60,239.22,6.14,5.42;16,87.15,236.46,230.04,10.45;16,45.60,251.17,6.14,5.42;16,87.06,248.41,62.40,8.97;16,45.60,263.13,6.14,5.42;16,72.07,261.15,14.94,8.12;16,45.60,275.08,6.14,5.42;16,72.07,272.85,51.99,8.45;16,45.60,286.04,6.14,5.42;16,87.28,283.29,229.20,10.45;16,45.60,298.00,6.14,5.42;16,86.88,295.76,121.58,9.93;16,45.60,309.95,6.14,5.42;16,86.95,307.19,39.31,8.97;16,45.60,321.91,6.14,5.42;16,72.07,319.92,14.94,8.12;16,45.60,331.88,26.06,8.12"><head>ALGORITHM 2 : 8 num ← 0; 9 while num &lt; CPL do 10 ( 14 if b ≤ K then 15 I 17 b ← b + 1</head><label>289101415171</label><figDesc>Implementation of thread tile in SpMM kernel Input : sparse matrix A, dense matrix B,SpMM kernel shape (M, N , K), computations per load CPL Output : output matrix C 1 ROW list ← list o f row o f A to process f or thread; 2 N thr ead ← column o f B to process f or thread; 3 Acc[M list , N thr ead ] ← {0.0}; 4 b ← number o f preload column; 5 I N DICES ← indices o f nonzero elements in A[ROW list , 0 : b]; 6 Cache B[0 : b, N thr ead ] in reдisters; 7 while I N DICES.size() ≥ 0 do a, k) ← I N DICES.pop(); 11 Acc[a, N thr ead ] ← ACC[a, N thr ead ] + A[a, k] × B[k, N thr ead ]; 12 num ← num + 1; 13 end N DICES.push(indices o f nonzero elements in A[ROW list , b]); 16 Cache B[b, N thr ead ] in reдisters;</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="17,53.63,402.14,379.13,8.07;17,134.28,93.28,227.80,276.52"><head>17 Fig. 10 .</head><label>1710</label><figDesc>Fig. 10. The average normalized runtime of different SpMM implementations on RTX 2080Ti and V100.</figDesc><graphic coords="17,134.28,93.28,227.80,276.52" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="18,45.77,237.14,396.03,8.07;18,45.77,248.10,49.37,8.07"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Time cost for SpMM kernel search. Kernel id is assigned by ascending order of search time of LO-SpMM -Rank</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="20,115.68,232.15,254.68,8.07;20,86.73,105.91,322.72,109.00"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. The end-to-end performance of different solutions on 2080Ti.</figDesc><graphic coords="20,86.73,105.91,322.72,109.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="8,96.86,81.19,293.65,149.99"><head>Table 1 .</head><label>1</label><figDesc>Features of Rank Model</figDesc><table coords="8,96.86,99.01,293.65,132.16"><row><cell>Type</cell><cell>Name</cell><cell>Description</cell></row><row><cell>Schedule Information</cell><cell cols="2">A tile num number of A tile B tile num number of B_tile block num number of block</cell></row><row><cell>Sparse Attribute</cell><cell>sparsity N NC sum N NZ max</cell><cell>sparsity of sparse matrix non-empty column sum of all A tile max number of nonzero elements of all A tile</cell></row><row><cell></cell><cell>M1</cell><cell>n u m b e ro fr o w si nC tile</cell></row><row><cell>Tile</cell><cell>N 1</cell><cell>number of columns in C tile</cell></row><row><cell>Size</cell><cell>K</cell><cell>number of columns in sparse matrix (number of rows in dense matrix)</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="10,45.44,84.51,237.18,264.27"><head>ALGORITHM 1 :</head><label>1</label><figDesc>Sparse matrix reordering Input : The sparse matrix, A The size limitation of A tile , M1 Output : The set of A tile , SA tile 1 nnz_matrix ← number of nonzero elements in sparse matrix; 2 nnzs_row ← numbers of nonzero elements in sparse rows; 3 rows ← GetReorderRow(A, nnzs_row); 4 rows ← RemoveEmptyRow(rows, nnzs_row); 5 num_A tile ← ceil(len(rows)/M 1 ); 6 T H nnz ← nnz_matrix/num_A tile ; 7 SA tile ← InitialAtile(num_A tile ); 8 for row ∈ rows do TSA tile ← MerдeRow2Atile(SA tile , row); 10 RSA tile ← GetReorderAtile(A tile ,TSA tile );</figDesc><table coords="10,45.60,248.75,76.96,8.45"><row><cell>11</cell><cell>cid ← NU LL;</cell></row></table><note>9 12 for A tile ∈ RSA tile do 13 if A tile .attribute(size) &lt; M 1 then 14 if cid is NU LL then 15 cid ← A tile .attribute(ID); 16 end 17 if A tile .attribute(nnz) &lt; T H nnz then 18 cid ← A tile .attribute(ID); 19 break;</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="10,45.60,352.61,135.39,55.95"><head>20 end 21 end 22 end 23</head><label></label><figDesc>Assiдn the row to SA tile [cid];</figDesc><table coords="10,45.60,400.44,26.06,8.12"><row><cell>24 end</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="18,100.56,267.30,285.32,64.91"><head>Table 2 .</head><label>2</label><figDesc>Normalized Average Compilation Time of Different Methods on RTX</figDesc><table coords="18,102.67,278.26,283.21,53.95"><row><cell></cell><cell></cell><cell>2080Ti and V100</cell><cell></cell><cell></cell></row><row><cell></cell><cell cols="4">TVM-S Sparta EC-SpMM LO-SpMM LO-SpMM-Rank</cell></row><row><cell cols="2">2080Ti 60.68 105.05</cell><cell>5.81</cell><cell>3.41</cell><cell>1.00</cell></row><row><cell>V100</cell><cell>139.90 281.29</cell><cell>18.19</cell><cell>3.37</cell><cell>1.00</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="19,59.74,81.19,185.21,114.20"><head>Table 3 .</head><label>3</label><figDesc>The Data Range for Building Rank Model</figDesc><table coords="19,73.85,99.01,159.23,96.38"><row><cell>Feature</cell><cell></cell><cell>Range</cell></row><row><cell></cell><cell>M</cell><cell>2 6 ∼ 2 11</cell></row><row><cell>Sparse Matrix</cell><cell>K</cell><cell>2 6 ∼ 2 11</cell></row><row><cell></cell><cell>nnz</cell><cell>2 2 ∼ 2 10</cell></row><row><cell>Dense Matrix</cell><cell>N K</cell><cell>2 10 ∼ 2 11 2 6 ∼ 2 11</cell></row><row><cell>Tile Size</cell><cell>M1 N1</cell><cell>2 ∼ 2 7 2 7 ∼ 2 10</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="19,45.61,111.28,395.03,147.11"><head>Table 4 .</head><label>4</label><figDesc>MAPE of Proxy Kernels stream multiprocessors than 2080Ti, resulting in fewer active thread blocks per stream multiprocessor, and a lower demand for the number of proxy thread block functions. The cost of TVM-S remains stable on different SpMM kernels since its search cost is less relevant to the number of nonzero elements in a kernel.</figDesc><table coords="19,274.92,129.10,156.06,36.13"><row><cell></cell><cell cols="2">LO-SpMM LO-SpMM-Rank</cell></row><row><cell>2080Ti</cell><cell>1.34%</cell><cell>1.68%</cell></row><row><cell>V100</cell><cell>2.07%</cell><cell>3.68%</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 73. Publication date: November 2024.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>73:22 J. Lin et al. at most. Moreover, SpMM implementations generated by LO-SpMM outperform those compiled by SparTA and EC-SpMM, showing an average speed improvement of 10% and 3%, respectively.</p><p>Future work will focus on more types of sparse kernels in deep learning, such as Sampled Dense Matrix Multiplication (SDDMM) in graph neural networks and Sparse Matrix-Vector Multiplication (SpMV) in sparse large language models. We aim at developing a unified abstraction for these sparse kernels and investigate accurate performance models to efficiently generate kernel implementations.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This study is supported by Youth Innovation Promotion Association CAS and Huawei Noah's Ark Lab. Experiments of this study were conducted on the Supercomputing Center of USTC.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="22,59.43,191.03,381.05,7.22;22,66.37,200.99,24.04,7.22" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Basic Linear Algebra on NVIDIA GPUs</title>
+		<ptr target="https://docs.nvidia.com/cuda/cublas/index.html" />
+		<imprint>
+			<date type="published" when="2022-02-01">2022. February 1, 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,79.81,210.96,360.99,7.22;22,66.55,220.92,158.36,7.22" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">A High-Performance CUDA Library for Sparse Matrix-Matrix Multiplication</title>
+		<ptr target="https://docs.nvidia.com/cuda/cusparse/index.html" />
+		<imprint>
+			<date type="published" when="2022-02-02">February 2, 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,79.81,230.88,361.83,7.22;22,66.55,240.84,35.11,7.22" xml:id="b2">
+	<analytic>
+		<title/>
+		<ptr target="https://docs.nvidia.com/cuda/cuda-c-programming-guide/" />
+	</analytic>
+	<monogr>
+		<title level="j">CUDA C++ Programming Guide</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,59.43,250.80,382.20,7.22;22,66.55,260.76,63.75,7.22" xml:id="b3">
+	<monogr>
+		<title level="m" type="main">The sdk for high-performance deep learning inference</title>
+		<ptr target="https://docs.nvidia.com/deeplearning/tensorrt/.Ac-cessed" />
+		<imprint>
+			<date type="published" when="2024-07-03">2024. July 3, 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.55,270.72,374.62,7.22;22,66.55,280.65,373.75,7.26;22,66.55,290.61,259.88,7.26" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Opentuner: An extensible framework for program autotuning</title>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Ansel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shoaib</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kalyan</forename><surname>Veeramachaneni</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Ragan-Kelley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><surname>Bosboom</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Una-May O'</forename><surname>Reilly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd International Conference on Parallel Architectures and Compilation</title>
+				<meeting>the 23rd International Conference on Parallel Architectures and Compilation</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="303" to="316" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,300.61,375.06,7.22;22,66.35,310.53,373.91,7.26;22,66.55,320.50,238.70,7.26" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Fast sparse matrixvector multiplication on GPUs for graph applications</title>
+		<author>
+			<persName coords=""><forename type="first">Arash</forename><surname>Ashari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naser</forename><surname>Sedaghati</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Eisenlohr</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Srinivasan</forename><surname>Parthasarath</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;14: Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="781" to="792" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.55,330.50,375.10,7.22;22,66.55,340.42,373.75,7.26;22,66.55,350.38,119.36,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Generating piecewiseregular code from irregular structures</title>
+		<author>
+			<persName coords=""><forename type="first">Travis</forename><surname>Augustine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Janarthanan</forename><surname>Sarma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Louis-Noël</forename><surname>Pouchet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gabriel</forename><surname>Rodríguez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 40th ACM SIGPLAN Conference on Programming Language Design and Implementation</title>
+				<meeting>the 40th ACM SIGPLAN Conference on Programming Language Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="625" to="639" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.55,360.35,373.75,7.26;22,66.55,370.31,375.00,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Dual lottery ticket hypothesis</title>
+		<author>
+			<persName coords=""><forename type="first">Yue</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiqiang</forename><surname>Tao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kunpeng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yun</forename><surname>Fu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 10th International Conference on Learning Representations, ICLR 2022, Virtual Event</title>
+				<meeting>the 10th International Conference on Learning Representations, ICLR 2022, Virtual Event</meeting>
+		<imprint>
+			<date type="published" when="2022-04-25">2022. April 25-29, 2022</date>
+		</imprint>
+	</monogr>
+	<note>OpenReview.net</note>
+</biblStruct>
+
+<biblStruct coords="22,66.55,380.31,373.70,7.22;22,66.55,390.23,374.98,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Implementing sparse matrix-vector multiplication on throughput-oriented processors</title>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Conference on High Performance Computing Networking, Storage and Analysis</title>
+				<meeting>the Conference on High Performance Computing Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,400.24,374.96,7.22;22,66.55,410.16,373.75,7.26;22,66.55,420.12,374.62,7.26;22,66.37,430.13,35.78,7.22" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Hardware-aware neural architecture search: Survey and taxonomy</title>
+		<author>
+			<persName coords=""><forename type="first">Hadjer</forename><surname>Benmeziane</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaoutar</forename><forename type="middle">El</forename><surname>Maghraoui</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hamza</forename><surname>Ouarnoughi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Smaïl</forename><surname>Niar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Wistuba</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naigang</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 30th International Joint Conference on Artificial Intelligence, IJCAI 2021, Virtual Event</title>
+				<meeting>the 30th International Joint Conference on Artificial Intelligence, IJCAI 2021, Virtual Event<address><addrLine>Montreal, Canada</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2021-08">2021. August 2021</date>
+			<biblScope unit="page" from="4322" to="4329" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.55,440.09,373.77,7.22;22,66.55,450.01,374.62,7.26;22,66.55,459.97,374.62,7.26;22,66.27,469.98,196.49,7.22" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Learning to rank: from pairwise approach to listwise approach</title>
+		<author>
+			<persName coords=""><forename type="first">Zhe</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tie-Yan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ming-Feng</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hang</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1273496.1273513</idno>
+		<ptr target="https://doi.org/10.1145/1273496.1273513" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th International Conference on Machine Learning (ICML 2007)</title>
+				<editor>
+			<persName><forename type="first">Zoubin</forename><surname>Ghahramani</surname></persName>
+		</editor>
+		<meeting>the 24th International Conference on Machine Learning (ICML 2007)<address><addrLine>Corvallis, Oregon, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2007-06-20">2007. June 20-24, 2007</date>
+			<biblScope unit="volume">227</biblScope>
+			<biblScope unit="page" from="129" to="136" />
+		</imprint>
+	</monogr>
+	<note>ACM International Conference Proceeding Series</note>
+</biblStruct>
+
+<biblStruct coords="22,66.54,479.94,375.07,7.22;22,66.55,489.85,337.11,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Hypergraph-partitioning-based decomposition for parallel sparsematrix vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Umit</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cevdet</forename><surname>Catalyurek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Aykanat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="673" to="693" />
+			<date type="published" when="1999">1999. 1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,499.85,373.75,7.22;22,66.17,509.82,374.10,7.22;22,66.54,519.74,373.73,7.26;22,66.54,529.70,97.95,7.26" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">TVM: An automated end-to-end optimizing compiler for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thierry</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haichen</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meghan</forename><surname>Cowan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuwei</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Arvind</forename><surname>Krishnamurthy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 13th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<meeting>the 13th USENIX Symposium on Operating Systems Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">18</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,539.71,373.74,7.22;22,66.54,549.63,374.53,7.26;22,66.54,559.59,136.09,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Vectorizing sparse matrix computations with partially-strided codelets</title>
+		<author>
+			<persName coords=""><forename type="first">Kazem</forename><surname>Cheshmi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zachary</forename><surname>Cetinic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maryam</forename><forename type="middle">Mehri</forename><surname>Dehnavi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the SC22: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the SC22: International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,569.59,375.09,7.22;22,66.54,579.52,373.76,7.26;22,66.54,589.48,110.99,7.26" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">End-to-end deep learning of optimization heuristics</title>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Cummins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pavlos</forename><surname>Petoumenos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hugh</forename><surname>Leather</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 26th International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+				<meeting>the 2017 26th International Conference on Parallel Architectures and Compilation Techniques (PACT)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="219" to="232" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,599.44,373.74,7.26;22,66.54,609.40,139.89,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Reducing the bandwidth of sparse symmetric matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Elizabeth</forename><surname>Cuthill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Mckee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 1969 24th National Conference</title>
+				<meeting>the 1969 24th National Conference</meeting>
+		<imprint>
+			<date type="published" when="1969">1969</date>
+			<biblScope unit="page" from="157" to="172" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,66.54,619.41,375.07,7.22;22,66.54,629.33,373.75,7.26;22,66.54,639.29,88.33,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Optimizing sparse matrix operations on gpus using merge path</title>
+		<author>
+			<persName coords=""><forename type="first">Steven</forename><surname>Dalton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sean</forename><surname>Baxter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Duane</forename><surname>Merrill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luke</forename><surname>Olson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2015 IEEE International Parallel and Distributed Processing Symposium</title>
+				<meeting>the 2015 IEEE International Parallel and Distributed Processing Symposium</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="407" to="416" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,84.05,373.74,7.26;23,66.73,94.02,173.43,7.26" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Minime-gpu: Multicore benchmark synthesizer for gpus</title>
+		<author>
+			<persName coords=""><forename type="first">Etem</forename><surname>Deniz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alper</forename><surname>Sen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="1" to="25" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,104.02,374.95,7.22;23,66.73,113.94,180.65,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Minime: Pattern-aware multicore benchmark synthesizer</title>
+		<author>
+			<persName coords=""><forename type="first">Etem</forename><surname>Deniz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alper</forename><surname>Sen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Kahne</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jim</forename><surname>Holt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="page" from="2239" to="2252" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,123.94,373.72,7.22;23,66.73,133.87,373.74,7.26;23,66.73,143.83,374.64,7.26;23,66.73,153.79,335.61,7.26" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">BERT: Pre-training of deep bidirectional transformers for language understanding</title>
+		<author>
+			<persName coords=""><forename type="first">Jacob</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ming-Wei</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kenton</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kristina</forename><surname>Toutanova</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, NAACL-HLT 2019</title>
+		<title level="s">Long and Short Papers</title>
+		<meeting>the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, NAACL-HLT 2019<address><addrLine>Minneapolis, MN, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019-06-02">2019. June 2-7, 2019</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="4171" to="4186" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,163.79,373.71,7.22;23,66.73,173.72,373.73,7.26;23,66.73,183.68,372.56,7.26" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">RTMobile: Beyond real-time mobile acceleration of RNNs for speech recognition</title>
+		<author>
+			<persName coords=""><forename type="first">Peiyan</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siyue</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sheng</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhengang</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 57th ACM/IEEE Design Automation Conference</title>
+				<meeting>the 57th ACM/IEEE Design Automation Conference<address><addrLine>San Francisco, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020-07-20">2020. July 20-24, 2020</date>
+			<biblScope unit="volume">2020</biblScope>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+	<note>Yifan Gong, Bin Ren, Xue Lin, and Dingwen Tao</note>
+</biblStruct>
+
+<biblStruct coords="23,66.72,193.68,373.74,7.22;23,66.73,203.61,374.63,7.26;23,66.55,213.61,20.95,7.22" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Using hardware performance counters to speed up autotuning convergence on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jiří</forename><surname>Filipovič</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jana</forename><surname>Hozzová</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Amin</forename><surname>Nezarat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Parallel and Distributed Computing</title>
+		<imprint>
+			<biblScope unit="volume">160</biblScope>
+			<biblScope unit="page" from="16" to="35" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+	<note>Jaroslav Ol&apos;ha, and Filip Petrovič</note>
+</biblStruct>
+
+<biblStruct coords="23,66.72,223.53,373.75,7.26;23,66.73,233.53,68.54,7.22" xml:id="b22">
+	<monogr>
+		<title level="m" type="main">GPT-3: Its nature, scope, limits, and consequences. Minds and Machines</title>
+		<author>
+			<persName coords=""><forename type="first">Luciano</forename><surname>Floridi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Massimo</forename><surname>Chiriatti</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="681" to="694" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.73,243.46,373.73,7.26;23,66.73,253.42,373.72,7.26;23,66.73,263.38,211.28,7.26" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Sparse GPU kernels for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Gale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matei</forename><surname>Zaharia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cliff</forename><surname>Young</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Erich</forename><surname>Elsen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis<address><addrLine>Atlanta, Georgia, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2020-11-09">2020. November 9-19, 2020</date>
+			<biblScope unit="volume">2020</biblScope>
+			<biblScope unit="page">17</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,273.38,373.73,7.22;23,66.73,283.31,272.90,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">An algorithm for reducing the bandwidth and profile of a sparse matrix</title>
+		<author>
+			<persName coords=""><forename type="first">Norman</forename><forename type="middle">E</forename><surname>Gibbs</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">G</forename><surname>Poole</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jr</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><forename type="middle">K</forename><surname>Stockmeyer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Numerical Analysis</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="236" to="250" />
+			<date type="published" when="1976">1976. 1976</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.73,293.30,373.75,7.22;23,66.73,303.22,230.13,7.26" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Simpoint 3.0: Faster and more flexible program phase analysis</title>
+		<author>
+			<persName coords=""><forename type="first">Greg</forename><surname>Hamerly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Erez</forename><surname>Perelman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeremy</forename><surname>Lau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brad</forename><surname>Calder</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Instruction Level Parallelism</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="1" to="28" />
+			<date type="published" when="2005">2005. 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,313.23,373.73,7.22;23,66.73,323.15,284.43,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Deep residual learning for image recognition</title>
+		<author>
+			<persName coords=""><forename type="first">Kaiming</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangyu</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaoqing</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jian</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<meeting>the IEEE Conference on Computer Vision and Pattern Recognition</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="770" to="778" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,333.11,374.53,7.26;23,66.73,343.07,373.96,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Structured pruning for deep convolutional neural networks: A survey</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lingao</forename><surname>Xiao</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPAMI.2023.333461</idno>
+		<ptr target="https://doi.org/10.1109/TPAMI.2023.333461" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Pattern Analysis and Machine Intelligence</title>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="page" from="2900" to="2919" />
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,353.08,373.73,7.22;23,66.73,363.04,375.06,7.22;23,66.43,372.96,374.02,7.26;23,66.73,382.92,130.23,7.26" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Baco: A fast and portable Bayesian compiler optimization framework</title>
+		<author>
+			<persName coords=""><forename type="first">Erik</forename><surname>Orm Hellsten</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Artur</forename><surname>Souza</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Johannes</forename><surname>Lenfers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rubens</forename><surname>Lacouture</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Olivia</forename><surname>Hsu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adel</forename><surname>Ejjeh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michel</forename><surname>Steuwer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kunle</forename><surname>Olukotun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luigi</forename><surname>Nardi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="19" to="42" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,392.93,374.69,7.22;23,66.72,402.85,373.73,7.26;23,66.72,412.85,68.54,7.22" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Sparsity in Deep Learning: Pruning and growth for efficient inference and training in neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Alistarh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikoli</forename><surname>Dryden</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandra</forename><surname>Peste</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Machine Learning Research</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="1" to="124" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,422.81,373.72,7.22;23,66.72,432.74,373.71,7.26;23,66.72,442.70,312.15,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Adaptive sparse tiling for sparse matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Changwan</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aravind</forename><surname>Sukumaran-Rajam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Israt</forename><surname>Nisa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kunal</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 24th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming<address><addrLine>Washington, DC, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2019-02-16">2019. 2019. February 16-20, 2019</date>
+			<biblScope unit="page" from="300" to="314" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,452.70,374.95,7.22;23,66.72,462.63,191.90,7.26" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">A fast and high quality multilevel scheme for partitioning irregular graphs</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vipin</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="359" to="392" />
+			<date type="published" when="1998">1998. 1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.73,472.63,373.75,7.22;23,66.72,482.55,277.79,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Towards a simplified database workload for computer architecture evaluations</title>
+		<author>
+			<persName coords=""><forename type="first">Kimberly</forename><surname>Keeton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">A</forename><surname>Patterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Workload Characterization for Computer System Design</title>
+		<imprint>
+			<biblScope unit="volume">542</biblScope>
+			<biblScope unit="page" from="49" to="71" />
+			<date type="published" when="2000">2000. 2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,492.55,373.96,7.22;23,66.43,502.48,374.03,7.26;23,66.73,512.44,131.55,7.26" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Workload synthesis: Generating benchmark workloads from statistical execution profile</title>
+		<author>
+			<persName coords=""><forename type="first">Keunsoo</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Changmin</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jung</forename><surname>Ho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jung</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Won</forename><forename type="middle">Woo</forename><surname>Ro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2014 IEEE International Symposium on Workload Characterization (IISWC)</title>
+				<meeting>the 2014 IEEE International Symposium on Workload Characterization (IISWC)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="120" to="129" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,522.44,373.74,7.22;23,66.73,532.36,373.73,7.26;23,66.73,542.32,89.84,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Taco: A tool to generate tensor algebra kernels</title>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stephen</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Lugato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shoaib</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE)</title>
+				<meeting>the 2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE)</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="943" to="948" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,552.32,373.73,7.22;23,66.73,562.24,373.72,7.26;23,66.73,572.21,374.97,7.26;23,66.73,582.21,48.28,7.22" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Efficient tiled sparse matrix multiplication through matrix signatures</title>
+		<author>
+			<persName coords=""><forename type="first">Kurt</forename><surname>Süreyya Emre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aravind</forename><surname>Sukumaran-Rajam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabrice</forename><surname>Rastello</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis<address><addrLine>Atlanta, Georgia, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2020-11-09">2020. November 9-19, 2020</date>
+			<biblScope unit="volume">2020</biblScope>
+			<biblScope unit="page">87</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,592.17,374.62,7.22;23,66.73,602.09,373.74,7.26;23,66.73,612.06,375.10,7.26;23,66.73,622.06,37.22,7.22" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">HW-NAS-bench: Hardware-aware neural architecture search benchmark</title>
+		<author>
+			<persName coords=""><forename type="first">Chaojian</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhongzhi</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yonggan</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haoran</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qixuan</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yue</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cong</forename><surname>Hao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yingyan</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 9th International Conference on Learning Representations, ICLR 2021, Virtual Event</title>
+				<meeting>the 9th International Conference on Learning Representations, ICLR 2021, Virtual Event<address><addrLine>Austria</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2021-05-03">2021. May 3-7, 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,66.72,632.02,375.08,7.22;23,66.73,641.94,373.73,7.26;23,66.73,651.91,57.13,7.26" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">EC-SpMM: Efficient compilation of SpMM kernel on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Junqing</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Honghe</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaolong</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingwei</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xianzhi</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guangzhong</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 52nd International Conference on Parallel Processing</title>
+				<meeting>the 52nd International Conference on Parallel Processing</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="21" to="30" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,84.09,373.72,7.22;24,66.35,94.02,373.96,7.26;24,66.55,103.98,155.95,7.26" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Channel pruning via automatic structure search</title>
+		<author>
+			<persName coords=""><forename type="first">Mingbao</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rongrong</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuxin</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Baochang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongjian</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yonghong</forename><surname>Tian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th International Joint Conference on Artificial Intelligence, IJCAI 2020. Christian Bessiere</title>
+				<meeting>the 29th International Joint Conference on Artificial Intelligence, IJCAI 2020. Christian Bessiere</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="673" to="679" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,113.98,374.59,7.22;24,66.55,123.90,343.21,7.26" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Comparative analysis of the cuthill-mckee and the reverse cuthillmckee ordering algorithms for sparse matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Wai-Hung</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><forename type="middle">H</forename><surname>Sherman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Numerical Analysis</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="198" to="213" />
+			<date type="published" when="1976">1976. 1976</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,133.91,374.97,7.22;24,66.55,143.83,373.75,7.26;24,66.55,153.79,231.30,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">GPTune: Multitask learning for autotuning exascale applications</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Wissam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Osni</forename><surname>Sid-Lakhdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xinran</forename><surname>Marques</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chang</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">W</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoye</forename><forename type="middle">S</forename><surname>Demmel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="234" to="246" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,163.79,374.61,7.22;24,66.55,173.72,373.73,7.26;24,66.55,183.68,373.72,7.26;24,66.55,193.64,130.21,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Rammer: Enabling holistic deep learning compiler optimizations with rTasks</title>
+		<author>
+			<persName coords=""><forename type="first">Lingxiao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiqiang</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhi</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jilong</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Youshan</forename><surname>Miao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenxiang</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lintao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lidong</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event</title>
+				<meeting>the 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event</meeting>
+		<imprint>
+			<date type="published" when="2020-11-04">2020. November 4-6, 2020</date>
+			<biblScope unit="page" from="881" to="897" />
+		</imprint>
+	</monogr>
+	<note>USENIX Association</note>
+</biblStruct>
+
+<biblStruct coords="24,66.54,203.65,373.74,7.22;24,66.55,213.57,374.55,7.26;24,66.55,223.53,374.62,7.26;24,66.37,233.53,28.36,7.22" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">ShuffleNet V2: Practical guidelines for efficient CNN architecture design</title>
+		<author>
+			<persName coords=""><forename type="first">Ningning</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangyu</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hai-Tao</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jian</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 15th European Conference on Computer Vision -ECCV 2018 -Munich</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<meeting>the 15th European Conference on Computer Vision -ECCV 2018 -Munich<address><addrLine>Germany</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018-09-08">2018. September 8-14. 2018</date>
+			<biblScope unit="volume">11218</biblScope>
+			<biblScope unit="page" from="122" to="138" />
+		</imprint>
+	</monogr>
+	<note>Proceedings, Part XIV</note>
+</biblStruct>
+
+<biblStruct coords="24,66.54,243.46,374.54,7.26;24,66.55,253.42,374.61,7.26;24,66.55,263.42,28.36,7.22" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Merge-based parallel sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Duane</forename><surname>Merrill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;16: Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="678" to="689" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.55,273.39,373.73,7.22;24,66.31,283.35,21.34,7.22" xml:id="b44">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Müllner</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1109.2378</idno>
+		<title level="m">Modern hierarchical, agglomerative clustering algorithms</title>
+				<imprint>
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="24,66.55,293.26,373.75,7.26;24,66.55,303.22,356.81,7.26" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Proxy benchmarks for emerging big-data workloads</title>
+		<author>
+			<persName coords=""><forename type="first">Reena</forename><surname>Panda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lizy</forename><surname>Kurian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 26th International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+				<meeting>the 2017 26th International Conference on Parallel Architectures and Compilation Techniques (PACT)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="105" to="116" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.55,313.23,373.74,7.22;24,66.55,323.19,373.75,7.22;24,66.55,333.15,375.08,7.22;24,66.31,343.07,373.98,7.26;24,66.55,353.04,374.60,7.26;24,66.55,363.00,374.60,7.26;24,66.55,373.00,123.53,7.22" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Py-Torch: An imperative style, high-performance deep learning library</title>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Paszke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sam</forename><surname>Gross</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Francisco</forename><surname>Massa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Lerer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Bradbury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gregory</forename><surname>Chanan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Killeen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zeming</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Natalia</forename><surname>Gimelshein</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luca</forename><surname>Antiga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alban</forename><surname>Desmaison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andreas</forename><surname>Köpf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><forename type="middle">Z</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zachary</forename><surname>Devito</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Raison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alykhan</forename><surname>Tejani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sasank</forename><surname>Chilamkurthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benoit</forename><surname>Steiner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lu</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junjie</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Soumith</forename><surname>Chintala</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems 32: Annual Conference on Neural Information Processing Systems</title>
+				<editor>
+			<persName><forename type="first">Emily</forename><forename type="middle">B</forename><surname>Buc</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Roman</forename><surname>Fox</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Garnett</surname></persName>
+		</editor>
+		<meeting><address><addrLine>NeurIPS; Vancouver, BC, Canada, Hanna M. Wallach, Hugo Larochelle, Alina Beygelzimer, Florence</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2019-12-08">2019. 2019. 2019. December 8-14, 2019</date>
+			<biblScope unit="page" from="8024" to="8035" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.55,382.97,374.96,7.22;24,66.55,392.93,373.73,7.22;24,66.55,402.85,209.81,7.26" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">A benchmark set of highly-efficient CUDA and OpenCL kernels and its dynamic autotuning with kernel tuning toolkit</title>
+		<author>
+			<persName coords=""><forename type="first">Filip</forename><surname>Petrovič</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Střelák</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jana</forename><surname>Hozzová</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jaroslav</forename><surname>Ol'ha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Trembeckỳ</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siegfried</forename><surname>Benkner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiří</forename><surname>Filipovič</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Future Generation Computer Systems</title>
+		<imprint>
+			<biblScope unit="volume">108</biblScope>
+			<biblScope unit="page" from="161" to="177" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.55,412.85,373.72,7.22;24,66.55,422.78,374.63,7.26;24,66.55,432.78,35.78,7.22" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Fast, accurate processor evaluation through heterogeneous, sample-based benchmarking</title>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Prieto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Abad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jose</forename><forename type="middle">Angel</forename><surname>Gregorio</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Valentin</forename><surname>Puente</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="2983" to="2995" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,442.74,373.76,7.22;24,66.26,452.66,374.03,7.26;24,66.55,462.63,119.04,7.26" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Efficient auto-tuning of parallel programs with interdependent tuning parameters via auto-tuning framework (ATF)</title>
+		<author>
+			<persName coords=""><forename type="first">Ari</forename><surname>Rasch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Schulze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michel</forename><surname>Steuwer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sergei</forename><surname>Gorlatch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page" from="1" to="26" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,472.63,373.73,7.22;24,66.55,482.55,373.72,7.26;24,66.55,492.51,373.75,7.26;24,66.55,502.52,187.74,7.22" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Movement pruning: Adaptive sparsity by fine-tuning</title>
+		<author>
+			<persName coords=""><forename type="first">Victor</forename><surname>Sanh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><forename type="middle">M</forename><surname>Rush</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems</title>
+				<editor>
+			<persName><forename type="first">Hugo</forename><surname>Larochelle</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Marc</forename><forename type="middle">'</forename></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Aurelio</forename><surname>Ranzato</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Raia</forename><surname>Hadsell</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Maria-Florina</forename><surname>Balcan</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Hsuan-Tien</forename><surname>Lin</surname></persName>
+		</editor>
+		<meeting>the Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems</meeting>
+		<imprint>
+			<date type="published" when="2020-12-06">2020. 2020. 2020. December 6-12, 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,512.48,374.99,7.22;24,66.55,522.40,315.96,7.26" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">High-quality hypergraph partitioning</title>
+		<author>
+			<persName coords=""><forename type="first">Sebastian</forename><surname>Schlag</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Heuer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lars</forename><surname>Gottesbüren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yaroslav</forename><surname>Akhremtsev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Schulz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Sanders</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Journal of Experimental Algorithmics</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="page" from="1" to="39" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,532.40,375.07,7.22;24,66.55,542.32,374.61,7.26;24,66.54,552.32,28.36,7.22" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">MINIME-validator: Validating hardware with synthetic parallel testcases</title>
+		<author>
+			<persName coords=""><forename type="first">Alper</forename><surname>Sen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Etem</forename><surname>Deniz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Kahne</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Design, Automation and Test in Europe Conference and Exhibition (DATE)</title>
+				<meeting>the Design, Automation and Test in Europe Conference and Exhibition (DATE)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017. 2017</date>
+			<biblScope unit="page" from="386" to="391" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.55,562.28,373.77,7.22;24,66.54,572.21,373.74,7.26;24,66.54,582.17,113.60,7.26" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">DBmbench: Fast and accurate database workload representation on modern microarchitecture</title>
+		<author>
+			<persName coords=""><forename type="first">Minglong</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anastassia</forename><surname>Ailamaki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Babak</forename><surname>Falsafi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2005 Conference of the Centre for Advanced Studies on Collaborative Research</title>
+				<meeting>the 2005 Conference of the Centre for Advanced Studies on Collaborative Research</meeting>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="254" to="267" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.55,592.17,373.76,7.22;24,66.54,602.10,201.69,7.26" xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Automatically characterizing large scale program behavior</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><surname>Sherwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Erez</forename><surname>Perelman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Greg</forename><surname>Hamerly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brad</forename><surname>Calder</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGPLAN Notices</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="page" from="45" to="57" />
+			<date type="published" when="2002">2002. 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,612.10,373.74,7.22;24,66.54,622.02,306.50,7.26" xml:id="b55">
+	<analytic>
+		<title level="a" type="main">The sparse polyhedral framework: Composing compiler-generated inspector-executor code</title>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><surname>Mills Strout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Catherine</forename><surname>Olschanowsky</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the IEEE</title>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<biblScope unit="page" from="1921" to="1934" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,66.54,632.02,373.74,7.22;24,66.54,641.95,329.14,7.26" xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Benchmark synthesis for architecture and compiler exploration</title>
+		<author>
+			<persName coords=""><forename type="first">Luk</forename><surname>Van Ertvelde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lieven</forename><surname>Eeckhout</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE International Symposium on Workload Characterization (IISWC&apos;10)</title>
+				<meeting>the IEEE International Symposium on Workload Characterization (IISWC&apos;10)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,45.95,55.82,310.51,8.97;25,419.75,55.82,20.72,8.97" xml:id="b57">
+	<monogr>
+		<author>
+			<persName coords=""><surname>Lo-Spmm</surname></persName>
+		</author>
+		<title level="m">Low-cost Search for High-performance SpMM Kernels on GPUs</title>
+				<imprint>
+			<biblScope unit="volume">73</biblScope>
+			<biblScope unit="page">25</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,84.05,373.76,7.26;25,66.73,94.02,88.41,7.26" xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Kernel tuner: A search-optimizing GPU code auto-tuner</title>
+		<author>
+			<persName coords=""><surname>Ben Van Werkhoven</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Future Generation Computer Systems</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page" from="347" to="358" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,104.02,373.73,7.22;25,66.73,113.94,374.96,7.26;25,66.73,123.94,20.95,7.22" xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Recent advances on neural network pruning at initialization</title>
+		<author>
+			<persName coords=""><forename type="first">Huan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Can</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yue</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yulun</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yun</forename><surname>Fu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Joint Conference on Artificial Intelligence</title>
+				<meeting>the International Joint Conference on Artificial Intelligence<address><addrLine>Vienna, Austria</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="23" to="29" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,133.87,374.53,7.26;25,66.73,143.83,374.64,7.26;25,66.73,153.79,243.56,7.26" xml:id="b60">
+	<analytic>
+		<title level="a" type="main">SparseRT: Accelerating unstructured sparsity on GPUs for deep learning inference</title>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the PACT&apos;20: International Conference on Parallel Architectures and Compilation Techniques, Virtual Event</title>
+				<editor>
+			<persName><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Hyesoon</forename><surname>Kim</surname></persName>
+		</editor>
+		<meeting>the PACT&apos;20: International Conference on Parallel Architectures and Compilation Techniques, Virtual Event<address><addrLine>GA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2020-10-03">2020. October 3-7, 2020</date>
+			<biblScope unit="page" from="31" to="42" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,163.79,373.74,7.22;25,66.73,173.72,339.21,7.26" xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Register tiling for unstructured sparsity in neural network inference</title>
+		<author>
+			<persName coords=""><forename type="first">Lucas</forename><surname>Wilkinson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kazem</forename><surname>Cheshmi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maryam</forename><forename type="middle">Mehri</forename><surname>Dehnavi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the ACM on Programming Languages</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="1995" to="2020" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note>PLDI</note>
+</biblStruct>
+
+<biblStruct coords="25,66.72,183.72,373.74,7.22;25,66.73,193.64,374.51,7.26;25,66.73,203.61,216.64,7.26" xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Bayesian optimization for auto-tuning GPU kernels</title>
+		<author>
+			<persName coords=""><forename type="first">Floris-Jan</forename><surname>Willemsen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rob</forename><surname>Van Nieuwpoort</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ben</forename><surname>Van Werkhoven</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS)</title>
+				<meeting>the 2021 International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="106" to="117" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,213.61,374.95,7.22;25,66.73,223.53,373.73,7.26;25,66.73,233.49,374.58,7.26;25,66.73,243.46,50.87,7.26" xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Fast sparse deep neural network inference with flexible SpMM optimization space exploration</title>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xianqi</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Long</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qinggang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pengcheng</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Linchen</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaofei</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hai</forename><surname>Jin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 IEEE High Performance Extreme Computing Conference, HPEC 2021</title>
+				<meeting>the 2021 IEEE High Performance Extreme Computing Conference, HPEC 2021<address><addrLine>Waltham, MA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021-09-20">2021. September 20-24, 2021</date>
+			<biblScope unit="page" from="1" to="7" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,253.46,373.73,7.22;25,66.73,263.38,258.75,7.26" xml:id="b64">
+	<analytic>
+		<title level="a" type="main">Design principles for sparse matrix multiplication on the gpu</title>
+		<author>
+			<persName coords=""><forename type="first">Carl</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aydın</forename><surname>Buluç</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the European Conference on Parallel Processing</title>
+				<meeting>the European Conference on Parallel Processing</meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="672" to="687" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,273.38,373.76,7.22;25,66.73,283.31,373.75,7.26;25,66.73,293.26,218.86,7.26" xml:id="b65">
+	<analytic>
+		<title level="a" type="main">SparseTIR: Composable abstractions for sparse compilation in deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Zihao</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruihang</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junru</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="660" to="678" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,303.26,373.74,7.22;25,66.72,313.19,295.31,7.26" xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Cache-oblivious sparse matrix-vector multiplication by using sparse matrix partitioning methods</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">N</forename><surname>Yzelman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rob</forename><forename type="middle">H</forename><surname>Bisseling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page" from="3128" to="3154" />
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.72,323.19,375.08,7.22;25,66.72,333.11,373.75,7.26;25,66.72,343.07,101.43,7.26" xml:id="b67">
+	<analytic>
+		<title level="a" type="main">Polyhedral specification and code generation of sparse tensor contraction with co-iteration</title>
+		<author>
+			<persName coords=""><forename type="first">Tuowen</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobi</forename><surname>Popoola</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Catherine</forename><surname>Olschanowsky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><surname>Strout</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="1" to="26" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,66.73,353.08,373.77,7.22;25,66.72,363.04,373.72,7.22;25,66.72,372.96,374.59,7.26;25,66.72,382.92,246.25,7.26" xml:id="b68">
+	<analytic>
+		<title level="a" type="main">Ansor: Generating high-performance tensor programs for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengfan</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Minmin</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhao</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cody</forename><forename type="middle">Hao</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ameer</forename><surname>Haj-Ali</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yida</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Danyang</forename><surname>Zhuo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koushik</forename><surname>Sen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><forename type="middle">E</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ion</forename><surname>Stoica</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event</title>
+				<meeting>the 14th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2020, Virtual Event</meeting>
+		<imprint>
+			<date type="published" when="2020-11-04">2020. November 4-6, 2020</date>
+			<biblScope unit="page" from="863" to="879" />
+		</imprint>
+	</monogr>
+	<note>USENIX Association</note>
+</biblStruct>
+
+<biblStruct coords="25,66.73,392.93,373.75,7.22;25,66.72,402.85,373.74,7.26;25,66.72,412.81,374.63,7.26;25,66.72,422.78,116.74,7.26" xml:id="b69">
+	<analytic>
+		<title level="a" type="main">SparTA: Deep-learning model sparsity via tensor-with-sparsity-attribute</title>
+		<author>
+			<persName coords=""><forename type="first">Ningxin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bin</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Quanlu</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lingxiao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuqing</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mao</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lidong</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2022</title>
+				<meeting>the 16th USENIX Symposium on Operating Systems Design and Implementation, OSDI 2022<address><addrLine>Carlsbad, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022-07-11">2022. July 11-13, 2022</date>
+			<biblScope unit="page" from="213" to="232" />
+		</imprint>
+	</monogr>
+	<note>USENIX Association</note>
+</biblStruct>
+
+<biblStruct coords="25,66.72,432.78,373.74,7.22;25,66.72,442.74,373.73,7.22;25,66.72,452.66,373.74,7.26;25,66.72,462.63,306.45,7.26" xml:id="b70">
+	<analytic>
+		<title level="a" type="main">ROLLER: Fast and efficient tensor compilation for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Hongyu</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruofan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yijia</forename><surname>Diao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shanbin</forename><surname>Ke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haoyu</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jilong</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lingxiao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuqing</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mao</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lidong</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Asaf</forename><surname>Cidon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gennady</forename><surname>Pekhimenko</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<meeting>the 16th USENIX Symposium on Operating Systems Design and Implementation<address><addrLine>Carlsbad, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022-07-11">2022. July 11-13, 2022</date>
+			<biblScope unit="volume">2022</biblScope>
+			<biblScope unit="page" from="233" to="248" />
+		</imprint>
+	</monogr>
+	<note>USENIX Association</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

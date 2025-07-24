@@ -1,0 +1,1298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">An Intelligent Scheduling Approach on Mobile OS for Optimizing UI Smoothness and Power</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2025-03-20">2025-03-20</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.63,123.75,61.96,9.82"><forename type="first">Xinglei</forename><surname>Dou</surname></persName>
+							<idno type="ORCID">0009-0008-8828-1404</idno>
+							<affiliation key="aff0">
+								<orgName type="laboratory">LEI LIU</orgName>
+								<orgName type="institution">Beihang University</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">Beihang University</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff2">
+								<orgName type="department">LIMIN XIAO</orgName>
+								<orgName type="institution">Beihang University</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff3">
+								<orgName type="institution" key="instit1">Limin Xiao</orgName>
+								<orgName type="institution" key="instit2">Beihang University</orgName>
+								<address>
+									<addrLine>No. 37 Xueyuan Road Zhongguancun</addrLine>
+								</address>
+							</affiliation>
+							<affiliation key="aff4">
+								<orgName type="institution">Haidian District</orgName>
+								<address>
+									<postCode>100191</postCode>
+									<settlement>Beijing</settlement>
+									<country>China, China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Lei</forename><surname>Liu</surname></persName>
+							<idno type="ORCID">0000-0003-4854-7382</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Limin</forename><surname>Xiao</surname></persName>
+							<idno type="ORCID">0000-0001-9438-9181</idno>
+						</author>
+						<title level="a" type="main">An Intelligent Scheduling Approach on Mobile OS for Optimizing UI Smoothness and Power</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">22</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<biblScope unit="page" from="1" to="27"/>
+							<date type="published" when="2025-03-20" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">9FA8B42E97B640C0CDC7EB2E49FB1B03</idno>
+					<idno type="DOI">10.1145/3674910</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>CCS Concepts:</term>
+					<term>Software and its engineering → Operating systems</term>
+					<term>• Human-centered computing → Mobile computing</term>
+					<term>• Computing methodologies → Reinforcement learning</term>
+					<term>Reinforcement learning, frequency scheduling/scaling, mobile OS, UI smoothness, power</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Mobile devices need to respond quickly to diverse user inputs. The existing approaches often heuristically raise the CPU/GPU frequency according to the empirical rules when facing burst inputs and various changes. Although doing so can be effective sometimes, the existing approaches still need improvements. For instance, raising processors' frequency can lead to high power consumption when the frequency is over-provisioned or fail to meet user demands when the frequency is under-provisioned. To this end, we propose MobiRL, a reinforcement learning-based scheduler for intelligently adjusting the CPU/GPU frequency to satisfy user demands accurately on mobile systems. MobiRL monitors the mobile system status and autonomously learns to optimize UI smoothness and power consumption by conducting CPU/GPU frequency-adjusting actions. The experimental results on the latest delivered smartphones show that MobiRL outperforms the widely used commercial scheduler on real devices-reducing the frame drop rate by 4.1% and reducing power consumption by 42.8%, respectively. Moreover, compared with a study using Q-Learning for CPU frequency scheduling, MobiRL achieves up to a 2.5% lower frame drop rate and reduces power consumption by 32.6%, respectively. Our approach has been deployed in mobile phone products.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="25" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="26" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="27" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Mobile devices (e.g., smartphones) that use the Android Operating System (OS) had a global market share close to 70% in 2022 <ref type="bibr" coords="1,189.29,490.60,10.44,9.03" target="#b0">[1]</ref>. The Android OS kernel is derived from the Linux kernel 12:2 X. Dou et al.</p><p>with designs for human-machine interaction. Smartphone users are sensitive to the slow responsiveness of the user interface (UI) and the high power consumption. Therefore, the smoothness of the UI and power consumption are two critical optimization goals on mobile platforms.</p><p>Computing resources on mobile systems-CPU/GPU frequency and enabled CPU coresdirectly affect UI smoothness and power consumption. The existing mobile systems, e.g., the ARM big.LITTLE heterogeneous computing architecture, provide both power-saving little cores and high-performance, power-hungry big cores. System designers can have new mechanisms that effectively leverage this specific computing architecture to have better performance on the UI and power. For computing resource scheduling, the CPU performance scaling (CPUFreq) <ref type="bibr" coords="2,45.77,190.37,11.72,9.03" target="#b1">[2]</ref> and device frequency scaling (devfreq) <ref type="bibr" coords="2,240.01,190.37,11.72,9.03" target="#b2">[3]</ref> subsystems in the Linux kernel also provide frequency governors for dynamically adjusting CPU and GPU frequency. The Android Open Source Project (AOSP) provides the powerHint interface [4] that allows original equipment manufacturers (OEMs) to implement customized frequency scheduling/scaling (the two terms are used interchangeably for different cases) policies. OEMs also provide SDK interfaces that allow applications to tell the system to raise the frequency in response to burst inputs or changing loads. These mechanisms are deployed on mobile devices such as Samsung GameDev <ref type="bibr" coords="2,370.64,262.11,10.43,9.03" target="#b3">[5]</ref>, OPPO Hyper Boost <ref type="bibr" coords="2,71.69,274.06,10.44,9.03" target="#b4">[6]</ref>, and Huawei PerfGenius <ref type="bibr" coords="2,189.37,274.06,10.43,9.03" target="#b5">[7]</ref>. Prior frequency scheduling mechanisms <ref type="bibr" coords="2,373.60,274.06,10.37,9.03" target="#b4">[6,</ref><ref type="bibr" coords="2,386.89,274.06,12.82,9.03" target="#b22">25]</ref> often use heuristic algorithms and empirical experiences. They schedule frequency according to predefined policies. Facing diverse changing loads generated by today's mobile users, existing approaches might not detect frequency over-provision (wasting power) or under-provision (cannot meet users' demands) due to their limited access to OS runtime features. We show a typical instance. The schedutil governor in the CPUFreq subsystem only relies on the CPU utilization estimated by per-entity load tracking <ref type="bibr" coords="2,145.28,345.79,11.72,9.03" target="#b1">[2]</ref> for frequency scheduling. It cannot access other OS runtime features, such as cache misses, instructions per clock (IPC), and so forth. Thus, it lacks sufficient information to identify performance issues. As a result, mobile users often encounter application UIs becoming stuck (high frame loss rate) and high power consumption.</p><p>We summarize several challenges that need to be conquered in existing frequency scheduling mechanisms: <ref type="bibr" coords="2,100.50,405.57,10.57,9.03" target="#b0">(1)</ref> to identify the performance issues and make accurate frequency scaling decisions accordingly to avoid frequency over-provision and under-provision, <ref type="bibr" coords="2,335.59,417.52,10.57,9.03" target="#b1">(2)</ref> to handle some cases where the load is high and dynamically changing, and (3) to simultaneously schedule CPU and GPU frequency to avoid sub-optimal performance. To this end, this article proposes MobiRL, a reinforcement learning (RL)-based scheduling mechanism for intelligent scheduling/adjusting CPU/GPU frequency on mobile systems. MobiRL formulates the frequency scheduling as a classification problem and employs a customized Deep Deterministic Policy Gradient (DDPG) RL model to solve it. Using RL, MobiRL learns to adjust CPU/GPU frequency dynamically to achieve high UI smoothness (low frame loss rate) and low power consumption. When MobiRL performs scheduling, it captures the system status and uses the ML model to predict an action for adjusting CPU/GPU frequency. After conducting the action, MobiRL receives a reward from the mobile system and learns from it. MobiRL can provide precise and timely CPU/GPU frequency scheduling actions compared with prior work <ref type="bibr" coords="2,231.52,549.03,10.37,9.03" target="#b4">[6,</ref><ref type="bibr" coords="2,243.97,549.03,11.26,9.03" target="#b22">25]</ref>. Machine learning (ML) has already shown tremendous potential and advantages in many studies on OS and architecture <ref type="bibr" coords="2,380.23,560.98,8.18,9.03" target="#b6">[8]</ref><ref type="bibr" coords="2,388.41,560.98,4.09,9.03" target="#b7">[9]</ref><ref type="bibr" coords="2,388.41,560.98,4.09,9.03" target="#b8">[10]</ref><ref type="bibr" coords="2,392.50,560.98,12.27,9.03" target="#b9">[11]</ref>. In this article, we leverage ML technologies to improve the scheduling performance of mobile systems. Using ML/AI technologies for mobile systems is a new topic, and there are not many published studies in this field. We are among the pioneers using ML/AI to improve (mobile) systems. We make the following contributions:</p><p>(1) We show that the existing heuristic-based CPU/GPU frequency scheduling mechanism used in off-the-shelf mobile devices cannot effectively handle high-load cases where the screen is not being touched. Moreover, this mechanism raises processors' frequency according to predefined policies, rather than adjusting frequency on demand. Thus, it cannot promptly satisfy users' diverse loads and often leads to frequency under-provision (UI stuck) or over-provision (energy wasting). <ref type="bibr" coords="3,55.80,283.84,10.57,9.03" target="#b1">(2)</ref> We propose MobiRL, an intelligent frequency scheduling mechanism for mobile systems. Mo-biRL leverages a reinforcement learning model-DDPG customized for the mobile systemsand learns to dynamically schedule CPU/GPU frequencies according to system loads and user demands, optimizing the UI smoothness and power consumption at the same time. (3) To use ML on mobile optimizations, we formulate mobile frequency scheduling as a classification problem and further design a discrete frequency scheduling action space. This approach simplifies the decision-making process by reducing the complexity of the action space and speeding up the convergence of the ML model. Our approach reduces the deployment overheads on resource-constrained mobile systems. (4) We implement MobiRL on the latest real smartphone delivered by a well-known mobile corporation. The experimental results show that MobiRL outperforms the state-of-the-art industrial frequency scheduler, reducing the frame drop rate by 4.1% and reducing power consumption by 42.8%, respectively. Our approach has been adopted by industrial.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">UI Rendering</head><p>Among all applications running on mobile systems, the currently active applications on the screen are TOP-APPs. UI rendering is the process of displaying frames generated from the TOP-APP on the screen. Mobile systems typically render frames at a stable rate (Frames per Second (FPS)). For example, when the FPS is 60, each frame should be rendered within 16.7 ms (i.e., 1,000 ms/60). Frames that take longer than 16.7 ms to render are janky frames. They cause frame drops and hinder UI smoothness. Consecutive frame drops seriously hurt the mobile user experience. As illustrated in Figure <ref type="figure" coords="3,222.83,550.56,3.41,9.03">1</ref>, the UI rendering pipeline has several steps that require the collaboration of the CPU and GPU <ref type="bibr" coords="3,245.08,562.52,14.84,9.03" target="#b20">[22]</ref>. Low CPU or GPU frequency can prolong the frame rendering time, leading to janky frames. When rendering a frame, CPU processing and GPU processing consume approximately 87% and 13% of the time, respectively. Therefore, CPU processing is the performance-critical stage.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">ARM big.LITTLE Heterogeneous Architecture</head><p>The ARM big.LITTLE heterogeneous architecture is widely employed in recent smartphone processors <ref type="bibr" coords="3,92.11,644.52,14.84,9.03" target="#b28">[31]</ref>. It offers the possibility to optimize the UI smoothness and power consumption 12:4 X. Dou et al.  simultaneously. For example, Table <ref type="table" coords="4,191.14,440.00,4.63,9.03" target="#tab_0">1</ref> shows the device specification used in this study. The Snapdragon 888 processor has eight cores that can be grouped into three clusters with different clock speeds and L2 cache capacities <ref type="bibr" coords="4,170.55,463.91,14.85,9.03" target="#b10">[12]</ref>. Specifically, CPU cluster 0 includes four little cores (4×Cortex-A55, cores 0 to 3); CPU cluster 1 includes three middle cores (3×Cortex-A78, cores 4 to 6); CPU cluster 2 includes one big core (1×Cortex-X1, core 7). For all cores in each cluster, their frequency and lower and upper frequency limits can be one of several predefined discrete values. For instance, Snapdragon 888's CPU cluster 0 has 16 discrete frequency levels, ranging from 300 MHz to 1,804.8 MHz. Figure <ref type="figure" coords="4,99.68,523.69,4.63,9.03" target="#fig_1">2</ref> shows how single-core power consumption varies with the increase of processor frequency in each CPU cluster. We have two key observations: <ref type="bibr" coords="4,303.26,535.64,10.57,9.03" target="#b0">(1)</ref> The cores in CPU cluster 0 are power-saving ones. They can achieve a similar frequency with much lower power consumption than cores in CPU clusters 1 and 2. (2) For some CPU clusters (e.g., cluster 1 or 2 in Figure <ref type="figure" coords="4,431.59,559.56,3.27,9.03" target="#fig_1">2</ref>), the increase of power consumption can be sharp with the frequency increases. Thus, in terms of scheduling, the power-saving CPU clusters and frequency levels should be better utilized to reduce power consumption.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Tunable Knobs on Mobile Systems</head><p>Android OS has multiple mechanisms for developers to control performance and power consumption, e.g., sched_boost, core_ctl, CPUFreq, and devfreq. These mechanisms are important to MobiRL 12:5 system developers. Critical applications can temporarily receive a higher CPU scheduling priority by configuring the boost policy in the sched_boost mechanism <ref type="bibr" coords="5,301.85,94.73,14.84,9.03">[23]</ref>. The core_ctl mechanism <ref type="bibr" coords="5,424.10,94.73,16.36,9.03" target="#b21">[24]</ref> can be used to adjust the maximum and minimum number of cores for each CPU cluster. However, we observe that both sched_boost and core_ctl have risks of causing system performance fluctuations. For example, improper configurations of sched_boost may lead to high context switching overheads; disabling CPU cores using the core_ctl mechanism may result in frame drops and slow responsiveness due to insufficient computing resources. Therefore, they should be used carefully.</p><p>In our work, we use the CPUFreq <ref type="bibr" coords="5,185.57,166.46,11.72,9.03" target="#b1">[2]</ref> and devfreq <ref type="bibr" coords="5,250.86,166.46,11.73,9.03" target="#b2">[3]</ref> subsystems in the OS kernel to adjust CPU frequency and GPU frequency. CPUFreq and devfreq subsystems provide editable configuration files that manage each CPU cluster and GPU, including the governor being used, upper frequency limit, lower frequency limit, and so forth. For the CPUFreq subsystem, the governor is used to dynamically adjust the CPU cluster's frequency according to CPU resources required by individual tasks or task groups. For example, when the frequency update is triggered, Android's default governor schedutil adjusts the CPU frequency dynamically to control the estimated CPU utilization close to 80%. If the estimated CPU utilization is above 80%, it dynamically scales up the CPU frequency if possible; otherwise, if utilization is below 80%, it scales down the CPU frequency. The value of the upper frequency limit is the maximum frequency that a CPU cluster can achieve; the value of the lower frequency limit is the minimum achievable frequency. For the devfreq subsystem, the governor and frequency limits work in the same way for GPU. Raising the frequency limits can improve UI smoothness but may incur high power consumption. Conversely, lowering them saves power but may incur frame drops and hinder UI smoothness. By adjusting the frequency limits and observing the feedback from the mobile system, MobiRL learns to optimize UI smoothness and power consumption simultaneously on the fly.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Motivation</head><p>Smartphone users may tap or swipe the screen at any time, leading to bursty inputs, and thus, system loads fluctuate. To meet user demands promptly, the existing frequency scheduling approach that is widely used in mobile devices raises the lower frequency limits of the CPU to predefined values when the screen is being touched to handle high system loads <ref type="bibr" coords="5,315.61,417.52,10.44,9.03" target="#b4">[6]</ref>. It also raises the frequency limits when applications are launched to reduce launch time. Through this approach, the actual running frequency of the processors will not fall below these lower limits. We use this approach as the baseline in this study. However, it does not work well in some cases. An example is shown in Figure <ref type="figure" coords="5,190.25,465.34,3.41,9.03">3</ref>. In this example, we use TikTok <ref type="bibr" coords="5,335.09,465.34,16.35,9.03" target="#b31">[35]</ref> as the TOP-APP and Android debug bridge (adb) <ref type="bibr" coords="5,173.48,477.30,16.36,9.03" target="#b32">[36]</ref> to simulate users' swipe actions. In Figure <ref type="figure" coords="5,370.81,477.30,3.41,9.03">3</ref>, (a) through (d) share the same x-axis. Figures <ref type="figure" coords="5,169.50,489.25,11.26,9.03">3(a</ref>) through 3(c) show the frequency changes for each CPU cluster. In Figure <ref type="figure" coords="5,85.79,501.21,3.44,9.03">3</ref>(a), the dot curve line represents the frequency at CPU cluster 0 runs. The black solid curve represents CPU cluster 0's upper frequency limit-the maximum frequency that CPU cluster 0 can achieve. The gray solid curve represents CPU cluster 0's lower frequency limit. CPU cluster 0 has 16 predefined discrete frequency values (y-axis) indicated by the horizontal dashed lines in Figure <ref type="figure" coords="5,86.30,549.03,3.44,9.03">3</ref>(a), ranging from 300 MHz to 1,804.8 MHz. The lower and upper frequency limits of CPU cluster 0 can be one of these predefined values. When the TOP-APP is launched, the existing approach sets the lower frequency limit of CPU cluster 0 to a predefined value of 691.2 MHz and sets the upper frequency limit to 1,804.8 MHz. When the screen is swiped at frame 12, 44, 69, and 92 (highlighted in Figures <ref type="figure" coords="5,140.97,596.84,24.97,9.03">3(a)-(c</ref>)), the existing approach increases CPU cluster 0's lower frequency limit to 902.4 MHz (highlighted in the left part in Figure <ref type="figure" coords="5,281.16,608.81,13.45,9.03">3(a)</ref>). The frequency boost will be over when the swipe action ends. Figures <ref type="figure" coords="5,192.09,620.76,11.70,9.03">3(b</ref>) and 3(c) show the frequency changes of CPU cluster 1 and 2 during this period, respectively. The lower frequency limits of CPU cluster 1 and 2 are also raised to predefined values when the screen is touched. We record the rendering time for each frame, as 12:6 X. Dou et al. Fig. <ref type="figure" coords="6,60.82,369.15,3.07,8.07">3</ref>. An example showing the existing approach heuristically boosting the frequency when the user swipes the screen. The hardware is with the latest smartphone delivered by a well-known mobile company (Table <ref type="table" coords="6,431.46,380.10,2.94,8.07" target="#tab_0">1</ref>).</p><p>shown in Figure <ref type="figure" coords="6,113.62,402.94,14.11,9.03">3(d)</ref>. Frames with a rendering time higher than the allowed frame rendering time (15.7 ms) are considered janky frames (highlighted in red). Through this example, we can find two shortcomings in the existing frequency scheduling approach:</p><p>(1) Cannot handle some high-load cases that are not directly triggered by users' actions. The existing approach is merely designed to tackle the cases where users launch an application or touch the screen. When the system's high loads are not directly caused by launching a new application or touching the screen, the existing approach may fail to handle themit cannot promptly boost the processors' frequency to satisfy the loads. For example, the current approach fails to address the loads from frame 18 to frame 44 caused by video playing in Figure <ref type="figure" coords="6,110.65,512.99,3.41,9.03">3</ref>. At frame 18, TikTok switches to the following video. The video triggers data downloads, video decoding, and memory accesses (not brought by the user's direct actions, e.g., touching, etc.), bringing high loads for the mobile system. The existing approach fails to boost the processor's frequency to handle these loads in these cases, leading to consecutive frame drops as shown in Figure <ref type="figure" coords="6,201.00,560.82,14.11,9.03">3(d)</ref>.</p><p>(2) Computing frequency under/over-provision for dynamically changing loads. The existing approach often does not adjust the processors' frequency according to system loads' requirements. Instead, it boosts the processors' frequency by raising the lower frequency limit according to predefined rules. For instance, in Figures <ref type="figure" coords="6,318.14,608.63,11.26,9.03">3(a</ref>) through 3(c), the existing approach raises the lower frequency limits (gray solid curve) of each CPU cluster to 902.4 MHz, 960 MHz, and 1,075.2 MHz (predefined values), respectively, when the screen is being touched/swiped. In frame 93, the system has a high load caused by the swipe action. However, though the lower frequency limits are raised to predefined values in each processor cluster (illustrated in the right of Figures <ref type="figure" coords="7,281.43,239.70,24.97,9.03">3(a)-(c</ref>)), it is still insufficient to satisfy the load, resulting in three consecutive janky frames (right part in Figure <ref type="figure" coords="7,387.43,251.66,13.74,9.03">3(d)</ref>). This is the frequency under-provision. Moreover, by contrast, raising the frequency to predefined values may lead to over-provision (a higher frequency than necessary), leading to increased power consumption.</p><p>To sum up, on mobile systems, user behaviors may change every second, and scheduling computing frequency to satisfy users' demands can be challenging. Searching in the solution space of processors' frequency for every possible combination of frequency limits (e.g., upper/lower frequency limits) can be difficult. An ideal frequency scheduling mechanism should be able to adjust frequency limits according to system loads accurately. We think that leveraging ML is an ideal approach as it can handle complicated cases with low overheads <ref type="bibr" coords="7,338.90,363.55,15.00,9.03" target="#b16">[18,</ref><ref type="bibr" coords="7,357.07,363.55,11.45,9.03" target="#b26">29,</ref><ref type="bibr" coords="7,371.68,363.55,11.25,9.03" target="#b30">34]</ref>. So, we want to have a new ML-based frequency scheduling approach, which adjusts processors' frequency on demand according to system loads by a reinforcement learning-based approach, avoiding janky frames for UI smoothness and saving power.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">MobiRL: System Design 4.1 The Overview of Our Design</head><p>In this work, we propose MobiRL, an intelligent RL-based CPU/GPU frequency scheduling mechanism for mobile systems. MobiRL leverages an RL model to learn how to optimize power and UI smoothness simultaneously by adjusting CPU/GPU frequency. Several challenges need to be addressed for MobiRL to achieve its goal: (1) The state space and action space are complicated, making MobiRL challenging to converge. (2) MobiRL has two optimization goals, i.e., UI smoothness and power consumption, which are difficult to achieve at the same time on mobile systems. Optimizing UI smoothness (needs more power) may negatively affect another goal, and vice versa.</p><p>(3) Since the battery power of mobile devices is limited, the ML models used in this work must be low overhead. To address the above challenges, we design a new ML-based approach, a DDPG model <ref type="bibr" coords="7,74.48,559.93,16.36,9.03" target="#b18">[20]</ref> customized for frequency scheduling on mobile systems. Our design has a reduced action space and a reward function that optimizes power consumption while avoiding frame drops. Our design can work on mobile systems with a low overhead.</p><p>Figure <ref type="figure" coords="7,83.83,595.80,4.63,9.03">4</ref> shows MobiRL in a nutshell. MobiRL aims to schedule CPU/GPU frequency to optimize power and UI smoothness simultaneously. A typical RL framework employs an agent to learn how to conduct an action based on the state acquired from the environment and subsequently improves the agent's decision-making by learning from the reward. MobiRL's RL model takes CPU/GPU frequency scheduling actions according to the mobile system's current status. After the 12:8 X. Dou et al. frequency scheduling action, the reward evaluates the mobile system's power consumption and UI smoothness. MobiRL works as a component in the OS.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Design Details of MobiRL</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1">Environment.</head><p>The RL environment, in this context, refers to the mobile system. In our design, it includes a system monitor and frequency controller. The system monitor monitors and collects the mobile system's status. It can collect essential information from the OS during the last frame rendering each time some frames are rendered. The information includes (1) RL model input features (refer to Section 4.2.3); (2) features used for the MobiRL control flow, e.g., CPU/GPU frequency limits; and (3) features used for performance evaluation, e.g., frame rendering time, allowed frame rendering time, device temperature, voltage, and current. In MobiRL, the default setting is to collect this information each time 10 frames are rendered to reduce the feature collection overhead.</p><p>The frequency controller conducts and validates CPU/GPU frequency scaling actions. It provides interfaces that allow the scheduler to perform frequency scheduling actions. It manages frequency limits by updating editable configuration files in the CPUFreq and devfreq subsystems. MobiRL controls parameters, including CPU cluster 0/1/2 and the GPU's upper frequency and lower frequency limits, as listed in Table <ref type="table" coords="8,212.53,409.33,3.41,9.03" target="#tab_1">2</ref>. The frequency limits can be one of the predefined values in Table <ref type="table" coords="8,96.78,421.29,3.41,9.03" target="#tab_1">2</ref>. During online training, MobiRL may have frequency limit configurations that lead to excessive power consumption or continuous frame drops when it explores in the scheduling space. To ensure reliability, MobiRL identifies these configurations through offline sampling and prunes them (i.e., pruned values in Table <ref type="table" coords="8,212.14,457.15,3.27,9.03" target="#tab_1">2</ref>), preventing scheduling actions that may cause serious performance issues. Additionally, MobiRL can be easily extended to manage other resource dimensions, including the number of cores enabled in each CPU cluster, DDR frequency, and so forth.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2">Agent.</head><p>The agent is the DDPG model <ref type="bibr" coords="8,233.06,512.42,16.36,9.03" target="#b18">[20]</ref> customized for mobile systems. DDPG is a reinforcement learning model that uses an Actor-Critic framework. We employ DDPG for two reasons:</p><p>(1) DDPG is suitable for continuous state space on mobile systems, and (2) DDPG has an Actor-Critic architecture. The Critic provides a stable baseline for the Actor, leading to stable and efficient learning. MobiRL's DDPG model learns to conduct CPU/GPU frequency scheduling actions that can maximize long-term rewards. DDPG has four deep neural networks, i.e., Actor, Critic, Actor target, and Critic target. The Actor network is used to infer a frequency scheduling action given a state S t . The Critic network infers the Q-value given a state S t and an action A t . The Q-value is the expected cumulative reward of conducting the action A t given the state S t . The Actor and Critic target networks have identical structures as the Actor and Critic networks, respectively. Compared to Actor and Critic networks, Actor target and Critic target networks have lower learning rates, which can prevent drastic changes in the action selections during training, enhancing the stability of the model training process. In DDPG, each network (structures for Actor/Critic network) has an input layer, output layer, and two hidden layers. Each hidden layer has 40 neurons. We use this setup because adding more layers does not further improve the performance but incurs higher training overhead. We customize the DDPG model for deployment on a mobile system. In the Actor network and Actor target network, we used softmax as the activation function in the output layer, thereby transforming the frequency scheduling into a classification problem. Doing so simplifies the action space, speeding up the ML model convergence. All other layers use ReLU as the activation function. Actor and Critic networks use Adam optimizer <ref type="bibr" coords="9,321.17,377.00,16.35,9.03" target="#b29">[32]</ref> for gradient updates.</p><p>As shown in Figure <ref type="figure" coords="9,138.09,388.95,3.41,9.03">5</ref>, the control flow of MobiRL's DDPG model has two phases, i.e., learning phase and prediction phase. During the learning phase, we build a DDPG model using TensorFlow on a Linux server. By interacting with the mobile system through adb, we obtain experiences including runtime traces collected by the system monitor, frequency scheduling actions predicted by the model, and corresponding reward values. The neural network parameters are updated based on these experiences. During the prediction phase, we deploy a simplified version of MobiRL on the mobile system for low-overhead frequency scheduling. Experiences obtained during the learning phase can be stored and exported for further model updates. To train MobiRL's DDPG model, the following steps are required:</p><p>(1) Interact with the environment. When DDPG performs scheduling, the state S t is fed into the Actor network. The Actor network outputs π (S t ) = A t , where π represents the policy function of the Actor network. Gaussian noise is added to A t based on a mean μ and a standard deviation σ to encourage the agent to explore the environment more effectively.</p><p>As the Actor network uses softmax as the activation function in the output layer, A t represents the probability distribution of available actions. Algorithm 1 is invoked to obtain the actual frequency scheduling action. In Algorithm 1, the action with the maximum probability in the softmax output is selected. After the action is conducted, the reward R t is calculated based on the UI smoothness and the power consumption according to the reward function (Equation ( <ref type="formula" coords="9,152.18,607.97,3.15,9.03" target="#formula_4">3</ref>)). The state transitions to S t +1 after the action is conducted. The tuple &lt;S t , A t , R t , S t+1 &gt; is stored in the experience pool for experience replay. (2) Sample from the experience pool. Randomly select a batch of tuples from the experience pool for model learning and gradient updates. The default batch_size is 64, as shown in Table <ref type="table" coords="9,431.15,643.84,3.41,9.03" target="#tab_3">4</ref>.</p><p>12:10 X. Dou et al.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ALGORITHM 1:</head><p>Obtain the actual frequency-adjusting action using the Actor network's output Input: The Actor network's output A 1 max_value ← max (A); 2 max_index ← A.indexOf (max_value); 3 Get the target parameter and scaling direction of the action corresponding to max_index from the action space; 4 if the action is an idle action that does not adjust any configuration parameter then (3) Update the Critic network. The Mean Squared Error (MSE) between the predicted Q-value and the target Q-value is used as the loss function for the Critic network. The gradient of this loss function with respect to the parameters of the Critic network (i.e., the set of weights and biases) is computed and used to update the network's parameters. Specifically, the predicted Q-value is calculated as Q(S t , A t ), where Q represents the action-value function of the Critic network. The target Q-value is calculated as</p><formula xml:id="formula_0">y t = R t + γQ (S t+1 , π (S t+1 )). Here, γ (γ ∈ [0, 1]</formula><p>) is a discount factor that defines the weight of immediate rewards and future rewards. A higher value of γ gives more weight to future rewards, and the agent tends to prioritize long-term benefits, while a lower value of γ places more emphasis on immediate rewards. Q represents the action-value function of the Critic target network. π represents the policy function of the Actor target network. (4) Update the Actor network. The goal of the Actor network is to maximize Q(S t , π (S t )), i.e., to maximize the expected cumulative reward of the state-action pair (S t , π (S t )). Therefore, the negative Q-value is used as the loss function for the Actor network. The gradient of this loss function concerning the parameters of the Actor network is computed and used to update the network's parameters. (5) Update the target networks using soft updating. The soft updating blends the parameters of the Actor and Critic networks into the Actor target and Critic target networks, achieving smooth updates for the target networks and avoiding fluctuations in target values. The update processes are as follows:</p><formula xml:id="formula_1">θ Q = τθ Q + (1 − τ )θ Q θ π = τθ π + (1 − τ )θ π .<label>(1)</label></formula><p>MobiRL 12:11 Here, θ represents the parameters in the neural network. θ Q , θ Q , θ π , and θ π correspond to the parameters in the Critic, Critic target, Actor, and Actor target networks, respectively. The hyperparameter τ (τ ∈ [0, 1]) controls the update rate of the target networks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.3">State.</head><p>The state represents the input features of the MobiRL ML model. As shown in Figure <ref type="figure" coords="11,74.66,330.51,3.41,9.03">5</ref>, MobiRL captures the system states of the mobile system, including system load, device temperature, cache miss rate, and so forth. The states are inputs of the ML model. They accurately reflect the current status of mobile systems. The Actor network predicts a frequency scheduling action based on the state. In MobiRL, the state includes 20 operating system-related features and 4 TOP-APP-related features, as shown in Table <ref type="table" coords="11,232.16,378.33,3.41,9.03" target="#tab_2">3</ref>. Operating system-related features include (1) OS performance counters (i.e., CPU load, IPC, and cache miss rate), (2) CPU/GPU/DDR frequency and frequency limits, and (3) device statuses (i.e., device temperature, whether the screen is being touched or not). TOP-APP-related features include the cache miss rate of the process, the CPU load generated by the process, and the ID of the CPU cluster where the main thread and the render thread are running. The features are normalized into [0,1] according to Equation (2):</p><formula xml:id="formula_2">Feature normalized = Max − Feature Max − Min , (<label>2</label></formula><formula xml:id="formula_3">)</formula><p>where Feature is the raw value, and Max and Min are predefined maximum and minimum values of each feature, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.4">Action.</head><p>The action represents the frequency scheduling decisions made by the DDPG model in response to the mobile system status. The Actor network outputs a k-dimensional vector A = {a 1 , a 2 , . . . , a k }, k i=1 a i = 1. As the Actor network uses softmax as the activation function, A represents the probability distribution of available actions over the action space. For the eight configuration parameters in Table <ref type="table" coords="11,249.26,562.38,3.41,9.03" target="#tab_1">2</ref>, we design an action space that contains 17 frequency scheduling actions. For each configuration parameter, there are two actions: one for scaling up and another for scaling down the parameter. Additionally, there is an idle action that does not adjust any configuration parameter. Each time the Actor network outputs A, the action with the highest probability is selected as the chosen action.</p><p>A frequency configuration parameter can take a number of predefined discrete values. For example, the upper/lower frequency limits of CPU cluster 0 can take 16 predefined discrete levels ranging from 300 MHz to 1,804.8 MHz. We set the maximum step size to be three levels for a specific frequency scheduling action. Additionally, there is a constraint that the upper frequency limit must be greater than or equal to the lower frequency limit. Actions that violate the constraint are invalid. To avoid invalid actions, we compute the upper and lower bounds for scaling up or down each resource configuration parameter based on the current frequency limit settings and the parameter's counterpart. The counterpart represents another frequency limit of the same CPU cluster or GPU. For example, the counterpart of CPU cluster 0's upper frequency limit is CPU cluster 0's lower frequency limit. Algorithm 1 shows more details.</p><p>As illustrated in Figure <ref type="figure" coords="12,154.63,178.41,3.41,9.03">5</ref>, MobiRL's ML model can intelligently output frequency scheduling actions that optimize the UI smoothness and power consumption. The actions can be the most appropriate, as the customized DDPG in MobiRL can learn and get the optimal policy. 4.2.5 Reward. The reward function defines the objective of MobiRL. It is designed to minimize power consumption while ensuring UI smoothness. MobiRL schedules each time it receives the system status information the system monitor collects. The reward function is invoked before the scheduling to calculate the reward for the last state-action pair. The reward includes both the current reward and the historical reward. The current and historical rewards are calculated using the same reward function (Equation ( <ref type="formula" coords="12,193.95,281.55,3.15,9.03" target="#formula_4">3</ref>)), but they differ in the data range used for computation. The current reward is calculated using all data from the conduction of the last action up to the present. On the other hand, the historical reward is calculated using all data from the past 3 seconds. The final reward value is the sum of the current and historical rewards, each multiplied by a weight of 0.5. MobiRL has two optimization goals, i.e., UI smoothness and power consumption. To optimize them simultaneously, the reward function is designed as a piecewise function. When there are frame drops, i.e., the frame rendering time t exceeds the allowed frame rendering time t allowed , MobiRL only optimizes the UI smoothness, i.e., r = r UI . MobiRL learns to optimize the power consumption when there are no frame drops, i.e., r = r power . The reward function is shown as follows:</p><formula xml:id="formula_4">r = r UI if t ≥ t allowed r power if t &lt; t allowed r UI = −α log(t/t allowed ) r power = β(1 − p/TDP), (<label>3</label></formula><formula xml:id="formula_5">)</formula><p>where t denotes the maximum frame rendering time of all data used to calculate the reward. t allowed is the allowed frame rendering time, which is typically set as 1 s/FPS −1 ms in the industrial track. This is because frame drops may occur when the frame rendering time is close to 1 s/FPS. α and β are the weight parameters of r UI and r power , respectively.</p><p>The UI smoothness reward r UI penalizes frame drops. When the frame rendering time exceeds the allowed frame rendering time, i.e., t &gt; t allowed , the ratio of t and t allowed is greater than 1, and r UI yields a negative reward value. The power reward r power encourages lower power consumption. It is designed as 1 minus the ratio of measured power consumption and the thermal design power (TDP) of the processor. TDP refers to the power consumption of a processor under the maximum theoretical load. The TDP of Snapdragon 888 is 5 W. The lower the measured power consumption, the higher the r power value. As in Figure <ref type="figure" coords="12,282.61,574.17,3.41,9.03">5</ref>, the rewards are the feedback after actions are conducted. MobiRL can have ideal solutions as the reward function penalizes frame drops and encourages lower power consumption. Moreover, MobiRL can meet user demands with minimum power consumption by using the reward function, avoiding overheating and voltage spikes. Therefore, MobiRL can reduce device heat and increase the processor core's lifetime. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">The Central Control Logic</head><p>The central control logic manages the data and control flow of MobiRL. It has a learning phase and a prediction phase.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.1">Learning</head><p>Phase. Each time a configurable number (default as 10) of frames is rendered, MobiRL obtains the data collected during the last frame (Section 4.2.1). The collected data is added to the list of runtime traces. Upon receiving the data, MobiRL conducts scheduling and extracts the state S t from the collected data and feeds it into the Actor network to obtain the frequency scheduling action A t . After conducting the action, MobiRL obtains S t+1 . The reward R t is calculated before the next scheduling process. The tuple &lt;S t , A t , R t , S t+1 &gt; is stored in the experience pool for experience replay. After a round of scheduling, MobiRL extracts a batch of tuples and updates the networks (Section 4.2.2).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.2">Prediction Phase.</head><p>During the prediction phase, we deploy a simplified version of MobiRL on mobile systems for low-overhead frequency scheduling. We deploy only the Actor network on the mobile system leveraging TensorFlow Lite. When 10 frames are rendered, MobiRL collects the mobile system state using the system monitor. MobiRL feeds the state into the Actor network to predict a frequency scheduling action and conducts it. Therefore, the sampling rate and the frequency of MobiRL's decision-making are six times per second (6/second). In practice, MobiRL's action is prompt enough to handle transient load and user demands. It can quickly schedule CPU/GPU frequency limits to achieve the frequency limit configuration that can maximize the long-term rewards within seconds.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Implementation</head><p>We implement the MobiRL training framework and train the DDPG model on a server running Linux 5.15.0. We also implement MobiRL on the latest real smartphone (Table <ref type="table" coords="13,371.36,369.70,3.80,9.03" target="#tab_0">1</ref>) by integrating it into Android's system_server process so that MobiRL has permission to collect system status and conduct frequency scheduling actions. The well-trained model is deployed on the mobile system using TensorFlow Lite v2.5.0. TensorFlow Lite also supports on-device training <ref type="bibr" coords="13,404.68,405.57,14.83,9.03" target="#b19">[21]</ref>. But we decided to train the model on the server to avoid the high overhead during the model training. Both CPU and GPU can be used for on-device inference of the model. Moreover, we use the default schedutil and msm-adreno-tz governors for CPUFreq <ref type="bibr" coords="13,262.70,441.43,11.71,9.03" target="#b1">[2]</ref> and devfreq <ref type="bibr" coords="13,326.75,441.43,11.72,9.03" target="#b2">[3]</ref> subsystems, respectively. The model training hyperparameters are determined using Hyperopt <ref type="bibr" coords="13,336.43,453.38,14.84,9.03">[33]</ref>, which can infer the parameter configuration that yields the highest performance by sampling in the exploration space. We use the average reward value after convergence as the objective to minimize and then define a value range for each parameter to be tuned, for example, Actor learning rate ∈ [0.001,0.0001], Critic learning rate ∈ [0.01,0.001]. Then we employ the Random Search algorithm in Hyperopt to sample several configurations in the exploration space. The parameter configuration that yields the highest reward after convergence is used. The training parameters are in Table <ref type="table" coords="13,384.16,525.11,3.41,9.03" target="#tab_3">4</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Evaluations</head><p>We compare MobiRL with the most related work in <ref type="bibr" coords="13,255.84,560.98,10.37,9.03" target="#b1">[2,</ref><ref type="bibr" coords="13,268.59,560.98,6.82,9.03" target="#b4">6,</ref><ref type="bibr" coords="13,277.78,560.98,11.37,9.03" target="#b39">44]</ref>: (1) Hyper Boost <ref type="bibr" coords="13,358.89,560.98,10.44,9.03" target="#b4">[6]</ref>. Hyper Boost <ref type="bibr" coords="13,428.74,560.98,11.73,9.03" target="#b4">[6]</ref> is the state-of-the-art industrial frequency scheduler on the newly released mobile device (Table <ref type="table" coords="13,432.21,572.94,3.27,9.03" target="#tab_0">1</ref>). Hyper Boost raises the frequency when users launch an application or swipe the screen. Besides that, Hyper Boost can boost the frequency for dozens of applications by recognizing critical scenarios and notifying the mobile system through Hyper Boost SDK interfaces <ref type="bibr" coords="13,379.29,608.81,10.43,9.03" target="#b4">[6]</ref>. Details are in Section 5.4. (2) Q-Learning approach <ref type="bibr" coords="13,207.38,620.76,14.84,9.03" target="#b39">[44]</ref>. The work in <ref type="bibr" coords="13,282.56,620.76,16.36,9.03" target="#b39">[44]</ref> employs a reinforcement learning algorithm for CPU frequency scheduling. We denote this approach as Q-Learning. It selects the appropriate CPU frequency using Q-Learning based on estimated CPU loads to minimize   <ref type="bibr" coords="14,127.93,283.95,10.44,9.03" target="#b1">[2]</ref>. The CPUFreq <ref type="bibr" coords="14,204.82,283.95,11.73,9.03" target="#b1">[2]</ref> subsystem provides several default frequency scaling governors that adjust the CPU frequency within the frequency limits. They are frequency scaling algorithms that are widely used in mobile systems. We compare MobiRL with four representative governors including performance, powersave, schedutil, and conservative to illustrate MobiRL's effectiveness over existing frequency scheduling mechanisms in mobile systems. The performance governor adjusts the frequency to the upper frequency limits for higher performance. The powersave governor adjusts the frequency to the lower frequency limits to save power. Both the schedutil and conservative governors make frequency scaling decisions based on the estimated CPU utilization. The schedutil governor is more flexible due to its shorter scheduling time interval and larger-frequency scheduling steps. The experimental results are in Section 5.6.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Methodology</head><p>The following metrics are used in evaluations.</p><p>Frame Drop Rate. The frame drop rate refers to the percentage of frames that should be rendered but are not rendered during real-time rendering due to frequency under-provision. It is measured using the gfxinfo tool in Android.</p><p>Power Consumption. Power consumption is calculated by multiplying the voltage by the current. In MobiRL, adb is used for communication between the server and the mobile device. To eliminate the impact of charging current on power measurement, we establish the adb connection using WiFi instead of the USB cable.</p><p>For all experiments, we set the FPS to 60; i.e., the allowed frame rendering time is (1 s/60) -1 ms = 15.7 ms. The system monitor collects the mobile system's status each time 10 frames are rendered; i.e., the sampling rate is six times per second. Each time MobiRL receives the collected data, it makes a frequency scheduling decision. Therefore, the frequency of MobiRL decision-making is also six times per second. In the experiment, we ensure that the initial device temperature is below 35 • C for each trial to avoid forced throttling of the mobile device due to high temperatures.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Benchmarks</head><p>We evaluate MobiRL using some representative applications, including video playing, social media, photo taking, and so forth. They exhibit different computing/memory patterns. They are TikTok <ref type="bibr" coords="14,94.53,644.25,14.84,9.03" target="#b31">[35]</ref>, Weibo <ref type="bibr" coords="14,145.87,644.25,14.85,9.03" target="#b33">[37]</ref>, Taobao <ref type="bibr" coords="14,200.88,644.25,14.84,9.03" target="#b34">[38]</ref>, Camera <ref type="bibr" coords="14,257.94,644.25,14.84,9.03" target="#b47">[52]</ref>, and Browser <ref type="bibr" coords="14,335.81,644.25,14.84,9.03" target="#b46">[51]</ref>. In addition, we also evaluate cases where the system load varies by running various background applications before launching the TOP-APP.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">MobiRL Training and Convergence</head><p>We show that MobiRL's DDPG model can converge faster using transfer learning in Figure <ref type="figure" coords="15,435.17,339.18,3.41,9.03">6</ref>. We first train the model at FPS 60 (i.e., each frame should be rendered in 1 s/60 = 16.7 ms) using the benchmark applications in Section 5.2. The black curve (the lower curve) in Figure <ref type="figure" coords="15,407.23,363.09,4.63,9.03">6</ref> shows the model's episode reward during the online training. Each episode has 200 training steps (Table <ref type="table" coords="15,73.47,387.00,3.27,9.03" target="#tab_3">4</ref>). The episode reward is the sum of the reward value in each training step of an episode. A higher episode reward indicates that the model can achieve lower frame drop rates and power consumption during this episode. Then, we change the FPS to 120 (i.e., each frame should be rendered in 1 s/120 = 8.3 ms). In this case, the previous model trained at 60 FPS does not work well and needs to be retrained because the user demand changes. We retrain the model at FPS 120 using transfer learning based on the pre-trained model at FPS 60. The blue curve (the upper curve) shows the model's episode reward.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.1">Model Training at 60</head><p>Frames per Second. The black curve (the lower curve) in Figure <ref type="figure" coords="15,435.83,477.09,4.63,9.03">6</ref> shows that MobiRL's DDPG model learns to maximize the episode reward over time. The model quickly converges in 100 episodes; i.e., the episode reward stabilizes and consistently remains at a high level. At the beginning of the learning process (from episode 0 to 15), MobiRL's DDPG model learns to schedule frequency by exploring the search space, leading to fluctuations in UI smoothness and power consumption. After that, we observe a rapid increase in episode reward from episode 15 to 100. During this period, DDPG learns to improve the model's decision-making, achieving a higher reward by optimizing UI smoothness and power consumption. Additionally, we observe that UI smoothness and power consumption optimize during the training process. For each 10 training episodes, we save the checkpoint of model parameters. To evaluate the model trained for a specific number of episodes, we load the saved parameters and compare it with Hyper Boost in terms of frame drop rate and power consumption when handling the same workload. The starting policy is no better than Hyper Boost. But after episode 100, MobiRL outperforms Hyper Boost. We evaluate MobiRL with parameters at episode 390. MobiRL outperforms Hyper Boost by 5.8% and 32.3% in terms of frame drop rate and power consumption, respectively.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3.2">Transfer Learning with a Low Retraining Cost at 120</head><p>Frames per Second. The blue curve (the upper curve) in Figure <ref type="figure" coords="16,155.85,276.15,4.63,9.03">6</ref> shows that transfer learning can reduce the retraining cost and make the model converge faster. We first copy the network parameters of the pre-trained model to the new model at FPS 120 and then conduct online training. The episode reward of the model trained using transfer learning increases quickly in the first 50 episodes and consistently remains high; i.e., the model converges in around 50 episodes. Moreover, the model trained using transfer learning achieves 23.6% higher episode reward upon convergence compared with the case when transfer learning is not used; i.e., the model trained using transfer learning can achieve a lower frame drop rate and power consumption in practice. Training the model for 50 episodes takes around 30 minutes. This indicates that MobiRL's DDPG model has a low retraining cost by using transfer learning, making MobiRL easier to generalize across new cases or platforms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Effectiveness of MobiRL Compared with the Industrial Scheduler</head><p>We first evaluate MobiRL against the state-of-the-art industrial frequency scheduler Hyper Boost <ref type="bibr" coords="16,45.78,433.12,11.72,9.03" target="#b4">[6]</ref> that is widely deployed on modern mobile devices. We show the effectiveness of MobiRL as follows.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.1">Performance Distribution.</head><p>MobiRL exhibits better UI smoothness and lower power consumption (Figure <ref type="figure" coords="16,118.66,476.52,3.27,9.03" target="#fig_10">7</ref>). Using ML, MobiRL can schedule the frequency accurately to quickly satisfy user demands. We construct 58 workloads by varying the TOP-APP, the time interval for swipe actions, and the number of background applications. For instance, in workload 1, the TOP-APP is TikTok, the interval for swipe actions is 5 seconds, and three background applications are launched. For each workload, we use MobiRL and Hyper Boost, respectively. We collect the frame drop rate and power during the 120-second period after the scheduling begins. Figure <ref type="figure" coords="16,392.67,536.29,4.63,9.03" target="#fig_10">7</ref> shows the distributions of the scheduling results of these 58 workloads for MobiRL and Hyper Boost, respectively. The x-axis shows the frame drop rate; the y-axis denotes the power. Generally, MobiRL can achieve a lower frame drop rate with lower power consumption for these workloads. On average, MobiRL has a frame drop rate of 2.2% and a power consumption of 275.8 mW, while Hyper Boost has a frame drop rate of 6.3% and a power consumption of 482.1 mW. MobiRL reduces the frame drop rate and power by 4.1% and 42.8% for these workloads, respectively. We also record the frame rendering time of the cases in Figure <ref type="figure" coords="16,195.69,619.98,3.41,9.03" target="#fig_10">7</ref>. Compared with Hyper Boost, MobiRL reduces the average frame rendering time and frame rendering time of the 50th, 90th, 95th, and 99th percentiles by 21.2%, 21.0%, 23.1%, 20.8%, and 16.8%, respectively.  better mainly because it has the learning ability and can dynamically adjust the frequency to satisfy user demands. By contrast, Hyper Boost cannot promptly handle some high-load cases that are not directly triggered by the user's action, which often leads to frequency under/overprovision when handling dynamically changing loads, leading to worse UI smoothness and increased power consumption.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.2">Performance for Varying Applications.</head><p>We study how MobiRL performs for each application in Figure <ref type="figure" coords="17,102.25,356.72,3.41,9.03">8</ref>. Figures <ref type="figure" coords="17,142.87,356.72,11.26,9.03">8(a</ref>) and 8(b) show each application's frame drop rate and power consumption, respectively. Each application's results are based on the average of five experimental results. MobiRL can optimize the frame drop rate and power consumption for all applications. Specifically, for TikTok, Taobao, Weibo, Browser, and Camera, MobiRL can reduce the frame drop rate by 7.0%, 3.1%, 2.5%, 1.6%, and 0.1%, respectively. MobiRL can also save power consumption by 54.6%, 15.2%, 23.5%, 50.4%, and 9.6%, respectively. We observe the most significant optimization in frame drop rate and power consumption for TikTok, a video-playing application. For Camera, it achieves a frame drop rate of 0.1% when using Hyper Boost for scheduling. Using MobiRL for scheduling can further reduce its power consumption by 9.6%.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.3">Performance for Varying TOP-APP Loads.</head><p>We test how MobiRL performs for varying loads of TOP-APP in Figure <ref type="figure" coords="17,141.95,482.66,3.41,9.03">9</ref>. We control the load of the TOP-APP by changing the time intervals between swipe actions. The shorter the time interval, the higher the load. We use TikTok as the TOP-APP in Figure <ref type="figure" coords="17,128.60,506.57,3.41,9.03">9</ref>. We observe that MobiRL consistently outperforms Hyper Boost in every time interval setting. For time intervals ranging from 1 s to 5 s, MobiRL outperforms Hyper Boost by 5.7%, 5.0%, 4.8%, 5.6%, and 3.4% in terms of frame drop rate, and saves power by 30.0%, 25.2%, 41.6%, 47.9%, and 48.0%, respectively. Note that our ML model is only trained on TikTok with a 5-second swipe action interval. However, MobiRL can perform well under other interval settings, indicating that MobiRL performs well in generalization across varying TOP-APP loads. Interactive applications may have user inputs at random time intervals, i.e., varying TOP-APP loads. MobiRL also works well for them.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.4">Performance for Varying Background Loads.</head><p>In Figure <ref type="figure" coords="17,302.15,608.60,7.64,9.03" target="#fig_12">10</ref>, we test how MobiRL performs with varying background loads by launching a variable number of background applications. Tik-Tok is used as the TOP-APP (active app on the screen). The interval of swipe action is set to 5 s. When 0, 3, 6, 9, and 12 background applications are launched, MobiRL outperforms Hyper Boost by   3.4%, 7.8%, 7.3%, 8.0%, and 2.7% in terms of frame drop rate, respectively. MobiRL can save power by 48%, 14.2%, and 6.0% when 0, 3, and 9 background applications are launched, respectively. When the system has a high load, MobiRL prioritizes UI smoothness. When 6 and 12 background applications are launched, MobiRL only incurs 6.3% and 8.3% higher power consumption, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.5">Performance for Unseen Applications.</head><p>We study how MobiRL performs for applications that are not used to train MobiRL's DDPG model in Figure <ref type="figure" coords="18,287.69,266.48,7.64,9.03" target="#fig_13">11</ref>. We evaluate MobiRL using Watermelon video [41], TopBuzz <ref type="bibr" coords="18,158.12,278.44,14.85,9.03" target="#b35">[39]</ref>, JingDong <ref type="bibr" coords="18,220.90,278.44,14.84,9.03" target="#b36">[40]</ref>, and Vipshop <ref type="bibr" coords="18,296.55,278.44,14.85,9.03" target="#b37">[42]</ref>. For these unseen applications, MobiRL outperforms Hyper Boost by 5.0%, 1.4%, 3.3%, and 14.0% in terms of frame drop rate and saves power by 50.8%, 18.4%, 78.4%, and 14.6%, respectively. Furthermore, we evaluate MobiRL using a VR application (Hall VR <ref type="bibr" coords="18,183.38,314.30,14.35,9.03">[57]</ref>). This application is resource intensive. It constantly processes motion sensor data and renders the scene in real time, requiring lots of computing/memory resources. It is also performance intensive and needs to respond to users promptly. For this application, MobiRL outperforms Hyper Boost by 2.5% in terms of frame drop rate and 32.4% in terms of power consumption. MobiRL achieves a lower frame drop rate and power consumption in these unseen cases, showing that MobiRL is generalizable and performs stably in various cases.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.6">MobiRL's Performance During Runtime. We further show how MobiRL performs in detail.</head><p>In Figure <ref type="figure" coords="18,85.00,405.03,7.64,9.03" target="#fig_1">12</ref>, we use TikTok as the TOP-APP and do not launch any background applications. We use adb to simulate swipe actions with a 5-second time interval. Figures <ref type="figure" coords="18,341.51,416.99,15.72,9.03" target="#fig_1">12(a</ref>) and 12(b) illustrate the frame rendering time and power consumption during the scheduling process, respectively. Figures <ref type="figure" coords="18,79.97,440.90,15.44,9.03" target="#fig_1">12(c</ref>) through 12(f) show how MobiRL schedules the CPU/GPU frequency limits for achieving ideal UI smoothness and power consumption. It schedules threads according to the CPU resources required by tasks. Android OS schedules TikTok threads on CPU clusters 0 and 1 for power efficiency for these two cases.</p><p>MobiRL can achieve higher UI smoothness and low power consumption simultaneously. As shown in Figure <ref type="figure" coords="18,118.23,500.68,18.20,9.03" target="#fig_1">12(a)</ref>, during the 100-second frequency scheduling period using MobiRL and Hyper Boost, MobiRL has a lower frame drop rate (more smooth UI)-the frame drop rates of the TOP-APP scheduled by MobiRL and Hyper Boost are 1.3% and 6.3%, respectively. In Figure <ref type="figure" coords="18,418.96,524.58,18.69,9.03" target="#fig_1">12(b)</ref>, the average power consumption for MobiRL is 372.4 mW, whereas Hyper Boost has an average power consumption of 561.2 mW. MobiRL saves 33.6% power compared with Hyper Boost.</p><p>MobiRL can quickly schedule CPU/GPU frequency limits to achieve the frequency limit configuration that can maximize the long-term rewards within seconds. MobiRL schedules frequency starting from time point 0. As shown at the beginning of Figures <ref type="figure" coords="18,376.61,584.36,16.06,9.03" target="#fig_1">12(d</ref>) and 12(f), MobiRL promptly conducts four consecutive frequency scaling actions within 1.5 seconds to raise the lower frequency limits of CPU cluster 1 and the GPU. Finally, the lower frequency limit of CPU cluster 1 is raised from 960 MHz to 1,670.4 MHz, and the lower frequency limit of GPU is raised from 315 MHz to 676 MHz. A higher CPU or GPU frequency increases power consumption but does not further reduce the frame drop rate. By monitoring the mobile system status, MobiRL raises the lower frequency limits to values that can minimize potential frame drops while avoiding high power consumption. MobiRL has fast responsiveness. In MobiRL, the system monitor collects data when 10 frames are rendered (Section 4.3). Thus, when FPS is 60, the theoretically minimum scheduling interval of MobiRL is 1 s/60 ×10 = 167 ms. MobiRL can reduce power consumption by scaling down the frequency limits while ensuring UI smoothness. As shown in Figures <ref type="figure" coords="19,131.69,584.72,15.44,9.03" target="#fig_1">12(c</ref>) through 12(e), MobiRL scales down the upper frequency limits of CPU clusters 0 and 1 and the lower frequency limit of CPU cluster 2 for lower power consumption.</p><p>Moreover, during MobiRL's scheduling process, there are no frequent changes in the frequency limits. This is because MobiRL tends to optimize UI smoothness and power consumption by selecting a configuration of frequency limits that yields the highest long-term rewards rather than making real-time frequency adjustments.</p><p>12:20 X. Dou et al. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.5">MobiRL vs. Other ML-based Scheduler for Mobile</head><p>In this section, we compare MobiRL with a recent study <ref type="bibr" coords="20,272.52,213.37,16.36,9.03" target="#b39">[44]</ref> using Q-Learning for CPU frequency scheduling based on estimated CPU loads. We denote this work as Q-Learning. Q-Learning takes the estimated CPU loads and current CPU frequency as inputs and outputs the CPU frequency that meets the CPU loads with relatively lower power consumption. During online training, Q-Learning learns to adjust CPU frequency to reduce power consumption, aiming to minimize a cost function defined as the device's power consumption. We evaluate MobiRL and Q-learning as follows.</p><p>First, we evaluate MobiRL and Q-Learning using workloads that have different TOP-APPs, including Taobao, Weibo, Browser, and Camera. There are no background applications in these workloads. The time interval between swipe/tap actions is set to 1 s for these TOP-APPs. The experimental results are in Figure <ref type="figure" coords="20,188.82,320.96,7.64,9.03">13</ref>. Compared with Q-Learning, MobiRL can achieve a lower frame drop rate and power consumption simultaneously for these TOP-APPs. MobiRL achieves a 2.5%, 2.1%, 1.7%, and 0.1% lower frame drop rate and 32.6%, 19.4%, 20.3%, and 3.0% lower power consumption for Taobao, Weibo, Browser, and Camera, respectively. The underlying reason is that MobiRL holistically schedules both the CPU and GPU frequency, achieving better scheduling results than Q-Learning, which only schedules the CPU frequency.</p><p>Second, we evaluate MobiRL and Q-Learning using workloads with varying TOP-APP loads. We use TiKTok as the TOP-APP and control its load by changing the swipe time interval. A shorter swipe time interval indicates a higher load. There are no background applications in these workloads. The experimental results are illustrated in Figure <ref type="figure" coords="20,325.85,428.57,7.64,9.03">14</ref>. Our design outperforms the Q-Learning approach in general. Moreover, we show that the Q-Learning approach may outperform our design in one aspect but cannot simultaneously have better solutions on both power and frame drop rate (i.e., UI smoothness). For example, in Figure <ref type="figure" coords="20,340.43,464.44,7.64,9.03">14</ref>, when the swipe time interval is 3 s, Q-Learning achieves 1.0% lower power consumption but incurs a 3.7% higher frame drop rate than MobiRL. The underlying reason is that Q-Learning uses the mobile device's power consumption as the reward; thus, it optimizes only the power consumption and does not consider the UI smoothness. It tries to achieve a lower power consumption by scaling down the frequency, which can lead to frequency under-provision and incur slow UI responsiveness. By contrast, MobiRL optimizes the UI smoothness and power consumption simultaneously because it considers both the frame drop rate and power consumption in its reward function.</p><p>Third, we evaluate MobiRL and the Q-Learning approach using workloads with varying background loads. We launch TikTok as the TOP-APP and launch a varying number of background applications. The interval of the swipe action is set to 5 s. The experimental results are in Figure <ref type="figure" coords="20,74.29,595.94,7.64,9.03" target="#fig_17">15</ref>. We show that MobiRL can satisfy the loads with lower power consumption, especially when the background load is heavy. For example, in Figure <ref type="figure" coords="20,291.85,607.90,7.64,9.03" target="#fig_17">15</ref>, when there are nine background applications in the workload, MobiRL has 3.1% lower frame drop rate and 47.1% lower power consumption. Besides, in the cases where there are 12 background applications, MobiRL also provides significant benefits. The underlying reason is that MobiRL has more input features, so it   can identify performance issues and make accurate frequency scheduling decisions accordingly, outperforming the other approach. As shown in Table <ref type="table" coords="21,267.19,321.71,3.41,9.03" target="#tab_2">3</ref>, MobiRL's input features include the task load of the TOP-APP and the CPU cluster ID that the TOP-APP is running on. With these two features, MobiRL can satisfy the TOP-APP's load by accurately scheduling the frequency of the CPU cluster that the TOP-APP is running on using the minimum power consumption. By contrast, the Q-Learning approach relies on the estimated CPU loads for scheduling. It schedules frequency for all applications, even those that are not important for improving the UI responsiveness, leading to higher power consumption, especially when the background load is heavy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.6">MobiRL vs. Default Frequency Scaling Governors in CPUFreq Subsystem</head><p>The Android OS uses the CPUFreq subsystem to support CPU performance scaling <ref type="bibr" coords="21,381.35,429.41,10.44,9.03" target="#b1">[2]</ref>. It provides several default frequency scheduling governors that scale frequency within the frequency limits, e.g., performance, powersave, schedutil, and conservative. They have straightforward scheduling policies and are widely used on mobile systems. We compare MobiRL with them to show MobiRL's effectiveness over default mechanisms. In our experiments, we use TikTok as the TOP-APP and set the swipe time interval to 1 s. There are no background applications in the workload. The experimental results are in Figure <ref type="figure" coords="21,185.35,501.15,7.64,9.03" target="#fig_18">16</ref>.</p><p>The performance governor adjusts the frequency to the upper frequency limits for higher performance. As illustrated in Figure <ref type="figure" coords="21,205.72,525.06,7.64,9.03" target="#fig_18">16</ref>, compared with our approach, it further reduces the frame drop by 0.6% but incurs a 2.3× higher power consumption. The powersave governor adjusts the frequency to the lower frequency limits to save power. It saves power consumption by 59.8% compared with MobiRL but incurs a 28.2% higher frame drop rate. Both performance and powersave cannot optimize the frame drop rate and power consumption simultaneously. The schedutil governor scales CPU frequency dynamically based on the estimated CPU utilization. More specifically, it adjusts the CPU frequency dynamically to control the estimated CPU utilization close to 80%. If the estimated CPU utilization is above 80%, it dynamically scales up the CPU frequency if possible; otherwise, if utilization is below 80%, it scales down the CPU frequency. The conservative governor also schedules based on the estimated CPU utilization, but it has a larger scheduling time interval and smaller frequency scheduling steps. Compared with  schedutil and conservative, MobiRL achieves a 3.9% and 5.5% lower frame drop rate, respectively, and achieves a 35.5% and 36.7% lower power consumption, respectively. The schedutil performs better than conservative because it is more flexible and works better on mobile devices with dynamically changing loads. In general, MobiRL can optimize the frame drop rate and power consumption simultaneously and outperforms these governors in the CPUFreq subsystem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.7">CPU Frequency Usage: Why MobiRL Works Effectively</head><p>We analyze the usage of CPU frequency to study why MobiRL can optimize the UI smoothness and power consumption simultaneously. Figure <ref type="figure" coords="22,224.83,381.50,9.27,9.03" target="#fig_20">17</ref> shows the CPU frequency usage for 50 workloads where MobiRL outperforms Hyper Boost. Each workload is run for 1 minute. The total time for the plots is 50 minutes. Figures <ref type="figure" coords="22,171.97,405.40,15.72,9.03" target="#fig_20">17(a</ref>) through 17(c) show the frequency usage for CPU clusters 0, 1, and 2, respectively. The x-axis represents each CPU cluster's predefined discrete frequency values; the y-axis represents the proportion of time during the entire scheduling process that the CPU cluster stays at a specific frequency. As shown in Figure <ref type="figure" coords="22,276.32,441.27,7.64,9.03" target="#fig_20">17</ref>, when MobiRL is used for scheduling, CPU cluster 0 stays at 1,804.8 MHz (the highest frequency value) for 96.7% of the entire scheduling process. By contrast, with Hyper Boost, CPU cluster 0 stays at 1,804.8 MHz for only 39.7% of the scheduling process. We learn from Figure <ref type="figure" coords="22,235.98,477.13,4.63,9.03" target="#fig_1">2</ref> (Section 2.2) that the cores in CPU cluster 0 are power-saving ones. The high usage of CPU cluster 0's highest-frequency value means that MobiRL makes good use of the power-saving cores in CPU cluster 0. Therefore, MobiRL can optimize the UI smoothness and power consumption simultaneously.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.8">Overhead</head><p>MobiRL has a low overhead. The time required for getting model input features is 2.4 ms. The Actor network runs on the CPU when MobiRL is deployed on the mobile system. It takes 6.7 ms on average to forward the input parameters to the model and obtain the output. The memory usage of MobiRL is 7 MB. In terms of CPU usage, the model prediction and frequency scheduling account for 10.5% utilization of a little core (Cortex-A55) on the experimental platform. As MobiRL does not send or receive network requests, it does not consume network bandwidth. As for storage overhead, the model consumes only 13 KB.</p><p>Moreover, we evaluate MobiRL's impact on background applications including Gmail, Google Maps, Amazon Shopping, and WeChat. They run in the background and are not on the screen. For MobiRL 12:23 each background application, we use TikTok as the TOP-APP and leverage simpleperf to measure the background application's IPC with and without using MobiRL, respectively. The experimental results show that for Gmail <ref type="bibr" coords="23,164.62,106.68,14.84,9.03" target="#b48">[53]</ref>, Google Maps <ref type="bibr" coords="23,244.65,106.68,14.84,9.03" target="#b49">[54]</ref>, Amazon Shopping <ref type="bibr" coords="23,346.33,106.68,14.84,9.03" target="#b50">[55]</ref>, and WeChat <ref type="bibr" coords="23,423.02,106.68,14.84,9.03" target="#b51">[56]</ref>, enabling MobiRL decreases their IPC by 2.9%, 3.6%, 3.3%, and 4.8%, respectively, which is negligible and does not impact the user experience in practice. Generalization. If mobile devices have new hardware that significantly differs from existing ones (e.g., a new processor with a different number of cores), the RL model needs to be retrained for accurate scheduling due to the hardware changes. Transfer learning can be used to retrain the model with a small training overhead. MobiRL is generalizable. Its model can be used on devices with similar hardware configurations. This is because the relationship between OS features, rendering time, and computational resources captured by MobiRL does not change drastically on these devices. Moreover, MobiRL can effectively schedule resources even for devices with different hardware through low-overhead transfer learning (Section 5.3).</p><p>One-for-all vs. One-for-each Category. Training a model for each category of applications may lead to a lower frame drop rate and lower power consumption compared to using a single model to handle all applications. For instance, using a model tailored to video playback applications (e.g., TikTok, YouTube, etc.) would result in higher accuracy and better scheduling results compared to scheduling in a one-for-all manner.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Related Work DVFS on Mobile Systems. Several related studies propose ML-based Dynamic Voltage</head><p>Frequency Scaling (DVFS) on mobile systems <ref type="bibr" coords="23,245.09,428.63,15.01,9.03" target="#b9">[11,</ref><ref type="bibr" coords="23,263.06,428.63,8.49,9.03" target="#b38">[43]</ref><ref type="bibr" coords="23,271.55,428.63,4.25,9.03" target="#b39">[44]</ref><ref type="bibr" coords="23,271.55,428.63,4.25,9.03" target="#b40">[45]</ref><ref type="bibr" coords="23,275.80,428.63,12.74,9.03" target="#b41">[46]</ref>. The study in <ref type="bibr" coords="23,351.00,428.63,16.36,9.03" target="#b39">[44]</ref> predicts the CPU loads and employs Q-learning to adjust CPU frequency to minimize energy consumption. ML-Gov <ref type="bibr" coords="23,45.95,452.54,16.36,9.03" target="#b9">[11]</ref> leverages an offline linear regression model to estimate CPU/GPU frequencies that maximize energy savings with minimal FPS degradation. AHDL <ref type="bibr" coords="23,273.88,464.50,16.35,9.03" target="#b40">[45]</ref> classifies the TOP-APP into several types (e.g., computing intensive, memory intensive, etc.) and allocates computing resources based on predefined rules. Yet, the studies in <ref type="bibr" coords="23,207.26,488.40,14.99,9.03" target="#b39">[44,</ref><ref type="bibr" coords="23,225.26,488.40,12.81,9.03" target="#b40">45]</ref> only focus on managing CPU frequency and fail to manage GPU frequency, leading to sub-optimal performance and higher power consumption. Moreover, the studies in <ref type="bibr" coords="23,149.37,512.31,15.00,9.03" target="#b39">[44,</ref><ref type="bibr" coords="23,167.58,512.31,12.82,9.03" target="#b40">45]</ref> rely on limited features for scheduling, such as CPU load (the work in <ref type="bibr" coords="23,80.37,524.27,15.46,9.03" target="#b39">[44]</ref>) or predicted application types (AHDL <ref type="bibr" coords="23,259.30,524.27,14.35,9.03" target="#b40">[45]</ref>). They do not consider other critical OS runtime features like cache misses, IPC, and so forth. Therefore, they cannot comprehensively detect system performance issues and schedule the frequency accurately. The studies in <ref type="bibr" coords="23,407.58,548.18,16.36,9.03" target="#b39">[44]</ref> has only one optimization goal, i.e., energy consumption. This might result in frame drops in mobile systems due to frequency under-provision. In terms of generalization, these studies <ref type="bibr" coords="23,394.74,572.09,14.99,9.03" target="#b9">[11,</ref><ref type="bibr" coords="23,412.97,572.09,11.46,9.03" target="#b39">44,</ref><ref type="bibr" coords="23,427.65,572.09,12.82,9.03" target="#b40">45]</ref> cannot be easily generalized across new platforms because they use offline ML models (e.g., tree-based piecewise linear models in ML-Gov <ref type="bibr" coords="23,242.66,596.01,14.84,9.03" target="#b9">[11]</ref>, k-NN-based power predictor in work <ref type="bibr" coords="23,423.02,596.01,14.84,9.03" target="#b39">[44]</ref>, and CNN-based application classifier in AHDL <ref type="bibr" coords="23,246.91,607.96,14.35,9.03" target="#b40">[45]</ref>). When deployed on new platforms, they require offline data collection and model retraining.</p><p>By contrast, MobiRL learns from more critical OS runtime features, so it can identify performance issues and make accurate frequency scheduling decisions accordingly. It manages  both CPU and GPU frequency to achieve better UI responsiveness and lower power consumption simultaneously. Moreover, MobiRL does not require offline data collection; it uses reinforcement learning to autonomously explore the scheduling exploration space and learn to optimize UI responsiveness and power consumption. And using transfer learning can reduce MobiRL's training overhead when deployed on new platforms. In Section 5.5, we qualitatively and quantitatively compare MobiRL to the prior work <ref type="bibr" coords="24,278.91,355.06,16.36,9.03" target="#b39">[44]</ref> that employs Q-learning for CPU scheduling. MobiRL significantly reduces the frame drop rate and power consumption compared with <ref type="bibr" coords="24,66.55,378.96,14.84,9.03" target="#b39">[44]</ref>. DVFS on Data Center Servers. DVFS on data center servers is a well-studied approach <ref type="bibr" coords="24,408.55,390.92,12.48,9.03" target="#b42">[47]</ref><ref type="bibr" coords="24,421.02,390.92,4.16,9.03" target="#b43">[48]</ref><ref type="bibr" coords="24,421.02,390.92,4.16,9.03" target="#b44">[49]</ref><ref type="bibr" coords="24,425.18,390.92,12.48,9.03" target="#b45">[50]</ref>. Table <ref type="table" coords="24,69.30,402.87,4.63,9.03" target="#tab_6">6</ref> summarizes several typical DVFS studies on data center servers and shows their differences from DVFS on mobile devices. Generally, mobile systems often use the big.LITTLE heterogeneous computing architecture, which provides power-saving little cores and high-performance, powerhungry big cores. DVFS mechanisms on mobile devices focus on effectively leveraging this specific computing architecture to achieve better performance and lower power consumption. And, though some studies are also conducted on data center servers with heterogeneous processors, we find that some of their scheduling behaviors are coarse grained (e.g., longer scheduling time intervals, tasklevel partitioning/scheduling <ref type="bibr" coords="24,165.65,486.56,14.99,9.03" target="#b52">[58,</ref><ref type="bibr" coords="24,183.13,486.56,11.26,9.03" target="#b53">59]</ref>, etc.) than our approach on mobile systems. Besides, mobile systems are prone to be more energy efficient. On mobile systems, power is a problem that is often on top of others. By contrast, though some studies on data center servers also try to reduce the power and improve the QoS <ref type="bibr" coords="24,160.19,522.42,15.00,9.03" target="#b30">[34,</ref><ref type="bibr" coords="24,177.24,522.42,11.46,9.03" target="#b54">60,</ref><ref type="bibr" coords="24,190.75,522.42,11.25,9.03" target="#b55">61]</ref>, their platforms, environments, applications, and use cases differ from mobiles. So, the solutions are also different at the root.</p><p>ML/AI for Systems. Using ML/AI is a promising approach for system optimizations. Many studies try to make OS intelligent using ML/AI technologies, e.g., resource scheduling for cloud services <ref type="bibr" coords="24,80.23,570.25,15.00,9.03" target="#b12">[14,</ref><ref type="bibr" coords="24,97.24,570.25,11.46,9.03" target="#b16">18,</ref><ref type="bibr" coords="24,110.70,570.25,11.46,9.03" target="#b23">26,</ref><ref type="bibr" coords="24,124.17,570.25,11.26,9.03" target="#b26">29]</ref>, load balancing <ref type="bibr" coords="24,201.83,570.25,14.84,9.03" target="#b15">[17]</ref>, parameter tuning for OS/system software <ref type="bibr" coords="24,391.41,570.25,15.01,9.03" target="#b14">[16,</ref><ref type="bibr" coords="24,408.43,570.25,11.25,9.03" target="#b24">27]</ref>, VM failure mitigation <ref type="bibr" coords="24,120.65,582.20,14.84,9.03" target="#b27">[30]</ref>, and so forth. Generally, these studies fall into three categories. The first category is statistical learning <ref type="bibr" coords="24,172.23,594.16,12.74,9.03" target="#b11">[13]</ref><ref type="bibr" coords="24,184.97,594.16,4.25,9.03" target="#b12">[14]</ref><ref type="bibr" coords="24,189.21,594.16,12.74,9.03" target="#b13">[15]</ref><ref type="bibr" coords="24,204.96,594.16,11.25,9.03" target="#b23">26]</ref>. The second category is deep learning <ref type="bibr" coords="24,379.90,594.16,15.00,9.03" target="#b14">[16,</ref><ref type="bibr" coords="24,397.90,594.16,11.45,9.03" target="#b15">17,</ref><ref type="bibr" coords="24,412.37,594.16,11.45,9.03" target="#b24">27,</ref><ref type="bibr" coords="24,426.83,594.16,11.25,9.03" target="#b25">28]</ref>. Deep learning models are data driven. They require sufficient training data for accurate prediction and generalization. The third is reinforcement learning <ref type="bibr" coords="24,269.35,618.07,15.00,9.03" target="#b16">[18,</ref><ref type="bibr" coords="24,286.48,618.07,11.46,9.03" target="#b17">19,</ref><ref type="bibr" coords="24,300.07,618.07,11.45,9.03" target="#b26">29,</ref><ref type="bibr" coords="24,313.66,618.07,11.25,9.03" target="#b27">30]</ref>. They can learn online from historical scheduling decisions and the feedback from the environment, making them resilient to changes in the environment and the workloads. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Conclusions</head><p>We present MobiRL, a reinforcement learning-based frequency scheduler for mobile systems. MobiRL autonomously learns to schedule CPU and GPU frequency for better UI smoothness and lower power consumption. Experiments on a newly released smartphone show that MobiRL outperforms the scheduler in off-the-shelf mobile smartphones. Mobile systems are everywhere now. We think our work can be valuable for system designers. Moreover, we advocate applying ML/AI techniques for OS, and optimizations can be an ideal approach for system performance. This project is supported by a well-known mobile phone company, and MobiRL has been used in mobile phone products.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,182.81,229.15,120.78,8.07"><head>MobiRL 12 : 3 Fig. 1 .</head><label>1231</label><figDesc>Fig. 1. Frame rendering pipeline.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,113.84,417.54,258.37,8.07"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Single-core power consumption of Qualcomm Snapdragon 888.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="7,190.53,203.14,105.36,8.07"><head>MobiRL 12 : 7 Fig. 4 .</head><label>1274</label><figDesc>Fig. 4. MobiRL in a nutshell.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="9,180.50,271.14,125.42,8.07;9,48.96,81.34,386.04,178.08"><head>MobiRL 12 : 9 Fig. 5 .</head><label>1295</label><figDesc>Fig. 5. MobiRL's working process.</figDesc><graphic coords="9,48.96,81.34,386.04,178.08" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="10,48.67,167.30,3.07,5.42;10,72.07,165.31,27.18,8.12;10,48.67,177.27,22.99,8.12;10,48.67,189.18,157.01,8.17;10,48.67,202.17,3.07,5.42;10,71.66,199.94,241.47,9.31;10,48.67,214.12,3.07,5.42;10,72.07,212.10,261.69,9.10;10,45.60,225.09,6.14,5.42;10,87.00,222.85,135.09,9.31;10,45.60,237.04,6.14,5.42;10,72.07,235.05,14.94,8.12;10,45.60,248.99,6.14,5.42;10,72.07,246.96,158.21,9.10;10,45.60,258.97,26.06,8.12;10,45.60,270.87,170.00,8.17;10,45.60,283.87,6.14,5.42;10,71.66,281.63,261.64,9.80;10,45.60,295.82,6.14,5.42;10,72.07,293.79,279.96,9.67;10,45.60,306.78,6.14,5.42;10,87.00,304.54,153.16,9.80;10,45.60,318.73,6.14,5.42;10,72.07,316.75,14.94,8.12;10,45.60,330.69,6.14,5.42;10,72.07,328.66,178.38,9.59;10,45.60,340.66,26.06,8.12"><head>19</head><label>19</label><figDesc>the scaling direction is to scale up then 8 l up ← 3; // maximum step size for scaling up the target parameter 9 while scaling up the target parameter for l up levels is an illegal action do 10 l up ← l up − 1; // reduce the max step 11 end 12 Scale up the target parameter for l up levels; 13 end 14 if the scaling direction is to scale down then 15 l down ← 3; // maximum step size for scaling down the target parameter 16 while scaling down the target parameter for l down levels is an illegal action do 17 l down ← l down − 1; // reduce the max step 18 end Scale down the target parameter for l down levels; 20 end</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="12,45.55,55.82,20.73,8.97;12,390.04,55.82,50.24,8.97"><head>12 : 12 X</head><label>1212</label><figDesc>. Dou et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="14,45.55,55.82,20.73,8.97;14,390.04,55.82,50.24,8.97"><head>12 : 14 X</head><label>1214</label><figDesc>. Dou et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="15,45.95,233.15,394.54,8.07;15,45.95,244.10,394.70,8.07;15,45.95,255.06,394.51,8.07;15,45.95,266.02,159.16,8.07"><head>MobiRL 12 : 15 Fig. 6 .</head><label>12156</label><figDesc>Fig. 6. Learning curve of MobiRL's DDPG model. Using transfer learning can reduce MobiRL's retraining cost. MobiRL's DDPG model trained using transfer learning (the upper curve in black) converges much faster and achieves 23.6% higher episode reward upon convergence compared with the model trained without transfer learning (the lower curve in black).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="16,45.55,55.82,20.73,8.97;16,390.04,55.82,50.24,8.97"><head>12 : 16 X</head><label>1216</label><figDesc>. Dou et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="16,51.81,238.14,382.44,8.07"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Performance distributions for 58 workloads scheduled w/ Hyper Boost and MobiRL, respectively.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="18,45.55,55.82,20.73,8.97;18,390.04,55.82,50.24,8.97"><head>12 : 18 X</head><label>1218</label><figDesc>. Dou et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="18,47.22,160.64,162.00,8.07;18,47.22,171.60,67.23,8.07"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. MobiRL vs. Hyper Boost w/ varying background loads.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="18,243.03,163.14,160.27,8.07;18,243.03,174.10,46.66,8.07"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. MobiRL vs. Hyper Boost w/ unseen applications.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="19,45.95,485.15,395.52,8.07;19,45.95,496.10,395.52,8.07;19,45.95,507.06,149.64,8.07"><head>MobiRL 12 : 19 Fig. 12 .</head><label>121912</label><figDesc>Fig. 12. MobiRL's performance in reality for TikTok with swipes at a 5-second time interval. In (c), (d), (e), and (f), the frequency and upper and lower frequency limits can be one of the predefined discrete values, indicated by the horizontal dashed lines.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="20,47.22,161.15,157.82,8.07;20,47.22,172.11,46.66,8.07"><head>Fig. 13 .Fig. 14 .</head><label>1314</label><figDesc>Fig. 13. MobiRL vs. Q-Learning w/ varying applications.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17" coords="21,129.56,165.14,227.29,8.07"><head>Fig. 15 .</head><label>15</label><figDesc>Fig. 15. MobiRL vs. Q-Learning w/ varying background loads.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18" coords="21,113.70,287.13,259.05,8.07"><head>Fig. 16 .</head><label>16</label><figDesc>Fig. 16. MobiRL vs. four default governors in the CPUFreq subsystem.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19" coords="22,45.55,55.82,20.73,8.97;22,390.04,55.82,50.24,8.97"><head>12 : 22 X</head><label>1222</label><figDesc>. Dou et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_20" coords="22,186.80,261.15,112.46,8.07"><head>Fig. 17 .</head><label>17</label><figDesc>Fig. 17. CPU frequency usage.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_21" coords="23,45.95,153.25,143.31,8.98;23,45.95,168.14,394.52,9.03;23,45.95,180.11,394.72,9.03;23,45.95,192.06,394.52,9.03;23,45.95,204.02,394.55,9.03;23,45.95,215.97,130.44,9.03"><head>6</head><label></label><figDesc>Discussion and Future Work User-specific Model Training. It is necessary to ensure that MobiRL performs consistently and stably on diverse devices. Sending experiences from mobile devices to the cloud is practical for user-specific model training. The cloud server can classify users and train user-specific models accordingly. On-device training leads to high power consumption and cannot guarantee consistent model quality across all devices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_22" coords="24,45.55,55.82,20.73,8.97;24,390.04,55.82,50.24,8.97"><head>12 : 24 X</head><label>1224</label><figDesc>. Dou et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="4,96.87,81.19,290.92,160.76"><head>Table 1 .</head><label>1</label><figDesc>Platform Specification</figDesc><table coords="4,96.87,99.85,290.92,142.09"><row><cell></cell><cell>Specification</cell></row><row><cell>OS</cell><cell>Android 12.0 (kernel 5.4.147)</cell></row><row><cell>Processor</cell><cell>Qualcomm Snapdragon 888</cell></row><row><cell></cell><cell>4×Cortex-A55@1.8 GHz (Little cores, 128 KB L2)</cell></row><row><cell>Processor Config</cell><cell>3×Cortex-A78@2.4 GHz (Middle cores, 512 KB L2) 1×Cortex-X1@2.8 GHz (Big core, 1,024 KB L2)</cell></row><row><cell></cell><cell>4 MB L3</cell></row><row><cell>DRAM</cell><cell>16 GB LPDDR5@3,200 MHz 4×16bit</cell></row><row><cell>Storage</cell><cell>512 GB UFS 3.1</cell></row><row><cell>GPU</cell><cell>Qualcomm Adreno 660@0.84 GHz</cell></row><row><cell cols="2">We conduct the experiments on the real h/w delivered by a well-known mobile company.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="8,54.61,81.19,380.96,104.89"><head>Table 2 .</head><label>2</label><figDesc>Controlled Configuration Parameters</figDesc><table coords="8,54.61,99.78,380.96,86.30"><row><cell>Controlled configuration parameters</cell><cell>Predefined discrete frequency values (MHz)</cell><cell>Pruned values (MHz)</cell></row><row><cell>(1) CPU cluster 0 upper frequency limit</cell><cell>300, 403.2, 499.2, 595.2, 691.2, 806.4, 902.4, 998.4, 1,094.4,</cell><cell>300, 403.2, 499.2</cell></row><row><cell>(2) CPU cluster 0 lower frequency limit</cell><cell>1,209.6, 1,305.6, 1,401.6, 1,497.6, 1,612.8, 1,708.8, 1,804.8</cell><cell>1,612.8, 1,708.8, 1,804.8</cell></row><row><cell>(3) CPU cluster 1 upper frequency limit</cell><cell>710.4, 844.8, 960, 1,075.2, 1,209.6, 1,324.8, 1,440, 1,555.2,</cell><cell>710.4, 844.8, 960</cell></row><row><cell>(4) CPU cluster 1 lower frequency limit</cell><cell>1,670.4, 1,766.4, 1,881.6, 1,996.8, 2,112, 2,227.2, 2,342.4, 2,419.2</cell><cell>2,227.2, 2,342.4, 2,419.2</cell></row><row><cell>(5) CPU cluster 2 upper frequency limit</cell><cell>844.8, 960, 1,075.2, 1,190.4, 1,305.6, 1,420.8, 1,555.2, 1,670.4, 1,785.6,</cell><cell>844.8, 960, 1,075.2</cell></row><row><cell>(6) CPU cluster 2 lower frequency limit</cell><cell>1,900.8, 2,035.2, 2,150.4, 2,265.6, 2,380.8, 2,496, 2,592, 2,688, 2,764.8, 2,841.6</cell><cell>2,688, 2,764.8, 2,841.6</cell></row><row><cell>(7) GPU upper frequency limit (8) GPU lower frequency limit</cell><cell>315, 379, 443, 491, 540, 608, 676, 738, 778, 840</cell><cell>--</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="11,96.31,81.19,298.80,164.33"><head>Table 3 .</head><label>3</label><figDesc>Input Features of the DDPG Model</figDesc><table coords="11,96.31,99.85,298.80,145.67"><row><cell>OS-related features</cell></row><row><cell>(1) CPU_load_cluster_0, (2) CPU_load_cluster_1, (3) CPU_load_cluster_2,</cell></row><row><cell>(4) CPU_freq_cluster_0, (5) CPU_freq_cluster_1, (6) CPU_freq_cluster_2,</cell></row><row><cell>(7) DDR_freq, (8) GPU_freq, (9) is_swiping, (10) device_temperature,</cell></row><row><cell>(11) Freq_upper_limit_cluster_0, (12) Freq_lower_limit_cluster_0,</cell></row><row><cell>(13) Freq_upper_limit_cluster_1, (14) Freq_lower_limit_cluster_1,</cell></row><row><cell>(15) Freq_upper_limit_cluster_2, (16) Freq_lower_limit_cluster_2,</cell></row><row><cell>(17) Freq_upper_limit_GPU, (18) Freq_lower_limit_GPU,</cell></row><row><cell>(19) instructions_per_cycle, (20) cache_miss_rate</cell></row><row><cell>TOP-APP-related features</cell></row><row><cell>(1) cache_miss_rate, (2) main_thread_cluster_id,</cell></row><row><cell>(3) render_thread_cluster_id, (4) task_load</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="14,45.77,81.19,394.53,211.78"><head>Table 4 .</head><label>4</label><figDesc>RL Training Parameters</figDesc><table coords="14,57.63,99.85,47.05,9.03"><row><cell>Parameter</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="16,259.60,643.90,180.70,9.03"><head></head><label></label><figDesc>Table 5 has more details. MobiRL performs</figDesc><table coords="17,45.95,55.82,394.53,8.97"><row><cell>MobiRL</cell><cell>12:17</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="17,47.39,81.19,389.13,180.58"><head>Table 5 .</head><label>5</label><figDesc>Frame Rendering Time Comparison</figDesc><table coords="17,47.39,99.85,389.13,161.92"><row><cell>Scheduler</cell><cell cols="3">Framed rendering time (ms) 50th 90th 95th 99th Average</cell></row><row><cell>MobiRL</cell><cell>9.0</cell><cell>14.7 17.5 25.9</cell><cell>10.0</cell></row><row><cell cols="3">Hyper Boost 11.5 19.1 22.1 31.2</cell><cell>12.7</cell></row><row><cell cols="2">Fig. 8. MobiRL vs. Hyper Boost w/ varying</cell><cell cols="2">Fig. 9. MobiRL vs. Hyper Boost w/ varying TOP-APP</cell></row><row><cell>applications.</cell><cell></cell><cell>loads.</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="24,53.60,81.19,381.91,191.83"><head>Table 6 .</head><label>6</label><figDesc>Representative DVFS Studies on Data Center Servers</figDesc><table coords="24,53.60,99.33,381.91,173.69"><row><cell>Studies</cell><cell>Target</cell><cell>Goals</cell><cell>Core mechanism</cell><cell>Differences from mobile</cell></row><row><cell></cell><cell>component</cell><cell></cell><cell></cell><cell>DVFS</cell></row><row><cell cols="2">Work in [47] GPU core and</cell><cell>Estimate GPU kernel</cell><cell>A GPU pipeline analysis model that</cell><cell>Different architecture: No</cell></row><row><cell></cell><cell>memory</cell><cell>performance to conserve</cell><cell>predicts GPU kernel execution time</cell><cell>consideration of heterogenous</cell></row><row><cell></cell><cell>frequency</cell><cell>energy through</cell><cell>under different core and memory</cell><cell>architecture on mobile devices</cell></row><row><cell></cell><cell></cell><cell>core/memory DVFS</cell><cell>frequencies</cell><cell></cell></row><row><cell cols="2">Δ-DVFS [48] Multi-</cell><cell>Approach maximum</cell><cell>A profile-then-select strategy that</cell><cell>Different optimization goals:</cell></row><row><cell></cell><cell>processor</cell><cell>power efficiency step by</cell><cell>profiles the performance-power</cell><cell>Optimizing power efficiency,</cell></row><row><cell></cell><cell>voltage and</cell><cell>step through voltage and</cell><cell>characteristic curve (PPCC) and</cell><cell>no consideration of minimizing</cell></row><row><cell></cell><cell>frequency</cell><cell>frequency scaling</cell><cell>achieves the optimal voltage/frequency</cell><cell>power consumption</cell></row><row><cell></cell><cell></cell><cell></cell><cell>step by step</cell><cell></cell></row><row><cell>wDVS [49]</cell><cell>Multi-</cell><cell>Find the optimal execution</cell><cell>A heuristic frequency scaling</cell><cell>Different optimization goals:</cell></row><row><cell></cell><cell>processor</cell><cell>cycles for output quality</cell><cell>methodology to optimally decide the</cell><cell>Optimizing output quality for</cell></row><row><cell></cell><cell>voltage and</cell><cell>maximization through</cell><cell>processor execution cycles for</cell><cell>applications with diminishing</cell></row><row><cell></cell><cell>frequency</cell><cell>frequency and voltage</cell><cell>applications with diminishing return</cell><cell>return, no consideration or</cell></row><row><cell></cell><cell></cell><cell>scaling</cell><cell></cell><cell>minimizing power</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell>consumption</cell></row><row><cell cols="2">Work in [50] GPU</cell><cell>Estimate GPU power</cell><cell>A DVFS-aware GPU power model that</cell><cell>Different architecture: No</cell></row><row><cell></cell><cell>frequency and</cell><cell>consumption for DVFS</cell><cell>predicts GPU power consumption</cell><cell>consideration of heterogenous</cell></row><row><cell></cell><cell>voltage</cell><cell>management and power</cell><cell>using hardware performance events</cell><cell>architecture on mobile devices</cell></row><row><cell></cell><cell></cell><cell>bottleneck analysis</cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 12. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_1">Received 24 October 2023; revised 1 April 2024; accepted 20 May 2024 ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 12. Publication date: March 2025.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgment</head><p>We thank the reviewers, AE and EIC, for their invaluable comments. We also thank the previous student members who paid attention to this project. We thank the cooperation that supports this project. X. Dou is a student member in Sys-Inventor Lab led by L. Liu, who is the PI of this project. L. Liu is the corresponding author and co-first author of this paper.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This work was supported by the Key-Area R&amp;D Program of Guangdong (grant no. 2021B0101310002) and the NSFC (grant no. 62072432). Authors' Contact Information: Xinglei Dou, Lei Liu</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="25,63.02,295.50,377.98,7.22;25,63.02,305.47,249.10,7.22" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Market share of mobile operating systems worldwide</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Laricchia</surname></persName>
+		</author>
+		<ptr target="https://www.statista.com/statistics/272698/global-market-share-held-by-mobile-operating-systems-since-2009/" />
+		<imprint>
+			<date type="published" when="2012">2012-2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,315.43,308.38,7.22" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">CPU performance scaling</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">J</forename><surname>Wysocki</surname></persName>
+		</author>
+		<ptr target="https://docs.kernel.org/admin-guide/pm/cpufreq.html" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,325.39,348.66,7.22" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Device frequency scaling-the Linux kernel documentation</title>
+		<ptr target="https://docs.kernel.org/driver-api/devfreq.html" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,355.28,345.75,7.22" xml:id="b3">
+	<monogr>
+		<author>
+			<persName coords=""><surname>Samsung</surname></persName>
+		</author>
+		<ptr target="https://developer.samsung.com/galaxy-gamedev/overview.html" />
+		<title level="m">Gamedev | Samsung developers</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,365.24,377.85,7.22;25,63.02,375.20,17.72,7.22" xml:id="b4">
+	<monogr>
+		<ptr target="https://developers.oppomobile.com/newservice/capability?pagename=hyper_boost" />
+		<title level="m">Hyper boost | OPPO developer</title>
+				<imprint/>
+		<respStmt>
+			<orgName>OPPO</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,385.17,377.98,7.22;25,63.02,395.13,291.19,7.22" xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Service Introduction-PerfGenius-Accelerate Kit | HUAWEI developers</title>
+		<author>
+			<persName coords=""><surname>Huawei</surname></persName>
+		</author>
+		<ptr target="https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides-V5/introduction-0000001054817121-V5" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,405.09,377.72,7.22;25,63.02,415.02,62.21,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">CALOREE: learning control for predictable latency and low energy</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Mishra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Imes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">D</forename><surname>Lafferty</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Hoffmann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ASPLOS</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,425.01,378.79,7.22;25,63.02,434.93,200.12,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">FIRM: An intelligent fine-grained resource management framework for SLO-oriented microservices</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Banerjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><forename type="middle">T</forename><surname>Kalbarczyk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">K</forename><surname>Iyer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OSDI</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,444.93,377.45,7.22;25,63.02,454.86,231.95,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Pythia: A customizable hardware prefetching framework using online reinforcement learning</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Bera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Kanellopoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Nori</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Shahroodi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Subramoney</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Mutlu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">MICRO</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,464.86,377.59,7.22;25,63.02,474.78,96.63,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Ml-gov: A machine learning enhanced integrated CPU-GPU DVFS governor for mobile gaming</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">D</forename><surname>Dutt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Lim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ESTIMedia</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,484.78,377.97,7.22;25,63.02,494.75,332.40,7.22" xml:id="b10">
+	<monogr>
+		<author>
+			<persName coords=""><surname>Qualcomm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Qualcomm</surname></persName>
+		</author>
+		<ptr target="https://www.qualcomm.com/products/application/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-888-5g-mobile-platform" />
+		<title level="m">Snapdragon 888 5g mobile platform | Qualcomm</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,504.71,378.32,7.22;25,63.02,514.63,314.87,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Post-silicon CPU adaptation made practical using machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">J</forename><surname>Tarsa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">B R</forename><surname>Chowdhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Sebot</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">N</forename><surname>Chinya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gaur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Sankaranarayanan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Chappell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Singhal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ISCA</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,524.64,377.44,7.22;25,63.02,534.56,16.63,7.26" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Predicting the end-to-end tail latency of containerized microservices in the cloud</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Rahman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Lama</surname></persName>
+		</author>
+		<idno>IC2E</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,544.56,377.43,7.22;25,63.02,554.52,378.66,7.22;25,63.02,564.45,33.74,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">APOLLO: An automated power modeling framework for runtime power introspection in high-volume commercial microprocessors</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Walker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Knebel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Palaniswamy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Hebert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Das</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">MICRO</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,574.45,377.42,7.22;25,63.02,584.37,216.09,7.26" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">iBTune: Individualized buffer tuning for large-scale cloud databases</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Qiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">VLDB Endowment</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,594.37,378.66,7.22;25,63.02,604.30,30.18,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Machine learning for load balancing in the Linux kernel</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Banerjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><forename type="middle">T</forename><surname>Kalbarczyk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">K</forename><surname>Iyer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">APSys</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,614.30,377.42,7.22;25,63.02,624.22,130.23,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Twig: Multi-agent task management for colocated latency-critical cloud services</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Nishtala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Petrucci</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">M</forename><surname>Carpenter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Själander</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">HPCA</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,634.23,377.43,7.22;25,63.02,644.15,60.44,7.26;26,45.55,55.82,20.73,8.97;26,390.04,55.82,50.24,8.97" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Self-optimizing memory controllers: A reinforcement learning approach</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Ipek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Mutlu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">F</forename><surname>Martínez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Caruana</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ISCA. 12:26 X</title>
+				<imprint>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.84,84.09,377.42,7.22;26,62.55,94.02,139.19,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Continuous control with deep reinforcement learning</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">P</forename><surname>Lillicrap</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">J</forename><surname>Hunt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Pritzel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Heess</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Erez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Tassa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Wierstra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ICLR</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,104.02,366.40,7.22" xml:id="b19">
+	<monogr>
+		<ptr target="https://www.tensorflow.org/lite/examples/on_device_training/overview" />
+		<title level="m">On-device training with Tensorflow lite</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,113.98,377.96,7.22;26,62.85,123.94,115.10,7.22" xml:id="b20">
+	<monogr>
+		<ptr target="https://developer.android.com/topic/performance/rendering/profile-gpu" />
+		<title level="m">Analyze with Profile GPU Rendering | App quality | Android developers</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.84,153.83,377.42,7.22;26,62.85,163.79,216.20,7.22" xml:id="b21">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">A</forename><surname>Siewior</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Russell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Vaddagiri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Raj</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Schopp</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gleixner</surname></persName>
+		</author>
+		<ptr target="https://docs.kernel.org/core-api/cpu_hotplug.html" />
+		<title level="m">CPU hotplug in the Kernel -The Linux Kernel documentation</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,173.76,377.95,7.22;26,62.85,183.72,17.72,7.22" xml:id="b22">
+	<monogr>
+		<ptr target="https://source.android.com/docs/core/perf/boost" />
+		<title level="m">Performance boost at game loading time | Android Open Source Project</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.84,193.68,377.43,7.22;26,62.85,203.61,311.83,7.26" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Resource central: Understanding and predicting workloads for improved resource management in large cloud platforms</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Cortez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Bonde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Muzio</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Russinovich</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Fontoura</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Bianchini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SOSP</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,213.57,334.15,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Learned&apos;: Operating systems</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Huang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">In ACM SIGOPS Operating Systems Review</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,223.57,378.77,7.22;26,62.85,233.49,176.85,7.26" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Coordinated management of multiple interacting resources in chip multiprocessors: A machine learning approach</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Bitirgen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Ipek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">F</forename><surname>Martínez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">MICRO</title>
+				<imprint>
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,243.50,378.79,7.22;26,62.85,253.42,200.11,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">FIRM: An intelligent fine-grained resource management framework for SLO-oriented microservices</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Banerjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><forename type="middle">T</forename><surname>Kalbarczyk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">K</forename><surname>Iyer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OSDI</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,263.42,378.31,7.22;26,62.85,273.38,377.41,7.22;26,62.85,283.31,18.25,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Predictive and adaptive failure mitigation to avert production cloud VM interruptions</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Levy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Mu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Ramani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">K</forename><surname>Govindaraju</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">L</forename><surname>Shafriri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chintalapati</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OSDI</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,293.26,375.05,7.26" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Benefits of the big</title>
+		<author>
+			<persName coords=""><forename type="first">H.-D</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Kim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">LITTLE Architecture. SAMSUNG Electronics White Paper</title>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,303.22,276.61,7.26" xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Adam: A method for stochastic optimization</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">P</forename><surname>Kingma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ba</surname></persName>
+		</author>
+		<idno>arXiv 1412.6980</idno>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,323.19,378.78,7.22;26,62.85,333.11,155.96,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Intelligent resource scheduling for co-located latency-critical services: A multimodel collaborative learning approach</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Dou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">FAST</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.84,343.11,378.67,7.22;26,62.85,353.08,90.54,7.22" xml:id="b31">
+	<monogr>
+		<ptr target="https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically&amp;hl=en_US&amp;pli=1" />
+		<title level="m">TikTok: Vidéos, LIVE, Musique -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.84,363.04,350.55,7.22" xml:id="b32">
+	<monogr>
+		<ptr target="https://developer.android.com/tools/adb" />
+		<title level="m">Android Debug Bridge (adb) | Android Studio | Android developers</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,373.00,348.74,7.22" xml:id="b33">
+	<monogr>
+		<ptr target="https://play.google.com/store/apps/details?id=com.sina.weibo&amp;hl=zh&amp;gl=US" />
+		<title level="m">Weibo -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,382.96,350.24,7.22" xml:id="b34">
+	<monogr>
+		<ptr target="https://play.google.com/store/apps/details?id=com.taobao.taobao&amp;hl=en_US" />
+		<title level="m">Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,392.93,125.07,7.22" xml:id="b35">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">App</forename><surname>Toutiao</surname></persName>
+		</author>
+		<ptr target="https://app.toutiao.com/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,402.89,377.44,7.22;26,62.85,412.85,20.88,7.22;26,45.78,422.81,362.38,7.22" xml:id="b36">
+	<monogr>
+		<ptr target="https://sj.qq.com/appdetail/com.ss.android.article.video?fromcase=10003&amp;from_wxz=1" />
+		<title level="m">Jingdong -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,432.78,377.83,7.22;26,62.85,442.74,33.75,7.22" xml:id="b37">
+	<monogr>
+		<ptr target="https://play.google.com/store/apps/details?id=me.GooApp.Apps.ViPSHOP&amp;hl=en_US&amp;gl=FR" />
+		<title level="m">ViPSHOP -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,452.70,377.45,7.22;26,62.85,462.63,328.25,7.26" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">SysScale: Exploiting multi-domain dynamic voltage and frequency scaling for energy efficient mobile processors</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Haj-Yahya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Alser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">S</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">G</forename><surname>Yaglikçi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Vijaykumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Rotem</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Mutlu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ISCA</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,472.63,377.44,7.22;26,62.85,482.55,378.66,7.26" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Autonomous power management in mobile devices using dynamic frequency scaling and reinforcement learning for energy minimization</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">A L</forename><surname>Carvalho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">C</forename><surname>Cunha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">G</forename><surname>Silva-Filho</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Microprocessors and Microsystems</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,492.55,377.45,7.22;26,62.85,502.48,254.88,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Asynchronous Hybrid Deep Learning (AHDL): A deep learning based resource mapping in DVFS enabled mobile MPSoCs</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Dey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Saha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">K</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">D</forename><surname>Mcdonald-Maier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">WF-IoT</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,512.48,377.43,7.22;26,62.85,522.40,68.57,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">GPGPU-Perf: Efficient, interval-based DVFS algorithm for mobile GPGPU applications</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><forename type="middle">J</forename><surname>Kim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">The Visual Computer</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,532.36,377.74,7.26" xml:id="b42">
+	<monogr>
+		<title level="m" type="main">GPGPU performance estimation with core and memory frequency scaling</title>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Chu</surname></persName>
+		</author>
+		<idno>IEEE TPDS</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,542.32,327.90,7.26" xml:id="b43">
+	<monogr>
+		<title level="m" type="main">Pursuing extreme power efficiency with PPCC guided NoC DVFS</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Lu</surname></persName>
+		</author>
+		<idno>IEEE TC</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,552.32,377.42,7.22;26,62.55,562.24,118.59,7.26" xml:id="b44">
+	<monogr>
+		<title level="m" type="main">DVFS-based quality maximization for adaptive applications with diminishing return</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Ha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Veeravalli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>El-Sayed</surname></persName>
+		</author>
+		<idno>IEEE TC</idno>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,572.25,378.69,7.22;26,62.85,582.17,30.01,7.26" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">GPGPU power modeling for multi-domain voltage-frequency scaling</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Guerreiro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Ilic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Roma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Tomas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">HPCA</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,592.17,221.00,7.22" xml:id="b46">
+	<monogr>
+		<ptr target="https://communityin.oppo.com/thread/48606" />
+		<title level="m">OPPO browser review</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,602.13,25.26,7.22;26,107.79,602.13,9.45,7.22;26,136.94,602.13,21.34,7.22;26,177.98,602.13,263.54,7.22;26,62.85,612.10,92.62,7.22" xml:id="b47">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Camera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Oppo</surname></persName>
+		</author>
+		<ptr target="https://play.google.com/store/apps/details?id=com.perffectselfie.thelastedcamera.oppocamerastyle&amp;hl=en_US" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,622.06,361.61,7.24" xml:id="b48">
+	<monogr>
+		<ptr target="https://play.google.com/store/apps/details?id=com.google.android.gm&amp;hl=en_US" />
+		<title level="m">Gmail -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="26,62.85,632.04,368.54,7.22;27,45.95,55.82,32.53,8.97;27,419.74,55.82,20.73,8.97" xml:id="b49">
+	<monogr>
+		<ptr target="https://play.google.com/store/search?q=google%20maps&amp;c=apps&amp;hl=en_USMobiRL" />
+		<title level="m">Google Maps -Apps on Google Play</title>
+				<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">27</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="27,63.02,84.09,378.67,7.22;27,63.02,94.06,67.42,7.22" xml:id="b50">
+	<monogr>
+		<ptr target="https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping&amp;hl=en_US" />
+		<title level="m">Amazon Shopping -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="27,63.02,104.02,323.86,7.22;27,45.95,113.98,191.19,7.22" xml:id="b51">
+	<monogr>
+		<ptr target="https://cecropia.github.io/thehallaframe/" />
+		<title level="m">WeChat -Apps on Google Play</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="27,63.02,123.94,377.46,7.22;27,63.02,133.87,86.40,7.26" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Energy minimization for periodic real-time tasks on heterogeneous processing units</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Schranzhofer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IPDPS</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="27,63.02,143.87,377.45,7.22;27,63.02,153.79,185.61,7.26" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">An approximation scheme for energy-efficient scheduling of real-time tasks in heterogeneous multiprocessor systems</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Kuo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Thiele</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">DATE</title>
+				<imprint>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="27,63.02,163.79,377.46,7.22;27,63.02,173.72,201.02,7.26" xml:id="b54">
+	<monogr>
+		<title level="m" type="main">Rethinking memory management in modern operating system: Horizontal, vertical or random?</title>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Hao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengyong</forename><surname>Wu</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+	<note>In IEEE TC</note>
+</biblStruct>
+
+<biblStruct coords="27,63.01,183.72,378.65,7.22;27,63.02,193.64,44.49,7.26" xml:id="b55">
+	<monogr>
+		<title level="m" type="main">Hierarchical hybrid memory management in OS for tiered memory systems</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Li</surname></persName>
+		</author>
+		<idno>IEEE TPDS</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

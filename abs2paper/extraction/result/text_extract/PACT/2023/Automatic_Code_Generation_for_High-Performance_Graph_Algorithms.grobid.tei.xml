@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Automatic Code Generation for High-Performance Graph Algorithms</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-10-21">2023-10-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,116.27,176.21,44.03,9.42;1,160.30,174.24,1.29,7.27"><forename type="first">Zhen</forename><surname>Peng</surname></persName>
+							<email>zhen.peng@pnnl.gov</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Pacific Northwest National Laboratory</orgName>
+								<address>
+									<settlement>Richland</settlement>
+									<region>Washington</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,170.61,176.21,74.35,9.42;1,244.96,174.24,1.29,7.27"><forename type="first">Rizwan</forename><forename type="middle">A</forename><surname>Ashraf</surname></persName>
+							<email>rizwan.ashraf@pnnl.gov</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Pacific Northwest National Laboratory</orgName>
+								<address>
+									<settlement>Richland</settlement>
+									<region>Washington</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,255.27,176.21,65.12,9.42;1,320.39,174.24,1.29,7.27"><forename type="first">Luanzheng</forename><surname>Guo</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">Pacific Northwest National Laboratory</orgName>
+								<address>
+									<settlement>Richland</settlement>
+									<region>Washington</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,330.71,176.21,48.69,9.42;1,379.39,174.24,1.85,7.27"><forename type="first">Ruiqin</forename><surname>Tian</surname></persName>
+							<email>ruiqin.tian@horizon.ai</email>
+							<affiliation key="aff1">
+								<orgName type="institution">Horizon Robotics</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,408.66,176.21,60.98,9.42;1,469.65,174.24,1.55,7.27"><forename type="first">Gokcen</forename><surname>Kestor</surname></persName>
+							<email>gokcen.kestor@pnnl.gov</email>
+							<affiliation key="aff0">
+								<orgName type="institution">Pacific Northwest National Laboratory</orgName>
+								<address>
+									<settlement>Richland</settlement>
+									<region>Washington</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff2">
+								<orgName type="institution">University of California</orgName>
+								<address>
+									<settlement>Merced, Merced</settlement>
+									<region>California</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Automatic Code Generation for High-Performance Graph Algorithms</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="14" to="26"/>
+							<date type="published" when="2023-10-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">E24F50631D76027F30D1A72D124FA39A</idno>
+					<idno type="DOI">10.1109/pact58117.2023.00010</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>compiler</term>
+					<term>optimization</term>
+					<term>graph algorithms</term>
+					<term>triangle counting</term>
+					<term>breadth-first search</term>
+					<term>code generation</term>
+					<term>semiring</term>
+					<term>masking</term>
+					<term>sparse linear algebra</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Graph problems are common across many fields, from scientific computing to social sciences. Despite their importance and the attention received, implementing graph algorithms effectively on modern computing systems remains a challenging task that requires significant programming effort and generally results in customized implementations. Current computing and memory hierarchies are not architected for irregular computations, resulting performance that is far from the theoretical architectural peak. In this paper, we propose a compiler framework to simplify the development of graph algorihtm implementations that can achieve high performance on modern computing systems. We provide a high-level domain specific language (DSL) to represent graph algorithms through sparse linear algebra expressions and graph primitives including semiring and masking. The compiler leverages the semantics information expressed through the DSL during the optimization and code transformation passes, resulting in more efficient IR passed to the compiler backend. In particular, we introduce an Index Tree Dialect that preserves the semantic information of the graph algorithm to perform high-level, domain-specific optimizations, including workspace transformation, two-phase computation, and automatic parallelization. We demonstrate that this work outperforms state-of-the-art graph libraries LAGraph by up to 3.7× speedup in semiring operations, 2.19× speedup in an important sparse computational kernel, and 9.05× speedup in graph processing algorithms.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Graphs data structures are used in many domains, from computer security <ref type="bibr" coords="1,141.99,562.83,10.60,8.56" target="#b0">[1]</ref> and computational genomics <ref type="bibr" coords="1,274.07,562.83,10.60,8.56" target="#b1">[2]</ref> to network sciences <ref type="bibr" coords="1,133.19,573.73,10.60,8.56" target="#b2">[3]</ref> and scientific computing <ref type="bibr" coords="1,238.78,573.73,9.65,8.56" target="#b3">[4]</ref>, to represent complex interactions and casual relationships (edges) among entities (nodes). While graphs adapt well to solve problems at different scales, real-life problems often produce graph data structures that are highly irregular and extremely large. These two factors pose challenges while implementing efficient graph algorithms on modern computer architectures, which have been developed and optimized mostly for regular computation. To achieve high-performance, developers are often forced to write ad-hoc code specifically tailored for given architectures using a fairly low-level programming language, such as C/C++ § Work was performed while the author was at Pacific Northwest National Laboratory or CUDA, which, then, impedes the portability of the implementation on different systems, productivity, and reusability. With the proliferation of modern computing systems, the current practice of manually reimplementing graph algorithms for each new architecture is simply not sustainable.</p><p>In this work, we seek a solution to develop graph algorithms that provide high performance on modern computer architectures but do not hinder portability and productivity. In this endover, we identify two main challenges: 1) find the right level of abstraction to represent graph algorithms and 2) lower that abstraction to efficient machine code. The level of abstraction should be high enough to enable developers to express graph algorithms effectively and with notations that make sense in the application domain, both of which increase productivity. Hand-tuned, architecture-specific implementations (e.g., CUDA) may achieve high performance but developing such solutions is time-consuming and not portable across systems. The abstraction should carry sufficient semantics information to be used during code optimizations and machine code generation to increase performance on specific architectures. Finally, the abstraction should be architectureindependent and semantically rich to guarantee portability across different systems. In fact, it is generally easier to port high-level operations (e.g., sparse matrix-sparse matrix multiplication) than low-level constructs (e.g., nested loops) across systems. In this work, we opt for (sparse) linear algebra as a reasonable programming abstraction to develop efficient graph algorithms. Algebraic representations of graph algorithms are architecture-independent, sufficiently high-level so that users can effectively implement graph applications in their domains, and carry enough semantics information to inform the underlying system about which architectureindependent and architecture-specific optimizations should be employed. Compared to vertex-based and edge-traversal implementations, algebraic representations provide a compact and expressive way to represent graph algorithms, carrying semantic information through the characteristics of the matrix used to represent the graph <ref type="bibr" coords="1,424.78,658.05,9.65,8.56" target="#b4">[5]</ref>, <ref type="bibr" coords="1,442.09,658.05,9.65,8.56" target="#b5">[6]</ref>, are easier to develop, more portable, and can leverage a large body of research and optimization.</p><p>The second challenge is represented by mapping (lowering) the high-level abstraction to efficient code for specific computing systems. The inherent irregularity of graph processing algorithms and the size of real-life graphs pose considerable challenges when performing this process. The sheer size of real-life problems makes it difficult, if not impossible, to store graphs (i.e., adjacency matrix) using dense data structures. Given the intrinsic sparse nature of graph structures, storing graphs in dense format would introduce excessive pressure on the memory subsystem and unnecessary computation. Efficient graph implementations generally prefer sparse representations of the graph to reduce memory requirements and use sparse operators to increase computing efficiency by eliminating unnecessary computation. However, modern computing architectures and memory technologies have been designed and optimized for dense computation and do not perform as well for sparse computation <ref type="bibr" coords="2,178.53,218.84,9.95,8.82" target="#b6">[7]</ref>. The process of lowering high-level abstraction to efficient machine code must employ different kinds of optimizations, both architecture-independent and architecture-specific, and should be performed at all levels of the lowering process. First, the language should provide high-level, graph-oriented operators that carry enough information for efficient code generation. Second, architectureindependent, graph-specific optimizations, such as fusion and automatic parallelization, should be applied to the high-level code. Next, generic architecture-independent optimizations (loop unrollling, dead code elimination, etc.) should be considered. Finally, the resulting code should be optimized for the target architecture. This process should be automated to increase productivity and portability and, to the extend that the abstraction carries enough semantics information, should have the user out of the loop.</p><p>In this work, we propose a domain-specific compiler framework to develop graph algorithm implementations that can achieve high performance, are portable across different systems, and are easy to develop. We propose a high-level Domain-Specific Language (DSL) to represent graph algorithms through (sparse) linear algebra expressions and specific graph-oriented operators. The DSL allows users to embed domain-specific semantics that is leveraged internally during code generation through a series of optimizations and lowering steps to generate efficient Intermediate Representation (IR), such as specific graph primitives including semiring and masking. The proposed compiler is based on a multi-level IR and progressive lowering from high-level IRs (or dialects) that encapsulate the semantics of the application to low-level IRs, which are closer to the architecture. The compiler leverages the semantics information expressed through the DSL during the optimization and code transformation passes. This generally results in more efficient IR that can be passed to the compiler backend (e.g., LLVM) to generate machine code compared to general-purpose programming environments, such as C or C++. In particular, we introduce an Index Tree Dialect. This dialect preserves the semantic information of the graph algorithm to perform high-level, domain-specific optimizations. Several code optimizations and transformations are applied while lowering the index tree IR to lower-level dialects in the compilation pipeline, including optimizations specifically developed in this work: workspace transformation, two-phase computation, and automatic parallelization. Workspace transformation takes advantage of intermediate dense structure to improve the data locality and reduce computation complexity while preserving the sparse format of the resulting outputs. The two-phase computation employs symbolic computation to deduce the minimum size for the output's sparse data structure. We also introduce a novel optimization algorithm that leverages the symbolic information to perform automatic parallelization of sparse linear algebra primitives.</p><p>We show that by combining our DSL, optimizations (workspace transformation, two-phase computation, and parallelization), and efficient graph primitives (semiring and masking), we are able to outperform state-of-the-art graph libraries (e.g., LAGraph <ref type="bibr" coords="2,375.72,218.73,9.95,8.82" target="#b5">[6]</ref>, which implements the GraphBLAS standard <ref type="bibr" coords="2,333.31,229.97,10.53,8.82" target="#b7">[8]</ref>) by a significant margin. We evaluate the performance of several graph primitives and graph processing algorithms. Our results show that our work outperforms LAGraph by up to 3.7× for semiring operations, 2.19× for SpGEMM kernel, and 9.05× for graph processing algorithms Breadth First Search (BFS) and Triangle Counting (TC). In summary, this work makes the following contributions:</p><p>• a novel compiler framework and DSL, which enable users to productively develop the algebraic implementation of graph algorithms and achieve high-performance. • important graph primitives (semirings and masking operations) and code optimizations and transformations (workspace transformation, two-phase computation, parallelization) for efficient execution; • a performance evaluation of sparse linear algebra kernels and two prominent graph processing algorithms and comparison with LAGraph. The rest of this work is organized as follows: Section II provides an overview of the compiler; Section III introduces the code generation optimizations of graph computations; Section IV demonstrates extended linear algebra primitives for graph algorithms; Section V provides an exhaustive performance evaluation; finally, Section VI and Section VII compare this work to other efforts and draw conclusions, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. OVERVIEW</head><p>This work proposes a domain-specific compiler framework to develop efficient graph algorithms represented by linear algebra operations. Our work adheres to the GraphBLAS standard, which provides a comprehensive set of graph primitives for sparse matrices and vectors of various types and extends the traditional linear algebra operators with semirings and masking to achieve higher performance. The GraphBLASbased approach provides a consistent way for graph algorithm implementation through common graph primitives that can be optimized using well-studied techniques, and it avoids the complexity of writing different ad-hoc implementations common with traditional vertex-or edge-centric approaches <ref type="bibr" coords="2,534.58,645.89,11.70,8.82" target="#b8">[9]</ref>- <ref type="bibr" coords="2,314.19,657.13,14.35,8.82" target="#b10">[11]</ref>. In most cases, the algorithmic complexity of the graph algorithms implemented using linear algebra is close to the complexity of the implementation based on vertex-or edgetransverses <ref type="bibr" coords="2,358.17,690.84,14.35,8.82" target="#b11">[12]</ref>. Given a graph G(V, E), where V is the set of N vertices (or nodes) in the graph and E is the set of M edges that connect two vertexes, such that e ij ∈ E iff there are two vertexes v i , v j ∈ V and there exists an edge between the two. While graphs can be represented in various forms, such as a list of edges and the vertices they connect, a graph G(V, E) in algebraic implementations of graph algorithms is represented as an adjacency matrix A of size NxN, where the elements a ij = 1 iff there exists an edge e ij ∈ E. Once a graph is represented as an adjacency matrix, the implementation of graph algorithms can leverage well-defined linear algebra operations. For example, visiting all neighbors from a source vertex v i only requires multiplying the adjacency matrix A by a vector x that has all zero elements except x i . Similarly, multiplying A by itself k times yields relations between vertices at distance k. For example, A 2 x and A k x return the neighbor lists that are two and k hops away, respectively. Given the nature of graphs, generally N 2 M , hence A is very sparse. Storing A in a dense format unnecessarily increases the memory and computing requirements and results in inefficient execution. This framework employs sparse linear algebra operators to reduce both the memory and computing requirements, as only the non-zero elements of A need to be stored in memory and considered during the computation.</p><p>The proposed DSL is based on index notation (or Einstein notation), which is a concise, expressive, and widely used way to express dense and sparse tensor computations. For example, the multiplication of two matrices A and B can be expressed as C ij = A ik * B kj , where i and j are the free indices that appear in the output, whereas, the remaining indices are the summation indices, k in this case. This concisely represents the following operation for each entry of the output matrix C: N k=1 a ik b kj , assuming that all matrices are of size NxN. The Einstein notation is adopted and supported in many common programming models to express tensor operations, such as the numpy.einsum API in NumPy <ref type="bibr" coords="3,278.58,454.83,14.35,8.82" target="#b12">[13]</ref>, PyTorch (torch.einsum) and TensorFlow (tf.einsum). It is also the input language in deep learning frameworks such as Tensor Comprehension <ref type="bibr" coords="3,165.35,488.55,14.35,8.82" target="#b13">[14]</ref>, and sparse tensor compilers such as TACO <ref type="bibr" coords="3,119.28,499.79,15.60,8.82" target="#b14">[15]</ref> and COMET <ref type="bibr" coords="3,190.71,499.79,9.95,8.82" target="#b6">[7]</ref>, <ref type="bibr" coords="3,207.15,499.79,14.35,8.82" target="#b15">[16]</ref>. All these libraries and frameworks implement some variant of the original Einstein notation to expand the expressiveness. In this work, we adopt a consistent Einstein notation semantic as used by numpy.einsum and state-of-the-art compilers <ref type="bibr" coords="3,261.68,544.74,9.95,8.82" target="#b6">[7]</ref>, <ref type="bibr" coords="3,278.59,544.74,14.35,8.82" target="#b14">[15]</ref>. We refer the reader to the numpy.einsum API page for a more comprehensive description of the notation. Note that a summation or contraction index is implied if an index variable appears on the right-hand-side tensors but not on the left-handside tensor. In addition, a custom function can be specified to express other types of reduction other than summation, such as</p><formula xml:id="formula_0">A i = max(B ij ).</formula><p>It is also possible to express operations such as MTTKRP (Matricized Tensor Times Khatri-Rao Product) as A ir = B ijk * D jr * C kr , where the index variable j and k are summed. The sparse formats of each tensor are specified as type annotations, and a compiler will automatically generate code from the expression in the back end. Also, note that for some operation sequences, the order of evaluation can result in different asymptotic time complexities, such as a chain of matrix multiplications <ref type="bibr" coords="3,400.42,83.99,9.95,8.82" target="#b6">[7]</ref>. In this work, we assume such order is already determined and do not attempt to reorder matrix multiplications.</p><p>From an implementation point of view, the proposed compiler is based on the Multi-Level Intermediate Representation (MLIR) framework and built on top of COMET <ref type="bibr" coords="3,514.60,140.31,9.95,8.82" target="#b6">[7]</ref>, <ref type="bibr" coords="3,532.52,140.31,14.35,8.82" target="#b15">[16]</ref>. COMET is a dense and sparse tensor algebra compiler that targets multiple architectures. It has been extensively used to optimize dense tensor contractions within the NWChem quantum chemistry framework <ref type="bibr" coords="3,434.19,185.27,9.95,8.82" target="#b6">[7]</ref>, <ref type="bibr" coords="3,450.54,185.27,14.35,8.82" target="#b16">[17]</ref>. The work introduces specific code optimizations and transformations for sparse linear algebra operators, and DSL support to implement algebraic formulations of graph algorithms. MLIR, which is part of the LLVM ecosystem, provides a solid foundation to build new compiler frameworks and a set of common optimizations and code transformation passes, such as loop unrolling, tiling, and vectorization. New optimizations and architectures added to the MLIR framework will be readily available to the proposed compiler and its users.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. EFFICIENT CODE GENERATION OF GRAPH COMPUTATION</head><p>The proposed compiler is based on the MLIR framework, which provides a multi-level IR and an infrastructure to perform progress lowering. The key insight in MLIR, hence in this work, is that different optimizations can be performed at each level of the IR stack (or dialects), from high-level, domain-specific optimizations at higher levels to architecturespecific optimizations at low levels and that optimizations and dialects can be composed to efficiently generate executable code for various target architectures.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Index Tree Dialect</head><p>This work introduces a new MLIR dialect, the Index Tree dialect, between the COMET's existing tensor algebra dialect and the MLIR Structured Control Flow (SCF) dialect with the specific objective of performing efficient code transformation and optimizations for sparse computation. The index tree dialect is a representation of an index tree notation, which is widely adopted by various code generation models of tensor computations <ref type="bibr" coords="3,408.34,533.36,14.35,8.82" target="#b14">[15]</ref>, <ref type="bibr" coords="3,430.53,533.36,14.35,8.82" target="#b17">[18]</ref>, <ref type="bibr" coords="3,452.71,533.36,14.35,8.82" target="#b18">[19]</ref>. While the COMET tensor algebra dialect is designed for traditional tensor algebra operators, the index tree dialect provides a generic and efficient representation of computing expressions (operators and their relations) based on two types of nodes, indexation, and computation nodes. The specific instantiations of the nodes are determined by the computation expressed in the tensor algebra dialect during lowering. However, the index tree nodes are not limited to the traditional tensor algebra operators and can be used to implement extended operators, such as semiring and masking, as described in Section IV. As discussed later, these extended operators are fundamental to achieving high performance with graph algorithms.</p><p>Listing 1 and Listing 2 show examples of code (matrix multiplication) represented in the tensor algebra dialect (ta.mul) 1 %C = "ta.mul"(%A, %B) { 2 formats = ["CSR", "CSR", "CSR"], Listing 1: The sparse matrix-matrix multiplication operation represented in the tensor algebra dialect. Multi-dimensional memory references are indexed with affine maps.</p><formula xml:id="formula_1">3 indexing_maps = [ 4 affine_map&lt;(d0, d1, d2) -&gt; (d0, d1)&gt;, //C[i,k] 5 affine_map&lt;(d0, d1, d2) -&gt; (d1, d2)&gt;, //A[i,j] 6 affine_map&lt;(d0, d1, d2) -&gt; (d0, d2)&gt;], //B[j,k]</formula><p>%1 = "it.computeRHS"(%a, %b) ...{} -&gt; tensor&lt; * xf64&gt; %2 = "it.computeLHS"(%c) ...{} -&gt; tensor&lt; * xf64&gt; %3 = "it.compute"(%1, %2) {semiring = "plus_times"} %4 = "it.indices"(%3) ...{} %5 = "it.indices"(%4) ...{} %6 = "it.indices"(%5) ...{} %7 = "it.tree"(%6) ...{}</p><p>Listing 2: The sparse matrix-matrix multiplication operation represented in the index tree dialect highlighting the tree structure with index and compute nodes.</p><p>and lowered to index tree dialect, respectively. The code in Listing 2 can be read from bottom to top, i.e., it.tree operation represents the root of the index tree. The it.indices operations represent the various indices used in the tensor multiplication operation, which would be i, j, k. These nodes of the tree will directly map to three nested loops needed for this operation. The next three operations in the index tree dialect represent the body of the loop. In this case, compute operation forms a segue between index operations and the compute operations. The compute operation maintains the compute expression that is formed via the computeLHS, computeRHS operations. Once the lowering to SCF dialect is complete, the code is ready to be consumed within the downstream MLIR infrastructure to generate machine code.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Code Optimizations and Transformations</head><p>To provide efficient code generation for sparse kernels, this work addresses three major challenges during the code generation: 1) high insertion cost into sparse output tensors 2) the unknown size and distribution of nonzero elements in sparse output tensors, and 3) the difficulty of parallelization.</p><p>1) Workspace Transformation: In general, inserting a new element into the sparse data structure of the output tensor has a high time complexity. To eliminate this complexity, most compiler frameworks and libraries store the output of a sparse computation in a dense format. Although this approach greatly reduces the cost of computation, it may lead to "densification" of the data structures and increased memory footprints for the output results, which may result in unnecessary wasted space and an inability to execute.</p><p>To address these challenges, we developed a novel approach called workspace transformation to store sparse output directly in sparse formats such as CSR. The workspace transformation introduces temporary intermediate dense data structures</p><formula xml:id="formula_2">i,j,k i,k j j k,j i j C ij +=A ik * B kj W j +=A ik * B kj W j =0 C ij =W j W j +=A ik * B kj W j =0 C ij =W j (a) (b) (c) Index node Compute node</formula><p>Fig. <ref type="figure" coords="4,332.71,150.83,3.64,8.82">1</ref>: The index trees (a) before and (b,c) after applying the workspace transformation on C in index j, given a matrix multiplication operation. (called the workspace) to avoid irregular access to the original sparse data structures. This not only simplifies the code generation algorithm, but also improves the data locality of the generated code by narrowing some irregular access to the dense data structure. Unlike previous work that <ref type="bibr" coords="4,501.54,376.02,15.60,8.82" target="#b19">[20]</ref> requires users to determine the index to apply workspace transformation, in this work, the compiler automatically identifies the index involved based on the storage format.</p><formula xml:id="formula_3">i,j,k i j C ij =A ij .* B ij W j =B ij W j =0 C ij =A ij .* W j (a) (b) Index node Compute node</formula><p>The workspace transformation can be applied to two types of indices in a sparse-sparse expression: input indices associated with sparse dimensions in both input tensors and output indices associated with sparse dimensions in the output tensor. The workspace transformation performed depends on the indices to which it is applied.</p><p>Consider two sparse matrices A ik and B kj stored in the CSR format. The expression C ij = A ik * B kj produces a sparse output C ij , where the index j is associated with a sparse dimension. In this case, the compiler applies the workspace transformation to the index j as output index. The index trees before and after workspace transformation are shown in Figure <ref type="figure" coords="4,355.24,557.45,3.64,8.82">1</ref>: Figure <ref type="figure" coords="4,400.09,557.45,15.08,8.82">1(a)</ref> shows the original index tree for a pure sparse matrix multiplication operation; Figure <ref type="figure" coords="4,535.16,568.68,15.60,8.82">1(b)</ref> shows the index tree after applying the workspace to C on index j. The data in dimension j of C is represented with a temporary dense vector W ; Figure <ref type="figure" coords="4,452.44,602.40,15.08,8.82">1(c)</ref> shows the index tree after enabling loop-invariant optimizations, in which unused indices of the leaf nodes are removed. In particular, the temporary dense vector W is independent of the index k, so k can be safely removed. Before workspace transformation, the time complexity of random access to the sparse output index j is O(log n) from searching (assuming the indices are sorted), and the insertion complexity is O(n) from data movement. After workspace transformation substitutes the sparse index j with the dense vector W , the complexity of both random access and insertion is reduced to O(1). Therefore, the workspace transformation can provide asymptotic performance improvement for the sparse outer index. Now consider the element-wise expression</p><formula xml:id="formula_4">C ij = A ij . * B ij</formula><p>, where index j is associated with a sparse dimension in both the input matrices A and B. In this case, we apply the workspace transformation on the input matrix B. The index trees before and after workspace transformation are shown in Figure <ref type="figure" coords="5,289.24,162.76,3.51,8.82" target="#fig_1">2</ref>, where the data in dimension j of B are temporarily preserved by a dense vector W . Before workspace transformation, iterating the sparse input index j on both the sparse matrices A and B simultaneously requires a merge while loop with compound conditionals. After workspace transformation, the linear traverse of index j in matrix B can be replaced by random access to the dense vector W . This can not only improve the performance asymptotically, but also substitute the merge while loop with a simple for loop, which enables additional optimization potentially customized for for loops.</p><p>The workspace transformation is applied on the Index Tree dialect. Compared to the kernel fusion optimization in COMET <ref type="bibr" coords="5,98.59,308.85,14.35,8.82" target="#b17">[18]</ref>, which removes redundant computation and performs memory optimization for intermediate tensors created by the fusion of multiple operations, the workspace transformation increases the performance of a single operation. The workspace transformation proposed in this work and the kernel fusion <ref type="bibr" coords="5,115.96,365.04,15.60,8.82" target="#b17">[18]</ref> can potentially be composed together to result in overall higher performance. We leave this evaluation as future work.</p><p>2) Two-Phase Computation: One of the challenges of sparse computation comes from the unknown size and distribution of the output tensor. First, the number of nonzero elements in the output tensor is unknown before computation, which makes memory management very difficult. A general method is to allocate a very large chunk of memory to avoid the case where the output size exceeds the allocation, which results in redundant memory usage. Second, it is hard to know beforehand how nonzero elements are distributed among different rows (in case of row-major storage) in the output tensor. To update the output tensor in parallel, it is common to use a lock on the critical data structure, which results in high synchronization overhead.</p><p>To determine the needed size and real distribution of the output tensor, this work generates the code with two phases for sparse computation. The first phase is called the symbolic phase. It follows the same procedure of the given sparse computation (e.g., SpGEMM) in a "symbolic" way that it does not execute the computation, but only records the nonzero distribution of the output. After that, the symbolic phase can also determine the true number of nonzero elements in the output tensor and then allocate the sparse data structure with only the needed memory size. The second phase is called the numeric phase. It performs the real "numeric" computation with the prior knowledge from the symbolic phase. For some components of the sparse data structure (e.g., the index array in CSR), the output can be placed directly at the correct location Fig. <ref type="figure" coords="5,334.37,147.38,3.64,8.82">3</ref>: An example of parallel numeric phase. After the symbolic phase, thread t knows where to insert the result into the data array using a private workspace.</p><p>that is provided by the symbolic phase. Therefore, the twophase computation can minimize memory usage effectively.</p><p>3) Automatic Parallelization: Another challenge of sparse computation is the inefficient parallel execution due to the unknown distribution of the output nonzero elements. Unlike the dense matrix computation that can be parallelized by simply dividing the regular output, the sparse computation generates irregular sparse output. A naïve parallelization method would require locks on the critical sparse data structure, which may result in a high synchronization overhead.</p><p>The use of two-phase computation enables efficient parallelization without locks. First, the symbolic phase can be naturally parallelized among one dimension of the tensor. It does not have update conflicts because the symbolic phase does not perform numeric computations but only records the output distribution. Second, the numeric phase can also be parallelized according to the locations provided by the symbolic phase as shown in Figure <ref type="figure" coords="5,438.80,398.76,3.51,8.82">3</ref>. Different parts of nonzero elements can be updated simultaneously without conflicts.</p><p>Moreover, the codegen can generate a private workspace for each worker during parallel execution. In this way, multiple workers will not have writing conflicts with each other, and a worker can reuse their private workspace without unnecessary reallocation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. EXTENDED LINEAR ALGEBRA GRAPH PRIMITIVES</head><p>As described in Section II, traditional linear algebra primitives are not sufficient to implement efficient graph algorithms. For this reason, the GraphBLAS standard introduces extended linear algebra operators that leverage the nature of graph data structure to reduce computation and increase performance. This section describes the design and implementation of such extended primitives in our work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Semiring</head><p>Semiring is an algebraic structure similar to a ring, but without the requirement that each element must have an additive inverse operator. Semiring operators combine a pair of linear algebra operations into a singular one. For example, the DSL expression</p><formula xml:id="formula_5">C[i, k] = A[i, j] @(+, * ) B[j, k]<label>(1)</label></formula><p>where A and B are the input matrices and C is the output matrix, contains the semiring operator @(•, •). The semiring operator takes as input the pair of operations that needs to be combined. In this example, @(+, * ) combines addition and multiplication, thus it is equivalent to the standard matrix multiplication operation. Listing 3 demonstrates the use of the any-pair semiring between a dense vector and a sparse matrix (Line 22), where the first operator returns true if both the elements in the two input vectors are non-zero (paired); the second operator returns true if any pair was found in the output of the first operator. Our compiler also supports plus-times, min-first, any-pair, and plus-pair.</p><p>The compiler lowers the semiring operator @(•, •) down to the tensor algebra dialect (Line 7 in Listing 1). Since semiring may contain different operations, the specific mapping of semiring to TA operators depends on the particular semiring used. For example, @(+, * ) maps to ta.mul, while @( , * ) maps to ta.elews_mul. Additionally, our compiler extends the semantics of the tensor algebra dialect operators to include the semiring type and the pair of operations required. Listing 1 shows how the ta.mul operator in the tensor algebra dialect is extended to represent semiring type plus_times (note the semiring attribute). In the next step, the compiler lowers the tensor algebra IR to index tree IR, where we perform most code optimizations and transformations for sparse computations. Listing 2 shows the result of this lowering step for the plus_times semiring described in Listing 1. Finally, the compiler lowers the index tree IR to the SCF IR and then to LLVM IR and machine code for execution. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Masking</head><p>In the GraphBLAS standard, masking is a technique to selectively apply operations to certain elements of input matrices or tensors. In our DSL, masking is represented by the operator • , which takes as input a matrix that represents the mask and has identical dimensions of the matrix to which masking is applied (hence the dimensions of the mask matrix are omitted). For example:</p><formula xml:id="formula_6">C[i, k] M = A[i, j] * B[j, k]<label>(2)</label></formula><p>performs a matrix-matrix multiplication between the inputs A and B. In this expression, the masking operator applied to C, C[i, k] M , limits the scope of scalar operations to be performed and which elements of C need to be updated.</p><p>The mask matrix M is a binary matrix in which m ij = 1 iff element c ij needs to be updated with the result of the computation. Figure <ref type="figure" coords="6,398.38,432.75,3.77,8.82" target="#fig_3">4</ref>(a) and 4(b) illustrate how masking works when applied to a sparse matrix and a sparse vector, respectively. In the Figures, A and x are the original structures, while B and y are the masks. Our code generation algorithm for masking operation can be classified into two classes, depending on the sparsity structure of the masking matrix: push-based masking and pullbased masking <ref type="bibr" coords="6,374.00,511.31,14.35,8.82" target="#b20">[21]</ref>. As an example, let us consider the case C&lt;M &gt; = A * B (spGEMM). The push-based masking algorithm is driven by the input matrices. The algorithm traverses matrix A by rows and "pushes" the non-zero elements into the corresponding rows of matrix B. First, by analyzing the nonzero elements in a row of A, the algorithm identifies the specific entries in B that contribute to the output C. Next, the compiler performs a linear combination between those elements from the row of A and corresponding rows of B. Finally, the row of A selects the row of M with the same row index, reducing the number of output elements to be computed. In contrast, the pull-based masking algorithm is driven by the matrix mask. In this case, the algorithm first traverses every non-zero element of the mask M and "pulls" the corresponding row from matrix A and the column from matrix B. First, by analyzing a non-zero element in M , the algorithm determines which row of A and which column of B should be pulled out. Second, the algorithm does a sparse dot product between these selected vectors.</p><p>While the goal of both push-based masking and pull-based masking algorithms is to eliminate unnecessary computations, the pull-based masking approach is preferred when the matrix mask M has a very low density, as it only examines the elements in the input matrices determined by the mask. However, in this case, the input B needs to be stored in columnmajor storage such as CSC when performing a sparse matrixsparse matrix operation. In contrast, the push-based masking approach is more general and allows B to be stored in a rowmajor format, such as CSR. Thus, this approach is preferred when the matrix mask M has a relatively high density. In general, the best approach depends on the sparsity level of the mask M : the compiler is designed to favor the approach driven by the most sparse matrix to eliminate as much unnecessary computation as possible.</p><p>Note that, in both approaches, there is an additional cost of accessing the mask matrix M and determining which elements pertain to the computation. However, the savings introduced by eliminating unnecessary computations greatly outweigh this additional cost, as shown in the next Section V.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. EVALUATION</head><p>In this section, we present the performance of automatically generated code for some of the sparse linear-algebra kernels and the graph algorithms. We compare our performance against LAGraph <ref type="bibr" coords="7,156.75,525.51,10.92,8.82" target="#b5">[6]</ref> which contains an assortment of graph algorithms implemented using linear algebra. LAGraph employs the SuiteSparse:GraphBLAS library for sparse linear algebra kernels.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Methodology and Benchmarks</head><p>To show the performance benefit of our work, we evaluate two sets of benchmarks: 1) simple sparse kernels commonly used in graph algorithm which consists of sparse matrixsparse matrix multiplication (SpGEMM) and sparse matrixsparse matrix elementwise multiplication operations, 2) two representative graph algorithms TC and BFS.</p><p>Triangle Counting (TC) algorithm counts the number of triangles given an input undirected graph G. This problem was also part of the GraphChallenge competition <ref type="bibr" coords="7,266.10,681.61,14.35,8.82" target="#b21">[22]</ref>. A triangle is defined to be a set of three mutually adjacent Algorithm 2: BFS expressed in linear algebra.</p><p>Input: Graph, A, represented as an adjacency matrix; f , the frontier vector. s, the source vertex; n, the number of vertices Output: l, a vector of visited vertices' level. The naive way to count the number of triangles in a graph represented by adjacency matrix A is to perform the following operation: A 3 and take a trace of the resulting matrix. The final answer is obtained by dividing the obtained scalar by 6 to account for already counted triangles. The naive way is extremely computationally expensive since A 3 is most likely to become dense. There are various other linear algebra-based algorithms that propose better implementations as compared to the naive approach. For instance, element-wise multiplication (represented as . * ) can be used instead of the second matrix multiplication operation in the naive approach, i.e., (A 2 ). * A. This is followed by performing a reduction operation across the matrix to obtain the final triangle count. The algorithm with element-wise operation is similar to performing the matrix multiplication with A as a mask. In this way, the calculations in A 2 that are subsequently masked out by the element-wise operation are not performed in the first place. Multiple algorithms for triangle counting exist <ref type="bibr" coords="7,490.67,432.27,15.60,8.82" target="#b22">[23]</ref> -the linear algebra formulation of the tested TC algorithms is described in Algorithm 1. These formulations include two linear algebra operations, a matrix-matrix multiplication, and an elementwise multiplication, followed by a reduction. As discussed earlier, the element-wise operation in each expression can be replaced by a masking operation. Finally, some algorithms utilize the lower and upper triangular parts of the adjacency matrix to limit the computational complexity of the problem.</p><p>Breadth-First Search (BFS) algorithm traverses nodes of the graph structure to understand a particular property, such as the level of reachability starting from a source vertex. The search starts from the source vertex and reaches all vertices at the current depth level before moving to vertices at the next level. We describe the linear algebra formulation of BFS in Algorithm 2. There are mainly two linear algebra operations: a masking operation that assigns levels to the level vector under the mask of f , the frontier vector, including visited vertices at the current level; and a sparse vector-sparse matrix multiplication operation, where the visited vertices are updated across iterations, and a masking operation, which concentrates the search on unvisited vertices.</p><p>We perform all experiments on an Intel Xeon Skylake Gold 6126 processor with 192 GB DRAM memory. We Fig. <ref type="figure" coords="8,77.49,207.19,3.64,8.82">5</ref>: Performance of semiring in our compiler as normalized to SuiteSparse:GraphBLAS when the output matrix is in a jumbled state. use llvm-13 with optimization level −O3 for compiling the LAGraph and SuiteSparse:GraphBLAS (version 7.3.2) packages. The code generated by our compiler is lowered to LLVM-IR using MLIR. The mlir-cpu-runner utility is used to run the LLVM-IR code on the CPU. The generated LLVM-IR code is further optimized using LLVM level −O3 optimizations. This includes the ability of the LLVM backend to apply vectorizations when possible. That said, we do not fully explore the opportunity of MLIR to generate vectorized code using the vector dialect and this is part of future work.</p><p>The sparse inputs used for this paper are from SuiteSparse, and their characteristics are listed in Table <ref type="table" coords="8,242.31,393.20,2.73,8.82" target="#tab_1">I</ref>. The inputs rma10 and scircuit are not used in the triangle counting evaluation because they are not symmetric. All the sparse inputs are stored in the CSR format. The output of this work is also produced in the CSR format. All results reported are the average of 10 runs. Unless otherwise noted, the evaluation uses sequential execution. Results for parallel execution are reported in Figure <ref type="figure" coords="8,132.94,471.87,7.80,8.82">10</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Performance Evaluation</head><p>We perform a detailed performance evaluation of the generated code by our compiler against the SuiteSparse:GraphBLAS library for common kernels utilized in most graph algorithms. We also evaluate various triangle counting and breadth-first  Semiring Performance. Several graph algorithms can be represented using semirings instead of traditional linear algebra operator to improve performance efficiency. To evaluate the performance of the semirings operation, we make a comparison between our compiler and SuiteSparse:GraphBLAS library for combination of SpGEMM with multiple operation pairs (semirings) and different sparse inputs. In this evaluation, the workspace transformation is applied to improve data locality and avoid irregular access to sparse data structures.</p><p>Figure <ref type="figure" coords="8,350.32,407.79,4.68,8.82">5</ref> shows the performance of semiring in the compiler when the output is in the jumbled state. If the matrix is returned as jumbled, the column indices in any given row may appear out of order <ref type="bibr" coords="8,413.17,441.51,9.95,8.82" target="#b7">[8]</ref>. The sort is left pending. Some graph algorithms can tolerate jumbled matrices on input, so it is faster to generate jumbled output to be given as input to the subsequent operation. As shown in Figure <ref type="figure" coords="8,524.65,475.22,3.51,8.82">5</ref>, our work performs better than SuiteSparse:GraphBLAS for all the sparse inputs, up to 3.7× speedup. The plus-times semiring is another representation of sparse matrix-sparse matrix multiplication. The plus-pair semiring replaces the multiplication operation with pair operation in sparse matrix operation contributing to improved performance since the pair operation is a trivial operation as we operate on non-zero elements.</p><p>Figure <ref type="figure" coords="8,351.11,577.72,4.68,8.82" target="#fig_5">6</ref> shows the performance of the same set of benchmarks while the output is in a unjumbled state in which the indices always appear in ascending order. The performance of sparse operations depends on the performance of the sorting algorithm if the resulting matrix must have indices sorted in each row. Our compiler currently uses the standard C++ quicksort algorithm (std::qsort) as compared to the advanced sorting algorithm implemented in SuiteSparse:GraphBLAS. Hence, the performance of the compiler significantly drops (1.75×) as compared to the jumbled case in Figure <ref type="figure" coords="8,526.24,678.86,3.51,8.82">5</ref>. We plan to improve the sorting algorithm in future work. The rest Fig. <ref type="figure" coords="9,77.72,199.78,3.64,8.82">7</ref>: Performance of masked SpGEMM (i.e., B&lt;A&gt; = A * A ) as compared to SuiteSparse:GraphBLAS. of the paper represents the result when the output matrix is in an unjumbled state. Overall Performance. First, we evaluate the performance of sparse matrix-sparse matrix operation with plus-times semiring (i.e., SpGEMM) using the input matrix as a mask inside both our compiler and SuiteSparse:GraphBLAS when all the optimizations are enabled in the compiler.</p><p>Figure <ref type="figure" coords="9,97.10,498.74,4.68,8.82">7</ref> illustrates the speedup obtained by code generated by the compiler as compared to library-based realization of the same SpGEMM operations. The figure shows that the our performance is better than SuiteSparse:GraphBLAS across various inputs, and the compiler obtains up to 2.19× speedup, with 1.48× geometric mean speedup. Masking optimization avoids unneeded computations based on the requirements of the graph algorithms. Specifically, masking intervenes in the basic sparse vector-sparse matrix multiplication that is performed for each row of the other input matrix. At each iteration, the corresponding sparse row from the mask matrix is converted to an intermediate dense vector to support random O(1) access to the elements in the mask. This accelerates the skipping of computations that do not need to be performed. The workspace transformation also provide some additional speedup as compared to SuiteSparse:GraphBLAS, which is evaluated further in this Section.</p><p>Next, we evaluate the performance of four different Trian- In our experiments, we evaluate the implementation of these algorithms with the plus-pair semiring instead of SpGEMM operation (i.e., plus-times semiring) and with masking instead of the element-wise multiplication operation. These experiments demonstrate the benefit of all optimizations proposed in this paper. The cost to determine the strict lower and upper triangular parts of the input matrix is not included in the performance evaluations. Figure <ref type="figure" coords="9,446.50,568.18,4.68,8.82" target="#fig_0">8</ref> shows the performance comparison of all four Triangle Counting algorithms implemented within our compiler and LAGraph with masking. It shows that our work can achieve up to 2.52× speedup, and 1.91×, 1.54×, 1.65×, and 1.68× geometric mean speedup over LAGraph for Burkhardt, Cohen, SandiaLL, and Sandi-aUU algorithms across all input matrices, respectively. The performance breakdown of various optimizations proposed inside the compiler is discussed later in this Section. In the results in Figure <ref type="figure" coords="9,379.94,669.32,3.51,8.82" target="#fig_0">8</ref>, when the input matrices have a relatively high density (e.g., bcsstk17), we do observe diminishing returns for algorithms that use sparser matrices such as lower Fig. <ref type="figure" coords="10,78.18,198.69,11.97,8.82">11:</ref> A quantification of the performance gain obtained by applying our workspace and masking optimizations in a kernel that consists of the SpGEMM and element-wise multiplication operations (i.e., (A * A) . * A ). WS stands for Workspace Transformation.</p><p>and upper triangular. We attribute this to our masking implementation that is based on the push method <ref type="bibr" coords="10,235.67,294.39,14.35,8.82" target="#b20">[21]</ref>. The pushbased masking is more suitable for masks with higher density, whereas, pull-based masking is suitable for sparser masks. We plan to investigate our design choices in future work. Moreover, we expect to have better performance as we use an advanced sorting algorithm for unjumbled output matrices. Next, Figure <ref type="figure" coords="10,123.30,362.52,4.68,8.82">9</ref> illustrates the performance comparison of BFS implementation between our work and LAGraph. It shows that our work can achieve up to 9.05× speedup over LAGraph and geometric mean 2.57× speedup for all input matrices. The main speedup comes from our use of the workspace transformation. The major computation in the BFS level algorithm involves finding the next frontier in each iteration (see algorithm 2). It is achieved by performing a sparse vectormatrix multiplication with masking. Workspace transformation can avoid the expensive insertion into the middle of sparse data structures and performs asymptotically faster. Parallel Performance. Figure <ref type="figure" coords="10,181.90,486.83,9.36,8.82">10</ref> shows our parallel performance of four Triangle Counting algorithm with masking compared with LAGraph. All experiments use 24 threads. It shows that our work can achieve up to 4.63× speedup over LAGraph among all used input matrices, besides up to 2.02× speedup among the two large inputs Orkut and LiveJournal. Our work also achieves 2.40×, 1.41×, 1.36×, and 1.48× geometric mean speedup over LAGraph for Burkhardt, Cohen, SandiaLL, and SandiaUU algorithms among all input matrices, respectively. The results demonstrate that the compiler can achieve high-performance parallelization, thanks to the twophase computation. Performance Benefit Breakdown. This section discusses the performance gains obtained by each proposed optimization, including the workspace transformation, semiring, and masking.</p><p>The base case is implemented as a kernel that consists of the SpGEMM operations followed by the element-wise multiplication operation. This base version does not include any of the optimizations proposed in this paper. Then, we Fig. <ref type="figure" coords="10,333.01,199.48,7.98,8.82" target="#fig_1">12</ref>: Performance breakdown of triangle counting algorithm SandiaLL implemented by our compiler. evaluate the performance gain of each of the optimizations. First, we apply the workspace transformation to improve data locality for sparse linear algebra operations. The masking optimization is then applied to eliminate the element-wise multiplication operation that succeeds the SpGEMM operation. The masking optimization improves the performance by skipping computations that are not needed since they will result in multiplication by zero in the element-wise multiplication operation. Figure <ref type="figure" coords="10,384.71,340.92,9.36,8.82">11</ref> shows the performance progression as incrementally the workspace and masking optimizations are applied to the base case. The workspace transformation has 20.60× geometric mean speedup over the base case across all inputs. The masking operation can be seen to add another 1.86× speedup. It can be clearly seen that the proposed optimizations are important and lead to substantial gains compared to the base case, e.g., in most cases over 90% of the speedup is due to the workspace and masking optimizations. We highlight that the masking optimization is also important for low memory usage since we had difficulty running the relatively larger LiveJournal and Orkut inputs on our system.</p><p>We also profile the performance breakdown of the proposed optimizations for various triangle counting algorithms. Figure <ref type="figure" coords="10,329.02,499.25,9.36,8.82" target="#fig_1">12</ref> shows the results of SandiaLL only for brevity. Other algorithms show the same trend. The base cases for these algorithms are shown in Algorithm 1, whereby a SpGEMM is followed by an element-wise multiplication operation, including reduction. As done earlier, the SpGEMM and element-wise multiplication operations can have the workspace transformation and masking optimizations applied incrementally. An additional performance advantage can be gained by replacing the SpGEMM operation with a semiring of plus-pair. Specifically, replacing the multiplication operation in SpGEMM with a pair operation tends to bring in a performance advantage of around 5% across all inputs for four triangle counting algorithms. Note that semiring operations are essential to support state-of-the-art graph algorithms <ref type="bibr" coords="10,471.92,645.35,9.95,8.82" target="#b5">[6]</ref>, <ref type="bibr" coords="10,488.46,645.35,14.35,8.82" target="#b23">[24]</ref>, <ref type="bibr" coords="10,509.68,645.35,14.35,8.82" target="#b24">[25]</ref>.</p><p>Although the performance advantage is dependent on the sparsity of the input matrices, the proposed optimizations can be safely and effectively applied to achieve some benefit across multiple application domains that utilize sparse computation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. RELATED WORK</head><p>Graph Libraries. There are numerous graph libraries, such as <ref type="bibr" coords="11,94.53,103.71,9.95,8.82" target="#b5">[6]</ref>, <ref type="bibr" coords="11,112.50,103.71,11.18,8.82" target="#b8">[9]</ref>- <ref type="bibr" coords="11,127.40,103.71,14.91,8.82" target="#b10">[11]</ref>, <ref type="bibr" coords="11,150.75,103.71,15.29,8.82" target="#b23">[24]</ref>- <ref type="bibr" coords="11,169.86,103.71,15.29,8.82" target="#b29">[30]</ref>, that aim to provide highperformance implementations of graph kernels using different sequential and parallel algorithms. LAGraph <ref type="bibr" coords="11,263.39,126.18,10.92,8.82" target="#b5">[6]</ref> is a library that contains representative graph algorithms and is based on sparse linear algebra operations from the SuiteSparse:GraphBLAS package <ref type="bibr" coords="11,171.06,159.90,14.35,8.82" target="#b23">[24]</ref>. On the other hand, NW-Graph <ref type="bibr" coords="11,87.64,171.13,15.60,8.82" target="#b9">[10]</ref> is a high-performance header-only graph library that leverages C++20 features. However, different libraries have their own approach to optimization and are tied to specific programming models. In contrast, the compiler potentially offers a unified solution for sequential and parallel code generation through the MLIR back-end while being complementary to existing library-based approaches. Compilers for Sparse Computations. There are several domain-specific compilers designed for generating code of sparse operations in graph algorithms, including Green-Marl <ref type="bibr" coords="11,82.78,284.47,14.35,8.82" target="#b30">[31]</ref>, GraphIt <ref type="bibr" coords="11,138.71,284.47,14.35,8.82" target="#b31">[32]</ref>, and TACO <ref type="bibr" coords="11,207.70,284.47,14.35,8.82" target="#b32">[33]</ref>. These compilers, such as Green-Marl and TACO, perform source-to-source translation, where TACO translates its DSL operations to C++ using computational templates. However, TACO does not support parallel sparse computation (e.g., parallel SpGEMM), and its optimizations mainly focus on sequential code. In contrast, the compiler in this work proposes optimizations including two-phase computation and parallelization for sparse kernels.</p><p>Recently, MLIR infrastructure added support for sparse tensors through the sparse-tensor dialect <ref type="bibr" coords="11,206.24,397.80,14.35,8.82" target="#b18">[19]</ref>. COMET precedes this support and does not utilize the sparse-tensor dialect. As a result of MLIR's support for sparse tensors, we can expect more MLIR-based compilers to include support for graph algorithms in the future. One such example is the mlir-graphBLAS <ref type="bibr" coords="11,129.53,453.99,15.60,8.82" target="#b33">[34]</ref> effort that plans to lower to linalg dialect. Previously, it used to generate code at the loop level (SCF dialect) in a similar manner to this work albeit without optimizations such as workspace transforms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSIONS</head><p>We present a compiler framework to simplify the development of graph algorithms and generate efficient code for target computing architectures. Built on top of COMET, this compiler consists of a DSL for developing graph algorithms using algebraic operations, optimized graph operators (such as semiring and masking), and various optimizations and code transformations (such as workspace transformation, two-phase computation, and automatic parallelization). We demonstrate the performance benefits of code generation through our compiler using common graph algorithms and compare it to a state-of-the-art library-based approach LAGraph. Our results show that compared to LAGraph, our compiler can achieve up to 3.7× speedup in semiring operations, 2.19× speedup in an important sparse computational kernel, and 9.05× speedup in graph processing algorithms.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,59.47,122.40,203.68,5.50;4,59.47,129.89,219.42,5.50;4,93.09,137.38,98.33,5.50"><head>7 8 :</head><label>8</label><figDesc>semiring = "plus_times"} //matrix multiplication (tensor&lt;?x?xf64&gt;, tensor&lt;?x?xf64&gt;, !ta.range, !ta. range) -&gt; tensor&lt;?x?xf64&gt;</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,314.76,274.39,235.99,8.82;4,314.76,285.25,235.98,9.36;4,314.75,296.86,113.99,8.82"><head>Fig. 2 :</head><label>2</label><figDesc>Fig. 2: The index trees (a) before and (b) after applying the workspace transformation on B in index j, given an elementwise multiplication operation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,56.70,77.45,54.23,5.50;6,56.70,84.94,101.43,5.50;6,56.70,92.43,97.49,5.50;6,56.70,99.92,199.76,5.50;6,56.70,108.07,2.34,4.41;6,56.70,114.91,85.70,5.50;6,56.70,122.40,219.43,5.50;6,56.70,129.89,117.16,5.50;6,189.59,129.89,55.07,5.50;6,56.70,137.38,117.16,5.50;6,71.59,144.88,102.27,5.50;6,189.59,144.88,51.14,5.50;6,71.59,167.35,102.27,5.50;6,71.59,174.84,212.41,5.50;6,90.32,182.34,188.82,5.50;6,90.32,189.83,70.81,5.50;6,71.59,204.81,86.54,5.50;6,71.59,212.30,43.27,5.50;6,71.59,227.29,121.94,5.50;6,71.59,242.27,90.46,5.50;6,79.46,249.76,180.93,5.50;6,98.19,257.25,39.34,5.50;6,79.46,264.75,47.20,5.50;6,71.59,272.24,11.80,5.50;6,71.59,287.22,35.40,5.50;6,63.72,294.71,3.93,5.50;6,59.82,306.65,235.99,8.82;6,59.82,317.89,235.99,8.82;6,59.82,329.13,42.40,8.82"><head></head><label></label><figDesc>,b] = comet_read(0, 1); # read CSR matrix (the 2nd arg dictates how to read the matrix, e.g., lower or upper triangle) #Tensor Fill Operation B[a] = 1.0; var N = 100; # define a scalar for index in range (N): X[b]&lt;M&gt; = B[a] @(any, pair) A[a,b]; # semiring operator @ M[b] = X[b]; end print(X); } Listing 3: An example program in our DSL that demonstrates the use of some programming constructs to support graph algorithms.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,313.97,201.87,235.99,8.82;6,313.97,213.11,59.72,8.82"><head>Fig. 4 :</head><label>4</label><figDesc>Fig. 4: An illustrative example of the masking-based assignment operation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="7,64.72,75.27,179.86,8.98;7,69.40,88.27,196.66,7.32;7,92.42,96.83,157.68,7.19;7,69.41,105.13,183.48,7.32;7,62.11,113.56,113.54,7.32;7,62.49,123.65,2.60,4.99;7,83.82,122.11,91.58,7.06;7,229.76,122.12,52.23,7.18;7,62.11,134.16,97.96,7.32;7,62.49,144.25,2.60,4.99;7,83.82,142.71,90.75,7.06;7,245.34,142.72,36.64,7.18;7,62.11,154.76,110.98,7.32;7,62.49,164.85,2.60,4.99;7,83.82,163.32,75.39,7.06;7,232.32,163.32,49.66,7.18;7,62.11,175.36,112.52,7.32;7,62.49,185.46,2.60,4.99;7,83.82,183.92,77.89,7.06;7,230.77,183.93,50.40,7.18"><head>Algorithm 1 : 7 Function</head><label>17</label><figDesc>TC algorithms in linear algebra. Input: Graph, A, represented as an adjacency matrix. U , upper triangular part of A; L, lower triangular part of A. Output: ntri, a scalar to store the resulting triangle count. 1 Function Burkhardt(A, ntri): SandiaU U (A, ntri): 8 ntri=sum ((U * U) .* U); // SandiaU U</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="8,313.95,206.49,235.99,8.82;8,313.95,217.73,235.99,8.82;8,313.95,228.96,229.79,8.82;8,313.51,70.37,182.08,129.63"><head>Fig. 6 :</head><label>6</label><figDesc>Fig. 6: Performance of semiring in our compiler as normalized to SuiteSparse:GraphBLAS when the output matrix is in an unjumbled state. (Note different y axis scale with Figure 5)</figDesc><graphic coords="8,313.51,70.37,182.08,129.63" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="9,60.38,372.55,235.99,8.82;9,60.38,383.79,154.64,8.82"><head>Fig. 8 :</head><label>8</label><figDesc>Fig. 8: Performance of the four Triangle Counting algorithms with masking as compared to LAGraph.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="9,313.68,203.99,235.99,8.82;9,313.68,215.23,88.62,8.82"><head>Fig. 9 :Fig. 10 :</head><label>910</label><figDesc>Fig. 9: Performance of the BFS algorithm with masking as compared to LAGraph.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="7,314.64,113.64,235.99,125.34"><head></head><label></label><figDesc><ref type="bibr" coords="7,316.73,115.30,2.60,4.99" target="#b0">1</ref> Function BF S(A, s, n, l):</figDesc><table coords="7,314.64,121.90,235.99,117.08"><row><cell>2</cell><cell>f (s) = T rue ;</cell><cell>// Initialize s in f</cell></row><row><cell>3</cell><cell>for level = 0 to n − 1 ;</cell><cell>// level of the graph</cell></row><row><cell>4</cell><cell>do</cell><cell></cell></row><row><cell>5 6</cell><cell>l f = level ; f l = f * A ;</cell><cell>// Update the output l // compute with masking</cell></row><row><cell>7</cell><cell>if f is empty then</cell><cell></cell></row><row><cell>8</cell><cell>break ;</cell><cell>// earlier termination</cell></row><row><cell cols="3">vertices in a graph. Generally, three vertices i, j and k form a</cell></row><row><cell cols="3">triangle if edges (i, j), (j, k) and (k, i) are present in the graph.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="8,60.17,569.76,235.99,122.08"><head>TABLE I :</head><label>I</label><figDesc>Sparse input matrices from SuiteSparse, ordered by density from high to low.</figDesc><table coords="8,62.18,603.22,229.66,88.62"><row><cell>Name</cell><cell>Size</cell><cell>NNZ count</cell><cell>Density</cell><cell>Domain</cell></row><row><cell>bcsstk17</cell><cell>10,974 2</cell><cell>428,650</cell><cell cols="2">3.56 × 10 −3 Structural Problem</cell></row><row><cell>pdb1HYS</cell><cell>36,417 2</cell><cell>4,344,765</cell><cell>3.28 × 10 −3</cell><cell>Weighted Graph</cell></row><row><cell>rma10</cell><cell>46,835 2</cell><cell>2,329,092</cell><cell>1.06 × 10 −3</cell><cell>CFD Problem</cell></row><row><cell>cant</cell><cell>62,451 2</cell><cell>4,007,383</cell><cell>1.03 × 10 −3</cell><cell>2D/3D Problem</cell></row><row><cell>consph</cell><cell>83,334 2</cell><cell>6,010,480</cell><cell>8.65 × 10 −4</cell><cell>2D/3D Problem</cell></row><row><cell>shipsec1</cell><cell>140,874 2</cell><cell>3,568,176</cell><cell cols="2">1.80 × 10 −4 Structural Problem</cell></row><row><cell>cop20k A</cell><cell>121,192 2</cell><cell>2,624,331</cell><cell>1.79 × 10 −4</cell><cell>2D/3D Problem</cell></row><row><cell>scircuit</cell><cell>170,998 2</cell><cell>958,936</cell><cell>3.28 × 10 −5</cell><cell>Circuit Problem</cell></row><row><cell>Orkut</cell><cell>3,072,441 2</cell><cell>234,370,166</cell><cell>2.48 × 10 −5</cell><cell>Social Network</cell></row><row><cell cols="2">LiveJournal 3,997,962 2</cell><cell>69,362,378</cell><cell>4.34 × 10 −6</cell><cell>Social Network</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 03:36:44 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENT</head><p>The authors thank anonymous reviewers for their constructive comments and helpful suggestions. The research described in this paper is part of the Data Model Convergence Initiative at Pacific Northwest National Laboratory (PNNL). It was conducted under the Laboratory Directed Research and Development Program at PNNL, a multi-program national laboratory operated by Battelle for the U.S. Department of Energy (DOE). This work was also supported by the U.S. DOE Office of Science, Office of Advanced Scientific Computing Research, under award 66150: "CENATE -Center for Advanced Architecture Evaluation" project. This work was also supported by the High-Performance Data Analytics (HPDA) program at PNNL. PNNL is operated by Battelle for the U.S. DOE under Contract DE-AC05-76RL01830.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>APPENDIX A ARTIFACT EVALUATION</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Getting Started Guide 1) Availability: This artifact is available on</head><p>• Docker (https://hub.docker.com/r/cometpnnl/comet/tags),</p><p>• Zenodo (https://doi.org/10.5281/zenodo.8275066), and • Github (https://github.com/pnnl/COMET/tree/pact23-ae). If you got the artifact from Github, please check out the pact23-ae branch under the repository root by running $ git checkout pact23-ae 2) Hardware Environment: This artifact is supposed to run on CPU machines with at least 60 GB of memory and 10 GB of free disk space.</p><p>3) Software Environment: If using Docker, please refer to Section A-A4 to prepare the container.</p><p>If not using Docker, this artifact requires:</p><p>• CMake for building the program (≥ 3.25).</p><p>• Modern C++ compiler (LLVM getting started).</p><p>• Bash or Zsh for shell scripts.</p><p>• Python3 (≥ 3.9) for Python scripts.</p><p>• Docker, preferred. 4) Prepare Docker: Assuming Docker is installed and running, the following command can be issued to retrieve the Docker container from Docker Hub as follows.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>$ docker pull cometpnnl/comet:pact23</head><p>Approximately 1 GB of disk space will be required to download the image. The experiments will require an additional 6 GB of disk space due to the download of the SuiteSparse dataset.</p><p>The following command can be issued to run the downloaded image:</p><p>$ docker run -it cometpnnl/comet:pact23 /bin/bash</p><p>The Docker container contains all the necessary executables (COMET, LLVM) and libraries to run the experiments, as noted in sections A-B and A-C. The Dockerfile used to build the image is in the Github repository.</p><p>Once the docker container is running, the executable artifact is in the directory AE/.</p><p>5) Build From Sources: If using a Docker image is not preferred, please build from sources referring to README.md. Usually, the most time-consuming part is compiling LLVM, which could take a couple of hours depending on the machine.</p><p>Please also build LAGraph under the AE/LAGraph, which requires the GraphBLAS library built in advance. In general, LAGraph can be built by issuing the following commands: $ cd AE/LAGraph/build/ $ GRAPHBLAS_ROOT=/graphblas/build cmake .. $ make 6) Prepare Input Matrices and Environment: Under AE/, please run $ bash scripts/sh0.install_libraries.sh $ bash scripts/sh1.get_matrices.sh These scripts will install Python3 dependencies and download all input matrices (about 6 GB) into AE/data/.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Quick Run</head><p>A quick script can run the masked SpGEMM benchmark of this work and LAGraph using the first 8 matrices in the paper. If you are in the Docker container, please run under AE/ $ bash benchmarks/run0.quick_run.sh If you build the artifact from sources, please run $ bash benchmarks/run0.quick_run.sh test $ docker cp &lt;container-id&gt;:&lt;/source&gt; &lt;/target&gt;</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Get Main Results</head><p>Similar to the quick run, there are other scripts to get the main results of the paper.</p><p>For full results of Masked SpGEMM with 10 matrices, please run (under AE/, use test if built from sources) $ bash benchmarks/run1.masked_spgemm.sh <ref type="bibr" coords="12,497.95,547.86,26.97,6.29">[test]</ref> For results of Triangle Counting, please run $ bash benchmarks/run2.triangle_counting.sh <ref type="bibr" coords="12,515.93,593.17,26.97,6.29">[test]</ref> For results of Breadth-First Search, please run $ bash benchmarks/run3.bfs.sh <ref type="bibr" coords="12,453.00,638.47,26.97,6.29">[test]</ref> They will generate figures corresponding to Figure <ref type="figure" coords="12,524.56,666.20,3.51,8.82">7</ref> </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="13,77.49,93.11,218.82,7.06;13,77.49,101.54,218.83,7.06;13,77.49,109.97,16.86,7.06" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">A selectivity based approach to continuous pattern detection in streaming graphs</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Choudhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Holder</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Chin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Feo</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.49,118.89,218.83,7.06;13,77.49,127.32,218.83,7.06;13,77.49,135.62,218.83,7.18;13,77.49,144.05,218.83,7.18;13,77.49,152.61,137.86,7.06" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Graph-and rule-based learning algorithms: a comprehensive review of their applications for cancer type classification and prognosis using genomic data</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Mallik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zhao</surname></persName>
+		</author>
+		<idno type="DOI">10.1093/bib/bby120</idno>
+		<ptr target="https://doi.org/10.1093/bib/bby120" />
+	</analytic>
+	<monogr>
+		<title level="j">Briefings in Bioinformatics</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="368" to="394" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.49,161.53,218.84,7.06;13,77.50,169.83,218.84,7.18" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Bridging the gap between graphs and networks</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Iñiguez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Battiston</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Karsai</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications Physics</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2020-05">may 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,178.88,218.83,7.06;13,77.50,187.31,218.83,7.06;13,77.50,195.74,218.83,7.06;13,77.50,204.16,218.83,7.06;13,77.50,212.47,218.83,7.18;13,77.50,220.89,218.83,7.19" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">EXAGRAPH: Graph and combinatorial methods for enabling exascale applications</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Acer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><forename type="middle">G</forename><surname>Boman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">D</forename><surname>Devine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ferdous</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Gawande</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ghosh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Halappanavar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Kalyanaraman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Minutoli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Pothen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Rajamanickam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Selvitopi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">R</forename><surname>Tallent</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Tumeo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The International Journal of High Performance Computing Applications</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="553" to="571" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,229.82,218.83,7.18;13,77.50,238.25,218.83,7.18;13,77.50,246.80,218.83,7.06;13,77.50,255.23,172.60,7.06" xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Graph Algorithms in the Language of Linear Algebra</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kepner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gilbert</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/1.9780898719918</idno>
+		<ptr target="https://epubs.siam.org/doi/abs/10.1137/1.9780898719918" />
+		<editor>J. Kepner and J. Gilbert</editor>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<publisher>Society for Industrial and Applied Mathematics</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,264.15,218.83,7.06;13,77.50,272.58,218.83,7.06;13,77.50,280.88,218.83,7.18;13,77.50,289.31,218.83,7.18" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">LAGraph: Linear algebra, network analysis libraries, and the study of graph algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Szárnyas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">A</forename><surname>Bader</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kitchen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">G</forename><surname>Mattson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Mcmillan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Welch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,306.79,218.83,7.06;13,77.50,315.22,218.83,7.06;13,77.50,323.52,218.83,7.19;13,77.50,331.95,177.86,7.18" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">COMET: A domain-specific compilation of highperformance computational chemistry</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Mutlu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gioiosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Pienaar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Kestor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Workshop on Languages and Compilers for Parallel Computing (LCPC&apos;20)</title>
+				<imprint>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,341.00,218.83,7.06;13,77.50,349.30,218.83,7.18;13,77.50,357.73,218.83,7.19;13,77.50,366.28,28.09,7.06" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Design of the GraphBLAS API for C</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Mattson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Mcmillan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Moreira</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE International Parallel and Distributed Processing Symposium Workshops</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="643" to="652" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,375.08,218.83,7.19;13,77.50,383.51,210.75,7.18" xml:id="b8">
+	<monogr>
+		<title level="m" type="main">The Boost Graph Library: User Guide and Reference Manual, The</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">G</forename><surname>Siek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L.-Q</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Lumsdaine</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+			<publisher>Pearson Education</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,392.56,218.83,7.06;13,77.50,400.98,52.56,7.06" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">NWGraph: Northwest graph library</title>
+		<ptr target="https://github.com/pnnl/NWGraph" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,409.91,218.83,7.06;13,77.50,418.34,218.83,7.06;13,77.50,426.64,218.83,7.18;13,77.50,435.06,123.78,7.18" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Gunrock: A high-performance graph processing library on the GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Davidson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Riffel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 21st ACM SIGPLAN symposium on principles and practice of parallel programming</title>
+				<meeting>the 21st ACM SIGPLAN symposium on principles and practice of parallel programming</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,444.11,218.83,7.06;13,77.50,452.42,218.83,7.19;13,77.50,460.84,218.83,7.18;13,77.50,469.40,96.86,7.06" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Theoretically efficient parallel graph algorithms can be fast and scalable</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Dhulipala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">E</forename><surname>Blelloch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Shun</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3434393</idno>
+		<ptr target="https://doi.org/10.1145/3434393" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2021-04">apr 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,478.32,218.83,7.06;13,77.50,486.62,218.82,7.19;13,77.50,495.05,218.83,7.18;13,77.50,503.61,16.86,7.06" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Array programming with NumPy</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">R</forename><surname>Harris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">J</forename><surname>Millman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">J</forename><surname>Van Der Walt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gommers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Virtanen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Cournapeau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Wieser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Taylor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Berg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">J</forename><surname>Smith</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">585</biblScope>
+			<biblScope unit="issue">7825</biblScope>
+			<biblScope unit="page" from="357" to="362" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,512.53,218.83,7.06;13,77.50,520.96,218.83,7.06;13,77.50,529.39,218.83,7.06;13,77.50,537.69,218.83,7.18;13,77.50,546.12,218.83,7.19;13,77.50,554.67,28.09,7.06" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Tensor comprehensions: Framework-agnostic high-performance machine learning abstractions</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Vasilache</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Zinenko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Theodoridis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Goyal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Devito</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">S</forename><surname>Moses</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Verdoolaege</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Cohen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="247" to="261" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,563.60,218.83,7.06;13,77.50,571.90,218.83,7.18;13,77.50,580.45,218.83,7.06;13,77.50,588.88,108.30,7.06" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">The tensor algebra compiler</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lugato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3133901</idno>
+		<ptr target="http://doi.acm.org/10.1145/3133901" />
+	</analytic>
+	<monogr>
+		<title level="m">OOPSLA</title>
+				<imprint>
+			<date type="published" when="2017-10">Oct. 2017</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="1" to="77" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,597.80,218.83,7.06;13,77.50,606.10,218.83,7.18;13,77.50,614.53,218.83,7.18;13,77.50,623.09,52.07,7.06" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">A high performance sparse tensor algebra compiler in MLIR</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Kestor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE/ACM 7th Workshop on the LLVM Compiler Infrastructure in HPC</title>
+				<imprint>
+			<publisher>LLVM-HPC</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="27" to="38" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.50,631.88,218.82,7.18;13,77.49,640.30,164.41,7.18" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">NWChem: Past, present, and future</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Aprá</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="issue">18</biblScope>
+			<biblScope unit="page">184102</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.49,649.33,218.83,7.06;13,77.49,657.76,218.83,7.06;13,77.49,666.06,218.83,7.18;13,77.49,674.49,119.80,7.19" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">ReACT: Redundancy-aware code generation for tensor expressions</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">A</forename><surname>Ashraf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Kestor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gioiosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Sarkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">The 31st International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+				<imprint>
+			<biblScope unit="page">2022</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,77.49,683.54,218.83,7.06;13,77.49,691.97,218.84,7.06;13,330.51,72.67,218.83,7.18;13,330.51,81.23,129.95,7.06" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Compiler support for sparse tensor computations in mlir</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Bik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Koanantakool</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Shpeisman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Vasilache</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3544559</idno>
+		<ptr target="https://doi.org/10.1145/3544559" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Archit. Code Optim</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<date type="published" when="2022-09">sep 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.51,89.65,218.84,7.06;13,330.51,97.96,218.83,7.18;13,330.51,106.38,218.83,7.19;13,330.51,114.94,40.08,7.06" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Tensor algebra compilation with workspaces</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Ahrens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="180" to="192" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.51,123.37,218.83,7.06;13,330.50,131.80,218.83,7.06;13,330.50,140.22,130.10,7.06" xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Parallel algorithms for masked sparse matrix-matrix products</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Milaković</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Selvitopi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Nisa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Budimlić</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2111.09947" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,148.65,218.83,7.06;13,330.50,157.08,218.83,7.06;13,330.50,165.51,218.83,7.06;13,330.50,173.81,218.83,7.19;13,330.50,182.37,157.06,7.06" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Graphchallenge.org: Raising the bar on graph analytic performance</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Samsi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Gadepally</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">B</forename><surname>Hurley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><forename type="middle">K</forename><surname>Kao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Mohindra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Monticciolo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Reuther</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">T</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Staheli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kepner</surname></persName>
+		</author>
+		<idno>abs/1805.09675</idno>
+		<ptr target="http://arxiv.org/abs/1805.09675" />
+	</analytic>
+	<monogr>
+		<title level="j">CoRR</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,190.80,218.83,7.06;13,330.50,199.10,218.84,7.18;13,330.50,207.52,199.43,7.18" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Parallel triangle counting and enumeration using matrix algebra</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gilbert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 IEEE International Parallel and Distributed Processing Symposium Workshop</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,216.08,218.83,7.06;13,330.50,224.38,218.83,7.18;13,330.50,232.81,99.85,7.19" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Algorithm 1000: Suitesparse: Graphblas: Graph algorithms in the language of sparse linear algebra</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,241.37,218.83,7.06;13,330.50,249.67,218.84,7.18;13,330.50,258.09,218.83,7.19;13,330.50,266.52,171.61,7.18" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Mathematical foundations of the graphblas</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kepner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Aaltonen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Bader</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Franchetti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gilbert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Hutchison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Lumsdaine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Meyerhenke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE High Performance Extreme Computing Conference (HPEC</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,275.08,218.83,7.06;13,330.50,283.38,218.83,7.19;13,330.50,291.94,218.83,7.06;13,330.50,300.24,218.84,7.19;13,330.50,308.67,94.93,7.18" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Evaluation of graph analytics frameworks using the GAP benchmark suite</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">M</forename><surname>Aznaveh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Beamer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Blanco</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>D'alessandro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Dathathri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Deweese</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Firoz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on Workload Characterization (IISWC)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,317.22,218.83,7.06;13,330.50,325.52,218.83,7.19;13,330.50,333.95,218.83,7.18;13,330.50,342.38,106.09,7.18" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Optimistic parallelism requires abstractions</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kulkarni</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Pingali</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Walter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Ramanarayanan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Bala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">P</forename><surname>Chew</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM SIGPLAN Conference on Programming Language Design and Implementation</title>
+				<meeting>the 28th ACM SIGPLAN Conference on Programming Language Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,350.93,218.83,7.06" xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Graph kernel collection</title>
+		<ptr target="https://github.com/CMU-SPEED/GKC" />
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,359.36,218.83,7.06;13,330.50,367.66,218.83,7.19;13,330.50,376.09,134.04,7.18" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">GraKeL: A graph kernel library in python</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Siglidis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Nikolentzos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Limnios</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Giatsidis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Skianis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Vazirgiannis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Mach. Learn. Res</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">54</biblScope>
+			<biblScope unit="page" from="1" to="5" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,384.65,218.83,7.06;13,330.50,392.95,218.83,7.19;13,330.50,401.38,218.83,7.18;13,330.50,409.93,16.86,7.06" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Ligra: a lightweight graph processing framework for shared memory</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Shun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">E</forename><surname>Blelloch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 18th ACM SIG-PLAN symposium on Principles and practice of parallel programming</title>
+				<meeting>the 18th ACM SIG-PLAN symposium on Principles and practice of parallel programming</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,418.36,218.83,7.06;13,330.50,426.66,218.83,7.18;13,330.50,435.09,218.84,7.18;13,330.50,443.52,127.59,7.18" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Green-Marl: a dsl for easy and efficient graph analysis</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Chafi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Sedlar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Olukotun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the seventeenth international conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the seventeenth international conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,452.07,218.83,7.06;13,330.50,460.38,218.83,7.19;13,330.50,468.80,166.00,7.18" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Graphit: A high-performance graph dsl</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Shun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OOPSLA</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">2</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,477.36,218.83,7.06;13,330.50,485.66,218.83,7.18;13,330.50,494.09,218.83,7.18;13,330.50,502.65,73.00,7.06" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">TACO: A tool to generate tensor algebra kernels</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lugato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE)</title>
+				<imprint>
+			<date type="published" when="2017-10">Oct 2017</date>
+			<biblScope unit="page" from="943" to="948" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,330.50,511.07,51.96,7.06;13,399.21,511.07,150.13,7.06;13,330.50,519.50,16.86,7.06" xml:id="b33">
+	<monogr>
+		<title level="m" type="main">mlir-graphblas</title>
+		<ptr target="https://github.com/metagraph-dev/mlir-graphblas" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

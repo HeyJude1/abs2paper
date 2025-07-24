@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">TaD: A Plug-and-Play Task-Aware Decoding Method to Better Adapt LLMs on Downstream Tasks</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,119.52,129.02,55.47,10.75"><forename type="first">Xinhao</forename><surname>Xu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Software</orgName>
+								<orgName type="institution">Tsinghua University</orgName>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">Beijing National Research Center for Information Science and Technology (BNRist)</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,197.27,129.02,49.49,10.75"><forename type="first">Hui</forename><surname>Chen</surname></persName>
+							<email>huichen@mail.tsinghua.edu.cn</email>
+							<affiliation key="aff1">
+								<orgName type="department">Beijing National Research Center for Information Science and Technology (BNRist)</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,267.19,129.02,45.51,10.75"><forename type="first">Zijia</forename><surname>Lin</surname></persName>
+							<email>linzijia07@tsinghua.org.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Software</orgName>
+								<orgName type="institution">Tsinghua University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,328.39,129.02,68.59,10.75"><forename type="first">Jungong</forename><surname>Han</surname></persName>
+							<email>jungonghan77@gmail.com</email>
+							<affiliation key="aff2">
+								<orgName type="department">Department of Computer Science</orgName>
+								<orgName type="institution">University of Sheffield</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,412.67,129.02,64.11,10.75"><forename type="first">Lixing</forename><surname>Gong</surname></persName>
+							<email>gonglixing@jd.com</email>
+						</author>
+						<author>
+							<persName coords="1,166.62,141.92,70.64,10.75"><forename type="first">Guoxin</forename><surname>Wang</surname></persName>
+							<email>wangguoxin14@jd.com</email>
+						</author>
+						<author>
+							<persName coords="1,252.96,141.92,66.10,10.75"><forename type="first">Yongjun</forename><surname>Bao</surname></persName>
+							<email>baoyongjun@jd.com</email>
+						</author>
+						<author>
+							<persName coords="1,353.01,141.92,78.07,10.75"><forename type="first">Guiguang</forename><surname>Ding</surname></persName>
+							<email>dinggg@tsinghua.edu.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Software</orgName>
+								<orgName type="institution">Tsinghua University</orgName>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">Beijing National Research Center for Information Science and Technology (BNRist)</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">TaD: A Plug-and-Play Task-Aware Decoding Method to Better Adapt LLMs on Downstream Tasks</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">18BB338B53E882EF0E442227BA162C75</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Fine-tuning pre-trained models on downstream tasks is a common practice in leveraging large language models (LLMs) today. A critical issue is how to adapt pre-trained models to downstream tasks better, thereby enhancing their performance. This paper introduces Task-aware Decoding (TaD), a plug-and-play method that exploits the difference in output probability distributions before and after fine-tuning to boost the performance of LLMs on downstream tasks. The proposed TaD argues that the difference between the pre-fine-tuning probability distribution and the post-fine-tuning one represents the direction from common knowledge towards specific downstream-task knowledge. Aligning the final output probability distribution to that direction can probably result in superior downstream task performance, compared to the original fine-tuned model. Experiments on various datasets across four different task categories well demonstrate TaD's effectiveness on different LLMs, i.e., GPT, BLOOM, and LLaMA, with different finetuning methods. Moreover, further experiments reveal that TaD better enhances model performance in data-scarce scenarios.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Large language models, including closed-source models like ChatGPT and <ref type="bibr" coords="1,110.70,579.77,90.20,9.53">GPT-4 [OpenAI, 2023]</ref>, as well as open-source models such as LLaMA <ref type="bibr" coords="1,154.62,590.73,87.84,9.53" target="#b18">[Touvron et al., 2023]</ref>, have exhibited remarkable performance in a wide range of tasks <ref type="bibr" coords="1,266.81,601.69,30.19,8.64;1,54.00,613.37,52.16,8.82" target="#b0">[Brown et al., 2020;</ref><ref type="bibr" coords="1,110.67,613.37,76.60,8.82" target="#b4">Ding et al., 2021;</ref><ref type="bibr" coords="1,191.78,613.37,79.67,8.82">Wang et al., 2023;</ref><ref type="bibr" coords="1,275.97,613.55,21.03,8.64;1,54.00,624.33,49.56,8.82" target="#b1">Chen et al., 2020]</ref>. Such success is largely due to diverse techniques explored to enhance the pre-trained LLMs in downstream tasks. Among those methods, fine-tuning is a common strategy and has been thoroughly investigated in the literature. It mainly focuses on designing better fine-tuning methods from the algorithmic side <ref type="bibr" coords="1,178.39,678.40,76.31,9.53" target="#b4">[Ding et al., 2023;</ref><ref type="bibr" coords="1,258.10,679.12,38.91,8.82;1,315.00,261.78,21.44,8.64" target="#b10">Hu et al., 2021]</ref>, or constructing more effective datasets from the data side <ref type="bibr" coords="1,334.55,271.84,96.96,9.53" target="#b2">[Christiano et al., 2017]</ref>. For example, the Parameter-Efficient Fine-Tuning (PEFT) methods <ref type="bibr" coords="1,471.33,282.80,86.68,9.53" target="#b9">[Houlsby et al., 2019;</ref><ref type="bibr" coords="1,315.00,294.48,74.82,8.82" target="#b11">Lester et al., 2021;</ref><ref type="bibr" coords="1,392.26,294.66,79.53,8.64" target="#b11">Li and Liang, 2021]</ref> stand out among various fine-tuning methods due to their cost-efficient nature and impressive performance. Concurrently, a multitude of highquality, manually annotated datasets have been constructed, as an increasingly focal technique aimed at aligning the outputs of LLMs with human-like responses <ref type="bibr" coords="1,494.05,348.56,63.95,9.30;1,315.00,360.41,21.44,8.64" target="#b15">[Ouyang et al., 2022]</ref>.</p><p>Despite their remarkable success, existing fine-tuning works rarely investigate the inherent knowledge acquisition of fine-tuned LLMs. Recent works indicate that the outputs of pre-trained LLMs do not always accurately reflect the knowledge they possess. Even if a model generates an incorrect output, it may still possess correct knowledge. For example, <ref type="bibr" coords="1,315.00,439.39,70.87,9.53" target="#b13">[Li et al., 2023b]</ref> suggests that the intermediate representations in pre-trained LLMs might be correct, even if the final output is erroneous. <ref type="bibr" coords="1,402.08,461.31,95.02,9.53" target="#b11">[Kadavath et al., 2022]</ref> finds that pretained LLMs can self-assess their correctness. Therefore, we pose a question: How can we leverage such inherent knowledge in the fine-tuned LLMs to enhance their performance in downstream tasks? Intuitively, the inherent knowledge within fine-tuned LLMs should be reflected by their token-predicting behavior alterations during the fine-tuning process. We argue that such token-predicting behavior alterations indicate an adaptive shift from common knowledge gained via pretraining to specific knowledge for downstream tasks. And we can improve the adaptation of LLMs on downstream tasks by manually mining and leveraging such inherent knowledge, regardless of the fine-tuning methods.</p><p>In this paper, we propose a novel Task-aware Decoding (TaD) method, which takes advantage of the differences in knowledge before and after fine-tuning to enhance the adaptation of LLMs on downstream tasks. Firstly, we formulate the knowledge difference as a knowledge vector to explicitly denote the direction of knowledge adaptation (or domain adaptation) learned by a pre-trained LLM during fine-tuning for a downstream task. As illustrated in Figure <ref type="figure" coords="1,550.54,684.56,3.74,8.64">1</ref>, though the fine-tuned LLM (i.e., after fine-tuning) outputs the </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Training</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Knowledge Vector</head><p>Task-Aware Decoding</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>+</head><p>--</p><formula xml:id="formula_0">+ + -- + Input Output</formula><p>Could you provide a professional explanation of photosynthesis?</p><p>engage in necessary chemical reactions to produce food. This process is fundamental for plant growth and development.</p><p>engage more actively in transforming water and carbon dioxide. This process encompasses a series of complex biochemical reactions.</p><p>catalyze the conversion of water and carbon dioxide into oxygen and glucose. This involves chlorophyll absorbing photons efficiently.</p><p>Figure <ref type="figure" coords="2,81.35,296.56,3.49,7.77">1</ref>: An illustration of the proposed knowledge vector and task-aware decoding (TaD), where LLMs are asked for a professional explanation of photosynthesis. The underlined tokens are examples to illustrate the professional levels of the outputs of pre-trained, fine-tuned, and TaD-enhanced fine-tuned LLMs, and the corresponding probability distributions are displayed on the left. The proposed TaD enhances the predicted probability distribution of a token with the knowledge vector, and thus amplifies the knowledge learned during fine-tuning and achieves superior performance in downstream tasks.</p><p>same token "engage" as the pre-trained LLM (i.e., before fine-tuning) for the next token, the shift of the corresponding predicted probability distributions from the latter to the former implicitly reflects how the LLM adapts its knowledge to the downstream task during fine-tuning. Specifically, the predicted probability w.r.t the more professional token "catalyze" increases, while that w.r.t the less professional token "engage" actually decreases. Therefore, here we construct the knowledge vector based on the difference of output probability distributions w.r.t tokens from the pre-trained and the fine-tuned LLMs, which also reveals the output token preferences for downstream tasks. Given that tokens are inherently semantic, the knowledge vector naturally possesses semantic information. We then implement our proposed TaD by enhancing the fine-tuned LLM's output probability distribution with the knowledge vector, thereby reinforcing the model's knowledge adaptation to downstream tasks for better performance. Figure <ref type="figure" coords="2,216.94,607.84,4.98,8.64">1</ref> shows that, with TaD to enhance the output probability distribution with the knowledge vector, the fine-tuned LLM can then generate a more professional next token "catalyze", instead of "engage". In that manner, the enhanced LLM can finally yield a better answer with more professional words, including "catalyze","oxygen","glucose","chlorophyll", etc. The proposed TaD is a plug-and-play decoding method, and extensive experiments well demonstrate that it can enhance the performance of various fine-tuned LLMs in many downstream tasks. In summary, our contributions are as follows: 1. To enhance the adaptation of LLMs to downstream tasks, we propose a concept of knowledge vector, which explicitly denotes the knowledge adaptation learned by LLMs during fine-tuning. 2. We further develop TaD to enhance fine-tuned LLMs' output probability distribution w.r.t tokens with the knowledge vector, and enhance their performance in downstream tasks. 3. We conduct extensive experiments to validate the effectiveness of TaD across various tasks, models, and finetuning methods. Experimental results well demonstrate its superiority over baselines and promising potential in data-scarce scenarios.</p><p>2 Related Work  <ref type="bibr" coords="2,315.00,422.97,45.97,8.82">et al., 2022]</ref>, which incurs significant costs. In contrast, some studies construct high-quality training datasets by maximizing the utilization of existing datasets. For example, <ref type="bibr" coords="2,525.01,444.17,32.99,9.30;2,315.00,455.84,39.23,8.82" target="#b17">[Sanh et al., 2022]</ref> enriches the training instances by inverting inputoutput pairs of existing instances with specially crafted task descriptions. <ref type="bibr" coords="2,373.12,477.04,74.52,9.53">[Wei et al., 2021]</ref> augments labeled datasets with human-written task descriptions to instruct LLMs to understand the tasks. Aside from those efforts, there are initiatives that enhance LLMs by focusing on their intrinsic features. <ref type="bibr" coords="2,516.59,520.88,41.41,9.30;2,315.00,532.73,27.12,8.64" target="#b13">[Li et al., 2023a;</ref><ref type="bibr" coords="2,344.98,532.56,94.98,8.82" target="#b7">Hernandez et al., 2023]</ref> employs post-pretraining activation editing to modulate LLM behaviors. <ref type="bibr" coords="2,501.08,542.80,56.92,9.30;2,315.00,554.47,38.31,8.82">[Subramani et al., 2022;</ref><ref type="bibr" coords="2,356.12,554.47,78.33,8.82" target="#b18">Turner et al., 2023]</ref> demonstrate that steering vectors, whether trained or manually selected, effectively facilitate style transfer in LLMs. ITI <ref type="bibr" coords="2,448.98,575.67,69.49,9.53" target="#b13">[Li et al., 2023b]</ref> enhances LLMs' performance in downstream tasks by discovering vectors for activations based on positive and negative instances. Our TaD follows a similar direction. But it opts for the differences in output probability distributions w.r.t tokens as the direction of knowledge adaptation, and derives a knowledge vector to enhance the performance of fine-tuned LLMs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Decoding Strategies for LLMs</head><p>Decoding strategies are critical for LLMs, which significantly affect the generation quality. Basic decoding strategies include Greedy <ref type="bibr" coords="2,371.93,694.62,181.78,9.53">Search, Beam Search [Sutskever et al., 2014]</ref>, <ref type="bibr" coords="3,54.00,56.58,131.91,9.53">Top-k Sampling [Fan et al., 2018]</ref>, and Top-p (Nucleus) Sampling <ref type="bibr" coords="3,77.29,67.54,92.49,9.53" target="#b8">[Holtzman et al., 2019]</ref>. Greedy Search always selects the most probable next token, one by one. While efficient, it tends to yield repetitive text. In contrast, Beam Search maintains and expands multiple hypotheses for superior sequences. Top-k Sampling, choosing from highly probable tokens, injects diversity but may compromise coherence. Building on that, Top-p Sampling dynamically adjusts the selection pool based on the cumulative probability, targeting at a balance between randomness and coherence for more engaging outputs.</p><p>Additionally, there exists a range of incremental works, which can be integrated with and effectively optimize those basic strategies. Within this scope, the contrastive decoding series serves as a prime example. CD <ref type="bibr" coords="3,227.51,210.01,69.49,9.53" target="#b13">[Li et al., 2023c]</ref> utilizes the likelihood difference between a large language model and a small one to produce higher-quality texts. Furthermore, ACD <ref type="bibr" coords="3,121.66,242.88,78.50,9.53" target="#b6">[Gera et al., 2023]</ref> improves upon CD by maximizing log-probability differences across different layers in a single model. DoLa <ref type="bibr" coords="3,175.09,264.80,83.50,9.53" target="#b2">[Chuang et al., 2023</ref>] extends ACD's principles, integrating Jensen-Shannon divergence to dynamically choose layers for contrastive decoding. Those decoding strategies, however, are primarily focused on the performance of pre-trained LLMs, neglecting the changes in models after fine-tuning. Consequently, they fail to utilize the knowledge adaptation learned during fine-tuning, resulting in limited performance improvement or even performance decline in downstream tasks when applied to fine-tuned LLMs. On the contrary, our proposed TaD focuses on fine-tuned LLMs, and we define a knowledge vector to denote knowledge adaptation for downstream tasks. TaD is a plug-andplay method that can be natively integrated with those basic decoding strategies above to enhance the performance of finetuned LLMs in downstream tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Method</head><p>In this section, we first discuss the construction of the knowledge vector, then detail the process of the proposed TaD, during which we utilize the knowledge vector to improve LLMs' outputs for a better adaptation to downstream tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Constructing the Knowledge Vector</head><p>For a pre-trained language model θ, the conditional probability distribution for tokens is modeled as follows:</p><formula xml:id="formula_1">p θ (x t |x &lt;t ), x t ∈ V,<label>(1)</label></formula><p>where V denotes the vocabulary and t represents the token's position. After applying a fine-tuning method Φ on the pretrained model θ, we get a fine-tuned model ϕ:</p><formula xml:id="formula_2">ϕ = Φ(θ, D),<label>(2)</label></formula><p>where Φ can be any fine-tuning method like LoRA, AdapterP, etc., and D denotes the training set for a downstream task.</p><p>Similarly, for the fine-tuned model ϕ, the conditional probability distribution for tokens is formulated as Eq. 3:</p><formula xml:id="formula_3">p ϕ (x t |x &lt;t ), x t ∈ V (3)</formula><p>Given the finite size of vocabulary V, at each position t, both p θ (x t |x &lt;t ) and p ϕ (x t |x &lt;t ) can be viewed as coordinates in a |V|-dimensional space. Consequently, we can derive a |V|dimensional vector V K on the logit scale, extending from the fine-tuning start point p S (i.e., θ) to the fine-tuning endpoint p E (i.e., ϕ):</p><formula xml:id="formula_4">V K = p E − p S = log p ϕ (x t |x &lt;t ) − log p θ (x t |x &lt;t )<label>(4)</label></formula><p>V K reflects the shift in conditional probability distributions during fine-tuning, representing a directional move from the common knowledge to the task-specific knowledge. Notably, V K directly shows the influence of fine-tuning on the model's output probability distribution, and thus also enhances the interpretability of the fine-tuning process.</p><p>It is important to note that V K may exhibit false positive cases, as mentioned in CD <ref type="bibr" coords="3,427.11,416.48,68.02,9.53" target="#b13">[Li et al., 2023c]</ref>. For example, tokens with extremely low p ϕ and p θ (e.g., 10 −5 and 10 −10 ) might have disproportionately high V K values, misleadingly indicating an incorrect direction in the corresponding dimension (i.e., token). Therefore, we introduce a constraint function C t to ensure the probability values of tokens output by fine-tuned model ϕ are at least α times the maximum token probability:</p><formula xml:id="formula_5">C t = {x t ∈ V : p ϕ (x t |x &lt;t ) ≥ α max x ′ t ∈V p ϕ (x ′ t |x &lt;t )}, (5)</formula><p>where α ranges from 0 to 1.</p><p>Moreover, the indicator function I(x t ),</p><formula xml:id="formula_6">I(x t ) = 1 if x t ∈ C t 0 otherwise,<label>(6)</label></formula><p>determines whether a token x t satisfies the constraint function C t . We then introduce a penalty coefficient λ to penalize tokens that violate the constraint function, while maintaining the original values of V K for all others. This adjustment yields a revised VK , which can effectively prevent false positive cases, as follows: </p><formula xml:id="formula_7">VK = I(x t ) • V K + (1 − I(x t )) • λ (7)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Task-Aware Decoding</head><p>With the constructed knowledge vector, i.e., VK in Eq. 7, we advance the probability outputs of the fine-tuned model in the direction indicated by the knowledge vector, effectively amplifying the downstream task knowledge adaptation learned during fine-tuning. It is important to note that VK is not a probability distribution. Hence, we apply the softmax function to convert it into a probability distribution:</p><formula xml:id="formula_8">p K (x t |x &lt;t ) = softmax( VK )<label>(8)</label></formula><p>Then we obtain the probability distribution p w.r.t x t output by TaD, via merging p ϕ (x t |x &lt;t ) and p K (x t |x &lt;t ) with a weighting parameter µ.</p><formula xml:id="formula_9">p(x t |x &lt;t ) = (1 − µ) • p ϕ (x t |x &lt;t ) + µ • p K (x t |x &lt;t ) (9)</formula><p>With the improved output probability distribution w.r.t x t , i.e., p(x t |x &lt;t ), we can simply apply various basic decoding methods like Greedy Search for text generation. A simplified illustration of the proposed TaD is shown in Figure <ref type="figure" coords="4,259.56,540.46,3.74,8.64">2</ref>.</p><p>Deriving from the knowledge vector, i.e., VK , p K indicates the impact of fine-tuning on the model's output. Eq. 9 enables the modulation of this impact by adjusting µ. Therefore, we can make LLM's implicit knowledge learned during finetuning explicit by simply increasing the value of µ to amplify this impact. Additionally, we preserve p ϕ in Eq. 9 to prevent false negative cases caused by using p K alone. The false negative case occurs when the next token is easily predictable. In this circumstance, both p ϕ and p θ yield a probability near 1, but the value of p K is close to 0. Preserving p ϕ and choosing a proper µ guarantee that the model outputs tokens with high probability in p ϕ . We believe this preservation addresses the limitations of using p K alone, proving essential for preserving the baseline fine-tuned model's efficacy and ensuring the effectiveness of TaD. Moreover, it also can be seen that when µ = 0, the proposed TaD would degrade to the original finetuned model, i.e., p ϕ , and thus the performance of TaD would at least match that of the original fine-tuned model.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Experiments</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Setup</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Models and Datasets</head><p>For our experiments, we select three remarkable LLMs: LLaMA (including LLaMA-7b and LLaMA-13b) <ref type="bibr" coords="4,521.17,452.96,36.83,8.64;4,315.00,464.64,46.39,8.82" target="#b18">[Touvron et al., 2023]</ref>, GPT-J (6b) <ref type="bibr" coords="4,414.91,463.92,126.19,9.53">[Wang and Komatsuzaki, 2021]</ref> and BLOOMz (7b) <ref type="bibr" coords="4,377.30,474.88,105.00,9.53" target="#b14">[Muennighoff et al., 2022]</ref>, and focus on two main categories of downstream tasks: multiple-choice tasks and open-ended generation tasks.</p><p>For multiple-choice tasks, we employ the commonly used TruthfulQA <ref type="bibr" coords="4,364.53,518.99,67.24,9.53" target="#b14">[Lin et al., 2022]</ref> benchmark, following previous works <ref type="bibr" coords="4,342.08,529.95,68.34,9.53" target="#b13">[Li et al., 2023b;</ref><ref type="bibr" coords="4,413.25,530.67,80.92,8.82" target="#b2">Chuang et al., 2023]</ref>. In this benchmark, questions are concatenated with correct or incorrect answers and fed into the model. Then the model's performance is evaluated with MC (multiple-choice accuracy) based on the predicted probabilities for each question-answer pair. Specifically, TruthfulQA involves three specific MC scores, i.e., MC1, MC2, and MC3, for different experimental setups, and higher MC1/2/3 scores indicate better model performance.</p><p>For open-ended generation tasks, we focus on three subtasks: closed-book question answering, mathematical reasoning, and commonsense reasoning. For closed-book question answering, we use TruthfulQA, where the model's input and output are, respectively, given questions and generated answers. The answers are evaluated for Truthfulness and Informativeness using <ref type="bibr" coords="4,385.43,683.66,109.49,9.53">GPT-3 [Brown et al., 2020]</ref>  Fine-Tuning Methods and Implementation Details PEFT are widely adopted for LLM fine-tuning, offering computational efficiency and comparable performance to full-parameter fine-tuning. In our experiments, we employ four PEFT methods to incorporate the proposed TaD, i.e., LoRA <ref type="bibr" coords="5,98.56,563.11,64.55,9.53" target="#b10">[Hu et al., 2021]</ref>, AdapterP <ref type="bibr" coords="5,210.16,563.11,82.55,9.53" target="#b15">[Pfeiffer et al., 2020]</ref>, AdapterH <ref type="bibr" coords="5,97.21,574.07,92.39,9.53" target="#b9">[Houlsby et al., 2019]</ref> and Parallel Adapter <ref type="bibr" coords="5,282.07,574.07,14.93,8.64;5,54.00,585.75,47.56,8.82" target="#b7">[He et al., 2022]</ref>. Specifically, our fine-tuning settings are based on LLM-Adapters <ref type="bibr" coords="5,129.24,595.99,64.31,9.53" target="#b10">[Hu et al., 2023]</ref>, which provides comprehensive insights on applying PEFT to LLMs. We align our fine-tuning hyper-parameters with the study.</p><p>For TruthfulQA, we adopt a 2-fold cross-validation strategy following ITI <ref type="bibr" coords="5,131.25,639.82,70.58,9.53" target="#b13">[Li et al., 2023b]</ref>, ensuring no test data leakage, and we perform fine-tuning with only &lt;Question, Best Answer&gt; pairs. In mathematical and commonsense reasoning, we utilize Math10K and Commonsense170K datasets from LLM-Adapters for fine-tuning, followed by evaluations on GSM8K, MultiArith, BoolQ, and PIQA.  Moreover, we set α in Eq. 5 and λ in Eq. 7 by default to 0.1 and −∞, respectively, without additional tuning. For TruthfulQA, we set the weighting parameter µ in Eq. 9 to 0.8 empirically for all setups. For mathematical and commonsense reasoning tasks, we select the optimal µ based on the model's performance on the training sets of GSM8K and BoolQ, respectively, because we utilize Math10K and Com-monsense170K rather than them for fine-tuning. Then the selected µ on GSM8K is applied to MultiArith, and similarly, the selected µ on BoolQ is applied to PIQA, so as to see the transferability of µ from one dataset to another in the same task category. Unless explicitly stated, all experiments employ Greedy Search, which is a commonly used and time-efficient decoding strategy adopted in many previous works <ref type="bibr" coords="5,358.07,462.32,67.25,9.53" target="#b13">[Li et al., 2023b;</ref><ref type="bibr" coords="5,427.81,463.04,79.83,8.82" target="#b2">Chuang et al., 2023]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Main Results</head><p>Results on Multiple-Choice and Closed-Book Question Answering Tasks As shown in Table <ref type="table" coords="5,395.10,522.56,3.74,8.64" target="#tab_1">1</ref>, TaD consistently improves fine-tuned LLMs' performance across different models and PEFT methods. The experimental results well demonstrate its general applicability. Moreover, given that the metric MC1 focuses on only Best Answer while MC2/MC3 also considers other Correct Answers, we can see that, despite our training data comprising only &lt;Question, Best Answer&gt; pairs, the alignment to the knowledge vector introduced by TaD also improves both MC2 and MC3.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Results on Mathematical Reasoning and Commonsense Reasoning Tasks</head><p>Table <ref type="table" coords="5,340.56,651.68,4.98,8.64" target="#tab_2">2</ref> illustrates the performance of our method on more challenging reasoning tasks. Without loss of generality, we just present LoRA and AdapterP's results here. The results show that TaD exhibits substantial improvement across various mathematical reasoning datasets and models, and exceeds the performance of fine-tuned models in commonsense reasoning datasets.</p><p>Compared to commonsense reasoning tasks, TaD gets larger performance gains in mathematical reasoning tasks. It can be attributed to the characteristics of the latter's outputs, which are usually longer and semantically dense. That enhances TaD's benefits in iterative generation and reasoning. In contrast, the commonsense reasoning benchmarks typically require outputs formatted like "the correct answer is which generally have limited semantic information. And TaD's effectiveness primarily lies on the single token [N], which is limited and leads to smaller performance gains. Nonetheless, TaD still yields considerable improvements for commonsense reasoning tasks in nearly all cases, as shown in Table <ref type="table" coords="6,127.67,401.64,3.74,8.64" target="#tab_2">2</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Comparison With Other Contrastive Decoding Strategies</head><p>We compare TaD with other baselines that do not consider the knowledge adaptation for downstream tasks during finetuning. Our experiments are conducted on TruthfulQA for multi-choice tasks and on mathematical reasoning datasets for open-ended generation tasks. Specifically, we compare TaD with CD <ref type="bibr" coords="6,114.14,485.84,71.91,9.53" target="#b13">[Li et al., 2023c]</ref> and <ref type="bibr" coords="6,208.29,485.84,88.71,9.53;6,54.00,497.69,21.44,8.64">DoLa [Chuang et al., 2023]</ref>.</p><p>Following DoLa, we conduct comparisons on LLaMA-7b and LLaMA-13b. And for CD, we treat the fine-tuned LLaMA-7b as an amateur and the fine-tuned LLaMA-13b as an expert. For fairness, we apply both CD and DoLa on finetuned models, and we carefully tune their hyper-parameters to yield the best results for comparisons. Specifically, for TruthfulQA, considering the training data comprises only &lt;Question, Best Answer&gt; pairs, we select the optimal DoLa interval and hyper-parameters based on MC1 scores using a 2-fold cross-validation strategy.</p><p>The comparison results, as shown in Table <ref type="table" coords="6,237.48,618.80,3.74,8.64" target="#tab_4">3</ref>, indicate that TaD outperforms the baselines in most cases. Specifically, TaD exhibits a significant advantage over CD and DoLa in maintaining or improving fine-tuned LLMs' performance in various tasks. Actually, CD or DoLa can even degrade the performance of the original fine-tuned LLMs. For example, on TruthfulQA, though CD's performance surpasses that of TaD in terms of MC1 under the "LLaMA-13b + LoRA" setup, Table <ref type="table" coords="6,337.30,385.41,3.49,7.77">5</ref>: Ablation study results of the knowledge vector on LLaMa models. The column M and pE − → pS represent the models used for calculating p ϕ in Eq. 5, Eq. 9 and the logarithm of the distribution in Eq. 4, respectively. A / in column pE − → pS indicates the independent performance of model M without applying TaD. Models marked with an * signify those fine-tuned with LoRA on Math10K. G and M represent GSM8K and MultiArith, respectively. We highlight our method with a gray background.</p><formula xml:id="formula_10">M p S − → p E G / M 7b /</formula><p>it leads to a significant decline in terms of MC2 and MC3. In contrast, TaD consistently maintains and mostly improves the fine-tuned LLMs' performance in all MC1/2/3 metrics. On GSM8K and MultiArith, the decrease in CD's performance is particularly pronounced, which well aligns with the results reported in DoLa. In contrast, TaD still gains performance improvement upon fine-tuned LLMs. Overall, TaD generates better results in various downstream tasks by considering the knowledge adaptation learned during fine-tuning and consistently maintains and improves the fine-tuned LLMs' performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Analysis Integrated With Different Basic Decoding Strategies</head><p>As previously mentioned, our derived p in Eq. 9 is compatible with various basic decoding strategies. fine-tuned LLMs' performance across different basic decoding strategies on both mathematical reasoning datasets.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Ablation Study of the Knowledge Vector</head><p>Table <ref type="table" coords="7,79.07,252.45,4.98,8.64">5</ref> displays the ablation study results of the knowledge vector on the more challenging mathematical reasoning task. We conduct extensive experiments by defining different directions of the knowledge vector to demonstrate the effectiveness and reasonableness of the proposed one. Firstly, we present the pre-trained and fine-tuned LLMs' performance and showcase the effectiveness of the proposed TaD. Table <ref type="table" coords="7,104.16,331.52,4.98,8.64">5</ref>  <ref type="bibr" coords="7,113.64,331.52,11.06,8.64">(a)</ref> shows that the performance of the finetuned LLaMA-7b* and LLaMA-13b* is significantly improved compared to the original pre-trained LLaMA-7b and LLaMA-13b. Table <ref type="table" coords="7,140.71,364.39,4.98,8.64">5</ref> (b) further shows that the proposed TaD consistently enhances the performance of the fine-tuned LLaMA-7b* and LLaMA-13b* by setting the direction of the knowledge vector as 7b− →7b* or 13b− →13b*. To validate our motivation in setting the knowledge vector's direction, we further investigate the effect of reverting the original knowledge vector, i.e., from the fine-tuned LLM to the pre-trained LLM, as shown in Table <ref type="table" coords="7,129.03,441.11,4.98,8.64">5</ref> (c). We can see that reverting the direction of the proposed knowledge vector significantly degrades the fine-tuned LLaMA-7b*'s performance, which is consistent with our illustration in Figure <ref type="figure" coords="7,191.83,473.98,3.74,8.64">2</ref>.</p><p>Furthermore, we find that the direction from the smaller LLMs to the larger LLMs can also improve the pre-trained or fine-tuned LLMs' performance, as can be seen in Table <ref type="table" coords="7,275.57,509.21,4.98,8.64">5</ref>  <ref type="bibr" coords="7,282.90,509.21,10.58,8.64">(d)</ref>. Therefore, we further conduct experiments to compare the knowledge vector derived from knowledge adaptation (i.e., from the pre-trained LLMs to the fine-tuned LLMs) and that derived from model size increase (i.e., from the smaller LLMs to the larger LLMs). The results are reported in Table <ref type="table" coords="7,275.51,564.01,4.98,8.64">5</ref> (e), and we can see that the former outperforms the latter. It suggests that the direction indicated by the knowledge adaptation learned during fine-tuning is more essential in deriving the proposed knowledge vector. Moreover, we investigate the cumulative effect of combining these two kinds of directions, by setting the direction of knowledge vector from the pre-trained LLaMA-7b to the fine-tuned LLaMA-13b*. Table <ref type="table" coords="7,253.43,640.72,4.98,8.64">5</ref> (f) shows that combining both directions can gain slight or even negligible further improvement over the default direction from LLaMA-13b to LLaMA-13b*, which further demonstrates the reasonableness of how we define the direction of the proposed knowledge vector.  <ref type="table" coords="7,340.11,349.01,4.98,8.64" target="#tab_7">6</ref> displays the performance of models fine-tuned with LoRA using different ratios of training data and highlights TaD's improvement over the original fine-tuned models. For each setup, we select the optimal hyper-parameters and train the LLMs for sufficient epochs to ensure convergence. As shown in Table <ref type="table" coords="7,380.54,403.81,3.74,8.64" target="#tab_7">6</ref>, we can see that, for smaller ratios of the training data, the proposed TaD yields larger performance gains.</p><p>Furthermore, we conduct an ablation study on the selection of µ, and present the results in Figure <ref type="figure" coords="7,471.46,447.73,3.74,8.64" target="#fig_2">3</ref>. It can be observed that the optimal μ incrementally increases as the ratio of training data decreases, meaning that the fine-tuned LLMs prefer stronger alignment with the knowledge vector for smaller ratios of training data.</p><p>Intuitively, with less training data, the LLMs' output probability distribution w.r.t tokens is far from reaching the final training objective in Figure <ref type="figure" coords="7,423.75,524.53,3.74,8.64">2</ref>. Therefore, starting from a more distant point, moving in the direction of the knowledge vector can strengthen the knowledge adaptation for the downstream tasks and lead to more significant improvements. Interestingly, the results above also indicate that even with limited training data, the model can be guided in the correct direction. Such a finding well highlights our method's effectiveness in data-limited scenarios.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>In this paper, we introduce TaD, a plug-and-play method to enhance the performance of fine-tuned LLMs in downstream tasks. TaD leverages the differences in output probability distributions w.r.t tokens before and after fine-tuning, to construct the knowledge vector for downstream tasks. Then TaD refines the output probability distribution of the fine-tuned A Experimental Results with Full-Parameter Fine-Tuning</p><p>We conduct experiments with full-parameter fine-tuning (FPFT) on the multiple-choice tasks. As shown in Table <ref type="table" coords="8,289.54,511.59,3.74,8.64">7</ref>, the experimental results demonstrate that TaD achieves comparable and even more significant improvement compared to being applied to PEFT models. This further demonstrates that TaD can achieve performance that cannot be obtained with the distribution of training data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B The Difference in Improvements on the Multiple-Choice Tasks</head><p>To investigate the difference in improvements observed in Table 6 across other tasks, we conduct experiments using the LLaMa series models on the multiple-choice tasks with 50% and 100% of the training data, respectively. As shown in Table 8, we observe a consistent pattern with that in   </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C Standard Deviations of Experiments</head><p>Table <ref type="table" coords="8,339.75,451.06,4.98,8.64" target="#tab_10">9</ref> shows the standard deviations of the performance of fine-tuned models, TaD-enhanced fine-tuned models, and the improvement after applying TaD over 5 runs, respectively. Figure <ref type="figure" coords="8,344.65,483.93,4.98,8.64" target="#fig_4">4</ref> correspondingly displays a bar graph of the mean value of the improvement with standard deviation error bars. It is noted that the standard deviation of the improvement is smaller than that of the single model's performance. Concurrently, we observe that although the performance of finetuned models and TaD-enhanced models varies across different runs, TaD guarantees the improvement upon the finetuned models' performance. The experimental results above well demonstrate the robustness of our proposed TaD.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,86.41,89.27,205.99,5.40;2,86.41,96.59,33.69,5.40"><head></head><label></label><figDesc>Photosynthesis is the process through which light helps plants...</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="3,315.00,183.77,243.00,7.94;3,315.00,193.61,243.00,8.35;3,315.00,203.86,242.99,7.77;3,315.00,213.66,242.99,7.94;3,315.00,223.79,84.93,7.77"><head></head><label></label><figDesc>Figure2: A simplified illustration of our method. The knowledge vector is constructed as the vector pointing from p θ to p ϕ , which indicates an approximate direction towards the training objective. TaD subsequently improves the inferior outputs in this direction to obtain superior outputs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="7,315.00,277.29,243.00,8.06;7,315.00,287.54,242.99,7.77;7,315.00,297.21,227.45,8.06"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Ablation study results on the weighting parameter µ in the LLaMA-13b model. The numbers in the legend represent the training data ratios and μ marks the optimal value in each ratio.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="8,315.00,387.10,242.99,7.77;8,315.00,396.90,242.99,7.94;8,315.00,407.02,36.84,7.77"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: A bar graph of the mean value of the improvement after applying TaD to GPT-J-6b and LLaMa-7b with standard deviation error bars.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="3,315.00,692.68,181.78,11.47"><head>Table 1 :</head><label>1</label><figDesc>Results on multiple-choice and closed-book question answering (CBQA) tasks.</figDesc><table coords="4,59.98,58.77,485.31,237.15"><row><cell cols="2">Model Method</cell><cell cols="3">Multiple Choices</cell><cell>CBQA</cell><cell cols="2">Model Method</cell><cell cols="3">Multiple Choices</cell><cell>CBQA</cell></row><row><cell></cell><cell></cell><cell cols="4">MC1 MC2 MC3 True*Info</cell><cell></cell><cell></cell><cell cols="3">MC1 MC2 MC3 True*Info</cell></row><row><cell></cell><cell>LoRA</cell><cell>30.6</cell><cell>51.3</cell><cell>25.6</cell><cell>35.7</cell><cell></cell><cell>LoRA</cell><cell>32.9</cell><cell>55.0</cell><cell>28.5</cell><cell>49.1</cell></row><row><cell></cell><cell>+TaD</cell><cell>33.0</cell><cell>52.5</cell><cell>27.1</cell><cell>37.0</cell><cell></cell><cell>+TaD</cell><cell>34.2</cell><cell>55.7</cell><cell>29.0</cell><cell>51.2</cell></row><row><cell>GPT-J-6b</cell><cell cols="2">AdapterP +TaD AdapterH 36.4 34.9 38.2 +TaD 38.3</cell><cell>54.3 55.5 55.0 55.8</cell><cell>28.0 29.5 28.5 28.7</cell><cell>51.5 51.7 53.0 55.3</cell><cell>LLaMa-7b</cell><cell cols="2">AdapterP +TaD AdapterH 37.8 38.1 40.6 +TaD 39.8</cell><cell>57.4 58.5 57.6 59.0</cell><cell>30.8 32.1 30.3 32.0</cell><cell>61.4 61.8 60.3 61.0</cell></row><row><cell></cell><cell>Parallel</cell><cell>34.3</cell><cell>54.0</cell><cell>27.7</cell><cell>47.2</cell><cell></cell><cell>Parallel</cell><cell>37.0</cell><cell>56.3</cell><cell>29.5</cell><cell>54.3</cell></row><row><cell></cell><cell>+TaD</cell><cell>37.5</cell><cell>55.1</cell><cell>28.9</cell><cell>47.4</cell><cell></cell><cell>+TaD</cell><cell>39.5</cell><cell>57.0</cell><cell>30.4</cell><cell>55.2</cell></row><row><cell></cell><cell>LoRA</cell><cell>30.8</cell><cell>51.4</cell><cell>25.7</cell><cell>17.4</cell><cell></cell><cell>LoRA</cell><cell>33.4</cell><cell>55.7</cell><cell>29.0</cell><cell>54.1</cell></row><row><cell>BLOOMz-7b</cell><cell cols="2">+TaD AdapterP +TaD AdapterH 36.8 32.8 35.3 35.7 +TaD 37.9</cell><cell>52.3 53.8 54.8 54.5 55.2</cell><cell>27.2 28.5 28.4 28.9 29.2</cell><cell>17.5 20.6 20.7 50.3 50.8</cell><cell>LLaMa-13b</cell><cell cols="2">+TaD AdapterP +TaD AdapterH 38.2 35.1 40.6 42.6 +TaD 39.5</cell><cell>56.7 58.8 60.0 57.0 57.8</cell><cell>29.7 32.4 33.1 30.4 31.2</cell><cell>54.7 58.6 60.0 61.8 63.3</cell></row><row><cell></cell><cell>Parallel</cell><cell>34.5</cell><cell>53.6</cell><cell>28.2</cell><cell>21.8</cell><cell></cell><cell>Parallel</cell><cell>39.8</cell><cell>58.2</cell><cell>31.7</cell><cell>60.0</cell></row><row><cell></cell><cell>+TaD</cell><cell>36.5</cell><cell>54.4</cell><cell>28.5</cell><cell>22.7</cell><cell></cell><cell>+TaD</cell><cell>42.0</cell><cell>60.2</cell><cell>33.8</cell><cell>61.6</cell></row></table><note>Then we have the final knowledge vector VK .</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="4,315.00,684.56,243.01,19.60"><head>Table 2 :</head><label>2</label><figDesc>fine-tuned with the official dataset. For mathematical reasoning, we utilize Results on mathematical reasoning and commonsense reasoning tasks.</figDesc><table coords="5,54.00,58.77,243.01,441.77"><row><cell>Model</cell><cell>Method</cell><cell cols="3">Math Reasoning CS Reasoning</cell></row><row><cell></cell><cell></cell><cell cols="3">GSM8K MultiArith BoolQ PIQA</cell></row><row><cell></cell><cell>LoRA</cell><cell>21.9</cell><cell>92.5</cell><cell>61.8 63.4</cell></row><row><cell>GPT-J-6b</cell><cell>+TaD</cell><cell>22.8</cell><cell>94.2</cell><cell>62.7 64.6</cell></row><row><cell></cell><cell cols="2">AdapterP 19.0</cell><cell>92.2</cell><cell>63.9 71.0</cell></row><row><cell></cell><cell>+TaD</cell><cell>19.5</cell><cell>92.5</cell><cell>64.2 71.2</cell></row><row><cell></cell><cell>LoRA</cell><cell>18.9</cell><cell>91.7</cell><cell>66.8 73.6</cell></row><row><cell>BLOOMz-7b</cell><cell>+TaD</cell><cell>19.3</cell><cell>94.2</cell><cell>66.9 73.9</cell></row><row><cell></cell><cell cols="2">AdapterP 16.3</cell><cell>90.7</cell><cell>66.2 74.4</cell></row><row><cell></cell><cell>+TaD</cell><cell>17.1</cell><cell>93.0</cell><cell>66.2 75.0</cell></row><row><cell></cell><cell>LoRA</cell><cell>26.6</cell><cell>90.5</cell><cell>68.7 78.9</cell></row><row><cell>LLaMa-7b</cell><cell>+TaD</cell><cell>27.7</cell><cell>91.0</cell><cell>69.3 79.5</cell></row><row><cell></cell><cell cols="2">AdapterP 31.5</cell><cell>93.5</cell><cell>65.4 76.3</cell></row><row><cell></cell><cell>+TaD</cell><cell>32.0</cell><cell>93.7</cell><cell>66.3 76.3</cell></row><row><cell></cell><cell>LoRA</cell><cell>35.9</cell><cell>91.5</cell><cell>70.1 82.5</cell></row><row><cell>LLaMa-13b</cell><cell>+TaD</cell><cell>38.1</cell><cell>92.0</cell><cell>70.8 83.1</cell></row><row><cell></cell><cell cols="2">AdapterP 36.8</cell><cell>91.5</cell><cell>69.4 78.1</cell></row><row><cell></cell><cell>+TaD</cell><cell>37.5</cell><cell>94.0</cell><cell>69.4 79.2</cell></row><row><cell cols="5">BoolQ comprises a dataset of 15,942 yes/no questions. PIQA</cell></row><row><cell cols="5">offers a collection of questions demanding physical common-</cell></row><row><cell cols="2">sense reasoning.</cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="5">Following previous works [Chuang et al., 2023; Hu et</cell></row><row><cell cols="5">al., 2023], we employ the same prompt as the official one</cell></row><row><cell cols="5">proposed in [Lin et al., 2022], and formulate specific in-</cell></row><row><cell cols="5">structions for both mathematical and commonsense reasoning</cell></row><row><cell>tasks.</cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table><note>GSM8K<ref type="bibr" coords="5,90.33,348.54,80.21,9.53" target="#b4">[Cobbe et al., 2021]</ref> andMultiArith [Roy and Roth,  2016]. GSM8K offers a variety of high-quality, grade-school math word problems crafted by human writers. MultiArith involves math problems requiring extensive reasoning and computational steps. For commonsense reasoning, we employBoolQ [Clark et al., 2019]  and PIQA<ref type="bibr" coords="5,222.83,403.34,69.88,9.53" target="#b0">[Bisk et al., 2020]</ref>.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="5,315.00,270.95,242.99,17.74"><head>Table 3 :</head><label>3</label><figDesc>The comparison results with other contrastive decoding strategies on multiple-choice and mathematical reasoning tasks.</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="6,315.00,651.68,243.01,52.47"><head>Table 6 :</head><label>6</label><figDesc>Table4shows the experimental results for the more challenging mathematical reasoning task, with TaD incorporated in Greedy Search, Beam Search, Top-p sampling, and Top-k sampling, respectively. It is observed that TaD consistently improves upon the TaD's performance with different ratios of Math10K as training dataset. ∆ represents the improvement after applying TaD.</figDesc><table coords="7,67.03,58.77,216.94,84.33"><row><cell>Model</cell><cell cols="3">Method 10% 30% 60% 100%</cell></row><row><cell></cell><cell>LoRA</cell><cell>58.8 80.5 86.2</cell><cell>90.5</cell></row><row><cell>LLaMa-7b</cell><cell>+TaD</cell><cell>62.2 83.2 88.0</cell><cell>91.0</cell></row><row><cell></cell><cell>∆</cell><cell cols="2">+3.4 +2.7 +1.8 +0.5</cell></row><row><cell></cell><cell>LoRA</cell><cell>70.8 86.5 90.2</cell><cell>91.5</cell></row><row><cell>LLaMa-13b</cell><cell>+TaD</cell><cell>79.8 89.3 91.5</cell><cell>92.0</cell></row><row><cell></cell><cell>∆</cell><cell cols="2">+9.0 +3.2 +1.3 +0.5</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="8,54.00,58.77,243.01,387.13"><head>Table 8 :</head><label>8</label><figDesc>TaD's performance with different ratios of training dataset on the multiple-choice tasks. ∆ represents the improvement after applying TaD. 'MC Average' indicates the average values of metrics MC1, MC2, and MC3 on the multiple-choice tasks.LLMs with the derived knowledge vector, enhancing it with knowledge adaptation learned during fine-tuning. Extensive experiments well demonstrate that TaD can consistently gain performance improvement across different LLMs, different fine-tuning methods, and different downstream tasks. And it exhibits superiority over existing approaches. Moreover, our experiments also show that TaD has a distinct advantage in data-limited scenarios.</figDesc><table coords="8,54.00,58.77,242.99,225.81"><row><cell>Model</cell><cell cols="3">Method MC Average</cell></row><row><cell>LLaMa-7b</cell><cell>FPFT +TaD</cell><cell></cell><cell>44.4 46.1</cell></row><row><cell>LLaMa-13b</cell><cell>FPFT +TaD</cell><cell></cell><cell>45.7 47.3</cell></row><row><cell cols="4">Table 7: Full-parameter fine-tuning results. 'MC Average' indicates</cell></row><row><cell cols="4">the average values of metrics MC1, MC2, and MC3 on the multiple-</cell></row><row><cell>choice tasks.</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Model</cell><cell>Method</cell><cell cols="2">MC Average</cell></row><row><cell></cell><cell></cell><cell cols="2">50% 100%</cell></row><row><cell></cell><cell>LoRA</cell><cell>37.9</cell><cell>38.8</cell></row><row><cell>LLaMa-7b</cell><cell>+TaD</cell><cell>39.2</cell><cell>39.6</cell></row><row><cell></cell><cell>∆</cell><cell cols="2">+1.3 +0.8</cell></row><row><cell></cell><cell>LoRA</cell><cell>38.2</cell><cell>39.4</cell></row><row><cell>LLaMa-13b</cell><cell>+TaD</cell><cell>39.7</cell><cell>40.5</cell></row><row><cell></cell><cell>∆</cell><cell cols="2">+1.5 +1.1</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9" coords="8,54.00,58.77,496.88,645.38"><head>Table 6 .</head><label>6</label><figDesc>The performance of TaD's performance is notably enhanced when the training data is reduced.</figDesc><table coords="8,322.12,58.77,228.76,100.16"><row><cell>Model</cell><cell>Method</cell><cell>Multiple Choices</cell><cell>CBQA</cell></row><row><cell></cell><cell></cell><cell cols="2">MC1 MC2 MC3 True*Info (%)</cell></row><row><cell></cell><cell cols="2">LoRA 0.982 1.008 0.996</cell><cell>0.485</cell></row><row><cell>GPT-J-6b</cell><cell cols="2">+TaD 0.989 0.987 0.813</cell><cell>0.401</cell></row><row><cell></cell><cell>∆</cell><cell>0.614 0.493 0.477</cell><cell>0.274</cell></row><row><cell></cell><cell cols="2">LoRA 1.030 1.140 1.057</cell><cell>0.482</cell></row><row><cell>LLaMa-7b</cell><cell cols="2">+TaD 0.978 0.986 0.746</cell><cell>0.388</cell></row><row><cell></cell><cell>∆</cell><cell>0.554 0.385 0.382</cell><cell>0.283</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10" coords="8,315.00,173.68,243.00,27.70"><head>Table 9 :</head><label>9</label><figDesc>Standard deviations of GPT-J-6b and LLaMa-7b experiments for multiple-choice and CBQA tasks over 5 runs. ∆ represents standard deviations of the improvement after applying TaD.</figDesc><table /></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence </note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>This work was supported by National Natural Science Foundation of China (Nos. 62271281, 61925107, 62021002). It was also sponsored by CAAI-CANN Open Fund, developed on OpenI Community.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="8,319.32,683.66,238.69,9.53;8,326.62,695.51,231.39,8.64;9,65.62,57.48,231.39,8.64;9,65.62,68.26,231.39,8.59;9,65.62,79.39,22.42,8.64;9,54.00,94.60,243.00,9.53;9,65.62,106.45,231.39,8.64;9,65.62,117.41,231.39,8.64;9,65.62,128.37,231.39,8.64;9,65.62,139.15,231.39,8.82;9,65.62,150.11,108.21,8.82" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Piqa: Reasoning about physical commonsense in natural language</title>
+		<author>
+			<persName coords=""><surname>Bisk</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Thirty-Fourth AAAI Conference on Artificial Intelligence</title>
+				<meeting><address><addrLine>Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2020">2020. 2020. 2020. 2020</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="1877" to="1901" />
+		</imprint>
+	</monogr>
+	<note>Language models are few-shot learners. Advances in neural information processing systems</note>
+</biblStruct>
+
+<biblStruct coords="9,54.00,165.49,243.00,9.53;9,65.62,177.35,231.39,8.64;9,65.62,188.30,231.39,8.64;9,65.62,199.08,231.39,8.82;9,65.62,210.04,231.39,8.82;9,65.62,221.18,82.19,8.64" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Imram: Iterative matching with recurrent attention memory for cross-modal image-text retrieval</title>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</title>
+				<meeting>the IEEE/CVF conference on computer vision and pattern recognition</meeting>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="page" from="12655" to="12663" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,54.00,236.38,243.00,9.53;9,65.62,248.24,231.39,8.64;9,65.62,259.20,231.39,8.64;9,65.62,269.98,231.40,8.82;9,65.62,281.12,22.42,8.64;9,54.00,296.32,243.00,9.53;9,65.62,308.17,231.39,8.64;9,65.62,319.13,231.39,8.64;9,65.62,329.91,231.39,8.82;9,65.62,340.87,100.18,8.82" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Deep reinforcement learning from human preferences</title>
+		<author>
+			<persName coords=""><forename type="first">Christiano</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:2309.03883</idno>
+	</analytic>
+	<monogr>
+		<title level="m">James Glass, and Pengcheng He. Dola: Decoding by contrasting layers improves factuality in large language models</title>
+				<imprint>
+			<date type="published" when="2017">2017. 2017. 2023. 2023</date>
+			<biblScope unit="volume">30</biblScope>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Advances in neural information processing systems</note>
+</biblStruct>
+
+<biblStruct coords="9,54.00,356.25,243.00,9.53;9,65.62,368.11,231.39,8.64;9,65.62,379.07,231.39,8.64;9,65.62,389.84,231.39,8.82;9,65.62,400.80,231.39,8.59;9,65.62,411.76,231.39,8.59;9,65.62,422.72,231.39,8.59;9,65.62,433.86,231.39,8.64;9,65.62,444.82,172.14,8.64" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">BoolQ: Exploring the surprising difficulty of natural yes/no questions</title>
+		<author>
+			<persName coords=""><forename type="first">Clark</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference of the North American Chapter</title>
+		<title level="s">Long and Short Papers</title>
+		<meeting>the 2019 Conference of the North American Chapter<address><addrLine>Minneapolis, Minnesota</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019-06">2019. June 2019</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="2924" to="2936" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,54.00,460.02,243.00,9.53;9,65.62,471.88,231.39,8.64;9,65.62,482.84,231.39,8.64;9,65.62,493.61,231.39,8.82;9,65.62,504.75,22.42,8.64;9,54.00,519.96,243.00,9.53;9,65.62,531.81,231.39,8.64;9,65.62,542.59,231.39,8.82;9,65.62,553.55,231.39,8.59;9,65.62,564.51,157.82,8.82;9,54.00,579.89,243.00,9.53;9,65.62,591.74,231.39,8.64;9,65.62,602.70,231.39,8.64;9,65.62,613.66,231.39,8.64;9,65.62,624.62,231.39,8.64;9,65.62,635.58,231.39,8.64;9,65.62,646.36,231.38,8.82;9,65.62,657.50,34.87,8.64" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Parameter-efficient fine-tuning of large-scale pre-trained language models</title>
+		<author>
+			<persName coords=""><surname>Cobbe</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2110.14168</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</title>
+				<meeting>the IEEE/CVF conference on computer vision and pattern recognition</meeting>
+		<imprint>
+			<date type="published" when="2021">2021. 2021. 2021. 2021. 2023</date>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page">2023</biblScope>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Repvgg: Making vgg-style convnets great again</note>
+</biblStruct>
+
+<biblStruct coords="9,58.53,672.70,238.48,9.53;9,65.62,684.38,231.38,8.82;9,65.62,695.33,231.39,8.59;9,326.62,57.30,231.39,8.59;9,326.62,68.44,197.05,8.64" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Hierarchical neural story generation</title>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</title>
+		<title level="s">Long Papers</title>
+		<meeting>the 56th Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2018">2018. 2018</date>
+			<biblScope unit="volume">1</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,319.54,83.64,238.47,9.53;9,326.62,95.49,231.39,8.64;9,326.62,106.45,231.39,8.64;9,326.62,117.41,231.39,8.64;9,326.62,128.19,231.38,8.82;9,326.62,139.15,231.39,8.59;9,326.62,150.11,231.39,8.59;9,326.62,161.25,231.39,8.64;9,326.62,172.21,145.02,8.64" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">The benefits of bad advice: Autocontrastive decoding across model layers</title>
+		<author>
+			<persName coords=""><forename type="first">Gera</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics</title>
+		<title level="s">Long Papers</title>
+		<editor>
+			<persName><forename type="first">Anna</forename><surname>Rogers</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jordan</forename><surname>Boyd-Graber</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Naoaki</forename><surname>Okazaki</surname></persName>
+		</editor>
+		<meeting>the 61st Annual Meeting of the Association for Computational Linguistics<address><addrLine>Toronto, Canada</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2023-07">2023. July 2023</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="10406" to="10420" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,315.00,187.41,243.00,9.53;9,326.62,199.26,231.39,8.64;9,326.62,210.22,231.39,8.64;9,326.62,221.00,231.39,8.59;9,326.62,232.14,22.42,8.64;9,315.00,247.34,243.00,9.53;9,326.62,259.20,231.39,8.64;9,326.62,269.98,231.38,8.82;9,326.62,280.94,100.18,8.82" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Towards a unified view of parameter-efficient transfer learning</title>
+		<author>
+			<persName coords=""><surname>He</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2304.00740</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Measuring and manipulating knowledge representations in language models</title>
+				<imprint>
+			<date type="published" when="2022">2022. 2022. 2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>International Conference on Learning Representations</note>
+</biblStruct>
+
+<biblStruct coords="9,315.00,296.32,243.00,9.53;9,326.62,308.17,231.39,8.64;9,326.62,318.95,231.38,8.82;9,326.62,329.91,130.26,8.82" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">The curious case of neural text degeneration</title>
+		<author>
+			<persName coords=""><surname>Holtzman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,315.00,345.29,243.00,9.53;9,326.62,357.15,231.39,8.64;9,326.62,368.11,231.39,8.64;9,326.62,378.89,231.39,8.82;9,326.62,389.84,187.38,8.82" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Parameter-efficient transfer learning for nlp</title>
+		<author>
+			<persName coords=""><surname>Houlsby</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,315.00,405.23,243.00,9.53;9,326.62,417.08,231.39,8.64;9,326.62,428.04,231.39,8.64;9,326.62,438.82,231.39,8.82;9,315.00,454.20,243.00,9.53;9,326.62,466.06,231.39,8.64;9,326.62,477.02,231.39,8.64;9,326.62,487.97,231.39,8.64;9,326.62,498.93,231.39,8.64;9,326.62,509.71,231.39,8.82;9,326.62,520.67,231.39,8.82;9,326.62,531.81,231.39,8.64;9,326.62,542.77,89.12,8.64" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">LLM-adapters: An adapter family for parameter-efficient fine-tuning of large language models</title>
+		<author>
+			<persName coords=""><surname>Hu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2106.09685</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing</title>
+				<editor>
+			<persName><forename type="first">Houda</forename><surname>Bouamor</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Juan</forename><surname>Pino</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Kalika</forename><surname>Bali</surname></persName>
+		</editor>
+		<meeting>the 2023 Conference on Empirical Methods in Natural Language Processing<address><addrLine>Singapore</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021">2021. 2021. 2023. December 2023</date>
+			<biblScope unit="page" from="5254" to="5276" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Lora: Low-rank adaptation of large language models</note>
+</biblStruct>
+
+<biblStruct coords="9,315.00,557.97,243.00,9.53;9,326.62,569.83,231.39,8.64;9,326.62,580.79,231.39,8.64;9,326.62,591.74,231.39,8.64;9,326.62,602.52,231.38,8.82;9,326.62,613.66,22.42,8.64;9,315.00,628.86,243.00,9.53;9,326.62,640.72,231.39,8.64;9,326.62,651.68,231.39,8.64;9,326.62,662.46,231.38,8.82;9,326.62,673.42,231.39,8.59;9,326.62,684.38,231.39,8.59;9,326.62,695.33,231.39,8.59;10,65.62,57.30,231.39,8.82;10,65.62,68.44,71.68,8.64;10,54.00,82.42,243.00,9.53;10,65.62,94.28,231.39,8.64;10,65.62,105.23,231.39,8.64;10,65.62,116.01,231.39,8.82;10,65.62,126.97,231.39,8.59;10,65.62,137.93,231.39,8.59;10,65.62,148.89,231.39,8.59;10,65.62,159.85,231.39,8.82;10,65.62,170.99,185.98,8.64" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Prefixtuning: Optimizing continuous prompts for generation</title>
+		<author>
+			<persName coords=""><surname>Kadavath</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2207.05221</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing, ACL/IJCNLP 2021</title>
+		<title level="s">Long Papers</title>
+		<editor>
+			<persName><forename type="first">Chengqing</forename><surname>Zong</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Fei</forename><surname>Xia</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Wenjie</forename><surname>Li</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Roberto</forename><surname>Navigli</surname></persName>
+		</editor>
+		<meeting>the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing, ACL/IJCNLP 2021<address><addrLine>Dominican Republic</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2021-08-01">2022. 2022. 2021. 7-11 November, 2021. 2021. August 1-6, 2021. 2021</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="4582" to="4597" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Virtual Event</note>
+</biblStruct>
+
+<biblStruct coords="10,58.06,184.97,238.95,9.53;10,65.62,196.83,231.39,8.64;10,65.62,207.79,231.39,8.64;10,65.62,218.57,231.39,8.82;10,65.62,229.52,231.39,8.59;10,65.62,240.48,231.39,8.82;10,65.62,251.62,54.61,8.64" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Parameter-effcient sparsity for large language models finetuning</title>
+		<author>
+			<persName coords=""><surname>Li</surname></persName>
+		</author>
+		<ptr target="ij-cai.org" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, IJCAI 2022</title>
+				<meeting>the Thirty-First International Joint Conference on Artificial Intelligence, IJCAI 2022<address><addrLine>Vienna, Austria</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022-07">2022. July 2022. 2022</date>
+			<biblScope unit="page" from="4223" to="4229" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,58.06,265.61,238.95,9.53;10,65.62,277.46,231.39,8.64;10,65.62,288.42,231.39,8.64;10,65.62,299.20,231.39,8.82;10,65.62,310.16,231.39,8.59;10,65.62,321.30,22.42,8.64;10,54.00,335.28,243.00,9.53;10,65.62,347.14,231.39,8.64;10,65.62,358.10,231.39,8.64;10,65.62,368.88,190.57,8.82;10,54.00,383.04,243.00,9.53;10,65.62,394.90,231.39,8.64;10,65.62,405.85,231.39,8.64;10,65.62,416.81,231.39,8.64;10,65.62,427.77,231.39,8.64;10,65.62,438.55,231.39,8.82;10,65.62,449.51,231.39,8.59;10,65.62,460.47,231.39,8.82;10,65.62,471.61,172.14,8.64" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Contrastive decoding: Open-ended text generation as optimization</title>
+		<author>
+			<persName coords=""><surname>Li</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2306.03341</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics</title>
+		<title level="s">Long Papers</title>
+		<editor>
+			<persName><forename type="first">Anna</forename><surname>Rogers</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jordan</forename><surname>Boyd-Graber</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Naoaki</forename><surname>Okazaki</surname></persName>
+		</editor>
+		<meeting>the 61st Annual Meeting of the Association for Computational Linguistics<address><addrLine>Toronto, Canada</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2023-07">2023a. 2023. 2023b. 2023. 2023c. July 2023</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="12286" to="12312" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>The Eleventh International Conference on Learning Representations</note>
+</biblStruct>
+
+<biblStruct coords="10,54.00,485.59,243.00,9.53;10,65.62,497.45,231.39,8.64;10,65.62,508.23,231.39,8.82;10,65.62,519.18,231.39,8.59;10,65.62,530.14,156.01,8.82;10,54.00,544.31,243.00,9.53;10,65.62,556.16,231.39,8.64;10,65.62,567.12,231.39,8.64;10,65.62,578.08,231.39,8.64;10,65.62,588.86,231.39,8.82;10,65.62,599.82,100.18,8.82" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Truthfulqa: Measuring how models mimic human falsehoods</title>
+		<author>
+			<persName coords=""><forename type="first">Lin</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:2211.01786</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Stella Biderman, Teven Le Scao, M Saiful Bari, Sheng Shen, Zheng-Xin Yong, Hailey Schoelkopf, et al. Crosslingual generalization through multitask finetuning</title>
+		<title level="s">Long Papers</title>
+		<meeting><address><addrLine>Niklas Muennighoff, Thomas Wang, Lintang Sutawika, Adam Roberts</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022">2022. 2022. 2022. 2022</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="3214" to="3252" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics</note>
+</biblStruct>
+
+<biblStruct coords="10,58.74,613.98,238.26,9.53;10,65.62,625.66,134.96,8.82;10,54.00,639.82,243.00,9.53;10,65.62,651.68,231.39,8.64;10,65.62,662.64,231.39,8.64;10,65.62,673.60,231.39,8.64;10,65.62,684.56,231.39,8.64;10,65.62,695.51,231.39,8.64;10,326.62,57.48,231.39,8.64;10,326.62,68.26,144.44,8.82;10,315.00,82.48,243.00,9.53;10,326.62,94.34,231.39,8.64;10,326.62,105.30,231.39,8.64;10,326.62,116.26,231.39,8.64;10,326.62,127.04,231.39,8.82;10,326.62,137.99,231.39,8.59;10,326.62,149.13,231.39,8.64;10,326.62,160.09,122.60,8.64" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">MAD-X: An Adapter-Based Framework for Multi-Task Cross-Lingual Transfer</title>
+		<author>
+			<persName coords=""><forename type="first">Ouyang</forename><surname>Openai</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2303.08774</idno>
+		<idno>CoRR, abs/2203.02155</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</title>
+				<editor>
+			<persName><forename type="first">Bonnie</forename><surname>Webber</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Trevor</forename><surname>Cohn</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Yulan</forename><surname>He</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Yang</forename><surname>Liu</surname></persName>
+		</editor>
+		<meeting>the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2020-11">2023. 2023. 2022. 2022. 2020. November 2020</date>
+			<biblScope unit="page" from="7654" to="7673" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>OpenAI. Gpt-4 technical report</note>
+</biblStruct>
+
+<biblStruct coords="10,315.00,174.14,243.00,9.53;10,326.62,185.82,231.39,8.82;10,326.62,196.77,100.18,8.82" xml:id="b16">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Roy</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roth</forename><forename type="middle">;</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Subhro</forename><surname>Roy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Roth</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1608.01413</idno>
+		<title level="m">Solving general arithmetic word problems</title>
+				<imprint>
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="10,319.65,211.00,238.36,9.53;10,326.62,222.86,231.39,8.64;10,326.62,233.82,231.39,8.64;10,326.62,244.77,231.39,8.64;10,326.62,255.55,231.39,8.82;10,326.62,266.51,91.23,8.82;10,315.00,280.74,192.52,9.53;10,524.09,281.64,33.91,8.64" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Multitask prompted training enables zero-shot task generalization</title>
+		<author>
+			<persName coords=""><surname>Sanh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<publisher>Nivedita</publisher>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+	<note>Subramani et al., 2022] Nishant Subramani</note>
+</biblStruct>
+
+<biblStruct coords="10,326.62,292.60,231.39,8.64;10,326.62,303.37,231.39,8.82;10,326.62,314.33,100.18,8.82;10,315.00,328.56,243.00,9.53;10,326.62,340.42,231.39,8.64;10,326.62,351.19,231.39,8.82;10,326.62,362.15,60.60,8.82;10,315.00,376.38,243.00,9.53;10,326.62,388.24,231.39,8.64;10,326.62,399.20,231.38,8.64;10,326.62,410.15,231.39,8.64;10,326.62,420.93,231.39,8.82;10,326.62,432.07,22.42,8.64;10,315.00,446.12,243.00,9.53;10,326.62,457.98,231.39,8.64;10,326.62,468.93,155.29,8.64;10,315.00,482.98,243.00,9.53;10,326.62,494.84,231.39,8.64;10,326.62,505.80,231.39,8.64;10,326.62,516.75,135.27,8.64;10,315.00,530.80,243.00,9.53;10,326.62,542.66,231.39,8.64;10,326.62,553.44,231.39,8.82;10,326.62,564.58,22.42,8.64;10,315.00,578.62,243.00,9.53;10,326.62,590.48,231.39,8.64;10,326.62,601.44,231.39,8.64;10,326.62,612.22,231.39,8.82;10,326.62,623.17,130.26,8.82" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Llama: Open and efficient foundation language models</title>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><forename type="middle">E</forename><surname>Suresh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Peters</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sutskever</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2205.05124</idno>
+		<idno>arXiv:2307.09283</idno>
+		<ptr target="https://github.com/kingoflolz/mesh-transformer-jax" />
+	</analytic>
+	<monogr>
+		<title level="m">Hengjun Pu, and Guiguang Ding. Repvit: Revisiting mobile cnn from vit perspective</title>
+				<editor>
+			<persName><forename type="first">Quoc V</forename><surname>Dai</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Le</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Brian Lester, Nan Du</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2014">2022. 2014. 2014. 2023. 2023. 2023. May 2023. May 2021. 2023. 2023. 2021. 2021</date>
+			<biblScope unit="volume">27</biblScope>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>International Conference on Learning Representations</note>
+</biblStruct>
+
+<biblStruct coords="10,319.70,637.40,238.30,9.53;10,326.62,649.26,231.39,8.64;10,326.62,660.22,231.39,8.64;10,326.62,671.18,231.39,8.64;10,326.62,681.95,188.36,8.82" xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Pyra: Parallel yielding re-activation for training-inference efficient task adaptation</title>
+		<author>
+			<persName coords=""><surname>Xiong</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2403.09192</idno>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

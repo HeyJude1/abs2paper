@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Optimization of Large-Scale Sparse Matrix-Vector Multiplication on Multi-GPU Systems</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2024-11-19">2024-11-19</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.77,123.70,64.67,9.82"><forename type="first">Jianhua</forename><surname>Gao</surname></persName>
+							<idno type="ORCID">0000-0002-3828-0015</idno>
+							<affiliation key="aff0">
+								<orgName type="department">School of Artificial Intelligence</orgName>
+								<orgName type="institution">Beijing Normal University</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department" key="dep1">WEIXING JI</orgName>
+								<orgName type="department" key="dep2">School of Artificial Intelligence</orgName>
+								<orgName type="institution">Beijing Normal University</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff2">
+								<orgName type="department" key="dep1">YIZHUO WANG</orgName>
+								<orgName type="department" key="dep2">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Beijing Institute of Technology</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff3">
+								<orgName type="department">School of Artificial Intelligence</orgName>
+								<orgName type="institution">Beijing Normal University</orgName>
+								<address>
+									<settlement>Beijing, Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff4">
+								<orgName type="department">School of Artificial Intelligence</orgName>
+								<orgName type="institution">Beijing Normal University</orgName>
+								<address>
+									<settlement>Beijing, Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff5">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Yizhuo Wang</orgName>
+							</affiliation>
+							<affiliation key="aff6">
+								<orgName type="institution">Beijing Institute of Technology</orgName>
+								<address>
+									<settlement>Beijing, Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+							<idno type="ORCID">0000-0002-3250-0435</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+							<idno type="ORCID">0000-0002-1288-331X</idno>
+						</author>
+						<title level="a" type="main">Optimization of Large-Scale Sparse Matrix-Vector Multiplication on Multi-GPU Systems</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">21</biblScope>
+							<biblScope unit="issue">4</biblScope>
+							<biblScope unit="page" from="1" to="24"/>
+							<date type="published" when="2024-11-19" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">26DE7A4BC8ADFC70DC55F7EFDEC2008C</idno>
+					<idno type="DOI">10.1145/3676847</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Multi-GPU system</term>
+					<term>sparse matrix-vector multiplication</term>
+					<term>data transmission hiding</term>
+					<term>sparse matrix partitioning</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sparse matrix-vector multiplication (SpMV) is one of the important kernels of many iterative algorithms for solving sparse linear systems. The limited storage and computational resources of individual GPUs restrict both the scale and speed of SpMV computing in problem-solving. As real-world engineering problems continue to increase in complexity, the imperative for collaborative execution of iterative solving algorithms across multiple GPUs is increasingly apparent. Although the multi-GPU-based SpMV takes less kernel execution time, it also introduces additional data transmission overhead, which diminishes the performance gains derived from parallelization across multi-GPUs. Based on the non-zero elements distribution characteristics of sparse matrices and the tradeoff between redundant computations and data transfer overhead, this article introduces a series of SpMV optimization techniques tailored for multi-GPU environments and effectively enhances the execution efficiency of iterative algorithms on multiple GPUs. First, we propose a two-level non-zero elements-based matrix partitioning method to increase the overlap of kernel execution and data transmission. Then, considering the irregular non-zero elements distribution in sparse matrices, a long-rowaware matrix partitioning method is proposed to hide more data transmissions. Finally, an optimization using redundant and inexpensive short-row execution to exchange costly data transmission is proposed. Our experimental evaluation demonstrates that, compared with the SpMV on a single GPU, the proposed method achieves an average speedup of 2.00× and 1.85× on platforms equipped with two RTX 3090 and two Tesla V100-SXM2, respectively. The average speedup of 2.65× is achieved on a platform equipped with four Tesla V100-SXM2. CCS Concepts: • Computing methodologies → Massively parallel algorithms; • Mathematics of computing → Solvers;</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Optimization of Large-scale Sparse Matrix-vector Multiplication on Multi-GPU Systems 69:3 performance benefits of multi-GPU parallel computing. Second, graph partitioning demands significant memory requirements. It requires two copies of the sparse matrix to be stored in memory simultaneously for the conversion from the input matrix to the banded matrix. These drawbacks are highly detrimental to the computation of large-scale sparse matrices.</p><p>This article introduces a series of SpMV optimization techniques tailored for multi-GPU and effectively enhances the execution efficiency of iterative algorithms on multiple GPUs. First, we show the overall framework of iterative algorithms on a multi-GPU system and explain the necessity of synchronizing the result vector of SpMV across multiple GPUs. To mitigate the data transmission overhead, this article proposes a two-level non-zero elements-based matrix partitioning and a long-row-aware matrix partitioning method. These methods enable to hiding data transmission process as much as possible. Additionally, we introduce an optimization strategy that uses redundant and inexpensive computation in exchange for costly data transmission. Finally, experimental evaluations on two different platforms demonstrate that compared with the SpMV performance on a single GPU, the proposed optimization method achieves an average speedup of 2.00× and 1.85× on platforms equipped with two RTX 3090 and two Tesla V100-SXM2, respectively. On a platform equipped with four Tesla V100-SXM2, our method achieves an average speedup of 2.65×. We also apply our multi-GPU SpMV to the CG solver, and a higher average speedup is achieved.</p><p>The structure of this article is organized as follows: Section 2 presents an overview of related work for optimizing SpMV on multi-GPU systems. Section 3 introduces several optimization methods proposed in this article. Section 4 provides experimental evaluations of the proposed algorithms on two different multi-GPU platforms. Finally, Section 5 concludes the article.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Work</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">SpMV Optimization on Single GPU</head><p>GPUs are equipped with a large number of lightweight computing cores, allowing a large number of computing threads to be executed simultaneously. The irregular distribution of non-zeros in sparse matrices makes SpMV computation on GPU more susceptible to load imbalance. To solve this problem, Garland et al. <ref type="bibr" coords="3,158.28,560.47,16.36,9.03" target="#b39">[40]</ref> reorganize the irregular SpMV calculation into regular map, scan, and reduce operations to improve the performance of SpMV. Ashari et al. <ref type="bibr" coords="3,336.55,572.43,11.73,9.03" target="#b2">[3]</ref> combine rows containing similar non-zeros into the same bin and launch different computing kernels for different bins. Daga and Greathouse <ref type="bibr" coords="3,134.46,596.34,16.36,9.03" target="#b13">[14]</ref> and Greathouse and Daga <ref type="bibr" coords="3,258.22,596.34,16.36,9.03" target="#b25">[26]</ref> propose CSR-Stream and CSR-VectorL to solve the load imbalance problem in SpMV calculation. The CSR-Stream fixes the number of nonzeros processed by each warp. CSR-VectorL allocates multiple workgroups to handle extremely long rows. Subsequently, the CSR5-based SpMV <ref type="bibr" coords="3,242.27,632.20,16.35,9.03" target="#b37">[38]</ref> and merge-based SpMV <ref type="bibr" coords="3,359.70,632.20,16.35,9.03" target="#b38">[39]</ref> allocate strictly the same number of non-zeros to each threads block, which greatly improves the load imbalance 69:4 J. <ref type="bibr" coords="4,401.00,55.82,39.29,8.97">Gao et al.</ref> on irregular sparse matrices. Anzt et al. <ref type="bibr" coords="4,210.87,82.77,11.71,9.03" target="#b1">[2]</ref> and Flegar and Anzt <ref type="bibr" coords="4,311.77,82.77,16.36,9.03" target="#b18">[19]</ref> partition the sparse matrix into blocks with a similar number of non-zeros and assign a warp to each block. Gao et al. <ref type="bibr" coords="4,423.93,94.73,16.36,9.03" target="#b19">[20]</ref> propose adaptive multi-row folding and non-zero-based blocking to alleviate load imbalance in CMRS <ref type="bibr" coords="4,73.74,118.63,14.84,9.03" target="#b31">[32]</ref>.</p><p>In addition, the powerful parallel computing capabilities of GPU and the inherent discrete memory access pattern of SpMV make improving memory access efficiency a key direction for optimizing SpMV on GPU. CSR-Scalar <ref type="bibr" coords="4,189.57,154.50,11.73,9.03" target="#b4">[5]</ref> is a basic parallel implementation of CSR-based SpMV on GPU, where each matrix row is assigned to a single thread. However, its performance degrades as the number of non-zeros per row increases due to the uncoalesced memory accesses to column indexes and non-zeros. To address these limitations, CSR-Vector <ref type="bibr" coords="4,299.48,190.37,8.72,9.03" target="#b3">[4]</ref><ref type="bibr" coords="4,308.19,190.37,4.36,9.03" target="#b4">[5]</ref><ref type="bibr" coords="4,312.55,190.37,8.72,9.03" target="#b5">[6]</ref> allocates a threads group per row to achieve coalesced memory access. The setting of group size has been discussed in several works <ref type="bibr" coords="4,72.41,214.28,60.40,9.03">[4-6, 21, 42, 48]</ref>. At the expense of a larger memory footprint, the extended vector algorithm <ref type="bibr" coords="4,45.77,226.24,15.00,9.03" target="#b15">[16,</ref><ref type="bibr" coords="4,62.75,226.24,12.81,9.03" target="#b28">29]</ref> allocates a new vector of the same size as the value array, and the multiplied element in the multiplication vector for each non-zero is stored into the allocated vector to maximize coalesced memory accesses on the GPU.</p><p>Furthermore, considering that sparse matrices from diverse applications exhibit different patterns in the distribution of non-zeros, it becomes the fact that no single sparse format or SpMV algorithm can consistently achieve the highest performance across all matrices or hardware platforms. Consequently, several SpMV optimization techniques have emerged, using auto-tuning technology <ref type="bibr" coords="4,45.77,309.92,15.00,9.03" target="#b12">[13,</ref><ref type="bibr" coords="4,62.98,309.92,11.45,9.03" target="#b26">27,</ref><ref type="bibr" coords="4,76.64,309.92,11.45,9.03" target="#b34">35,</ref><ref type="bibr" coords="4,90.31,309.92,11.45,9.03" target="#b35">36,</ref><ref type="bibr" coords="4,103.97,309.92,12.81,9.03" target="#b45">46]</ref> or machine learning approaches <ref type="bibr" coords="4,251.00,309.92,10.38,9.03" target="#b6">[7,</ref><ref type="bibr" coords="4,263.59,309.92,6.83,9.03" target="#b7">8,</ref><ref type="bibr" coords="4,272.62,309.92,11.46,9.03" target="#b17">18,</ref><ref type="bibr" coords="4,286.28,309.92,11.46,9.03" target="#b33">34,</ref><ref type="bibr" coords="4,299.94,309.92,12.82,9.03" target="#b48">49]</ref> to find the most suitable sparse format, SpMV algorithm, or parameter configuration. The search space of these methods contains sparse compression formats or SpMV algorithms that have been proposed by experts. However, for a certain problem, there may be better sparse formats or SpMV algorithms that experts have not designed. Therefore, recent research efforts <ref type="bibr" coords="4,224.82,357.74,16.36,9.03" target="#b16">[17]</ref> are focused on facilitating the automatic generation of novel formats or SpMV algorithms. Our recent SpMV review <ref type="bibr" coords="4,322.37,369.70,16.35,9.03" target="#b21">[22]</ref> provides a more detailed and systematic introduction to SpMV optimization efforts on a single GPU.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">SpMV Optimization on Multi-GPU Systems</head><p>SpMV computation on the multi-GPU system introduces additional data transmission between GPUs, and its overhead is closely associated with matrix partitioning. Therefore, a critical approach to optimizing SpMV on the multi-GPU system is to design appropriate matrix partitioning algorithms to reduce data transmission overhead across GPUs.</p><p>Cevahir et al. <ref type="bibr" coords="4,113.11,465.34,16.36,9.03" target="#b9">[10]</ref> propose a multi-GPU optimization method for CG solver. They use the JDS format (which requires sorting the matrix) to encode the sparse matrix and employ an SpMV implementation similar to CSR-based SpMV for merging access to index and value data. Load-based partitioning is used to partition the sparse matrix across multiple GPUs.</p><p>Guo et al. <ref type="bibr" coords="4,96.22,513.16,16.36,9.03" target="#b27">[28]</ref> and Karwacki et al. <ref type="bibr" coords="4,193.84,513.16,16.36,9.03" target="#b29">[30]</ref> both use the HYB compression format. In Reference <ref type="bibr" coords="4,422.86,513.16,14.82,9.03" target="#b27">[28]</ref>, two threads are launched using OpenMP to distribute the ELL and COO encoded parts to two GPUs for computation, followed by results reduction on the host side. Additionally, this work achieves the overlap of host-to-device (H2D) transmission, kernel execution, and device-to-host (D2H) transmission using CUDA streams on each GPU. However, the method is only applicable to the system with two GPUs and lacks generality. Karwacki et al. <ref type="bibr" coords="4,284.91,572.94,16.36,9.03" target="#b29">[30]</ref> propose a multi-GPU implementation of a uniformization method for solving Markov models, in which SpMV is the most important kernel. In this work, the ELL and COO encoded parts are evenly partitioned first and then assigned to two GPUs for computation.</p><p>Verschoor et al. <ref type="bibr" coords="4,119.59,620.75,16.36,9.03" target="#b44">[45]</ref> and Abdelfattah et al. <ref type="bibr" coords="4,225.32,620.75,11.72,9.03" target="#b0">[1]</ref> both use the BCSR compression format. Verschoor et al. <ref type="bibr" coords="4,69.39,632.72,16.36,9.03" target="#b44">[45]</ref> employ a load-aware partitioning method to divide the BCSR-encoded sparse matrix among multiple GPUs. After the partitioning is done, the sub-matrix handled by each GPU is sorted based on the number of blocks per row. Abdelfattah et al. <ref type="bibr" coords="5,309.78,82.77,11.72,9.03" target="#b0">[1]</ref> design three kernels suitable for different BCSR block sizes.</p><p>Yang et al. <ref type="bibr" coords="5,100.26,106.68,16.36,9.03" target="#b46">[47]</ref> focus on the optimization of the GMRES algorithm. They use the quasi-optimal partitioning method provided in METIS <ref type="bibr" coords="5,209.63,118.63,16.37,9.03" target="#b30">[31]</ref> to distribute the non-zero elements (non-zeros) near the main diagonal, aiming to reduce the transmission overhead between GPUs. Lin et al. <ref type="bibr" coords="5,400.51,130.60,16.35,9.03" target="#b36">[37]</ref> focus on a simple and fast reordering method to reduce the amount of data transmission.</p><p>Schaa et al. <ref type="bibr" coords="5,104.98,154.50,16.36,9.03" target="#b42">[43]</ref> propose a performance prediction model for multi-GPU systems, considering different types of multi-GPU systems such as distributed memory and shared memory configurations. This model enables GPU developers to infer the performance acceleration of their applications on any number of GPUs. Gao et al. <ref type="bibr" coords="5,209.61,190.37,13.32,9.03" target="#b22">[23]</ref><ref type="bibr" coords="5,222.93,190.37,4.44,9.03" target="#b23">[24]</ref><ref type="bibr" coords="5,227.37,190.37,13.32,9.03" target="#b24">[25]</ref> propose a profiling-based performance model for modeling the main components of the PCG algorithm.</p><p>Li et al. <ref type="bibr" coords="5,89.08,214.28,16.35,9.03" target="#b32">[33]</ref> use a blocked ELL format, and the encoded matrix is first evenly partitioned rowwise into one-dimensional blocks, with the number of blocked rows equal to the number of GPU devices. Then, on each GPU, the corresponding rows are evenly partitioned column-wise to achieve the overlap of the current blocks' SpMV computation and the transmission required for the next block. Compared with one-dimensional partitioning, two-dimensional partitioning often incurs significant preprocessing overhead, as it requires changing the order of non-zeros in the sparse matrix. Additionally, the irregular distribution of non-zeros in the sparse matrix is not considered in this work. Chen et al. <ref type="bibr" coords="5,146.76,297.97,16.36,9.03" target="#b10">[11]</ref> propose the MSREP framework for sparse matrix representation on multi-GPU systems. It uses strict load-balanced matrix partitioning to ensure that each GPU handles a similar number of non-zeros. However, this also introduces additional overhead for reducing the results from multiple GPUs, which is not suitable for the prevalent iterative scenarios in SpMV applications. We conduct a performance comparison with the work in Section 4, demonstrating the superiority of our proposed method.</p><p>In summary, there are still several challenges in SpMV computations on multi-GPU systems. These challenges include high preprocessing overhead and significant memory requirements for rearranging matrices, as well as the underutilization of non-zeros distribution. Differently, our proposed method just requires scanning the row offset array of CSR format, which is lightweight and friendly to large-scale sparse matrices. Moreover, the non-zeros distribution is used to guide row-wise cost estimation for result transmission and vector inner product.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Methodology</head><p>SpMV is primarily used in iterative algorithms, thus most optimization methods are proposed based on multiple invocations to SpMV during the iterative process. Algorithm 1 presents the outline of the CG algorithm. It can be observed that, in each iteration, the computation result of SpMV (line 4) is used in subsequent dot product (line 5) and scalar-vector multiplication (line 6), generating the multiplication vector p i of SpMV for the next iteration (line 8).</p><p>This article focuses on the acceleration and optimization of SpMV on multi-GPU systems while considering its application in iterative scenarios. We consider an iterative framework as shown in Figure <ref type="figure" coords="5,74.88,549.02,3.41,9.03" target="#fig_2">2</ref>. After each GPU completes its SpMV kernel execution, the all-to-all synchronization is performed among multiple GPUs to ensure that each GPU has the complete result vector. Subsequently, multiple GPUs collectively execute other calculations in the iteration. Before executing the next SpMV, each GPU already has the complete multiplication vector, eliminating the need for further data synchronization. Starting from the naive non-zeros-based matrix partitioning, we first propose two-level non-zeros-based matrix partitioning to overlap the kernel computation and data transmission. Considering the irregular distribution in sparse matrices, we then design a longrow-aware matrix partitioning method. Finally, an optimization method that uses a redundant and lightweight kernel execution in exchange for expensive data transmission is proposed.   ;</p><formula xml:id="formula_0">6 x i = x i−1 + αp i−1 ; r i = r i−1 − αy i ; 7 r New = r T i r i ; β = r N ew rOld ; rOld = r New; 8 p i = r i + βp i−1 ; 9 end 10 x = x i−1 ;</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Non-zeros-based Matrix Partitioning</head><p>In SpMV, the calculations for different rows are independent. Therefore, an intuitive partitioning is to evenly divide the sparse matrix by rows into multiple sub-blocks, with each GPU handling one sub-block. However, considering the irregular distribution of non-zeros across different matrix rows, this partitioning method may cause load unbalance among multiple GPUs. One more reasonable partitioning approach is based on the number of non-zeros (NNZ), because it largely determines the workload of SpMV. We refer to this partitioning method as non-zeros-based partitioning in this article. Non-zeros-based partitioning divides the sparse matrix into multiple subblocks, where the number of sub-blocks equals the number of GPUs in the system. Each sub-block consists of consecutive matrix rows and has a similar number of non-zeros to others, approximately equal to nnz/nGPU , where nnz is the total number of non-zeros in a sparse matrix and nGPU is the number of GPU devices in a system. Figure <ref type="figure" coords="6,277.72,596.76,3.75,9.03" target="#fig_4">3</ref>(a) illustrates an example of non-zerosbased partitioning. In the example, the matrix has a size of 7×7 and contains 17 non-zeros. When the number of GPUs is two, the results of non-zeros-based partitioning are A 1 and A 2 , where the first sub-block A 1 consists of the first two rows, containing 8 non-zeros, and the second sub-block A 2 consists of the last five rows, containing 9 non-zeros. In the SpMV algorithm using non-zeros-based partitioning, two threads are allocated to control each GPU device and call the SpMV kernel for the assigned sub-block. Finally, each GPU transmits its calculated results to other GPUs, ensuring that each GPU has the complete result vector. Due to the inherent parallelism in multi-GPU systems, when a GPU completes the kernel execution ahead of others, it can transmit its calculated results to another GPU, and another GPU can proceed with its independent kernel execution while concurrently receiving transmitted data. This enables an initial overlap between kernel execution and data transmission across multiple GPUs. Figure <ref type="figure" coords="7,426.06,331.12,3.75,9.03" target="#fig_5">4</ref>(a) illustrates the computation and transmission process in SpMV using non-zeros-based partitioning. The second GPU takes more time for kernel execution and data transmission, because the subblock it deals with contains more non-zeros and more matrix rows than the first GPU.</p><p>One of the advantages of non-zeros-based partitioning is its low partitioning overhead. Taking the most popular sparse compression format CSR as an example, given the number of GPU devices in the system, it only requires traversing the array that stores the offsets of non-zeros for each row. Additionally, compared with rows-based partitioning, the SpMV computation using the non-zerosbased partitioning exhibits better load balance. However, the transmission overhead introduced by multi-GPU computations can significantly reduce the overall performance benefits. In some sparse matrices, the introduced transmission overhead can even exceed the performance gains achieved in the kernel execution. In those cases, the performance of SpMV on multi-GPU systems is inferior to that on a single GPU. Taking the sparse matrix europe_osm as an example, the kernel execution using two GPUs achieves a speedup of 1.48× over one GPU. However, when considering the overhead of data transmission, the overall speedup is less than 1.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Two-level Non-zeros-based Matrix Partitioning</head><p>In non-zeros-based matrix partitioning, each GPU needs to complete the kernel execution for the assigned sub-block before transmitting its calculated results. It means that, on each GPU, the kernel execution and data transmission always run sequentially. Therefore, we propose a two-level nonzeros-based partitioning algorithm to achieve overlap between kernel execution and data transmission on each GPU. Two-level non-zeros-based matrix partitioning divides the sparse matrix into 2 ×nGPU sub-blocks, where each sub-block consists of multiple consecutive matrix rows, and different sub-blocks have a similar number of non-zeros, approximately nnz/(2 × nGPU ).</p><p>Figure <ref type="figure" coords="7,83.57,619.86,3.90,9.03" target="#fig_4">3</ref>(b) illustrates an example of two-level non-zeros-based matrix partitioning on two GPUs. First, the non-zeros-based matrix partitioning is used to divide the matrix into two sub-matrix blocks, denoted as A s1 and A s2 . Then, the non-zeros-based partitioning is used again to further divide each sub-block into two sub-blocks, resulting in four sub-blocks. In the example, the subblock A s1 is divided into A s1 1 and A s1 2 , and A s2 is further divided into A s2 1 and A s2 2 . In the computation process, the first GPU is responsible for processing sub-blocks A s1 1 and A s2 1 , while the second GPU handles A s1 2 and A s2 2 . Each GPU launches two CUDA streams to separately run the SpMV kernels for two sub-blocks, enabling the overlap of data transmission for the first sub-block and kernel execution for the second sub-block. As shown in Figure <ref type="figure" coords="8,360.23,498.55,3.56,9.03" target="#fig_5">4</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Long-row-aware Sparse Matrix Partitioning</head><p>Due to the irregular distribution of non-zeros, different sub-blocks often take different data transmission overheads, further affecting the performance benefits of the two-level non-zeros-based partitioning. Observing Figures <ref type="figure" coords="8,174.19,631.93,11.70,9.03" target="#fig_4">3(b</ref>) and 4(b) and taking the second GPU as an example, sub-blocks A s1</p><p>2 and A s2 2 contain a similar number of non-zeros, thus taking similar kernel execution time.</p><p>Optimization of Large-scale Sparse Matrix-vector Multiplication on Multi-GPU Systems 69:9 However, in terms of transmission, given a fixed transmission bandwidth, the time overhead of the transmission process depends on the data transmission amount, i.e., the number of matrix rows contained in each sub-block. Sub-block A s1 2 only contains one matrix row, while sub-block A s2  2 contains three matrix rows. Therefore, in Figure <ref type="figure" coords="9,263.90,380.26,3.56,9.03" target="#fig_5">4</ref>(b), the transmission process D2D{y s1 2 } for the calculated result y s1 2 of sub-block A s1 2 takes nearly two-thirds less time overhead compared with D2D{y s2 2 }. The large transmission overhead of the second sub-block on both GPUs limits the overall performance benefits of the two-level non-zeros-based partitioning. Therefore, we further propose a long-row-aware matrix partitioning algorithm. It first identifies the locations of longrow blocks in the matrix and then uses the non-zeros-based partitioning method to assign the short-row blocks to multiple GPUs, where the short-row blocks are the sub-matrix excluding the long-row blocks. Afterward, the non-zeros-based partitioning method is used again to assign the long-row blocks to multiple GPUs. Now, each GPU is assigned one long-row block and one shortrow block.</p><p>Figure <ref type="figure" coords="9,84.38,500.48,3.75,9.03" target="#fig_7">5</ref>(a) illustrates the workflow of the long-row-aware partitioning. Given an m × n sparse matrix A as input, A l and A s represent its long-row block and short-row block, respectively. The objective of the algorithm is to find the positions of A l and A s in A. Let d l represent the ratio of rows in the long-row block to the total matrix rows. The number of matrix rows contained in the long-row block is calculated as m l = d l × m . Letting max denote the maximum NNZ per row in A, we can calculate its corresponding row index rId_max. If rId_max ≤ m l , i.e., the longest row is located within the first m l rows, then the sub-block composed of the first m l rows is considered as the long-row block A l . Otherwise, the sub-block composed of the last m l rows is considered as the long-row block.</p><p>For an irregular sparse matrix, when the long-row block and short-row block contain a similar number of non-zeros, the short-row block contains more matrix rows, resulting in higher transmission overhead for the corresponding calculated result. Therefore, the SpMV kernel for the shortrow block should be executed first, followed by the kernel for the long-row block. This allows for the overlap of the result transmission for the short-row block and kernel execution for the longrow block, thereby hiding more of the transmission process. Figure <ref type="figure" coords="10,331.13,94.73,3.67,9.03" target="#fig_4">3</ref>(c) illustrates an example of long-row-aware matrix partitioning. A s1 1 and A s2 1 are the short-row block and long-row block, respectively, assigned to the first GPU, while A s1 2 and A s2 2 are the short-row block and long-row block, respectively, assigned to the second GPU. Figure <ref type="figure" coords="10,273.79,130.92,3.67,9.03" target="#fig_5">4</ref>(c) shows the execution process for this example. Each GPU first executes the SpMV kernel for the short-row block and then for the longrow block. Taking the first GPU as an example, the long-row block A s2  1 and short-row block A s1 1 contain the same NNZ, so we assume that their kernel execution time is largely the same. However, the number of rows in the short-row block is twice that of the long-row block, resulting in double the transmission overhead over the long-row block. In Figure <ref type="figure" coords="10,312.35,190.70,3.37,9.03" target="#fig_5">4</ref>(c), when the kernel execution for the short-row block is completed, the kernel execution for the long-row block y s1 1 = A s1 1 × p and the transmission D2D{y s1</p><p>1 } for the short-row block start simultaneously. As D2D{y s1 1 } in Figure <ref type="figure" coords="10,61.76,227.23,11.00,9.03" target="#fig_5">4(c</ref>) is longer than D2D{y s1 1 } in Figure <ref type="figure" coords="10,217.05,227.23,3.56,9.03" target="#fig_5">4</ref>(b), the long-row-aware partitioning method can hide more of the transmission process. It can be observed that, compared with the two-level non-zerosbased partitioning, using the long-row-aware matrix partitioning can reduce the time overhead of t 3 − t 2 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Redundant-computing Optimization</head><p>From Figure <ref type="figure" coords="10,98.12,299.62,3.37,9.03" target="#fig_5">4</ref>(c), it can be observed that the efficiency of kernel execution and data transmission corresponding to long-row blocks affects the overall efficiency of SpMV on multi-GPU systems. The parallel computation on multiple GPUs accelerates the execution of the kernel, but the introduced transmission overhead becomes a critical factor limiting performance improvement. Based on the fact that SpMV on a single GPU does not require data transmission, we further propose redundant-computing optimization. The main idea is to identify the most cost-effective sub-block from the short-row block. Then, every GPU executes the SpMV kernel for this sub-block, without the requirement for transmitting the calculated results to other GPUs. Here, the most cost-effective block refers to the block that contains the maximum number of rows but takes the shortest kernel execution time.</p><p>Figure <ref type="figure" coords="10,83.63,419.18,3.90,9.03" target="#fig_7">5</ref>(b) illustrates the long-row-aware partitioning with the redundant-computing optimization. Let A c represent the redundant-computing sub-block. The objective of the algorithm is to find the locations of A l , A s , and A c within the matrix A. Let d l and d c denote the ratios of the matrix rows contained in the long-row block and redundant-computing block to the total number of matrix rows, respectively. We can calculate the matrix rows m l , m s , and m c contained in the long row block, short row block, and redundant-computing block, respectively. Similarly, the row index rId_max of the longest row is calculated, and it determines the location of A l . Assuming rId_max ≤ m l , the first m l rows are composed of the long-row block A l . Conversely, if rId_max ≥ m − m l , then the last m l rows are composed of the long-row block. Otherwise, some m l rows in the middle of A are considered as the long-row block. Taking the first case for example, where the first m l rows are considered as the long row block A l , the algorithm further determines whether the subsequent m c rows or the last m c rows of the matrix have a smaller average NNZ per row. The aveN N Z (m l : m l +m c ) in Figure <ref type="figure" coords="10,233.02,562.64,3.90,9.03" target="#fig_7">5</ref>(b) represents the average NNZ per row in the submatrix block from the (m l + 1)-th row to the (m l + m c )-th row. When the number of matrix rows is the same, the sub-block with a smaller average NNZ per row contains less NNZ, thus taking less kernel execution cost, making it a more suitable candidate for designation as the redundantcomputing block A c . Then, the remaining m s rows are considered as the short row block A s . Therefore, the corresponding partitioning results in the discussed example are ❶ or ❷ presented in Figure <ref type="figure" coords="10,74.92,634.37,3.56,9.03" target="#fig_7">5</ref>(b). The remaining cases follow a similar pattern. Once A l , A s , and A c are located, the non-zeros-based partitioning is used to divide A l and A s into nGPU sub-blocks, respectively. In the example presented in Figure <ref type="figure" coords="11,202.29,243.35,3.53,9.03" target="#fig_4">3</ref>(d), let us take d l = 0.3 and d c = 0.1. This yields m l = 2, m s = 4, and m c = 1. The longest row of the matrix is the first row, satisfying the condition rId_max ≤ m l as depicted in Figure <ref type="figure" coords="11,191.52,267.26,14.24,9.03" target="#fig_7">5(b)</ref>. Therefore, the first two rows of the matrix are considered as the long-row block A l . Next, we compare aveN N Z (3 : 3) = 2 (i.e., the NNZ in the third row of the matrix) with aveN N Z (7 : 7) = 1 (i.e., the NNZ in the last row of the matrix). Consequently, the last row is composed of the redundant-computing block A c , and the middle four rows are considered as the short-row block A s , corresponding to the partitioning result ❷ in Figure <ref type="figure" coords="11,415.23,315.08,14.24,9.03" target="#fig_7">5(b)</ref>.</p><p>Building upon the long-row-aware partitioning, the third CUDA stream is launched on each GPU to handle the redundant-computing sub-block. On one hand, the kernel execution for the sub-block can overlap with the transmission process for the calculated result of the long-row blocks on each GPU. On the other hand, its calculated results of SpMV do not require further data transmission.</p><p>Figure <ref type="figure" coords="11,84.14,386.82,3.86,9.03" target="#fig_5">4</ref>(d) illustrates the execution process of SpMV using redundant-computing optimization. The short-row block assigned to the second GPU contains fewer non-zeros and matrix rows compared with Figure <ref type="figure" coords="11,122.21,410.72,10.12,9.03" target="#fig_5">4(c</ref>). As a result, both the kernel execution time and transmission time are reduced. Each GPU launches the third CUDA stream (Stream 3) to execute the redundant-computing SpMV kernel, allowing it to overlap with the data transmission process of the long-row blocks, D2D{y s2</p><p>1 } or D2D{y s2 2 }. Therefore, the redundant-computing optimization enables hiding a portion of the kernel execution while reducing the transmission overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Experimental Evaluation</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Setup</head><p>Table <ref type="table" coords="11,69.99,511.89,4.63,9.03" target="#tab_0">1</ref> presents the hardware and software configurations of two platforms used in experimental evaluation. The first platform is equipped with two GeForce RTX 3090 interconnected via NVLink, and the second platform is equipped with four Tesla V100-SXM2 interconnected pairwise via NVLink.</p><p>Table <ref type="table" coords="11,80.50,559.71,4.63,9.03" target="#tab_1">2</ref> presents the tested sparse matrix set. It includes 24 large-scale sparse matrices sourced from the SuiteSparse Matrix Collection <ref type="bibr" coords="11,211.39,571.67,14.85,9.03" target="#b14">[15]</ref>. The number of rows, NNZ, average NNZ per row (Ave.), as well as the minimum (Min.) and maximum (Max.) NNZ per row, are presented for each sparse matrix. It can be observed that all matrices in the set contain non-zeros over 20 million.</p><p>We evaluate the performance of the proposed algorithms on the first platform with two GPUs (referred to as P1-2GPU) and on the second platform with two GPUs and four GPUs (referred to as P2-2GPU and P2-4GPU, respectively). In the next section, we first discuss the parameter selection for the long-row-aware partitioning and redundant-computing optimization. Subsequently, the 69:12 J. Gao et al. performance of the recently proposed multi-GPU SpMV algorithm, MSREP <ref type="bibr" coords="12,349.99,423.64,14.83,9.03" target="#b10">[11]</ref>, is compared with the proposed algorithm. Finally, we compare the performance of the CG solver using different SpMV algorithms. We use "NZ" to represent the non-zeros-based partitioning, "2NZ" to represent the two-level non-zeros-based partitioning, "LRA" to represent the long-row-aware partitioning, and "LRA+RC" to represent long-row-aware partitioning with redundant-computing optimization. All floating-point numbers involved in SpMV and CG are stored and computed using the doubleprecision format. Besides, we implement the aforementioned SpMV algorithms based on the CSR-Vector <ref type="bibr" coords="12,74.31,507.33,8.73,9.03" target="#b3">[4]</ref><ref type="bibr" coords="12,83.04,507.33,4.36,9.03" target="#b4">[5]</ref><ref type="bibr" coords="12,87.41,507.33,8.73,9.03" target="#b5">[6]</ref> implementation from the open-source library CUSP<ref type="foot" coords="12,311.99,505.49,3.38,6.59" target="#foot_1">2</ref> and complete other operators in CG solver by calling the APIs provided in cuSPARSE.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Experimental Results</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1">Parameter Selection.</head><p>In this section, we evaluate the impact of two parameters, d l (the proportion of rows in the long-row block) and d c (the proportion of rows in the redundant-computing block), on the performance of SpMV. The objective of redundant-computing optimization is to reduce the transmission overhead. However, too large d c contradicts the intention of accelerating computation using multiple GPUs. Considering the extreme case where d c = 1, i.e., all GPUs need to perform SpMV for the entire sparse matrix. The time of SpMV on multiple GPUs is equivalent to that on a single GPU, and using multiple GPUs becomes meaningless. Therefore, we set its variation range from 0 to 0.3 with a step size of 0.05. This allows for exploring different levels of redundant computation. Additionally, a long-row block usually has fewer rows than a short-row block, so we set the variation range of d l from 0.2 to 0.6 with a step size of 0.05.</p><p>Figure <ref type="figure" coords="13,85.09,330.31,4.63,9.03" target="#fig_8">6</ref> illustrates the time proportions of kernel execution (KE) and data transmission (DT) in SpMV using the non-zeros-based partitioning. It can be observed that the average transmission proportion for the first five matrices is above 40%, while the average transmission proportion for the remaining matrices is below 40%. The kernel execution time is closely related to the number of nonzeros in the sparse matrix, while the number of rows directly influences the data transmission overhead. It can be observed from Table <ref type="table" coords="13,293.39,390.08,4.63,9.03" target="#tab_1">2</ref> that the first five matrices have a smaller average NNZ per row and do not contain long rows. Consequently, these matrices take lower kernel execution overhead and higher data transmission overhead compared with the other matrices. Our subsequent experimental results reveal that the performance of the first five matrices and the remaining matrices varies differently with changes in d c and d l . Therefore, we present the experimental results separately for these two subsets of matrices in this subsection to analyze their performance changes.</p><p>Figures <ref type="figure" coords="13,87.91,473.77,14.73,9.03" target="#fig_11">7-9</ref> illustrate the SpMV performance comparison under different parameter settings on three experimental platforms. We can make the following observations from the figures:</p><p>(1) Across three platforms, when d c equals 0, i.e., the redundant-computing optimization is not used, the overall performance of the long-row-aware partitioning exhibits an initially increasing and then decreasing trend as d l increases. As presented in Table <ref type="table" coords="13,379.38,524.65,3.41,9.03" target="#tab_1">2</ref>, the first five sparse matrices have a relatively regular data distribution, with small variations in the NNZ per row. Therefore, the best overall performance is achieved with d l = 0.50 for all three platforms. However, for the remaining matrices with irregular data distributions and containing a few long rows, the optimal d l for the best overall performance is less than 0.50 for all three platforms. Specifically, on P1-2GPU, the long-row-aware partitioning achieves the highest average speedup of 2.12× at d l = 0.35. On P2-2GPU, the highest average speedup of 1.94× is obtained at d l = 0.25 or d l = 0.30. On P2-4GPU, the highest average speedup of 2.86× is achieved at d l = 0.35. (2) When d c is greater than 0, the performance variations differ for the first five matrices and the remaining matrices. For the first five matrices, the parameter d c that yields the highest 69:14 J. Gao et al.   average speedup is typically larger, specifically 0.25, 0.15, and 0.20 for three platforms, respectively. For the remaining matrices, the optimal d c is generally smaller, specifically 0, 0 or 0.05, and 0 or 0.05 for three platforms, respectively. Figure <ref type="figure" coords="14,328.93,595.62,9.27,9.03" target="#fig_12">10</ref> illustrates the time variation of different parts in SpMV with increasing d c . When d l is appropriately chosen, the total runtime is determined by the kernel execution of the first and second sub-blocks on each GPU, as well as the transmission overhead for the second sub-block (❶). For the first five matrices, increasing d c , i.e., increasing the proportion of redundant computation, the kernel execution for the redundant-computing block is hidden behind the transmission process for the second sub-block, resulting in a reduction of the kernel execution time for the first sub-block (❷). As a result, the overall runtime decreases (t 1 &gt; t 2 ). Continuing to increase d c , the kernel execution time for the redundant-computing block becomes comparable to the transmission time of the second sub-block, leading to the minimum overall runtime (❸), i.e., t 1 &gt; t 2 &gt; t 3 . However, increasing d c beyond this point causes the reduced kernel execution time for the first sub-block to be smaller than the increased kernel execution time for the redundant-computing block, resulting in a deterioration of performance (❹), i.e., t 3 &lt; t 4 . As for the remaining matrices, their transmission overhead is relatively low. Increasing d c directly transitions the SpMV execution from ❶ to ❸ or ❹, so their optimal d c tends to be smaller. Based on the above experimental results and observations, we conclude a parameter setting rule based on the average NNZ per row, as presented in Table <ref type="table" coords="15,275.66,551.74,3.41,9.03">3</ref>. Typically, sparse matrices with smaller average NNZ per row have larger dimensions and relatively fewer non-zeros, resulting in lower kernel execution overhead and higher data transmission overhead in multi-GPU computations. Therefore, it is more suitable to set a relatively larger d c .</p><p>We use PLUB to denote the Performance Loss of the parameter setting Under the Best (PLUB) parameter setting. The average PLUB across all tested matrices is calculated as Equation (1):</p><formula xml:id="formula_1">Averaдe PLU B = n i=1 t i p − t i s t i s ,<label>(1)</label></formula><p>69:16</p><p>J. Gao et al. where n is the number of tested sparse matrices, t i p is the runtime of SpMV using the experimental parameter setting for the ith sparse matrix, and t i s is the shortest runtime of SpMV across all parameter variations. We calculate that the average PLUB for the LRA algorithm on P1-2GPU, P2-2GPU, and P2-4GPU is approximately 1%, 2%, and 2%, respectively. For the LRA+RC algorithm, the PLUB on all three platforms is around 3%.</p><p>From the above discussion, it can be observed that the settings of d l and d c are not only related to the sparse matrices but also to the used platform. Our experimental rule for parameter setting results in a relatively small performance loss on the tested dataset and platforms. For new datasets or hardware platforms, it is possible to identify the optimal parameter configuration by using different parameter configurations in the initial few iterations of the iterative algorithm and then using the best configuration for subsequent iterations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2">Performance</head><p>Comparison. The SpMV performance on a single GPU serves as the baseline. We consider pCSR-SpMV (a CSR-based SpMV algorithm proposed in MSREP <ref type="bibr" coords="16,359.04,436.26,15.45,9.03" target="#b10">[11]</ref>) and non-zerosbased matrix partitioning as two existing algorithms and compare them with the algorithms proposed in this article. The pCSR-SpMV divides a sparse matrix into sub-matrix blocks with an equal NNZ, at the cost of breaking the integrity of partial matrix rows. Each GPU needs to transmit its calculated results back to the CPU to reduce and calculate the final result. Therefore, the time of pCSR-SpMV presented in this article includes both the kernel execution time and the time to transmit the results back to the CPU. Additionally, the non-zeros-based matrix partitioning is similar to the work in Reference <ref type="bibr" coords="16,147.94,519.95,16.35,9.03" target="#b29">[30]</ref> but with a different implementation based on the more general CSR instead of HYB.</p><p>Figures <ref type="figure" coords="16,88.33,543.86,21.83,9.03" target="#fig_15">11-13</ref>, respectively, illustrate the performance speedups of different SpMV algorithms against SpMV on a single GPU on three different platforms, with the sparse matrix indices on the x-axis corresponding to the matrix indices (ID) in Table <ref type="table" coords="16,293.31,567.77,3.41,9.03" target="#tab_1">2</ref>. Figure <ref type="figure" coords="16,330.83,567.77,9.27,9.03" target="#fig_16">14</ref> summarizes the average speedup.</p><p>The following observations can be made:</p><p>(1) Across three platforms, the proposed methods in this article have achieved varying degrees of performance improvement compared with the existing methods. (2) For the first five sparse matrices, the performance improvement from the non-zeros-based partitioning compared with SpMV on a single GPU is relatively small, with the speedup close   to 1. From Table <ref type="table" coords="17,138.62,596.64,4.63,9.03" target="#tab_1">2</ref> and Figure <ref type="figure" coords="17,191.57,596.64,3.41,9.03" target="#fig_8">6</ref>, it can be observed that these five matrices have a relatively small average NNZ per row. The transmission time in the SpMV using non-zeros-based partitioning accounts for a significant proportion, offsetting the performance gain from multi-GPU computation. However, our proposed optimization methods achieve higher speedup on these matrices. Specifically, for these five matrices, the non-zeros-based partitioning long-row-aware partitioning further improves overall performance by adjusting the execution order of long-row blocks and short-row blocks. It achieves average speedups of 1.94×, 1.83×, and 2.63×. The redundant-computing optimization uses inexpensive computation in exchange for costly transmission, particularly benefiting matrices with a higher proportion of transmission overhead. For the first five sparse matrices, using redundant computation on top of long-row-aware partitioning increases the average speedups from 1.27×, 1.39×, and 1.74× to 1.55×, 1.48×, and 1.83×, respectively. Across all tested matrices, the average speedups are 2.00×, 1.85×, and 2.65×.</p><p>Comparing the average speedups between P2-2GPU and P2-4GPU, it can be observed that the parallel efficiency on four GPUs is lower than that on two GPUs. There are three main reasons. First, as the number of GPUs increases, the transmission process becomes more complex, leading to higher transmission overhead introduced. From Figure <ref type="figure" coords="19,300.47,363.41,3.41,9.03" target="#fig_8">6</ref>, it can be observed that, in most matrices, the proportion of transmission time on P2-4GPU is higher than that on P2-2GPU. The experimental results show that the average transmission time on P2-4GPU is approximately 1.67× that on P2-2GPU. Second, unlike dense matrix computations, the irregular non-zeros distribution in sparse matrices causes the execution time of the SpMV kernel to not decrease proportionally with the increasing number of GPUs. Taking the non-zeros-based partitioning as an example, we calculate the average parallel efficiency considering only the kernel execution time on P2-2GPU and P2-4GPU, resulting in 82% and 75%, respectively. Third, using multi-threading with OpenMP to manage multiple GPUs brings additional overhead, such as creating, synchronizing, and destroying threads. The experimental results reveal that the multi-threading overhead on P2-4GPU is approximately twice that on P2-2GPU.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.3">Application Evaluation.</head><p>In this section, we evaluate the performance benefits of the proposed SpMV optimization methods in the CG iterative algorithm. The maximum iteration is set to 1,000, and the error tolerance is set to 10 −5 . The performance of the CG solver on a single GPU serves as the baseline. Following the work in Reference <ref type="bibr" coords="19,279.05,536.96,14.84,9.03" target="#b29">[30]</ref>, which uses non-zeros-based partitioning and HYB compression, we implement a similar CG algorithm based on CSR compression as a comparative algorithm. In this algorithm, data transmission for the multiplication vector of SpMV is performed first, followed by SpMV kernel execution. We use CG(comp) to represent the algorithm, and CG(LRA) and CG(LRA+RC) represent the CG algorithms using the proposed LRA and LRA+RC optimization, respectively. Figures 15-17 present the speedups of the three CG algorithms to the CG algorithm on a single GPU for different platforms. The rightmost group of bars (Average) represents the average speedup.</p><p>We can observe that both of the proposed optimization methods in this article achieve higher average speedups on three platforms. The first five sparse matrices have more rows, which means 69:20 J. Gao et al.  a higher overhead of vector calculations. On a single GPU, the vector calculations account for approximately 37% to 44% of the overall CG algorithm for these five matrices. Compared with CG(comp), CG(LRA) and CG(LRA+RC) require redundant vector calculations, resulting in lower speedups for these five matrices. However, on most other sparse matrices, CG(LRA) and CG(LRA+RC) outperform CG(comp). CG(comp) requires data transmission for the multiplication vector before each kernel execution. It results in limited overall performance gains. Although it is possible to overlap the vector transmission and kernel execution in CG(comp) by further partitioning the sparse matrix along the column dimension <ref type="bibr" coords="20,247.71,482.38,14.84,9.03" target="#b32">[33]</ref>, it often requires changing the data arrangement of the sparse matrix, which incurs significant preprocessing overhead and is not desirable for large-scale sparse matrices. Our proposed optimization algorithms, although requiring redundant computations for other vector calculations in the iterative algorithm, provide more opportunities to hide and reduce transmission overhead by executing kernels before transmission. Moreover, they only require scanning the row pointer array of CSR and take minimal preprocessing overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.4">Preprocessing Overhead.</head><p>The preprocessing of the proposed optimization method is presented in Figure <ref type="figure" coords="20,127.94,584.59,3.90,9.03" target="#fig_7">5</ref>(b) and includes finding the locations of long-row blocks, short-row blocks, and redundant-computing blocks based on the distribution of non-zeros in sparse matrices. We analyzed the preprocessing overhead on three different hardware configurations by calculating the minimum, arithmetic mean, geometric mean, and maximum of the ratio of preprocessing overhead to the execution time of one single-GPU-based SpMV kernel for each test matrix. The results are summarized in Table <ref type="table" coords="20,177.46,644.37,3.41,9.03" target="#tab_2">4</ref>. It can be observed that the preprocessing overhead introduced Compared to the thousands of SpMV invocations in iterative algorithms, the preprocessing overhead is negligible.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>Due to the limited memory capacity and computational capability of a single GPU, efficient implementation of large-scale SpMV on multi-GPU systems is crucial for the fast solving of largescale problems. To reduce the data transmission overhead introduced by multi-GPU computation, this article proposes a two-level non-zeros-based matrix partitioning to hide the data transmission process between multiple GPUs. Considering the irregular distribution of non-zeros in sparse matrices, a long-row-aware partitioning strategy is further proposed to hide more transmissions. Furthermore, inspired by the fact that SpMV on a single GPU does not require data transmission, we perform redundant SpMV computing for the most cost-efficient sub-block to reduce the total transmission amounts. Finally, performance evaluations on platforms equipped with two RTX 3090, two Tesla V100-SXM2, and four Tesla V100-SXM2, respectively, demonstrate that the proposed methods achieve average speedups of 2.00×, 1.85×, and 2.65× to the SpMV on a single GPU. These performance improvements also result in a faster CG solver.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,143.33,214.15,199.75,8.07;3,115.97,81.22,252.00,121.20"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Time proportion of SpMV in the CG algorithm.</figDesc><graphic coords="3,115.97,81.22,252.00,121.20" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,63.41,249.14,359.25,8.07;6,97.29,81.42,288.96,156.00"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Workflow of iterative algorithms on multi-GPU platforms (taking four GPUs for example).</figDesc><graphic coords="6,97.29,81.42,288.96,156.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,45.44,272.57,176.66,8.12;6,56.73,285.91,350.98,9.23;6,83.86,297.00,95.04,8.17;6,56.73,307.58,118.05,8.55;6,48.67,318.19,57.85,9.83;6,390.88,319.23,44.83,7.25;6,48.67,329.09,44.68,10.36;6,88.96,335.62,3.38,6.59;6,94.68,330.48,41.94,9.83;6,48.67,343.42,50.03,8.97;6,98.70,336.33,6.30,8.45;6,104.64,343.42,145.92,8.97;6,48.67,357.13,3.07,5.42;6,71.53,354.38,43.51,9.83;6,390.47,355.42,44.84,7.25;6,48.67,370.08,3.07,5.42;6,71.85,367.32,13.77,8.97;6,93.40,365.65,16.29,6.63;6,89.30,372.41,10.25,8.07;6,95.84,373.62,18.78,8.84"><head>ALGORITHM 1 : 4 y i = Ap i− 1 ;</head><label>141</label><figDesc>Conjugate gradient algorithm Input: coefficient matrix A, right-hand-side vector b, initial guess x 0 , tolerance threshold ϵ, and maximum iterations MAX Output: approximate solution x 1 r 0 = b − Ax 0 ; /* SpMV */ 2 rOld = r T 0 r 0 ; p 0 = r 0 ; 3 for (i = 1; ( √ rOld ≥ b ϵ) &amp;&amp; (i ≤ MAX ) ; i + +) do</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="7,45.95,216.15,394.52,8.07;7,45.95,227.01,396.01,8.17;7,45.95,238.06,201.68,8.07;7,46.96,81.53,390.00,122.88"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Example of sparse matrix partitioning (taking two GPUs for example). The subscript 1 indicates that the first GPU is responsible for handling that sub-block, and the superscript s1 indicates that the corresponding SpMV kernel is executed in the first CUDA stream.</figDesc><graphic coords="7,46.96,81.53,390.00,122.88" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="8,45.77,390.14,394.51,8.07;8,45.77,400.88,394.53,9.23;8,45.77,412.06,123.49,8.07;8,67.79,81.78,348.00,296.64"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Comparison of kernel execution and data transmission processes in SpMV using different sparse matrix partitioning methods. Taking (a) as an example, D2D{y 1 } represents transmission of result y 1 from the first GPU to the second GPU.</figDesc><graphic coords="8,67.79,81.78,348.00,296.64" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="8,363.79,498.55,76.51,9.03;8,45.77,510.30,287.80,9.23;8,333.32,508.64,6.97,6.63;8,333.73,515.47,3.38,6.59;8,340.79,510.50,99.51,9.03;8,45.78,522.59,63.82,9.23;8,109.34,520.92,6.97,6.63;8,109.75,527.75,3.38,6.59;8,116.82,522.79,325.16,9.03;8,45.77,534.74,395.60,9.03;8,45.77,546.50,152.07,9.23;8,198.25,544.83,6.97,6.63;8,198.10,551.66,3.38,6.59;8,205.72,546.70,94.77,9.03;8,300.90,544.83,6.97,6.63;8,300.74,551.66,3.38,6.59;8,308.36,546.70,131.94,9.03;8,45.77,558.65,394.76,9.03;8,45.77,570.33,242.51,10.15"><head></head><label></label><figDesc>(b), taking the first GPU as an example, its first stream (Stream 1) handles the sub-block A s1 1 , while Stream 2 handles the sub-block A s2 1 . After Stream 1 completes the assigned SpMV kernel, it starts sending the calculated results to the second GPU. Meanwhile, Stream 2 starts executing the assigned SpMV kernel, thereby hiding the transmission of y s1 1 , represented as D2D{y s1 1 } in Figure 4(b). Compared with the non-zeros-based partitioning in Figure 4(a), the proposed two-level non-zeros-based matrix partitioning algorithm reduces the time overhead by t 4 − t 3 .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="9,45.95,312.14,394.53,8.07;9,45.62,323.10,151.42,8.07;9,70.97,81.78,341.76,218.64"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Two matrix partitioning algorithms: (a) Long-row-aware partitioning, (b) long-row-aware partitioning with redundant-computing optimization.</figDesc><graphic coords="9,70.97,81.78,341.76,218.64" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="13,45.95,235.14,396.00,8.07;13,45.95,246.10,395.99,8.07;13,45.95,257.06,186.33,8.07;13,46.96,81.82,390.00,141.60"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Time proportions of kernel execution (KE) and data transmission (DT) in SpMV using the non-zerosbased partitioning on different platforms. The "average DT" represents the average transmission time proportion for each matrix across the three platforms.</figDesc><graphic coords="13,46.96,81.82,390.00,141.60" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="14,45.77,216.15,394.49,8.07;14,45.77,227.10,394.51,8.07;14,45.77,238.06,58.37,8.07;14,51.78,258.85,379.12,103.84"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. SpMV performance comparison under different parameter settings (P1-2GPU). Each value represents the average speedup of SpMV performance on the multi-GPU platform to that on a single GPU across all tested matrices.</figDesc><graphic coords="14,51.78,258.85,379.12,103.84" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="14,85.22,393.40,315.59,8.07;14,51.78,414.67,379.24,102.40"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. SpMV performance comparison under different parameter settings (P2-2GPU).</figDesc><graphic coords="14,51.78,414.67,379.24,102.40" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="14,85.22,547.74,48.99,8.07;14,185.45,547.74,215.35,8.07"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. SpMV comparison under different parameter settings (P2-4GPU).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="15,112.59,273.05,261.24,9.10;15,168.18,296.26,149.81,8.07;15,135.96,81.18,211.92,180.24"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Runtime change of different parts of SpMV with increasing d c .Table 3. The Rule for Setting Parameters</figDesc><graphic coords="15,135.96,81.18,211.92,180.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="16,45.77,235.14,395.51,8.07;16,45.77,246.10,395.54,8.07;16,45.77,257.06,382.89,8.07;16,49.79,81.10,383.52,142.32"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Performance comparison of different SpMV algorithms (P1-2GPU). NZ, 2NZ, LRA, and LRA+RC, respectively, denote the SpMV using non-zeros-based partitioning, two-level non-zeros-based partitioning, long-row-aware partitioning, and long-row-aware partitioning with redundant-computing optimization.</figDesc><graphic coords="16,49.79,81.10,383.52,142.32" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="17,104.72,236.14,276.98,8.07;17,48.96,255.23,386.40,138.48"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. Performance comparison of different SpMV algorithms (P2-2GPU).</figDesc><graphic coords="17,48.96,255.23,386.40,138.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="17,104.72,405.43,276.98,8.07;17,85.46,424.72,312.72,137.28"><head>Fig. 13 .</head><label>13</label><figDesc>Fig. 13. Performance comparison of different SpMV algorithms (P2-4GPU).</figDesc><graphic coords="17,85.46,424.72,312.72,137.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16" coords="17,110.14,573.72,266.15,8.07"><head>Fig. 14 .</head><label>14</label><figDesc>Fig. 14. Average performance comparison of different SpMV algorithms.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17" coords="19,98.63,219.14,289.13,8.07;19,64.47,80.94,355.44,126.48"><head>Fig. 15 .</head><label>15</label><figDesc>Fig. 15. Performance comparison of different CG implementations (P1-2GPU).</figDesc><graphic coords="19,64.47,80.94,355.44,126.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18" coords="20,98.45,220.14,289.13,8.07;20,64.29,80.98,355.44,127.44"><head>Fig. 16 .</head><label>16</label><figDesc>Fig. 16. Performance comparison of different CG implementations (P2-2GPU).</figDesc><graphic coords="20,64.29,80.98,355.44,127.44" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19" coords="20,98.45,373.60,289.13,8.07;20,64.29,244.28,355.44,117.60"><head>Fig. 17 .</head><label>17</label><figDesc>Fig. 17. Performance comparison of different CG implementations (P2-4GPU).</figDesc><graphic coords="20,64.29,244.28,355.44,117.60" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="11,55.98,81.19,377.99,142.79"><head>Table 1 .</head><label>1</label><figDesc>Hardware and Software</figDesc><table coords="11,55.98,99.12,377.99,124.86"><row><cell></cell><cell></cell><cell>Platform 1</cell><cell>Platform 2</cell></row><row><cell>Hardware</cell><cell>Host</cell><cell>CPU: Intel(R) Core(TM) i9-10920X, 3.5 GHz, 12 cores Memory: 192 GB</cell><cell>CPU: Intel(R) Xeon(R) Gold 5218 v5, 2.3 GHz, 16 cores Memory: 192 GB</cell></row><row><cell></cell><cell>Device</cell><cell>GPU: GeForce RTX 3090, 1.70 GHz, 10,496 cores</cell><cell>GPU: Tesla V100-SXM2, 1.53 GHz, 5,120 cores</cell></row><row><cell></cell><cell></cell><cell>Memory: 24 GB</cell><cell>Memory: 32 GB</cell></row><row><cell></cell><cell>OS</cell><cell>64-bit Ubuntu 18.04</cell><cell>64-bit CentOS 7.9.2009</cell></row><row><cell></cell><cell cols="2">Compiler nvcc:11.1.74; gcc/g++: 9.2.0</cell><cell>nvcc:11.6.55; gcc/g++: 7.5.0</cell></row><row><cell>Software</cell><cell>Library</cell><cell>cuSPARSE: 11.1</cell><cell>cuSPARSE: 11.6</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="12,87.27,81.19,314.03,323.34"><head>Table 2 .</head><label>2</label><figDesc>Tested Sparse Matrix Set</figDesc><table coords="12,87.27,99.01,314.03,305.51"><row><cell>ID</cell><cell>Matrix</cell><cell>Rows</cell><cell>NNZ</cell><cell cols="2">Ave. Min.</cell><cell>Max.</cell></row><row><cell cols="2">1 kmer_U1a</cell><cell>67,716,231</cell><cell>138,778,562</cell><cell>2</cell><cell>1</cell><cell>35</cell></row><row><cell cols="2">2 kmer_A2a</cell><cell>170,728,175</cell><cell>360,585,172</cell><cell>2</cell><cell>1</cell><cell>40</cell></row><row><cell cols="2">3 kmer_V2a</cell><cell>55,042,369</cell><cell>117,217,600</cell><cell>2</cell><cell>1</cell><cell>39</cell></row><row><cell cols="2">4 kmer_P1a</cell><cell>139,353,211</cell><cell>297,829,984</cell><cell>2</cell><cell>1</cell><cell>40</cell></row><row><cell cols="2">5 kmer_V1r</cell><cell>214,005,017</cell><cell>465,410,904</cell><cell>2</cell><cell>1</cell><cell>8</cell></row><row><cell cols="2">6 webbase-2001</cell><cell cols="2">118,142,155 1,019,903,190</cell><cell>9</cell><cell>0</cell><cell>3,841</cell></row><row><cell cols="2">7 FullChip</cell><cell>2,987,012</cell><cell>26,621,983</cell><cell>9</cell><cell cols="2">1 2,312,481</cell></row><row><cell cols="2">8 ljournal-2008</cell><cell>5,363,260</cell><cell>79,023,142</cell><cell>15</cell><cell>0</cell><cell>2,469</cell></row><row><cell cols="2">9 rgg_n_2_23_s0</cell><cell>8,388,608</cell><cell>127,002,786</cell><cell>15</cell><cell>0</cell><cell>40</cell></row><row><cell cols="2">10 rgg_n_2_24_s0</cell><cell>16,777,216</cell><cell>265,114,400</cell><cell>16</cell><cell>0</cell><cell>40</cell></row><row><cell cols="2">11 uk-2002</cell><cell>18,520,486</cell><cell>298,113,762</cell><cell>16</cell><cell>0</cell><cell>2,450</cell></row><row><cell cols="2">12 com-LiveJournal</cell><cell>3,997,962</cell><cell>69,362,378</cell><cell>17</cell><cell>1</cell><cell>14,815</cell></row><row><cell cols="2">13 uk-2005</cell><cell>39,459,925</cell><cell>936,364,282</cell><cell>24</cell><cell>0</cell><cell>5,213</cell></row><row><cell cols="2">14 GAP-twitter</cell><cell cols="2">61,578,415 1,468,364,884</cell><cell>24</cell><cell cols="2">0 2,997,469</cell></row><row><cell cols="2">15 indochina-2004</cell><cell>7,414,866</cell><cell>194,109,311</cell><cell>26</cell><cell>0</cell><cell>6,985</cell></row><row><cell cols="2">16 nlpkkt160</cell><cell>8,345,600</cell><cell>225,422,112</cell><cell>28</cell><cell>5</cell><cell>28</cell></row><row><cell cols="2">17 nlpkkt200</cell><cell>16,240,000</cell><cell>440,225,632</cell><cell>28</cell><cell>5</cell><cell>28</cell></row><row><cell cols="2">18 nlpkkt240</cell><cell>27,993,600</cell><cell>760,648,352</cell><cell>28</cell><cell>5</cell><cell>28</cell></row><row><cell cols="2">19 it-2004</cell><cell cols="2">41,291,594 1,150,725,436</cell><cell>28</cell><cell>0</cell><cell>9,964</cell></row><row><cell cols="2">20 arabic-2005</cell><cell>22,744,080</cell><cell>639,999,458</cell><cell>28</cell><cell>0</cell><cell>9,905</cell></row><row><cell cols="2">21 stokes</cell><cell>11,449,533</cell><cell>349,321,980</cell><cell>31</cell><cell>1</cell><cell>720</cell></row><row><cell cols="2">22 twitter7</cell><cell cols="2">41,652,230 1,468,365,182</cell><cell>35</cell><cell cols="2">0 2,997,469</cell></row><row><cell cols="2">23 GAP-web</cell><cell cols="2">50,636,151 1,930,292,948</cell><cell>38</cell><cell>0</cell><cell>12,869</cell></row><row><cell cols="2">24 sk-2005</cell><cell cols="2">50,636,154 1,949,412,601</cell><cell>38</cell><cell>0</cell><cell>12,870</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="21,45.95,81.19,396.05,111.99"><head>Table 4 .</head><label>4</label><figDesc>Preprocessing Overhead, Normalized by the Execution Time of One Single-GPU-based SpMV Kernel method is less than one SpMV kernel execution for all tested matrices.</figDesc><table coords="21,45.95,109.97,309.65,83.21"><row><cell>Metric</cell><cell cols="3">P1-2GPU P2-2GPU P2-4GPU</cell></row><row><cell>Minimum</cell><cell>0.01</cell><cell>0.01</cell><cell>0.01</cell></row><row><cell>Arithmetic mean</cell><cell>0.32</cell><cell>0.18</cell><cell>0.20</cell></row><row><cell>Geometric mean</cell><cell>0.21</cell><cell>0.11</cell><cell>0.12</cell></row><row><cell>Maximum</cell><cell>0.83</cell><cell>0.57</cell><cell>0.87</cell></row><row><cell>by our optimization</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 69. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1">https://github.com/cusplibrary/cusplibrary ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 69. Publication date: November 2024.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>We thank all reviewers for their insightful comments.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This work was supported by the Postdoctoral Fellowship Program of China Postdoctoral Science Foundation under Grant No. GZC20230261 and the National Natural Science Foundation of China under Grant No. 61972033.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>69:18 J. <ref type="bibr" coords="18,401.00,55.82,39.29,8.97">Gao et al.</ref> achieves average speedups of 0.98×, 1.02×, and 1.21× on P1-2GPU, P2-2GPU, and P2-4GPU, respectively, while our proposed long-row-aware partitioning with redundant-computing optimization achieves average speedups of 1.55×, 1.48×, and 1.83× across three platforms.</p><p>(3) For matrix FullChip with index of 7, the naive non-zeros-based partitioning achieves a speedup over 2× on P1-2GPU. From Table <ref type="table" coords="18,251.53,130.60,3.41,9.03">2</ref>, it can be observed that the longest row of the matrix contains over two million non-zeros, while the average NNZ per row is only 9.</p><p>In the CSR-Vector algorithm, a group of cooperative threads is allocated for each matrix row, and the number of threads in the group depends on the average NNZ per row in the sparse matrix. Therefore, on a single GPU, the long rows of this matrix severely limit the overall performance of SpMV. When using the non-zeros-based matrix partitioning, the sub-block containing long rows has a higher average NNZ per row, resulting in an increased number of threads for handling long rows and thus a significant performance improvement. When using the two-level non-zeros-based or long-row-aware partitioning, the CSR-Vector algorithm selects the optimal thread configuration for the long-row block, leading to further significant performance improvements. Compared with the two-level non-zeros-based partitioning, the long-row-aware partitioning and redundant-computing optimization do not provide additional performance gains. The reason is that the kernel execution of the long-row block is the performance bottleneck, and the computation and transmission of the short-row block are hidden in the two-level non-zeros-based partitioning. Besides, on P2-4GPU, the CSR-Vector algorithm selects the optimal thread configuration for the longrow block when using non-zeros-based partitioning, so further performance improvement is not achieved by using two-level non-zeros-based partitioning and other optimization methods. (4) Matrices rgg_n_23_s0 and rgg_n_24_s0 with indexes 9 and 10 are both regular diagonal matrices, and the thread configurations for these matrices remain unchanged after partitioning. However, their speedups on two GPUs exceed 2×. Analysis using NVIDIA Nsight Compute tool reveals that compared with the kernel execution on a single GPU, each kernel on P1-2GPU not only has less computation and memory access transactions but also achieves a higher L2 cache hit rate (increased from 19.98% to 30.82%), resulting in significant performance improvement. (5) For most matrices, the performance of pCSR-SpMV on multiple GPUs is inferior to its performance on a single GPU. This is because it requires transmitting the calculated results from GPUs back to the CPU for result merging. Although it achieves significant performance improvement in the kernel execution part by using strict load-balanced partitioning, the data transmission overhead introduced in the result merging stage offsets the performance gains obtained in the kernel stage. Considering that, in GPU-based iterative applications, other vector operations besides SpMV are also performed on the GPU, the merged results obtained on the CPU side need to be segmented and transmitted back to the corresponding GPUs, introducing more overhead. Therefore, pCSR-SpMV is not suitable for iterative scenarios, and we do not compare it with our methods in the next section of application evaluation.</p><p>Overall, compared with the SpMV on a single GPU, utilizing multiple GPUs with nonzeros-based partitioning brings limited performance gains due to the impact of transmission overhead. On P1-2GPU, P2-2GPU, and P2-4GPU, the achieved average speedups are 1.49×, 1.40×, and 2.12×, respectively. Our proposed two-level non-zeros-based partitioning achieves significant performance improvements by hiding the transmission overhead of the first sub-block. The average speedups on the three platforms are 1.89×, 1.69×, and 2.61×, respectively. The</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="21,63.02,446.70,378.77,7.22;21,63.02,456.63,378.26,7.26;21,63.02,466.59,377.45,7.26;21,63.02,476.59,306.96,7.22" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">High performance multi-GPU SpMV for multicomponent PDE-Based applications</title>
+		<author>
+			<persName coords=""><forename type="first">Ahmad</forename><surname>Abdelfattah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hatem</forename><surname>Ltaief</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">E</forename><surname>Keyes</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-662-48096-0_46</idno>
+		<ptr target="https://doi.org/10.1007/978-3-662-48096-0_46" />
+	</analytic>
+	<monogr>
+		<title level="m">21st International Conference on Parallel and Distributed Computing: Parallel Processing</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">Sascha</forename><surname>Jesper Larsson Träff</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Francesco</forename><surname>Hunold</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Versaci</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="volume">9233</biblScope>
+			<biblScope unit="page" from="601" to="612" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,486.55,378.79,7.22;21,63.02,496.48,378.32,7.26;21,63.02,506.44,239.52,7.26" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Load-balancing sparse matrix vector product kernels on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Hartwig</forename><surname>Anzt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Terry</forename><surname>Cojean</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename><surname>Yen-Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jack</forename><forename type="middle">J</forename><surname>Dongarra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Goran</forename><surname>Flegar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pratik</forename><surname>Nayak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stanimire</forename><surname>Tomov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuhsiang</forename><forename type="middle">M</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weichung</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3380930</idno>
+		<ptr target="https://doi.org/10.1145/3380930" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">26</biblScope>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,516.44,378.76,7.22;21,62.82,526.36,378.51,7.26;21,63.02,536.33,378.33,7.26;21,62.84,546.33,156.72,7.22" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Fast sparse matrixvector multiplication on GPUs for graph applications</title>
+		<author>
+			<persName coords=""><forename type="first">Arash</forename><surname>Ashari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naser</forename><surname>Sedaghati</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Eisenlohr</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Srinivasan</forename><surname>Parthasarathy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SC.2014.69</idno>
+		<ptr target="https://doi.org/10.1109/SC.2014.69" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;14)</title>
+				<editor>
+			<persName><forename type="first">Trish</forename><surname>Damkroger</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jack</forename><forename type="middle">J</forename><surname>Dongarra</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="781" to="792" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,556.29,378.65,7.22;21,63.02,566.21,157.46,7.26" xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Optimizing sparse matrix-vector multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Manikandan</forename><surname>Muthu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajesh</forename><surname>Baskaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Bordawekar</surname></persName>
+		</author>
+		<idno>RC24704 W0812-047</idno>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">IBM Research Report</note>
+</biblStruct>
+
+<biblStruct coords="21,63.02,576.17,377.45,7.26;21,63.02,586.17,145.15,7.22" xml:id="b4">
+	<monogr>
+		<title level="m" type="main">Efficient Sparse Matrix-vector Multiplication on CUDA</title>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+		<idno>NVR-2008-004</idno>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<publisher>NVIDIA Corporation</publisher>
+		</imprint>
+	</monogr>
+	<note type="report_type">NVIDIA Technical Report</note>
+</biblStruct>
+
+<biblStruct coords="21,63.02,596.13,377.41,7.22;21,63.02,606.06,377.98,7.26;21,62.84,616.06,53.66,7.22" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Implementing sparse matrix-vector multiplication on throughput-oriented processors</title>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1654059.1654078</idno>
+		<ptr target="https://doi.org/10.1145/1654059.1654078" />
+	</analytic>
+	<monogr>
+		<title level="m">ACM/IEEE Conference on High Performance Computing (SC&apos;09)</title>
+				<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,626.02,377.43,7.22;21,63.02,635.95,378.69,7.26;21,62.84,645.95,59.10,7.22;22,45.77,55.82,20.73,8.97;22,393.13,55.82,47.15,8.97" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Sparse matrix format selection with multiclass SVM for SpMV on GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Akrem</forename><surname>Benatia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Shi</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICPP.2016.64</idno>
+		<ptr target="https://doi.org/10.1109/ICPP.2016.6469:22J.Gaoetal." />
+	</analytic>
+	<monogr>
+		<title level="m">45th International Conference on Parallel Processing (ICPP&apos;16)</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="496" to="505" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,84.09,377.44,7.22;22,62.85,94.02,366.47,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">BestSF: A sparse meta-format for optimizing SpMV on GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Akrem</forename><surname>Benatia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Shi</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3226228</idno>
+		<ptr target="https://doi.org/10.1145/3226228" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Archit. Code Optim</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">27</biblScope>
+			<date type="published" when="2018-09">2018. Sept. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,104.02,378.81,7.22;22,62.85,113.94,378.23,7.26;22,62.85,123.90,378.67,7.26;22,62.85,134.15,145.29,6.44" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Optimizing sparse matrix-vector multiplication for large-scale data analytics</title>
+		<author>
+			<persName coords=""><forename type="first">Daniele</forename><surname>Buono</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabrizio</forename><surname>Petrini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabio</forename><surname>Checconi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xinyu</forename><surname>Que</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Long</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tai-Ching</forename><surname>Tuan</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2925426.2926278</idno>
+		<ptr target="https://doi.org/10.1145/2925426.2926278" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Supercomputing (ICS&apos;16)</title>
+				<editor>
+			<persName><forename type="first">Kemal</forename><surname>Ebcioglu</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>Mahmut</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Onur</forename><surname>Kandemir</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Mutlu</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="page">12</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,143.83,378.24,7.26;22,62.85,153.79,378.32,7.26;22,62.71,163.79,378.46,7.22;22,62.85,173.76,194.20,7.22" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Fast conjugate gradients with multiple GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Cevahir</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Akira</forename><surname>Nukada</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Satoshi</forename><surname>Matsuoka</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-642-01970-8_90</idno>
+		<ptr target="https://doi.org/10.1007/978-3-642-01970-8_90" />
+	</analytic>
+	<monogr>
+		<title level="m">9th International Conference on Computational Science (ICCS&apos;09)</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">Gabrielle</forename><surname>Allen</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jaroslaw</forename><surname>Nabrzyski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Edward</forename><surname>Seidel</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">G</forename><surname>Dick Van Albada</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jack</forename><forename type="middle">J</forename><surname>Dongarra</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Peter</forename><forename type="middle">M A</forename><surname>Sloot</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="volume">5544</biblScope>
+			<biblScope unit="page" from="893" to="903" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,183.72,377.41,7.22;22,62.57,193.64,376.21,7.26" xml:id="b10">
+	<monogr>
+		<title level="m" type="main">MSREP: A fast yet light sparse matrix framework for multi-GPU systems</title>
+		<author>
+			<persName coords=""><forename type="first">Jieyang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chenhao</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jesun</forename><surname>Sahariar Firoz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuaiwen</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leon</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kevin</forename><forename type="middle">J</forename><surname>Barker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><surname>Raugas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ang</forename><surname>Li</surname></persName>
+		</author>
+		<idno>CoRR abs/2209.07552</idno>
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,203.65,378.79,7.22;22,62.64,213.57,378.89,7.26;22,62.85,223.57,36.88,7.22" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">tpSpMV: A two-phase large-scale sparse matrixvector multiplication kernel for manycore architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Yuedan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guoqing</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhuo</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Keqin</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/J.INS.2020.03.020</idno>
+		<ptr target="https://doi.org/10.1016/J.INS.2020.03.020" />
+	</analytic>
+	<monogr>
+		<title level="j">Inf. Sci</title>
+		<imprint>
+			<biblScope unit="volume">523</biblScope>
+			<biblScope unit="page" from="279" to="295" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,233.53,377.44,7.22;22,62.85,243.46,377.42,7.26;22,62.85,253.42,378.26,7.26;22,62.85,263.38,377.44,7.26;22,62.85,273.38,365.10,7.22" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">hpSpMV: A heterogeneous parallel computing scheme for SpMV on the Sunway TaihuLight supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">Yuedan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guoqing</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wangdong</forename><surname>Yang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCC/SMARTCITY/DSS.2019.00142</idno>
+		<ptr target="https://doi.org/10.1109/HPCC/SMARTCITY/DSS.2019.00142" />
+	</analytic>
+	<monogr>
+		<title level="m">21st IEEE International Conference on High Performance Computing and Communications, the 17th IEEE International Conference on Smart City, the 5th IEEE International Conference on Data Science and Systems (HPCC/SmartCity/DSS&apos;19)</title>
+				<editor>
+			<persName><forename type="first">Laurence</forename><forename type="middle">T</forename><surname>Xiao</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Pavan</forename><surname>Yang</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Tao</forename><surname>Balaji</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Keqin</forename><surname>Li</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Albert</forename><forename type="middle">Y</forename><surname>Li</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Zomaya</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="989" to="995" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,283.31,377.45,7.26;22,62.85,293.26,378.67,7.26;22,62.85,303.26,24.00,7.22" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Structural agnostic SpMV: Adapting CSR-adaptive for irregular matrices</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Daga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">L</forename><surname>Greathouse</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HiPC.2015.55</idno>
+		<ptr target="https://doi.org/10.1109/HiPC.2015.55" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 22nd International Conference on High Performance Computing (HiPC&apos;15)</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="64" to="74" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,313.19,378.32,7.26;22,62.66,323.19,204.71,7.22" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">The University of Florida sparse matrix collection</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2049662.2049663</idno>
+		<ptr target="https://doi.org/10.1145/2049662.2049663" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page">25</biblScope>
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,333.11,377.45,7.26;22,62.85,343.07,377.96,7.26;22,62.66,353.08,80.24,7.22" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Taming irregular EDA applications on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Yangdong</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><forename type="middle">D</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuai</forename><surname>Mu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1687399.1687501</idno>
+		<ptr target="https://doi.org/10.1145/1687399.1687501" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Computer-Aided Design (ICCAD&apos;09)</title>
+				<editor>
+			<persName><forename type="first">S</forename><surname>Jaijeet</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Roychowdhury</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="539" to="546" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,363.04,377.43,7.22;22,62.85,372.96,378.30,7.26;22,62.85,382.92,329.75,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">AlphaSparse: Generating high performance SpMV codes directly from sparse matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Zhen</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yinshan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xueqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guangming</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ninghui</forename><surname>Sun</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SC41404.2022.00071</idno>
+		<ptr target="https://doi.org/10.1109/SC41404.2022.00071" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;22)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,392.93,377.43,7.22;22,62.64,402.85,369.51,7.26" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Selecting optimal SpMV realizations for GPUs via machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">Ernesto</forename><surname>Dufrechou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Ezzatti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Enrique</forename><forename type="middle">S</forename><surname>Quintana-Ortí</surname></persName>
+		</author>
+		<idno type="DOI">10.1177/1094342021990738</idno>
+		<ptr target="https://doi.org/10.1177/1094342021990738" />
+	</analytic>
+	<monogr>
+		<title level="j">Int. J. High Perf. Comput. Applic</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="page">3</biblScope>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,412.81,377.45,7.26;22,62.85,422.78,378.71,7.26;22,62.85,432.78,25.95,7.22" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Overcoming load imbalance for irregular sparse matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Goran</forename><surname>Flegar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hartwig</forename><surname>Anzt</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3149704.3149767</idno>
+		<ptr target="https://doi.org/10.1145/3149704.3149767" />
+	</analytic>
+	<monogr>
+		<title level="m">7th Workshop on Irregular Applications: Architectures and Algorithms (IA3@SC&apos;17)</title>
+				<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">2</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,442.74,377.46,7.22;22,62.85,452.66,378.31,7.26;22,62.66,462.67,203.74,7.22" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">AMF-CSR: Adaptive multi-row folding of CSR for SpMV on GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Jianhua</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Senhao</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Shi</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICPADS53394.2021.00058</idno>
+		<ptr target="https://doi.org/10.1109/ICPADS53394.2021.00058" />
+	</analytic>
+	<monogr>
+		<title level="m">27th IEEE International Conference on Parallel and Distributed Systems (ICPADS&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="418" to="425" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,472.63,377.46,7.22;22,62.85,482.55,378.68,7.26;22,62.66,492.55,75.73,7.22" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Revisiting thread configuration of SpMV kernels on GPU: A machine learning based approach</title>
+		<author>
+			<persName coords=""><forename type="first">Jianhua</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Shi</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.jpdc.2023.104799</idno>
+		<ptr target="https://doi.org/10.1016/j.jpdc.2023.104799" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Parallel Distrib. Comput</title>
+		<imprint>
+			<biblScope unit="volume">185</biblScope>
+			<biblScope unit="page">104799</biblScope>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,502.52,377.59,7.22;22,62.85,512.44,173.72,7.26" xml:id="b21">
+	<monogr>
+		<title level="m" type="main">A systematic literature survey of sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Jianhua</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bingjie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hua</forename><surname>Huang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2404.06047</idno>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="22,62.85,522.44,377.63,7.22;22,62.85,532.38,378.68,7.26;22,62.85,542.37,14.83,7.22" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">A novel multi-graphics processing unit parallel optimization framework for the sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Jiaquan</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.1002/CPE.3936</idno>
+		<ptr target="https://doi.org/10.1002/CPE.3936" />
+	</analytic>
+	<monogr>
+		<title level="j">Concurr. Comput. Pract. Exp</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page">5</biblScope>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,552.34,377.46,7.22;22,62.85,562.26,377.97,7.26;22,62.85,572.26,25.95,7.22" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Adaptive optimization modeling of preconditioned conjugate gradient on multi-GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jiaquan</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ronghua</forename><surname>Liang</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2990849</idno>
+		<ptr target="https://doi.org/10.1145/2990849" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">33</biblScope>
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,582.22,378.78,7.22;22,62.85,592.15,378.71,7.26;22,62.85,602.15,11.12,7.22" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">A multi-GPU parallel optimization model for the preconditioned conjugate gradient algorithm</title>
+		<author>
+			<persName coords=""><forename type="first">Jiaquan</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuanshen</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guixia</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifei</forename><surname>Xia</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/J.PARCO.2017.04.003</idno>
+		<ptr target="https://doi.org/10.1016/J.PARCO.2017.04.003" />
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">63</biblScope>
+			<biblScope unit="page" from="1" to="16" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,612.11,377.44,7.22;22,62.85,622.03,378.66,7.26;22,62.85,632.04,47.80,7.22" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Efficient sparse matrix-vector multiplication on GPUs using the CSR storage format</title>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><forename type="middle">L</forename><surname>Greathouse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mayank</forename><surname>Daga</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;14)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="769" to="780" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,84.09,377.42,7.22;23,63.02,94.02,377.96,7.26;23,62.84,104.02,74.55,7.22" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">A performance modeling and optimization analysis tool for sparse matrix-vector multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Ping</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liqiang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Po</forename><surname>Chen</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPDS.2013.123</idno>
+		<ptr target="https://doi.org/10.1109/TPDS.2013.123" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Parallel Distrib. Syst</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page" from="1112" to="1123" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,113.98,377.43,7.22;23,63.02,123.90,377.45,7.26;23,62.53,133.87,352.99,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Performance optimization for SpMV on Multi-GPU systems using threads and multiple streams</title>
+		<author>
+			<persName coords=""><forename type="first">Ping</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Changjiang</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SBAC-PADW.2016.20</idno>
+		<ptr target="https://doi.org/10.1109/SBAC-PADW.2016.20" />
+	</analytic>
+	<monogr>
+		<title level="m">International Symposium on Computer Architecture and High Performance Computing Workshops (SBAC-PAD Workshops&apos;16)</title>
+				<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="67" to="72" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,143.87,377.60,7.22;23,63.02,153.79,377.96,7.26;23,62.84,163.79,80.45,7.22" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Parallel GMRES solver for fast analysis of large linear dynamic systems on GPU platforms</title>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X.-D</forename><surname>Sheldon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hengyang</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xuexin</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hai</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guoyong</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Shi</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.vlsi.2015.07.005</idno>
+		<ptr target="https://doi.org/10.1016/j.vlsi.2015.07.005" />
+	</analytic>
+	<monogr>
+		<title level="j">Integration</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="page" from="10" to="22" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,173.76,377.46,7.22;23,63.02,183.68,377.45,7.26;23,63.02,193.68,378.67,7.22;23,63.02,203.65,10.70,7.22" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Multi-GPU implementation of the uniformization method for solving Markov models</title>
+		<author>
+			<persName coords=""><forename type="first">Marek</forename><surname>Karwacki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Beata</forename><surname>Bylina</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jaroslaw</forename><surname>Bylina</surname></persName>
+		</author>
+		<ptr target="https://fedcsis.org/proceedings/2012/pliks/377.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">Federated Conference on Computer Science and Information Systems (FedCSIS&apos;12)</title>
+				<editor>
+			<persName><forename type="first">Maria</forename><surname>Ganzha</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Leszek</forename><forename type="middle">A</forename><surname>Maciaszek</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Marcin</forename><surname>Paprzycki</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="533" to="537" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,213.61,378.66,7.22;23,63.02,223.53,293.55,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">A fast and high quality multilevel scheme for partitioning irregular graphs</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vipin</forename><surname>Kumar</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/S1064827595287997</idno>
+		<ptr target="https://doi.org/10.1137/S1064827595287997" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM J. Sci. Comput</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="359" to="392" />
+			<date type="published" when="1998">1998. 1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,233.53,377.44,7.22;23,63.02,243.46,378.68,7.26;23,63.02,253.46,73.48,7.22" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Compressed multirow storage format for sparse matrices on graphics processing units</title>
+		<author>
+			<persName coords=""><forename type="first">Zbigniew</forename><surname>Koza</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maciej</forename><surname>Matyka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sebastian</forename><surname>Szkoda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Łukasz</forename><surname>Mirosław</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/120900216</idno>
+		<ptr target="https://doi.org/10.1137/120900216" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM J. Scient. Comput</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="C219" to="C239" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,263.42,377.63,7.22;23,63.02,273.34,378.32,7.26;23,63.02,283.31,254.47,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">P-cloth: Interactive complex cloth simulation on multi-GPU systems using dynamic matrix assembly and pipelined implicit integrators</title>
+		<author>
+			<persName coords=""><forename type="first">Cheng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Min</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruofeng</forename><surname>Tong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ming</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jieyi</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dinesh</forename><surname>Manocha</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3414685.3417763</idno>
+		<ptr target="https://doi.org/10.1145/3414685.3417763" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Graph</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="page">15</biblScope>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,293.30,377.43,7.22;23,63.02,303.22,378.71,7.26;23,63.02,313.23,25.95,7.22" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">SMAT: An input adaptive auto-tuner for sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guangming</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mingyu</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ninghui</forename><surname>Sun</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2499370.2462181</idno>
+		<ptr target="https://doi.org/10.1145/2499370.2462181" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGPLAN Not</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="117" to="126" />
+			<date type="published" when="2013-06">2013. June 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,323.19,378.70,7.22;23,63.02,333.11,331.30,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Performance analysis and optimization for SpMV on GPU using probabilistic modeling</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPDS.2014.2308221</idno>
+		<ptr target="https://doi.org/10.1109/TPDS.2014.2308221" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Parallel Distrib. Syst</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="page" from="196" to="205" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,343.11,378.81,7.22;23,63.02,353.04,377.73,7.26" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Automatic tuning of sparse matrix-vector multiplication on multicore clusters</title>
+		<author>
+			<persName coords=""><forename type="first">Shigang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Changjun</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junchao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunquan</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/S11432-014-5254-X</idno>
+		<ptr target="https://doi.org/10.1007/S11432-014-5254-X" />
+	</analytic>
+	<monogr>
+		<title level="j">Sci. China Inf. Sci</title>
+		<imprint>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="page" from="1" to="14" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,363.00,378.25,7.26;23,63.02,372.96,250.91,7.26" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">A Jacobi_PCG solver for sparse linear systems on multi-GPU cluster</title>
+		<author>
+			<persName coords=""><forename type="first">Shaozhong</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiqiang</forename><surname>Xie</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/S11227-016-1887-4</idno>
+		<ptr target="https://doi.org/10.1007/S11227-016-1887-4" />
+	</analytic>
+	<monogr>
+		<title level="j">J. Supercomput</title>
+		<imprint>
+			<biblScope unit="volume">73</biblScope>
+			<biblScope unit="page" from="433" to="454" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,382.96,378.81,7.22;23,63.02,392.89,377.45,7.26;23,62.75,402.89,262.36,7.22" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">CSR5: An efficient storage format for cross-platform sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2751205.2751209</idno>
+		<ptr target="https://doi.org/10.1145/2751205.2751209" />
+	</analytic>
+	<monogr>
+		<title level="m">29th ACM on International Conference on Supercomputing (ICS&apos;15)</title>
+				<editor>
+			<persName><forename type="first">N</forename><surname>Laxmi</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Fred</forename><surname>Bhuyan</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Vivek</forename><surname>Chong</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Sarkar</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="339" to="350" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,412.81,377.45,7.26;23,63.02,422.78,378.67,7.26;23,63.02,432.78,287.03,7.22" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Merge-based parallel sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Duane</forename><surname>Merrill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SC.2016.57</idno>
+		<ptr target="https://doi.org/10.1109/SC.2016.57" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;16)</title>
+				<editor>
+			<persName><forename type="first">John</forename><surname>West</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Cherri</forename><forename type="middle">M</forename><surname>Pancake</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="678" to="689" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,442.74,377.43,7.22;23,63.02,452.66,378.33,7.26;23,62.84,462.67,168.22,7.22" xml:id="b39">
+	<monogr>
+		<title level="m" type="main">Scalable parallel programming with CUDA: Is CUDA the parallel programming model that application developers have been waiting for? Queue</title>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Nickolls</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ian</forename><surname>Buck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kevin</forename><surname>Skadron</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1365490.1365500</idno>
+		<ptr target="https://doi.org/10.1145/1365490.1365500" />
+		<imprint>
+			<date type="published" when="2008-03">2008. Mar. 2008</date>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="40" to="53" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,472.63,378.77,7.22;23,63.02,482.55,377.46,7.26;23,63.02,492.51,285.66,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">TileSpMV: A tiled algorithm for sparse matrix-vector multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Yuyao</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhengyang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meichen</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhou</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guangming</forename><surname>Tan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/IPDPS49936.2021.00016</idno>
+		<ptr target="https://doi.org/10.1109/IPDPS49936.2021.00016" />
+	</analytic>
+	<monogr>
+		<title level="m">35th IEEE International Parallel and Distributed Processing Symposium (IPDPS&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="68" to="78" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,502.48,377.45,7.26;23,63.02,512.45,270.68,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Efficient sparse matrix-vector multiplication on cache-based GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">István</forename><surname>Reguly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mike</forename><surname>Giles</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/InPar.2012.6339602</idno>
+		<ptr target="https://doi.org/10.1109/InPar.2012.6339602" />
+	</analytic>
+	<monogr>
+		<title level="m">Innovative Parallel Computing</title>
+				<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,522.42,377.43,7.26;23,63.02,532.38,353.53,7.26" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Exploring the multiple-GPU design space</title>
+		<author>
+			<persName coords=""><forename type="first">Dana</forename><surname>Schaa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">R</forename><surname>Kaeli</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/IPDPS.2009.5161068</idno>
+		<ptr target="https://doi.org/10.1109/IPDPS.2009.5161068" />
+	</analytic>
+	<monogr>
+		<title level="m">23rd IEEE International Symposium on Parallel and Distributed Processing (IPDPS&apos;09)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,542.37,378.80,7.22;23,63.02,552.29,377.61,7.26;23,63.02,562.30,203.20,7.22" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">FPGA and GPU implementation of large scale SpMV</title>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Shan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tianji</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zilong</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ningyi</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huazhong</forename><surname>Yang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SASP.2010.5521144</idno>
+		<ptr target="https://doi.org/10.1109/SASP.2010.5521144" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 8th Symposium on Application Specific Processors (SASP&apos;10)</title>
+				<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="64" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,572.26,377.44,7.22;23,63.02,582.18,360.27,7.26" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Analysis and performance estimation of the Conjugate Gradient method on multiple GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Mickeal</forename><surname>Verschoor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrei</forename><forename type="middle">C</forename><surname>Jalba</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/J.PARCO.2012.07.002</idno>
+		<ptr target="https://doi.org/10.1016/J.PARCO.2012.07.002" />
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page" from="552" to="575" />
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,592.19,378.68,7.22;23,63.02,602.11,378.32,7.26;23,63.02,612.11,194.06,7.22" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">yaSpMV: Yet another SpMV framework on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Shengen</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chao</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunquan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huiyang</forename><surname>Zhou</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2555243.2555255</idno>
+		<ptr target="https://doi.org/10.1145/2555243.2555255" />
+	</analytic>
+	<monogr>
+		<title level="m">19th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;14)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="107" to="118" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,622.03,378.32,7.26;23,63.02,632.00,281.27,7.26;24,45.77,55.82,20.73,8.97;24,393.13,55.82,47.15,8.97" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Preconditioned GMRES solver on multiple-GPU architecture</title>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hui</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhangxin</forename><surname>Chen</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/J.CAMWA.2016.06.027</idno>
+		<ptr target="https://doi.org/10.1016/J.CAMWA.2016.06.02769:24J.Gaoetal." />
+	</analytic>
+	<monogr>
+		<title level="j">Comput. Math. Appl</title>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page" from="1076" to="1095" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,84.09,378.74,7.22;24,62.85,94.02,377.60,7.26;24,62.85,104.02,195.65,7.22" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Automatic tuning of sparse matrix-vector multiplication for CRS format on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Hiroki</forename><surname>Yoshizawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daisuke</forename><surname>Takahashi</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICCSE.2012.28</idno>
+		<ptr target="https://doi.org/10.1109/ICCSE.2012.28" />
+	</analytic>
+	<monogr>
+		<title level="m">15th IEEE International Conference on Computational Science and Engineering (CSE&apos;12)</title>
+				<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="130" to="136" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,113.98,377.63,7.22;24,62.85,123.90,378.66,7.26;24,62.57,133.91,368.67,7.22" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Bridging the gap between deep learning and sparse matrix format selection</title>
+		<author>
+			<persName coords=""><forename type="first">Yue</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chunhua</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xipeng</forename><surname>Shen</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3178487.3178495</idno>
+		<ptr target="https://doi.org/10.1145/3178487.3178495" />
+	</analytic>
+	<monogr>
+		<title level="m">23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;18)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="94" to="108" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

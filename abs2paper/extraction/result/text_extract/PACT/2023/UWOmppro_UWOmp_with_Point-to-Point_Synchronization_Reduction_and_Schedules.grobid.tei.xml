@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">UWOmp&lt;sub&gt;pro&lt;/sub&gt;: UWOmp++ with Point-to-Point Synchronization, Reduction and Schedules</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-10-21">2023-10-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,149.64,173.66,72.91,10.79"><forename type="first">Aditya</forename><surname>Agrawal</surname></persName>
+							<email>adityaag@alumni.iitm.ac.in</email>
+							<affiliation key="aff0">
+								<orgName type="department">Department of CSE</orgName>
+								<orgName type="institution">IIT Madras Chennai</orgName>
+								<address>
+									<region>TN</region>
+									<country>India V. Krishna Nandivada</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">Department of CSE</orgName>
+								<orgName type="institution">IIT Madras Chennai</orgName>
+								<address>
+									<region>TN</region>
+									<country key="IN">India</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">V</forename><forename type="middle">Krishna</forename><surname>Nandivada</surname></persName>
+						</author>
+						<title level="a" type="main">UWOmp&lt;sub&gt;pro&lt;/sub&gt;: UWOmp++ with Point-to-Point Synchronization, Reduction and Schedules</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="27" to="38"/>
+							<date type="published" when="2023-10-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">F30D97263F5A9F0DCE4AF83E2C5A6605</idno>
+					<idno type="DOI">10.1109/pact58117.2023.00011</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>OpenMP is one of the most popular APIs widely used to realize parallelism in C/C++ and FORTRAN programs. For efficient execution, an OpenMP program internally creates a team of threads, which share a given set of activities (for example, iterations of a parallel-forloop). While OpenMP allows synchronization among these threads, many classes of computations can be conveniently expressed by specifying synchronization among the parallel activities. However, OpenMP currently restricts arbitrary synchronization among the parallel activities; otherwise, the behavior of the program can be unpredictable. While extensions like UWOmp++ (and UW-OpenMP) support all-to-all barriers among the activities, currently there is very limited support for performing point-to-point synchronization among them. In this paper, we present UWOmp 𝑝𝑟𝑜 as an extension to UWOmp++ (and OpenMP) to address these challenges and realize more expressive and efficient codes.</p><p>UWOmp 𝑝𝑟𝑜 allows point-to-point synchronization among the activities of a parallel-for-loop and supports reduction operations (during synchronization). We present a translation scheme to compile UWOmp 𝑝𝑟𝑜 code to efficient OpenMP code, such that the translated code does not invoke any synchronization operation(s) within parallel-for-loops. Our translation takes advantage of continuationpassing-style (CPS) to efficiently realize wait and continue operations. We also present a runtime, based on a novel communication subsystem to support efficient signal, wait, and reduction operations. We have implemented our scheme in the IMOP compiler framework and performed a thorough evaluation. We show that our approach leads to highly performant codes.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>The emergence of multi-core systems has brought forth many different parallel languages like X10 <ref type="bibr" coords="1,206.09,558.23,12.70,8.09" target="#b10">[11]</ref>, Chapel <ref type="bibr" coords="1,253.78,558.23,12.70,8.09" target="#b17">[18]</ref>, HJ <ref type="bibr" coords="1,285.75,558.23,8.96,8.09" target="#b8">[9]</ref>, OpenMP <ref type="bibr" coords="1,103.09,568.55,12.62,8.09" target="#b24">[25]</ref>, and so on to the mainstream. These languages provide means to express parallel logic conveniently. Besides supporting different ways of expressing parallelism, these languages support varied forms of synchronizations.</p><p>For example, OpenMP uses the efficient 'team of workers' model, where each worker (also interchangeably referred to as thread) is given a chunk of activities (for example, iterations of a parallel-for loop) to execute. An important facet of this model is that workers (and not activities) synchronize among themselves using barriers. However, certain computations (for example, stencil computations, graph analytics, and so on) are specified, arguably more conveniently, by expressing the synchronization among all the dependent activities. Languages like X10, HJ, and so on, support such notions of asynchronous activities and synchronization among the activities. Further, in contrast to global barriers (that perform all-to-all synchronization) among the parallel activities of a program, it may be more expressive and efficient (fewer number of communications) to synchronize only the inter-dependent activities. We refer to the latter as the point-to-point mode of synchronization.</p><p>We first use a motivating example to illustrate the expressiveness due to point-to-point synchronization and the scope of improved performance therein. Figure <ref type="figure" coords="1,413.27,290.01,3.94,8.09" target="#fig_1">1</ref> shows five different versions of the classical 1D Jacobian kernel (source <ref type="bibr" coords="1,435.01,300.32,8.46,8.09" target="#b2">[3]</ref>). Figure <ref type="figure" coords="1,474.15,300.32,7.63,8.09" target="#fig_1">1a</ref> shows the kernel in OpenMP (source <ref type="bibr" coords="1,384.05,310.64,8.89,8.09" target="#b3">[4,</ref><ref type="bibr" coords="1,395.28,310.64,9.22,8.09" target="#b25">26]</ref>). OpenMP prohibits the use of barrier statements inside the parallel-for-loop as the behaviour of the program can be unpredictable (may lead to incorrect output, correct output, or deadlock) <ref type="bibr" coords="1,384.39,341.59,8.46,8.09" target="#b1">[2]</ref>). In light of such a restriction, at the end of the parallel-for-loop, an implicit barrier is present, which allows all threads to synchronize after computing the respective average values <ref type="bibr" coords="1,337.57,372.54,13.66,8.09">(B[i]</ref>). The 'single' block performs the pointer swapping and incrementing the time-step variable t. The code snippet in Figure <ref type="figure" coords="1,328.55,393.17,6.76,8.09" target="#fig_1">1b</ref>, shows the HJ version using all-to-all barriers among all the asynchronous activities. The next statement synchronizes all the activities before proceeding to the next phase. To support such all-to-all barriers in OpenMP, Aloor and Nandivada <ref type="bibr" coords="1,496.05,424.12,9.93,8.09" target="#b1">[2]</ref> proposed UW-OpenMP that introduces the Unique Worker (UW) model in OpenMP, in which the programmer gets an impression that each iteration (a.k.a. activity) of the parallel-for-loop is run by a unique worker and thus the model allows all-to-all barriers to be specified among the activities. Aloor and Nandivada <ref type="bibr" coords="1,481.46,475.70,9.93,8.09" target="#b3">[4]</ref> extended this idea to derive UWOmp++, and show that UWOmp++ codes are efficient and arguably more expressive compared to the OpenMP codes. Figure <ref type="figure" coords="1,360.79,506.65,7.41,8.09" target="#fig_1">1c</ref> shows UWOmp++ version of the 1D Jacobian Kernel. However, such codes still suffer from multiple drawbacks, as discussed below.</p><p>In the code shown in Figure <ref type="figure" coords="1,416.91,537.60,7.39,8.09" target="#fig_1">1c</ref> (and in Figure <ref type="figure" coords="1,473.50,537.60,6.10,8.09" target="#fig_1">1b</ref>), each activity 𝑋 i (corresponding to iteration i) is waiting for all remaining activities instead of only the activity 𝑋 1 waiting for all the other activities (to complete their computation), before swapping the pointers. Similarly, each activity waits for every other activity at the second barrier, even though each activity 𝑋 i (i ≠ 1) needs to wait only for 𝑋 1 . This leads to significant communication overheads.</p><p>To address such issues of communication overheads and improve the expressiveness, there have been many prior efforts to support point-to-point synchronization in task parallel languages like X10 <ref type="bibr" coords="1,344.80,640.77,12.65,8.09" target="#b10">[11]</ref>, HJ <ref type="bibr" coords="1,373.80,640.77,8.91,8.09" target="#b8">[9]</ref>, and so on. These languages use explicit synchronization objects (like Clocks <ref type="bibr" coords="1,431.93,651.08,13.98,8.09" target="#b10">[11]</ref> and Phasers <ref type="bibr" coords="1,493.02,651.08,9.47,8.09" target="#b8">[9]</ref>) to realize the synchronization. Figure <ref type="figure" coords="1,408.77,661.40,8.03,8.09" target="#fig_1">1d</ref> shows the HJ version of the 1D Jacobian kernel. The code snippet first allocates two phaser objects and registers the phaser objects with each activity. These phasers are used to perform only the required communication (signal or wait) among the activities. A similar computation can also be encoded using an array of phasers (one unique phaser per activity).   In the context of OpenMP, Shirako et al. <ref type="bibr" coords="2,218.90,316.55,14.43,8.43" target="#b29">[29]</ref> present a promising approach to adapt HJ phasers to OpenMP. They allow activities to explicitly register/deregister themselves with phaser objects and these phaser objects are used to perform the synchronization among the registered activities. However, their design has multiple restrictions: (i) the phaser objects have to be explicitly allocated -leads to cumbersome code, (ii) the synchronization can only be in one direction, that is, from iteration with lower index to iteration with higher index -can be limit expressiveness; (iii) threads (not activities) block on wait operations -can limit parallelism and impact performance negatively; (iv) their scheme cannot work with dynamic/guided scheduling of OpenMP; and (v) the activities cannot perform reduction operations at the synchronization points. OpenMP 5.2 <ref type="bibr" coords="2,133.07,456.16,14.30,8.43" target="#b24">[25]</ref> provides support for expressing dependencies between the iterations of parallel-for-loops with the doacross clause <ref type="bibr" coords="2,85.97,477.64,13.16,8.43" target="#b30">[30,</ref><ref type="bibr" coords="2,101.34,477.64,9.87,8.43" target="#b31">31]</ref>. Although this feature allows expressing some form of point to point synchronization, it also suffers from two of the restrictions ((ii) and (v)) discussed above.</p><p>In this paper, we address all these issues and propose a generic scheme to allow synchronization among the activities of each parallel-for-loop of OpenMP. We call our extension UWOmp 𝑝𝑟𝑜 . Figure <ref type="figure" coords="2,88.55,542.45,8.17,8.43" target="#fig_1">1e</ref> shows a UWOmp 𝑝𝑟𝑜 version of the kernel shown in Figure <ref type="figure" coords="2,88.14,553.56,6.65,8.43" target="#fig_1">1c</ref>. Here, the first all-to-all barrier of Figure <ref type="figure" coords="2,253.81,553.56,8.00,8.43" target="#fig_1">1c</ref> has been replaced with two commands, where all activities (except the first activity) signal 𝑋 1 , and 𝑋 1 in turn waits for the signals from them. A convenient feature of UWOmp 𝑝𝑟𝑜 is that it supports conditional signal/wait commands. The first argument passed to the corresponding commands, evaluates to 1 (true) or 0 (false) and determines if the command should be executed by that activity or not. Further, the signal (wait) commands can signal to (wait for) multiple activities that are specified by a comma-separated list of iterations. Example: signal(1,i-1,i+1) sends a signal to 𝑋 i−1 and 𝑋 i+1 .</p><p>The second barrier of Figure <ref type="figure" coords="2,178.84,661.32,8.00,8.43" target="#fig_1">1c</ref> is replaced by signalAll, followed by wait. The given condition in the signalAll command ensures that signalling is done only by 𝑋 1 to all the remaining activities. These activities (𝑋 i , i ≠ 1) in turn wait for that signal.</p><p>In contrast to X10 and HJ, in UWOmp 𝑝𝑟𝑜 , activities of a parallelfor-loop can synchronize among themselves without any need for the programmer to explicitly create (or pay the overheads of) clock/phaser objects. Further, the UWOmp 𝑝𝑟𝑜 code performing communication is arguably more readable than that of the HJ code involving multiple phaser objects performing point-to-point communication (for example, Figure <ref type="figure" coords="2,434.57,403.36,8.17,8.43" target="#fig_1">1e</ref> vs. Figure <ref type="figure" coords="2,483.36,403.36,6.67,8.43" target="#fig_1">1d</ref>). An important aspect of our design is that we continue to take advantage of the efficient 'team of workers' model of OpenMP to derive high performance.</p><p>In addition, UWOmp 𝑝𝑟𝑜 optionally supports efficient reduction operations at the synchronization (wait) points, a feature not supported by languages like X10, HJ, or even OpenMP. Note: though OpenMP supports reduction operations in parallel-for-loops, the final reduced value is only available at the end of the parallel-region (and not immediately after the reduction operation).</p><p>UWOmp 𝑝𝑟𝑜 can help effectively and efficiently code wide classes of problems involving point-to-point synchronizations and reductions. Note: We do not claim that using point-to-point synchronization among the activities of parallel-for-loops is the only/best way to encode such computations. Instead, our proposed extension (common in modern languages like X10, HJ, and so on) provides additional ways to encode task parallelism, which is otherwise missing in OpenMP (and UWOmp++), while not missing out on the advantage of the efficient 'team of workers' model of OpenMP.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Our Contributions</head><p>• We propose UWOmp 𝑝𝑟𝑜 to allow point-to-point synchronization and reduction operations, among the activities of a parallel-for-loop. In contrast to UWOmp++, UWOmp 𝑝𝑟𝑜 supports all the scheduling policies defined in OpenMP.</p><p>• We present a scheme to compile UWOmp 𝑝𝑟𝑜 code to efficient OpenMP code by taking advantage of continuation-passing-style (CPS) to efficiently realize wait and continue operations.</p><p>• We present a runtime based on a novel communication subsystem to support efficient signal, wait, and reduction operations.</p><p>• To support fast reduction operations, we propose two reduction algorithms termed eager and lazy, to support efficient reduction operations among a subset of activities and all activities, respectively.</p><p>• We have implemented our scheme in the IMOP compiler framework and performed a thorough evaluation. We show that our generated code scales well and is highly performant.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background</head><p>We now present some brief background needed for this paper. OpenMP. We summarize three popular constructs of OpenMP.</p><p>Parallel Region: #pragma omp parallel S creates a team of threads where each thread executes the statement S in parallel.</p><p>Parallel-For-Loop: A sequential for-loop can be annotated using #pragma omp for <ref type="bibr" coords="3,148.33,239.98,35.15,8.43">[nowait]</ref> [schedOpt] to share the iterations among the team of threads. The scheduling policy (static, dynamic, guided, or runtime) is mentioned using schedOpt. If the nowait clause is omitted, OpenMP provides an implicit barrier.</p><p>Barrier: #pragma omp barrier construct is used to synchronize the workers in the team. Unique Worker Model for OpenMP. We now restate two relevant definitions given by Aloor and Nandivada <ref type="bibr" coords="3,231.14,315.15,9.21,8.43" target="#b3">[4]</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">UWOmp 𝑝𝑟𝑜 : Extending UWOmp++</head><p>We now describe three new extensions to UWOmp++ that can improve the expressiveness and lead to efficient code. Two of these extensions (support for point-to-point synchronization among the activities, and performing reduction at the point of synchronization) are novel to OpenMP as well. The third extension admits powerful scheduling policies (dynamic, guided, and runtime) of OpenMP, apart from the static scheduling policy that was already supported by UWOmp++. We call this extended language UWOmp 𝑝𝑟𝑜 . Point-to-Point Synchronization. UWOmp 𝑝𝑟𝑜 proposes an extension to UW-OpenMP, where a programmer can specify point-topoint synchronization among the activities of a parallel for-loop. Figure <ref type="figure" coords="3,74.81,555.17,4.09,8.43">2</ref> summarizes the list of commands supported by UWOmp 𝑝𝑟𝑜 (along with brief syntax), for easy reference. All these commands are conditional in nature and support (i) signal and wait operations to a subset of activities or all of them, and (ii) (optionally) reduction operations. Note: a signal/wait commands to/on a non-existing iteration are treated as nops. Reduction. Consider the example code snippet shown in Fig. <ref type="figure" coords="3,288.17,620.14,8.07,8.43" target="#fig_2">3a</ref> (Source <ref type="bibr" coords="3,89.93,630.88,9.22,8.43" target="#b2">[3,</ref><ref type="bibr" coords="3,101.34,630.88,10.49,8.43" target="#b9">10]</ref>) to perform iterated averaging on an N element array, written in UWOmp++. Here, each activity 𝑋 𝑖 first computes a new value for the i 𝑡ℎ element using A[i-1] and A[i+1] and then computes the absolute difference compared to the older value. Towards the end of each iteration of the while-loop, each activity  waits for 𝑋 1 to sequentially reduce the array diff to the shared variable diffSum, which is used to check the convergence condition specified in the while-loop predicate. The sequential reduction operation can pose serious performance overheads. Note that, we cannot use the OpenMP reduction operation to perform the reduction here, as the reduced value would only be available after the end of the parallel for-loop. To address these issues, UWOmp 𝑝𝑟𝑜 supports a blocking reduction operation within the activities of a parallel for-loop. For example, in Fig. <ref type="figure" coords="3,446.50,525.58,6.78,8.43" target="#fig_2">3b</ref>, after computing diff[i], each activity 𝑋 𝑖 sends a signal to all the other activities with the value of diff[i]. Then, the code invokes a blocking reduction operation, specifying the variable (diffSum) to hold the reduced value, and the reduction operation (ADD). In contrast to the UW-OpenMP version, in UWOmp 𝑝𝑟𝑜 , all threads together perform the reduction operation in parallel. Further, to reduce the number of message exchanges, Section 5.4 presents an optimization such that messages, linear (not quadratic) in the number of activities are exchanged to perform the reduction. Note: (1) For readability, we use verbose reduction operator names (e.g., ADD in place of '+'). ( <ref type="formula" coords="3,499.04,633.35,3.05,8.43">2</ref>) Like the regular reduction operations in OpenMP, UWOmp 𝑝𝑟𝑜 also supports user-defined reduction operations; details skipped for brevity. Schedules. Due to its design decisions, UW-OpenMP supports only static scheduling. Considering the importance of other scheduling policies of OpenMP, UWOmp 𝑝𝑟𝑜 supports all of them by using a runtime extension. Details in Section 5.5.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">UWOmp 𝑝𝑟𝑜 to Efficient OM-OpenMP</head><p>We now present the translation rules used to convert input UWOmp 𝑝𝑟𝑜 code to efficient OM-OpenMP code. The main idea behind our translation is that in the generated OM-OpenMP code, the activities of the parallel-for-loop are stored as closure (in one or more work-queues) to be executed by different workers. When an activity encounters a wait operation, it enqueues the continuation to the work-queue of the parent activity and continues executing other activities in the work-queue. Figure <ref type="figure" coords="4,190.98,187.84,4.10,8.43">4</ref> shows the block diagram of our translation. The input UWOmp 𝑝𝑟𝑜 code is fed to the Simplifier module which converts the given input code to a representative subset of UWOmp 𝑝𝑟𝑜 code called mUWOmp 𝑝𝑟𝑜 . The mUWOmp 𝑝𝑟𝑜 code is input to the 'CPS Translator' module which converts the code to CPS form called UWOmpCPS 𝑝𝑟𝑜 . The UWOmpCPS 𝑝𝑟𝑜 code is input to the 'OM-OpenMP Translator' module which translates the code to conforming OpenMP code such that it does not invoke barriers inside work-sharing constructs (parallel-for-loops). Finally, a post-pass step introduces type-specific reduction operations. We now describe these important modules of our translation scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Simplifier</head><p>For the ease of explaining the translation scheme, like Aloor and Nandivada <ref type="bibr" coords="4,119.67,332.97,9.24,8.43" target="#b3">[4]</ref>, we use a representative subset of the input UWOmp 𝑝𝑟𝑜 language called miniUWOmp 𝑝𝑟𝑜 (mUWOmp 𝑝𝑟𝑜 ); Section 6 discusses how any general UWOmp 𝑝𝑟𝑜 program can be translated to mUWOmp 𝑝𝑟𝑜 code. Figure <ref type="figure" coords="4,208.13,365.92,4.16,8.43">5</ref> shows the grammar of mUWOmp 𝑝𝑟𝑜 . A mUWOmp 𝑝𝑟𝑜 program consists of a sequence of function declarations (FuncDecl) followed by the MainFunc. FuncDecl can have an assignment statement, a function call, return statement, barrier statement or a statement generated by Seq(X): the program formed from X closed under sequential constructs. MainFunc consists of a parallel region which in turn consists of a sequence of parallel-for-loops or barrier statements. Each parallelfor-loop is a normalized loop <ref type="bibr" coords="4,166.96,452.74,14.43,8.43" target="#b21">[22]</ref> whose body is a function call.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">CPS Translator</head><p>Our translation scheme is inspired by that of Aloor and Nandivada <ref type="bibr" coords="4,60.88,488.36,9.19,8.43" target="#b3">[4]</ref>, who translate an input program to an IR (called UWOmpCPS), before lowering it to OM-OpenMP. UWOmpCPS is an extension to CPS (Continuation Passing Style <ref type="bibr" coords="4,181.41,509.84,12.86,8.43" target="#b18">[19]</ref>); its choice was inspired by the fact that CPS naturally provides support for operations like wait and continue. A UWOmpCPS program is similar to a program in CPS form, except that the former may include parallel-for-loops and barriers. One of the sources of overheads of the scheme of Aloor and Nandivada was that all the methods were converted to CPS form. We observe that since only the activities of parallel-for-loops can synchronize with each other (point-to-point or all-to-all), we need to CPS transform only those functions that may be invoked by the iterations of the parallel-for-loop. Further, in the input UWOmp 𝑝𝑟𝑜 program, thread-level barriers (invoked via #pragma omp barrier), may appear outside the work-sharing constructs.</p><p>Based on these points, we first present a modified UWOmpCPS grammar and then discuss the modified translation rules. 4.2.1 UWOmpCPS 𝑝𝑟𝑜 : Modified CPS IR.The grammar for the modified IR (called UWOmpCPS 𝑝𝑟𝑜 ) is shown in Figure <ref type="figure" coords="4,245.59,672.64,3.01,8.43">6</ref>. Some of the main differences between UWOmpCPS and UWOmpCPS 𝑝𝑟𝑜 are as follows: (i) A program may consist of both CPS (CPSFuncDecl) and non-CPS (FuncDecl) functions. (ii) A CPSParRegion may contain a set of parallel-for-loops in CPS form (CPSParLoop) or barriers (BarrierStmt). (iii) A CPSParLoop can specify a schedule and related options (represented as schedOpt). Note that Stmt denotes any sequential statement, FuncDecl is any regular C function declaration, FunCall is any regular non-CPS function call statement. As is standard in CPS translation, the continuation object is passed as an additional argument to each CPS function call (CPSFunCall). 4.2.2 Generation of code in CPS form.Figure <ref type="figure" coords="4,482.83,181.54,4.17,8.43" target="#fig_4">7</ref> shows the translation rules. Here, a rule of the form 𝑋 ⇒ 𝑌 is used to denote that input code 𝑋 is transformed to the output code 𝑌 in UWOmpCPS 𝑝𝑟𝑜 . The RHS (𝑌 ) may contain further terms with indicating that those terms need to be further transformed. Here, we use #ompparallel as a shortcut for #pragma omp parallel, and #ompfor for #pragma omp for nowait schedOpt. Our CPS transformation starts by transforming the parallel-region (Rule 9). Rules 1-8 are the standard CPS translation rules used to convert a given input program to CPS Form. Note: We only handle code that is reachable from a parallel-for-loop and if any function is called from outside the parallel-region then it is left as it is. Rule 10 has two substeps: (i) the function (fun) called in the body of the parallel-for-loop is translated to CPS form (using the standard CPS transformation rules, [Rules 1-8, Figure <ref type="figure" coords="4,457.01,332.38,3.04,8.43" target="#fig_4">7</ref>], by passing the identity function 𝑖𝑑 as the continuation. Here, 𝑚𝑘𝐶𝑙𝑠𝑟 is a macro that creates a closure by taking three arguments: a function pointer, the list of arguments required for the function (obtained by invoking a compiler-internal routine bEnv), and a continuation to be executed after executing the function. (ii) The call to fun is replaced by its CPS counterpart by passing the continuation as an additional argument. If a barrier is encountered, it is left as it is (Rule 11).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">OM-OpenMP Translator</head><p>We now discuss how we translate code in UWOmpCPS 𝑝𝑟𝑜 format to OM-OpenMP code. We emit code such that each iteration of the parallel-for-loop creates a closure object and enqueues to a work-queue. The details of the work-queue depend on the scheduling policy of the parallel-for-loop. For static scheduling policy, the activities to be executed by each thread is fixed a priori and thus we maintain a local worklist for each thread. For guided or dynamic scheduling, all closures are pushed to a global 'work queue'. Each thread dequeues closures from the queue and executes the same. Figure <ref type="figure" coords="4,339.32,529.46,8.10,8.43" target="#fig_6">8a</ref> shows the rule to translate the parallel-for-loop. Line 4 in Figure <ref type="figure" coords="4,383.50,540.20,8.25,8.43" target="#fig_6">8a</ref> calls the function getScheduler that takes the scheduling policy string 𝑠𝑐ℎ𝑒𝑑 and threadID 𝑡𝑖𝑑 as parameter. This string is obtained using a call to the function getSchedule using the 𝑠𝑐ℎ𝑒𝑑𝑂𝑝𝑡 string as parameter. Figure <ref type="figure" coords="4,477.21,572.42,8.25,8.43" target="#fig_6">8b</ref> shows the pseudocode of the getScheduler function that returns a pointer to the corresponding scheduler function and assigns the worklist to be used by each thread (WL[𝑡𝑖𝑑]). The function assigns the 𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 to the corresponding scheduler function, depending on the value of 𝑠𝑐ℎ𝑒𝑑. We emit a parallel-for-loop that pushes the closure for each activity to WL[𝑡𝑖𝑑] (Lines 5-9 in Figure <ref type="figure" coords="4,456.49,636.86,6.30,8.43" target="#fig_6">8a</ref>). Finally, we invoke the appropriate scheduler (Line 10 in Figure <ref type="figure" coords="4,460.18,647.60,6.33,8.43" target="#fig_6">8a</ref>). K 𝑇 fun ( args ) { S } // fun is called from within parallel -for -loop</p><formula xml:id="formula_0">⇒ 𝑣𝑜𝑖𝑑 funCPS ( Clsr K , args ) { K S }</formula><p>2. K fun (a1 ,... , a𝑛 ) ⇒ funCPS (K ,a1 ,... ,𝑎𝑛 )</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.</head><p>K S1; S2 // S1 has no call , return // or pragmas inside .   If schedOpt is omitted, then getSchedule sets the schedule to static. Similarly, if schedOpt=runtime, then getSchedule obtains the schedule from the language-specified environment variable.</p><formula xml:id="formula_1">⇒ S1 ; K S2 4. K { S } ⇒ { K S } 5. K S /</formula><formula xml:id="formula_2">⇒ if (e) { K S1 } else { K S2 } K Y 9. K #ompparallel { S } ⇒ #ompparallel { K S }</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Post-Pass: Type Specific Reduction Ops</head><p>The final step in our translation process introduces type specific reduction operations for the operations specified in the OpenMP specification <ref type="bibr" coords="5,101.53,668.61,12.96,8.43" target="#b24">[25]</ref>. As mentioned in Section 3, the reduction-related  wait commands (waitRed and waitAllRed, Figure <ref type="figure" coords="5,496.43,322.97,3.42,8.43">2</ref>) in the input UWOmp 𝑝𝑟𝑜 code take a reduction operation and a reduction variable rVar (which stores the reduced result), as additional arguments to the wait command. The compiler uses the declared type of rVar (say, int) to replace the user specified reduction operation (say, ADD representing the '+') with the actual reduction function (say, ADDint) in the wait commands. For each of the primitive types 𝑇 , our runtime provides functions for performing the reduction (for example, ADDint, ADDdouble, and so on).</p><p>In addition to introducing the type-specific reduction operation, the reduction procedure needs a method to copy values from one variable to the other (for example, to copy the final computed value to the reduction variable). Similar to the type-specific reduction operations, for each primitive type 𝑇 , our runtime provides functions for performing the copy operation (e.g., 'COPYint(int *from, int *to)'), which is passed as an additional argument to the wait method calls. For example, the command waitAllRedCPS (𝐾, 𝑖==1, ADD, 𝑥), where 𝑥 is the reduction variable of type int, gets replaced by waitAllRedCPS (𝐾, 𝑖==1, ADDint, 𝑥, COPYint).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">Example translation</head><p>For a better understanding of our translation scheme, Figure <ref type="figure" coords="5,545.19,541.70,4.17,8.43" target="#fig_7">9</ref> describes the steps to transform a sample UWOmp 𝑝𝑟𝑜 code to OM-OpenMP code. Figure <ref type="figure" coords="5,412.57,563.54,8.26,8.43" target="#fig_7">9a</ref> shows the input UWOmp 𝑝𝑟𝑜 code and Figure <ref type="figure" coords="5,353.08,574.65,8.25,8.43" target="#fig_7">9b</ref> shows the CPS transformed version. The standard set of CPS transformation rules is applied to the function f to convert it to fCPS, and generate other CPS functions (pCPS1 and pCPS2). We avoid showing the second argument to mkClsr as it depends on the actual statements following the call (for example, S2 and S3). The parallel-for-loop body creates an identity closure K to denote the continuation after executing the parallel-for-loop. It calls fCPS with closure K as an argument.  Figure <ref type="figure" coords="6,97.87,336.31,8.00,8.43" target="#fig_7">9c</ref> shows the OM-OpenMP translated code of the UWOmpCPS 𝑝𝑟𝑜 code. This step emits code to identify the appropriate scheduler (Lines 2-7 from Figure <ref type="figure" coords="6,203.88,358.32,6.60,8.43" target="#fig_6">8b</ref>), and wraps the call to function fCPS inside the closure C before enqueuing the closure in the appropriate worklist WL <ref type="bibr" coords="6,165.59,379.79,23.34,8.43">[𝑡𝑖𝑑]</ref>. Finally, Figure <ref type="figure" coords="6,247.93,379.79,8.64,8.43" target="#fig_7">9d</ref> shows the OpenMP translated code with the postpass translation rules applied on the waitRedCPS method.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Runtime Support</head><p>We now describe the extensions to the OpenMP runtime that we made to support the key operations supported by the language extensions defined in UWOmp 𝑝𝑟𝑜 : signalling, waiting, performing reduction and supporting the different scheduling policies of OpenMP. We will start by describing our novel design of the communication sub-system between the activities of each parallel-for-loop that forms the basis for these key operations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Shared Postbox System for Communication</head><p>We present a postbox based system for communication between the activities of a parallel-for-loop. We discuss the design of three types of postboxes: signal-only, data-messages-only, or mixed signals and data-messages (mixed-mode). 5.1.1 Design of the Postbox.Each activity 𝑋 𝑖 of a parallel-for-loop, may receive one or more signals/data-messages from other activities. To avoid contention among the communicating activities, we associate a postbox with each activity 𝑋 𝑖 . Thus, the postbox 𝑃 is an array of 𝑁 elements (where 𝑁 is the total number of activities), such that each element 𝑃 𝑖 represents the postbox of 𝑋 𝑖 .</p><p>We observed that for most of the parallel-for-loops using pointto-point synchronization, the number of activities that an activity communicates with, in a phase, is small. Based upon this observation, for such loops we set each postbox 𝑃 𝑖 to be a hashmap (of initial-size set to a constant 𝑘, with load factor set to a constant  𝑀%). Note that there are two straightforward alternatives to our proposed scheme: (i) each post-box entry 𝑃 𝑖 , is an array of 𝑁 slotsno locking required among the activities communicating with any particular activity 𝑋 𝑖 , but leads to high space wastage. (ii) each post-box entry 𝑃 𝑖 is represented as a linked-list -low space overhead, but may lead to significant performance overheads due to the locking contention among the activities communicating with any particular activity 𝑋 𝑖 . We use the hash-maps as a middle ground for supporting communication among the activities. In Section 6 we discuss an optimization where we can further reduce the overheads of this hash-map based postbox to a large extent for the common case of all-to-all communication (with static scheduling policy).</p><p>The exact configuration of the slots of each postbox entry depends on the type of communication: signal-only, data-only, or mixed-mode. We briefly explain the first two modes and then explain the mixed-mode type of postbox, in more detail.</p><p>Signal Only Postbox If the communicating activities are guaranteed to never send/receive any data-messages, then we simply represent each slot in the hashmap as a list of pairs of the form (sender, counter). When an activity 𝑋 𝑖 wants to send a signal to 𝑋 𝑗 , we simply increment the counter of 𝑋 𝑗 in 𝑃 𝑖 At the receiving activity, we atomically decrements the counter, if non-zero we return 1. Else, we return 0 (indicates that the signal is not yet available).</p><p>Data Only Postbox If the communicating activities are guaranteed to send/receive only data-messages, then we represent each slot as a list of pairs of the form (sender, data-message). When an activity wants to send a data-message, we append the message to the appropriate list, and for the receiving activity we take out and return the first message of the sender available in the list. If no such message is available, we return NULL.</p><p>Mixed-mode Postbox. We use this type of postbox, when the communicating activities may send either type of messages. We implement each slot as a list, where each element of the list is of the form shown in Figure <ref type="figure" coords="6,423.65,543.42,10.80,8.43" target="#fig_9">10a</ref>. Consider an element 𝑒 of the form (𝑗, ctr, m, next) in one of the lists of 𝑃 𝑖 . If ctr is non-zero then 𝑒 represents ctr number of contiguous signals sent from 𝑋 𝑗 to 𝑋 𝑖 . Else, 𝑒 represents a data-message m sent from 𝑋 𝑗 to 𝑋 𝑖 . For example, Figure <ref type="figure" coords="6,389.50,586.38,12.75,8.43" target="#fig_9">10b</ref> shows an example list, on receiving the following signals/data-messages from 𝑋 2 to 𝑋 1 : signal, signal, signal, and data-messages m1 and m2.</p><p>The postbox supports two routines: sendMsg and recvMsg. The sendMsg routine updates the appropriate list, and the recvMsg routine returns the appropriate signal/data-message, if available. We skip the details of these routines for brevity. The details can be found in the extended report <ref type="bibr" coords="6,419.61,661.56,9.21,8.43" target="#b0">[1]</ref>.  Note: (I) The recvMsg routine is non-blocking in nature. The actual waiting, if at all, is performed by the wait-call invoking the recvMsg of the postbox. (II) We use a static analysis to decide which type of postbox is to be used, based on the signal/wait commands specified in the input program.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Signal Algorithm</head><p>We now describe the wrapper methods emitted by the CPS transformation (Section 4.2) to handle the signal commands: signalCPS, signalSendCPS, signalAllCPS and signalAllSendCPS. The first two methods take variable number of arguments, corresponding to the list of activities to whom the signal/message is to be sent. The wrapper methods signalCPS and signalAllCPS simply call sig-nalSendCPS and signalAllSendCPS, respectively, by passing the message argument 𝑚 as NULL. We now describe the signalSend-CPS and signalAllSendCPS methods (signatures shown in Figure <ref type="figure" coords="7,74.78,387.06,6.37,8.43" target="#fig_1">11</ref>). An interesting point about these wrapper methods is that they are in CPS form and take the continuation 𝐾 as an argument.</p><p>The method signalSendCPS first checks the predicate 𝑒. If true, it does the actual signalling by sending the message to each receiving iteration. Finally, it invokes the continuation. The design of signalAllSendCPS is similar, except that it stores the message of each sender 𝑖 at the 𝑖 𝑡ℎ element of a shared array. The details of these algorithms can be found in the extended report <ref type="bibr" coords="7,253.25,462.77,9.21,8.43" target="#b0">[1]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Wait Algorithm</head><p>We now describe the wrapper methods emitted by the CPS transformation (Section 4.2) to handle the wait commands: waitCPS, waitRedCPS, waitAllCPS and waitAllRedCPS. The first two methods take as arguments the list of (target) activities from whom the signal/message is to be received. The wrapper methods waitCPS and waitAllCPS simply call waitRedCPS and waitAllRedCPS, respectively, by passing the reduction specific arguments as NULL. Similar to the signal wrapper methods, these methods are also in CPS form. For brevity, we only describe the waitRedCPS and waitAllRedCPS methods.</p><p>The method waitRedCPS (signature in Figure <ref type="figure" coords="7,240.39,595.04,7.34,8.43" target="#fig_1">11</ref>) first checks if the conditional-expression 𝑒 is true. If so, it first checks if the signal/message has been received from all of the target activities. For each received data-message, it performs the reduction operation. If all the signals/messages have been received, then it invokes the continuation 𝐾. Else, it creates a closure remembering the set of activities whose signals/messages are yet to be processed and void scheduler-static(𝑐ℎ𝑆𝑖𝑧𝑒) // 𝑐ℎ𝑆𝑖𝑧𝑒 unused here begin // work already divided during enqueing in Figure <ref type="figure" coords="7,526.52,83.70,6.56,8.43" target="#fig_6">8a</ref>. executeWL(WL[𝑡𝑖𝑑]);  pushes the closure to the appropriate work-queue, before returning from the function. This ensures that the thread executing the wait-wrapper function does not block (or busy wait). The wait-AllRedCPS method works similarly, by waiting for all the messages to be available before performing the reduction. The details of these algorithms can be found in the extended report <ref type="bibr" coords="7,485.64,292.47,9.21,8.43" target="#b0">[1]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Reduction Operations</head><p>We now highlight some salient points about our reduction strategy. As discussed in Section 5.3, the reduction operation is invoked eagerly for point-to-point synchronization (waitRedCPS), as and when the message from any target activity is processed. However, for the all-to-all synchronization (waitAllRedCPS), we efficiently perform the reduction after all the messages have been received, in a lazy manner. We now describe the intuition behind this design.</p><p>One main drawback of the eager method of reduction is that it is inherently serial in nature; hence each activity may take up to 𝑂 (𝑁 𝑎 ) steps for reduction, where 𝑁 𝑎 is the number of activities participating in reduction. While for small values of 𝑁 𝑎 this cost may be minimal, it can be prohibitively high, for large values of 𝑁 𝑎 ; a common use-case being performing all-to-all reduction (realized by consecutive calls to signalAllSend and waitAllRed commands of UWOmp 𝑝𝑟𝑜 ). To address this issue in case of all-to-all reduction we use the lazy mode of reduction. The algorithm works on the principle of the popular parallel message-exchange based protocol <ref type="bibr" coords="7,347.03,500.29,14.55,8.43" target="#b26">[27]</ref> that leads to each activity performing 𝑂 (𝑙𝑜𝑔 2 (𝑁 𝑎 )) steps; in this scheme, after every time step 𝑡, each activity holds a reduced value over the messages of 2 𝑡 activities. However, for small values of 𝑁 𝑎 , we continue to use the eager mode and avoid the storage overhead of the shared array.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.5">Supporting Different Scheduling Policies</head><p>UWOmp++ <ref type="bibr" coords="7,360.36,568.30,10.47,8.43" target="#b3">[4]</ref> could not handle any scheduling policies of OpenMP except static scheduling. Considering the importance of scheduling policies beyond static, we also provide support for dynamic, guided and runtime scheduling.</p><p>In Section 4.3, we discuss how the getSchedule function handles the runtime schedule option during execution. We now discuss the details of the remaining three schedulers.</p><p>static scheduler. The scheduler function scheduler-static (Figure <ref type="figure" coords="7,328.97,654.21,7.34,8.43" target="#fig_1">12</ref>) simply executes all the closures present in WL <ref type="bibr" coords="7,508.71,654.21,23.35,8.43">[𝑡𝑖𝑑]</ref>. We skip the definition of executeWL for brevity. In this scheduling, each thread maintains its own local worklist and as a result, in the waitRedCPS function (described earlier in Section 5.3), the locking mechanism before and after the enqueue operation is not required.</p><p>dynamic-scheduler and guided-scheduler. As discussed in Section 4.3, for dynamic scheduling we use the global worklist. In scheduler-dynamic (Figure <ref type="figure" coords="8,161.32,115.92,6.49,8.43" target="#fig_11">13</ref>), each thread atomically dequeues (at most) 𝑐ℎ𝑆𝑖𝑧𝑒 number of closures from the worklist and executes them. The scheduler-guided function works similar, except that 𝑐ℎ𝑆𝑖𝑧𝑒 is updated after each atomic dequeue. We skip the code for the same, for brevity.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Discussion</head><p>We now discuss three salient features of our proposal.</p><p>• Translating input UWOmp 𝑝𝑟𝑜 programs to mUWOmp 𝑝𝑟𝑜 code. We use the following simplification steps (similar to that of Aloor and Nandivada <ref type="bibr" coords="8,137.44,219.10,8.88,8.43" target="#b3">[4]</ref>), to convert any general UWOmp 𝑝𝑟𝑜 code to mUWOmp 𝑝𝑟𝑜 , before we invoke our CPS translator. We apply these steps until there is no further change.</p><p>Step 1. A sequence of statements as the body a parallel-for-loop. The full body is moved to a separate function and a call to that function is replaced with the body of the parallel-for-loop.</p><p>Step 2. One or more serial-loops inside the code invoked from a parallel-for-loop. We transform each such serial-loop to a recursive function and replace the loop with a call to that function.</p><p>Step 3.Set of Statements inside the parallel-region and not a parallelfor-loop or barrier statement. Similar to Step 1, we first move the set of statements to a separate function (say foo). The statements include the set of sequential statements until we hit a barrier statement or parallel-for-loop. Then, since the code has to be executed by all the workers, we replace the sequence of statements with the following code:</p><p>#ompfor for (int i=0;i&lt;T;++i) {foo(• • • );} Note: The arguments to foo are the list of free variables and T denotes the number of workers executing this code.</p><p>• Optimization for Static Scheduling. We optimize the postbox for all-to-all based synchronization kernels and static scheduling policies by using a worklist implemented as a single array of closures with two indices (left and right) per thread. When a thread hits a barrier, it resumes executing the continuation only after (i) the thread has finished executing all the other closures in its worklist (between left and right), and (ii) the remaining activities have also reached the barrier. This approach simplifies maintenance and reduces memory overhead.</p><p>• Maintaining the thread-id. The UW model gives a guarantee that each iteration is executed by a unique worker. Thus, querying the thread-id at any point in the iteration should return the same value (consistent thread-id requirement). However, in our proposed solution, an iteration is divided into one or more closures executed by different threads. To satisfy the consistent thread-id requirement, we store the expected thread-id of each iteration in the closure, and modify the omp_get_thread_num function to access this closure.</p><p>• Compiling UWOmp 𝑝𝑟𝑜 code with OpenMP disabled. Unlike regular OpenMP codes, as is usual with codes using point-to-point synchronization, the semantics of UWOmp 𝑝𝑟𝑜 may not match with their serial counter-parts (obtained by compiling the code by disabling OpenMP).  <ref type="bibr" coords="8,350.24,164.20,8.04,6.55" target="#b7">[8]</ref> Successive-Over Relax 128K 12 Seidel2D <ref type="bibr" coords="8,362.62,172.40,11.22,6.55" target="#b25">[26]</ref> 2 dim Gauss Seidel 128K 13 IA <ref type="bibr" coords="8,344.89,180.61,11.22,6.55" target="#b12">[13]</ref> 1 dim Iterated Avg. 4K 14 HP <ref type="bibr" coords="8,346.80,188.81,8.04,6.55" target="#b6">[7]</ref> 4 dim Heated Plate 4K • Signal/wait outside parallel-for-loops. UWOmp 𝑝𝑟𝑜 assumes that during execution, signal/wait functions are never invoked from outside parallel-for-loops. To handle invocation of signal/wait outside parallel-for-loops, we ensure that signal/wait (and their CPS counterparts) will abort if not invoked inside a parallel-for-loop.</p><p>• Possibility of deadlocks. Similar to clocks (X10), and phasers (HJ), programs written in UWOmp 𝑝𝑟𝑜 can also deadlock. For example, iterations may wait for each other, without sending signals.</p><p>But if a UWOmp 𝑝𝑟𝑜 program has no such dependencies (using signal/wait commands) causing circular-wait, then the translated code will not lead to circular-waits (and hence no deadlocks).</p><p>• Multi-file compilation. For ease of presentation, the paper discussed the concepts assuming that there is a single file. To support multi-file compilation, we require that all files are compiled with a suitable option (e.g., -uwpro) or none are compiled with the option.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Implementation and Evaluation</head><p>We implemented our proposed language extension, translation and the runtime support for UWOmp 𝑝𝑟𝑜 in two parts: (i) the translator has been written in Java <ref type="bibr" coords="8,401.45,426.67,10.22,8.43" target="#b4">[5]</ref> in the IMOP Compiler Framework <ref type="bibr" coords="8,535.76,426.67,14.31,8.43" target="#b22">[23]</ref> -approximately 8000 lines of code (ii) the runtime libraries are implemented in C <ref type="bibr" coords="8,380.04,448.15,14.34,8.43" target="#b19">[20]</ref> -approximately 2000 lines of code. IMOP is a source-to-source compiler framework for analyzing and compiling OpenMP programs. To compile the generated OpenMP codes, we used GCC with -O3 switch (includes tail-call optimization). We evaluate our proposed translation scheme and the runtime using 14 benchmark kernels from various sources (details in Figure <ref type="figure" coords="8,328.33,512.59,6.23,8.43" target="#fig_12">14</ref>). These include all the kernels used by Aloor and Nandivada <ref type="bibr" coords="8,314.62,523.33,10.34,8.43" target="#b3">[4]</ref> (except FDTD-2D, which we could not compile/run using the baseline compiler of Aloor and Nandivada) and a few additional kernels: WF, Jacobi1D, Stencil4D, and HP. For each kernel, we indicate the type of synchronization needed and if it uses reduction operations. Note that point-to-point kernels, can also be written using all-to-all synchronization.</p><p>To demonstrate the versatility of our proposed techniques, we performed our evaluation on two systems: (i) Dell Precision 7920 server, a 2.3 GHz Intel system with 64 hardware threads, and 64 GB memory, referred to as HW64. (ii) HPE Apollo XL170rGen10 Server, a 2.5 GHz Intel 40-core system, and 192GB memory, referred to as HW40. All numbers reported in this section are obtained by taking a geometric mean over 10 runs. For each benchmark kernel we chose the largest input such that the 10 runs of the UWOmp 𝑝𝑟𝑜 kernel would complete within one hour on HW64. In this section, for a language 𝐿 𝑥 , we use the phrase "performance of an 𝐿 𝑥 program" to mean the performance of the code generated by the compiler for 𝐿 𝑥 , for the program written in 𝐿 𝑥 .</p><p>We show our comparative evaluation across four dimensions: (i) UWOmp 𝑝𝑟𝑜 kernels that perform all-to-all synchronization with no reduction operations (kernels 1-7); we compare the performance of these UWOmp 𝑝𝑟𝑜 codes against their UWOmp++ counterparts. (ii) UWOmp 𝑝𝑟𝑜 kernels that perform only point-to-point synchronization, with no reduction (kernels 8-12); we compared their performance with that of their all-to-all versions written in UWOmp 𝑝𝑟𝑜 and standard OpenMP. Note: we could not successfully run the code generated by the UWOmp++ compiler for the all-to-all UWOmp++ versions of these codes and hence we do not show a comparison against these codes. (iii) UWOmp 𝑝𝑟𝑜 kernels performing reduction operations (kernels 13-14); we compare the performance of these kernels with their OpenMP original benchmarks. We first rewrote these kernels to use our reduction algorithm and compare them with their standard OpenMP benchmarks. (iv) Impact of the scheduling policy; we present a comparative behavior of all the kernels by varying the scheduling policy. We also found that the UWOmp 𝑝𝑟𝑜 codes scale well with the increasing number of threads. to lack of space, the details are made available in the extended report <ref type="bibr" coords="9,281.57,300.60,9.14,8.43" target="#b0">[1]</ref>. Evaluation of all-to-all synchronization. For the benchmark kernels 1-7, Figure <ref type="figure" coords="9,136.08,322.08,8.34,8.43" target="#fig_1">15</ref> shows the percentage improvement of UWOmp 𝑝𝑟𝑜 codes over their UWOmp++ counterparts, for varying number of threads.</p><p>Our evaluation shows that except for KPDP in one particular configuration (64 cores on HW64 and 40 cores on HW40), the UWOmp 𝑝𝑟𝑜 codes perform better than their UWOmp++ counterparts. Even for that particular configuration the performance degradation is minimal (&lt;7%). One common pattern we find is that if a kernel has a lot of computation (for example, LELCR, LCS and WF) UWOmp 𝑝𝑟𝑜 outperforms UWOmp++ significantly, in contrast to kernels with very low computation (for example, KPDP and MCM) where our comparative gains are less. Overall, we find that the percentage improvements varied between −4.0% to +98.1% on the HW64 system and between −6.6% to +89.5% on the HW40 system. We believe that such significant performance gains are mainly due to efficient handling of worklists (single local worklist vs two separate worklists in UWOmp++; see Section 6), and being conservative in converting only the essential parts of the code to CPS form.</p><p>Note: we avoid showing a comparison with the OpenMP counterparts of these benchmarks as Aloor and Nandivada <ref type="bibr" coords="9,265.35,527.40,10.34,8.43" target="#b3">[4]</ref> have already shown that UWOmp++ programs run faster than the plain OpenMP programs, and we show that UWOmp 𝑝𝑟𝑜 programs fare significantly better than their UWOmp++ counterparts. Evaluation of point-to-point synchronization. For the benchmark kernels 8-12, Figure <ref type="figure" coords="9,154.24,581.47,8.18,8.43" target="#fig_1">16</ref> summarizes the percentage improvement of the point-to-point variants of the codes compared to OpenMP, for varying number of threads, on both HW64 and HW40 systems. Figure <ref type="figure" coords="9,120.85,613.69,8.34,8.43" target="#fig_14">17</ref> summarizes the percentage improvement of the point-to-point variants of the codes compared to the all-to-all UWOmp 𝑝𝑟𝑜 versions, for varying #threads. We see a significant performance improvement obtained when using point-to-point synchronization routines over that of OpenMP. The percentage improvement varied between 6.8% to 86.5% on HW64, and between 6.9% to 84.8% on HW40 when compared with OpenMP. The percentage improvement varied between 27.3% to 82.4% on HW64, and between 6.4% to 82.9% on the HW40 system when compared with the all-to-all versions of UWOmp 𝑝𝑟𝑜 .</p><p>The main reason of this improvement is due to the lesser amount of communication (and faster execution) in point-to-point synchronization compared to all-to-all synchronization in OpenMP. For most of the kernels we see that the performance improvement reduces gradually with the increasing number of threads. This is mainly because the main overhead in all-to-all synchronization is the waiting time incurred by all the activities. As the number of threads increase, the overall waiting time gets amortized better and leads to a reduction in the overhead. Evaluation of reduction kernels. For the benchmark kernels 13-14, Figure <ref type="figure" coords="9,349.52,223.25,8.01,8.43" target="#fig_15">19</ref> shows the percentage improvement obtained using our proposed reduction scheme against the standard OpenMP benchmarks (using the OpenMP reduction clause wherever possible). We see that the proposed scheme performs significantly better. The percentage improvement varied between 26.1% to 52.4% on HW64, and between 31.4% to 82.7% on HW40, compared to OpenMP.</p><p>For reference, we also compared our generated codes using the techniques discussed in this paper (use parallel reduction operation) against that in which one of the activities 𝑋 1 performs the reduction operation in serial. We have found that the parallel reduction operation clearly outperforms (31% to 78%) the serial one; the graphs for the same have been moved to the extended report <ref type="bibr" coords="9,507.80,341.39,9.21,8.43" target="#b0">[1]</ref>. Evaluation of different schedules. We evaluate all kernels for different scheduling policies to demonstrate the importance of supporting diverse scheduling policies and the effectiveness of our dynamic and guided schedulers. Figure <ref type="figure" coords="9,459.56,384.34,8.34,8.43" target="#fig_6">18</ref> shows the percentage improvement of dynamic and guided scheduling compared to static scheduling; due to lack of space, we show this evaluation only for a fixed number of threads (set to the maximum available hardware cores in the system). We see that for kernels that only have all-to-all synchronization, the static schedule performed much better; we believe this is mainly due to our proposed optimization for all-to-all synchronization in the context of static-scheduling; see Section 6. In the case of kernels with point-to-point synchronization, since the set of tasks waiting for each other was not predictable, the dynamic/guided scheme performed better.</p><p>Further, we observe that for IA and HP kernels, the gains due to dynamic and guided schedules is less. We believe that it is due to the presence of all-to-all reduction operations in those kernels that seem to work better with static scheduling. For most kernels that do not use reduction operations, we find that the dynamic and guided policies work better.</p><p>Overall, for dynamic scheduling, the percentage improvement varied between −45% to +32% on the HW64 system, and between −43% to +44% on the HW40 system. Similarly, for guided scheduling, the percentage improvement varied between −39% to +31% on the HW64 system, and between −47% to +30% on the HW40 system. Such significant variance clearly attests to the importance of supporting different scheduling policies and the efficacy of our implemented schedulers.</p><p>Note: We compared our kernels with the baseline OpenMP kernels with dynamic or guided scheduling. We observed that the    (a) HW64 System. #threads = 64.  performance of our dynamic/guided scheduling scheme is comparable to that of the baseline (-2 to 2%); not much overhead. We skip the details due to lack of space.</p><formula xml:id="formula_3">M C M K P D P G E M V E R L C S L E L C R W F % Improvement</formula><formula xml:id="formula_4">L C S M C M W F G E M V E R L E L C R J a c o b i1 D J a c o b i2 D S t</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">M M</head><formula xml:id="formula_5">K P D P L C S M C M W F G E M V E R L E L C R J a c o b i1 D J a c o b i2 D S t</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Related Work</head><p>Aloor and Nandivada <ref type="bibr" coords="10,388.78,547.17,10.34,8.43" target="#b1">[2]</ref> proposed the novel idea of a unique worker model (UWOpenMP), which gives the programmer an impression that each iteration of a parallel-for-loop is executed by a unique thread (worker). Such a model allowed barrier statements to be inserted inside work-sharing constructs like parallel-for-loops. Aloor and Nandivada <ref type="bibr" coords="10,371.12,600.87,10.34,8.43" target="#b3">[4]</ref> work on UWOmp++ extended the above idea further and provided support for recursive functions (with barriers) to be invoked within parallel-for-loops. In contrast, UWOmp 𝑝𝑟𝑜 extends this idea further to allow point-to-point synchronization, reduction operations between the activities (iterations) of a parallelfor-loop and allow arbitrary scheduling policies of OpenMP.</p><p>OpenMP <ref type="bibr" coords="11,104.03,72.93,14.31,8.43" target="#b24">[25]</ref> supports a taskwait command with depend clause which can be used synchronize between the tasks; the dependencies are specified in terms of shared variables (for example, depend (out:x), or depend (in:x)) and not individual tasks. In contrast, UWOmp 𝑝𝑟𝑜 supports point-to-point synchronization among the iterations (activities) of parallel-for-loops. Further, UWOmp 𝑝𝑟𝑜 supports reduction operations in the middle of the activities, such that the final reduced value is available immediately after the reduction operation (do not have to wait for the end of the parallel region).</p><p>There have been multiple efforts <ref type="bibr" coords="11,186.90,170.48,13.13,8.43" target="#b14">[15,</ref><ref type="bibr" coords="11,202.10,170.48,10.07,8.43" target="#b20">21,</ref><ref type="bibr" coords="11,214.24,170.48,10.07,8.43" target="#b28">28,</ref><ref type="bibr" coords="11,226.37,170.48,11.24,8.43" target="#b33">33]</ref> to utilize continuations to extend and translate parallel programs. <ref type="bibr" coords="11,238.15,181.22,14.30,8.43" target="#b14">[15]</ref> use the idea of continuations to explicitly maintain activation records for all the activities, and use these activation records at the time of pausing (store the activation records) and resuming (restore the activation record) the activities. Maintaining activation records for all the activities creates unnecessary memory overhead In contrast, our approach only saves the information that needs to be executed by each activity in its corresponding closure data structure; further, we reutilize memory in order to avoid unnecessary malloc calls. Fischer et al. <ref type="bibr" coords="11,97.58,277.88,14.43,8.43" target="#b13">[14]</ref> provide a modular approach to do a CPS translation of event-driven programs in Java. For the Cilk language, Blumofe et al. <ref type="bibr" coords="11,79.65,299.36,10.34,8.43" target="#b5">[6]</ref> propose a C-based runtime with a work-stealing scheduler useful for multithreaded programming, which uses continuations to spawn and join tasks. Our approach takes advantage of CPS to efficiently perform wait and continue operations, and supports different scheduling policies, along with reduction operations.</p><p>White <ref type="bibr" coords="11,94.83,353.06,14.34,8.43" target="#b34">[34]</ref> describes an implementation for OpenMP-tasks (created using #pragma omp task directive) using continuations. UWOmp 𝑝𝑟𝑜 uses continuations to efficiently handle activities in parallel-for-loops, which may contain synchronization points (point-to-point or all-to-all) even within recursive functions.</p><p>For HJ, Imam and Sarkar <ref type="bibr" coords="11,158.50,407.13,14.43,8.43" target="#b16">[17]</ref> propose the idea of one-shot delimited continuations (OSDeCont) to support cooperative scheduling and event-driven controls. One main restriction in their approach is that it works only for help-first and work-first approaches of workstealing. We take inspiration from their approach, but generalize the techniques so that we are not limited to specific scheduling policies and our scheme works in the context of OpenMP parallel-for-loops.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9">Conclusion</head><p>In this paper, we present UWOmp 𝑝𝑟𝑜 that allows point-to-point synchronizations and reduction operations, among the activities of parallel-for-loops of OpenMP. We present a scheme to compile UWOmp 𝑝𝑟𝑜 codes to efficient OpenMP code. We have also designed a runtime, based on a novel postbox based communication subsystem to support efficient signal and wait functions, along with reduction operations and arbitrary schedules of OpenMP. We have implemented our scheme in the IMOP compiler framework and performed a thorough evaluation. We argue that programmers can write expressive and performant codes using UWOmp 𝑝𝑟𝑜 .</p><p>• The following command invokes the IMOP translator to translate the code: java -da -Xms2048M -Xmx4096M -cp third-party-tools/ com.microsoft.z3.jar:. imop.Translator -nru -f &lt;file&gt;.i • Compile the translated benchmark using any OpenMP C Compiler: gcc -fopenmp -O3 -o &lt;file&gt; outputdump/&lt;file&gt;-processed.i • Run the translated benchmark: ./&lt;file&gt; [Optional Arguments]</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.5 Evaluation and expected result</head><p>After running the translator, the translated output will be present in a output-dump folder created by the IMOP translator. The filename will contain a postfix -processed denoting the final processed output.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,302.00,748.70,8.00,7.83;1,106.31,23.38,399.38,9.79;1,46.00,748.70,140.51,7.83;1,46.00,756.70,124.89,7.83;1,11.95,715.81,7.05,16.19;1,11.95,697.50,7.05,16.50;1,11.95,653.44,7.05,42.26;1,11.95,614.22,7.05,37.41;1,11.95,604.00,7.05,8.42;1,11.95,578.14,7.05,24.05;1,11.95,532.74,7.05,43.60;1,11.95,518.70,7.05,12.23;1,11.95,477.41,7.05,39.48;1,11.95,438.62,7.05,36.98;1,11.95,415.05,7.05,21.76;1,11.95,409.56,7.05,3.68;1,11.95,308.81,7.05,98.94;1,11.95,284.14,7.05,22.86;1,11.95,268.61,7.05,13.72;1,11.95,263.12,7.05,3.68;1,11.95,246.95,7.05,14.36;1,11.95,138.14,5.54,107.01"><head>27 2023</head><label>27</label><figDesc>32nd International Conference on Parallel Architectures and Compilation Techniques (PACT) 979-8-3503-4254-3/23/$31.00 ©2023 IEEE DOI 10.1109/PACT58117.2023.00011 2023 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT) | 979-8-3503-4254-3/23/$31.00 ©2023 IEEE | DOI: 10.1109/PACT58117.2023</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="2,95.70,301.62,426.87,7.49"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: 1D Jacobian computation. Here A and B are shared arrays of N elements and T indicates the number of timesteps.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="3,313.88,413.63,235.44,7.49;3,313.88,423.40,176.51,7.49"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Iterated Averaging. Here A and B are shared arrays of N elements and epsilon specifies the tolerance limit.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,195.41,94.12,213.59,7.49;5,64.95,109.46,23.83,6.55;5,125.52,109.46,6.98,6.55;5,150.78,109.46,63.88,6.55;5,64.95,117.27,26.30,6.55;5,125.52,117.27,6.98,6.55;5,150.78,117.27,89.87,6.55;5,64.95,125.08,25.67,6.55;5,125.52,125.08,6.98,6.55;5,150.78,125.08,68.61,6.55;5,64.95,132.89,28.57,6.55;5,125.52,132.89,6.98,6.55;5,150.78,132.89,68.13,6.55;5,149.41,140.70,76.31,6.55;5,64.95,148.52,32.11,6.55;5,125.52,148.52,6.98,6.55;5,150.78,148.52,65.80,6.55;5,64.95,156.33,23.18,6.55;5,125.52,156.33,6.98,6.55;5,150.78,156.33,107.33,6.55;5,150.78,164.14,91.30,6.55;5,64.95,171.95,13.14,6.55;5,125.52,171.95,6.98,6.55;5,150.78,171.95,119.29,6.55;5,64.95,179.76,32.11,6.55;5,125.52,179.76,6.98,6.55;5,150.78,179.76,52.75,6.55;5,64.95,187.57,30.75,6.55;5,125.52,187.57,6.98,6.55;5,150.78,187.57,49.21,6.55;5,64.95,195.39,21.90,6.55;5,125.52,195.39,6.98,6.55;5,150.78,195.39,60.21,6.55;5,64.95,203.20,32.32,6.55;5,125.52,203.20,6.98,6.55;5,150.78,203.20,60.12,6.55;5,64.95,211.01,18.57,6.55;5,125.52,211.01,6.98,6.55;5,150.78,211.01,71.96,6.55;5,107.27,224.75,130.01,9.20;5,64.95,241.67,23.83,6.55;5,125.52,241.67,6.98,6.55;5,150.78,241.67,109.79,6.55;5,64.95,249.49,36.63,6.55;5,125.52,249.49,6.98,6.55;5,150.78,249.49,135.93,6.55;5,64.95,257.30,25.67,6.55;5,125.52,257.30,6.98,6.55;5,150.78,257.30,78.33,6.55;5,64.95,265.11,39.28,6.55;5,125.51,265.11,6.98,6.55;5,150.78,265.11,68.13,6.55;5,149.41,272.92,87.66,6.55;5,64.95,280.73,33.88,6.55;5,125.52,280.73,6.98,6.55;5,150.78,280.73,107.33,6.55;5,150.78,288.54,141.26,6.56;5,64.95,296.35,34.38,6.55;5,125.52,296.35,6.98,6.55;5,150.78,296.35,105.35,6.55;5,64.95,304.16,32.22,6.55;5,125.52,304.16,6.98,6.55;5,150.78,304.16,68.50,6.55;5,64.95,311.97,27.61,6.55;5,125.52,311.97,6.98,6.55;5,150.78,311.97,124.15,6.55;5,103.69,325.73,137.19,9.20"><head>Figure 4 :Figure 5 :Figure 6 :</head><label>456</label><figDesc>Figure 4: Block diagram of our proposed translation scheme. Program ::= (FuncDecl)* MainFunc FuncDecl ::= Type ID(Args){ (Stmt)* RetStmt} MainFunc ::= int main() { ParRegion } ParRegion ::= #pragma omp parallel { (ParLoop | BarrierStmt)* } BarrierStmt ::= #pragma omp barrier ParLoop ::= #pragma omp for nowait schedOpt for(ID=0;ID&lt;ID;ID++){ FunCall } Stmt ::= SimpleStmt | FunCall | RetStmt | Seq (Stmt) SimpleStmt ::= AssignStmt | IfStmt AssignStmt ::= ID = SimpleExpr; FunCall ::= ID(ActualParamList); SimpleExpr ::= ID | Op ID | ID Op ID IfStmt ::= if (SimpleExpr) { (Stmt)* } Figure 5: Grammar for mUWOmp 𝑝𝑟𝑜 Program ::= (CPSFuncDecl)* (FuncDecl)* MainFunc CPSFuncDecl ::= void ID(Clsr K,Args){(SimpleStmt)* TailCallStmt} MainFunc ::= int main() { CPSParRegion } CPSParRegion ::= #pragma omp parallel { (CPSParLoop | BarrierStmt)* } CPSParLoop ::= #pragma omp for nowait schedOpt for(ID=0;ID&lt;ID;ID++){ (SimpleStmt)* CPSFunCall } TailCallStmt ::= CPSFunCall | CPSIfStmt | CPSParLoop CPSFunCall ::= ID(ID,ActualParamList); CPSIfStmt ::= if (SimpleExpr) { (SimpleStmt)*CPSFunCall } Figure 6: Grammar for UWOmpCPS 𝑝𝑟𝑜</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="5,71.19,584.87,203.15,7.49"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: CPS translation rules for the parallel constructs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="5,315.87,130.24,25.40,6.84;5,316.22,138.76,45.26,7.13;5,319.83,147.55,50.18,7.13;5,320.51,156.81,53.60,6.56;5,316.21,165.60,3.42,6.55;5,376.52,146.31,8.00,7.81;5,388.89,108.01,90.66,7.13;5,388.89,116.79,121.26,7.13;5,388.89,125.58,128.08,7.13;5,388.89,134.37,137.04,7.13;5,388.89,143.63,35.95,6.53;5,388.89,151.94,61.75,7.13;5,388.89,162.60,2.27,4.68;5,408.99,160.73,50.18,7.13;5,388.89,171.39,2.27,4.68;5,408.70,169.52,114.12,7.13;5,388.89,180.17,2.27,4.68;5,409.73,178.30,79.04,7.13;5,386.62,187.57,87.49,6.55;5,347.98,201.24,167.09,8.07;5,315.40,217.56,127.12,6.71;5,315.40,227.59,2.14,4.41;5,334.88,226.28,69.94,6.17;5,315.40,235.86,2.14,4.41;5,341.90,234.10,211.38,6.71;5,315.40,244.14,2.14,4.41;5,334.77,242.83,100.92,6.17;5,315.40,252.41,2.14,4.41;5,341.90,250.65,202.83,6.71;5,315.40,260.68,2.14,4.41;5,334.77,259.37,60.88,6.17;5,315.40,268.95,2.14,4.41;5,341.90,267.19,199.08,6.71;5,315.40,277.23,2.14,4.41;5,335.00,275.47,64.59,6.71;5,325.71,294.08,211.63,6.55"><head>1 𝑡𝑖𝑑 8 𝐶 10 ( 1 𝑓 3 𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 4 } 5 𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 6 }</head><label>181013456</label><figDesc>#ompfor 𝑓 𝑜𝑟 (𝐻𝑒𝑎𝑑𝑒𝑟 ) { 𝐾 = mkClsr (X ); fCPS (𝐾 , args ); } ⇒ = thread -number (); 2 𝑠𝑐ℎ𝑒𝑑 = getSchedule (𝑠𝑐ℎ𝑒𝑑𝑂𝑝𝑡 ); 3 𝑐ℎ𝑆𝑖𝑧𝑒 = getChunkSize (𝑠𝑐ℎ𝑒𝑑𝑂𝑝𝑡 ); 4 𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 = getScheduler (𝑠𝑐ℎ𝑒𝑑 ,𝑡𝑖𝑑 ); = mkClsr ( fCPS ,bEnv( args ),𝐾 ); 9 enqueue (WL[𝑡𝑖𝑑 ] ,𝐶 );} *𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 )(𝑐ℎ𝑆𝑖𝑧𝑒 ); (a) Rules to translate UWOmpCPS 𝑝𝑟𝑜 to OM-OpenMP. 𝑢𝑛𝑐𝑃𝑡𝑟 getScheduler (𝑠𝑐ℎ𝑒𝑑 ,𝑡𝑖𝑑 ){ 2 if (𝑠𝑐ℎ𝑒𝑑 is static){ =&amp; scheduler -static; WL[𝑡𝑖𝑑 ] = new WL(); /* local Q */ else if (𝑠𝑐ℎ𝑒𝑑 is dynamic ){ =&amp; scheduler -dynamic ; WL[𝑡𝑖𝑑 ] =gWL; /* global Q */ else { // guided 7 𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 =&amp; scheduler -guided ; WL[𝑡𝑖𝑑 ] =gWL; /* global Q */ } 8 return 𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 ; } (b) Helper function to set the task worklist and return the scheduler.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="5,335.87,306.46,191.53,9.20"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: UWOmpCPS 𝑝𝑟𝑜 to OM-OpenMP Translation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="6,113.98,320.40,127.31,7.49"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: Example Transformations.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="6,339.56,76.48,188.28,6.25;6,363.51,91.41,144.72,6.55;6,386.17,122.69,130.40,7.10;6,358.72,121.66,8.00,8.30;6,359.21,109.88,7.03,8.52;6,359.21,133.32,7.03,8.52;6,314.07,152.43,242.62,7.74;6,314.28,160.24,199.99,7.74"><head>Sender</head><label></label><figDesc>Activity Signal Counter Data Message Pointer to next node (a) mixed-mode postbox: structure of the node. example: 𝑃 1 is the postbox of activity 𝑋 1 and 𝐻 2 is the hashed-index of activity 𝑋 2 in 𝑃 1 . 𝑋 2 sends 3 signals and 2 data-messages to 𝑋 1 .</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="6,333.01,173.11,197.98,7.49"><head>Figure 10 :</head><label>10</label><figDesc>Figure 10: Mixed-Mode Postbox: Structure and Example.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="7,60.78,157.85,236.84,7.49;7,60.78,167.61,235.44,7.49;7,60.78,177.37,235.64,7.49;7,60.78,187.14,236.44,7.49;7,60.62,196.61,236.60,7.81;7,60.78,206.37,228.92,7.81"><head>Figure 11 : 2 .</head><label>112</label><figDesc>Figure 11: Signatures of the signal/wait methods in CPS form; derived from signatures shown in Figure 2. FptrT specifies a function pointer type, used to pass the reduction operator function. ClsrT specifies the continuation type. Brief description of the arguments: 𝐾: continuation, 𝑒: predicate, 𝑎𝑐𝑡 : target activity, 𝑚: message, rOp : reduction function, rVar: reduction variable, 𝑐𝑜𝑝𝑦: copy function.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="7,336.63,220.38,187.07,9.20"><head>Figure 13 :</head><label>13</label><figDesc>Figure 13: UWOmp 𝑝𝑟𝑜 dynamic scheduler algorithm.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="8,314.62,199.63,235.44,9.20;8,314.62,209.72,175.78,7.49"><head>Figure 14 :</head><label>14</label><figDesc>Figure 14: Benchmarks used in UWOmp 𝑝𝑟𝑜 . Abbreviations: a2a = all-to-all, p2p = point-to-point, Redn = Reduction.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="10,95.58,411.68,417.82,9.20"><head>Figure 17 :</head><label>17</label><figDesc>Figure 17: Performance of UWOmp 𝑝𝑟𝑜 kernels with point-to-point synchronization (Vs. All2All), for varying #threads.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="10,54.72,614.55,243.55,9.20;10,54.72,624.64,111.29,7.49"><head>Figure 19 :</head><label>19</label><figDesc>Figure 19: Performance of UWOmp 𝑝𝑟𝑜 kernels that use reduction (Vs. OpenMP), for varying #threads.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="1,17.49,138.14,1.51,107.01"><head></head><label></label><figDesc>.00011</figDesc><table coords="2,61.39,72.35,482.03,223.43"><row><cell>t = 0;</cell><cell>t = 0; finish { for(i=1..N){ async phased { while (t &lt;= T) { B[i]=0.3*(A[i-1]+A[i]+A[i+1]); next; if(i==1) {x=A;A=B;B=x;t++;} next; } } } }</cell><cell>t = 0; finish { phaser p1=new phaser(SIG_WAIT); phaser p2=new phaser(SIG_WAIT); for(i=1..N){ async phased (p1, p2) { while (t &lt;= T) { B[i]=0.3*(A[i-1]+A[i]+A[i+1]); if(i==1){</cell><cell>t = 0; #pragma omp parallel {</cell></row><row><cell>#pragma omp parallel</cell><cell>(b) HJ version: all-to-all barriers.</cell><cell>// wait for signal from</cell><cell>#pragma omp for</cell></row><row><cell>{</cell><cell>t = 0;</cell><cell>// activities [2-n]</cell><cell>for(i=1;i&lt;N-1;i++){</cell></row><row><cell>while(t &lt;= T) {</cell><cell>#pragma omp parallel</cell><cell>for(j=2..n) p1.wait();</cell><cell>while(t &lt;= T) {</cell></row><row><cell>#pragma omp for</cell><cell>{</cell><cell>}else{// signal task [1]</cell><cell>B[i]=0.3*(A[i-1]+</cell></row><row><cell>for(i=1;i&lt;N-1;i++)</cell><cell>#pragma omp for</cell><cell>p1.signal();</cell><cell>A[i]+A[i+1]);</cell></row><row><cell>B[i]=0.3*(A[i-1]+</cell><cell>for(i=1;i&lt;N-1;i++){</cell><cell>}</cell><cell>signal(i!=1,1);</cell></row><row><cell>A[i]+A[i+1]);</cell><cell>while(t &lt;= T){</cell><cell>if(i==1) {x=A;A=B;B=x;t++;}</cell><cell>waitAll(i==1);</cell></row><row><cell>// implicit barrier</cell><cell>B[i]=0.3*(A[i-1]+A[i]+A[i+1]);</cell><cell>if(i==1) // signal activities [2-n]</cell><cell>if (i==1)</cell></row><row><cell>#pragma omp single</cell><cell>#pragma omp barrier</cell><cell>for(j=2..n) p2.signal();</cell><cell>{x=A;A=B;B=x;t++;}</cell></row><row><cell>{x=A; A=B; B=x; t++;}</cell><cell>if (i==1) {x=A;A=B;B=x;t++;}</cell><cell>else{//wait for signal from activity [1]</cell><cell>signalAll(i==1);</cell></row><row><cell>// implicit barrier</cell><cell>#pragma omp barrier</cell><cell>p2.wait();</cell><cell>wait(i!=1,1);</cell></row><row><cell>} }</cell><cell>} } }</cell><cell>} } } } }</cell><cell>} } }</cell></row><row><cell>(a) OpenMP Version</cell><cell>(c) UWOmp++ version</cell><cell>(d) HJ version: point-to-point barriers</cell><cell></cell></row></table><note>(e) UWOmp 𝑝𝑟𝑜 Version</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="3,60.79,315.15,236.93,96.80"><head></head><label></label><figDesc>, for OpenMP.</figDesc><table coords="3,60.79,327.13,236.93,84.83"><row><cell>Definition 2.1. A parallel-for-loop is said to be executing in UW</cell></row><row><cell>model if a unique worker executes each iteration therein.</cell></row><row><cell>Definition 2.2. A parallel-for-loop is said to be executing in (One-</cell></row><row><cell>to-Many model) or OM-OpenMP model if a worker may execute</cell></row><row><cell>one or more iterations of a parallel-for-loop. OM-OpenMP model</cell></row><row><cell>is the default execution model in OpenMP. A program executing</cell></row><row><cell>in OM-OpenMP model cannot invoke barriers (or wait commands)</cell></row><row><cell>inside work-sharing constructs.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="3,313.57,74.66,237.15,318.93"><head>Figure 2: List of commands supported by UWOmp 𝑝𝑟𝑜 . The first argu- ment 𝑒 is a predicate expression; the signal/wait operation is invoked only if 𝑒 evaluates to true. FptrT specifies a function pointer type, used to pass the reduction operator function. Varargs are used when we have to specify more than one activity. Brief description of the remaining arguments: 𝑎𝑐𝑡 : target activity, 𝑚: message, rOp: reduc- tion function, rVar: reduction variable. A superscript of ' * ' indicates the command interacts with all the activities, '+' indicates that the command interacts with one or more activities, and '𝑟 ' indicates that the command supports reduction operation.</head><label></label><figDesc></figDesc><table coords="3,314.08,74.66,228.24,318.93"><row><cell>commands</cell><cell>syntax</cell></row><row><cell>signal +</cell><cell>signal(int 𝑒, int 𝑎𝑐𝑡 , ...);</cell></row><row><cell>wait +</cell><cell>wait(int 𝑒, int 𝑎𝑐𝑡 , ...);</cell></row><row><cell>signalAll  *</cell><cell>signalAll(int 𝑒);</cell></row><row><cell>waitAll  *</cell><cell>waitAll(int 𝑒);</cell></row><row><cell>signalSend +,𝑟</cell><cell>signalSend(int 𝑒, void *𝑚, int 𝑎𝑐𝑡 , ...);</cell></row><row><cell>waitRed +,𝑟</cell><cell>waitRed(int 𝑒, FptrT rOp, void *rVar, int 𝑎𝑐𝑡 , ...);</cell></row><row><cell cols="2">signalAllSend  * ,𝑟 signalAllSend(int 𝑒, void * 𝑚);</cell></row><row><cell>waitAllRed  * ,𝑟</cell><cell>waitAllRed(int 𝑒, FptrT rOp, void *rVar);</cell></row><row><cell cols="2">#pragma omp parallel</cell></row><row><cell>{</cell><cell></cell></row><row><cell>#pragma omp for</cell><cell></cell></row><row><cell cols="2">for(i=1;i&lt;N;i++) {</cell></row><row><cell cols="2">while(diffSum &lt;= epsilon) {</cell></row><row><cell cols="2">B[i]=(A[i-1]+A[i+1])*0.5;</cell></row><row><cell cols="2">diff[i] = abs(A[i]-B[i]);</cell></row><row><cell cols="2">#pragma omp barrier</cell></row><row><cell>if(i==1){</cell><cell></cell></row><row><cell cols="2">diffSum=computeSum(diff,N);</cell></row><row><cell cols="2">x=A; A=B; B=x; }</cell></row><row><cell cols="2">#pragma omp barrier</cell></row><row><cell cols="2">} /*while*/ } /*for*/ }</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="3,333.71,268.17,213.29,139.63"><head>(a) UW-OpenMP Version</head><label></label><figDesc></figDesc><table coords="3,432.18,268.17,114.82,75.81"><row><cell>#pragma omp parallel</cell></row><row><cell>{</cell></row><row><cell>#pragma omp for</cell></row><row><cell>for(i=1;i&lt;N;i++){</cell></row><row><cell>while(diffSum &lt;= epsilon) {</cell></row><row><cell>B[i]=(A[i-1]+A[i+1])*0.5;</cell></row><row><cell>diff[i] = abs(A[i]-B[i]);</cell></row><row><cell>signalAllSend(1</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="3,441.56,336.51,108.73,56.31"><head>,diff[i]); waitAllRed(1,diffSum,ADD);</head><label></label><figDesc></figDesc><table coords="3,441.56,356.04,101.54,36.78"><row><cell>if(i==1){x=A; A=B; B=x;}</cell></row><row><cell>signalAll(i==1);</cell></row><row><cell>wait(i!=1,1);</cell></row><row><cell>} /*while*/ } /*for*/ }</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="3,455.16,400.47,72.34,8.07"><head>(b) UWOmp 𝑝𝑟𝑜 Version</head><label></label><figDesc></figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="6,59.68,72.72,235.41,242.59"><head>Translated OM-OpenMP Code. Only the changes are shown.</head><label></label><figDesc></figDesc><table coords="6,59.68,72.72,231.34,242.59"><row><cell>void f(args){</cell><cell></cell></row><row><cell>S1; signalSend(1,m,i+1);</cell><cell></cell></row><row><cell>S2; waitRed(1,ADD,x,i-1);</cell><cell></cell></row><row><cell>S3; }</cell><cell></cell></row><row><cell>int main(){</cell><cell></cell></row><row><cell>#ompparallel</cell><cell></cell></row><row><cell>{</cell><cell></cell></row><row><cell>#ompfor for(Header){f(args);} } }</cell><cell>int main(){ #ompparallel</cell></row><row><cell>(a) Input UWOmp 𝑝𝑟𝑜 code.</cell><cell>{ 𝑡𝑖𝑑=thread-number();</cell></row><row><cell>void fCPS(K,args){</cell><cell>𝑠𝑐ℎ𝑒𝑑=getSchedule(𝑠𝑐ℎ𝑒𝑑𝑂𝑝𝑡);</cell></row><row><cell>S1;</cell><cell>𝑐ℎ𝑆𝑖𝑧𝑒=getChunkSize(𝑠𝑐ℎ𝑒𝑑𝑂𝑝𝑡);</cell></row><row><cell>C1=mkClsr(pCPS1,...,K);</cell><cell>𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 =getScheduler(𝑠𝑐ℎ𝑒𝑑,𝑡𝑖𝑑);</cell></row><row><cell>signalSendCPS(C1,1,m,i+1);}</cell><cell>#ompfor</cell></row><row><cell>void pCPS1(K){</cell><cell>for(Header){</cell></row><row><cell>S2;</cell><cell>K=mkClsr(id,null,null);</cell></row><row><cell>C2=mkClsr(pCPS2,...,K);</cell><cell>C=mkClsr(fCPS,bEnv(args),K);</cell></row><row><cell>waitRedCPS(C2,1,ADD,x,i-1);}</cell><cell>enqueue(WL[tid],C); }</cell></row><row><cell>void pCPS2(K){</cell><cell>(𝑠𝑐ℎ𝑒𝑑𝑃𝑡𝑟 )(chSize); } }</cell></row><row><cell>S3; Invoke Continuation in K;} int main(){ #ompparallel</cell><cell>(c) void pCPS1(K){</cell></row><row><cell>{</cell><cell>S2;</cell></row><row><cell>#ompfor</cell><cell>C2=mkClsr(pCPS2,bEnv(S3),K);</cell></row><row><cell>for(Header){</cell><cell>waitRedCPS(C2,1,ADDint,x,</cell></row><row><cell>K=mkClsr(id,null,null);</cell><cell>COPYint,i-1); }</cell></row><row><cell>fCPS(K,args); } } }</cell><cell></cell></row><row><cell></cell><cell>(d)</cell></row><row><cell>(b) UWOmpCPS 𝑝𝑟𝑜 code</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9" coords="6,177.19,300.20,118.89,14.37"><head>OM-OpenMP Code with postpass. Only the changes are shown.</head><label></label><figDesc></figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10" coords="7,61.17,74.37,235.33,78.89"><head></head><label></label><figDesc>signalCPS(ClsrT 𝐾, int 𝑒, int 𝑎𝑐𝑡 , ...); waitCPS(ClsrT 𝐾, int 𝑒, int act, ...); signalAllCPS(ClsrT 𝐾, int 𝑒); waitAllCPS(ClsrT 𝐾, int 𝑒); signalSendCPS(ClsrT 𝐾, int 𝑒, void *𝑚, int 𝑎𝑐𝑡 , ...); waitRedCPS(ClsrT 𝐾,int 𝑒,FptrT rOp ,void* rVar,FptrT 𝑐𝑜𝑝𝑦,int 𝑎𝑐𝑡 , ...); signalAllSendCPS(ClsrT 𝐾, int 𝑒, void *𝑚); waitAllRedCPS(ClsrT 𝐾, int 𝑒, FptrT rOp , void *rVar, FptrT 𝑐𝑜𝑝𝑦);</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11" coords="7,323.70,110.55,199.28,98.74"><head>Figure 12: UWOmp 𝑝𝑟𝑜 static scheduling algorithm.</head><label></label><figDesc></figDesc><table coords="7,323.70,122.55,199.28,86.74"><row><cell>void scheduler-dynamic(𝑐ℎ𝑆𝑖𝑧𝑒)</cell></row><row><cell>begin</cell></row><row><cell>WorkList rdyWL=empty-worklist;</cell></row><row><cell>while true do</cell></row><row><cell>begin Atomic</cell></row><row><cell>if !gWL.isEmpty() then</cell></row><row><cell>rdyWL=gWL.dequeue(𝑐ℎ𝑆𝑖𝑧𝑒) else break ;</cell></row><row><cell>executeWL(rdyWL);</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_13" coords="10,62.06,74.49,486.88,208.02"><head>HW40 System Figure 15: Performance of UWOmp 𝑝𝑟𝑜 kernels with all-to-all synchronization (Vs. UWOmp++ kernels), for varying #threads.</head><label></label><figDesc></figDesc><table coords="10,62.06,74.49,486.88,208.02"><row><cell></cell><cell>2 16 13.1 17.1 24.4 35.3 22.4 35.9 32 4 7.1 9.6 8.4 10.8 15.2 64 8 10.9</cell><cell>16.2 7.8 14.0 3.2 1.8</cell><cell>25.6 19.0 37.4 24.2 19.0 37.9</cell><cell>46.7 75.0 85.2 92.0 94.4 95.6</cell><cell>56.6 92.2 95.7 96.7 97.9 98.1</cell><cell>45.2 64.5 66.8 70.6 64.1 51.7</cell><cell>2 16 9.5 36.3 42.0 39.5 31.3 14.7</cell><cell cols="2">4 32 7.0 6.6 13.1 5.9 17.5 19.7 40 8 15.2 8.3 5.9 17.3 2.3</cell><cell cols="2">46.3 63.5 66.1 58.9 47.7 15.2</cell><cell>41.3 52.3 64.4 62.8 60.7 59.9</cell><cell>33.4 39.5 37.1 43.1 36.1 26.8</cell><cell>38.7 62.0 85.2 89.5 74.4 42.3</cell></row><row><cell></cell><cell></cell><cell>-4.0</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">-6.6</cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>3 M M</cell><cell>M C M</cell><cell>K P D P</cell><cell></cell><cell>G E M V E R</cell><cell>L C S</cell><cell>L E L C R</cell><cell>W F</cell></row><row><cell>% Improvement</cell><cell cols="9">(a) HW64 System J a c o b i2 D S t e n c il 4 (b) 20 J a c o b i1 D S O R S e id e l2 D J a c o b i 1 D J a c o b i 2 D 40 60 80 100 2 4 8 16 32 64 86.5 58.4 60.4 75.2 61.6 81.8 58.5 66.2 59.1 67.8 74.7 57.9 45.0 54.9 78.5 64.0 53.4 46.1 39.6 78.7 53.4 42.7 40.1 34.5 70.1 47.0 33.0 26.4 40.1 67.4 82.0 59.6 84.8 66.3 72.2 54.0 55.4 35.6 43.1 37.6 21.9 41.0</cell><cell>55.2</cell><cell cols="2">S t e n c i l 4 2 16 65.7 52.7 33.9 34.2 44.0</cell><cell>4 32 42.9 61.0</cell><cell>S O R 70.5 68.4 47.0 32.8</cell><cell>S e i d e l 2 D 40.3 8 40 31.6 57.1 65.5 67.7 43.7</cell></row><row><cell></cell><cell></cell><cell cols="2">(a) HW64 System</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>(b)</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_14" coords="10,61.93,275.96,486.08,129.89"><head>HW40 System Figure 16: Performance of UWOmp 𝑝𝑟𝑜 kernels with point-to-point synchronization (Vs. OpenMP), for varying #threads.</head><label></label><figDesc></figDesc><table coords="10,61.93,304.25,486.08,101.61"><row><cell>20 40 60 80 100 % Improvement</cell><cell>82.4</cell><cell>J a c o b i1 D 76.4 70.7 47.9 62.3 63.4</cell><cell>46.4</cell><cell>J a c o b i2 D 57.2 58.3 51.3 41.3 27.3</cell><cell>S t e n c il 4 2 16 54.9 59.6 41.1 37.6 28.7 32.4</cell><cell>S O R 73.1 76.3 4 32 69.0 48.8 48.2</cell><cell>45.3</cell><cell>8 64 56.4</cell><cell>S e id e l2 D 64.6 75.7 76.6 66.6 49.6</cell><cell>79.1</cell><cell>J a c o b i 1 D 82.9 69.4 52.2 40.3 11.3</cell><cell>52.8</cell><cell>J a c o b i 2 D 65.4 54.6 31.9 33.8 27.5</cell><cell>52.8</cell><cell>S t e n c i l 4 2 16 64.5 50.6 28.5 27.0 40.0</cell><cell>S O R 67.5 4 32 39.7 57.9 63.7 34.9</cell><cell>15.7</cell><cell>S e i d e l 2 D 8 40 18.1 37.2 53.1 60.8 63.5 34.9</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">(a) HW64 System</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="3">(b) HW40 System</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_16" coords="10,57.84,425.85,489.49,183.31"><head>(b) HW40 System. #threads = 40. Figure 18: Comparison of dynamic and guided scheduling over static scheduling; #threads set to maximum #cores.</head><label></label><figDesc></figDesc><table coords="10,57.84,425.85,489.49,183.31"><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>26</cell><cell>18</cell><cell>22</cell><cell>29</cell><cell>24</cell><cell>42</cell><cell>15</cell><cell>39</cell><cell>30</cell><cell>44</cell><cell>24</cell><cell>28</cell><cell>19</cell><cell>29</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>-36</cell><cell>-15</cell><cell>-24</cell><cell>-28</cell><cell>-27</cell><cell>-43</cell><cell>-39</cell><cell>-42</cell><cell>-47</cell><cell>-35</cell><cell>-24</cell><cell>-38</cell><cell>-12</cell><cell>Guided -8</cell><cell>Dynamic</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>e n c il 4 S O R S e id e l2 D I A</cell><cell>H P</cell></row><row><cell>20 40 60 80 100 % Improvement</cell><cell>2 4 26.5</cell><cell>28.1</cell><cell>I A 31.6 44.8</cell><cell>8 16 27.4 26.1</cell><cell>52.4</cell><cell>H P 51.9 32 64 49.5 46.3</cell><cell>43.3</cell><cell>40.5</cell><cell>2 4</cell><cell>39.7</cell><cell>45.8</cell><cell>I A 8 16 50.9 54.1</cell><cell>32.9</cell><cell>41.7</cell><cell>32 40 54.1</cell><cell>62.2</cell><cell>H P 65.9 74.1</cell><cell>82.7</cell><cell>60.2</cell></row><row><cell></cell><cell></cell><cell cols="5">(a) HW64 System</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="5">(b) HW40 System</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 14:28:51 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Artifact Description: UWOmp 𝑝𝑟𝑜 : UWOmp++ with Point-to-Point Synchronization, Reduction and Schedules A.1 Abstract</head><p>This artifact contains the description to write a UWOmp 𝑝𝑟𝑜 program and how to invoke the translator to convert it to the final machine code. It also includes a script to compile and run the sample benchmarks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.2 Description</head><p>The UWOmp 𝑝𝑟𝑜 compiler takes as input a C program. It preprocesses the C code and inputs the preprocessed code to the IMOP Translator (written in Java) that converts the given code to CPS form. Finally, the converted CPS code is compiled using any C compiler (with OpenMP support) that generates the final machine code. To run the artifacts successfully, one would require the latest Java JDK (version 17 or higher), gcc, ant (for building the translator). Steps to install the same are given below:</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.2.1 Check-list (artifact meta information)</head><p>• JDK: sudo apt-get install openjdk-17-jdk openjdk-17-jre • GCC: sudo apt-get install build-essential • ANT: sudo apt-get install ant</p><p>The following steps work on a Linux Based System( tested on Ubuntu 22.04 ). For mac, we can use homebrew to install the same.</p><p>• JDK: brew install openjdk@17 • GCC: brew install gcc • ANT: brew install ant</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.3 Installation</head><p>The translator and instructions to use it can be downloaded from the github repository. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.4 Experiment workflow</head></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="12,76.94,253.10,219.34,6.55;12,76.94,260.91,107.46,7.28" xml:id="b0">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Aditya</forename><surname>Agrawal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">Krishna</forename><surname>Nandivada</surname></persName>
+		</author>
+		<ptr target="https://bit.ly/3DWiNoN" />
+		<title level="m">Extended Report on UWOmp 𝑝𝑟𝑜</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,269.03,219.47,6.55;12,76.94,276.84,220.02,6.55;12,76.94,284.65,219.33,6.55;12,76.93,292.46,219.33,6.55" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Unique Worker Model for OpenMP</title>
+		<author>
+			<persName coords=""><forename type="first">Raghesh</forename><surname>Aloor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">Krishna</forename><surname>Nandivada</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2751205.2751238</idno>
+		<ptr target="https://doi.org/10.1145/2751205.2751238" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM on International Conference on Supercomputing</title>
+				<meeting>the 29th ACM on International Conference on Supercomputing<address><addrLine>Newport Beach, California, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="47" to="56" />
+		</imprint>
+	</monogr>
+	<note>ICS &apos;15)</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,300.27,219.33,6.55;12,76.94,308.08,220.01,6.55;12,76.94,315.89,29.85,6.55" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Applicability of UWOmp++ and Reference Codes</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Aloor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">K</forename><surname>Nandivada</surname></persName>
+		</author>
+		<ptr target="http://www.cse.iitm.ac.in/~krishna/uwompp-master.zip" />
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note>Supplementary Material</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,323.71,219.34,6.55;12,76.94,331.52,219.34,6.55;12,76.94,339.33,220.49,6.55;12,76.94,347.14,219.24,6.55" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Efficiency and Expressiveness in UW-OpenMP</title>
+		<author>
+			<persName coords=""><forename type="first">Raghesh</forename><surname>Aloor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">Krishna</forename><surname>Nandivada</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3302516.3307360</idno>
+		<ptr target="https://doi.org/10.1145/3302516.3307360" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th International Conference on Compiler Construction</title>
+				<meeting>the 28th International Conference on Compiler Construction<address><addrLine>Washington, DC, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2019">2019. 2019</date>
+			<biblScope unit="page" from="182" to="192" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,354.95,219.34,6.55;12,76.94,362.76,111.02,6.55" xml:id="b4">
+	<monogr>
+		<title level="m" type="main">The Java programming language</title>
+		<author>
+			<persName coords=""><forename type="first">Ken</forename><surname>Arnold</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Gosling</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Holmes</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<publisher>Addison Wesley Professional</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,370.57,220.49,6.55;12,76.94,378.38,219.34,6.55;12,76.94,386.19,220.02,6.55;12,76.94,394.00,219.75,6.55;12,76.52,401.81,220.79,6.55;12,76.94,409.62,104.52,6.55" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Cilk: An Efficient Multithreaded Runtime System</title>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><forename type="middle">D</forename><surname>Blumofe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><forename type="middle">F</forename><surname>Joerg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bradley</forename><forename type="middle">C</forename><surname>Kuszmaul</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Charles</forename><forename type="middle">E</forename><surname>Leiserson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Keith</forename><forename type="middle">H</forename><surname>Randall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuli</forename><surname>Zhou</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/209936.209958</idno>
+		<ptr target="https://doi.org/10.1145/209936.209958" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Fifth ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the Fifth ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming<address><addrLine>Santa Barbara, California, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1995">1995</date>
+			<biblScope unit="page" from="207" to="216" />
+		</imprint>
+	</monogr>
+	<note>PPOPP &apos;95)</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,417.43,219.78,6.55;12,76.94,425.24,139.98,6.55" xml:id="b6">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Burkardt</surname></persName>
+		</author>
+		<ptr target="https://people.sc.fsu.edu/~jburkardt/c_src/heated_plate_openmp/heated_plate_openmp.html" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note>Heated Plate</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,433.06,220.39,6.55;12,76.94,440.87,13.04,6.55" xml:id="b7">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Burkardt</surname></persName>
+		</author>
+		<ptr target="https://people.sc.fsu.edu/~jburkardt/cpp_src/sor/sor.html" />
+		<title level="m">SOR</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,448.68,220.49,6.55;12,76.83,456.49,219.45,6.55;12,76.94,464.30,220.09,6.55;12,76.94,472.11,220.08,6.55;12,76.94,479.92,133.97,6.55" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Habanero-Java: The New Adventures of Old X10</title>
+		<author>
+			<persName coords=""><forename type="first">Vincent</forename><surname>Cavé</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jisheng</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Shirako</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2093157.2093165</idno>
+		<ptr target="https://doi.org/10.1145/2093157.2093165" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 9th International Conference on Principles and Practice of Programming in Java</title>
+				<meeting>the 9th International Conference on Principles and Practice of Programming in Java<address><addrLine>Kongens Lyngby, Denmark; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="51" to="61" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,487.73,220.39,6.55;12,76.94,495.54,220.49,6.55;12,76.94,503.35,219.34,6.55;12,76.94,511.16,138.58,6.55" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">The high-level parallel language ZPL improves productivity and performance</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Bradford</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Chamberlain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Steven</forename><forename type="middle">J</forename><surname>Sung Eun Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lawrence</forename><surname>Deitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Snyder</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE International Workshop on Productivity and Performance in High-End Computing</title>
+				<meeting>the IEEE International Workshop on Productivity and Performance in High-End Computing</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="66" to="75" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,518.97,220.49,6.55;12,76.94,526.78,220.39,6.55;12,76.71,534.60,219.57,6.55;12,76.94,542.41,219.34,6.55;12,76.94,550.22,220.02,6.55;12,76.94,558.03,220.39,6.55;12,76.94,565.84,110.88,6.55" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">X10: An Object-Oriented Approach to Non-Uniform Cluster Computing</title>
+		<author>
+			<persName coords=""><forename type="first">Philippe</forename><surname>Charles</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Grothoff</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Saraswat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><surname>Donawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Allan</forename><surname>Kielstra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kemal</forename><surname>Ebcioglu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1094811.1094852</idno>
+		<ptr target="https://doi.org/10.1145/1094811.1094852" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications</title>
+				<meeting>the 20th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications<address><addrLine>San Diego, CA, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="519" to="538" />
+		</imprint>
+	</monogr>
+	<note>OOP-SLA &apos;05)</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,573.65,219.34,6.55;12,76.94,581.46,140.68,6.55" xml:id="b11">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">H</forename><surname>Cormen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">E</forename><surname>Leiserson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">L</forename><surname>Rivest</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Stein</surname></persName>
+		</author>
+		<title level="m">Introduction to Algorithms, Third Edition</title>
+				<imprint>
+			<publisher>The MIT Press</publisher>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+	<note>3rd ed.</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,589.27,47.97,6.55;12,142.95,589.27,154.48,6.55;12,76.44,597.08,220.88,6.55;12,76.94,604.89,143.02,6.55" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A Comparison of a 1D Stencil Code in Co-Array Fortran, Unified Parallel C, X10, and Chapel</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Deitz</surname></persName>
+		</author>
+		<ptr target="http://chapel.cray.com/presentations/Stencil1D.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">IDRIS</title>
+				<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,76.94,612.70,219.34,6.55;12,76.94,620.51,219.33,6.55;12,76.94,628.32,219.34,6.55;12,76.73,636.13,220.29,6.55;12,76.94,643.94,156.12,6.55" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Tasks: Language Support for Event-Driven Programming</title>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><surname>Fischer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rupak</forename><surname>Majumdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Todd</forename><surname>Millstein</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1244381.1244403</idno>
+		<ptr target="https://doi.org/10.1145/1244381.1244403" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2007 ACM SIGPLAN Symposium on Partial Evaluation and Semantics-Based Program Manipulation</title>
+				<meeting>the 2007 ACM SIGPLAN Symposium on Partial Evaluation and Semantics-Based Program Manipulation<address><addrLine>Nice, France; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2007">2007</date>
+			<biblScope unit="page" from="134" to="143" />
+		</imprint>
+	</monogr>
+	<note>PEPM &apos;07)</note>
+</biblStruct>
+
+<biblStruct coords="12,76.94,651.76,219.33,6.55;12,76.94,659.57,219.34,6.55;12,76.94,667.38,220.09,6.55;12,76.94,675.19,125.76,6.55" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Static Analysis and Runtime Support for Parallel Execution of C</title>
+		<author>
+			<persName coords=""><forename type="first">Dennis</forename><surname>Gannon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vincent</forename><forename type="middle">A</forename><surname>Guarna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jenq</forename><surname>Kuen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lee</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Selected Papers of the Second Workshop on Languages and Compilers for Parallel Computing</title>
+				<meeting><address><addrLine>Urbana, Illinois, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Pitman Publishing, Inc., USA</publisher>
+			<date type="published" when="1990">1990</date>
+			<biblScope unit="page" from="254" to="274" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,72.92,219.33,6.55;12,329.87,80.73,125.94,6.55" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">IMSuite: A benchmark suite for simulating distributed algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Nandivada</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">JPDC</title>
+		<imprint>
+			<biblScope unit="volume">75</biblScope>
+			<biblScope unit="page" from="1" to="19" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,88.54,219.34,6.55;12,329.62,96.35,167.33,6.55" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Cooperative Scheduling of Parallel Tasks with General Synchronization Patterns</title>
+		<author>
+			<persName coords=""><forename type="first">Shams</forename><surname>Imam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ECOOP</title>
+				<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="618" to="643" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,104.16,220.39,6.55;12,329.87,111.97,63.73,6.55" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">The Chapel Language Specification</title>
+		<author>
+			<persName coords=""><forename type="first">Cray</forename><surname>Inc</surname></persName>
+		</author>
+		<ptr target="http://chapel.cray.com" />
+		<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Technical Report</note>
+</biblStruct>
+
+<biblStruct coords="12,329.87,119.78,219.34,6.55;12,329.87,127.59,197.97,6.55" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Compiling with Continuations</title>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Kennedy</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1291220.1291179</idno>
+		<ptr target="https://doi.org/10.1145/1291220.1291179" />
+	</analytic>
+	<monogr>
+		<title level="j">Continued. SIGPLAN Not</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="page" from="177" to="190" />
+			<date type="published" when="2007-10">2007. oct 2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,135.40,217.63,6.55" xml:id="b19">
+	<monogr>
+		<title level="m" type="main">The C programming language</title>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><forename type="middle">W</forename><surname>Kernighan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dennis</forename><forename type="middle">M</forename><surname>Ritchie</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,143.21,219.33,6.55;12,329.87,151.02,219.34,6.55;12,329.87,158.84,187.36,6.55" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Continuations and threads: Expressing machine concurrency directly in advanced languages</title>
+		<author>
+			<persName coords=""><forename type="first">Olin</forename><surname>Shivers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mit</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Olin</forename><surname>Shivers</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Second ACM SIGPLAN Workshop on Continuations</title>
+				<meeting>the Second ACM SIGPLAN Workshop on Continuations</meeting>
+		<imprint>
+			<publisher>ACM Press</publisher>
+			<date type="published" when="1997">1997</date>
+			<biblScope unit="page" from="2" to="3" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,166.65,219.34,6.55;12,329.87,174.46,30.56,6.55" xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Advanced Compiler Design and Implementation</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Muchnick</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997">1997</date>
+			<publisher>Morgan Kaufmann</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,182.27,219.78,6.55;12,329.26,190.08,49.06,6.55" xml:id="b22">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">Krishna</forename><surname>Nandivada</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aman</forename><surname>Nougrahiya</surname></persName>
+		</author>
+		<ptr target="http://cse.iitm.ac.in/~amannoug/imop" />
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,197.89,208.91,6.55" xml:id="b23">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Thao</forename><surname>Nguyen</surname></persName>
+		</author>
+		<ptr target="https://github.com/taoito/lcs-parallel" />
+		<title level="m">LCS In Parallel</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,205.70,219.34,6.55;12,329.87,213.51,175.33,6.55" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">OpenMP Application Programming Interface Version 5</title>
+		<ptr target="https://www.openmp.org/specifications/" />
+	</analytic>
+	<monogr>
+		<title level="j">OpenMP Architecture Review Board</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,221.32,219.77,6.55;12,329.26,229.13,90.18,6.55" xml:id="b25">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Louis-Noël</forename><surname>Pouchet</surname></persName>
+		</author>
+		<ptr target="https://web.cse.ohio-state.edu/~pouchet.2/software/polybench/" />
+		<title level="m">PolyBench/C Suite</title>
+				<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,236.94,219.34,6.55;12,329.63,244.75,219.58,6.55;12,329.87,252.56,219.34,6.55;12,329.87,260.37,220.39,6.55" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">More Efficient Reduction Algorithms for Non-Power-of-Two Number of Processors in Message-Passing Parallel Systems</title>
+		<author>
+			<persName coords=""><forename type="first">Rolf</forename><surname>Rabenseifner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jesper</forename><surname>Larsson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Träff</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Recent Advances in Parallel Virtual Machine and Message Passing Interface</title>
+				<editor>
+			<persName><forename type="first">Dieter</forename><surname>Kranzlmüller</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Péter</forename><surname>Kacsuk</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jack</forename><surname>Dongarra</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,268.19,150.27,6.55" xml:id="b27">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">Heidelberg</forename><surname>Springer Berlin</surname></persName>
+		</author>
+		<imprint>
+			<biblScope unit="page" from="36" to="46" />
+			<pubPlace>Berlin, Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,276.00,219.51,6.55;12,329.87,283.81,31.87,6.55" xml:id="b28">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">H</forename><surname>Reppy</surname></persName>
+		</author>
+		<title level="m">Concurrent Programming in ML</title>
+				<meeting><address><addrLine>USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Cambridge University Press</publisher>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,291.62,220.49,6.55;12,329.87,299.43,219.34,6.55;12,329.87,307.24,220.39,6.55;12,329.87,315.05,125.40,6.55" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Unifying Barrier and Pointto-Point Synchronization in OpenMP with Phasers</title>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Shirako</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kamal</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 7th International Conference on OpenMP in the Petascale Era</title>
+				<meeting>the 7th International Conference on OpenMP in the Petascale Era<address><addrLine>Chicago, IL; Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="122" to="137" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,322.86,220.39,6.55;12,329.87,330.67,219.34,6.55;12,329.87,338.48,220.39,6.55;12,329.87,346.29,220.09,6.55;12,329.87,354.10,51.84,6.55" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Expressing DOACROSS Loop Dependences in OpenMP</title>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Shirako</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Priya</forename><surname>Unnikrishnan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sanjay</forename><surname>Chatterjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kelvin</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OpenMP in the Era of Low Power Devices and Accelerators, Alistair P. Rendell</title>
+				<editor>
+			<persName><forename type="first">Barbara</forename><forename type="middle">M</forename><surname>Chapman</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Matthias</forename><forename type="middle">S</forename><surname>Müller</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin Heidelberg; Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="30" to="44" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,361.91,219.34,6.55;12,329.64,369.73,220.24,6.55;12,329.87,377.53,219.34,6.55;12,329.87,385.35,217.61,6.55" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">A Practical Approach to DOACROSS Parallelization</title>
+		<author>
+			<persName coords=""><forename type="first">Priya</forename><surname>Unnikrishnan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Shirako</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kit</forename><surname>Barton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sanjay</forename><surname>Chatterjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Raul</forename><surname>Silvera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Euro-Par 2012 Parallel Processing</title>
+				<editor>
+			<persName><forename type="first">Christos</forename><surname>Kaklamanis</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Theodore</forename><surname>Papatheodorou</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Paul</forename><forename type="middle">G</forename><surname>Spirakis</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin Heidelberg; Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="219" to="231" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,393.16,219.46,6.55;12,329.63,400.97,220.63,6.55;12,329.87,408.78,220.39,6.55;12,329.87,416.59,22.25,6.55" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Multi-FPGA Accelerator Architecture for Stencil Computation Exploiting Spacial and Temporal Scalability</title>
+		<author>
+			<persName coords=""><forename type="first">Hasitha</forename><surname>Waidyasooriya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Masanori</forename><surname>Hariyama</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ACCESS.2019.2910824</idno>
+		<ptr target="https://doi.org/10.1109/ACCESS.2019.2910824" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="page" from="53188" to="53201" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,329.87,424.40,219.34,6.55;12,329.87,432.21,220.09,6.55;12,329.87,440.02,220.09,6.55;12,329.87,447.83,143.40,6.55" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Continuation-Based Multiprocessing</title>
+		<author>
+			<persName coords=""><forename type="first">Mitchell</forename><surname>Wand</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/800087.802786</idno>
+		<ptr target="https://doi.org/10.1145/800087.802786" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 1980 ACM Conference on LISP and Functional Programming</title>
+				<meeting>the 1980 ACM Conference on LISP and Functional Programming<address><addrLine>California, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1980">1980</date>
+			<biblScope unit="page" from="19" to="28" />
+		</imprint>
+		<respStmt>
+			<orgName>Stanford University</orgName>
+		</respStmt>
+	</monogr>
+	<note>LFP &apos;80)</note>
+</biblStruct>
+
+<biblStruct coords="12,329.87,455.64,220.39,6.55;12,329.87,463.45,82.34,6.55" xml:id="b34">
+	<monogr>
+		<title level="m" type="main">Extending old languages for new architectures</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>White</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<pubPlace>University of Cambridge, UK</pubPlace>
+		</imprint>
+	</monogr>
+	<note>Ph. D. Dissertation</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

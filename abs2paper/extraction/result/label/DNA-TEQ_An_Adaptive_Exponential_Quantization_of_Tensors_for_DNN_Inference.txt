@@ -1,0 +1,5 @@
+DNA-TEQ_An_Adaptive_Exponential_Quantization_of_Tensors_for_DNN_Inference.txt:
+10. Keywords: Machine Learning
+11. Keywords: Artificial Intelligence
+
+故该论文的主题关键词总结为[10,11]。

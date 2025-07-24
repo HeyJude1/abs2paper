@@ -1,0 +1,43 @@
+4 THEORETICAL ANALYSIS
+Because BEAM inverts 𝐴 instead of 𝐴, it is crucial to understand the errors that arise when solving 𝐴𝑥 = 𝑏 in finite-precision. First, the additive modifications guarantee that 𝐴 and its block principal leading submatrices are non-singular, a prerequisite for the success of non-pivoted block-LU factorizations. Thus, this algorithm (without the Woodbury formula) computes a solution, 𝑥, that satisfies a nearby system,
+( 𝐴 + Δ 𝐴) 𝑥 = (𝑏 + Δ𝑏), (3)
+with
+∥Δ 𝐴∥ 2 ≤ 𝜂 2 ( 𝑥) ∥ 𝐴∥ 2 and ∥Δ𝑏 ∥ 2 ≤ 𝜂 2 ( 𝑥) ∥𝑏 ∥ 2 ; (4)
+that is, 𝜂 2 ( 𝑥) is the normwise backward error for the spectral norm. Then, combining (3) with the definition of 𝐴 from ( ) gives
+(𝐴 + 𝑀 𝑈 𝑀 Σ 𝑀 𝑇 𝑉 + Δ 𝐴) 𝑥 = (𝑏 + Δ𝑏).
+Thus, the backward error of 𝑥 for the original system 𝐴𝑥 = 𝑏 is
+𝜂 2 ( 𝑥) ≤ max ∥𝑀 𝑈 𝑀 Σ 𝑀 𝑇 𝑉 + Δ 𝐴∥ 2 ∥𝐴∥ 2 , ∥Δ𝑏 ∥ 2 ∥𝑏 ∥ 2 ≤ τ + 𝜂 2 ( 𝑥). (5)
+Hence, the forward error of 𝑥 can be bounded with only τ, the backward stability of the block factorization, and the condition number of 𝐴. Importantly, 𝐴 need not be well conditioned. Furthermore, the convergence of iterative refinement is also ensured when those three values are sufficiently small . Note that (5) implies that τ may directly contribute to the backward error when there are modifications but the Woodbury formula is not applied.
+Unfortunately, an ill-conditioned 𝐴 can still be problematic when using the Woodbury formula because its forward error directly perturbs the capacitance matrix and, thus, the correction. To help understand this condition number, we provide the following theorem, which states that if the tolerance, τ, is small relative to the reciprocal condition number of 𝐴, the conditioning of 𝐴 will be close to that of 𝐴. Interestingly, the condition of this theorem ( τ𝜅 2 (𝐴) ≪ 1) appears related to the requirement implied by for the solution to have any digits of accuracy ( τ𝜅 2 (𝐴) + 𝜂 2 𝜅 2 (𝐴) ≪ 1).
+= τ ∥𝐴∥ 2 . If τ𝜅 2 (𝐴) < 1, then 𝜅 2 ( 𝐴) ≤ 𝜎 1 (𝐴) + 𝜏 𝜎 𝑛 (𝐴) − 𝜏 = 𝜅 2 (𝐴) 1 + τ 1 − τ𝜅 2 (𝐴)
+where 𝜎 1 (𝐴) and 𝜎 𝑛 (𝐴) denote the largest and smallest singular values, respectively, and 𝜅 2 (𝐴) = 𝜎 1 (𝐴)/𝜎 𝑛 (𝐴).
+Proof. By the triangle inequality,
+𝜎 1 ( 𝐴) ≤ 𝜎 1 (𝐴) + 𝜏 and 𝜎 𝑛 ( 𝐴) ≥ 𝜎 𝑛 (𝐴) − 𝜏 . Suppose τ𝜅 2 (𝐴) < 1, which implies 𝜎 𝑛 (𝐴) − 𝜏 > 0. Hence, 𝜅 2 ( 𝐴) ≤ 𝜎 1 (𝐴) + 𝜏 𝜎 𝑛 (𝐴) − 𝜏 = 𝜎 1 (𝐴) + τ𝜎 1 (𝐴) 𝜎 𝑛 (𝐴) − τ𝜎 1 (𝐴) = 𝜅 2 (𝐴) 1 + τ 1 − τ𝜅 2 (𝐴)
+. □
+When applying the Woodbury formula, we must also invert the capacitance matrix as per . Thus, its condition number is also crucial in the analysis of this method. We start by generalizing a lemma of Yip to the full version of the Woodbury formula. Lemma 4.2. Let ∥•∥ 𝑝 be any sub-multiplicative matrix norm. We denote the condition number with respect to the Moore-Penrose pseudoinverse by 𝜅 + 𝑝 (𝐴) = ∥𝐴∥ 𝑝 ∥𝐴 + ∥ 𝑝 . Suppose 𝐴 = 𝐴 + 𝑈 Σ𝑉 𝑇 is nonsingular with 𝑈 , 𝑉 having full column rank and Σ being nonsingular. Then,
+𝜅 𝑝 (Σ −1 − 𝑉 𝑇 𝐴 −1 𝑈 ) ≤ min 𝜅 + 𝑝 (𝑈 ) 2 , 𝜅 + 𝑝 (𝑉 𝑇 ) 2 𝜅 𝑝 (Σ)𝜅 𝑝 (𝐴 𝐴 −1 ) ≤ min 𝜅 + 𝑝 (𝑈 ) 2 , 𝜅 + 𝑝 (𝑉 𝑇 ) 2 𝜅 𝑝 (Σ)𝜅 𝑝 (𝐴)𝜅 𝑝 ( 𝐴).
+Proof. Because we must bound the norm of the capacitance matrix, we start by rewriting its expression. Multiplying 𝐴−𝑈 Σ𝑉 𝑇 = 𝐴 on the left by Σ −1 𝑈 + and on the right by 𝐴 −1 𝑈 gives
+(Σ −1 − 𝑉 𝑇 𝐴 −1 𝑈 ) = Σ −1 𝑈 + 𝐴 𝐴 −1 𝑈 . (6)
+We next seek a similar expression for its inverse. Note that,
+𝐴 𝐴 −1 𝑈 = ( 𝐴 − 𝑈 Σ𝑉 𝑇 ) 𝐴 −1 𝑈 = 𝑈 − 𝑈 Σ𝑉 𝑇 𝐴 −1 𝑈 .
+So, the columns of 𝐴 𝐴 −1 𝑈 are within the column space of 𝑈 . Since 𝑈𝑈 + is an orthogonal projector onto that space , we have (𝑈𝑈 + )𝐴 𝐴 −1 𝑈 = 𝐴 𝐴 −1 𝑈 . Using this, we can verify that
+(𝑈 + 𝐴𝐴 −1 𝑈 Σ)(Σ −1 𝑈 + 𝐴 𝐴 −1 𝑈 ) = 𝐼 .
+Combining this with gives the desired inverse:
+(Σ −1 − 𝑉 𝑇 𝐴 −1 𝑈 ) −1 = 𝑈 + 𝐴𝐴 −1 𝑈 Σ.
+Hence, the condition number can be bounded as
+𝜅 𝑝 (Σ −1 − 𝑉 𝑇 𝐴 −1 𝑈 ) = ∥Σ −1 𝑈 + 𝐴 𝐴 −1 𝑈 ∥ 𝑝 ∥𝑈 + 𝐴𝐴 −1 𝑈 Σ∥ 𝑝 ≤ 𝜅 + 𝑝 (𝑈 ) 2 𝜅 𝑝 (Σ)∥𝐴 𝐴 −1 ∥ 𝑝 ∥ 𝐴𝐴 −1 ∥ 𝑝 . A similar argument shows that 𝜅 𝑝 (Σ − 𝑈 𝐴 −1 𝑉 𝑇 ) ≤ 𝜅 + 𝑝 (𝑉 𝑇 ) 2 𝜅 𝑝 (Σ)∥𝐴 𝐴 −1 ∥ 𝑝 ∥ 𝐴𝐴 −1 ∥ 𝑝 . □
+Using this lemma, the condition number for the capacitance matrix in the obvious form of the Woodbury formula is bounded by
+𝜅 2 (𝑀 −1 Σ − 𝑀 𝑇 𝑉 𝐴 −1 𝑀 𝑈 ) ≤ 𝜅 2 (𝑀 Σ )𝜅 2 (𝐴 𝐴 −1 )
+. As mentioned in Section 3, we instead formulate the Woodbury correction to get a tighter bound on the condition number:
+𝜅 2 (𝐼 − 𝑀 Σ 𝑀 𝑇 𝑉 𝐴 −1 𝑀 𝑈 ) ≤ 𝜅 2 (𝐴 𝐴 −1 )
+. The conditioning of this latter matrix can be further improved, particularly for the 2-norm. The following theorem shows that as long as neither 𝐴 nor 𝐴 are ill-conditioned, the capacitance matrix will have an excellent condition number.
+∥𝑀 Σ ∥ 2 = 𝜏. Additionally, let C = 𝐼 − 𝑀 Σ 𝑀 𝑇 𝑉 𝐴 −1 𝑀 𝑈 . Then, 𝜅 2 (C) ≤ (1 + 𝜏 ∥ 𝐴 −1 ∥ 2 ) (1 + 𝜏 ∥𝐴 −1 ∥ 2 ).
+If 𝜏 = τ ∥𝐴∥ 2 with τ < 1, then we can simplify the bound to
+𝜅 2 (C) ≤ (1 + τ 1− τ 𝜅 2 ( 𝐴)) (1 + τ𝜅 2 (𝐴)).
+Proof. With 𝑈 = 𝑀 𝑈 , Σ = 𝐼 , and
+𝑉 𝑇 = 𝑀 Σ 𝑀 𝑇 𝑉 , Lemma 4.2 gives the bound 𝜅 2 (C) ≤ ∥𝐴 𝐴 −1 ∥ 2 ∥ 𝐴𝐴 −1 ∥ 2 . Since 𝐴 = 𝐴 − 𝑀 𝑈 𝑀 Σ 𝑀 𝑇 𝑉 and ∥𝑀 𝑈 𝑀 Σ 𝑀 𝑇 𝑉 ∥ 2 = 𝜏, a little algebra shows that 𝜅 2 (C) ≤ (1 + 𝜏 ∥ 𝐴 −1 ∥ 2 ) (1 + 𝜏 ∥𝐴 −1 ∥ 2 ). Suppose 𝜏 = τ ∥𝐴∥ 2 and τ < 1. Then, ∥𝐴∥ 2 = ∥ 𝐴 − 𝑀 𝑈 𝑀 Σ 𝑀 𝑇 𝑉 ∥ 2 ≤ ∥ 𝐴∥ 2 + τ ∥𝐴∥ 2 , and so ∥𝐴∥ 2 ≤ (1 − τ) −1 ∥ 𝐴∥ 2 . Therefore, 𝜅 2 (C) ≤ (1 + τ ∥𝐴∥ 2 ∥ 𝐴 −1 ∥ 2 ) (1 + τ ∥𝐴∥ 2 ∥𝐴 −1 ∥ 2 ) ≤ (1 + τ 1− τ 𝜅 2 ( 𝐴)) (1 + τ𝜅 2 (𝐴)).
+□ After the backward error bound in and the theorems on key condition numbers, one major concern remains: how backward stable is the factorization of 𝐴? To our knowledge, no analysis exists for block LU that would apply to Algorithm 1. The closest is by Demmel, Higham, and Schreiber , but the block LU they analyzed differs from our factorization in two primary ways. First, the diagonal blocks are factored with GEPP instead of the SVD. Second, the diagonal blocks of the lower block-triangular factor are identity matrices instead of singular vectors. Under reasonable assumptions, they proved that it computes a solution, 𝑥, to 𝐴𝑥 = 𝑏 such that
+(𝐴 + Δ𝐴) 𝑥 𝑏, ∥ 𝑥 ∥ max ≤ 𝑐 (𝑛)𝑢 (∥𝐴∥ max + ∥ 𝐿∥ max ∥ 𝑈 ∥ max )
+where 𝐿 and 𝑈 are the computed block-triangular factors and 𝑐 (𝑛) is a constant dependent on 𝑛. Thus, we expect the method to be backward stable when ∥ 𝐿∥ max ∥ 𝑈 ∥ max /∥ 𝐴∥ max is small. For the general case, Demmel et al. proved that this ratio is at most
+∥ 𝐿∥ max ∥ 𝑈 ∥ max ∥𝐴∥ max ≤ 𝑛𝜌 3 NP 𝜅 max (𝐴) (7)
+where 𝜌 NP is the growth factor of 𝐴 for GENP (i.e., the magnitude of the largest element that occurs in any Schur complement). While the previous analysis cannot guarantee the backward stability of BEAM's factorization, the similarity between the factorizations suggests such stability is likely. Furthermore, we expect a stronger version of ( ) can be proven for BEAM since the norms of the inverses of the diagonal blocks are bounded.

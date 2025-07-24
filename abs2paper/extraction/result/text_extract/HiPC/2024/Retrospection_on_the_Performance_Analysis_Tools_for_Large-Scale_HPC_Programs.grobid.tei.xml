@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Retrospection on the Performance Analysis Tools for Large-Scale HPC Programs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2024-12-18">2024-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,86.24,160.93,50.53,8.93;1,136.77,158.80,1.60,6.57"><forename type="first">Zhibo</forename><surname>Xuan</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,151.40,160.93,35.66,8.93;1,187.06,158.80,1.60,6.57"><forename type="first">Xin</forename><surname>You</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,201.70,160.93,58.08,8.93;1,259.78,158.80,1.77,6.57"><forename type="first">Hailong</forename><surname>Yang</surname></persName>
+							<email>hailong.yang@buaa.edu</email>
+						</author>
+						<author>
+							<persName coords="1,269.97,160.93,54.54,8.93;1,324.50,158.80,1.77,6.57"><forename type="first">Mingzhen</forename><surname>Li</surname></persName>
+							<email>limingzhen@ict.ac.cn</email>
+						</author>
+						<author>
+							<persName coords="1,334.69,160.93,64.26,8.93;1,398.95,158.80,1.77,6.57"><forename type="first">Zhongzhi</forename><surname>Luan</surname></persName>
+						</author>
+						<author>
+							<persName coords="1,409.13,160.93,27.65,8.93;1,436.78,158.80,1.77,6.57"><forename type="first">Yi</forename><surname>Liu</surname></persName>
+							<email>yi.liu@buaa.edu</email>
+						</author>
+						<author>
+							<persName coords="1,465.45,160.93,48.23,8.93;1,513.68,158.80,1.77,6.57"><forename type="first">Depei</forename><surname>Qian</surname></persName>
+							<email>depeiq@buaa.edu</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">School of Computer Science and Engineering</orgName>
+								<orgName type="department" key="dep2">Institute of Computing Technology</orgName>
+								<orgName type="laboratory">State Key Lab of Processors</orgName>
+								<orgName type="institution">Beihang University</orgName>
+								<address>
+									<country>China ‡</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Chinese Academy</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Retrospection on the Performance Analysis Tools for Large-Scale HPC Programs</title>
+					</analytic>
+					<monogr>
+						<title level="m">2024 IEEE 31st International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="34" to="44"/>
+							<date type="published" when="2024-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">7F468510ABA9DC9C668C96788E0C6E56</idno>
+					<idno type="DOI">10.1109/hipc62374.2024.00013</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>As the performance gap between hardware and software widens, performance analysis tools are essential for understanding the behavior of large-scale High-Performance Computing (HPC) programs. These tools provide insights into the performance bottlenecks and help in optimizing the performance of the programs. In this paper, we present a comprehensive study of performance analysis tools for large-scale HPC systems including both sampling-based and instrumentation-based tools that are commonly adopted in the HPC community. We investigate the abundance and overheads of data collection as well as the analysis capabilities of HPCToolkit, TAU, and Scalasca with representative programs at scale. Our study shows that different performance analysis tools have distinct strengths and weaknesses, and the choice of a performance analysis tool depends on the specific requirements of the user. We also discuss the challenges and future directions in the field of performance analysis tools for large-scale HPC systems.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Performance is critical for both scientific and industrial applications on various domains, including molecular dynamics <ref type="bibr" coords="1,76.22,446.24,9.95,8.12" target="#b0">[1]</ref>, computational fluid dynamics <ref type="bibr" coords="1,218.04,446.24,9.95,8.12" target="#b1">[2]</ref>, climate modeling <ref type="bibr" coords="1,77.66,457.47,9.95,8.12" target="#b2">[3]</ref>, and large language models <ref type="bibr" coords="1,210.58,457.47,9.95,8.12" target="#b3">[4]</ref>. However, due to the end of Moore's law, the performance improvements of general-purpose processer are bogged down, which achieves only 3% per year for single core performance <ref type="bibr" coords="1,245.48,491.19,9.95,8.12" target="#b4">[5]</ref>. Software is becoming increasingly difficult to achieve notable performance improvements through hardware updates. To make matters worse, recent years of Golden Bell Prize winners have shown that the cutting-edge performance of application performance only achieves 1.78% of peak performance of Fugaku Supercomputer <ref type="bibr" coords="1,151.18,558.61,9.95,8.12" target="#b5">[6]</ref>. The performance gap between the peak performance of the hardware and the actual performance of the software is widening.</p><p>As large-scale high-performance programs are becoming increasingly complex, it is unrealistic to manually analyze and understand the performance of target programs for largescale high-performance computing (HPC) systems. To better understand the gap between the attainable software and hardware performance, various performance tools are proposed for performance analysis, including HPCToolkit <ref type="bibr" coords="1,230.81,659.88,9.95,8.12" target="#b6">[7]</ref>, TAU <ref type="bibr" coords="1,267.02,659.88,9.95,8.12" target="#b7">[8]</ref>, and Scalasca <ref type="bibr" coords="1,94.81,671.12,9.95,8.12" target="#b8">[9]</ref>. These tools can identify the performance hotspots of target programs and help in optimizing the program performance by providing insights of various common performance * Both authors contributed equally to this paper. issues, including poor scalability and performance variance. However, performance analysis tools have different features and capabilities, and the choice of a performance analysis tool depends on the specific analysis requirements of the user.</p><p>Different performance analysis tools have different data collection methodologies as well as analysis capabilities according to their attention to the functional requirements. Specifically, one common concern of the performance analysis tools is the overhead of data collection. The data collection overhead can significantly affect the performance of the target program, and thus it is essential to minimize it. Another concern is the accuracy and abundance of data collection. The performance analysis tools should collect accurate and abundant performance data to provide insights into the performance bottlenecks of the target program. The performance analysis tools should also provide the ability to analyze the collected performance data to identify the performance bottlenecks with intuitive presentations for developers to guide further program optimizations.</p><p>For data collection methods, the performance analysis tools can roughly be divided into two categories: sampling-based and instrumentation-based tools. Sampling-based tools, such as HPCToolkit <ref type="bibr" coords="1,378.35,487.56,9.95,8.12" target="#b6">[7]</ref>, collect performance data by sampling the target program at regular time intervals. These tools are generally lightweight with acceptable overheads, but they may miss some performance data (e.g., function parameters). Instrumentation-based tools, such as TAU <ref type="bibr" coords="1,473.53,532.51,10.92,8.12" target="#b7">[8]</ref> and Scalasca <ref type="bibr" coords="1,537.31,532.51,9.95,8.12" target="#b8">[9]</ref>, collect performance data by instrumenting the target program with probes. These tools often exhibit higher overhead than sample-based tools when collected function calls are triggered at significantly high frequency, but they can collect more detailed performance data with notable accuracy.</p><p>For analyzing the performance of large-scale HPC programs, developers are commonly concerned about the bottlenecks of the target program, which are often represented as hotspot functions (i.e., the most time-consuming or resourceconsuming code regions), scalability issues (i.e., performance loss compared to the ideal linear speedup), and performance variance (i.e., the significant performance difference between different runs). The performance analysis tools should provide insights into these common performance issues to help developers optimize the performance of the target program. However, the performance analysis tools have different strengths and weaknesses in analyzing these performance issues. The choice of a performance analysis tool depends on the specific requirements of the user, including the type of application, the target platform, and the analysis criteria. However, there is no empirical study that evaluates the commonly adopted performance analysis tools on large-scale HPC systems to provide guidance on choices of performance analysis tools as well as discuss common shortbacks of existing tools on large-scale HPC systems for future direction.</p><p>In this paper, we present a comprehensive study of performance analysis tools for large-scale HPC systems. We identify the key features of performance analysis tools and then evaluate the tools based on these features. We provide a detailed comparison of the performance analysis tools regarding their features and capabilities. We also discuss the challenges and future directions in the field of performance analysis tools for large-scale HPC systems. Specifically, this paper makes the following contributions:</p><p>• We present a comprehensive study of performance analysis tools for large-scale HPC systems, including data collection and analysis capabilities in common concerns. • We identify the strengths and pitfalls of the existing performance analysis tools from the key feature aspects, including data collection, trace analysis, hotspot analysis, scalability, and performance variance. • We provide several future directions of performance analysis tools at scale according to the above comparison of the representative tools. The rest of this paper is organized as follows. Section II provides the background of performance analysis tools. Section III presents the comparison methodology used in this study. Section IV evaluates the performance analysis tools based on the methodology and discusses the comparison results. Section V concludes the paper and discusses future directions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. BACKGROUND</head><p>In this section, we briefly summarize the key concepts and terminologies related to performance analysis tools for large-scale HPC systems. For analyzing the performance of large-scale HPC programs, developers first need to collect the performance data from the specific execution of the target program and then analyze the collected performance data to identify the performance bottlenecks for further optimization. The following subsections provide the background of performance data collection and large-scale performance analysis tools in detail.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Performance Data Collection</head><p>For effective performance analysis, several performance data need to be collected from the target program, including CPU performance counters, elapsed time, MPI communication, function events, and function parameters. The performance data can be collected by two methods: sampling-based and instrumentation-based.</p><p>Sampling-based performance data collection -Generally, the sampling-based performance data collection method is based on the idea of sampling the target program at regular time intervals, where the sample distribution can provide a statistically accurate profile of the target program execution. The sampling rate is often represented as the number of samples per second (e.g., 1000Hz indicates 1000 samples per second). For each sample, tools can obtain the current state of the sampled program execution, including its call stack, timestamp, and the value of CPU performance counters. However, the sampling-based data collection approaches are non-invasive, and detailed value-related data (e.g., function parameters) is hard to collect. This leads to the incapability of providing detailed performance analysis for some specific performance issues, including the MPI communication patterns <ref type="bibr" coords="2,514.70,207.87,14.36,8.12" target="#b9">[10]</ref>, late sender/receiver <ref type="bibr" coords="2,374.69,219.11,9.95,8.12" target="#b8">[9]</ref>, <ref type="bibr" coords="2,391.58,219.11,14.36,8.12" target="#b10">[11]</ref>, and fine-grained analysis of performance variance <ref type="bibr" coords="2,376.94,230.35,14.36,8.12" target="#b11">[12]</ref>, <ref type="bibr" coords="2,398.28,230.35,14.36,8.12" target="#b12">[13]</ref>. Some hardware platforms provide hardware precise event-based sampling (e.g., PEBS in Intel X86) that can sample the program states, including register files and control states, with low overheads at high accuracy <ref type="bibr" coords="2,333.26,275.30,14.36,8.12" target="#b13">[14]</ref>, which can support some detailed value-related data collection and fine-grained performance analysis <ref type="bibr" coords="2,512.01,286.54,15.29,8.12" target="#b14">[15]</ref>- <ref type="bibr" coords="2,531.12,286.54,15.29,8.12" target="#b16">[17]</ref>. However, the hardware-based sampling methods are often limited by the hardware platforms and may not be available on all platforms.</p><p>Instrumentation-based performance data collection -Generally, instrumentation-based performance data collection methods are based on the idea of instrumenting the target program with probes to collect the performance data at the function entry and exit points, MPI communication points, and other specific code regions. Specifically, the probes can be inserted into the target program with library interception, binary instrumentation, compiler instrumentation, and source-code instrumentation. Library interception can intercept the library functions (e.g., PMPI profiling interface in MPI standard) by pre-loading specific library wrappers via LD PRELOAD <ref type="bibr" coords="2,536.97,443.87,9.95,8.12" target="#b6">[7]</ref>, <ref type="bibr" coords="2,314.23,455.11,9.95,8.12" target="#b7">[8]</ref>, <ref type="bibr" coords="2,331.54,455.11,14.36,8.12" target="#b12">[13]</ref>, <ref type="bibr" coords="2,353.53,455.11,14.36,8.12" target="#b17">[18]</ref>. Binary instrumentation can insert the probes into the binary code with static or dynamic binary rewriting <ref type="bibr" coords="2,329.26,477.58,15.29,8.12" target="#b18">[19]</ref>- <ref type="bibr" coords="2,348.38,477.58,15.29,8.12" target="#b21">[22]</ref>. Compiler instrumentation can insert the probes into the target program by integrated instrumentation pass at the compile time <ref type="bibr" coords="2,382.49,500.06,9.95,8.12" target="#b7">[8]</ref>, <ref type="bibr" coords="2,399.08,500.06,9.95,8.12" target="#b8">[9]</ref>, <ref type="bibr" coords="2,415.68,500.06,14.36,8.12" target="#b22">[23]</ref>, while source-code instrumentation requires program developers to insert the corresponding probe API calls into the interested code regions <ref type="bibr" coords="2,510.01,522.53,14.36,8.12" target="#b23">[24]</ref>, <ref type="bibr" coords="2,532.29,522.53,14.36,8.12" target="#b24">[25]</ref>. Regardless of the specific instrumentation approaches, the instrumentation-based performance data collection methods can provide a wide range of performance data, including the function parameters, accurate function event traces, and even fine-grained instruction or operand values. However, the instrumentation-based performance data collection methods often exhibit higher overhead than sample-based tools when inserted probes are triggered at significantly high frequency.</p><p>For performance analysis of large-scale HPC programs, performance tools often need to balance the trade-off between the abundance and overhead of data collection to provide effective performance analysis <ref type="bibr" coords="2,438.81,657.39,10.82,8.12" target="#b6">[7]</ref>- <ref type="bibr" coords="2,453.24,657.39,10.82,8.12" target="#b8">[9]</ref>. However, collecting the entire trace including all computation and communication events with detailed performance data is often infeasible due to the high overheads (details in Section IV-A). To mitigate this issue, large-scale performance analysis tools either collect performance data via sampling <ref type="bibr" coords="3,181.99,84.60,9.95,8.12" target="#b6">[7]</ref>, <ref type="bibr" coords="3,198.70,84.60,15.60,8.12" target="#b25">[26]</ref> or selectively obtain the most significant traces (e.g., MPI communication traces) via instrumentation <ref type="bibr" coords="3,136.31,107.07,9.95,8.12" target="#b7">[8]</ref>, <ref type="bibr" coords="3,152.85,107.07,10.92,8.12" target="#b8">[9]</ref> for further performance analysis.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Goals of Large-Scale Performance Analysis</head><p>For performance analysis of large-scale HPC programs, the common concern of the program developers is how to better understand the performance bottlenecks of the target program and optimize the performance of the program through intuitive guidance from the performance analysis tools. Although there are varieties of performance issues that can be analyzed, in this paper, we focus on the most common performance issues at a large scale, including the hotspots, poor scalability, and performance variance.</p><p>Trace -The trace analysis is the common ability of performance analysis tools to provide detailed performance data of the target program execution, including the function events, function parameters, and MPI communication patterns. Several performance issues, such as late sender and receiver <ref type="bibr" coords="3,277.57,286.51,14.36,8.12" target="#b10">[11]</ref>, require MPI communication traces for analysis. The trace analysis is often presented in a timeline view to help developers understand the performance bottlenecks of the target program execution. For more accurate trace analysis, the existing performance analysis tools already adopt timeline alignments to mitigate the potential time skewness of the collected traces <ref type="bibr" coords="3,121.72,365.18,14.36,8.12" target="#b26">[27]</ref>, <ref type="bibr" coords="3,142.94,365.18,14.36,8.12" target="#b27">[28]</ref>.</p><p>Hotspot -The hotspot analysis is a common performance analysis technique that identifies the functions that consume significant execution time or resources. The hotspot functions are often the performance bottlenecks of the target program, and optimizing the hotspot functions can significantly improve the performance of the program. For presenting the hotspots of the target program execution, some commonly adopted performance analysis tools, such as HPCToolkit <ref type="bibr" coords="3,263.30,455.20,9.95,8.12" target="#b6">[7]</ref>, can provide top-down (i.e., tree view with the top of the call stack as root), bottom-up (i.e., tree view with the bottom of the call stack as root), and flat (i.e., functions) view of the hotspots with the detailed performance data, including elapsed times and collected metrics from hardware performance counters.</p><p>Scalability -The scalability loss is another common performance analysis goal to diagnose the performance bottlenecks of the target program when numbers of processes increase. The scalability analysis helps developers understand the performance loss of the target program compared to the ideal linear speedup. Almost all commonly adopted performance analysis tools, such as HPCToolkit <ref type="bibr" coords="3,168.76,590.18,9.95,8.12" target="#b6">[7]</ref>, TAU <ref type="bibr" coords="3,209.22,590.18,9.95,8.12" target="#b7">[8]</ref>, and Scalasca <ref type="bibr" coords="3,282.26,590.18,9.95,8.12" target="#b8">[9]</ref>, can provide the scalability analysis of the target program with different numbers of processes. Some advanced performance analysis techniques <ref type="bibr" coords="3,135.09,623.89,14.36,8.12" target="#b25">[26]</ref>, <ref type="bibr" coords="3,155.70,623.89,15.60,8.12" target="#b28">[29]</ref> can further locate the root cause of specific scalability issues for better optimization guidance. The scalability analysis can help developers identify the performance bottlenecks of the target program and optimize the performance of the program for large-scale HPC systems.</p><p>Performance Variance -Performance variance indicates the significant performance difference between different runs of the target program. The performance variance can be caused by various factors, including system noise, hardware failure, and the misconfigured runtime environment <ref type="bibr" coords="3,493.39,222.97,14.36,8.12" target="#b29">[30]</ref>. The performance variance analysis can help the developers figure out the sources of the specific performance variance and provide rich information to avoid or alleviate such unexpected fail-slows at scale via hardware re-configuration or software optimization <ref type="bibr" coords="3,365.11,279.16,14.36,8.12" target="#b11">[12]</ref>, <ref type="bibr" coords="3,386.33,279.16,14.36,8.12" target="#b12">[13]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. METHODOLOGY</head><p>Although there are widely adopted performance tools in large-scale HPC systems, there is no existing work that provides a comprehensive study of the existing performance analysis tools for performance analysis of large-scale HPC programs according to our knowledge. In this section, we describe our testbed of the performance analysis tools and the corresponding comparable metrics on the common concerns for performance analysis.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Experimental Setup</head><p>We evaluate a homebuilt cluster with hardware and software configuration as shown in Table <ref type="table" coords="3,448.27,434.86,2.73,8.12" target="#tab_0">I</ref>. Specifically, the cluster consists of 32 computing nodes. Each node is equipped with one 36-core Intel Golden 6240 processor running at 2.60 GHz frequency. There is 384 GB of memory for each node. All nodes are connected with a 100 Gbps network. The storage has over 160 Gbps I/O bandwidth. All programs are compiled with GCC 9.4.0 with -O3 compiler optimizations. We use OpenMPI 4.0.7 for MPI communication.</p><p>For a comprehensive comparison of the existing large-scale performance tools, we evaluate the following performance tools that are well-known for providing rich performance guidance for large-scale HPC programs:</p><p>• HPCToolkit <ref type="bibr" coords="3,384.56,571.50,10.92,8.42" target="#b6">[7]</ref> is a sampling-based performance analysis tool that provides insights into the performance bottlenecks of the target programs. HPCToolkit can collect traces and generate profiles from the collected data. In our evaluation, we leverage the default sampling rate at 300Hz per event type for HPCToolkit.</p><p>• TAU <ref type="bibr" coords="3,355.05,638.92,10.92,8.42" target="#b7">[8]</ref> is an instrumentation-based performance analysis tool that provides the ability to collect wide ranges of performance data. TAU requires re-compilation with its own compilation toolchains (e.g., tau cc) to obtain the detailed function traces. For trading off the overhead and abundance of data collection, TAU provides both profile run (denoted as TAU-P) that do not collect detailed function traces and trace run (denoted as TAU-T) that collect detailed function traces. In our evaluation, we enable the auto event throttling with default settings (numcalls &gt; 100, 000 &amp;&amp; usecs/call &lt; 10) for the TAU-P run and only collects MPI functions for TAU-T. • Scalasca <ref type="bibr" coords="4,118.18,140.42,10.92,8.42" target="#b8">[9]</ref> is an instrumentation-based performance analysis tool that targets scalable performance tracing and analysis. Scalasca requires re-compilation with instrumentation compiler toolchains (e.g., scorep <ref type="bibr" coords="4,265.66,174.50,14.98,8.12" target="#b30">[31]</ref>) to obtain the detailed function traces. Scalasca requires one profile run (denoted as Scalasca-P) before collecting the full trace (denoted as Scalasca-T) for the target programs to obtain reasonable configurations as well as function filters for lower overhead. In our evaluation, we collect without any filters for Scalasca-P and tracing with the provided configuration as well as filters that only collect MPI communication traces. The aforementioned performance tools are representative of state-of-the-art performance analysis tools and are widely adopted in the HPC community. We evaluate these tools based on the following criteria: abundance and overhead of data collection, trace analysis, hotspots analysis, scalability, and performance variance. Note that although primitive diagnosing of the above performance issues does not require full event traces, MPI communication traces are still required for several advanced root cause analysis of specific performance issues in state-of-the-art research <ref type="bibr" coords="4,163.93,378.67,14.36,8.12" target="#b12">[13]</ref>. We evaluate these tools with the NAS Parallel Benchmarks (NPB) <ref type="bibr" coords="4,206.16,389.91,15.60,8.12" target="#b31">[32]</ref> and the real-world application LULESH <ref type="bibr" coords="4,143.81,401.14,14.36,8.12" target="#b32">[33]</ref>.</p><p>Specifically, we use class B input for NPB-16 processors, class D for NPB-1,024 processors, and -s 40 -i 400 for LULESH in our evaluation according to the evaluation scale. For HPCToolkit, we use -t -e REALTIME -e PAPI TOT INS to enable the trace function and performance metric collection function. For TAU, we enable the auto throttling function, callpath, and communication matrix collection. For Scalasca, to generate the filter file and trace configuration (e.g., max buffer size), we first use scalasca -analyze and scalascaexamine to profile the target benchmarks and applications. We use the same input datasets for all the performance analysis tools to ensure a fair comparison.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Compariable Criteria</head><p>The performance analysis tools can be evaluated with two aspects: data collection and analysis capabilities. We evaluate the performance analysis tools based on the following criteria:</p><p>1) Data Collection: For both primitive and advanced performance analysis, developers first need to collect enough performance data from the target program execution. In this paper, we call the ability to collect different types of performance data as abundance of data collection. The abundance of data collection is essential for supporting various useful and important performance analysis tasks. For large-scale homogeneous clusters, we investigate whether the performance analysis tools can collect the following performance data: • CPU Performance Counter: The ability to collect CPU performance counter data, often represented as PAPI <ref type="bibr" coords="4,535.44,205.54,15.60,8.12" target="#b33">[34]</ref> or Linux perf <ref type="bibr" coords="4,391.25,216.78,15.60,8.12" target="#b34">[35]</ref> events. It can provide deep insights into the hardware performance bottlenecks of the target program (e.g., top-down microarchitecture analysis <ref type="bibr" coords="4,529.98,239.26,14.04,8.12" target="#b35">[36]</ref>). Besides, the time and storage overhead of data collection is another important aspect for evaluating the performance analysis tools. Specifically, time overhead is measured as the execution time of the target program with and without the performance analysis tools. Storage overhead is measured as the storage space required to store the collected performance data. The overhead of data collection is essential for minimizing the impact of the performance analysis tools on the target program execution. The higher time overhead leads to significant time and commercial costs for performance analysis and limits the applicability of the performance analysis tools at a large scale. The higher storage overhead leads to the difficulty of storing and analyzing the collected performance data, which may further result in unexpected fails due to exceeding the storage capacity (e.g., maximum 1 TB storage budgets adopted in our evaluated homebuilt HPC cluster).</p><p>2) Analysis Capabilities: For performance analysis capabilities of the evaluated performance analysis tools, it is difficult to provide a quantitative metric for comparison. Instead, we provide the pros and cons of the evaluated performance analysis tools based on the following common performance analysis tasks for large-scale HPC programs: We evaluate the performance analysis tools with the trace analysis capabilities with their built-in visualization GUI interface for intuitive comparison. • Hotspot Analysis -Hotspots indicate functions or code regions that consume the most significant time or resources. For a fair comparison, we run the default hotspot analysis within each evaluated performance tool and provide the top few functions reported by these tools. Apparently, for the same program execution with the same input at the same scale, the analysis results of the top 10 hotspots should be similar, which gains the most attention for developers to further investigate the performance optimization opportunities. • Scalability Analysis -Scalability analysis aims to identify the causes of poor performance scalability of target program execution at different scales. Poor scalability can lead to low utilization of large-scale computation resources and even the inability to obtain higher performance even running with more nodes. We evaluate the performance analysis tools with 16 and 1024 processes to evaluate the tool's ability to analyze the scalability issues. • Performance Variance Analysis -Performance variance indicates the significant performance slowdown of the different execution instances of the same program. For a fair comparison, we run the program with and without injected disturbances to evaluate their ability to identify the performance variance. For each evaluated analysis capability, we qualitatively investigate the intuitiveness, accuracy, and completeness of the analysis results provided by the performance analysis tools. Specifically, the analysis results should be intuitive for developers to understand the performance issues of the target program. The analysis results should be accurate to provide reliable guidance for optimizing the performance of the target program. Besides, the analysis results should also be actionable to provide optimization guidance for the target program, such as providing problematic code locations, calling contexts, and comprehensive diagnosis of root causes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. RESULTS</head><p>In this section, we present the results of each evaluated performance analysis tool based on the methodology presented in Section III. We evaluate the performance analysis tools based on the following key features: data collection, hotspot analysis, scalability, and performance variance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Abundance and Overhead of Data Collection</head><p>For the data collection, we evaluate the abundance and overhead of the performance data collected by the evaluated performance analysis tools. The abundance of performance data indicates the types of performance data collected by the tools, including CPU performance counters, elapsed time, function parameters, MPI communication, and function traces, as mentioned in Section III-B. The results are shown in Table <ref type="table" coords="5,340.87,470.14,5.72,8.12" target="#tab_1">II</ref>. Generally, the abundance of the data collection is tightly correlated to the basic data collection methods, regardless of the specific implementation details of each tool (e.g., both TAU and Scalasca are instrumentation-based tools). For sampling-based tools, the collected performance data is limited to CPU performance counters, elapsed time, and MPI communication, while instrumentation-based tools can collect more detailed performance data, including function parameters and function traces. Note that the sampling-based tools obtain function elapsed time via the distribution of the collected samples, which is statistically accurate based on the assumption that the samples are uniformly distributed along time and time-consuming functions will result in more samples. In contrast, by instrumenting the target program with probes, the instrumentation-based tools can collect the accurate function elapsed time and function parameters with notable accuracy.</p><p>The overhead of data collection indicates the time and storage overheads of the performance data collection. The time overhead is the additional time consumed by the performance analysis tools for data collection, and the storage overhead is the additional storage space consumed by the performance data collected by the tools. The time and storage overheads are measured in seconds and kilobytes (KB), respectively. The results are shown in Table <ref type="table" coords="6,152.70,96.39,8.77,8.12" target="#tab_3">III</ref>. Specifically, for time overheads of all evaluated tools, the sampling-based tools (i.e., HPCToolkit) generally have lower overheads than the instrumentation-based tools (i.e., TAU-P and Scalasca-P) when collecting all kinds of function events without considering function parameters. For TAU-T and Scalasca-T, which are configured to collect only MPI communication events, the time overheads are significantly lower and even negotiable at a small scale. For TAU-P and Scalasca-P, which are configured to collect all kinds of function events, they both incur significant time overheads at both scales and are even not able to finish the data collection for real-world applications. Especially for Scalasca, LULESH at both 27 and 1000 ranks fails to collect for tracing due to job timeout, as shown in Table <ref type="table" coords="6,187.65,242.48,8.77,8.12" target="#tab_3">III</ref>. According to the slurm output files, we figure out that the Scalasca is blocked by the tightly coupled implementation of postmortem analysis of tracing data, which can not be disabled or executed separately. Therefore, for collecting computational events for large-scale HPC programs, sampling-based approaches are more suitable than instrumentation-based approaches, while communication events are more suitable for instrumentation-based approaches due to the rich parameter information collected for further analysis.</p><p>For storage overheads, the instrumentation-based tools have higher overheads than the sampling-based tools due to the detailed performance data collected at higher event frequency. The storage overheads of the instrumentation-based tools are often proportional to the number of function calls, while the storage overheads of the sampling-based tools are often proportional to the number of samples collected by the tools. © Pitfall 1: Leveraging only one type of data collection method may not be sufficient for comprehensive performance analysis with acceptable overheads.</p><p>As demonstrated in the above results, the sampling-based tools generally have lower overheads than the instrumentationbased tools when collecting all kinds of function events without considering function parameters, while instrumentationbased tools can obtain runtime values of function parameters. For performance analysis of large-scale HPC programs, the parameters of MPI functions often play an important role in the detailed diagnosis of inefficient communications and scalability issues <ref type="bibr" coords="6,113.18,576.03,15.29,8.12" target="#b10">[11]</ref>- <ref type="bibr" coords="6,132.29,576.03,15.29,8.12" target="#b12">[13]</ref>, while function parameters are rarely exploited by the performance analysis techniques. Therefore, for future development cutting-edge performance analysis tools, it is essential to combine the advantages of both sampling-based and instrumentation-based tools to provide comprehensive performance data collection with abundant data types at low overheads.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Trace Analysis</head><p>The visualization of the collected performance traces of BT with 16 MPI ranks by HPCToolkit, TAU, and Scalasca are demonstrated in Figure <ref type="figure" coords="7,166.16,73.69,3.51,8.12" target="#fig_0">1</ref>. Specifically, for HPCToolkit as shown in Figure <ref type="figure" coords="7,126.72,84.93,3.48,8.12" target="#fig_0">1</ref>(a), its sampling-based trace can represent the distribution of the samples by leaf functions and corresponding calling contexts. For TAU as shown in Figure <ref type="figure" coords="7,277.77,107.41,14.36,8.12" target="#fig_0">1(b)</ref>, its visualized traces additionally provide message-passing linkage between communication events that present the triangular communication patterns of BT to some extent. However, it is still hard to figure out the performance issues buried beneath the visualized traces. Generally, for both HPCToolkit and TAU, even though the scale of the collected traces is limited (only 16 processes), the trace visualization is already complex, and hard to interpret any actionable performance guidance from the messy visualized traces as shown in Figure <ref type="figure" coords="7,230.70,208.55,3.77,8.12" target="#fig_0">1</ref>(a) and (b). For Scalasca as shown in Figure <ref type="figure" coords="7,177.02,219.79,3.48,8.12" target="#fig_0">1</ref>(c), it does not provide such timeline visualization of collected traces. Instead, it extracts several useful metrics that can be representative of some kinds of inefficient communications, such as the late sender and receiver issues <ref type="bibr" coords="7,122.36,264.74,9.95,8.12" target="#b8">[9]</ref>, <ref type="bibr" coords="7,140.87,264.74,14.36,8.12" target="#b10">[11]</ref>. Such extracted profiles from the massive amounts of tracing data are more intuitive and easier for developers to understand the potential performance issues of the target program execution. § ¦ ¤ ¥ Pitfall 2: Direct trace visualization is too messy and meaningless for actionable performance guidance at scale.</p><p>In sum, for trace analysis of large-scale HPC programs, the existing performance analysis tools still lack effective visualization techniques to present the collected traces in an intuitive way. The visualized traces are often complex and hard to interpret, which requires developers to have a deep understanding of the target program execution to figure out the potential performance bottlenecks. Effective performance analysis tools can provide useful metrics extracted from the collected traces for better optimization guidance. For future development directions, trace analysis tools can also provide intuitive highlights of the abnormal performance patterns in the visualized traces to help developers quickly locate the potential performance bottlenecks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Hotspot Analysis</head><p>The top 10 hotspots of the evaluated HPC programs with HPCToolkit, TAU, and Scalasca are demonstrated in Figure <ref type="figure" coords="7,288.69,534.44,3.51,8.12" target="#fig_1">2</ref>. Specifically, for HPCToolkit as shown in Figure <ref type="figure" coords="7,263.94,545.68,3.48,8.12" target="#fig_1">2</ref>(a), its bottom-up view of the hotspots can provide the tree view of the call stack with the leaf function call as root. For TAU as shown in Figure <ref type="figure" coords="7,141.69,579.40,3.59,8.12" target="#fig_1">2</ref>(b), its top 10 hotspots are presented in a flat view with detailed performance statistics, including elapsed times and accumulated number of function calls. For Scalasca as shown in Figure <ref type="figure" coords="7,170.14,613.11,3.48,8.12" target="#fig_1">2</ref>(c), it provides function elapsed times in the memory buffer size (a.k.a., relative to the number of function calls) order, which is not intuitive enough for identifying the hotspots. As demonstrated in Figure <ref type="figure" coords="7,258.29,646.82,3.48,8.12" target="#fig_1">2</ref>(c), such poor presentation can lead to difficulty in identifying the most significant code regions for further performance investigation as the function on the top apparently is not the most timeconsuming function. Generally, all evaluated performance analysis tools have the ability to identify the hotspots of the target program execution. However, the presentation of the hotspots is quite essential for intuitive and actionable optimization guidance. According to our opinion, the hotspot presentation of HPCToolkit (Figure <ref type="figure" coords="8,92.60,129.83,14.56,8.12" target="#fig_1">2(a)</ref>) is the most intuitive with rich optimization insights due to the tree view of the call stack. The flat view of the TAU is also acceptable for identifying the most time-consuming functions with detailed performance statistics. However, the presentation of the hotspots of Scalasca is not intuitive enough to identify the most significant code regions for further performance investigation. All evaluated performance analysis tools only provide the performance statistics of the hotspots, which requires further investigation to identify the performance opportunities. Although these tools provide basic hotspot analysis capabilities, they still reveal little actionable performance guidance for developers to optimize the target large-scale HPC program. § ¦ ¤ ¥ Pitfall 3: Presenting the performance statistics of hotspots is not sufficient for actionable optimization guidance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Scalability</head><p>The scalability analysis results of the LULESH with HPC-Toolkit and TAU are demonstrated in Figure <ref type="figure" coords="8,246.16,364.17,3.51,8.12" target="#fig_2">3</ref>. Note that Scalasca does not provide any description of the scalability analysis capabilities in their user manuals <ref type="bibr" coords="8,219.83,386.65,9.95,8.12" target="#b8">[9]</ref>. Specifically, for HPCToolkit as shown in Figure <ref type="figure" coords="8,188.37,397.89,3.48,8.12" target="#fig_2">3</ref>(a), its scalability analysis results are presented as the custom scalability loss metrics defined in its user manual <ref type="bibr" coords="8,166.18,420.36,10.92,8.12" target="#b6">[7]</ref> in the form of top-down tree views of the target program execution. Such scalability loss metrics with calling context attributions can provide intuitive insights into which functions are suffering from significant scalability loss. However, as it has merged with all processes and threads in the tree view, it is hard to figure out the root causes of the specific scalability issues of the target program execution and still requires non-trivial efforts to figure out actionable optimization insights from the given profiles. For TAU as shown in Figure <ref type="figure" coords="8,202.54,521.51,3.59,8.12" target="#fig_2">3</ref>(b), its weak scalability analysis results are presented in the form of the measured and ideal speedup of the target program execution with different numbers of processes. Compared to HPCToolkit, TAU can provide visualized plots for an intuitive understanding of the gap between measured and ideal scalability of the target HPC programs, but it cannot provide any actionable guidance on how to achieve the ideal speedups. Although there are research works that can be tailored to accurately localize the root causes of specific scalability issues <ref type="bibr" coords="8,204.53,622.65,14.36,8.12" target="#b25">[26]</ref>, <ref type="bibr" coords="8,227.15,622.65,14.36,8.12" target="#b28">[29]</ref>, the existing performance analysis tools are still limited to small program binaries to provide guidance with acceptable overheads. © Pitfall 4: Large-scale performance analysis tools are lack of actionable optimization guidance with accurate localization of scalability root causes within acceptable overheads. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Performance Variance</head><p>The performance variance analysis results of the LULESH with HPCToolkit and TAU are demonstrated in Figure <ref type="figure" coords="8,544.36,536.41,3.51,8.12">4</ref>. Specifically, HPCToolkit does not actually provide specific analysis capabilities to identify the performance variance. As shown in Figure <ref type="figure" coords="8,385.12,570.13,3.48,8.12">4</ref>(a), when visualizing the function traces of the target program execution with and without injected disturbances by HPCToolkit, we cannot identify the injected performance variance from the visualized traces. For TAU, its performance variance analysis results are presented with ParaProf as the distribution of the elapsed times of the target program execution with different runs. As shown in Figure <ref type="figure" coords="8,331.00,648.79,3.59,8.12">4</ref>(b), we can intuitively identify the abnormal MPI Wait performance metrics of several MPI ranks (i.e., red peaks in Figure <ref type="figure" coords="8,354.97,671.27,3.38,8.12">4</ref>), which are the exact nodes with memory noise injection. However, the significant performance anomaly is identified as MPI functions that are waiting for the asyn- According to the aforementioned evaluation results of the commonly adopted performance analysis tools at scale, we can obtain the following insights for future development of performance analysis tools for large-scale HPC programs:</p><p>1) Combining sampling-based and instrumentation-based data collection approaches. According to Pitfall 1, computational events are more suitable for sampling-based ap-proaches, while communication events are more suitable for instrumentation-based approaches. Therefore, for comprehensive performance analysis of large-scale HPC programs, it is essential to combine the advantages of both sampling-based and instrumentation-based tools to provide comprehensive performance data collection with abundant data types at low overheads.</p><p>2) Trace visualization of large-scale execution should highlight the problematic regions with human-friendly annotations. According to Pitfall 2, tools should provide a more intuitive focus on the abnormal or suspicious events or regions by highlighting or other human-friendly annotations of the massive amount of events and processes in the collected traces of large-scale HPC program execution. In addition, such a massive amount of tracing data brings a further exploration of combining machine-learning techniques to automatically identify the potential performance bottlenecks of the target program execution.</p><p>3) Multi-dimensional hotspot analysis with actionable optimization guidance. According to Pitfall 3, tools should provide multi-dimensional hotspot analysis with actionable optimization guidance for developers to quickly locate the potential performance bottlenecks of the target large-scale HPC program execution, including inefficient instruction or data structures, time or resource-consuming, and so on.</p><p>4) Accurate and fast root cause analysis of scalability loss. According to Pitfall 4, tools should provide accurate localization of scalability root causes with actionable optimization guidance for developers to achieve the ideal speedups of the target large-scale HPC program execution. We can combine several cutting-edge machine-learning techniques (e.g., graph neural networks <ref type="bibr" coords="9,377.52,422.78,14.98,8.12" target="#b36">[37]</ref>) to automatically identify the root causes of the scalability issues of the target program execution within acceptable overheads for large-scale HPC programs.</p><p>5) Leveraging rich attributions of function traces with deeplearning-based anomaly detection for performance variance analysis. According to Pitfall 5, tools should provide accurate localization of the root causes of the performance variance for developers to avoid or alleviate such unexpected fail-slows at scale via hardware re-configuration or software optimization. We can combine cutting-edge deep-learning-based anomaly detection techniques for time-series data with function event traces that are attributed to rich parameters and performance counter metrics to automatically identify the root causes of the performance variance of the target program execution within acceptable overheads for large-scale HPC programs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. CONCLUSION</head><p>In this paper, we presented a comprehensive study of performance analysis tools for large-scale HPC systems. We identified the key features of performance analysis tools and evaluated the performance analysis tools based on these features. We provided a detailed comparison of the performance analysis tools based on their features and capabilities. We found that the performance analysis tools have different features and capabilities, and they are suitable for different types of applications. We also found that the performance analysis tools have different levels of support for large-scale HPC systems. We believe that our study will help researchers and practitioners to choose the right performance analysis tools for their applications.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="6,315.01,623.91,236.00,8.12;6,315.01,635.14,143.31,8.12;6,315.01,440.71,236.00,162.91"><head>Fig. 1 :</head><label>1</label><figDesc>Fig. 1: The visualization of trace analysis results of the evaluated performance analysis tools.</figDesc><graphic coords="6,315.01,440.71,236.00,162.91" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="7,315.91,583.12,236.00,8.12;7,315.91,594.36,195.35,8.12;7,315.91,433.83,236.00,129.00"><head>Fig. 2 :</head><label>2</label><figDesc>Fig. 2: The top 10 hotspots of the evaluated HPC programs with HPCToolkit, TAU, and Scalasca, respectively.</figDesc><graphic coords="7,315.91,433.83,236.00,129.00" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="8,315.38,466.61,236.00,8.12;8,315.38,477.84,193.79,8.12"><head>Fig. 3 :</head><label>3</label><figDesc>Fig.3: The scalability analysis results of the evaluated HPC programs with HPCToolkit and TAU, respectively.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="9,59.26,476.46,236.00,8.12;9,59.26,487.70,236.00,8.12;9,65.16,248.98,224.19,207.19"><head>Fig. 4 :© Pitfall 5 :</head><label>45</label><figDesc>Fig. 4: The performance variance analysis results of the evaluated HPC programs with HPCToolkit and TAU, respectively.</figDesc><graphic coords="9,65.16,248.98,224.19,207.19" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="3,330.98,74.02,203.00,102.39"><head>TABLE I :</head><label>I</label><figDesc>The hardware and software specifications.</figDesc><table coords="3,340.73,90.51,161.22,85.91"><row><cell>Processor</cell><cell>Intel Golden 6240@2.60GHz</cell></row><row><cell>Nodes</cell><cell>32</cell></row><row><cell>Cores</cell><cell>36</cell></row><row><cell>Memory</cell><cell>384 GB</cell></row><row><cell>Network</cell><cell>100 Gbps</cell></row><row><cell>Storage</cell><cell>160Gbps</cell></row><row><cell>Software</cell><cell>OpenMPI 4.0.7, gcc 9.4.0 -O3</cell></row><row><cell>HPCToolkit</cell><cell>Version 2022.10.01</cell></row><row><cell>TAU</cell><cell>Version 2.32</cell></row><row><cell>Scalasca</cell><cell>Version 2.6</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="4,315.04,73.69,236.00,94.77"><head>TABLE II :</head><label>II</label><figDesc>The collected performance data types of the evaluated performance analysis tools.</figDesc><table coords="4,317.44,101.11,231.21,67.35"><row><cell>Data Type/Metrics</cell><cell>Sampling-based HPCToolkit</cell><cell cols="2">Instrumentation-based TAU Scalasca</cell></row><row><cell>CPU Performance Counter</cell><cell>✓</cell><cell>✓*</cell><cell>✓*</cell></row><row><cell>Function Elapsed Time</cell><cell>Statistics</cell><cell>Accurate*</cell><cell>Accurate*</cell></row><row><cell>Function Parameters</cell><cell></cell><cell>✓*</cell><cell>✓*</cell></row><row><cell>MPI Communication</cell><cell>✓</cell><cell>✓</cell><cell>✓</cell></row><row><cell>Function Trace</cell><cell>✓</cell><cell>✓*</cell><cell>✓*</cell></row><row><cell cols="4">* TAU and Scalasca requires re-compilation with its own compilation toolchains</cell></row><row><cell cols="4">(e.g., tau cc, scorep) to obtain the detailed function traces.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="4,324.41,250.13,226.64,199.53"><head></head><label></label><figDesc>• Function Elapsed Time: The ability to collect the elapsed time of the target program execution. This is the most basic performance data that can provide insights into the overall performance of the target program. The ability to collect runtime values of function parameters, including computational and communication (e.g., MPI) function parameters. Some advanced performance analysis tasks, such as communication patterns and performance variance analysis, require the ability to collect function parameters.</figDesc><table /><note>• Function Parameters: • MPI Communication: The ability to collect MPI communication events. As MPI is the de facto standard for parallel programming in HPC, the ability to collect MPI communication events is essential for understanding the communication bottlenecks of the target program.• Function Trace: The ability to collect function event trace with corresponding start and end timestamps. This provides a detailed execution view of the target program.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="5,68.48,73.69,464.02,222.20"><head>TABLE III :</head><label>III</label><figDesc>The overhead of the evaluated state-of-the-art tools.</figDesc><table coords="5,68.48,89.87,464.02,151.66"><row><cell>Program</cell><cell>Scale</cell><cell>native</cell><cell>HPCToolkit</cell><cell cols="2">Time (s) TAU-P TAU-T</cell><cell>Scalasca-P</cell><cell>Scalasca-T</cell><cell>HPCToolkit</cell><cell>TAU-P</cell><cell>Storage (KB) TAU-T</cell><cell>Scalasca-P</cell><cell>Scalasca-T</cell></row><row><cell>BT</cell><cell>16 1024</cell><cell>24.99 39.28</cell><cell>61.55 131.86</cell><cell>389.75 531.00</cell><cell>17.70 56.93</cell><cell>183.27 291.46</cell><cell>27.92 56.97</cell><cell>74,752 4,823,450</cell><cell>8,192 508,416</cell><cell>73,728 33,554,944</cell><cell>512 59,392</cell><cell>26,112 13,631,488</cell></row><row><cell>CG</cell><cell>16 1024</cell><cell>6.01 32.31</cell><cell>8.80 75.99</cell><cell>28.93 454.59</cell><cell>17.76 36.82</cell><cell>13.80 249.41</cell><cell>9.00 45.88</cell><cell>74,752 4,823,450</cell><cell>8,192 520,704</cell><cell>155,648 27,787,776</cell><cell>1,024 20,480</cell><cell>51,200 8,493,466</cell></row><row><cell>EP</cell><cell>16 1024</cell><cell>3.95 5.73</cell><cell>7.49 34.66</cell><cell>6.29 6.51</cell><cell>4.32 9.50</cell><cell>5.19 8.08</cell><cell>6.89 13.07</cell><cell>74,752 4,718,592</cell><cell>8,192 508,416</cell><cell>24,576 1,573,376</cell><cell>512 12,288</cell><cell>1,536 20,480</cell></row><row><cell>FT</cell><cell>16 1024</cell><cell>6.59 19.96</cell><cell>11.31 62.81</cell><cell>8.06 20.43</cell><cell>8.46 19.10</cell><cell>7.57 18.28</cell><cell>8.42 26.25</cell><cell>74,752 4,823,450</cell><cell>8,192 508,416</cell><cell>24,576 1,573,376</cell><cell>512 29,184</cell><cell>1,536 547,840</cell></row><row><cell>IS</cell><cell>16 1024</cell><cell>2.65 7.43</cell><cell>3.80 37.20</cell><cell>25.76 31.87</cell><cell>2.36 7.40</cell><cell>13.25 17.09</cell><cell>3.57 13.07</cell><cell>50,688 4,823,450</cell><cell>8,192 508,416</cell><cell>24,576 1,573,376</cell><cell>512 17,920</cell><cell>1,536 31,744</cell></row><row><cell>LU</cell><cell>16 1024</cell><cell>16.47 35.21</cell><cell>42.10 104.46</cell><cell>28.77 62.32</cell><cell>20.70 135.42</cell><cell>23.58 43.46</cell><cell>22.97 123.80</cell><cell>74,752 4,823,450</cell><cell>8,192 508,416</cell><cell>532,480 206,766,592</cell><cell>512 39,936</cell><cell>159,232 20,971,520</cell></row><row><cell>MG</cell><cell>16 1024</cell><cell>2.85 6.53</cell><cell>4.62 41.85</cell><cell>3.53 7.49</cell><cell>4.16 8.87</cell><cell>2.82 6.82</cell><cell>3.66 16.84</cell><cell>71,168 4,823,450</cell><cell>8,192 508,416</cell><cell>49,152 5,870,080</cell><cell>512 45,568</cell><cell>12,288 62,914,560</cell></row><row><cell>SP</cell><cell>16 1024</cell><cell>27.08 45.26</cell><cell>47.58 111.19</cell><cell>31.92 44.62</cell><cell>30.78 58.59</cell><cell>29.94 41.14</cell><cell>30.01 63.58</cell><cell>74,752 4,823,450</cell><cell>8,192 508,416</cell><cell>114,688 61,342,208</cell><cell>512 37,376</cell><cell>34,300 1,677,722</cell></row><row><cell>LULESH</cell><cell>27 1000</cell><cell>56.64 61.84</cell><cell>105.61 159.92</cell><cell>142.79 140.15</cell><cell>57.51 60.80</cell><cell>102.38 98.35</cell><cell>&gt;1h &gt;1h</cell><cell>443,392 4,610,560</cell><cell>13,824 496,128</cell><cell>186,368 10,738,176</cell><cell>3,584 86,016</cell><cell>117,600 2,137,088</cell></row></table><note>• Trace Analysis -Trace analysis provides the detailed execution view of the target program with trace visualization or profiles generated from the collected function traces.</note></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 03:26:13 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGEMENTS</head><p>This work is supported by National Key Research and Development Program of China (Grant No. 2023YFB3001801), National Natural Science Foundation of China (No. 62322201, 62072018, U23B2020 and U22A2028), and the Fundamental Research Funds for the Central Universities (YWF-23-L-1121, JKF-20240198 and JK2024-58). Hailong Yang is the corresponding author.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="10,76.70,246.16,218.83,6.50;10,76.70,254.59,218.83,6.50;10,76.70,263.01,218.83,6.50;10,76.70,271.44,218.83,6.50;10,76.70,279.74,218.83,6.63;10,76.70,288.17,126.71,6.63" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">LAMMPS -a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">P</forename><surname>Thompson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">M</forename><surname>Aktulga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Berger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">S</forename><surname>Bolintineanu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">M</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">S</forename><surname>Crozier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">J</forename><surname>Veld</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Kohlmeyer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">G</forename><surname>Moore</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">D</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Shan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">J</forename><surname>Stevens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Tranchida</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Trott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">J</forename><surname>Plimpton</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Comp. Phys. Comm</title>
+		<imprint>
+			<biblScope unit="volume">271</biblScope>
+			<biblScope unit="page">108171</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,296.73,218.83,6.50;10,76.70,305.16,218.83,6.50;10,76.70,313.59,218.83,6.50;10,76.70,321.88,218.83,6.63;10,76.70,330.31,218.83,6.46;10,76.70,338.74,218.83,6.63;10,76.70,347.30,218.83,6.50;10,76.70,355.73,124.95,6.50" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Exascale multiphysics nuclear reactor simulations for advanced designs</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Merzari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Hamilton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Evans</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Min</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Fischer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kerkemeier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Romano</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y.-H</forename><surname>Lan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Phillips</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Biondo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Royston</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Warburton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Chalmers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Rathnayake</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3581784.3627038</idno>
+		<ptr target="https://doi.org/10.1145/3581784.3627038" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;23</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;23<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,364.16,218.83,6.50;10,76.70,372.58,218.83,6.50;10,76.70,381.01,218.83,6.50;10,76.70,389.44,218.83,6.50;10,76.70,397.87,218.83,6.50;10,76.70,406.16,218.83,6.46;10,76.70,414.59,218.83,6.63;10,76.70,423.15,218.83,6.50;10,76.70,431.58,158.04,6.50" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">The simple cloud-resolving e3sm atmosphere model running on the frontier exascale system</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Taylor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">M</forename><surname>Caldwell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Bertagna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Clevenger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Donahue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Foucar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Guba</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Hillman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Keen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Krishna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Norman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Sreepathi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Terai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">B</forename><surname>White</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">G</forename><surname>Salinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">B</forename><surname>Mccoy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L.-Y</forename><forename type="middle">R</forename><surname>Leung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">C</forename><surname>Bader</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Wu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3581784.3627044</idno>
+		<ptr target="https://doi.org/10.1145/3581784.3627044" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;23</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;23<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,440.01,218.83,6.50;10,76.70,448.30,218.83,6.63;10,76.70,456.73,177.11,6.63" xml:id="b3">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Achiam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Adler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Ahmad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Akkaya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">L</forename><surname>Aleman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Almeida</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Altenschmidt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Altman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Anadkat</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2303.08774</idno>
+		<title level="m">Gpt-4 technical report</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="10,76.70,465.30,218.83,6.50;10,76.70,473.59,218.83,6.63;10,76.70,482.15,16.86,6.50" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">A new golden age for computer architecture</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">L</forename><surname>Hennessy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">A</forename><surname>Patterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">62</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="48" to="60" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,490.58,218.83,6.50;10,76.70,499.01,218.83,6.50;10,76.70,507.44,218.83,6.50;10,76.70,515.87,218.83,6.50;10,76.70,524.29,218.83,6.50;10,76.70,532.59,218.83,6.63;10,76.70,541.02,218.83,6.63;10,76.70,549.58,37.17,6.50" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Pushing the frontier in the design of laser-based electron accelerators with groundbreaking mesh-refined particle-in-cell simulations on exascale-class supercomputers</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Fedeli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Huebl</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Boillod-Cerneux</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Gott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Hillairet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jaure</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Leblanc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Lehe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Myers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Piechurski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Sato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Zaïm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-L</forename><surname>Vay</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Vincenti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;22</title>
+				<meeting>the International Conference on High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;22</meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,558.01,218.83,6.50;10,76.70,566.44,218.83,6.50;10,76.70,574.73,218.83,6.63;10,76.70,583.16,185.64,6.63" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Hpctoolkit: Tools for performance analysis of optimized parallel programs</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Adhianto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Banerjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Fagan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Krentel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Marin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Mellor-Crummey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">R</forename><surname>Tallent</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="685" to="701" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,591.72,218.83,6.50;10,76.70,600.02,218.83,6.46;10,76.70,608.58,105.69,6.50" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">The tau parallel performance system</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Shende</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">D</forename><surname>Malony</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The International Journal of High Performance Computing Applications</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="287" to="311" />
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,615.37,218.83,8.13;10,76.70,625.30,218.83,6.63;10,76.70,633.73,214.33,6.63" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">The scalasca performance toolset architecture</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Geimer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">J</forename><surname>Wylie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Ábrahám</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Becker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Mohr</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Concurrency and computation: Practice and experience</title>
+				<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="702" to="719" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,642.29,218.83,6.50;10,76.70,650.59,218.83,6.63;10,76.70,659.01,109.10,6.63" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Understanding communication patterns in hpcg</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">G</forename><surname>Chester</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">A</forename><surname>Wright</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">A</forename><surname>Jarvis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Electronic Notes in Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">340</biblScope>
+			<biblScope unit="page" from="55" to="65" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,76.70,667.58,218.83,6.50;10,76.70,676.01,218.83,6.50;10,76.70,684.30,218.83,6.63;10,76.70,692.86,159.82,6.50" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Identifying the root causes of wait states in large-scale parallel applications</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Böhme</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Geimer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Arnold</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Voigtlaender</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Wolf</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2934661</idno>
+		<ptr target="https://doi.org/10.1145/2934661" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<date type="published" when="2016-07">jul 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,73.44,218.83,6.50;10,331.34,81.86,218.83,6.50;10,331.34,90.16,218.83,6.63;10,331.34,98.59,218.83,6.63" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">vsensor: leveraging fixed-workload snippets of programs for performance variance detection</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd ACM SIGPLAN symposium on principles and practice of parallel programming</title>
+				<meeting>the 23rd ACM SIGPLAN symposium on principles and practice of parallel programming</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="124" to="136" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,107.81,218.83,6.50;10,331.34,116.24,218.83,6.50;10,331.34,124.53,218.83,6.63;10,331.34,132.96,218.83,6.46;10,331.34,141.39,105.57,6.63" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Vapro: Performance variance detection and diagnosis for production-run parallel applications</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">L</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="150" to="162" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,150.61,218.83,6.50;10,331.34,159.04,218.83,6.50;10,331.34,167.33,218.83,6.63;10,331.34,175.90,67.05,6.50" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Precise event sampling on amd versus intel: Quantitative and qualitative comparison</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">A</forename><surname>Sasongko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chabbi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">H J</forename><surname>Kelly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Unat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1594" to="1608" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,184.99,218.83,6.50;10,331.34,193.28,218.83,6.63;10,331.34,201.71,218.83,6.46;10,331.34,210.14,121.08,6.63" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Watching for software inefficiencies with witch</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Byrne</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chabbi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Third International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the Twenty-Third International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="332" to="347" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,219.36,218.83,6.50;10,331.34,227.66,218.83,6.63;10,331.34,236.08,215.66,6.63" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Featherlight on-the-fly false-sharing detection</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chabbi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="152" to="167" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,245.31,218.83,6.50;10,331.34,253.60,218.83,6.63;10,331.34,262.03,218.83,6.63;10,331.34,270.59,68.55,6.50" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Reusetracker: Fast yet accurate multicore reuse distance analyzer</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">A</forename><surname>Sasongko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chabbi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">B</forename><surname>Marzijarani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Unat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization (TACO)</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="25" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,279.68,218.83,6.50;10,331.34,288.11,16.86,6.50" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">mpip: Lightweight, scalable mpi profiling</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Vetter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Chambreau</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,297.20,218.83,6.50;10,331.34,305.63,72.22,6.50" xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Dyinst</title>
+		<ptr target="https://www.dyninst.org" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,314.72,218.83,6.50;10,331.34,323.15,218.83,6.50;10,331.34,331.44,218.83,6.63;10,331.34,339.87,157.54,6.63" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Pin: building customized program analysis tools with dynamic instrumentation</title>
+		<author>
+			<persName coords=""><forename type="first">C.-K</forename><surname>Luk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Cohn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Muth</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Patil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Klauser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Lowney</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Wallace</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">J</forename><surname>Reddi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Hazelwood</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Acm sigplan notices</title>
+				<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="page" from="190" to="200" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,349.09,218.83,6.50;10,331.34,357.52,218.83,6.50;10,331.34,365.95,218.83,6.50" xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Efficient, transparent, and comprehensive runtime code manipulation</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Bruening</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2004">2004</date>
+		</imprint>
+		<respStmt>
+			<orgName>Massachusetts Institute of Technology, Department of Electrical Engineering . . .</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Ph.D. dissertation</note>
+</biblStruct>
+
+<biblStruct coords="10,331.34,375.04,218.83,6.50;10,331.34,383.33,218.83,6.63;10,331.34,391.76,218.83,6.46;10,331.34,400.19,218.83,6.63;10,331.34,408.75,28.09,6.50" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Vclinic: A portable and efficient framework for fine-grained value profilers</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Lei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Qian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="892" to="904" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,417.84,218.83,6.50;10,331.34,426.14,218.83,6.63;10,331.34,434.56,218.83,6.46;10,331.34,442.99,122.93,6.63" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Powerspector: Towards energy efficiency with calling-context-aware profiling</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Xuan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Qian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE International Parallel and Distributed Processing Symposium (IPDPS)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1272" to="1282" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,452.22,218.83,6.50;10,331.34,460.65,218.83,6.50;10,331.34,468.94,218.83,6.63;10,331.34,477.37,218.83,6.46;10,331.34,485.80,154.56,6.63" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Caliper: performance introspection for hpc software stacks</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Boehme</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gamblin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Beckingsale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P.-T</forename><surname>Bremer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Gimenez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Legendre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Pearce</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Schulz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;16: Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="550" to="560" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,495.02,218.83,6.50;10,331.34,503.45,218.83,6.50;10,331.34,511.88,218.83,6.50;10,331.34,520.17,218.83,6.63;10,331.34,528.73,16.86,6.50" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Soma: Observability, monitoring, and in situ analytics for exascale applications</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Yokelson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Lappi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ramesh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">S</forename><surname>Väisälä</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Huck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Puro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Norris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Korpi-Lagg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Heljanko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">D</forename><surname>Malony</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="page">e8141</biblScope>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,537.82,218.83,6.50;10,331.34,546.25,218.83,6.50;10,331.34,554.55,218.83,6.63;10,331.34,562.97,218.83,6.63;10,331.34,571.54,207.40,6.50" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Perflow: A domain specific framework for automatic performance analysis of parallel applications</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhai</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3503221.3508405</idno>
+		<ptr target="https://doi.org/10.1145/3503221.3508405" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming, ser. PPoPP &apos;22</title>
+				<meeting>the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming, ser. PPoPP &apos;22</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,580.63,218.83,6.50;10,331.34,589.05,218.83,6.50;10,331.34,597.35,218.83,6.63;10,331.34,605.91,218.83,6.50;10,331.34,614.34,218.83,6.50;10,331.34,622.77,94.90,6.50" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Scalable timestamp synchronization for event traces of message-passing applications</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Becker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Rabenseifner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">C</forename><surname>Linford</surname></persName>
+		</author>
+		<ptr target="https://www.sciencedirect.com/science/article/pii/S0167819109000155" />
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Computing</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<biblScope unit="page" from="595" to="607" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+	<note>selected papers from the 14th European PVM/MPI Users Group Meeting</note>
+</biblStruct>
+
+<biblStruct coords="10,331.34,631.86,218.83,6.50;10,331.34,640.29,218.83,6.50;10,331.34,648.58,218.83,6.63;10,331.34,657.01,218.83,6.63;10,331.34,665.57,218.83,6.50;10,331.34,674.00,187.92,6.50" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Using sample-based time series data for automated diagnosis of scalability losses in parallel programs</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Mellor-Crummey</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3332466.3374538</idno>
+		<ptr target="https://doi.org/10.1145/3332466.3374538" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming, ser. PPoPP &apos;20</title>
+				<meeting>the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming, ser. PPoPP &apos;20<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="144" to="159" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,331.34,683.09,218.83,6.50;10,331.34,691.38,218.83,6.63;11,77.31,73.25,218.83,6.46;11,77.31,81.68,143.32,6.63" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Scalana: Automating scaling loss detection with graph analysis</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhai</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC20: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,90.25,218.83,6.50;11,77.31,98.54,218.83,6.63;11,77.31,107.10,218.83,6.50;11,77.31,115.40,218.83,6.63;11,77.31,123.96,48.32,6.50" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Fail-slow at scale: Evidence of hardware performance faults in large production systems</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">S</forename><surname>Gunawi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">O</forename><surname>Suminto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Sears</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Golliher</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Sundararaman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Emami</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Sheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Bidokhti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Mccaffrey</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Storage (TOS)</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1" to="26" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,132.39,218.83,6.50;11,77.31,140.68,218.83,6.63;11,77.31,149.25,218.83,6.50;11,77.31,157.54,218.83,6.63;11,77.31,165.97,218.83,6.46;11,77.31,174.40,218.83,6.46;11,77.31,182.96,82.06,6.50" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Score-p: A joint performance measurement run-time infrastructure for periscope, scalasca, tau, and vampir</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Knüpfer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Rössel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Mey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Biersdorff</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Diethelm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Eschweiler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Geimer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gerndt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lorenz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Malony</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Tools for High Performance Computing 2011: Proceedings of the 5th International Workshop on Parallel Tools for High Performance Computing</title>
+				<meeting><address><addrLine>Dresden</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2011-09">September 2011. 2012</date>
+			<biblScope unit="page" from="79" to="91" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,191.25,218.83,6.63;11,77.31,199.68,104.85,6.63" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Nas parallel benchmarks</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">H</forename><surname>Bailey</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Encyclopedia of Parallel Computing</title>
+				<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="1254" to="1259" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,208.24,218.83,6.50;11,77.31,216.67,218.83,6.50;11,77.31,225.10,79.13,6.50" xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Lulesh 2.0 updates and changes</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Karlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Keasler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Neely</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<pubPlace>Livermore, CA (United States</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>Lawrence Livermore National Lab.(LLNL)</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Tech. Rep.</note>
+</biblStruct>
+
+<biblStruct coords="11,77.31,233.53,218.83,6.50;11,77.31,241.82,218.83,6.63;11,77.31,250.25,218.83,6.63;11,77.31,258.81,36.34,6.50" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Papi software-defined events for in-depth performance analysis</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Jagode</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Danalis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Anzt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Dongarra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The International Journal of High Performance Computing Applications</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1113" to="1127" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,267.11,218.83,6.63;11,77.31,275.54,106.45,6.63" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">The new linux&apos;perf&apos;tools</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">C</forename><surname>De Melo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">Slides from Linux Kongress</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page" from="1" to="42" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,284.10,15.61,6.50;11,109.26,284.10,33.75,6.50;11,159.34,284.10,52.84,6.50;11,228.52,284.10,24.13,6.50;11,268.99,284.10,27.15,6.50;11,77.31,292.53,16.86,6.50;11,119.38,292.53,27.26,6.50;11,171.85,292.53,30.47,6.50;11,227.53,292.53,68.61,6.50;11,77.31,300.96,175.31,6.50;11,77.31,309.38,152.95,6.50" xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Top-down microarchitecture analysis method</title>
+		<author>
+			<persName coords=""><surname>Intel</surname></persName>
+		</author>
+		<ptr target="https://www.intel.com/content/www/us/en/docs/vtune-profiler/cookbook/2023-0/top-down-microarchitecture-analysis-method.html" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,317.81,218.83,6.50;11,77.31,326.24,218.83,6.50;11,77.31,334.53,218.83,6.63;11,77.31,342.96,182.71,6.63" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Graph neural networks based memory inefficiency detection using selective sampling</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC22: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

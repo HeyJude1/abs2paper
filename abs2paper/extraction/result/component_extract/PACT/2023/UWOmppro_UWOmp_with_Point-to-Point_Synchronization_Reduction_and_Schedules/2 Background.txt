@@ -1,0 +1,5 @@
+2 Background
+We now present some brief background needed for this paper. OpenMP. We summarize three popular constructs of OpenMP.
+Parallel Region: #pragma omp parallel S creates a team of threads where each thread executes the statement S in parallel.
+Parallel-For-Loop: A sequential for-loop can be annotated using #pragma omp for [schedOpt] to share the iterations among the team of threads. The scheduling policy (static, dynamic, guided, or runtime) is mentioned using schedOpt. If the nowait clause is omitted, OpenMP provides an implicit barrier.
+Barrier: #pragma omp barrier construct is used to synchronize the workers in the team. Unique Worker Model for OpenMP. We now restate two relevant definitions given by Aloor and Nandivada

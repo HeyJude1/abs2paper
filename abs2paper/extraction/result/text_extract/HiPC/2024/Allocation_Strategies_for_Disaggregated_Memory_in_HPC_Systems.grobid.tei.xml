@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Allocation Strategies for Disaggregated Memory in HPC Systems</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2024-12-18">2024-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,155.66,160.93,73.98,8.93"><forename type="first">Robin</forename><surname>Boëzennec</surname></persName>
+							<email>robin.boezennec@inria.fr</email>
+						</author>
+						<author>
+							<persName coords="1,384.97,160.93,98.60,8.93"><forename type="first">Danilo</forename><surname>Carastan-Santos</surname></persName>
+							<email>danilo.carastan-dos-santos@inria.fr</email>
+						</author>
+						<author>
+							<persName coords="1,160.56,219.34,62.81,8.93"><forename type="first">Fanny</forename><surname>Dufossé</surname></persName>
+							<email>fanny.dufosse@inria.fr</email>
+						</author>
+						<author>
+							<persName coords="1,397.51,219.34,72.12,8.93"><forename type="first">Guillaume</forename><surname>Pallez</surname></persName>
+							<email>guillaume.pallez@inria.fr</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Rennes</orgName>
+								<address>
+									<settlement>Inria</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution" key="instit1">CNRS</orgName>
+								<orgName type="institution" key="instit2">IRISA Rennes</orgName>
+								<address>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution" key="instit1">Univ. Grenoble Alpes</orgName>
+								<orgName type="institution" key="instit2">Grenoble INP</orgName>
+								<address>
+									<settlement>Inria</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">CNRS</orgName>
+								<address>
+									<postCode>LIG</postCode>
+									<settlement>Grenoble</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution" key="instit1">Univ. Grenoble Alpes</orgName>
+								<orgName type="institution" key="instit2">Grenoble INP</orgName>
+								<address>
+									<settlement>Inria</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="institution">CNRS</orgName>
+								<address>
+									<postCode>LIG</postCode>
+									<settlement>Grenoble</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<address>
+									<settlement>Rennes</settlement>
+									<country key="FR">France</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Allocation Strategies for Disaggregated Memory in HPC Systems</title>
+					</analytic>
+					<monogr>
+						<title level="m">2024 IEEE 31st International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="1" to="11"/>
+							<date type="published" when="2024-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">1BC38023E6B0E0598A0930E67F4DA5EE</idno>
+					<idno type="DOI">10.1109/hipc62374.2024.00010</idno>
+					<note type="submission">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 03:17:10 UTC from IEEE Xplore. Restrictions apply.</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Memory Disaggregation</term>
+					<term>High performance computing</term>
+					<term>Scheduling</term>
+					<term>Stochastic model</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In this work we consider scheduling strategies to deal with disaggregated memory for HPC systems. Disaggregated memory is an implementation of storage management that provides flexibility by giving the option to allocate storage based on system-defined parameters. In this case, we consider a memory hierarchy that allows to partition the memory resources arbitrarily amongst several nodes depending on the need. This memory can be dynamically reconfigured at a cost. We provide algorithms that pre-allocate or reconfigure dynamically the disaggregated memory based on estimated needs. We provide theoretical performance results for these algorithms. An important contribution of our work is that it shows that the system can design allocation algorithms even if user memory estimates are not accurate, and for dynamic memory patterns. These algorithms rely on statistical behavior of applications. We observe the impact on the performance of parameters of interest such as the reconfiguration cost.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>To reach peak performance, node memory on High-Performance Computing systems (HPC) is usually high, designed to be able to cope with most applications. Yet, data shows that HPC systems generally underutilize memory. For instance, Peng et al. <ref type="bibr" coords="1,143.40,543.82,10.92,8.12" target="#b0">[1]</ref> observed on a large scale study of four HPC clusters at Lawrence Livermore National Laboratory, that 90% of the time a node utilizes less than 35% of its memory capacity. By studying traces of the Marconi-100 supercomputer <ref type="bibr" coords="1,118.38,588.77,9.95,8.12" target="#b1">[2]</ref>, we observed a higher memory utilization. Still, Marconi100 uses up to 50% of its total memory for half of its operation time.</p><p>This underutilization of resources has a high cost in terms of machine construction. To give orders of magnitude, today 256GB of RAM costs about 2000USD <ref type="bibr" coords="1,214.55,644.89,9.95,8.12" target="#b2">[3]</ref>. The Marconi100 supercomputer <ref type="bibr" coords="1,117.92,656.13,10.92,8.12" target="#b3">[4]</ref> had 920 nodes, each with 256GB of RAM. This leads to an estimated cost of RAM in the order of 2 million euros. Wahlgren et al. <ref type="bibr" coords="1,178.56,678.60,10.92,8.12" target="#b2">[3]</ref> estimate the node memory cost (DDR4+HBM2e) on Frontier to $170 million out a global cost of $600 million. All these motivate memory size reduction.</p><p>Recent architectural advances have included the use of disaggregated memory (such as CXL <ref type="bibr" coords="1,465.93,307.76,9.83,8.12" target="#b4">[5]</ref>). The idea behind it is to semi-dynamically (provided various costs such as a reconfiguration cost) share and allocate memory for the compute nodes, adjusting the allocated memory to the actual needs of the applications. Disaggregated memory would therefore help to reduce the total volume of memory consumed by the HPC resource.</p><p>In this work we discuss algorithmic solutions for efficient disaggregated memory usage. We consider an architecture with multiple tiers of memory/storage, such that when an application does not have enough first tier memory available (which we call in the following node memory), it needs to access a much slower memory which slows down its performance. We aim to answer the following question: given an implementation of disaggregated memory on a system with multiple memorytiers, how do we allocate the first-tier of memory between competing applications? To be able to design these algorithmic solutions, we assume that we have access to some knowledge on application behavior. This knowledge can be precise (the memory footprint for the next x units of time), or statistic, based on historical data. For instance, we plot in Figure <ref type="figure" coords="1,531.61,532.21,4.68,8.12">1</ref> the distribution of memory utilization per node in May 2022 on Marconi100. Similar statistical studies have been performed on other systems such as Quartz and Lassen at LLNL <ref type="bibr" coords="1,526.47,565.92,9.95,8.12" target="#b5">[6]</ref>.</p><p>We consider the problem of disaggregated memory in a much larger scheme of multidimensional HPC Resource Management, where the resource manager has to allocate the applications on the compute nodes, and partition the extra memory amongst the running applications.</p><p>More specifically, this work presents the following contributions:</p><p>• We present two novel algorithmic strategies with guaranteed performance when not considering the reconfiguration cost, one of which is using as input a statistical description of resource usage; • We show that these solutions can help reduce largely the memory needed by an HPC machine while keeping the Figure <ref type="figure" coords="2,86.89,210.64,3.64,8.12">1</ref>: Distribution of the per node memory utilization in Marconi100 dataset 8 (May 2022) <ref type="bibr" coords="2,189.48,221.88,9.95,8.12" target="#b6">[7]</ref>. Marconi100 has 256GB of RAM available per node (242 usable) <ref type="bibr" coords="2,218.96,233.12,9.95,8.12" target="#b3">[4]</ref>.</p><p>same performance, including in cases where the memory pattern of an application is unknown; • We demonstrate their performance via a thorough evaluation, including in limit cases. Our work focuses on the robustness and performance of the proposed algorithmic strategies and is complementary to those focusing on practical/technical implementations <ref type="bibr" coords="2,248.17,334.23,9.95,8.12" target="#b2">[3]</ref>, <ref type="bibr" coords="2,265.52,334.23,9.95,8.12" target="#b7">[8]</ref>. We observe that an implementation of disaggregated memory with our algorithms could theoretically halve the memory usage of HPC machines with insignificant losses of performances.</p><p>We organize the rest of this paper as follows: we provide some related work in Section II. In Section III, we propose a mathematical formulation of the scheduling problem, and propose algorithmic solutions along with proofs of their optimality for certain objectives in Section IV. We design an evaluation framework based on real traces in Section V and evaluate our solutions compared to baselines in Section VI. Finally, we conclude and open discussion on the next steps.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. RELATED WORK</head><p>The need for memory heterogeneity or disaggregated memory on HPC resource has been demonstrated by many work that study various workload. Peng et al. <ref type="bibr" coords="2,213.00,511.95,10.92,8.12" target="#b5">[6]</ref> have studied HPC systems workloads. They have shown the heterogeneity of workloads where 80% of the workloads of both the Lassen and Quartz systems use less than 25% of the available memory. In parallel, they have observed the emergence of memoryintensive workloads. By showing a correlation between jobs with high memory consumption and large jobs on a system with low memory per node, and showing the absence of this correlation on a system with high memory per node, they have intuited that some applications reserve more nodes to have more available memory, and hence wasting compute node power.</p><p>a) Implementation of Disaggregated Memory: Implementations of disaggregated memories belong into several categories: hardware based such as CXL <ref type="bibr" coords="2,214.81,669.24,9.95,8.12" target="#b4">[5]</ref>, <ref type="bibr" coords="2,230.66,669.24,9.95,8.12" target="#b8">[9]</ref>, RDMA <ref type="bibr" coords="2,277.18,669.24,14.36,8.12" target="#b9">[10]</ref>, <ref type="bibr" coords="2,59.12,680.48,14.36,8.12" target="#b10">[11]</ref>, Infiniband <ref type="bibr" coords="2,123.87,680.48,15.60,8.12" target="#b11">[12]</ref> or RoCE <ref type="bibr" coords="2,182.63,680.48,14.36,8.12" target="#b11">[12]</ref>, and software based (or logical disaggregation).</p><p>In addition to technological implementation, there are several logical disaggregation modes (i.e. software based) that have been implemented. Recently, Copik et al. <ref type="bibr" coords="2,516.87,96.11,10.92,8.12" target="#b7">[8]</ref> have proposed a software-based implementation for HPC systems based on Function-as-a-Service paradigm to utilize idle resources while retaining near-native performance.</p><p>Several works have discussed what would be expected from a fully functional disaggregation system <ref type="bibr" coords="2,479.56,152.24,14.36,8.12" target="#b12">[13]</ref>. Other works focus on the practical challenge such an implementation could face <ref type="bibr" coords="2,333.40,174.71,9.95,8.12" target="#b2">[3]</ref>. This paper approaches resource disaggregation under an algorithmic point of view. We assume that fully functional disaggregation systems are theoretically available.</p><p>Our work focuses on cluster-wide memory disaggregation. Cluster-wide memory disaggregation adds the challenge of keeping track of the location of data <ref type="bibr" coords="2,459.99,230.84,14.36,8.12" target="#b12">[13]</ref>. In practice, this is done by updating a memory map (which implies a reconfiguration cost). To deal with the scalability challenge of maintaining this map (and keep this cost to a minimum), solutions for large size cluster include hierarchical constructions, by constructing smaller groups of nodes that share the resources <ref type="bibr" coords="2,504.64,287.03,14.36,8.12" target="#b13">[14]</ref>.</p><p>b) Allocation algorithms for competing applications: Most of the allocation algorithms for disaggregated memory consider the case where memory is sufficiently available for all applications running in the system. This is particularly true for single node applications/OS level scheduling <ref type="bibr" coords="2,502.35,343.08,14.36,8.12" target="#b14">[15]</ref>. In such a case, the scheduling problem consists of deciding which data goes where, depending on factors such as the frequency <ref type="bibr" coords="2,535.49,365.56,15.60,8.12" target="#b14">[15]</ref> or the proximity <ref type="bibr" coords="2,381.12,376.80,15.60,8.12" target="#b15">[16]</ref> of the data accesses.</p><p>These node-level memory disaggregation solutions are out of the scope of our study. Here we are interested in memory disaggregation at the cluster level. With respect to clusterbased scheduling algorithms, we do not know related work for the HPC decision problem.</p><p>The algorithmic solutions that we are looking for are closer to those from the Cloud Computing community, with the main difference that in cloud system, the applications cannot be slowed down because they have a quality of service to match. Applications are looked at independently of the rest of system, for instance <ref type="bibr" coords="2,411.86,500.28,52.92,8.12">Rzadca et al.</ref> propose Autopilot, a ML-based solution to predict how much memory to allocate dynamically to each job <ref type="bibr" coords="2,413.65,522.76,14.36,8.12" target="#b16">[17]</ref>. The goal is then to minimize the cost associated to adding more resources (optimization problem), and the solutions in elastic memory/shared memory are often more technical (extra memory is available, how do we get access to it), rather than decisive (who gets most memory).</p><p>In our case, we are interested in a problem where resources are bounded, and need to be shared with competing applications (decision problem). To the best of our knowledge, we did not find explicit algorithmic solutions to solve this decision problem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. PRELIMINARY CONCEPTS A. Disaggregated memory model</head><p>We consider an architecture with P compute nodes and a two tier memory. Typically, this corresponds to an archi- </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Application model</head><p>We consider N parallel applications {A 1 , . . . , A N }. Each application can run using one of the three processing modes: <ref type="bibr" coords="3,58.17,482.85,10.92,8.12" target="#b0">(1)</ref> with no access to the disaggregated memory at limited speed, (2) at full speed with complete access to disaggregated memory, or (3) a trade-off with limited access to disaggregated memory. All applications have access to the slower memory. For an application A i , we characterize its memory profile as a function of the requested memory: γ → m i (γ) with γ ∈ [0, 1] the proportion of the application completed. Note that in general this profile is an unknown variable that can only be traced after execution (see Section III-D).</p><p>To model the application memory consumption, we first consider the memory profile as piecewise constant. We divide the memory profile into successive phases, with constant memory profile during each phase. A memory profile is therefore denoted as a set {(γ j , m j ), 0 ≤ j &lt; J} where J is the number of phases of the application, m j is the memory request on phase j, that start when a proportion γ j−1 of the application is executed, and finishes at ratio γ j of the application (γ 0 = 0 and γ J−1 = 1).</p><p>Performance model: The performance of application A i is computed based on the allocation M i of memory allocated to A i : If the application runs with requested memory at each phase, then the runtime of phase j will be T opt i (γ j − γ j−1 ) and the total runtime of the application will be T opt i . With a fixed memory M i ≤ M , a slowdown affects the runtime of each phase. In general this slowdown is very application dependent, but some data <ref type="bibr" coords="3,468.63,130.50,14.36,8.12" target="#b12">[13]</ref>, <ref type="bibr" coords="3,491.48,130.50,15.60,8.12" target="#b13">[14]</ref> show that a linear slowdown on memory accesses may be a good approximation. Particularly, Liu et al. <ref type="bibr" coords="3,470.89,152.97,14.83,8.12" target="#b12">[13,</ref><ref type="bibr" coords="3,490.77,152.97,33.40,8.12">Figure 7</ref>] have shown it using several memory swapping systems (Linux, Infiniswap, Fastswap). We can observe that the main difference in performance lies in an architecture-dependent growth factor. This is coherent with the roofline model <ref type="bibr" coords="3,472.55,197.93,14.36,8.12" target="#b17">[18]</ref>, <ref type="bibr" coords="3,493.67,197.93,9.95,8.12" target="#b2">[3]</ref>. Hence, we compute the slowdown on phase j as follows:</p><formula xml:id="formula_0">SL i (M i , j) = α + (1 − α) min 1, M i m j .</formula><p>Discussion: the underlying hypothesis behind this model is that all memory accesses are accessed with the same frequency. This is the case for some applications such as HPL/SuperLU <ref type="bibr" coords="3,371.17,295.23,10.73,8.07" target="#b2">[3]</ref>. For some applications where the inbalance between the memory blocks that are accessed is extremely important (NekRS, BFS, XSBench <ref type="bibr" coords="3,447.10,317.71,10.46,8.07" target="#b2">[3]</ref>), this model could also work by considering as main memory footprint, only the blocks that correspond to 90% of the memory accesses and considering a first order approximation.</p><p>We only model a slowdown due to not having enough memory available: in line with recent literature on disaggregated memory systems in HPC <ref type="bibr" coords="3,414.83,386.19,9.95,8.12" target="#b2">[3]</ref>, we consider that access to this shared memory does not impact the bandwidth in general.</p><p>With this formula, an application that has all the memory it needs (or more) will have a slowdown of 1 (i.e., no slowdown). An application with no memory will have a slowdown of α (the bandwidth ratio between fast and slow storage). An application with βm j memory (β ∈ [0, 1]) will have a slowdown of α + (1 − α)β, which is the linear interpolation between the slowdown with no memory and the slowdown with all the memory.</p><p>We obtain a runtime for phase j:</p><formula xml:id="formula_1">r i (M i , j) = T opt i (γ j − γ j−1 ) SL i (M i , j) .<label>(1)</label></formula><p>More generally, an application can be run with successive memory allocations</p><formula xml:id="formula_2">{(γ ′ k , M k ), 1 ≤ k ≤ K} during phase j with M k ≤ M and γ ′ K = γ j and γ ′ 0 = γ j−1 ,</formula><p>where memory M k is allocated to the application when the application is between γ ′ k−1 and γ ′ k of its execution. Then, the execution time of the phase will be</p><formula xml:id="formula_3">K k=1 T opt i (γ ′ k − γ ′ k−1 ) SL i (M k , j)</formula><p>.</p><p>The execution time of the application will thus be the sum of execution of each phase. For better clarity, we formulate in the following the memory allocation as a function of the time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Scheduling problem</head><p>Given a number of nodes P , a fast, disaggregated memory of size M , a relative bandwidth ratio α between fast and slow memory, and a set {A 1 , • • • , A N } of applications defined by: their memory profile m i (γ), their node request c i , a minimal execution time T opt i with unlimited memory. A schedule consists in allocating applications to the P nodes, and partitioning the memory between applications. The memory allocation of a schedule can be described as a time vector t → π(t) = (M 1 (t), . . . , M N (t)) s.t. for all t,</p><formula xml:id="formula_4">i≤N M i (t) ≤ M .</formula><p>Optimization objective: In line with the literature <ref type="bibr" coords="4,277.57,200.66,14.36,8.12" target="#b18">[19]</ref>, we first define the throughput or instantaneous utilization of the system. More specifically, given a set of applications</p><formula xml:id="formula_5">S t = {A 1 , • • • , A k }, if at time t applications A i uses c i cores, then the throughput ρ is: ρ(t) = Ai∈St c i</formula><p>Due to low memory allocation, an application can be slowed down, hence we use the or 'useful' throughout. It consists in giving to each node a weight proportional to the quantity of work it is effectively processing. We use this modified version of the metric to account for the fact that if an application is executed on a node with a slowdown of 0.5, then the node run at half of its maximal capacity, hence, only half of the node counts as producing 'useful' work. If application A i is running phase j i with memory M i , then the useful throughput is:</p><formula xml:id="formula_6">ρ(t) = Ai∈St c i • SL i (M i (t), j i ).</formula><p>Finally, we want to maximize the useful utilization of the system, defined as the mean useful throughput over time. The useful utilization U of the schedule S is therefore given by the formula:</p><formula xml:id="formula_7">U (S) = 1 T S t Ai∈St c i • SL i (M i (t))</formula><p>where T S is the makespan of the schedule. For simplicity, in the rest of this work we use utilization when we talk about useful utilization and throughput when we talk about useful throughput.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Limits of Memory Models</head><p>While an application can be described by a memory profile t → M (t), it may not always be reasonable to consider that we can accurately obtain this profile in practice <ref type="bibr" coords="4,239.48,591.45,14.36,8.12" target="#b19">[20]</ref>. There are too many variables that impact the accuracy of this profile: the performance of the system (the CPU may be slower at some time which translates the memory function in time), the shape of the data etc.</p><p>Storing an entire memory profile for applications running on a large scale machine may be extremely costly. For instance, if we collect the node memory consumption every second (stored on 4B), that is roughly 350KB/day/node. On a machine like Frontier with more than 9400 nodes, this comes to 3.2GB/day,  In comparison, over five years of Mira (Jan 2014 to Dec 2018), 330k jobs were executed <ref type="bibr" coords="4,445.84,499.51,14.36,8.12" target="#b18">[19]</ref>. If we ran aggregated data per jobs (for instance the percentage of time spent using 0-8GB, 8-16GB, 16-32GB, 32-64GB, 64-128GB <ref type="bibr" coords="4,515.18,521.99,9.83,8.12" target="#b0">[1]</ref>), that would amount to 6.6GB. Of course, this comes with a loss of information.</p><p>In addition to the inaccuracy of the measurement, Peng et al. <ref type="bibr" coords="4,327.92,566.88,10.92,8.12" target="#b5">[6]</ref> identified four types of memory temporal patterns to describe applications:</p><p>• Constant pattern: the memory utilization has minimal changes throughout the execution; • Phased pattern: the memory consumption is constant by segments; • Dynamic patterns: a pattern with frequent and substantial changes in memory usage over time; • Sporadic patterns: low memory utilization most of the time with spiked memory usage for short periods. In the evaluation we consider two flavors of input that the algorithm can use, that would represent various means of collecting memory information:</p><p>1) Constant memory profiles: Our observation from Mar-coni100's traces <ref type="bibr" coords="5,130.38,96.25,10.92,8.12" target="#b6">[7]</ref> is that some applications have very structured behavior (see Figure <ref type="figure" coords="5,188.14,107.49,7.15,8.12" target="#fig_1">2a</ref>). In cases where phases with constant memory usage are quite long in front of the reconfiguration cost, this cost can usually be neglected.</p><p>2) Stochastic memory profiles: Finally, there are jobs whose memory behavior varies dynamically during its execution (see for instance Fig. <ref type="figure" coords="5,152.47,163.42,7.15,8.12" target="#fig_1">2c</ref>). This is typical of jobs relying on Deep-Learning phases. This variability can be random or deterministic but with variations that are too fast in front of the time to reconfigure the machine. For these jobs, we propose to use a stochastic model to describe the memory consumption. This model can be obtained based on historical data.</p><p>Definition 1 (Stochastic Memory Profile). We say that an application has a stochastic memory profile (m j , p j ) j on time interval [l, l + 1], with j p j = 1 and m j0−1 &lt; m j0 for all j 0 &gt; 0, if for t ∈ [l, l + 1], t → m(t) is equal to X where X is a discrete random variable of distribution (m j , p j ) j (i.e. P(X = m j ) = p j )).</p><p>Some comments: we focus on a simple definition, but it could be generalized trivially to a model where the random variable is time dependent (phase behavior). Similarly, the duration of the time interval where the memory is constant could be non-deterministic.</p><p>One can verify that, for application A with node request c and memory profile (m j , p j ) j , if m j0 ≤ M 0 &lt; m j0+1 , then we have the following properties:</p><formula xml:id="formula_8">E (ρ A (M 0 )) = cα + c(1 − α) j≤j0 p j + c(1 − α)M 0 j&gt;j0 p j m j E (ρ A (M 0 )) − E (ρ A (m j0 )) = c(1 − α)(M 0 − m j0 ) j&gt;j0 p j m j = (1 − α) • (M 0 − m j0 ) • g(m j0 )<label>(2)</label></formula><formula xml:id="formula_9">E (ρ A (m j0+1 )) − E (ρ A (M 0 )) = c(1 − α)(m j0+1 − M 0 ) j&gt;j0 p j m j = (1 − α) • (m j0+1 − M 0 ) • g(m j0 )<label>(3)</label></formula><p>where, for</p><formula xml:id="formula_10">m j0 ≤ M 0 &lt; m j0+1 , g(M 0 ) = c j&gt;j0 p j m j = cE 1 X X &gt; M 0 P (X &gt; M 0 )<label>(4)</label></formula><p>IV. ALGORITHMS</p><p>In this section we present various algorithmic strategies to solve the problem described in Section III-C. We propose two algorithms: the Priority algorithm, which is suited for application scenarios with known memory behavior, and the Stochastic algorithm, which is suited for application scenarios with dynamic memory requirements. These algorithms are compared to baseline algorithms presented in Section IV-C. Finally, we discuss how these algorithms impact the batch scheduling mechanism in Section IV-D.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Priority</head><p>The first algorithm is priority-based: at all time t 0 , Priority sorts all running applications by decreasing c i /m i (t 0 ). Then while there is memory available, it allocates it (up to the memory requirement) to the first application of the list that needs additional memory.</p><formula xml:id="formula_11">Theorem 1. Given a set of running jobs {A 1 , • • • , A N }, with respective constant memory profile t → m i (t) = m i .</formula><p>Priority is optimal with respect to the system throughput ρ(t).</p><p>Proof. We show the result by contradiction.</p><p>Assume an optimal solution π = (M 1 , . . . , M N ), such that there exists two jobs A 1 and A 2 , such that c 1 /m 1 &gt; c 2 /m 2 , and such that M 1 &lt; m 1 and 0 &lt; M 2 (≤ m 2 ), then we show that there exists ε &gt; 0 such that the allocation</p><formula xml:id="formula_12">π ′ with M ′ 1 = M 1 + ε, M ′ 2 = M 2 − ε and M ′ i = M i for i &gt; 2 has better performance.</formula><p>Because the throughput is additive, one can notice that</p><formula xml:id="formula_13">ρ(π ′ ) − ρ(π) = (1 − α) c 1 m 1 ε − (1 − α) c 2 m 2 ε &gt; 0</formula><p>which contradicts the optimality of π.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Stochastic</head><p>Based on Theorem 1, we expect Priority to work well when the memory profile of an application stays steady, close to the predicted peak usage as can be observed on traces on the Marconi100 supercomputer (see Section III-D1). For applications where the memory consumption is more dynamic within the execution <ref type="bibr" coords="5,437.61,448.01,14.36,8.12" target="#b20">[21]</ref>, or where the predicted peak consumption can be far-off, there can be an important reconfiguration cost.</p><p>We provide another approach based on a stochastic memory profile (Definition 1). In the following we assume that the memory profile of applications are described by random variables X whose discrete distributions are known (m j , p j ) j (i.e. for all j, P (X = m j ) = p j ).</p><p>In this case, we derive Stochastic, a strategy with loglinear complexity that minimizes the expected throughput when applications follow a stochastic memory model. In general this can be obtained with historic data or known behavior for recurrent jobs (see Section III-D).</p><p>In the following and for simplicity when the job index i is omitted when it is obvious. Lemma 1. Let X a random variable that follows the discrete distribution (m j , p j ) j , then for all j:</p><formula xml:id="formula_14">g(m j ) ≥ g(m j+1 )</formula><p>This lemma is trivial with Equation (4). We now prove the main theorem that we use to define Stochastic. Intuitively Theorem 2 along with Lemma 1 state that we can sort applications by decreasing values g (m j ), and allocate memory greedily up to the next value m j .</p><p>Theorem 2. Given a set of running applications {A 1 , . . . , A N } with stochastic memory profile. Given an optimal schedule π = (M 1 , • • • , M n ) for the problem of maximizing the expected throughput, then this schedule satisfies the following property. For all i 1 , i 2 , let j 1 (resp. j 2 ) s.t. m</p><formula xml:id="formula_15">(i1) j1 ≤ M i1 &lt; m (i1) j1+1 (resp. m (i2) j2 ≤ M i2 &lt; m (i2)</formula><p>j2+1 ), then:</p><formula xml:id="formula_16">g i1 m (i1) j1 &lt; g i2 m (i2) j2−1 .</formula><p>Proof of Theorem 2. We show the result by contradiction. Given π = (M 1 , • • • , M n ) an optimal schedule, assume that there exists</p><formula xml:id="formula_17">m (1)</formula><p>j1 such that m</p><p>(1)</p><formula xml:id="formula_18">j1 ≤ M 1 &lt; m (1) j1+1 m (2)</formula><p>j2 such that m</p><p>(2)</p><formula xml:id="formula_19">j2 ≤ M 2 &lt; m (2) j2+1</formula><p>and g 1 (m</p><p>(1)</p><formula xml:id="formula_20">j1 ) &gt; g 2 (m (2) j2−1 ) ≥ g 2 (m<label>(2)</label></formula><p>j2 ). We show that for</p><formula xml:id="formula_21">0 &lt; ε ≤    min m (1) j1+1 − M 1 , M 2 − m (2) j2 if M 2 &gt; m (2) j2 min m (1) j1+1 − M 1 , M 2 − m (2) j2−1 if M 2 = m (2) j2 the schedule π ′ = (M 1 + ε, M 2 − ε, • • • , M n ) has a better expected throughput than π. E (ρ(π)) − E (ρ(π ′ )) = E (ρ A1 (M 1 )) − E (ρ A1 (M 1 + ε)) + E (ρ A2 (M 2 )) − E (ρ A2 (M 2 − ε))</formula><p>Using Equation ( <ref type="formula" coords="6,125.41,452.57,3.64,8.12" target="#formula_8">2</ref>) and ( <ref type="formula" coords="6,156.15,452.57,3.38,8.12" target="#formula_9">3</ref>):</p><formula xml:id="formula_22">E (ρ A1 (M 1 )) − E (ρ A1 (M 1 + ε)) = −(1 − α) • ε • g 1 (m (1) j1 ) E (ρ A2 (M 2 )) − E (ρ A2 (M 2 − ε)) = (1 − α) • ε • g 2 (m (2) j2 ) if M 2 &gt; m (2) j2 (1 − α) • ε • g 2 (m (2) j2−1 ) if M 2 = m (2) j2 ≤ (1 − α) • ε • g 2 (m (2) j2−1 ) (Lemma 1)</formula><p>Hence</p><formula xml:id="formula_23">E (ρ(π)) − E (ρ(π ′ )) ≤ (1 − α) • ε g 2 (m (2) j2−1 ) − g 1 (m<label>(1)</label></formula><p>j1 ) &lt; 0</p><p>Contradicting the optimality hypothesis.</p><p>Algorithm 1 is derived from Theorem 2. It initially allocates 0 memory to each application. Then, in increasing order of g i (m (i) j ), it increases the memory allocation of each application up to the next value of the memory distribution until the memory limit is reached or until all application met their maximum memory value. </p><formula xml:id="formula_24">Algorithm 1 Stochastic (A 1 , . . . , A N , M ) 1: Avail_M ← M 2: G table of size N , initialized with G[i] = c i • j≥1 p (i) j /m (i) j . 3: V table of</formula><formula xml:id="formula_25">j ← V [i] 9: M t ← π[i] 10: π[i] ← min m (i) j+1 , M t + Avail_M 11: Avail_M ← Avail_M − (π[i] − M t ) 12: G[i] ← G[i] − c i • p (i) j+1 /m (i) j+1 13: V [i] ← V [i] + 1 14:</formula><p>if G[i] &gt; 0 then insert(H, i) end if 15: end while 16: return π</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Others heuristics</head><p>We compared Priority and Stochastic with several heuristics:</p><p>• Aggregated, the baseline heuristic, behaves like a solution would on a machine with aggregated memory, i.e. the memory allocation is proportional to the number of compute resources used by the application. • We also compare to other priority-based heuristics (i.e., heuristics that sort jobs by a priority function and allocates the maximum between the available memory and what the job requires), namely:</p><p>-Oldest-First: sorts jobs by increasing arrival time (i.e. the date in which the job entered the system); -Largest-First: sorts jobs by decreasing size.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Batch Scheduler Integration</head><p>In our work we considered a batch-scheduler relying on EASY-BF <ref type="bibr" coords="6,357.79,527.44,14.36,8.12" target="#b21">[22]</ref>. At submission time, users are expected to provide an expected walltime to the batch scheduler. The usual impact of this expected walltime is that if a job lasts longer than this value, it is killed by the resource manager. In our implementation, we chose to separate the memory partitioning from the node allocation, in order to simplify the overhead. This means that if the expected walltime is shorter than the worse case (T opt /α), the job is at the risk of being killed. Hence, a batch scheduler needs to use the worse possible walltime as the expected walltime.</p><p>The focus of this work was to compare different memory allocation strategies, and determining the impact of disaggregated memory. In future work, it may be interesting to study the co-design of Batch-Scheduling strategies with memory partitioning algorithms, this co-design could use better runtime estimates.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. EVALUATION METHODOLOGY</head><p>In order to generate traces for the evaluation, we rely on real behavior. We use application traces from the Marconi100 supercomputer <ref type="bibr" coords="7,117.92,112.11,9.95,8.12" target="#b1">[2]</ref>. The Marconi100 supercomputer consisted of 980 computing nodes, each of which having 2x IBM POWER9 AC922 (32 cores), 4x NVIDIA Volta V100 GPUs, and 256GB of RAM. In Section V-A, we explain how we extract stochastic profiles. These profiles are then used to generate synthetic traces as described in Section V-B.</p><p>For the evaluation we designed an event-based simulator based on the model designed in Section III-A. This simulator is available freely at https://doi.org/10.5281/zenodo.13981594. This simulator takes in entry the memory profiles of the applications, the platform parameters (number of nodes and quantity of disaggregated memory) and a memory allocation strategy. It then performs the simulation and return some parameters of interests such as the quantity of memory used at each event or the completion time of each application.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Extracting stochastic memory profiles</head><p>To extract stochastic memory from real workload data, we sampled 400 jobs from dataset 8 (2022-05) of Marconi100 <ref type="bibr" coords="7,281.76,316.76,9.95,8.12" target="#b1">[2]</ref>. The sampling method used mainly two criteria to select jobs: select jobs that (i) run for more than one minute, and (ii) had exclusive access to the computing nodes.</p><p>For each sampled job, its memory footprint consists of a time series of measurements of the nodes' memory consumption. From this time series, we define the phases frontiers in three steps. First, we calculate the distribution of memory consumption differences between subsequent measurements in the memory consumption time series. Second, we use this distribution to calculate the z-scores of the memory consumption differences. Third, from these z-scores, we define the phase frontiers as the timestamps where the z-scores of the memory consumption differences were larger than a threshold ∆, expressed as a ratio of the standard deviation.</p><p>Put another way, we set the phases frontiers where the memory consumption significantly went up or down, where "how much significantly" is determined by ∆. Finally, for each phase determined by two subsequent frontiers, we determine its memory consumption as being the maximum memory consumption of the initial memory consumption time series during the duration of the phase.</p><p>In practical terms, we reduce a fine-grained time series of memory consumption into a coarse-grained sequence of memory consumption phases, where we only store new information when the memory consumption significantly changed. Figures <ref type="figure" coords="7,92.93,609.95,45.71,8.12" target="#fig_1">2a, and 2b</ref> illustrate some outputs of the above procedure. In these figures, the points represent the data and the lines the output.</p><p>Based on the obtained phases, we generated four distributions of behaviors on Marconi100 that we use for synthetic trace generation:</p><p>• a node distribution C m (see Figure <ref type="figure" coords="7,237.47,680.29,7.15,8.12">3a</ref>). We have (c) Distribution of number of phases per applications on Marconi100.</p><formula xml:id="formula_26">E(C m ) = 7.</formula><p>Figure <ref type="figure" coords="7,342.73,167.81,3.64,8.12">3</ref>: Job parameters on the Marconi100 dataset that we studied.</p><p>• a phase length distribution L m (see Figure <ref type="figure" coords="7,504.65,213.83,9.37,8.12">3b</ref> which is showed truncated). We have E(L m ) = 1000s. • a distribution of number of phases N p (see Figure <ref type="figure" coords="7,536.35,236.31,7.15,8.12">3c</ref>).</p><p>We have E(N p ) = 17. • a memory usage distribution X m (see Figure <ref type="figure" coords="7,505.72,258.79,3.38,8.12">1</ref>). We have E(X m ) = 105GB.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Generating synthetic traces</head><p>In all the experiments we consider that there are P = 54 nodes. Unless specified otherwise, we used as machine parameters: τ alloc = 1s and α = 0.03. We chose α = 0.03 as the ratio between the speed of a SSD at 300MB/s versus a RAM at 10GB/s. The available memory M depends on the experiment, but we call M = E(X m ) = 105GB the average memory usage of Marconi100's traces, and M mar = 256GB the memory per node on Marconi100.</p><p>Unless specified otherwise, the applications are generated as follows: there are 30 batches of N = 1000 applications. For each application A j :</p><p>• Its number of nodes is selected following C m • The number of phases is selected following N p (where we have bounded the number of phases at 45), and for each phase:</p><p>-Its memory is selected following X m -Its length is selected following L m</p><p>The release time of each job is 0 for the first 10% of jobs, then each job is released 0.9 • 10E(L m ) Cm P units of time after the previous one. This release ratio is to guarantee that there is always enough work to be executed. Intuitively, if there was no scheduling constraints, the jobs released after t = 0 could allow a theoretical utilization of 90%.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Measuring Performance</head><p>When measuring the performance of an algorithm, we consider an interval of time included in the workload generation interval. That is, if the last application is submitted at time T last , we measure the system utilization on the interval [0, T last ]. In practice this means that the executed workload is not the same for all solutions, but when we take T last to be large enough, we reach a steady state which makes the solution trustable <ref type="bibr" coords="7,530.29,684.13,14.36,8.12" target="#b18">[19]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. EXPERIMENTS</head><p>We first evaluated the impact of disaggregated memory allocation solution in simple cases where the memory is constant by phases (Section VI-A). Next, we evaluated the limits of the online strategy Priority when the memory pattern changes frequently. Finally, we evaluated the importance of Stochastic (Section VI-B) to alleviate the cost of reconfiguration. In this section we refer to the term baseline performance as the performance on an architecture where memory is not limited (in this case this is satisfied by 256GB per node).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Evaluation on Phased patterns</head><p>Using the nomenclature proposed by Peng et al. <ref type="bibr" coords="8,250.45,224.38,10.92,8.12" target="#b5">[6]</ref> we evaluated our algorithms on Phased patterns, that is patterns where memory is constant by segments. The number of segments can be equal to one which corresponds to the constant patterns. We first provided a general evaluation based on Marconi100 job profile, then we studied the limits when the architecture parameters vary. In this section, we slightly modified the trace generation by drawing the number of nodes per applications uniformly between 1 and 23. This provides more variability in the applications to observe more differences in the results. However our take-aways hold with the original Marconi100 node distribution. 1) General evaluation: In Figure <ref type="figure" coords="8,198.82,488.29,3.51,8.12" target="#fig_3">4</ref>, we measured the mean useful utilization (i.e. equivalent to the number of Flops) when the average memory per node varies. Since all applications use less than 256GB of memory per node, all allocation policies give similar results with 256GB (or any volume of memory larger, what we consider in the following baseline/unlimited memory case). The difference in behavior between Aggregated and disaggregated heuristics is that in our implementation, disaggregated heuristics still release unused memory and reallocate it later when needed.</p><p>When the memory becomes more limited, disaggregated heuristics behave better than the Aggregated that uses the same volume of memory. Our result showed that using 150% of the average occupied memory (150GB), then using disaggregated heuristics allow to have roughly the same performance to that of a machine where memory is not limited (loss of 0.2%). In this scenario, heuristics that do fewer reconfiguration (Oldest-First, Largest-First) perform slightly better than Priority. When the average memory per node gets closer to the average memory usage (125GB), then as expected by our theoretical results Priority outperforms other heuristics. The overhead compared to the baseline solution is still minimal with 125GB (i.e. the machine has 25% more memory than the average memory usage): there is a 0.7% utilization loss compared to the baseline on average. Finally, the Priority heuristic really shows its performance with very limited memory on the machine compared to the memory needed by applications. In these case it allows to gain up to 2% of utilization over Oldest-First and nearly 4% over Largest-First.</p><p>The response time is the average duration between a job submission and its completion. In Figure <ref type="figure" coords="8,480.79,389.94,3.51,8.12" target="#fig_4">5</ref>, we showed the response time of Priority for various job sizes, when the available memory varies compared to the baseline strategy. This allows to confirm that no jobs are arbitrarily hurt by our scheduling heuristic, even when the memory is small. Take-aways:</p><p>1) Disaggregated heuristics allow to considerably reduce the memory needed by the machine. 2) When the memory available is small, then a more precise heuristic like Priority is important, however otherwise, simpler heuristics like Oldest-First are sufficient and do not require precise memory requirements.</p><p>2) Impact of machine parameters: In this section we are interested by how architectural parameters impact the performance of disagregated algorithms. Specifically we evaluated the impact of α, the ratio between memory bandwidth and out of node storage bandwidth, and τ alloc , the reconfiguration time. In the following of this section, instead of an absolute value of the utilization, we study relative values, that is, the difference with the baseline utilization when memory is considered as unlimited (i.e., Aggregated with 256GB).</p><p>In Figure <ref type="figure" coords="8,364.00,657.22,3.51,8.12" target="#fig_6">6</ref>, we plotted the mean utilization as a function of the memory for various values of α (α = 0.1 means that memory bandwidth is 10 times faster than external storage).</p><p>We perform two evaluations: in Figure <ref type="figure" coords="8,497.18,691.50,7.45,8.12" target="#fig_6">6a</ref>, we eval-  uated the relative performance between Priority and Oldest-First when α varies. This evaluation confirms our previous findings that when there is enough memory, a solution that minimizes the number of memory reallocation by giving priority to longer running jobs is better, however, as memory becomes limited, Priority improves this performance. It should be noted that in both cases, the relative gains are negligible (about 1%).</p><p>In Figure <ref type="figure" coords="9,111.61,421.33,7.80,8.12" target="#fig_6">6b</ref>, we evaluated the relative performance of Priority compared to the baseline architecture (256GB memory per node). Naturally, the higher α is, the better performance disaggregated solutions obtain. From the results in Figure <ref type="figure" coords="9,86.25,466.28,3.51,8.12" target="#fig_6">6</ref>, we observed a robustness of disaggregated heuristics. Take-aways:</p><p>3) Even in limit cases where the cost of overflowing the memory is high, previous take-aways hold.</p><p>Our next step is to evaluate the impact of τ alloc . In practice, this characteristic time of the system is interesting compared to the characteristic time of applications (i.e., the average phase length). This is what we showed in Figure <ref type="figure" coords="9,226.71,565.61,3.51,8.12" target="#fig_7">7</ref>.</p><p>We increased the value of τ alloc gradually, and plotted as a function of the ratio r = E(L m )/τ alloc , for r ∈ {1, 2.5, 10, 25, 100, 1000} (hence, τ alloc ∈ {1000, 400, 100, 40, 10, 1}).</p><p>We observed that Priority stays efficient until E(L m )/τ alloc = 100. The difference between r = 100 and r = 1000 are negligible. As this ratio decreases we observed the following:</p><p>• When r = 25, the reconfiguration cost becomes so important that when memory is not limited (memory per node greater than 200GB). In this case, an aggregated strategy is better; • When the reconfiguration cost has the same order of magnitude than the phase length, even with small volumes of memory it is better to use an aggregated storage. These observations hint that an online reconfiguration solution may not be adapted to a scenario with dynamic memory pattern which is what we study in the next section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Evaluation on dynamic patterns</head><p>In this section we are now interested by dynamic memory patterns, such as in Figure <ref type="figure" coords="9,421.70,401.64,7.45,8.12" target="#fig_1">2c</ref>. In order to do so, we update the generation protocol as follows:</p><p>• The number of phases is drawn uniformly between 50 and 149, but all phases have length τ alloc ; • For each application, we draw uniformly at random one variable out of 4 to describe their memory patterns in the following truncations of the normal law of mean 105 and scale 30:</p><p>-A truncation between 30 and 80; -A truncation between 80 and 130; -A truncation between 130 and 180; -A truncation between 180 and 240. This statistical behavior is the only memory information available to the scheduler ahead of time.</p><p>• All phases memory from one application are drawn according to the selected distribution (this information is used for the evaluation, but not for the scheduling decision). 1) General evaluation: The results are presented in Figure <ref type="figure" coords="9,344.95,625.08,3.51,8.12" target="#fig_8">8</ref>. We compared Priority, Stochastic and Aggregated, and we normalized their performance to the baseline architecture with 256GB memory per node. As expected, Priority is outmatched by the two others policies. Indeed, as the length of a phase is equal to the reconfiguration time, it can no longer keep up with the fast-changing memory profile. Stochastic is able to correctly balance the memory allocation between the application which allows it to perform better than Aggregated when the memory is constrained.</p><p>For each quantity of memory per node, the Aggregated policy performed as well in this case as in the first experiment. This is not surprising as this policy is independent of the variations speed of memory consumption of the application. Unsurprisingly and due to the dynamicity of patterns, the best performance cannot reach the same level of utilization that the Priority algorithm was able to reach in the first experiment (80% of utilization for Stochastic with 105 GB of memory versus 85% for Priority in the first scenario). Yet, those performance are still impressive given the dynamicity and overhead dut to reallocation, where the Stochastic algorithm allows to reduce the memory per node by more than 40% (to 150GB) with only 2% loss in performance.</p><p>A small comments on the results: in very rare cases we can observe that Stochastic of Aggregated with less memory behaves better than the Baseline that uses 256GB (see for instance 200GB on Figure <ref type="figure" coords="10,203.61,496.56,3.38,8.12" target="#fig_8">8</ref>). After checking the Gantt chart and the results, this is an artifact of the global scheduling strategy and a consequence of their heuristical nature: slowing down jobs can reorder the order in which the jobs are executed, which in turns can provide improvement on the global performance.</p><p>Finally, by studying the response time as a function of the size of the jobs, we confirm in Figure <ref type="figure" coords="10,209.45,575.64,3.51,8.12" target="#fig_9">9</ref>, that in this case as well, no jobs are arbitrarily hurt by our scheduling heuristic even when the memory is small. Take-aways: 4) Even with dynamic patterns, when the overhead of an online algorithm would be too high, the static algorithm Stochastic is able to provide important gains, simply by using the statistical memory behavior. For our traces, it brought memory consumption reductions by more than 40% while losing less than 2% of performance.   2) Impact of machine parameters: In Figure <ref type="figure" coords="10,495.12,531.80,7.80,8.12" target="#fig_11">10</ref>, we plot the results of the simulations for others values of α. In Figure <ref type="figure" coords="10,534.99,543.04,11.90,8.12" target="#fig_11">10a</ref>, we evaluate the relative performance between Stochastic and Priority when α and M vary. A performance higher than 1 means that Stochastic performs better, lower than 1 than Priority performs better. In Figure <ref type="figure" coords="10,483.01,587.99,14.05,8.12" target="#fig_11">10b</ref> we compared the performance of Stochastic compared to the baseline. Just like in the phased pattern use-case, these two experiments confirm that the performance of Stochastic are robust to others machine parameters. Take-aways:</p><p>5) The results for Stochastic are robust to various access cost to the second tier of memory.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSION</head><p>Memory capacity is a critical point of HPC architecture. To cope with most applications, HPC systems classically oversupply this resource with high financial cost. Disaggregated memory has been proposed as a solution to provide shared memory to multiple nodes.</p><p>We present in this work a model of HPC with disaggregated memory and different strategies for memory allocation. Each proposed strategy is validated by theoretical results.</p><p>Priority strategy is designed for memory profiles constant by part, with a reconfiguration time at least one order of magnitude lower than the length of a phase. It outperforms Aggregated as soon as the memory starts to be constrained. It allows reducing by 50% the memory usage while only losing 0.7% performance.</p><p>The second proposed strategy Stochastic is designed for dynamic memory patterns. It allocates memory based on statistical data of applications. It outperforms Priority for these applications with dynamic memory and allows reducing memory usage by 40%, while only losing 2% of performance.</p><p>In future work, it may be interesting to study the co-design of Batch-Scheduling strategies with memory partitioning algorithms, this co-design could use better runtime estimates. If still using EASY-BF, it would also be interesting to study what happens when using runtimes estimates better than the worst-case scenario.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,337.18,122.45,212.95,10.72;4,412.45,128.31,51.59,10.72;4,328.57,117.30,3.60,10.72;4,324.96,94.27,7.21,10.72;4,321.36,71.24,10.81,10.72;4,311.26,117.76,10.72,14.18;4,311.26,92.28,10.72,23.68;4,311.26,77.78,10.72,12.70;4,314.82,143.48,235.99,6.50;4,314.82,151.91,183.60,6.50;4,350.88,218.49,193.47,11.02;4,415.19,224.52,53.04,11.02;4,328.96,213.20,3.71,11.02;4,325.25,199.10,7.41,11.02;4,321.54,185.01,11.12,11.02;4,321.54,170.91,11.12,11.02;4,311.16,212.75,11.02,14.58;4,311.16,186.55,11.02,24.34;4,311.16,171.64,11.02,13.06;4,314.82,239.98,235.99,6.50;4,314.82,248.41,235.99,6.50;4,314.82,256.84,70.62,6.50;4,314.82,388.78,235.99,6.50;4,314.82,397.20,28.63,6.50"><head></head><label></label><figDesc>Memory footprint of a Marconi100 Job with phased memory pattern. The lines represent the interpolation and the points are the data. Memory footprint of a Marconi100 Job with various footprints per phase, one footprint per computing node. The lines represent the interpolation and the points are the data.(c) Memory footprint of a Neuroscience job with a dynamic memory pattern<ref type="bibr" coords="4,329.09,397.20,11.48,6.50" target="#b20">[21]</ref>.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,341.71,412.00,182.21,8.12;4,314.82,273.61,236.00,110.40"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Different flavors of memory behavior</figDesc><graphic coords="4,314.82,273.61,236.00,110.40" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="8,92.03,463.57,170.41,8.12;8,60.41,367.92,233.62,88.25"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Utilization of different algorithms.</figDesc><graphic coords="8,60.41,367.92,233.62,88.25" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="8,314.87,198.49,235.99,8.12;8,314.87,209.73,130.51,8.12;8,326.67,71.65,212.39,119.46"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Impact of the response time of Priority as a function of the memory available.</figDesc><graphic coords="8,326.67,71.65,212.39,119.46" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="9,59.48,156.34,233.63,6.50;9,59.48,164.77,233.63,6.50;9,59.48,173.20,124.19,6.50;9,59.48,274.92,233.64,6.50;9,59.48,283.35,28.63,6.50"><head></head><label></label><figDesc>(a) Relative performance of Oldest-First and Priority. A performance higher than 1 means that Oldest-First performs better, lower than 1 than Priority performs better.(b) Performance of Priority compared to baseline with 256GB of memory per node.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="9,81.81,297.84,188.05,8.42;9,59.48,189.97,233.63,80.18"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: Machine utilization as a function of α.</figDesc><graphic coords="9,59.48,189.97,233.63,80.18" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="9,314.11,239.76,235.99,8.12;9,314.11,250.69,154.67,9.07;9,468.78,250.99,47.88,8.47;9,314.11,151.84,233.63,80.53"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: Average utilization of Priority (normalized by baseline utilization) when r = E(L m )/τ alloc varies.</figDesc><graphic coords="9,314.11,151.84,233.63,80.53" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,57.19,237.82,236.00,8.12;10,57.19,249.06,236.00,8.12;10,57.19,72.00,233.62,158.43"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: Utilization (normalized by baseline) of different algorithms when memory per node varies for dynamic patterns.</figDesc><graphic coords="10,57.19,72.00,233.62,158.43" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="10,314.85,210.29,235.99,8.12;10,314.85,221.52,130.51,8.12;10,326.65,71.66,212.39,131.24"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: Impact of the response time of Stochastic as a function of the memory available.</figDesc><graphic coords="10,326.65,71.66,212.39,131.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="10,314.85,361.25,233.64,6.50;10,314.85,369.68,233.64,6.50;10,314.85,378.11,86.77,6.50;10,337.71,479.69,187.93,6.63"><head></head><label></label><figDesc>(a) Relative performance of Stochastic over Priority. A performance higher than 1 means that Stochastic performs better, lower than 1 than Priority performs better. (b) Performance of Stochastic compared to the baseline.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="10,322.35,494.32,217.73,8.42;10,314.85,394.88,233.63,80.18"><head>Figure 10 :</head><label>10</label><figDesc>Figure 10: Relative performance for several values of α.</figDesc><graphic coords="10,314.85,394.88,233.63,80.18" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="6,320.41,124.90,226.81,64.20"><head></head><label></label><figDesc>size N , initialized at 0. 4: H heap of applications sorted by decreasing value of G 5: π table of size N , initialized at 0. 6: while Avail_M &gt; 0 OR H is empty do</figDesc><table coords="6,320.41,169.85,71.86,19.25"><row><cell>7:</cell><cell>i ← pop(H)</cell></row><row><cell>8:</cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 03:17:10 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VIII. ACKNOWLEDGEMENTS</head><p>We want to thank the reviewers for their thorough evaluation. Parts of this work have been supported by the Inria Exploratory Project REPAS, by the EuroHPC EU Regale project (g.a. 956560) and by the Exa-DoST project (PEPR NumPEx), reference ANR-22-EXNU-0004.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="11,76.77,466.00,218.83,6.50;11,76.77,474.29,218.83,6.63;11,76.77,482.72,218.83,6.46;11,76.77,491.15,161.01,6.63" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">On the memory underutilization: Exploring disaggregated memory on hpc systems</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Pearce</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gokhale</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE 32nd International Symposium on Computer Architecture and High Performance Computing (SBAC-PAD)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="183" to="190" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.77,499.71,218.83,6.50;11,76.77,508.01,218.84,6.63;11,76.77,516.57,218.83,6.50;11,76.77,524.86,188.05,6.63" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">M100 exadata: a data collection campaign on the cineca&apos;s marconi100 tier-0 supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Borghesi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">Di</forename><surname>Santi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Molan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">S</forename><surname>Ardebili</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Mauri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Guarrasi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Galetti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cestari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Barchi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Benini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific Data</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">288</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.77,533.43,218.83,6.50;11,76.77,541.86,218.83,6.50;11,76.77,550.15,218.83,6.46;11,76.77,558.58,194.84,6.63" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">A quantitative approach for adopting disaggregated memory in hpc systems</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Wahlgren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Schieffer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gokhale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Peng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.77,567.14,218.83,6.50;11,76.77,575.57,218.83,6.50;11,76.77,584.00,33.71,6.50" xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Ug3.2: Marconi100 userguide</title>
+		<author>
+			<persName coords=""><surname>Cineca</surname></persName>
+		</author>
+		<ptr target="https://wiki.u-gov.it/confluence/pages/viewpage.action?pageId=336727645" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.77,592.43,218.83,6.50;11,76.77,600.85,218.83,6.50;11,76.77,609.15,218.83,6.63;11,76.77,617.58,218.83,6.46;11,76.77,626.00,89.44,6.63" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Cxl memory as persistent memory for disaggregated hpc: A practical approach</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Fridman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">Mutalik</forename><surname>Desai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Willhalm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Oren</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the SC&apos;23 Workshops of The International Conference on High Performance Computing, Network, Storage, and Analysis</title>
+				<meeting>the SC&apos;23 Workshops of The International Conference on High Performance Computing, Network, Storage, and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="983" to="994" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.77,634.57,218.83,6.50;11,76.77,643.00,218.83,6.50;11,76.77,651.29,218.83,6.63;11,76.77,659.72,104.12,6.63" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">A holistic view of memory utilization on hpc systems: Current and future trends</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Karlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gokhale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Shoga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Legendre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Gamblin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Symposium on Memory Systems</title>
+				<meeting>the International Symposium on Memory Systems</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.77,668.28,218.83,6.50;11,76.77,676.71,218.83,6.50;11,76.77,685.14,218.83,6.50;11,76.77,693.57,166.67,6.50" xml:id="b6">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Borghesi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">Di</forename><surname>Santi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Molan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">S</forename><surname>Ardebili</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Mauri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Guarrasi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Galetti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cestari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Barchi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Benini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Beneventi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Bartolini</surname></persName>
+		</author>
+		<idno>M100 dataset 1: from 20-03 to 20-12</idno>
+		<ptr target="https://zenodo.org/record/7588814" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,73.47,218.83,6.50;11,331.42,81.90,218.83,6.50;11,331.42,90.19,122.25,6.63" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Software resource disaggregation for hpc with serverless computing</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Copik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chrapek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Schmid</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Calotoiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Hoefler</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2401.10852</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="11,331.42,98.75,218.83,6.50;11,331.42,106.94,218.83,6.74;11,331.42,115.47,218.83,6.63;11,331.42,124.04,28.09,6.50" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Direct access,{High-Performance} memory disaggregation with {DirectCXL}</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Gouk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kwon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Jung</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 USENIX Annual Technical Conference (USENIX ATC</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="287" to="294" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,132.47,218.83,6.50;11,331.42,140.89,218.83,6.50;11,331.42,149.19,218.83,6.63;11,331.42,157.62,181.50,6.63" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Network requirements for resource disaggregation</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">X</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Narayan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Karandikar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Carreira</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ratnasamy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Shenker</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">12th USENIX symposium on operating systems design and implementation</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="page" from="249" to="264" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,166.18,218.83,6.50;11,331.42,174.61,218.83,6.50;11,331.42,182.90,218.83,6.63;11,331.42,191.46,68.55,6.50" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Rcmp: Reconstructing rdma-based memory disaggregation via cxl</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="26" />
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,199.89,218.83,6.50;11,331.42,208.32,218.83,6.50;11,331.42,216.61,218.83,6.63;11,331.42,225.04,218.84,6.63;11,331.42,233.61,52.07,6.50" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Performance analysis and evaluation of infiniband fdr and 40gige roce on hpc and cloud computing systems</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Vienne</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Wasi-Ur-Rahman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">S</forename><surname>Islam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Subramoni</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">K</forename><surname>Panda</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2012 IEEE 20th Annual Symposium on High-Performance Interconnects</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="48" to="55" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,242.03,218.83,6.50;11,331.42,250.33,218.83,6.63;11,331.42,258.76,218.83,6.46" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Memory disaggregation: Research problems and opportunities</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Sahin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Bae</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE 39th International Conference on Distributed Computing Systems (ICDCS)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,275.75,218.83,6.50;11,331.42,284.04,218.83,6.63;11,331.42,292.60,16.86,6.50" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Hierarchical orchestration of disaggregated memory</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computers</title>
+		<imprint>
+			<biblScope unit="volume">69</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="844" to="855" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,301.03,218.83,6.50;11,331.42,309.46,218.83,6.50;11,331.42,317.89,218.83,6.50;11,331.42,326.18,218.83,6.46;11,331.42,334.61,218.83,6.46;11,331.42,343.17,59.56,6.50" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Tpp: Transparent page placement for cxl-enabled tiered-memory</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">A</forename><surname>Maruf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Dhanotia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Weiner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Bhattacharya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Petersen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Chowdhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kanaujia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Chauhan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="742" to="755" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,351.60,218.83,6.50;11,331.42,359.90,218.83,6.63;11,331.42,368.33,218.83,6.46;11,331.42,376.75,218.83,6.46;11,331.42,385.18,146.15,6.63" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Interference-aware scheduling using geometric constraints</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Bleuse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Dogeas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Lucarelli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Mounié</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Trystram</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Euro-Par 2018: Parallel Processing: 24th International Conference on Parallel and Distributed Computing</title>
+				<meeting><address><addrLine>Turin, Italy</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">August 27-31. 2018. 2018</date>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="205" to="217" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,393.75,218.83,6.50;11,331.42,402.04,218.83,6.63;11,331.42,410.47,218.83,6.63;11,331.42,418.90,156.12,6.63" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Autopilot: workload autoscaling at google</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Rzadca</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Findeisen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Swiderski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Zych</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Broniek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kusmierek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Nowak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Strack</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Witusowski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Hand</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Fifteenth European Conference on Computer Systems</title>
+				<meeting>the Fifteenth European Conference on Computer Systems</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="16" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,427.46,218.83,6.50;11,331.42,435.75,218.83,6.63;11,331.42,444.18,138.52,6.63" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Roofline: an insightful visual performance model for multicore architectures</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Williams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Waterman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Patterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="65" to="76" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,452.74,218.83,6.50;11,331.42,461.17,215.56,6.50" xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Qualitatively analyzing optimization objectives in the design of hpc resource manager</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Boëzennec</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Dufossé</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Pallez</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,469.60,218.83,6.50;11,331.42,478.03,152.44,6.50" xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Model design and accuracy for resource management in hpc</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Pallez</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+		<respStmt>
+			<orgName>Université de Bordeaux</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Ph.D. dissertation</note>
+</biblStruct>
+
+<biblStruct coords="11,331.42,486.46,218.83,6.50;11,331.42,494.75,218.83,6.63;11,331.42,503.18,218.83,6.63;11,331.42,511.74,55.06,6.50" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Profiles of upcoming hpc applications and their impact on reservation strategies</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Gainaru</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Goglin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Honoré</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Pallez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="issue">5</biblScope>
+			<biblScope unit="page" from="1178" to="1190" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.42,520.17,218.83,6.50;11,331.42,528.60,218.83,6.50;11,331.42,536.89,218.83,6.63;11,331.42,545.46,105.69,6.50" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Utilization, predictability, workloads, and user runtime estimates in scheduling the IBM SP2 with backfilling</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">W</forename><surname>Mu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">G</forename><surname>Feitelson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="529" to="543" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

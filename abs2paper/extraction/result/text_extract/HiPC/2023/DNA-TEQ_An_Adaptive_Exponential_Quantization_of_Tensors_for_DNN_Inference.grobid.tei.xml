@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">DNA-TEQ: An Adaptive Exponential Quantization of Tensors for DNN Inference</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-12-18">2023-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,202.36,163.78,80.36,9.52"><forename type="first">Bahareh</forename><surname>Khabbazan</surname></persName>
+							<email>bahareh.khabbazan@upc.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">dept. of Computer Architecture</orgName>
+								<orgName type="institution">Universitat Politècnica de Catalunya (UPC)</orgName>
+								<address>
+									<settlement>Barcelona</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,291.06,163.78,45.19,9.52"><forename type="first">Marc</forename><surname>Riera</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">dept. of Computer Architecture</orgName>
+								<orgName type="institution">Universitat Politècnica de Catalunya (UPC)</orgName>
+								<address>
+									<settlement>Barcelona</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,343.85,163.78,74.78,9.52"><forename type="first">Antonio</forename><surname>González</surname></persName>
+							<email>antonio.gonzalez@upc.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">dept. of Computer Architecture</orgName>
+								<orgName type="institution">Universitat Politècnica de Catalunya (UPC)</orgName>
+								<address>
+									<settlement>Barcelona</settlement>
+									<country key="ES">Spain</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">DNA-TEQ: An Adaptive Exponential Quantization of Tensors for DNN Inference</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 IEEE 30th International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="1" to="10"/>
+							<date type="published" when="2023-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">6DC0A8ABC7B6139CE2CBEDE0213BAF7E</idno>
+					<idno type="DOI">10.1109/hipc58850.2023.00015</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>DNN</term>
+					<term>Quantization</term>
+					<term>Exponential</term>
+					<term>Transformer</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Quantization is commonly used in Deep Neural Networks (DNNs) to reduce the storage and computational complexity by decreasing the arithmetical precision of activations and weights, a.k.a. tensors. Efficient hardware architectures employ linear quantization to enable the deployment of recent DNNs onto embedded systems and mobile devices. However, linear uniform quantization cannot usually reduce the numerical precision to less than 8 bits without sacrificing high performance in terms of model accuracy. The performance loss is due to the fact that tensors do not follow uniform distributions. In this paper, we show that a significant amount of tensors fit into an exponential distribution. Then, we propose DNA-TEQ to exponentially quantize DNN tensors with an adaptive scheme that achieves the best trade-off between numerical precision and accuracy loss. The experimental results show that DNA-TEQ provides a much lower quantization bit-width compared to previous proposals, resulting in an average compression ratio of 40% over the linear INT8 baseline, with negligible accuracy loss and without retraining the DNNs. Besides, DNA-TEQ leads the way in performing dot-product operations in the exponential domain. On average for a set of widely used DNNs, DNA-TEQ provides 1.5x speedup and 2.5x energy savings over a baseline DNN accelerator based on 3D-stacked memory.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Deep Neural Networks (DNNs) have achieved human performance levels in cognitive computing applications such as speech recognition or machine translation <ref type="bibr" coords="1,240.46,502.33,14.08,8.65" target="#b30">[31]</ref>. In order to achieve these levels of accuracy, DNNs have evolved and grown in complexity. From small Multilayer Perceptrons (MLPs) for simple tasks like recognizing written digits or characters, passing by large Convolutional Neural Networks (CNNs) <ref type="bibr" coords="1,293.77,546.41,9.75,8.65" target="#b8">[9]</ref>, <ref type="bibr" coords="1,71.88,557.43,15.30,8.65" target="#b13">[14]</ref> for recognizing objects in images, to complex Recurrent Neural Networks (RNNs) <ref type="bibr" coords="1,172.52,568.45,15.30,8.65" target="#b16">[17]</ref> and Transformers to reach the aforementioned human parity in speech recognition and machine translation. Nowadays, the machine learning community has shifted the focus to Transformer models <ref type="bibr" coords="1,251.66,601.51,9.75,8.65" target="#b0">[1]</ref>, <ref type="bibr" coords="1,269.27,601.51,14.08,8.65" target="#b28">[29]</ref>, <ref type="bibr" coords="1,291.46,601.51,15.30,8.65" target="#b32">[33]</ref> due to their extreme efficiency in terms of both accuracy and performance for multiple Natural Language Processing (NLP) applications. However, MLPs and CNNs still provide state-ofthe-art accuracy for applications such as acoustic scoring in speech recognition or self-driving cars respectively <ref type="bibr" coords="1,268.16,656.61,14.08,8.65" target="#b14">[15]</ref>, <ref type="bibr" coords="1,289.17,656.61,14.08,8.65" target="#b26">[27]</ref>. The dramatic growth of DNNs size has made their deployment on mobile and embedded devices extremely challenging <ref type="bibr" coords="1,286.82,678.65,9.75,8.65" target="#b2">[3]</ref>.</p><p>Over the years, DNNs have grown steadily in computational complexity and memory footprint <ref type="bibr" coords="1,197.81,700.87,14.08,8.65" target="#b17">[18]</ref>. For example, the Switch Transformer <ref type="bibr" coords="1,119.95,711.89,10.71,8.65" target="#b5">[6]</ref> from Google has 1.6 trillion parameters, which requires 890 billion floating-point multiply-and-add operations per forward-pass and terabytes of memory to store the weights. The development trend of most DNN models shows that the more parameters, the more powerful the models become in terms of accuracy <ref type="bibr" coords="1,410.10,285.77,14.08,8.65" target="#b31">[32]</ref>. However, this comes at the cost of more storage, data transfers, and computations. Hardware architectures must meet the memory storage and computational needs of modern DNNs. As these models are huge and the onchip memory of current chips is limited, it is off-chip memory accesses that account for most of the energy consumption <ref type="bibr" coords="1,546.18,340.87,9.75,8.65" target="#b7">[8]</ref>. Therefore, techniques to compress or reduce the amount of parameters are required to perform efficient inference of DNNs in any given hardware architecture <ref type="bibr" coords="1,458.10,373.93,14.08,8.65" target="#b20">[21]</ref>.</p><p>Researchers have proposed several DNN optimizations <ref type="bibr" coords="1,546.18,388.63,9.75,8.65" target="#b1">[2]</ref>, <ref type="bibr" coords="1,324.31,399.65,9.75,8.65" target="#b4">[5]</ref>, <ref type="bibr" coords="1,342.05,399.65,15.30,8.65" target="#b21">[22]</ref> to ease the execution of real-time applications on mobile and embedded devices. Based on the observation that DNN models tend to be oversized, pruning removes redundant weights and/or activations to compress the DNN model size and reduce the amount of computations. However, pruning requires a costly re-training procedure of the DNNs to recover the full accuracy, as well as complex hardware to efficiently decode and run sparse models. On the other hand, linear uniform quantization is a popular technique to map a continuous set of values to a finite set. The main benefits of uniform quantization are the reduction in storage, due to a smaller representation of the tensor values, and the lower computational complexity, due to performing integer operations rather than floating point. Uniform quantization typically reduces the arithmetical precision of activations and weights to 8 bits with negligible accuracy loss for many networks, but lower bitwidths may result in high errors <ref type="bibr" coords="1,350.34,575.97,14.08,8.65" target="#b12">[13]</ref>. Despite the advantages of pruning and uniform quantization, modern DNN models demand more aggressive optimizations to be suitable for current hardware architectures.</p><p>Recently, aggressive non-uniform quantization schemes have been proposed to further reduce the memory footprint by lowering the precision under 8 bits. For example, logarithmic quantization (LQ) <ref type="bibr" coords="1,393.92,645.77,9.75,8.65" target="#b1">[2]</ref>, <ref type="bibr" coords="1,409.86,645.77,14.08,8.65" target="#b17">[18]</ref>, <ref type="bibr" coords="1,430.38,645.77,15.30,8.65" target="#b27">[28]</ref> has been previously proposed to represent weights and/or activations with only a fixed base and an integer exponent. LQ exploits the non-uniform distributions of tensors to achieve smaller bitwidths compared to the uniform quantization. Most works employ a base-2 LQ to not only compress the model size but also eliminate bulky digital multipliers by using simple add and shift operations. However, base-2 LQ is still far from being the quantization that best represents the distributions of tensors for modern DNNs, introducing large amounts of error that cannot be compensated even after re-training. Consequently, there is a need to further investigate in quantization methods that obtain the best tradeoff between accuracy and computational complexity.</p><p>In this paper, we propose a novel DNN Adaptive Tensor Exponential Quantization methodology, named DNA-TEQ, to quantize DNN tensors with an exponential representation by considering their distributions. DNA-TEQ includes an adaptive offline search algorithm to find the optimal parameters that provide the best trade-off between numerical precision and DNNs accuracy on a layer and DNN basis. DNA-TEQ also exploits the exponential quantization to simplify the dot-product operations by counting exponents. To demonstrate the cost-effectiveness of the exponential dot-product operations, we implement and evaluate DNA-TEQ both in software, using vector instructions (i.e. SIMD), and in hardware, on top of a baseline 3D-stacked DRAM-based DNN accelerator. Our experimental results show that specialized hardware is required to fully support the execution of different DNN models, providing higher performance gains and energy savings than the software counterpart.</p><p>To summarize, the goal of this work is to propose a quantization methodology that 1) does not require re-training, 2) quantizes weights and activations together, 3) generalizes for different DNNs, and 4) reduces hardware complexity improving performance and energy efficiency. The main contributions are:</p><p>• We analyze the distributions of activations and weights of different DNN models. We observe that most tensors follow a non-uniform distribution close to an exponential. • We propose DNA-TEQ, an adaptive quantization scheme that finds the optimal parameters for the exponential representation of tensors. DNA-TEQ minimizes the quantization error and achieves the best trade-off between numerical precision and model accuracy for several DNNs. On average, DNA-TEQ provides 40% compression over INT8 with negligible accuracy loss. Model parameters can be represented by only 3 bits in some cases. The rest of the paper is organized as follows. Section II provides a summary of works related to DNN quantization techniques. Section III describes our proposed quantization methodology including an analysis of the range and distribution of activations and weights for a set of popular DNNs. Sec-tions IV-V present the software and hardware implementation to exploit the benefits of our quantization scheme. Section VI provides the evaluation methodology and experimental results. Finally, Section VII sums up the main conclusions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. RELATED WORK</head><p>Popular optimizations <ref type="bibr" coords="2,420.57,136.67,15.30,8.65" target="#b21">[22]</ref> for reducing the memory footprint of DNNs include clustering and pruning. Clustering uses methods such as K-means to compress the number of different weights to K centroids. Each weight is then substituted by an index that corresponds to the closest centroid. Clustering alone does not reduce the amount of computations nor its cost, but storage requirements. On the other hand, pruning <ref type="bibr" coords="2,512.88,202.79,15.30,8.65" target="#b22">[23]</ref> reduces the model size and the number of computations by removing unimportant parameters. The pruned model may loss accuracy but tends to regain it after retraining. Nevertheless, the pruned model becomes sparse, requiring specialized hardware to be efficiently executed. Pruning is orthogonal to DNN quantization methods such as DNA-TEQ.</p><p>As previously discussed, uniform quantization <ref type="bibr" coords="2,508.66,279.78,14.08,8.65" target="#b21">[22]</ref>, <ref type="bibr" coords="2,529.02,279.78,15.30,8.65" target="#b24">[25]</ref> has been used for DNNs in the past to reduce the numerical precision (i.e. 8b-16b) and computational cost with small impact in accuracy <ref type="bibr" coords="2,374.17,312.84,14.08,8.65" target="#b12">[13]</ref>. However, the latest advances in machine learning have sparked the research of new quantization schemes to further reduce the memory footprint and computational complexity of modern DNN models <ref type="bibr" coords="2,468.45,345.90,14.08,8.65" target="#b19">[20]</ref>. Some works <ref type="bibr" coords="2,541.73,345.90,14.08,8.65" target="#b18">[19]</ref>, <ref type="bibr" coords="2,324.44,356.92,15.30,8.65" target="#b23">[24]</ref> have attempted to use uniform quantization to reduce the numerical precision below 8 bits without paying attention to the tensor distributions, resulting in huge accuracy drops when performed on complex neural networks.</p><p>In order to further reduce the model size and computational cost of DNNs, recent studies <ref type="bibr" coords="2,470.92,411.86,14.08,8.65" target="#b10">[11]</ref>, <ref type="bibr" coords="2,493.41,411.86,15.30,8.65" target="#b25">[26]</ref> proposed to set different bitwidths for weights and/or activations based on their sensitivity to quantization error. As a result, multiple mixed precision quantization schemes have been developed. These schemes perform an analysis of each tensor distribution to use it as a criterion to determine the optimal numerical precision for each DNN layer. Mixed precision quantization schemes have the potential to represent the tensors with lower bitwidths (i.e. &lt; 8b). Even so, most of these schemes still use uniform quantization once the precision of each layer has been determined, which may impact the accuracy of the model. Similarly, DNA-TEQ employs a mixed precision scheme for each layer but with a non-uniform quantization representation.</p><p>Several works <ref type="bibr" coords="2,388.05,554.97,9.75,8.65" target="#b1">[2]</ref>, <ref type="bibr" coords="2,403.50,554.97,9.75,8.65" target="#b3">[4]</ref>, <ref type="bibr" coords="2,418.95,554.97,14.08,8.65" target="#b17">[18]</ref>, <ref type="bibr" coords="2,438.99,554.97,14.08,8.65" target="#b27">[28]</ref>, <ref type="bibr" coords="2,459.03,554.97,15.30,8.65" target="#b29">[30]</ref> proposed non-uniform quantization schemes based on the base-2 logarithmic representation of weights and/or activations of CNNs to reduce the numerical precision (i.e. &lt; 8b) and HW complexity. The work in <ref type="bibr" coords="2,336.28,599.05,10.71,8.65" target="#b1">[2]</ref> only quantizes the weights to avoid the overhead of the dynamic quantization of activations, but the logarithmic quantization of both can lead to better schemes to reduce the overall computational cost. In particular, the authors of <ref type="bibr" coords="2,544.03,632.11,15.30,8.65" target="#b17">[18]</ref> exploit the base-2 quantization of activations and weights to perform operations in log-domain. However, the reduction in accuracy is non-negligible even in simple networks.</p><p>APoT <ref type="bibr" coords="2,357.81,676.03,15.30,8.65" target="#b15">[16]</ref> is a non-uniform quantization scheme for the bellshaped and long-tailed distribution of weights and activations in DNNs. APoT constrains all quantization levels as the sum of powers-of-two terms. They can reduce the numerical precision of ResNet to 4 bits but require retraining to recover the accuracy. On the other hand, Mokey <ref type="bibr" coords="3,206.43,106.76,15.30,8.65" target="#b31">[32]</ref> is a post-training compression method for Transformer models that does not require retraining. Mokey reduces the memory footprint by quantizing all values to 4-bit indexes into dictionaries of representative 16-bit fixed-point centroids. Mokey selects centroid values to also fit an exponential curve from a random normal distribution in an offline step. However, their method can not be adapted to any DNN model but Transformers. Moreover, they require to compute outliers in a costly post-processing phase.</p><p>In contrast to these works, DNA-TEQ reduces both storage and computational cost by quantizing activations and weights together, does not require retraining, and can be easily adapted to any DNN. The implementation details of DNA-TEQ are described in the following section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. DNA-TEQ</head><p>This section describes the proposed methodology for applying exponential quantization with pseudo-optimal parameters on a variety of DNNs. As discussed in previous sections, DNN quantization allows to reduce the numerical precision of activations and weights, which in turn lowers the memory footprint and the hardware complexity of the functional units. On the other hand, a proper quantization method should consider the distribution of activations and weights to reduce the impact in accuracy loss by minimizing the quantization error. The optimal quantization scheme must find the best trade-off between numerical precision and DNNs accuracy. In this work, we first observe and compare different distributions of activations and weights and show that an exponential quantization is the best fit. Then, we propose an offline search algorithm to find the optimal base of the exponential quantization along with other essential parameters. Finally, we take advantage of the exponential quantization to transform the traditional linear dotproduct operations of DNNs into the exponential domain, which simplifies the hardware required to perform DNN inference.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Tensor Distribution Analysis</head><p>Previous works have used uniform quantization to compress the DNN parameters. However, we observed that activations and weights of most DNNs do not follow a uniform distribution, which causes a huge impact in terms of quantization error and accuracy loss when the precision is further reduced to lower bitwidths. Specially in recent DNNs that are extremely deep and can have hundreds of layers, the error is propagated and expanded among layers. To determine the best quantization function, we first perform a goodness-of-fit comparison of different distributions over the tensors of a variety of layers from multiple popular DNNs. The Residual Sum of Squares (RSS) metric is used to measure the discrepancy between the tensor distributions and an estimated model. RSS is computed by Equation <ref type="formula" coords="3,121.26,654.12,3.44,8.65" target="#formula_0">1</ref>, where y i is the i th value of the variable to be predicted, x i is the i th value of the explanatory variable, and f (x i ) is the predicted value of y i . In the analysis below, we use the absolute values of each tensor to measure the RSS.    </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>RSS</head><formula xml:id="formula_0">= n i=1 (y i -f (x i )) 2<label>(1)</label></formula><p>Table <ref type="table" coords="3,357.57,458.62,3.06,8.65" target="#tab_1">I</ref> shows a comparison of the mean RSS of a set of common distributions for a trace of activations of all the FC and CONV layers of three different DNNs. For a given distribution and DNN, we report the mean RSS of all layers. As can be seen, the exponential distribution exhibits the lowest mean RSS, marked in red, for all the networks and, hence, an exponential curve is the closest fit for the majority of tensors of activations. As an example, Figure <ref type="figure" coords="3,413.12,535.76,4.59,8.65" target="#fig_0">1</ref> plots the histograms and exponential curve fittings of the empirical activations for the CONV2 layer of AlexNet and the FC4 layer of the Transformer DNN, which results in RSS values of 0.02 and 0.58, respectively.</p><p>Similarly, Table <ref type="table" coords="3,395.09,579.80,6.12,8.65" target="#tab_2">II</ref> shows the mean RSS of the four distributions for the weights of all layers of each DNN model. Again, the exponential distribution exhibits the lowest RSS compared to the other distributions. To illustrate it, Figure <ref type="figure" coords="3,510.29,612.86,4.59,8.65" target="#fig_1">2</ref> depicts the histograms and plot fittings of the exponential curves of the empirical weights for the CONV2 layer of AlexNet and the FC4 layer of the Transformer DNN, which results in RSS values of 30.57 and 3.4, respectively. Compared to the activations, the RSS values of the weights are much larger. However, the exponential curve is still the best fit. In particular, the Transformer DNN exhibits the lowest RSS.</p><p>To summarize, we observe that the distributions of weights and activations, a.k.a. tensors, of a set of DNNs present a strong resemblance to exponential functions as demonstrated by its low RSS. Our aim is to quantize the tensors of all convolutional (CONV) and fully-connected (FC) layers with the nearest exponential representation that minimizes the quantization error, while achieving the best trade-off between numerical precision and hardware complexity. Next section describes how to obtain the pseudo-optimal parameters that define the closestfit exponential function for each DNN layer and tensor.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Searching Pseudo-Optimal Quantization Parameters</head><p>In this section, we describe our adaptive methodology for searching offline the pseudo-optimal exponential quantization parameters on a layer-by-layer basis for any DNN. Based on the observations from Section III-A, we propose a quantization scheme to represent the activations and weights of DNNs in the form of an exponential function x = Sign(x)(αb i + β), where x is the approximated value after the exponential quantization, x is the original floating-point value of the tensor element, b is the base of the exponential, i is an integer exponent, α is an scale factor, and β is an offset. The Sign(x) function returns 0 for zero values and 1/ -1 for positive and negative values. The integer exponent i of each element x in a tensor is computed with a logarithmic operation according to the following equations:</p><formula xml:id="formula_1">LogExpQuant(x, b, α, β, n) = Clip(Round(log b ( |x| -β α )), -(2 n-1 -1), (2 n-1 -1)),<label>(2)</label></formula><p>where</p><formula xml:id="formula_2">Clip(i, R min , R max ) = ⎧ ⎪ ⎨ ⎪ ⎩ R min i R min R max i R max i otherwise.<label>(3)</label></formula><p>In Equation <ref type="formula" coords="4,127.02,455.11,3.44,8.65" target="#formula_1">2</ref>, the Round function is defined as the rounding to the nearest integer, n is the number of bits required to represent the exponent i, and the clipping function in Equation <ref type="formula" coords="4,301.97,477.15,4.59,8.65" target="#formula_2">3</ref>forces the exponent values to be in the range of [R min , R max ], where R min = -(2 n-1 -1) and R max = (2 n-1 -1). Assuming an nbit exponential quantization, the number of unique intervals is 2 n -1. The approximated tensor values x are stored as exponents to reduce memory footprint since all other parameters are constants. We store an extra bit for the sign of the value, while the exponent -(2 n-1 ) is used as a special case to represent the zero value. On the other hand, the base b, bitwidth n, scale α, and offset β are constant parameters that are defined offline using an iterative algorithm that minimizes the quantization error and accuracy loss with the lowest possible number of intervals. For a given layer, we constrain n and b to be the same for both activations and weights in order to simplify the dot-product operations and the related hardware, by exploiting the property of exponentials: b i × b j = b i+j . Note that the quantization parameters, including n and b, can be different per layer and DNN to better fit the distributions of the corresponding tensors.</p><p>The flowchart in Figure <ref type="figure" coords="4,175.89,675.51,4.59,8.65" target="#fig_2">3</ref> summarizes the four main steps of our proposed quantization methodology, DNA-TEQ. Each  step is marked with a different color. Below, we describe in detail each of the steps to find the pseudo-optimal exponential quantization parameters that attain the best trade-off among accuracy, compression and hardware complexity. In the first step, we generate traces for the activations and weights of each layer to be quantized. For a given DNN, all the weights are obtained from the pre-trained model, while the trace of activations is generated from executing the inference of a small statistically representative subset of the training dataset.</p><p>The second step of DNA-TEQ, marked in green in Figure <ref type="figure" coords="4,552.17,325.80,3.44,8.65" target="#fig_2">3</ref>, performs the computation of the RSS metric of the tensors of each layer based on Equation <ref type="formula" coords="4,440.28,347.84,3.44,8.65" target="#formula_0">1</ref>. For a given layer, the tensor with the smaller RSS is selected to start the search of the base b. In all the layers of AlexNet and ResNet-50, the tensor of activations is chosen for computing the base, whereas in the Transformer DNN, 12 out of 96 FC layers choose the tensor of weights. The goal of this step is to start the search of the pseudo-optimal base from the tensor that has more similarity to the exponential distribution, reducing the induced error.</p><p>The third step, marked in yellow in Figure <ref type="figure" coords="4,511.76,435.85,3.44,8.65" target="#fig_2">3</ref>, starts the offline search for the pseudo-optimal base and the rest of the parameters of the exponential quantization for a specific layer l. As described above, the initial tensor t is selected from either weights or activations depending on the RSS metric. The base b l and scale α lt are initialized taking into account the maximum value of the tensor to cover the full scale range (FSR) with the exponential quantization as shown by Equation <ref type="formula" coords="4,498.91,512.99,3.44,8.65">4</ref>. Our empirical experiments demonstrated that by covering the FSR of the tensor, the quantization error is reduced due to the effect of large outliers. In addition, FSR helps to find the pseudo-optimal point of convergence of the search algorithm faster. On the other hand, the distribution analysis of activations and weights shows that most values are clogged in a range close to the minimum value of the tensor. Therefore, the offset β lt is initialized so that the smallest values of the tensor can be represented more precisely. In Equation <ref type="formula" coords="4,410.99,612.17,3.44,8.65">5</ref>, the first term shifts the quantization intervals close to the tensor minimum value, while the second term takes into account the rounding effect from Equation <ref type="formula" coords="4,547.63,634.21,3.44,8.65" target="#formula_1">2</ref>. </p><formula xml:id="formula_3">b l = max(t) 1 Rmax ; α lt = max(t) b Rmax (4)</formula><formula xml:id="formula_4">β lt = min(t) -α lt b R min 1 + α lt b R min -α lt b R min -0.</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2:</head><p>Initialize(b, α, β);</p><p>3:</p><formula xml:id="formula_5">InitErr = RMAE(LogExpQuant(t, b, α, β, n), t); 4: ε = 0.01;</formula><p>5:</p><formula xml:id="formula_6">IncBase = b + ε; DecBase = b -ε;</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>6:</head><p>Alpha[], Beta[] = Update(α, β, IncBase, DecBase);</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>7:</head><p>IncErr, DecErr = RMAE(t, n, IncBase, DecBase, Alpha[], Beta[]);</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>8:</head><p>CurrentErr, ε, b = Direction(InitErr, IncErr, DecErr);</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>9:</head><p>while Search = True do 10:</p><formula xml:id="formula_7">NewBase = b + ε;</formula><p>11:</p><p>NewAlpha, NewBeta = Update(α, β, NewBase);</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>12:</head><p>NewErr = RMAE(t, n, NewBase, NewAlpha, NewBeta);</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>13:</head><p>if NewErr &lt; CurrentErr then end while</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>20: end procedure</head><p>For a given tensor, Algorithm 1 shows the pseudo-code for searching the optimal base and the related exponential quantization parameters that provide the lowest quantization error. First, we initialize the base b, scale α, and offset β with the equations described above (line 2). Then, we perform the initial quantization and compute InitErr (line 3) using the Relative Mean Absolute Error (RMAE) metric as defined in Equation <ref type="formula" coords="5,299.07,326.49,3.44,8.65">6</ref>. Next, we decide if the exploration of the base is going to be done by increasing or decreasing the initial base (lines 4-8) by a delta ε that is initialized to 0.01. The actual direction is selected by taking into account the lowest error among InitErr, IncErr and DecErr. Before computing the errors, the corresponding α and β are calculated for IncBase/DecBase. Finally, we continue to search for the pseudo-optimal base (lines 9-19) by repeatedly increasing/decreasing the base until the quantization error CurrentErr is no longer reduced. In the process, we update the corresponding scale α and offset β taking into account the NewBase according to Equations 4-5. Once the parameters of a tensor (activations or weights) of a layer are computed, for the other tensor of this layer the same base is used, and we simply compute the α and β parameters in the same manner as for the other tensor.</p><formula xml:id="formula_8">RMAE = | t -t| |t| (6)</formula><p>In the fourth step, marked in red in Figure <ref type="figure" coords="5,257.30,530.57,3.44,8.65" target="#fig_2">3</ref>, and for a given layer, DNA-TEQ iterates over the quantization bitwidth n starting from 3 bits until a maximum of 7 bits, to find the lowest bitwidth that does not hurt accuracy. For all layers of a DNN, an error threshold is defined for each tensor, Thr act for activations and Thr w for weights, as the maximum quantization error (RMAE). Thr w is initialize to 1% while Thr act is scaled by Equation 7 to account for the difference in magnitude between the two distributions. Once the quantization parameters for a given bitwidth are obtained, the errors are compared against the thresholds, repeating the search algorithm until the condition is fulfilled.</p><p>Thr act = Thr w × log( mean(Act.) mean(W) )</p><p>After all layers have obtained their respective quantization parameters, we perform DNN inference to check accuracy loss, and iterate over Thr w in steps of 1%, that is, if the accuracy loss is negligible we increase the error that can be tolerated in each layer and re-run the search of parameters. This procedure is continued while the accuracy loss is lower than 1%. In the evaluation section, we show a sensitivity analysis of Thr w .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Exponential Dot-Product</head><p>As previously discussed, our aim is to exploit the quantization not only to reduce memory footprint but also hardware complexity. In this section, we will first exploit that values are quantized with an exponential function to simplify the dotproduct operation, replacing the costly multiplications by simple additions. Then, we provide some hints on the requirements to implement and take advantage of our quantization scheme, including an initial hardware configuration of DNA-TEQ.</p><p>At a high-level, DNA-TEQ takes advantage of the property b a • b w = b a+w . After quantizing the values, all values are of the form S W (α W b int W + β W ) and S A (α A b int A + β A ) for weights W and activations A respectively, where S W , S A are signs, int W , int A are signed n-bit integer exponents, α W , α A are scale factors and β W , β A are offsets for the corresponding weight and activation tensors, respectively. As shown in Equation <ref type="formula" coords="5,532.28,304.12,3.44,8.65">8</ref>, each output activation is a sum of activations times weight products, which can be expanded into a sum of four terms:</p><formula xml:id="formula_10">m i=1 A i • W i = m i=1 S Ai (α A b intA i + β A ) • S Wi (α W b intW i + β W ) = α A α W m i=1 (S Ai S Wi )b intA i +intW i 1 + α W β A m i=1 (S Ai S Wi )b intW i 2 + α A β W m i=1 (S Ai S Wi )b intA i 3 + β A β W m i=1 S Ai S Wi 4 (8)</formula><p>The first term is the sum of b int A i +int W i , which can be implemented with a table of 2 n+1 entries, where each entry stores the count of how many times each addition of exponents occurs. The sign bit of activation and weight are XORed and based on the result, the corresponding entry in the table is increased/decreased when S A i S W i becomes positive/negative. The second term is the summation of weights with respect to the sign of both weight and activation, while the third term is similar but the summation of activations. Both can be computed like the first term with a table that only requires 2 n entries for each one due to the limited range of the exponent. The last term is the accumulation of the sign products which can be obtained from any of the previous terms by adding the total number of occurrences. Note that the second and fourth terms depend exclusively on the weights, which are known, as well as the signs of the activations, which are mostly positive due to the ReLU activation function. Therefore, these two terms can be pre-computed offline for the majority of DNN layers. After filling the tables, we multiply each count with its corresponding value (b int ) and accumulate all products into a single value. The final values are multiplied by the constant coefficients and all terms are added together producing the final output activation. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. SOFTWARE IMPLEMENTATION</head><p>In this section, we propose a software implementation of DNA-TEQ using Intel SIMD extensions that leverage the vector processing capability of CPUs. Then, we discuss the scalability issues and limitations of SIMD when implementing DNA-TEQ compared to an optimized SIMD version of INT8.</p><p>To efficiently implement the popular INT8 DNN models, Intel introduced the Vector Neural Network Instructions (VNNI) <ref type="bibr" coords="6,105.96,301.71,15.30,8.65" target="#b9">[10]</ref> as an extension of the AVX-512 set. One of the key instructions, VPDPBUSD, fuses three operations into a single one, accelerating the inner-loop multiply-accumulate of INT8 convolutions. This instruction can simultaneously perform 4 MAC operations for 16 different output neurons. Figure <ref type="figure" coords="6,86.63,356.82,4.59,8.65" target="#fig_4">4</ref> presents the pseudo-code of our best-effort to implement an FC layer with INT8 VNNI. Quantization and de-quantization functions are also implemented using SIMD intrinsics, although not shown in the code for the sake of simplicity.</p><p>Figure <ref type="figure" coords="6,109.01,401.54,4.59,8.65">5</ref> depicts the pseudo-code of the DNA-TEQ SIMD implementation of an FC layer. As described in Section III-C, DNA-TEQ performs the dot-product by counting the frequency of exponents for each term. Therefore, each layer requires a different amount of 8-bit counters per neuron (i.e. array counters) based on the numerical precision determined by our search algorithm. These array counters can be allocated in memory, and the Scatter-Gather instructions can read from or write to them based on the pointers. However, the major drawback of Scatter-Gather is that it produces a huge amount of data movements in the memory hierarchy, incurring in a significant latency per operation. To mitigate this issue, we allocate the array counters within SIMD registers. These registers are limited both in quantity (e.g. 32) and size (512 bits), reducing the amount of indexations (i.e. counting operations) that can be done in parallel, since we can only index one register at a time. For example, the level of parallelism is restricted to 2 and 4 different output neurons when the numerical precision is 5-bit and 4-bit, respectively. In the best case scenario, when the numerical precision is 3-bit, 8 output neurons can be computed concurrently. Intel also provides with the permutexvar instruction, which we use to shuffle the registers of the array counters using the corresponding exponents as indexes.</p><p>Table <ref type="table" coords="6,106.67,655.64,9.17,8.65" target="#tab_5">III</ref> presents the execution times of FC layers for different configurations and schemes. DNA-TEQ can provide significant speedup over the baseline and, in particular, up to 5x when the size of the FC layer becomes bigger. This is   mainly due to the replacement of multiplications for counting operations and the reduction of data movements. DNA-TEQ operates within SIMD registers avoiding expensive load/store. However, we observe a slowdown when the precision starts to increase. This can be attributed to the number of counters required and the limited amount of SIMD registers and its size. In the worst case, when precision is higher than 6-bit, we can not allocate enough registers, and need to relay on additional transformations to perform the counting, incurring in more data movements. On the other hand, VNNI is highly optimized for the INT8 representation, providing a substantial degree of parallelism. Consequently, dedicated hardware is required to exploit all the advantages offered by DNA-TEQ.</p><formula xml:id="formula_11">D W Z D W Z W s Z W s Z s W Z s W Z s W Z s W Z s W Z s W Z s W Z s W Z D W Z D W Z D W Z D W D D D D D Z s W Z s W D Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W Z D W sĂƵůƚ Z W Z W &amp;^D ĚĚƌ</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. HARDWARE IMPLEMENTATION</head><p>This section outlines the hardware support required for implementing DNA-TEQ. We begin by introducing the essential hardware components of the DNA-TEQ accelerator. Subsequently, we provide a detailed description of the execution process of DNN layers within the accelerator divided into three stages: 1) Pre-Processing, 2) Counting, and 3) Post-Processing. weights. Within the logic die, each tile comprises a single Processing Element (PE), a Memory Controller (MC), and a Router (R). The MC manages all memory operations within the associated vaults in the DRAM dies. Additionally, the MC incorporates two FIFOs to facilitate multi-domain frequency synchronization between the logic die and the DRAM dies. The Router enables local and remote accesses between PEs and vaults via a 2D mesh network. Finally, the PE is the core of the tile, and is responsible for accelerating the DNN operations by computing output activations based on Equation <ref type="formula" coords="7,265.35,343.95,3.44,8.65">8</ref>. Figure <ref type="figure" coords="7,301.75,343.95,4.59,8.65">7</ref> shows the main components of a PE divided into three main stages. Below is a detailed description of each stage.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Accelerator Architecture</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Pre-Processing Stage</head><p>In the first stage, DNA-TEQ performs exponential quantization on the activations to extract their signs (S A ) and exponents (int A ) at runtime, in batches of eight. On the other hand, all weights are pre-quantized offline without requiring additional hardware. The Quantizer unit is in charge of mapping the activations from floating-point (FP16) to the nearest integer exponents according to the numerical precision of each layer.</p><p>During the quantization process, each activation is assigned to a CMP module (CMP 0 to CMP 7 ) to compare against all the boundaries of the exponential quantization intervals. These ranges are loaded during the execution of each layer and stored in a multi-banked memory buffer (L 0 to L 15 ) sized with a total of 256B for the worst-case scenario (i.e. 7-bit exponents). Comparisons are also performed in batches of 8 values to conduct the 3-bit quantization of multiple activations in a single cycle. To this end, each CMP module includes a set of 8 comparators that select the proper values from each bank of the memory buffer. Since the boundaries are sorted, the output of the comparators is an 8-bit vector of 0s followed by 1s. Based on the comparison results, the encoder detects the leading one and selects the corresponding int A value for the activation. Note that this quantization unit is less costly than implementing a complex log-base module, and banks of memory that are not needed for a given layer can be power-gated. The resulting exponents and their corresponding signs (S Ai , int Ai ) are stored in the Input Shift-Reg. This arrangement ensures that, in each cycle, a single quantized activation is fetched and broadcasted to all Counter-Sets (CS 0 to CS n-1 ) to be used in the subsequent stage. At the same time, the Weight Buffer receives N quantized weights and their signs (S wi , int wi ) from the Memory Controller.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Counting Stage</head><p>The counting stage is the core of our accelerator and consists of a controller to orchestrate all the execution, and N Counter-Sets (CS i ) to compute N different output neurons at the same time (e.g. <ref type="bibr" coords="7,407.21,333.26,10.90,8.65" target="#b15">16)</ref>. Each Counter-Set is composed of several components, including an adder to perform the sum of exponents, an accumulator to account for the occurrences of sign products of the fourth term when needed, and three Array Counters (AC 1 -AC 3 ) to calculate the other terms of Equation <ref type="formula" coords="7,552.89,377.34,3.44,8.65">8</ref>. Specifically, AC 1 is devoted to counting the occurrences of exponents required for computing the first term, while AC 2 and AC 3 are used for the second and third terms, respectively.</p><p>As shown in the left of Figure <ref type="figure" coords="7,449.24,421.60,3.44,8.65">7</ref>, each AC includes an adder, two multiplexers, and a small multi-banked SRAM buffer. Each SRAM has a total of 16 banks. All these buffers are sized for the worst-case scenario (i.e. 7-bit exponents). In particular, AC 2 and AC 3 have 8 entries per bank with a total of 128B, while AC 1 has 16 entries per bank with a total of 256B. For our set of DNN benchmarks, 8-bit per entry is enough to perform the count of each term without any numerical instability. To minimize the static energy of ACs among the multiple PEs, the unused banks will be power-gated according to the quantization bitwidth of each layer. For example, if the numerical precision of a layer is 3-bit, only one bank of each AC will be active.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Post-Processing Stage</head><p>The final stage of the accelerator is composed of two dequantization units, two multiplexers, and an Output buffer. Each Dequantizer consists of an FP16 multiplier, an accumulator, and two small buffers shared between de-quantization units: a Base-Lookup Table (BLUT) and a Scale Register.</p><p>During the post-processing, the CSs retain the occurrences of exponents that were computed in the counting stage, and send them to a Dequantizer. Next, each count of the ACs is multiplied by its corresponding b int value and accumulated to process each term in Equation <ref type="formula" coords="7,412.47,675.58,3.44,8.65">8</ref>. The FP16 base b powers are loaded and stored for every layer in a BLUT of 2 n+1 entries. Then, each dot-product result is multiplied by their related constant coefficients in the Scale-Register. Lastly, all terms are added together to provide the final output activation of a neuron.</p><p>The counting and post-processing stages are performed serially, while the pre-processing is done concurrently to hide the latency of the quantization. Serial post-processing avoids flushing the counters to a temporal buffer and additional data movements, while its latency is very small compared to the counting stage. Therefore, one de-quantization unit per Counter-Set does not significantly improve the overall speed. On the other hand, the area overhead associated with the FP16 multipliers is huge. Thus, we only employ two de-quantization units per PE to achieve the best trade-off. This configuration strikes a balance between performance and area, allowing for efficient processing of the output activations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. EXPERIMENTAL RESULTS</head><p>This section evaluates our proposal in terms of accuracy, compression, performance and energy efficiency. First, we describe the methodology and tools employed to evaluate DNA-TEQ. Then, we introduce an analysis of the accuracy and compression of our quantization scheme across various DNNs. Next, we present the speedups and energy savings achieved by our hardware accelerator compared to the INT8 baseline. Furthermore, we discuss the accelerator overheads. Finally, we conduct a sensitivity analysis on the DNA-TEQ parameters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Methodology</head><p>We have developed a simulator that accurately models two different systems, our DNA-TEQ accelerator and a baseline with uniform INT8 quantization. The baseline architecture draws inspiration from 3D-stacked DRAM-based DNN accelerators such as Neurocube <ref type="bibr" coords="8,170.38,422.69,15.30,8.65" target="#b11">[12]</ref> and Tetris <ref type="bibr" coords="8,226.75,422.69,9.75,8.65" target="#b6">[7]</ref>. Both accelerators implement a similar architecture, including an output stationary dataflow, and hardware units to perform the quantization and de-quantization of input/output activations based on their respective schemes, that is, DNA-TEQ and INT8. Besides, weights are quantized offline in both accelerators. For a fair comparison, we set most of the configuration parameters to be the same for both the baseline and DNA-TEQ: a 3D-stacked memory of 4 GB with 4 DRAM dies partitioned into 4×4 vaults and PEs, an internal bandwidth of 10 GB/s per vault, about 2.5 KB of SRAM per PE to store inputs/outputs/weights, 16 MAC or Counter-Set units per PE, and a frequency of 300 MHz in the logic die. DNA-TEQ requires 6 KB more of on-chip memory per PE due to the Counter-Sets that replace the MACs.</p><p>Regarding area and energy consumption evaluation, the logic components are implemented in Verilog, including all the additional components required by DNA-TEQ, and synthesized to obtain the delay, area, and power using the Synopsys Design Compiler, the modules of the DesignWare library, and the technology library of 28/32nm from Synopsys. On the other hand, we characterize the memory buffers of the accelerator by obtaining the delay, energy per access and area using CACTI-P. We use the configurations optimized for low power and a supply voltage of 0.78V. Finally, the energy consumption of the 3Dstacked memory is estimated by using DRAMSim3. The results  obtained with the aforementioned tools are combined with the activity factors and memory traces provided by our simulator to obtain the dynamic and static power of the accelerators. We evaluate our method on the classification task of Im-ageNet (ILSVRC-2012) using pre-trained models of popular DNNs including AlexNet and ResNet-50. In addition, we also evaluate a Transformer model on the machine translation task of Newtest2014 (English-German) which contains 3003 sentences. Python and Tensorflow are used to implement DNA-TEQ and the DNN models to assess the accuracy and measure the RSS.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. DNA-TEQ Evaluation</head><p>The algorithm described in Section III-B finds the optimal bitwidth for each layer and their corresponding quantization error. Table <ref type="table" coords="8,361.69,347.56,9.69,8.65" target="#tab_6">IV</ref> shows a comparison between uniform quantization and DNA-TEQ in terms of accumulated RMAE of activations and weights among all layers. In addition, the table reports the accuracy loss of both quantization schemes compared to the FP32 baseline, assuming the same number of bits obtained from the search algorithm for both cases. As can be seen, DNA-TEQ provides the lowest error and loss in all the evaluated DNNs.</p><p>Table <ref type="table" coords="8,356.46,425.58,6.63,8.65" target="#tab_7">V</ref> shows the average quantization bitwidth achieved by DNA-TEQ. The table also reports the accuracy of the baseline with 8-bit uniform quantization and DNA-TEQ without retraining. On average, DNNs are quantized to 4.83-bits, resulting in a compression ratio of 40% over the linear INT8 baseline. In all cases, the accuracy loss is less than 1% with respect to the FP32 baseline. These results are well correlated with the observations from Section III-A, proving that exponential quantization can reduce numerical precision below 8 bits.</p><p>As previously discussed, most current works on quantization either require re-training or target a specific type of DNN model. However, re-training is expensive in terms of time, energy, and system resources, hence our aim is to perform quantization without re-training and with negligible accuracy loss. Nevertheless, note that by doing re-training on top of DNA-TEQ, we could achieve additional benefits such as lower bitwidth per layer while recovering the accuracy completely. As a reference, Mokey <ref type="bibr" coords="8,401.18,613.81,15.30,8.65" target="#b31">[32]</ref> quantized the tensors of Transformer networks to 4-bit precision plus outliers without retraining. They reduced memory footprint by 50% compared to their INT8 baseline model. In contrast, DNA-TEQ reduces the Transformer tensors' footprint by 61.86% with an average precision of about 3 bits. Furthermore, Mokey is developed exclusively for Transformers while DNA-TEQ is an adaptive methodology that covers a wide variety of DNNs. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Hardware Evaluation</head><p>Figure <ref type="figure" coords="9,108.22,250.10,4.59,8.65">8</ref> shows the speedups achieved by DNA-TEQ. Compared to the INT8 baseline accelerator, DNA-TEQ provides consistent speedups for our set of DNNs that range from 1.33x (ResNet) to 1.64x (Transformer), achieving an average performance improvement of 1.45x. The reduction in execution time is due to DNA-TEQ's efficient quantization scheme. The number of memory accesses is significantly reduced since DNA-TEQ provides lower numerical precision per layer. As shown in Table <ref type="table" coords="9,133.59,338.26,4.46,8.65" target="#tab_7">V</ref>, Transformer exhibits the highest compression ratio, thus obtaining the largest performance improvement.</p><p>Figure <ref type="figure" coords="9,110.04,360.20,4.59,8.65">9</ref> reports normalized energy savings. On average, DNA-TEQ reduces the energy consumption of the accelerator by 2.5x over the baseline. The energy savings are well correlated with the hardware simplicity of the counting of exponents with variable bitwidth per layer. These energy savings are due to two main reasons. First, dynamic energy is reduced due to the savings in multiplications and memory accesses. Second, the performance improvements shown in Figure <ref type="figure" coords="9,269.01,437.34,4.59,8.65">8</ref> provide a reduction in static energy. Again, Transformer obtains the largest benefits, achieving a reduction of 3.3x in energy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Overheads</head><p>Energy: Figure <ref type="figure" coords="9,146.92,489.82,9.18,8.65" target="#fig_9">10</ref> shows a comparison of the dynamic energy consumed by the execution of a single counting step with different quantization bitwidths. We also show the baseline equivalent with the energy consumption of an INT8 MAC operation, that is, the product and accumulation of a single input and weight. As can be seen, DNA-TEQ delivers the lowest energy consumption per operation regardless of the numerical precision. However, the main overhead of DNA-TEQ lies in the post-processing stage, which may require several FP operations according to the precision of each layer, hindering the benefits of the quantization scheme. In particular, the layers quantized with 7 bits are more energy costly than those of the INT8 baseline. These overheads are taken into account for the energy of Figure <ref type="figure" coords="9,108.26,633.08,3.44,8.65">9</ref>. However, the number of layers quantized with 7-bit is lower than 3% in our set of DNNs. Therefore, the benefits due to the lower bitwidth of the remaining layers can easily overcome these modest overheads.</p><p>Area: DNA-TEQ replaces the MAC units by Counter-Sets to perform the exponential dot-product operations, requiring additional on-chip memory per PE. However, the extra memory does not incur in area nor energy overheads due to the MACs being more costly than the simple Counter-Sets. The area of DNA-TEQ in the logic die due to 16 PEs is 0.59mm 2 in 32nm. In comparison, the baseline at the same technology node occupies an area of 0.78mm 2 . In particular, the Counter-Sets of all PEs have a total area of 0.32mm 2 , while the MACs in the baseline occupy 0.67mm 2 . To ensure a fair comparison, the amount of FP multipliers required to perform de-quantization is the same in both accelerators. To summarize, despite the additional memory required by our proposal, DNA-TEQ achieves a smaller area compared to the baseline accelerator.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. Sensitivity Analysis</head><p>The proposed quantization scheme uses two thresholds to control the bitwidth of each layer and the loss of accuracy. Thresholds Thr w and Thr act are defined as the maximum quantization error that can be introduced in the weights and activations of a given layer, respectively. Our goal is to find values for these parameters that achieve high efficiency, i.e. a large amount of compression with negligible accuracy loss, for a wide range of DNNs. Therefore, the user does not have to manually tune these thresholds for each specific DNN.</p><p>As discussed in Section III-B, Thr w iterates in steps of 1% until the accuracy loss becomes higher than 1%. In addition, we consider the first layer of each DNN as an special case that may propagate higher quantization error. Consequently, the Thr w of the first layer is always ten times lower than the rest. Besides, Thr act is computed by scaling Thr w to take into account the difference in magnitude between distributions, as explained above. We performed a sensitivity analysis to understand the impact of these thresholds. Figure <ref type="figure" coords="9,433.34,510.87,9.18,8.65" target="#fig_10">11</ref> shows the accuracy loss and average bitwidth of three DNNs when iterating over different error thresholds. Most of the Transformer model parameters are quantized to the lowest possible bitwidth of our scheme (i.e. 3 bits) when Thr w = 30%, meaning it is highly fault tolerant. The remaining parameters are quantized to either 4 or 5 bits. ResNet-50 and AlexNet reach an average bitwidth of 5.65 and 5.78 when the Thr w is 5% and 4%, respectively. These thresholds provide the best combination of numerical precision and DNN model accuracy. In summary, DNA-TEQ iterates over different error thresholds to achieve the best compromise between accuracy and bitwidth per layer and tensor parameters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. CONCLUSIONS</head><p>In this paper, we propose DNA-TEQ, an approach to quantize weights and activations of DNNs in the exponential domain, which removes most of the bulky digital multipliers. This method is also motivated by the non-uniform distributions of tensors, making the exponential representation more robust and accurate compared to a linear uniform quantization. DNA-TEQ includes a search algorithm to find optimal parameters of the exponential quantization, achieving the best trade-off between numerical precision and quantization error. Results for a popular set of DNN models (Transformer, AlexNet and ResNet-50) show that, on average, DNA-TEQ provides 40% compression with negligible accuracy loss and without retraining the DNNs. Moreover, the DNA-TEQ accelerator achieves an average performance improvement of 1.5x and 2.5x energy savings with lower area than the baseline INT8 accelerator.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VIII. ACKNOWLEDGEMENT</head><p>This work has been supported by the CoCoUnit ERC Advanced Grant of the EU's Horizon 2020 program (grant No 833057), the Spanish State Research Agency (MCIN/AEI) under grant PID2020-113172RB-I00, and the ICREA Academia program.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,324.20,217.30,234.90,7.93;3,324.20,226.62,230.89,7.79"><head>Fig. 1 :</head><label>1</label><figDesc>Fig. 1: Example of an exponential curve fitting to the empirical tensor of activations of a layer of (a) AlexNet and (b) Transformer DNNs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="3,324.20,389.16,234.90,7.93;3,324.20,398.48,221.21,7.79"><head>Fig. 2 :</head><label>2</label><figDesc>Fig. 2: Example of an exponential curve fitting to the empirical tensor of weights of a layer of (a) AlexNet and (b) Transformer DNNs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,391.01,211.28,101.21,7.93"><head>Fig. 3 :</head><label>3</label><figDesc>Fig. 3: DNA-TEQ Flowchart.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,71.07,185.79,9.39,6.92;5,112.60,186.33,59.20,6.16;5,71.07,193.14,9.39,6.92;5,112.60,193.53,117.56,6.43;5,71.07,200.48,9.39,6.92;5,102.96,201.03,10.00,6.16;5,71.07,207.83,9.39,6.92;5,112.60,208.37,39.12,6.16;5,71.07,215.18,9.39,6.92;5,102.96,215.72,16.18,6.16;5,71.07,222.52,9.39,6.92"><head>14 :</head><label>14</label><figDesc>CurrentErr = NewErr; 15: b = NewBase; α = NewAlpha; β = NewBeta;</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,71.96,187.34,234.89,7.93"><head>Fig. 4 :</head><label>4</label><figDesc>Fig. 4: Pseudo-code of the best-effort FC INT8 SIMD implementation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,329.34,230.59,224.24,7.93"><head>1 float*Fig. 5 :</head><label>15</label><figDesc>Fig. 5: Psuedo-code of the DNA-TEQ FC SIMD implementation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="6,359.50,405.31,163.91,7.93"><head>Fig. 6 :</head><label>6</label><figDesc>Fig. 6: Overview of the DNA-TEQ Accelerator.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="6,333.20,677.69,225.70,8.65;6,324.01,688.71,234.88,8.65"><head>Figure 6 Fig. 7 :</head><label>67</label><figDesc>Figure 6  presents an overview of the accelerator architecture, which relies on 3D-stacked memory for storing activations and</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="9,100.72,141.30,177.46,7.93"><head>Fig. 8 :Fig. 9 :</head><label>89</label><figDesc>Fig. 8: Speedups of DNA-TEQ over INT8 baseline.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="9,324.50,141.87,234.88,7.93;9,324.50,151.19,234.88,7.79"><head>Fig. 10 :</head><label>10</label><figDesc>Fig. 10: Dynamic energy of a counting step with different bit-widths. The INT8 baseline accounts for the energy of a single MAC operation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="10,71.65,212.42,234.89,7.93;10,71.65,221.74,234.88,7.79;10,71.65,230.93,234.88,7.79"><head>Fig. 11 :</head><label>11</label><figDesc>Fig. 11: Accuracy/Score loss respect FP32 baseline versus error threshold of Transformer, ResNet-50 and AlexNet DNNs. The number next to each point is average bitwidth obtained for each error threshold.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="3,334.78,72.44,213.73,138.15"><head>TABLE I :</head><label>I</label><figDesc>Mean RSS of activations for different distributions.</figDesc><table coords="3,341.38,83.11,200.51,127.48"><row><cell>DNN/Dist(RSS)</cell><cell>Normal</cell><cell>Exponential</cell><cell>Pareto</cell><cell>Uniform</cell></row><row><cell>Transformer</cell><cell>17.71</cell><cell>2.82</cell><cell>10.84</cell><cell>59.54</cell></row><row><cell>ResNet-50</cell><cell>2.72</cell><cell>0.71</cell><cell>2.06</cell><cell>4.35</cell></row><row><cell>AlexNet</cell><cell>15.81</cell><cell>3.66</cell><cell>22.07</cell><cell>23.14</cell></row><row><cell cols="5">(a) AlexNet CONV2 Activations (b) Transformer FC4 Activations</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="3,338.01,244.79,207.26,39.24"><head>TABLE II :</head><label>II</label><figDesc>Mean RSS of weights for different distributions.</figDesc><table coords="3,349.01,255.45,183.02,28.57"><row><cell>DNN/Dist(RSS)</cell><cell>Normal</cell><cell>Exponential</cell><cell>Pareto</cell><cell>Uniform</cell></row><row><cell>Transformer</cell><cell>29.72</cell><cell>9.86</cell><cell>33.99</cell><cell>157.21</cell></row><row><cell>ResNet-50</cell><cell>1667.32</cell><cell>61.50</cell><cell>142.38</cell><cell>4615.42</cell></row><row><cell>AlexNet</cell><cell>1177.19</cell><cell>179.79</cell><cell>435.77</cell><cell>5591.18</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="4,348.64,73.79,182.25,126.78"><head></head><label></label><figDesc>Search bopt based on W.x Compute αw , βw .</figDesc><table coords="4,348.64,73.79,182.25,126.78"><row><cell>Step 1</cell><cell>Start</cell><cell></cell><cell>End</cell></row><row><cell cols="2">Generate traces Generate traces</cell><cell></cell><cell>Yes</cell><cell>Step4</cell></row><row><cell cols="2">Compute RSSW , RSS act Compute RSSW , RSS act</cell><cell>No</cell><cell>Finish Layers?</cell><cell>Go to the Next Layer Go to the Next Layer</cell></row><row><cell></cell><cell></cell><cell></cell><cell>. . . .</cell></row><row><cell></cell><cell>RSS I &gt; RSS W</cell><cell>Yes</cell><cell>x Search bopt based on W. x Search bopt based on W. x Compute αw , βw . x Compute αw , βw .</cell><cell>bitwidth ↑ bitwidth ↑</cell></row><row><cell>Step 2</cell><cell>No</cell><cell></cell><cell></cell><cell>No</cell></row><row><cell></cell><cell></cell><cell></cell><cell>x Search αact. x Search αact.</cell><cell>Err act &lt; Thr act</cell><cell>Yes</cell></row><row><cell></cell><cell></cell><cell></cell><cell>x Compute βact. x Compute βact.</cell><cell>Err W &lt; Thr W</cell></row><row><cell></cell><cell>. . . .</cell><cell></cell><cell></cell></row><row><cell cols="3">x Search bopt based on act. x Search bopt based on act. x Search bopt based on act.</cell><cell>x Search αw. x Search αw.</cell><cell>Err act &lt; Thr act</cell><cell>Yes</cell></row><row><cell cols="2">x Compute αact , βact . x Compute αact , βact . x Compute αact , βact .</cell><cell></cell><cell>x Compute βw. x Compute βw.</cell><cell>Err W &lt; Thr W</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell>No</cell></row><row><cell></cell><cell></cell><cell></cell><cell>Step3</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell>bitwidth ↑ bitwidth ↑</cell></row></table><note>x</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="6,324.01,246.34,234.89,143.76"><head>TABLE III :</head><label>III</label><figDesc>Execution time (in milliseconds) comparison of FC layers of varying sizes implemented using SIMD for INT8 and DNA-TEQ. Experiments executed using a Xeon W-2245 CPU.</figDesc><table coords="6,329.97,278.69,220.73,111.41"><row><cell>Quantization Scheme</cell><cell>FC(1024, 1024)</cell><cell>FC(2048, 2048)</cell><cell>FC(4096, 4096)</cell></row><row><cell>Uniform INT8</cell><cell>0.11</cell><cell>0.37</cell><cell>5.66</cell></row><row><cell>DNA-TEQ 3-bit</cell><cell>0.17</cell><cell>0.35</cell><cell>1.11</cell></row><row><cell>DNA-TEQ 4-bit</cell><cell>0.34</cell><cell>0.88</cell><cell>2.14</cell></row><row><cell></cell><cell></cell><cell></cell><cell>&gt;ŽŐŝĐ ŝĞ</cell></row><row><cell>ϯͲƐƚĂĐŬĞĚ ĚŝĞƐ ϯͲƐƚĂĐŬĞĚ ĚŝĞƐ</cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell>Z</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="8,327.46,73.39,229.37,31.89"><head>TABLE IV :</head><label>IV</label><figDesc>Error/Loss comparison between quantization schemes.</figDesc><table coords="8,332.40,84.05,217.22,21.23"><row><cell>DNN (RMAE/Accuracy Loss)</cell><cell>AlexNet</cell><cell>ResNet-50</cell><cell>Transformer</cell></row><row><cell>Uniform Quantization</cell><cell>7.02/18.3%</cell><cell>34.16/65.41%</cell><cell>127.75/27.5</cell></row><row><cell>DNA-TEQ (Ours)</cell><cell>1.80/0.97%</cell><cell>1.39/0.45%</cell><cell>34.87/0.82</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="8,324.70,114.05,234.88,55.77"><head>TABLE V :</head><label>V</label><figDesc>Effect of DNA-TEQ on accuracy, average bitwidth and compression ratio for AlexNet, ResNet-50 and Transformer DNNs.</figDesc><table coords="8,333.05,133.90,215.93,35.92"><row><cell>Network</cell><cell>Baseline Acc. (FP32/INT8)</cell><cell>DNA-TEQ Accuracy</cell><cell>AVG Bitwidth</cell><cell>Compression Ratio (%)</cell></row><row><cell>Transformer</cell><cell>27.93/27.87</cell><cell>27.11(BLEU)</cell><cell>3.05</cell><cell>61.86</cell></row><row><cell>ResNet-50</cell><cell>76.76/76.44%</cell><cell>76.31%(Top-1)</cell><cell>5.65</cell><cell>29.26</cell></row><row><cell>AlexNet</cell><cell>57.48/57.22%</cell><cell>56.51%(Top-1)</cell><cell>5.78</cell><cell>27.64</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:16:30 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="10,88.48,472.85,218.05,6.92;10,88.48,480.99,218.04,7.05;10,88.48,489.25,218.04,7.05;10,88.48,497.52,115.97,7.05" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Language models are few-shot learners</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Brown</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Mann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Ryder</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Subbiah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">D</forename><surname>Kaplan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Dhariwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Neelakantan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Shyam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Sastry</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Askell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems (NIPS)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="1877" to="1901" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.48,505.91,218.05,6.92;10,88.48,514.05,218.05,7.05;10,88.48,522.32,218.05,7.05;10,88.48,530.58,66.48,7.05" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">A deep look into logarithmic quantization of model parameters in neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Takemoto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Nakajo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 10th International Conference on Advances in Information Technology (IAIT)</title>
+				<meeting>the 10th International Conference on Advances in Information Technology (IAIT)</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.48,538.97,218.05,6.92;10,88.48,547.11,210.74,7.05" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">A survey of model compression and acceleration for deep neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Zhang</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.48,555.50,218.04,6.92;10,88.47,563.64,218.05,7.05;10,88.47,571.91,218.05,7.05;10,88.47,580.17,42.97,7.05" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Low-precision logarithmic arithmetic for neural network accelerators</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Christ</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>De Dinechin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Pétrot</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">33rd IEEE International Conference on Application-specific Systems, Architectures and Processors (ASAP)</title>
+				<imprint>
+			<biblScope unit="page">2022</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.47,588.56,218.05,6.92;10,88.47,596.83,218.05,6.92;10,88.47,604.97,218.05,7.05;10,88.47,613.23,90.67,7.05" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Permdnn: Efficient compressed dnn architecture with permuted diagonal matrices</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">K</forename><surname>Parhi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Yuan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">51st Annual IEEE/ACM international symposium on microarchitecture (MICRO)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="189" to="202" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.47,621.62,218.05,6.92;10,88.47,629.89,201.82,6.92" xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Switch transformers: Scaling to trillion parameter models with simple and efficient sparsity</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Fedus</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Zoph</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Shazeer</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.47,638.15,218.05,6.92;10,88.47,646.42,218.05,6.92;10,88.47,654.56,218.05,7.05;10,88.47,662.95,58.41,6.92" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Tetris: Scalable and efficient neural network acceleration with 3d memory</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Pu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Horowitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Kozyrakis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Second International Conference on ASPLOS</title>
+				<meeting>the Twenty-Second International Conference on ASPLOS</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="751" to="764" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,88.47,671.21,218.05,6.92;10,88.47,679.48,218.05,6.92;10,88.47,687.62,192.75,7.05" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Eie: efficient inference engine on compressed deep neural network</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Pu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Pedram</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">A</forename><surname>Horowitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 43rd ISCA</title>
+				<meeting>the 43rd ISCA</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="243" to="254" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,74.27,218.05,6.92;10,340.97,82.41,218.05,7.05;10,340.97,90.67,124.08,7.05" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Deep residual learning for image recognition</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="770" to="778" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,99.06,218.05,6.92;10,340.97,107.33,215.11,6.92;10,340.97,115.59,120.24,6.92" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Deep learning with intel® avx-512 &amp; intel® dl boost</title>
+		<author>
+			<persName coords=""><surname>Intel</surname></persName>
+		</author>
+		<ptr target="https://www.intel.com/content/www/us/en/developer/articles/guide/deep-learning-with-avx512-and-dl-boost.html" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,123.86,218.06,6.92;10,340.97,132.00,208.34,7.05" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Adaptive quantization of neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Khoram</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations (ICLR)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,140.39,218.05,6.92;10,340.97,148.65,218.05,6.92;10,340.97,156.79,218.05,7.05;10,340.97,165.06,196.10,7.05" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Neurocube: A programmable digital neuromorphic architecture with high-density 3d memory</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Chai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Yalamanchili</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Mukhopadhyay</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 43rd International Symposium on Computer Architecture (ISCA)</title>
+				<meeting>the 43rd International Symposium on Computer Architecture (ISCA)</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="380" to="392" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,173.45,218.05,6.92;10,340.97,181.59,116.59,7.05" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Quantizing deep convolutional networks for efficient inference: A whitepaper</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Krishnamoorthi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv</note>
+</biblStruct>
+
+<biblStruct coords="10,340.97,189.98,218.05,6.92;10,340.97,198.12,71.28,7.05" xml:id="b13">
+	<monogr>
+		<title level="m" type="main">One weird trick for parallelizing convolutional neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Krizhevsky</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv</note>
+</biblStruct>
+
+<biblStruct coords="10,340.97,206.51,218.05,6.92;10,340.97,214.77,218.05,6.92;10,340.97,222.91,218.05,7.05;10,340.97,231.18,218.05,7.05;10,340.97,239.44,131.49,7.05" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Understanding error propagation in deep learning neural network (dnn) accelerators and applications</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">K S</forename><surname>Hari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Sullivan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Pattabiraman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">W</forename><surname>Keckler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,247.83,218.05,6.92;10,340.97,255.97,218.05,7.05;10,340.97,264.24,166.99,7.05" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Additive powers-of-two quantization: An efficient non-uniform discretization for neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations (ICLR)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.97,272.63,218.04,6.92;10,340.96,280.77,218.05,7.05;10,340.96,289.16,123.34,6.92" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Recurrent neural network based language model</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Mikolov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Karafiát</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Burget</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Cernockỳ</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Khudanpur</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Interspeech</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1045" to="1048" />
+			<date type="published" when="2010">2010</date>
+			<publisher>Makuhari</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.96,297.42,218.05,6.92;10,340.96,305.56,185.18,7.05" xml:id="b17">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Miyashita</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><forename type="middle">H</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Murmann</surname></persName>
+		</author>
+		<title level="m">Convolutional neural networks using logarithmic data representation</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv</note>
+</biblStruct>
+
+<biblStruct coords="10,340.96,313.95,218.05,6.92;10,340.96,322.09,218.05,7.05;10,340.96,330.36,218.05,7.05;10,340.96,338.75,65.75,6.92" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Data-free quantization through weight equalization and bias correction</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Nagel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">V</forename><surname>Baalen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Blankevoort</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Welling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)</title>
+				<meeting>the IEEE/CVF International Conference on Computer Vision (ICCV)</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1325" to="1334" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.96,347.01,218.05,6.92;10,340.96,355.15,218.05,7.05;10,340.96,363.40,215.77,7.06" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Bit efficient quantization for deep neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Nayak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Chai</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Workshop on Energy Efficient Machine Learning and Cognitive Computing-NeurIPS Edition (EMC2-NIPS)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="52" to="56" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.98,371.81,218.05,6.92;10,340.98,380.08,218.05,6.92;10,340.98,388.22,218.05,7.05;10,340.98,396.48,100.86,7.05" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Algorithm/architecture solutions to improve beyond uniform quantization in embedded dnn accelerators</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Pedram</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">S</forename><surname>Ardestani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Abdelaziz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Hassoun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Systems Architecture</title>
+		<imprint>
+			<biblScope unit="volume">126</biblScope>
+			<biblScope unit="page">102454</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>JSA)</note>
+</biblStruct>
+
+<biblStruct coords="10,340.98,404.87,204.53,6.92" xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Low-power accelerators for cognitive computing</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Riera</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.98,413.14,218.04,6.92;10,340.97,421.28,218.05,7.05;10,340.97,429.54,165.34,7.05" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Dnn pruning with principal component analysis and connection importance estimation</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Riera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">M</forename><surname>Arnau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>González</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Systems Architecture</title>
+		<imprint>
+			<biblScope unit="volume">122</biblScope>
+			<biblScope unit="page">102336</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note>JSA)</note>
+</biblStruct>
+
+<biblStruct coords="10,340.97,437.93,218.05,6.92;10,340.97,446.07,211.48,7.05" xml:id="b23">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Rokh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azarpeyvand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Khanteymoori</surname></persName>
+		</author>
+		<title level="m">A comprehensive survey on model quantization for deep neural networks</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv</note>
+</biblStruct>
+
+<biblStruct coords="10,340.97,454.46,218.04,6.92;10,340.96,462.60,218.05,7.05;10,340.96,470.87,100.99,7.05" xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Redy: A novel reram-centric dynamic quantization approach for energy-efficient cnn inference</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Sabri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Riera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>González</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2306.16298</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="10,340.96,479.26,218.06,6.92;10,340.96,487.52,218.05,6.92;10,340.96,495.66,169.20,7.05" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Drq: Dynamic region-based quantization for deep neural network acceleration</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Jing</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM/IEEE 47th Annual ISCA</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1010" to="1021" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.96,504.05,218.05,6.92;10,340.96,512.19,218.05,7.05;10,340.96,520.46,174.44,7.05" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Deeptest: Automated testing of deep-neural-network-driven autonomous cars</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Pei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jana</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Ray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International conference on software engineering (ICSE)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="303" to="314" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.96,528.85,218.05,6.92;10,340.96,536.99,218.07,7.05;10,340.98,545.25,80.65,7.05" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">L2l: A highly accurate log 2 lead quantization of pre-trained neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ullah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Ahuja</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Tiwari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE DATE</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="979" to="982" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.98,553.64,218.05,6.92;10,340.98,561.78,218.04,7.05;10,340.98,570.05,194.54,7.05" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Attention is all you need</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ł</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Polosukhin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems (NeurIPS)</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">30</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.98,578.44,218.05,6.92;10,340.98,586.70,218.05,6.92;10,340.98,594.84,106.48,7.05" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Self-supervised quantization of pre-trained neural networks for multiplierless acceleration</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Vogel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Springer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Guntoro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Ascheid</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE DATE</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1094" to="1099" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.98,603.23,218.05,6.92;10,340.98,611.38,218.04,7.05;10,340.98,619.77,218.05,6.92;10,340.98,627.91,75.44,7.05" xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Google&apos;s neural machine translation system: Bridging the gap between human and machine translation</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Schuster</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><forename type="middle">V</forename><surname>Le</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Norouzi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Macherey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Krikun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Macherey</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv</note>
+</biblStruct>
+
+<biblStruct coords="10,340.98,636.30,218.05,6.92;10,340.98,644.56,218.05,6.92;10,340.98,652.70,218.05,7.05;10,340.98,661.09,35.63,6.92" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Mokey: Enabling narrow fixed-point inference for out-of-the-box floating-point transformer models</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">H</forename><surname>Zadeh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Mahmoud</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Abdelhadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Moshovos</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Proceedings of the 49th Annual ISCA</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="888" to="901" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.98,669.36,218.05,6.92;10,340.98,677.50,218.05,7.05;10,340.98,685.76,176.65,7.05" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Transpim: A memory-based acceleration via software-hardware co-design for transformer</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Rosing</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Symposium on HPCA</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1071" to="1085" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

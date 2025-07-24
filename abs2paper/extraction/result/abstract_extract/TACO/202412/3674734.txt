@@ -1,0 +1,5 @@
+论文标题：Agile C-states: A Core C-state Architecture for Latency Critical Applications Optimizing both Transition and Cold-Start Latency
+
+关键词：Power management，idle states，C-states，datacenters，microservices
+
+摘要：Latency-critical applications running in modern datacenters exhibit irregular request arrival patterns and are implemented using multiple services with strict latency requirements (30-250 μs). These characteristics render existing energy-saving idle CPU sleep states ineffective due to the performance overhead caused by the state's transition latency. Besides the state transition latency, another important contributor to the performance overhead of sleep states is the cold-start latency, or in other words, the time required to

@@ -1,0 +1,16 @@
+VI. CONCLUSIONS
+We propose G-Sparse to accelerate generalized sparse computation in GNNs, which utilizes DSL compiler to separate the algorithm and schedule. G-Sparse extends Halide by introducing non-rectangular buffer bound inference and buffer binding index to enable DSL description and code generation for sparse kernels. Furthermore, G-Sparse introduces 2-D shared memory tiling, row balancing, 1-D stride register tiling, adaptive warp shuffles, and other optimizations in the schedule to increase data reuse efficiency and improve row balancing significantly. G-Sparse introduces a novel DNNbased cost model combined with genetic search autotuning, which can automatically search for optimal results without human intervention. As a result, our kernels get up to 4.75× faster than previous technologies. By integrating G-Sparse into the DGL, we end up with a model training and inference performance speedup of 1.37× ∼ 2.25× compared to DGL.
+Our autotuning still takes seconds to generate the optimal program, and is only used on GPU hardware. Using autotuning to generate optimally performant programs for a wide variety of hardware, datasets, and GNN models on time is one of the future research directions. Finally, we believe that compilerdriven acceleration technologies like our G-Sparse will play an important role in propelling the development of large graph models that serve as the foundation models in graph intelligence.
+• Run-time environment: Linux • Hardware: NVIDIA V100 or P100 GPUs.
+• Output: The output is provided in the output stream.
+• How much disk space is required (approximately)?:
+10 GB for datasets.
+The source code, benchmarks, and Python package are provided at https://doi.org/10.5281/zenodo.8254020, and (2) Download the source files g-sparse.zip and gpc-1.0-cp310-cp310-linux_x86_64.whl from the above URL.
+• Hardware dependencies: NVIDIA V100 or P100 GPUs.
+• Software dependencies: CUDA 11.1/11.7, DGL 0.9.1/1.0.0, PyTorch 1.9.0/2.0.0, and Python 3.10.
+C. Installation
+A Python package is provided for installation, and users can run the command pip install gpc-1. 0-cp310-cp310-linux\_x86\_64.whl to make it.
+D. Experiment Workflow
+First, download the source codes and install the Python package as described in Section B. Second, extract the contents of the g-sparse.zip file to a designated directory. Finally, (1) to evaluate the kernels, run the script run_kernels.sh in the benchmarks directory, and (2) to evaluate the GAT, GCN and GraphSAGE models, run the script run.sh in the benchmarks/gat, benchmarks/gcn, and benchmarks/graphsage directories, respectively.
+E. Evaluation and Expected Results
+To get the results, execute the run_kernels.sh and run.sh scripts located in the benchmarks directories. The execution will generate performance results, which will be displayed in the output stream of the terminal.

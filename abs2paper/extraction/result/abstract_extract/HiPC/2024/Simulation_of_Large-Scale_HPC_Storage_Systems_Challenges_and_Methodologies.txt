@@ -1,0 +1,5 @@
+论文标题：Simulation of Large-Scale HPC Storage Systems: Challenges and Methodologies
+
+关键词：HPC，Storage，Modeling，Simulation 232
+
+摘要：As the scale of production HPC platforms increases, so does the computing and I/O performance gap, exacerbating the storage bottleneck. High-performance storage systems have been developed to alleviate this bottleneck, but many questions remain concerning their architecture, implementation, and configuration. Answering these questions via experimental campaigns proves arduous. First, some answers are required before deploying the system. Second, once a system hits production the experimental scope is limited by the system's specific configuration and by constraints of production use. In this work we identify challenges posed by the design and validation of a storage simulator. We then propose solutions implemented in FIVES, a simulator of HPC workloads on platforms that comprise a parallel file system. We show how our simulator can be instantiated and calibrated for the accurate simulation of a production Lustre deployment.

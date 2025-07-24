@@ -1,0 +1,27 @@
+3 Method
+In this section, we first discuss the construction of the knowledge vector, then detail the process of the proposed TaD, during which we utilize the knowledge vector to improve LLMs' outputs for a better adaptation to downstream tasks.
+3.1 Constructing the Knowledge Vector
+For a pre-trained language model θ, the conditional probability distribution for tokens is modeled as follows:
+p θ (x t |x <t ), x t ∈ V, (1)
+where V denotes the vocabulary and t represents the token's position. After applying a fine-tuning method Φ on the pretrained model θ, we get a fine-tuned model ϕ:
+ϕ = Φ(θ, D), (2)
+where Φ can be any fine-tuning method like LoRA, AdapterP, etc., and D denotes the training set for a downstream task.
+Similarly, for the fine-tuned model ϕ, the conditional probability distribution for tokens is formulated as Eq. 3:
+p ϕ (x t |x <t ), x t ∈ V (3)
+Given the finite size of vocabulary V, at each position t, both p θ (x t |x <t ) and p ϕ (x t |x <t ) can be viewed as coordinates in a |V|-dimensional space. Consequently, we can derive a |V|dimensional vector V K on the logit scale, extending from the fine-tuning start point p S (i.e., θ) to the fine-tuning endpoint p E (i.e., ϕ):
+V K = p E − p S = log p ϕ (x t |x <t ) − log p θ (x t |x <t ) (4)
+V K reflects the shift in conditional probability distributions during fine-tuning, representing a directional move from the common knowledge to the task-specific knowledge. Notably, V K directly shows the influence of fine-tuning on the model's output probability distribution, and thus also enhances the interpretability of the fine-tuning process.
+It is important to note that V K may exhibit false positive cases, as mentioned in CD . For example, tokens with extremely low p ϕ and p θ (e.g., 10 −5 and 10 −10 ) might have disproportionately high V K values, misleadingly indicating an incorrect direction in the corresponding dimension (i.e., token). Therefore, we introduce a constraint function C t to ensure the probability values of tokens output by fine-tuned model ϕ are at least α times the maximum token probability:
+C t = {x t ∈ V : p ϕ (x t |x <t ) ≥ α max x ′ t ∈V p ϕ (x ′ t |x <t )}, (5)
+where α ranges from 0 to 1.
+Moreover, the indicator function I(x t ),
+I(x t ) = 1 if x t ∈ C t 0 otherwise, (6)
+determines whether a token x t satisfies the constraint function C t . We then introduce a penalty coefficient λ to penalize tokens that violate the constraint function, while maintaining the original values of V K for all others. This adjustment yields a revised VK , which can effectively prevent false positive cases, as follows:
+VK = I(x t ) • V K + (1 − I(x t )) • λ (7)
+3.2 Task-Aware Decoding
+With the constructed knowledge vector, i.e., VK in Eq. 7, we advance the probability outputs of the fine-tuned model in the direction indicated by the knowledge vector, effectively amplifying the downstream task knowledge adaptation learned during fine-tuning. It is important to note that VK is not a probability distribution. Hence, we apply the softmax function to convert it into a probability distribution:
+p K (x t |x <t ) = softmax( VK ) (8)
+Then we obtain the probability distribution p w.r.t x t output by TaD, via merging p ϕ (x t |x <t ) and p K (x t |x <t ) with a weighting parameter µ.
+p(x t |x <t ) = (1 − µ) • p ϕ (x t |x <t ) + µ • p K (x t |x <t ) (9)
+With the improved output probability distribution w.r.t x t , i.e., p(x t |x <t ), we can simply apply various basic decoding methods like Greedy Search for text generation. A simplified illustration of the proposed TaD is shown in Figure .
+Deriving from the knowledge vector, i.e., VK , p K indicates the impact of fine-tuning on the model's output. Eq. 9 enables the modulation of this impact by adjusting µ. Therefore, we can make LLM's implicit knowledge learned during finetuning explicit by simply increasing the value of µ to amplify this impact. Additionally, we preserve p ϕ in Eq. 9 to prevent false negative cases caused by using p K alone. The false negative case occurs when the next token is easily predictable. In this circumstance, both p ϕ and p θ yield a probability near 1, but the value of p K is close to 0. Preserving p ϕ and choosing a proper µ guarantee that the model outputs tokens with high probability in p ϕ . We believe this preservation addresses the limitations of using p K alone, proving essential for preserving the baseline fine-tuned model's efficacy and ensuring the effectiveness of TaD. Moreover, it also can be seen that when µ = 0, the proposed TaD would degrade to the original finetuned model, i.e., p ϕ , and thus the performance of TaD would at least match that of the original fine-tuned model.

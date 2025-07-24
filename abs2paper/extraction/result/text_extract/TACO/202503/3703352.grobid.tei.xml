@@ -1,0 +1,1545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">ApSpGEMM: Accelerating Large-scale SpGEMM with Heterogeneous Collaboration and Adaptive Panel</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2025-03-20">2025-03-20</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.95,123.75,73.11,9.82"><forename type="first">Dezhong</forename><surname>Yao</surname></persName>
+							<email>dyao@hust.edu.cn</email>
+							<idno type="ORCID">0000-0003-0336-0522</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,149.65,55.93,9.82"><forename type="first">Sifan</forename><surname>Zhao</surname></persName>
+							<idno type="ORCID">0009-0000-7735-3187</idno>
+						</author>
+						<author>
+							<persName coords="1,45.65,175.55,77.19,9.82"><forename type="first">Tongtong</forename><surname>Liu</surname></persName>
+							<email>tliu@hust.edu.cn</email>
+							<idno type="ORCID">0009-0003-1651-7784</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,201.45,46.79,9.82"><forename type="first">Gang</forename><surname>Wu</surname></persName>
+							<email>gangwu@zzu.edu.cn</email>
+							<idno type="ORCID">0000-0002-6615-0699</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,214.41,34.51,9.82"><forename type="first">Hai</forename><surname>Jin</surname></persName>
+							<email>hjin@hust.edu.cn.</email>
+							<idno type="ORCID">0000-0002-3934-7605</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technol-ogy</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">National Super Computing Center</orgName>
+								<address>
+									<settlement>Zhengzhou</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution">Zhengzhou University</orgName>
+								<address>
+									<settlement>Zhengzhou</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">School of computer science and technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="department" key="dep1">National Engineering Research Center for Big Data Technology and System</orgName>
+								<orgName type="department" key="dep2">School of Computer Science and Technology</orgName>
+								<orgName type="laboratory">Services Computing Technology and System Lab, Cluster and Grid Computing Lab</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff8">
+								<orgName type="department">School of Computer Sci-ence and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<region>Hubei</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff9">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan, Hubei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff10">
+								<orgName type="institution">National Super Computing Center</orgName>
+								<address>
+									<addrLine>Gang Wu</addrLine>
+									<settlement>Zhengzhou</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff11">
+								<orgName type="institution">Zhengzhou University</orgName>
+								<address>
+									<settlement>Zhengzhou</settlement>
+									<region>Henan</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff12">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">Huazhong University of Science and Technology</orgName>
+								<address>
+									<settlement>Wuhan</settlement>
+									<region>Hubei</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">ApSpGEMM: Accelerating Large-scale SpGEMM with Heterogeneous Collaboration and Adaptive Panel</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">22</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<biblScope unit="page" from="1" to="23"/>
+							<date type="published" when="2025-03-20" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">661C05A650DE51ACCBCF8AC519FCD2DD</idno>
+					<idno type="DOI">10.1145/3703352</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>CCS Concepts:</term>
+					<term>Computer systems organization → Multicore architectures</term>
+					<term>• Theory of computation → Massively parallel algorithms</term>
+					<term>• Software and its engineering → Scheduling</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The Sparse General Matrix-Matrix multiplication (SpGEMM) is a fundamental component for many applications, such as algebraic multigrid methods (AMG), graphic processing, and deep learning. However, the unbearable latency of computing high-dimensional, large-scale sparse matrix multiplication on GPUs hinders the development of these applications. An effective approach is heterogeneous cores collaborative computing, but this method must address three aspects: (1) irregular non-zero elements lead to load imbalance and irregular memory access, (2) different core computing latency differences reduce computational parallelism, and (3) temporary data transfer between different cores introduces additional latency overhead. In this work, we propose an innovative framework for collaborative large-scale sparse matrix multiplication on CPU-GPU heterogeneous cores, named ApSpGEMM. ApSpGEMM is based on sparsity rules and proposes reordering and splitting algorithms to eliminate the impact of non-zero element distribution features on load and memory access. Then adaptive panels allocation with affinity constraints among cores improves computational parallelism. Finally, carefully arranged asynchronous data transmission and computation balance communication overhead. Compared with state-of-the-art SpGEMM methods, our approach provides excellent absolute performance on matrices with different sparse structures. On heterogeneous cores, the GFlops of large-scale sparse matrix multiplication is improved by 2.25 to 7.21 times.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>SpGEMM is widely applied in various fields, including AMG <ref type="bibr" coords="2,301.12,214.26,10.43,9.03" target="#b6">[7]</ref>, graphic processing <ref type="bibr" coords="2,399.22,214.26,14.84,9.03" target="#b17">[18]</ref>, deep learning <ref type="bibr" coords="2,83.20,226.22,16.37,9.03" target="#b20">[21]</ref> and geometric transformations <ref type="bibr" coords="2,234.75,226.22,16.37,9.03" target="#b15">[16]</ref> in CAD/CAE. SpGEMM operates two sparse matrices A and B to compute a result C = A × B. To enhance SpGEMM performance on GPUs, the widely used method is Gustavson's row-row algorithm <ref type="bibr" coords="2,267.16,250.13,14.83,9.03" target="#b12">[13]</ref>, which computes the result matrix C in parallel by aligning the non-zero elements (NZs) of A in the corresponding rows of B. Due to the sparse structural features of the input and output matrices, accelerating SpGEMM on GPUs <ref type="bibr" coords="2,410.68,274.04,14.98,9.03" target="#b9">[10,</ref><ref type="bibr" coords="2,427.48,274.04,12.81,9.03" target="#b13">14]</ref> has long been a noteworthy area of focus. As a result, a number of recent efforts have been made to develop GPU implementations for SpGEMM <ref type="bibr" coords="2,239.07,297.95,10.36,9.03" target="#b0">[1,</ref><ref type="bibr" coords="2,251.92,297.95,11.25,9.03" target="#b34">34]</ref>.</p><p>Existing approaches assume that the entire SpGEMM computation can be completed within the available memory of a single GPU. However, the sizes of sparse matrices can be quite large in real world. Koichi Shirahata et al. <ref type="bibr" coords="2,185.26,333.82,16.36,9.03" target="#b36">[36]</ref> found that graphs with over 100 million vertices and over 1 billion edges (requiring over a terabyte of uncompressed storage) are very common in social networks and scientific computing. Due to memory constraints <ref type="bibr" coords="2,309.57,357.73,10.36,9.03" target="#b3">[4,</ref><ref type="bibr" coords="2,322.93,357.73,11.26,9.03" target="#b35">35]</ref>, even the most advanced and memory-efficient SpGEMM implementations <ref type="bibr" coords="2,250.78,369.68,14.99,9.03" target="#b25">[26,</ref><ref type="bibr" coords="2,268.84,369.68,12.81,9.03" target="#b29">29]</ref> are unable to handle these large-scale matrices on GPUs. Recently, the development of unified memory <ref type="bibr" coords="2,305.64,381.63,16.34,9.03" target="#b24">[25]</ref> has provided a new approach to address memory limitations. Therefore, the collaborative computation of large-scale SpGEMM by heterogeneous CPUs and GPUs is worth attention.</p><p>Previous work HPMaX <ref type="bibr" coords="2,155.38,417.50,16.35,9.03" target="#b16">[17]</ref> has attempted to address dense matrix multiplication (DGEMM) through collaborative CPU and GPU. However, the random distribution of NZs makes computing SpGEMM on heterogeneous cores more challenging compared with DGEMM. First, in the kernel, the regular distribution of NZs in DGEMM allows for predictable memory access patterns. This means that threads can read and write multiple consecutive NZs while ensuring load balancing. However, in SpGEMM, the distribution of NZs is random and irregular. The number of NZs (NNZs) each thread is responsible for is unpredictable, and reading NZs one by one incurs significant memory access overhead. Secondly, due to differences in computational resources and the irregular distribution of NZs, the CPU and GPU incur different latencies when computing SpGEMM. This implies that it is hard to guarantee computational parallelism if we allocate different parts of the matrix to the CPU and GPU separately without constraints. Finally, regardless of whether it's computing input matrices or storing output matrices, the temporary data transfer between CPU and GPU are inevitable. However, on PCIe-based heterogeneous devices, these temporary data transfers significantly increase the computation's waiting latency.</p><p>To address the aforementioned challenges, we propose ApSpGEMM, <ref type="foot" coords="2,334.83,583.04,3.38,6.59" target="#foot_0">1</ref> an adaptive-panel-based heterogeneous collaborative approach for large-scale SpGEMM. We first designed a lightweight analyzer to extract the distribution features of NZs. Next, we define an efficient sparsity ordering rule to quickly reorder and split the matrix based on the NZs' features. To achieve load balancing ApSpGEMM 20:3 and reduce memory access overhead, ApSpGEMM uses an adaptive thread allocation algorithm for the three types of panels from the matrix splitting. Considering the computational differences between the CPU and GPU, we introduce the concept of core affinity to adaptively allocate panels across heterogeneous cores. Lastly, we proposed an asynchronous multiplication approach and carefully designed scheduling strategies to overlap the multiplication and transmission of panels across different cores.</p><p>We evaluated the computational performance of matrix multiplication for a set of sparse matrices selected from the matrix collection. Our experimental results demonstrate that, in the majority of matrices, ApSpGEMM improves performance by 1.12 to 2.31 times compared with the state-ofthe-art in-core GPU method. Through the implementation of asynchronous overlap scheduling and adaptive panel allocation, heterogeneous collaboration further enhances the multiplication of large-scale matrices by 2.25 to 7.21 times.</p><p>Contribution In summary, we make the following contributions.</p><p>-We introduce ApSpGEMM, an adaptive-panel-based heterogeneous collaborative approach, aimed at addressing the challenges posed by the irregular distribution of NZs and memory limitations encountered in large-scale SpGEMM computations. -We present a comprehensive four-step design, including Matrix Pre-analysis, Matrix Splitting, In-core Computation, and Heterogeneous Collaboration to optimize the SpGEMM. -We introduce the novel concept of core affinity analysis, which carefully considers the impact of sparsity on panel multiplication performance across different cores, thereby enabling the development of an adaptive allocation scheme for panels. -We propose an asynchronous multiplication approach and scheduling strategies to effectively overlap the multiplication and transmission of panels across different cores, mitigating the impact of temporary data transfer latencies. -Through extensive experiments, we demonstrate that our method achieves significantly higher GFlops compared with existing methods for the C = AA T operation, and large-scale matrices perform better on heterogeneous cores than on single devices.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background and Motivation 2.1 SpGEMM and Row-Row Algorithm</head><p>This study concentrates on the compressed sparse rows (CSR) format, which is the most commonly employed data structure for representing sparse matrices <ref type="bibr" coords="3,312.74,458.47,14.83,9.03" target="#b13">[14]</ref>. As shown in Figure <ref type="figure" coords="3,417.74,458.47,3.41,9.03">1</ref>, the CSR format comprises two position index lists: "rowptr" and "colptr", along with a list of data. Specifically, the "colptr" contains the column indices of the NZs, the "data" stores all of the NZs values, and the "rowptr" indicates the starting position of each row's NZs in the "data". In SpGEMM, the computation of the sparse matrices A and B, and the resultant matrix C is represented by</p><formula xml:id="formula_0">C i j = k A ik • B k j .</formula><p>Currently, a widely adopted algorithm for sparse matrix multiplication is Gustavson's row-row formulation <ref type="bibr" coords="3,233.93,530.20,14.84,9.03" target="#b12">[13]</ref>, as shown in Algorithm 1.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Motivation of This Work</head><p>In the field of scientific computing, there are large-scale sparse matrix computations. For example, "nlpkt200", "uk-2002", and "stokes", originating from deep learning, graph processing, and semiconductor technology, respectively, have NNZs reaching billions. The NNZs in the resulting matrix C = A × A is 5 to 10 times greater than that of matrix A itself. Although many efforts have been devoted to optimizing SpGEMM computation <ref type="bibr" coords="3,234.03,612.79,15.00,9.03" target="#b38">[38,</ref><ref type="bibr" coords="3,251.69,612.79,11.25,9.03" target="#b43">43]</ref>, these methods assume sufficient computation core memory <ref type="bibr" coords="3,119.91,624.74,10.37,9.03" target="#b3">[4,</ref><ref type="bibr" coords="3,132.32,624.74,11.25,9.03" target="#b9">10]</ref>. A natural approach is to evenly split large matrices into tiles for iterative computation, but this wastes CPU computing resources and leads to load balancing and memory access issues on GPUs, resulting in low computational performance.  for all B k j in row B do 7: This work attempts to address the above issues through CPU and GPU collaboration. However, heterogeneous collaborative SpGEMM faces the following challenges: (1) imbalance of sparse matrix loads and irregular memory access on the GPU due to the distribution features of NZs, (2) different matrix computation latency on the CPU and GPU due to variations in sparsity, and (3) additional latency overhead from temporary data transfers between heterogeneous cores.</p><formula xml:id="formula_1">value = A ik × B k j 8: if C i j C i * then 9: insert(C i j , C i * )</formula><p>We have designed a four-step approach ApSpGEMM to address the aforementioned challenges. Based on the features of NZs distribution, ApSpGEMM split the matrix into sub-matrix named panels, where the size of the panels depends on the splitting algorithm and the matrix itself. These panels serve as the fundamental units for computation and transmission on both GPU and CPU.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Overview</head><p>As depicted in Figure <ref type="figure" coords="4,134.65,631.91,3.41,9.03" target="#fig_17">2</ref>, the flow of ApSpGEMM includes two stages. The first stage involves preprocessing the sparse matrices, consisting of the Matrix Pre-analysis and Matrix Splitting steps. ApSpGEMM 20:5 Fig. <ref type="figure" coords="5,61.61,354.14,3.07,8.07" target="#fig_17">2</ref>. The workflow of ApSpGEMM. Matrix pre-analysis to obtain matrix features, matrix splitting to generate panels, in-core computation to accomplish specific panels multiplication, and heterogeneous collaboration implements parallel computing between CPU and GPU.</p><p>The second stage is out-of-core computing, which comprises the In-core and Heterogeneous Collaborative computing steps.</p><p>Matrix Pre-analysis. Matrix Pre-analysis is the foundational stage, providing crucial insights into the distribution of NZs within the matrix. This information guides subsequent steps such as Matrix Splitting and In-core GPU computation. However, it is noteworthy that the analytical cost of this stage should be balanced against potential performance gains. For example, in the case of nsparse <ref type="bibr" coords="5,79.95,475.63,14.84,9.03" target="#b27">[28]</ref>, allocating approximately 30% of the execution time for pre-analysis to analyze the features of NZs distribution underscores the need for a fast, efficient, and lightweight analyzer capable of extracting essential feature information swiftly.</p><p>Matrix Splitting. As illustrated in Figure <ref type="figure" coords="5,232.39,511.49,3.41,9.03" target="#fig_3">3</ref>, these matrices exhibit various distributional features for NZs, such as band distribution, centralized distribution, and diagonal distribution. These features significantly impact computational efficiency in the core. For example, in the "cite-Patents" matrix of Figure <ref type="figure" coords="5,114.19,547.36,3.44,9.03" target="#fig_3">3</ref>(a), loading various rows into thread blocks directly can lead to some blocks being underutilized, while others become densely occupied. Hence, it's crucial to devise a strategic algorithm based on the distinct distributional features of NZs. This algorithm optimally splits the matrix to make the most of the computational and storage resources on the target core.</p><p>In-core GPU. This step mainly involves multiplying panels from matrix A with panels from matrix B on GPU. Several crucial considerations apply here. Firstly, the unique distribution features of the panels require implementing different multiplication operations tailored to panels with different features. Secondly, determining optimal panel sizes for thread blocks is a challenging task. Lastly, carefully allocating thread blocks and threads is crucial for memory access and load balance.  Heterogeneous Collaboration. When dealing with large-scale matrices that exceed the available GPU graphics memory capacity, the concurrent use of multiple heterogeneous cores proves effective. However, this approach introduces challenges like transfer latency, differing computational capabilities, and the complex coordination of scheduling. Therefore, strategies are needed to allocate panels of varying sizes and features between the GPU and CPU. It's also crucial to minimize communication and computation latency in this heterogeneous computing paradigm.</p><p>Considering the general evaluation metrics for matrix computations, the objective of Ap-SpGEMM centers on addressing large-scale SpGEMM computations across two stages while minimizing the total computational time, denoted as T . Mathematically, this optimization problem can be formally expressed as Equation (1):</p><formula xml:id="formula_2">Arдmin(T ) =t 1 (pre-analysis) + t 2 (splittinд) + t 3 (In-core computation) + t 4 (heteroдeneous collaboration),<label>(1)</label></formula><p>where each component t i signifies the time associated with its respective step.</p><p>It should be noted that the panels generated during the matrix splitting stage will impact the computational performance in the second stage. While we analyze the distribution features of NZs in Figure <ref type="figure" coords="6,106.15,631.94,3.41,9.03" target="#fig_3">3</ref>, we do not adopt band or localized centralized splitting methods because these approaches cannot be extended to general matrices. Instead, we opt for the versatile approach of ApSpGEMM 20:7 sparsity splitting. Its inherent adaptability allows us to efficiently handle matrices with different features, playing a crucial role in achieving the seamless integration of in-core computation and heterogeneous collaboration steps.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Matrix Pre-Processing</head><p>In this section, we describe the matrix pre-analysis and matrix splitting steps. We propose lightweight analysis algorithms and sparsity splitting rules to generate panels associated with the distribution features of NZs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Matrix Pre-Analysis</head><p>Many works design multiplication algorithms for matrices with different NZs features. The result is that they incur high latency to analyze the distribution of NZs. For example, Rasouli et al. <ref type="bibr" coords="7,424.11,214.28,16.35,9.03" target="#b32">[32]</ref> not only count the NNZs in rows and columns for diagonal matrices, but also calculate the NNZs and positions on the diagonal. While the overhead of computing diagonal NNZs and positions is tolerable for small matrices, it becomes quite time-consuming for larger matrices and loses scalability on general matrices. Therefore, we need to extract as little information as possible without considering the NZs distribution features.</p><p>For each input matrix, we methodically extract the following pertinent information: (a) the NNZs in each row of matrix A, (b) the NNZs in each row of matrix B, and (c) the NNZs within each column of matrix A.</p><p>By utilizing the prefix sum algorithm for the inherent rowptr index in matrix A, we can quickly determine the number of NNZs in each row. Similarly, we can obtain the NNZs for each row in matrix B.</p><p>Furthermore, owing to the inherent characteristic of the CSR format wherein NZs within the same column share identical indexes in the "colptr", we can expediently determine the NNZs present in each column.</p><p>The collected information will guide the optimization of the next three steps. Further elucidation of the utilization of this critical information is expounded upon in subsequent sections of this academic exposition.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Matrix Splitting</head><p>To categorize the distribution of NZs features effectively, we use a sparsity criterion denoted as S. It splits the matrix into two distinct categories-sparse panels and dense panels-based on the level of sparsity. Sparsity S is defined as the ratio of NNZs to the total number of elements in the matrix. Specifically, for a given row i in the matrix with a total number of elements denoted as E i and NNZs as N NZ i , S is formally expressed as the quotient N NZ i /E i .</p><p>During the splitting of rows within matrix A, a crucial step involves reordering these matrices, as an example in Figure <ref type="figure" coords="7,131.06,525.11,3.41,9.03" target="#fig_5">4</ref>. Specifically, first, the sparsity S for each row is computed using information obtained from the matrix pre-analysis step. Subsequently, a descending order reorder of all the rows in matrix A based on their respective S is carried out using a simple and efficient Quick Sort algorithm, while ensuring the retention of "colptr" and "data" lists in matrix A. Although Quick Sort is unstable, it only alters the relative positions of indexes with the same S, which does not affect the splitting of the matrix. Similarly, matrix B is also reordered based on the S. It's worth noting that our reordering operations pertain exclusively to the matrix indices, optimizing reordering efficiency. Following the reordering, rows with S exceeding the row sparsity threshold P are classified as dense panels, otherwise, they are classified as sparse panels. In most applications, a matrix is considered sparse if the proportion of NZs is less than 5%. Therefore, P is typically valued at 0.05.  . The S and P are the sparsity and row sparsity thresholds, respectively. The S value for each row is calculated through its NNZs, which are obtained from the prefix sum algorithm in the matrix pre-analysis step. The matrix is reordered in descending order based on sparsity. The "rowptr" is reordered to get the new matrix "rowptr", and the "rowind" stores the row index of the old matrix corresponding to the new matrix.</p><p>After the reordering, the matrices A and B are now organized into distinct components known as dense panels and sparse panels. During computation, three types may arise: multiplication of sparse panels by sparse panels (SpGEMM), multiplication of sparse panels by dense panels (SpMM), and multiplication of dense panels by dense panels (DGEMM). It's important to note that while we refer to these components as panels, the operations within them are essentially matrix multiplications. We use symbols A p and B p to refer to panels from matrices A and B. Subsequent sections of this article will detail optimization techniques relevant to these three distinct types of panel multiplication.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Out-of-Core Computation</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">In-Core Computation</head><p>In Section 2.1, to parallelize Gustavson's algorithm on the GPU, the critical task is parallelizing the two for-loops at lines 2 and 3 within Algorithm 1. This means that in the GPU kernel, each thread block is responsible for computing panel multiplication involving distinct rows. Each thread within a block computes the corresponding NZs within these rows. Efficient parallelization depends on meticulous consideration of two key aspects for blocks and threads: load balancing and memory access optimization.</p><p>(a) Effective management of rows and NZs is central to load balancing. Allocating an optimal workload to each thread block is fundamental, as excessive workloads may lead to frequent global memory accesses to transfer rows to shared memory, causing a performance bottleneck. Conversely, an overly conservative allocation may result in inefficient use of shared memory resources. Within a single block, maintaining a balanced distribution of workload among threads is also vital. Imbalances can lead to some threads bearing excessive computational loads while others are underutilized. Thus, achieving global and local load balance is paramount in GPU parallelization.</p><p>(b) Memory access involves threads retrieving rows from panel B p (as referenced by the NZs of panel A p ) from global memory and loading these rows into the shared memory. This means that each NZ in the A p requires one global memory access. This can result in a significant overhead in memory access operations, especially when compared with the computation itself. To address load balancing and memory access challenges and lay the groundwork for Section 5.2, we propose the following solutions for SpGEMM, SpMM, and DGEMM:</p><p>SpGEMM. We use a systematic approach to achieve global load balance. This involves categorizing contiguous rows from A p into discrete bins. We leverage the knowledge from the matrix pre-processing step, generating multiple bins, which are subsequently allocated to distinct thread blocks. Each thread block is responsible for executing the multiplication operation for its designated bin.</p><p>Previous methods used atomic operations to allocate a fixed number of adjacent rows into the corresponding bins <ref type="bibr" coords="9,127.71,178.41,15.00,9.03" target="#b22">[23,</ref><ref type="bibr" coords="9,145.77,178.41,11.25,9.03" target="#b27">28]</ref>. Although this method is simple, it is inefficient. Firstly, it performs unnecessary binning operations for entirely empty rows. Secondly, it focuses on the number of rows rather than the memory size occupied by the rows, which leads to wasted shared memory space. We attempt to address the aforementioned issues through a dynamic binning approach, where each bin is allocated a different number of rows based on the size of the shared memory. However, dynamic binning requires sufficient prior knowledge to find suitable rows. Fortunately, the matrix pre-analysis and reordering steps solve this problem. Given a panel, not only are all rows reordered according to a descending order rule, but the NNZs of each row are also known. Within the limits of shared memory size, deciding the number of rows for each bin is straightforward.</p><p>The goal of local load balancing is to allocate threads within a given block so that each thread is responsible for processing certain NZs in a row of A p . This means that the threads need to call CUDA cores to access global memory to retrieve the relevant NZs of B p and perform elementwise multiplication on the NZs they are responsible for. Therefore, allocating the optimal number of threads for a row is crucial to ensuring efficient memory access and fast element-wise multiplication operations.</p><p>On the one hand, allocating an insufficient number of threads for one row in A p would require multiple iterations per thread, leading to suboptimal memory access and frequent CUDA core launches. Conversely, allocating an excessive number of threads could result in a notable surplus of idle threads. On the other hand, although matrix reordering and dynamic binning reduce the risk of thread load imbalance to some extent, the differences in NNZs between rows still exist. Therefore, if a fixed thread allocation scheme is used for each row, the long and short rows within the panel will still affect the balance of thread workloads. However, using a dynamic thread allocation method, such as adaptively assigning the number of threads for each row, would introduce significant decision-making overhead.</p><p>After weighing the pros and cons of the two thread allocation strategies, our goal is to ensure that each thread's iteration count closely matches the number of rows that the respective thread group must handle. In a thread block with T threads, we divide it into G groups, each containing M threads, where M = T /G. As shown in Figure <ref type="figure" coords="9,244.06,501.21,3.41,9.03">5</ref>, the local load balancing strategy encompasses various thread group configurations. For example, when M = 8, it requires 4 iterations; when M = 4, it requires 3 iterations, and when M = 2, it involves 4 iterations to complete the processing tasks, as depicted.</p><p>Using insights from the pre-analysis of the matrix, we start by initializing the value of M based on the average row length across all rows in A p . We then proceed to systematically assign these thread groups to A p . However, given the potential existence of long rows, it's crucial to note that the maximum iteration count a thread in such a row would need to perform is defined as iter thread = N NZ max /M. To ensure that this maximum iteration counts closely aligns with the number of rows, denoted as n rows , that each group needs to process, we make an adjustment to the value of M using a heuristic approach, as shown in Algorithm 2.</p><p>SpMM. The operation involves multiplying a sparse panel A p by a dense panel B p , resulting the output panel denoted as Y , as depicted in Figure <ref type="figure" coords="9,263.24,644.67,3.44,9.03">6</ref>   </p><formula xml:id="formula_3">if G &gt; N NZ A then 11: G ← N NZ A 12:</formula><p>end if 13: end while are contiguous. This means that in Algorithm 1, the middle loop (line 3) reads a small amount of NZs from A p , while the inner loop (line 4) reads a large amount of NZs from B p . As a result, the NZs from A p occupy only a small amount of space in shared memory, while most of the space is occupied by the NZs of B p . Therefore, the main memory access overhead comes from the frequent exchange of B p 's NZs between global memory and shared memory.</p><p>To address this issue, our approach focuses on improving the reutilization of NZs within A p . We observed that NZs sharing the same column in A p can simultaneously access elements of the same row in B p from global memory. Consequently, the number of times NZs in the same column of A p access global memory can be reduced to once. Additionally, the more NZs there are in the same column of A p , the greater the benefit derived from this process. Based on this observation, we define a dense column as one with more than one NZ, and otherwise, it is considered a sparse column. The upper limit of NZs in dense columns depends on the thread group size and the size of shared memory. We assume the shared memory size is S, the number of threads in the group is M, the number of columns in B p is K, and the average NZs in dense columns is Q, with each NZ represented as 8 bytes of storage. Therefore, the NZs read by the threads must satisfy 4(MK + MQ) &lt; S. Thus, the size of a dense column is 2 &lt; Q &lt; S 4M − K. In dense columns, threads access global memory to load the corresponding rows from B p into shared memory, and NZs in these dense columns share the data from the referenced rows. As exemplified in Figure <ref type="figure" coords="11,135.31,460.29,3.44,9.03">6</ref>(a), A p contains 13 NZs, requiring a total of 13 global memory accesses to load the corresponding rows in B p . In contrast, in Figure <ref type="figure" coords="11,276.25,472.24,3.56,9.03">6</ref>(b), dense columns (columns 1, 2, and 4) only require three threads to access global memory, totaling three times, to load the vectors x 1 , x 2 , and x 4 , respectively. For sparse columns, it takes four global memory accesses to load the vectors x 0 , x 3 , and x 5 . The number of global memory accesses is reduced from 13 to 7.</p><p>DGEMM. Dense panels multiplication efficiency is significantly higher than that of SpGEMM and SpMM in the kernel. Dense panels inherently possess a high degree of data reuse and follow a sequential element access pattern. As a result, in the kernel, there is no need for specific discussions regarding memory access and thread allocation to multiply dense panels with every row/column. Currently, there is ongoing work aimed at reducing the computational complexity of DGEMM by decreasing the number of multiplication operations, such as AlphaZero <ref type="bibr" coords="11,410.38,579.84,11.72,9.03" target="#b8">[9]</ref> and Strassen. ApSpGEMM focuses on kernel-level optimization, while AlphaZero and Strassen focus on operator-level optimization, and the two are not in conflict. Therefore, while we do not specify which DGEMM algorithm is optimal, these works are compatible with ApSpGEMM. Incorporating Strassen into the kernel configuration of the ApSpGEMM to accelerate dense panels multiplication is a natural choice.  Configuration. ApSpGEMM uses the maximum available shared memory (128 KB on RTX 3080) and the largest kernel size (1024 threads) to guarantee full hardware utilization. It is important to note that the shared memory size rated for the RTX 3080 is 64 KB, and the L1 cache size is also 64 KB. ApSpGEMM combines shared memory and L1 cache, which are shared among 1024 threads. During In-core Computation, some data is read-only, such as the NNZs information corresponding to rows or columns, sparsity list S, and the rowind indices. These data are characterized by being frequently accessed and read-only during kernel execution. To maximize the storage of NNZs data in shared memory, ApSpGEMM defines the above read-only data in "__constant__" and stores them in the constant memory (64 KB).</p><p>ApSpGEMM loads the target bin into shared memory, while adjacent bins are preloaded into the L2 cache, thereby reducing global memory access overhead. Additionally, a group may consist of one or more warps. On the RTX 3080, each warp is fixed at 32 threads by default. Therefore, in ApSpGEMM, the number of threads in a group is usually set as a multiple of 32.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Heterogeneous Collaboration</head><p>As described in Section 2.2, there are two key challenges in the heterogeneous collaboration step:</p><p>(1) The computational latency differs between CPU and GPU for panels with different distribution features. Synchronizing the computation time between the CPU and GPU to ensure they complete almost simultaneously maximizes parallel processing performance. Therefore, it requires establishing a discerning criterion for adaptively allocating panels to the appropriate cores.</p><p>(2) Empirical investigations using matrices from the SuiteSparse Matrix Collection, executed on an NVIDIA GeForce RTX 3080 GPU and an Intel(R) Xeon(R) Gold 5117 CPU, have revealed a significant presence of data transfer overhead between these heterogeneous cores, as illustrated in Figure <ref type="figure" coords="12,135.40,546.49,3.41,9.03" target="#fig_11">7</ref>. In light of this observation, optimizing the data transfer process becomes a pivotal consideration. Panels with varying sparsity levels from Section 4.2 are allocated for computation on either the CPU or GPU. To empirically evaluate the performance implications of sparsity levels on computation, we conducted a series of tests measuring computation times for panels with varying sparsity levels, utilizing both the GPU NVIDIA GeForce RTX 3080 and the CPU Intel(R) Xeon(R) Gold 5117, as elucidated in Figure <ref type="figure" coords="12,137.98,620.61,13.76,9.03" target="#fig_12">8(a)</ref>. The outcomes of these experiments reveal a discernible trend, wherein panels featuring higher sparsity levels demonstrate superior suitability for GPU-based computations, whereas those with lower sparsity levels exhibit enhanced compatibility with CPU-based ApSpGEMM computations. We refer to this trend as panels affinity, where Af f inity = Spar sity(A p )+Spar sity(B p ) 2</p><note type="other">20:13</note><p>. Figure <ref type="figure" coords="13,74.54,297.82,3.90,9.03" target="#fig_12">8</ref>(b) demonstrates the impact of affinity on SpGEMM in heterogeneous processors in realworld applications. We illustrate this process by multiplying the matrix "gupta3" from an optimization problem domain by its transpose. The "gupta3" matrix has 16,783 rows and columns with 9,323,427 NZs. The table in Figure <ref type="figure" coords="13,209.82,333.68,3.90,9.03" target="#fig_12">8</ref>(b) shows that the computation time for the multiplication of row A 5839 is smaller on the CPU, whereas for row A 15785 , the computation time is smaller on the GPU.</p><p>To synchronize the computation times on heterogeneous cores, determining an allocating ratio for panels becomes crucial. This ratio defines how panels are allocated for processing on the CPU versus the GPU, aiming to minimize the discrepancy in their computation times. We define computational coefficient as K = CPU exe /GPU exe , where CPU exe and GPU exe represent the respective computation times for the CPU and GPU to perform a single multiplication operation. Consequently, we derive the GPU-to-CPU allocation ratio as R = K/(K + 1). Based on our experimental observations, we have determined that setting R within the range of 60% to 65% yields optimal performance for the input matrix on our specific experimental platform. It is important to note, however, that the optimal value of R may be influenced by changes in the configuration of the CPU or GPU. Therefore, there may be a need to adjust R to match different hardware setups. Nonetheless, the fundamental principle of selecting an appropriate R to distribute computational tasks between the CPU and GPU remains an important consideration.</p><p>As shown in Figure <ref type="figure" coords="13,139.91,513.02,3.41,9.03" target="#fig_11">7</ref>, it is clear that the time needed for data transfer between the CPU and GPU exceeds the time allocated for computational tasks. This disparity can be attributed to the inherent limitations of the PCI-e architecture, which serves as the interconnect between these heterogeneous cores. In this architecture, each data transfer direction is handled by a single engine, restricting the CPU and GPU to perform data transfers in only one direction at a time. This inherent constraint introduces the potential for data transfer bottlenecks during concurrent operations.</p><p>To improve efficiency and mitigate this issue, we leverage the concept of computation and transfer overlap. Each computation on the heterogeneous cores involves two separate data exchanges: first, the transfer of CPU panels to GPU memory, and then the transmission of computed results from the GPU back to the CPU memory. By carefully coordinating these operations, we establish a synergistic relationship between computation and data transfers. This helps minimize waiting overhead and maximizes the potential for asynchronous concurrency.  As depicted in Figure <ref type="figure" coords="14,143.07,261.72,3.41,9.03" target="#fig_14">9</ref>, our approach to achieving overlap involves meticulous synchronization of the i-th computation with both the (i-1)th GPU-to-CPU transfer and the (i+1)th CPU-to-GPU transfer. This synchronized orchestration ensures that while the GPU is actively engaged in the computation of the current iteration (i-th), the CPU concurrently executes two essential tasks: receiving the results of the subsequent iteration (i-1)th and preparing to transfer data from the preceding iteration (i+1)th. This simultaneous handling of data transfers and computational tasks optimizes the temporal efficiency of the entire process, as exemplified in the figure <ref type="figure" coords="14,379.79,333.45,3.72,9.03">.</ref> Furthermore, incremental matrix splitting offers unique advantages over the notion of splitting the entire matrix in a single step followed by panel transfer. This step-by-step approach maintains the effectiveness of the splitting process while strategically allowing overlap between the splitting and data transfer operations. This concurrency facilitates the simultaneous execution of panel splitting and data transfer, leading to improved overall efficiency in the matrix multiplication process.</p><p>Algorithm 3 describes the panels' allocation process. Line 6 represents the result of averaging the sparsity of one row from matrix A with one row from matrix B, followed by sorting. This means that each pair {row A i , row B j } in Row_Pair[ ] is ordered by their affinity for the GPU, from high to low. Lines 8-14 represent the allocation of panels for GPU and CPU based on affinity and the allocation ratio. The index corresponding to R serves as the dividing line. The row pairs before this index are allocated as panels for the GPU to perform in-core computation, while the row pairs after this index are calculated by the CPU. Notably, the method of overlapping computation and transfer is applied in lines 10 and 11.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Evaluation 6.1 Experimental Setup</head><p>We conducted experiments using the NVIDIA GeForce RTX 3080 and the Intel(R) Xeon(R) Gold 5117 platforms. Table <ref type="table" coords="14,133.79,567.19,4.63,9.03" target="#tab_2">1</ref> provides detailed specifications for both setups. The host operating system was Ubuntu Linux 18.04. We utilized driver version 470.57.02 and the CUDA 11.6 toolkit for GPU implementations. Compilation was done with NVCC compiler version 11.6.124. In our comparative analysis, we benchmarked ApSpGEMM against cuSPARSE,<ref type="foot" coords="14,287.11,601.23,3.38,6.59" target="#foot_3">2</ref> AC-SpGEMM <ref type="bibr" coords="14,352.20,603.06,14.84,9.03" target="#b40">[40]</ref>, spECK <ref type="bibr" coords="14,403.87,603.06,14.85,9.03" target="#b31">[31]</ref>, and TileSpGEMM <ref type="bibr" coords="14,102.79,615.01,14.84,9.03" target="#b29">[29]</ref>.  Row_Pair[ ]=Sparsity_Mean_Sort(row A i , row B j ) 7: end for 8: for G = 0 to R × length(Row_Pair)-1 do In-core Computation 12: end for 13: for C = R × length(Row_Pair) to length(Row_pair) -1 do 14:</p><p>Assign Row_Pair[C] to CPU 15: end for 16: Combine final result matrix C</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Matrices Datasets</head><p>Our computational efforts focused on the SpGEMM operation denoted as C = AA T , aligning with established conventions in prior SpGEMM research <ref type="bibr" coords="15,253.85,524.32,15.01,9.03" target="#b29">[29,</ref><ref type="bibr" coords="15,270.79,524.32,11.45,9.03" target="#b31">31,</ref><ref type="bibr" coords="15,284.17,524.32,11.26,9.03" target="#b40">40]</ref>. We selected experimental matrices from the SuiteSparse Matrix collection<ref type="foot" coords="15,206.44,534.45,3.38,6.59" target="#foot_4">3</ref> and the Network Repository. <ref type="foot" coords="15,333.92,534.45,3.38,6.59" target="#foot_5">4</ref> Specifically, we selected matrices with NNZs ranging from 3 million to 150 million for matrix C. The matrices designated for the execution of heterogeneous cores were excluded. Approximately 400 matrices met our criteria in both repositories. However, many were duplicates, resulting in 273 distinct matrices.</p><p>For precision, we used double data type in our experiments. We meticulously chose nineteen matrices for detailed analysis. The first nine underwent SpGEMM exclusively on the GPU, while the remaining nine, due to their size, underwent SpGEMM on both the CPU and GPU. Table   For each matrix, the values of "n", "NNZs(A)", "flops(AA T )", and "NNZs(AA T )" are all expressed in millions (M).</p><p>provides a comprehensive overview of these matrices. "Abbr" stands for matrix name abbreviation. "n" represents the number of rows (and columns) in matrix A, while "NNZs(A)" indicates the total non-zero elements. "flops(AA T )" measures the floating-point operations needed for AA T multiplication, considering the multiply-add operation as two flops. "NNZs(AA T )" is the total NZs in the resulting matrix C. Finally, the "Compression Ratio" parameter shows the ratio of half the flops to the NNZs(AA T ) ratio, indicating the average number of floating-point operations required to generate a NZ in the resulting matrix.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">In-Core GPU Performance</head><p>Performance Comparison. Figure <ref type="figure" coords="16,193.76,463.16,9.27,9.03" target="#fig_19">10</ref> provides a performance comparison between our proposed method and four prominent SpGEMM techniques using 273 matrices where C is computed as C = AA T on RTX 3080. Notably, cuSPARSE, a vendor-provided library, shows limitations in handling a subset of matrices in the dataset. In contrast, AC-SpGEMM, spECK, TileSpGEMM, and our method demonstrate a broader capability, successfully performing computations on nearly all matrices.</p><p>Analyzing the data, we observe distinct trends in the performance curves. cuSPARSE starts with the lowest performance point and exhibits a gradual increase. AC-SpGEMM slightly surpasses cuS-PARSE initially, while spECK consistently achieves over 40 GFlops for most matrices. TileSpGEMM and our method both approach the 40 GFlops threshold initially. Upon closer examination, our method consistently outperforms others, especially for matrices with higher compression ratios. We identify the peak performance point (dark blue point) furthest from the fitted line. The peak GFlops for cuSPARSE, AC-SpGEMM, spECK, TileSpGEMM, and our method are 65. <ref type="bibr" coords="16,376.09,594.67,65.34,9.03;16,45.55,606.63,58.94,9.03">23, 83.07, 107.07, 164.31, and 197</ref>.54 GFlops, respectively. Compared with cuSPARSE, AC-SpGEMM, spECK, and Tile-SpGEMM, our method achieves 3.03x, 2.38x, 1.84x, and 1.20x higher peak GFlops, respectively. Assessing average GFlops across the five methods, we find values of <ref type="bibr" coords="16,321.19,630.54,85.73,9.03">25.42, 33.20, 45.90, 52</ref>.55, and 58.62 GFlops, respectively. Our method outperforms its counterparts with average GFlops that are  2.31x, 1.77x, 1.28x, and 1.12x greater, respectively. In summary, our method consistently delivers superior computational performance for SpGEMM compared with the other four state-of-the-art methods.</p><p>In addition, Table <ref type="table" coords="17,131.68,512.50,4.63,9.03" target="#tab_4">3</ref> reports the comparison of SpGEMM's wall clock time cost against dense GEMM on various tasks. In these comparisons, SpGEMM uses ApSpGEMM and DGEMM uses CUBLAS. Due to GPU memory size limitations, the size of DGEMM is restricted to below 50000×50000. As shown in the results, the time cost of ApSpGEMM remains at the millisecond level, whereas GEMM is generally at the second level. The computation time of SpGEMM is positively correlated with the compression ratio, while GEMM's time is related to the number of rows and is independent of NNZs.</p><p>Single-step Time. Table <ref type="table" coords="17,161.39,596.19,4.63,9.03" target="#tab_3">2</ref> and Figure <ref type="figure" coords="17,214.74,596.19,7.86,9.03" target="#fig_21">11</ref>(a) offer detailed insights into the performance of the 10 small matrices at in-core GPU. A thorough analysis of Figure <ref type="figure" coords="17,317.94,608.15,7.86,9.03" target="#fig_21">11</ref>(a) highlights our method's outstanding performance, surpassing others in 8 of the 10 matrices assessed. While TileSpGEMM excels in "dela" and "af" matrices, it's worth noting our approach remains competitive even in these cases. Our method's performance boost is most noticeable in matrices with higher  compression ratios. In contrast, aside from cuSPARSE, the four other methods show relatively similar performance in matrices with lower compression ratios.</p><p>Significantly, our method notably outperforms in four matrices: "mem", "msd", "human", and "nd3k". This superiority stems from two main factors. First, the remarkably high compression ratios in "human" and "nd3k" matrices provide a broader scope for our method to excel in computational efficiency. Second, the distribution of non-zeros in the "mem" and "msd" matrices naturally aligns with the reordering rule based on sparsity. This means that matrix reordering and load assignment take up a smaller portion of the overall computation time.</p><p>We conducted a series of precise experiments to comprehensively analyze the time distribution of the different steps. This study involved the execution of 10 carefully selected matrices, with a detailed recording of the time taken by each step. Figure <ref type="figure" coords="18,271.11,369.36,16.19,9.03" target="#fig_21">11(b</ref>) visually represents the percentage of time attributed to each step in relation to the overall computation for each matrix. It's important to note that Global load, Local load, and Compute are integral components of the in-core GPU computation phase. Figure <ref type="figure" coords="18,157.46,405.22,8.10,9.03" target="#fig_21">11</ref>(b) clearly shows that matrices "mem" and "msd" allocate the least time to the reordering step, while dedicating a significant portion to the computation step. On average, across all thirteen matrices, the time distribution among the steps is approximately as follows: Analysis accounts for about 5%, Reorder constitutes roughly 18%, Load Balance occupies around 16%, and Computation predominates with an approximate share of 61%.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4">Heterogeneous Collaboration Performance</head><p>Allocation Ratio. To verify the best CPU/GPU panels scheduling ratio R, we conducted a series of performance evaluations with nine large-scale matrices on two types of heterogeneous cores. The outcomes, shown in Figure <ref type="figure" coords="18,178.57,513.04,7.64,9.03" target="#fig_17">12</ref>, demonstrate progressive performance improvement with increasing R, from 55% to 65%. The peak performance is notably observed between 60% and 65%. However, once R exceeds this range, performance starts to decline, and there's a significant drop after surpassing the 70% threshold. It's worth noting that the optimal allocation ratio (R) varies for two heterogeneous platforms. For instance, in "lj", "soc-lj" and "com-lj", the maximum GFlops are achieved at R values of 55% and 60%, respectively.</p><p>Performance Comparison. We systematically performed a comprehensive performance analysis on three matrices, each with distinct configurations: single-CPU, single-GPU, and heterogeneous collaboration (Hete) setups. For single-CPU SpGEMM, we utilized Gustavson's row-row algorithm. In single-GPU processing, we employed a straightforward chunking approach for matrix loading and subsequent SpGEMM computations. In the heterogeneous setup, we followed the approach outlined in Section 5.4 to coordinate the execution of SpGEMM operations. The findings presented in Figure <ref type="figure" coords="19,190.07,416.94,9.27,9.03" target="#fig_24">13</ref> strongly emphasize the superior performance effectiveness inherent in the heterogeneous collaboration, surpassing both GPU and CPU settings. Heterogeneous collaboration improves GFlops by an average of 7.21 times and 2.25 times compared with single CPU and single GPU, respectively. It's noteworthy that the performance enhancement is more pronounced for "stokes", "j", and "uk", attributed to their relatively higher compression ratios.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Related Work</head><p>SpGEMM in parallel is more complex than other sparse kernels like sparse matrix-vector multiplication (SpMV) <ref type="bibr" coords="19,105.89,524.92,10.37,9.03" target="#b2">[3,</ref><ref type="bibr" coords="19,118.76,524.92,11.46,9.03" target="#b42">42,</ref><ref type="bibr" coords="19,132.71,524.92,12.82,9.03" target="#b44">44]</ref> and sparse-dense matrix multiplication (SpMM) <ref type="bibr" coords="19,339.91,524.92,16.36,9.03" target="#b37">[37]</ref> due to the impact of the NZs distribution features on data loading and memory access. Since the pursuit of optimizing SpGEMM has garnered significant scholarly attention in contemporary discourse. Over the years, SpGEMM has garnered significant attention on various modern parallel platforms <ref type="bibr" coords="19,376.99,560.79,15.00,9.03" target="#b9">[10,</ref><ref type="bibr" coords="19,394.07,560.79,11.26,9.03" target="#b13">14]</ref>, such as GPUs <ref type="bibr" coords="19,71.35,572.74,10.37,9.03" target="#b0">[1,</ref><ref type="bibr" coords="19,83.94,572.74,11.25,9.03" target="#b34">34]</ref>, FPGAs <ref type="bibr" coords="19,131.12,572.74,15.01,9.03" target="#b18">[19,</ref><ref type="bibr" coords="19,148.34,572.74,11.25,9.03" target="#b21">22]</ref>, specific devices <ref type="bibr" coords="19,230.14,572.74,15.00,9.03" target="#b30">[30,</ref><ref type="bibr" coords="19,247.36,572.74,11.26,9.03" target="#b39">39]</ref>, and distributed clusters <ref type="bibr" coords="19,361.59,572.74,10.38,9.03" target="#b4">[5,</ref><ref type="bibr" coords="19,374.19,572.74,11.26,9.03" target="#b14">15]</ref>. This section commences by scrutinizing scholarly investigations that have concentrated on the GPU acceleration of SpGEMM. Subsequently, we delve into an exposition of optimization endeavors pertaining to matrix multiplication within heterogeneous computational environments.</p><p>A substantial body of research has been dedicated to the optimization of SpGEMM on GPUs. Notably, Bellet et al. <ref type="bibr" coords="19,130.52,632.52,11.73,9.03" target="#b6">[7]</ref> introduced the Expansion, Sorting, and Compression (ESC) approach, which dissects the computation process into three principal stages: ESC. In the initial phase, this  method generates intermediate products by expanding sparse matrices (Expand). Subsequently, these intermediate results are subjected to sorting based on their respective row and column indices (Sort). Finally, the approach amalgamates values with colliding indices to derive the ultimate result (Compress). Rivera et al. <ref type="bibr" coords="20,171.30,309.12,16.36,9.03" target="#b33">[33]</ref> have directed their attention toward optimizing GPU resource utilization, particularly when the input matrix exhibits specific structural features. To this end, they have proposed two distinct algorithms, denoted as TSM2R and TSM2L, tailored for computing two categories of "tall-and-skinny" matrix-matrix multiplications on GPU architectures. Furthermore, various studies have explored techniques aimed at refining load balancing in the context of SpGEMM optimization. For example, Nagasaka et al. <ref type="bibr" coords="20,277.70,368.90,16.35,9.03" target="#b26">[27]</ref> have employed a two-step binning process, one for symbolic and another for numeric stages. Lee et al. <ref type="bibr" coords="20,318.17,380.85,16.34,9.03" target="#b19">[20]</ref> have devised a block reorganizer facilitating parallel splitting and gathering of computations for individual blocks. Merging strategies play a pivotal role in SpGEMM optimization and involve the utilization of sorted lists of intermediate results, typically through merge-sort-like algorithms <ref type="bibr" coords="20,326.36,416.72,14.98,9.03" target="#b10">[11,</ref><ref type="bibr" coords="20,343.74,416.72,11.25,9.03" target="#b11">12]</ref>. RMerge <ref type="bibr" coords="20,395.34,416.72,14.84,9.03" target="#b10">[11]</ref>, for instance, decomposes input matrices into sub-matrices, which are efficiently merged using specialized algorithms. Similarly, bhSPARSE <ref type="bibr" coords="20,199.32,440.63,16.36,9.03" target="#b22">[23]</ref> dynamically selects among different merging solutions and optionally integrates elements of the ESC approach.</p><p>Effective matrix splitting assumes paramount importance within the domain of SpGEMM computations. This significance arises not solely from its role in enhancing load distribution but also from its substantive contribution to the optimization of data locality <ref type="bibr" coords="20,349.45,488.45,14.84,9.03" target="#b37">[37]</ref>. Illustratively, the work <ref type="bibr" coords="20,69.20,500.41,16.35,9.03" target="#b23">[24]</ref> has split rows into 38 bins based on computational workload and has assigned distinct optimization methods to each bin. Akbudak et al. <ref type="bibr" coords="20,246.85,512.36,11.71,9.03" target="#b0">[1]</ref> introduce a meticulously crafted hypergraph partitioning (HP) model, strategically designed to mitigate communication costs while simultaneously achieving a well-balanced workload distribution. In a complementary vein, Ballard et al. <ref type="bibr" coords="20,428.59,536.27,11.69,9.03" target="#b5">[6]</ref> have introduced a comprehensive framework that delineates the minimal communication prerequisites for both parallel and sequential SpGEMM computations. Furthermore, they have formulated a methodology for the identification of communication-optimal algorithms tailored to the specific features of input matrices, employing the hypergraph partitioning paradigm as the foundational approach. Building upon these endeavors, Selvitopi et al. <ref type="bibr" coords="20,323.47,596.05,11.73,9.03" target="#b1">[2]</ref> have extended the applicability of the HP model to encompass diverse parallel SpGEMM algorithms, including variants such as outer-product, inner-product, and row-by-row-product computations. Collectively, this concerted research effort underscores the paramount importance of proficient matrix partitioning in the continual advancement of SpGEMM optimization. Efforts to address the computational challenges posed by large-scale matrix multiplication have led to investigations into parallelization strategies that harness both CPUs and GPUs. Benatia et al. <ref type="bibr" coords="21,68.12,106.68,11.72,9.03" target="#b7">[8]</ref> introduced a methodology that involves the horizontal splitting of the input matrix into multiple block rows, coupled with the application of a machine-learning-based performance model for the predictive determination of optimal sparse formats. Subsequently, a mapping algorithm is employed to judiciously allocate these block rows among the available CPUs and GPUs within the computational system. In a related vein, Xia et al. <ref type="bibr" coords="21,252.51,154.50,16.35,9.03" target="#b41">[41]</ref> proposed a splitting approach that distinguishes between out-of-core and in-core computations, with the aim of achieving the synchronization of computation and communication between CPUs and GPUs. This strategy is thoughtfully designed to minimize reliance on dynamic memory allocation, thus enhancing efficiency.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Limitation and Future Works</head><p>Our research focuses on accelerating SpGEMM multiplication for high-dimensional, large-scale matrices, but there are still some limitations and room for future improvement. On one hand, in GPU memory, ApSpGEMM requires additional space to maintain the "rowind" list until panel computation is complete. On the other hand, while optimizing memory access, we reduce the overhead of threads reading NZs from global memory to shared memory, but we do not reduce the overhead of writing the temporary product results from shared memory back to global memory. In the future, we need to design a compressed storage format that can map new matrix and original matrix information to replace CSR. Additionally, by predicting the NZs in the temporary product, we can preallocate storage space in global memory to write temporary product results in batches.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9">Conclusion</head><p>In this research, we focus on optimizing SpGEMM on GPU architecture. We analyze various potential issues that Gustavson's row-row algorithm may encounter. To address these challenges, we propose a comprehensive framework named ApSpGEMM with four phases: matrix pre-analysis, matrix splitting, device computation, and optional heterogeneous device scheduling. Furthermore, under ApSpGEMM guidance, we propose a specific and feasible solution. First, we perform a lightweight analysis to gather essential information about NZs in the input matrix. Using this information, we strategically rearrange matrices A and B to enable efficient computations (SpGEMM, SpMM, DGEMM). We also optimize load balancing and memory access for these operations using techniques like bin methods, thread grouping, and merging dense columns. For matrices exceeding GPU memory capacity, we employ a hybrid CPU+GPU approach. This involves scheduling matrices across different devices based on affinity considerations to overlap transmission, computation, and splitting operations and reduce execution time.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,45.77,55.82,16.10,8.97;4,391.47,55.82,48.81,8.97"><head>20 : 4 D</head><label>204</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,179.06,254.14,127.94,8.07"><head>Fig. 1 .ALGORITHM 1 : 5 :</head><label>115</label><figDesc>Fig. 1. Matrix CSR storage format.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,45.77,55.82,16.10,8.97;6,391.47,55.82,48.81,8.97"><head>20 : 6 D</head><label>206</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,143.45,410.14,199.15,8.07;6,100.77,81.43,281.08,302.68"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. NZs distribution patterns of common matrices.</figDesc><graphic coords="6,100.77,81.43,281.08,302.68" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="8,45.77,55.82,16.10,8.97;8,391.47,55.82,48.81,8.97"><head>20 : 8 D</head><label>208</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="8,45.77,245.05,394.51,8.17;8,45.77,256.11,394.52,8.07;8,45.77,267.06,394.83,8.07;8,45.77,278.02,391.02,8.07"><head>Fig. 4</head><label>4</label><figDesc>Fig.4. The S and P are the sparsity and row sparsity thresholds, respectively. The S value for each row is calculated through its NNZs, which are obtained from the prefix sum algorithm in the matrix pre-analysis step. The matrix is reordered in descending order based on sparsity. The "rowptr" is reordered to get the new matrix "rowptr", and the "rowind" stores the row index of the old matrix corresponding to the new matrix.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="9,266.68,644.62,80.35,9.08;9,347.30,642.80,3.83,6.63;9,352.17,644.62,83.16,9.08;9,435.60,642.80,3.83,6.63;10,45.77,55.82,20.73,8.97;10,391.47,55.82,48.81,8.97"><head></head><label></label><figDesc>(a). Unlike sparse B p , the NZs of dense B p 20:10 D. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,45.77,351.06,394.51,8.17;10,45.77,361.28,395.90,8.97;10,45.68,372.24,361.99,8.97"><head>Fig. 5 .ALGORITHM 2 :</head><label>52</label><figDesc>Fig. 5. Local load balancing using different group sizes M. A thread block has 8 threads. The three columns represent the three grouping schemes. M = 8, it requires 4 iterations, the maximum number of iterations. M = 4, it requires 3 iterations. M = 2, it requires 4 iterations, but coalesced memory access is poor.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="11,45.95,287.93,396.02,10.29;11,45.94,298.89,395.06,10.29;11,45.94,312.06,297.38,8.07"><head>ApSpGEMM 20 : 11 Fig. 6 .</head><label>20116</label><figDesc>Fig. 6. The (a) represents the process of a sparse panel A p multiplied by dense panel B p to obtain the resulting panel Y . In this case, the NZs of A p are scattered, and the thread accesses memory irregularly. The (b) represents the dense columns 1, 2, and 4 that are accessed by coalesced memory.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="12,45.77,55.82,20.73,8.97;12,391.47,55.82,48.81,8.97"><head>20 : 12 D</head><label>2012</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="12,45.77,221.14,394.50,8.07;12,45.77,232.10,36.24,8.07"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. The percentage of data transfer time to the total time. The red dashed line represents the mean value of 76.13%.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="13,45.95,222.14,394.49,8.07;13,45.95,233.10,394.52,8.07;13,45.95,242.02,383.47,10.28;13,424.03,248.55,13.53,6.59;13,438.05,244.23,3.45,8.07;13,45.94,254.35,313.39,10.28;13,353.94,260.88,16.92,6.59;13,371.35,256.56,69.12,8.07;13,45.94,267.52,19.36,8.07;13,242.70,84.40,111.28,111.28"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. The (a) represents the difference in computation time for matrices of the same size but different sparsity levels on CPU and GPU. The (b) represents the computation time on the CPU and GPU when multiplying matrix A (gupta3) by the transpose of matrix B for different affinity rows. In the table, "row A 5839 " refers to row 5839 of matrix A being multiplied by row 5839 of matrix B, and "row A 15785 " follows the same logic.</figDesc><graphic coords="13,242.70,84.40,111.28,111.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="14,45.77,55.82,20.73,8.97;14,391.47,55.82,48.81,8.97"><head>20 : 14 D</head><label>2014</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="14,45.77,201.14,394.54,8.07;14,45.77,212.10,394.52,8.07;14,45.77,223.06,394.53,8.07;14,45.77,234.02,293.77,8.07"><head>Fig. 9 .</head><label>9</label><figDesc>Fig.9. Each interval between dashed lines represents a round of overlapping time. The time for transferring the (i+1)th panels from the CPU to the GPU and the (i-1)th results from the GPU to the CPU overlaps with the time taken for the CPU and GPU to compute the panels, as well as the time required for the step-wise matrix splitting. After multiple rounds, all intermediate results are consolidated.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17" coords="15,435.83,608.01,4.63,9.03"><head>2</head><label>2</label><figDesc></figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18" coords="16,45.77,55.82,20.73,8.97;16,391.47,55.82,48.81,8.97"><head>20 : 16 D</head><label>2016</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19" coords="17,45.95,314.15,394.52,8.07;17,45.95,323.06,395.51,10.36;17,45.94,336.22,394.52,8.07;17,45.94,347.19,136.00,8.07;17,151.08,83.35,275.20,184.96"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Performance comparison of our method with four state-of-the-art SpGEMM methods on a 3080 GPU for C = AA T with double precision. The horizontal coordinate represents the compression ratio (log5 scale), the vertical coordinate represents performance (GFlops), and the scatterplot color represents the distance of the data points from the fitted curve.</figDesc><graphic coords="17,151.08,83.35,275.20,184.96" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_20" coords="18,45.77,55.82,20.73,8.97;18,391.47,55.82,48.81,8.97"><head>20 : 18 D</head><label>2018</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_21" coords="18,45.77,208.14,395.98,8.07;18,45.77,219.10,394.50,8.07;18,45.77,230.06,257.62,8.07"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. (a) Detail performance comparison of the 10 matrices at in-core GPU. (b) The percentages of execution time for the main steps in ApSpGEMM framework. Reorder belongs to the matrix splitting step; and Global load, Local load, and Compute belong to the in-core GPU step.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_22" coords="19,45.95,370.14,395.49,8.07;19,45.95,381.01,394.52,8.17;19,45.94,392.06,52.74,8.07"><head>ApSpGEMM 20 : 19 Fig. 12 .</head><label>201912</label><figDesc>Fig.<ref type="bibr" coords="19,62.35,370.14,6.87,8.07" target="#b11">12</ref>. Comparing the computational performance of nine large-scale matrices by adjusting the panels' allocation ratio R. The two heterogeneous cores are respectively RTX 3080 and Gold 5117, and RTX 2060s and i5-11400F.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_23" coords="20,45.77,55.82,20.73,8.97;20,391.47,55.82,48.81,8.97"><head>20 : 20 D</head><label>2020</label><figDesc>. Yao et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_24" coords="20,80.23,251.15,325.59,8.07"><head>Fig. 13 .</head><label>13</label><figDesc>Fig. 13. Comparison of Heterogeneous Collaborative GFlops with CPU and Single-GPU.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="4,47.24,393.65,120.53,74.13"><head>end if 14: end for 15: end for 16: end for</head><label></label><figDesc></figDesc><table coords="4,47.24,393.65,120.53,41.01"><row><cell>10:</cell><cell>C i j ← value</cell></row><row><cell>11:</cell><cell>else</cell></row><row><cell>12:</cell><cell>C i j ← C i j + value</cell></row><row><cell>13:</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="15,45.58,81.19,310.51,276.01"><head>Table 1 .</head><label>1</label><figDesc>Experimental Platform Specifications</figDesc><table coords="15,45.58,98.18,310.51,158.31"><row><cell>Component</cell><cell>GPU</cell><cell>CPU</cell></row><row><cell>Device</cell><cell>NVIDIA GeForce RTX 3080</cell><cell>Intel Xeon Gold 5117</cell></row><row><cell>CUDA Cores</cell><cell>8960</cell><cell>N/A</cell></row><row><cell>Core Clock Speed</cell><cell>1.71 GHz</cell><cell>2.00 GHz</cell></row><row><cell>VRAM</cell><cell>12 GB GDDR6</cell><cell>N/A</cell></row><row><cell>Memory Bandwidth</cell><cell>760.0 GB/s</cell><cell>115.2 GB/s</cell></row><row><cell>CPU Cores</cell><cell>N/A</cell><cell>14</cell></row><row><cell>CPU Clock Speed</cell><cell>N/A</cell><cell>2.00 GHz</cell></row><row><cell>RAM</cell><cell>N/A</cell><cell>128 GB DDR4-2400</cell></row><row><cell>Max Threads</cell><cell>1024/Block</cell><cell>28</cell></row><row><cell cols="2">ALGORITHM 3: Adaptive Panel Allocation Algorithm</cell><cell></cell></row></table><note>Require: Sparse matrices A, B, computational coefficient K Ensure:Result matrix C = A × B 1:Step 1: Preprocessing 2: Analyze NNZs and Reorder 3: Calculate GPU-to-CPU allocation ratio R = K K +1 4: Step 2: Panel Allocation and Computation 5: for row A i in matrix A and row B j in matrix B do 6:</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="16,57.55,81.19,375.66,237.22"><head>Table 2 .</head><label>2</label><figDesc>Here are Nineteen Representative Matrices</figDesc><table coords="16,57.55,98.76,375.66,219.65"><row><cell>Type</cell><cell>Matrix</cell><cell>Abbr.</cell><cell>n</cell><cell cols="3">NNZs(A) flops(AA T ) NNZs(AA T )</cell><cell>Compression Ratio</cell></row><row><cell></cell><cell>msdoor</cell><cell>msd</cell><cell>0.42</cell><cell>19.17</cell><cell>2084.38</cell><cell>62.82</cell><cell>16.59</cell></row><row><cell></cell><cell>memchip</cell><cell>mem</cell><cell>2.70</cell><cell>13.34</cell><cell>138.96</cell><cell>29.27</cell><cell>2.37</cell></row><row><cell>Small Matrices</cell><cell>webbase-1M af_shell10 poisson3Da human-gene1 pdb1HYS delaunay_n19</cell><cell>web af poi human pdb dela</cell><cell>1.00 1.50 0.01 0.02 0.04 0.52</cell><cell>3.10 52.70 0.35 24.67 4.30 3.15</cell><cell>139.12 3681.66 23.61 143246.27 1111.49 39.53</cell><cell>51.01 142.70 3.00 224.32 19.61 10.86</cell><cell>1.36 12.90 3.90 319.29 28.34 1.82</cell></row><row><cell></cell><cell>hood</cell><cell>hood</cell><cell>0.22</cell><cell>9.89</cell><cell>1124.06</cell><cell>34.24</cell><cell>16.41</cell></row><row><cell></cell><cell>nd3k</cell><cell>nd3k</cell><cell>0.009</cell><cell>3.28</cell><cell>2551.94</cell><cell>18.49</cell><cell>69.00</cell></row><row><cell></cell><cell>nlpkkt</cell><cell>nlp</cell><cell>16.24</cell><cell>440.23</cell><cell>24932.82</cell><cell>2425.94</cell><cell>10.28</cell></row><row><cell>Large-scale Matrices</cell><cell cols="3">stokes ljournal-2008 soc-LiveJournal1 com-LiveJournal cage15 wikipedia-20070206 wiki0206 3.57 stokes 11.45 lj 5.36 soc-lj 4.85 com-lj 4.00 cage 5.15 wikipedia-20060925 wiki0925 2.98 uk-2002 uk 18.52</cell><cell>349.32 79.02 68.99 69.36 99.20 45.03 37.27 298.11</cell><cell>9424.18 7828.66 5915.63 8580.90 9564.11 12796.04 10030.09 29206.61</cell><cell>2115.15 4245.41 3366.05 4859.09 4177.25 4802.94 3750.38 3194.99</cell><cell>4.46 1.84 1.76 1.77 2.29 2.66 2.67 9.14</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="17,128.44,371.41,232.04,87.03"><head>Table 3 .</head><label>3</label><figDesc>Performance Comparison of SpGEMM and GEMM</figDesc><table coords="17,128.44,389.24,232.04,69.20"><row><cell>Matrix</cell><cell>n</cell><cell cols="3">NNZs SpGEMM (ms) DGEMM (s)</cell></row><row><cell>poi</cell><cell>0.01</cell><cell>0.35</cell><cell>0.23</cell><cell>0.26</cell></row><row><cell cols="3">human 0.02 24.67</cell><cell>5.35</cell><cell>1.14</cell></row><row><cell>pdb</cell><cell>0.04</cell><cell>4.30</cell><cell>0.43</cell><cell>4.95</cell></row><row><cell>nd3k</cell><cell cols="2">0.009 3.28</cell><cell>0.51</cell><cell>0.08</cell></row><row><cell>pwt</cell><cell>0.03</cell><cell>0.33</cell><cell>0.22</cell><cell>3.75</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">The source code is available at https://github.com/CGCL-codes/ApSpGEMM ACM Trans. Arch. Code Optim., Vol.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="22" xml:id="foot_1">, No. 1, Article 20. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_2">ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 20. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_3">Nvidia CuSPARSE. https://docs.nvidia.com/cuda/cusparse/ ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 20. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_4">SuiteSparse Matrix Collection. https://sparse.tamu.edu/</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_5">Network Repository. https://networkrepository.com/ ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 20. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_6">Received 3 March 2024; revised 27 September 2024; accepted 17 October 2024 ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 20. Publication date: March 2025.</note>
+		</body>
+		<back>
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This work is supported by the National Natural Science Foundation of China under Grant No.62072204, and the National Key Research and Development Program of China under Grant No.2021YFB1714600. The computation is completed in the HPC Platform of Huazhong University of Science and Technology and supported by the National Supercomputing Center in Zhengzhou.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="21,63.02,536.40,378.77,7.22;21,63.02,546.32,348.14,7.26" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Simultaneous input and output matrix partitioning for outer-productparallel sparse matrix-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Kadir</forename><surname>Akbudak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cevdet</forename><surname>Aykanat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="C568" to="C590" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,556.32,378.77,7.22;21,63.02,566.24,279.06,7.26" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Partitioning models for scaling parallel sparse matrixmatrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Kadir</forename><surname>Akbudak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oguz</forename><surname>Selvitopi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cevdet</forename><surname>Aykanat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Parallel Computing</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">34</biblScope>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,576.25,378.37,7.22;21,63.02,586.17,378.68,7.26" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Level-based blocking for sparse matrices: Sparse matrix-power-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Christie</forename><forename type="middle">L</forename><surname>Alappat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Georg</forename><surname>Hager</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Olaf</forename><surname>Schenk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gerhard</forename><surname>Wellein</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="581" to="597" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,596.17,378.80,7.22;21,63.02,606.10,377.46,7.26;21,63.02,616.06,133.93,7.26" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Matrix-matrix multiplication on graphics processing unit platform using tiling technique</title>
+		<author>
+			<persName coords=""><forename type="first">Alireza</forename><surname>Rahman Ghasempour Balagafshe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Asadollah</forename><surname>Akoushideh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Shahbahrami</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IAES Indonesian Journal of Electrical Engineering and Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="1012" to="1019" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,626.06,378.66,7.22;21,63.02,635.98,378.24,7.26;21,63.02,645.95,187.12,7.26;22,45.77,55.82,20.73,8.97;22,391.47,55.82,48.81,8.97" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Communication optimal parallel multiplication of sparse random matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Grey</forename><surname>Ballard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aydin</forename><surname>Buluç</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Demmel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Laura</forename><surname>Grigori</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benjamin</forename><surname>Lipshitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oded</forename><surname>Schwartz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sivan</forename><surname>Toledo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2013 Symposium on Parallelism in Algorithms and Architectures (SPAA&apos;13)</title>
+				<meeting>of the 2013 Symposium on Parallelism in Algorithms and Architectures (SPAA&apos;13)</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">22</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,84.09,378.80,7.22;22,62.85,94.02,279.06,7.26" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Hypergraph partitioning for sparse matrixmatrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Grey</forename><surname>Ballard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alex</forename><surname>Druinsky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicholas</forename><surname>Knight</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oded</forename><surname>Schwartz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Parallel Computing</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">34</biblScope>
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,104.02,378.64,7.22;22,62.85,113.94,202.17,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Exposing fine-grained parallelism in algebraic multigrid methods</title>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Steven</forename><surname>Dalton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luke</forename><forename type="middle">N</forename><surname>Olson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="C123" to="C152" />
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,123.94,377.43,7.22;22,62.85,133.87,378.32,7.26;22,62.66,143.87,49.97,7.22" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Sparse matrix partitioning for optimizing SpMV on CPU-GPU heterogeneous platforms</title>
+		<author>
+			<persName coords=""><forename type="first">Akrem</forename><surname>Benatia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Shi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SAGE International Journal of High Performance Computing Applications</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="66" to="80" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,153.83,378.31,7.22;22,62.57,163.79,377.69,7.22;22,62.85,173.72,378.32,7.26;22,62.66,183.72,61.09,7.22" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Demis Hassabis, and Pushmeet Kohli. 2022. Discovering faster matrix multiplication algorithms with reinforcement learning</title>
+		<author>
+			<persName coords=""><forename type="first">Alhussein</forename><surname>Fawzi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matej</forename><surname>Balog</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aja</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Hubert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bernardino</forename><surname>Romera-Paredes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohammadamin</forename><surname>Barekatain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Novikov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Francisco</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Ruiz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Grzegorz</forename><surname>Schrittwieser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Swirszcz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Silver</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature</title>
+		<imprint>
+			<biblScope unit="volume">610</biblScope>
+			<biblScope unit="page" from="47" to="53" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,193.64,377.45,7.26;22,62.85,203.61,347.94,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Efficient execution of SpGEMM on long vector architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Valentin</forename><surname>Le</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fèvre</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Casas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2023 International Symposium on High-Performance Parallel and Distributed Computing (HPDC&apos;23</title>
+				<meeting>of the 2023 International Symposium on High-Performance Parallel and Distributed Computing (HPDC&apos;23</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="101" to="113" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,213.61,377.42,7.22;22,62.85,223.53,375.03,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">GPU-accelerated sparse matrix-matrix multiplication by iterative row merging</title>
+		<author>
+			<persName coords=""><forename type="first">Felix</forename><surname>Gremse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andreas</forename><surname>Höfter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lars</forename><surname>Ole Schwen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabian</forename><surname>Kiessling</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Uwe</forename><surname>Naumann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="page" from="C54" to="C71" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,233.53,377.71,7.22;22,62.85,243.46,324.73,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Memory-efficient sparse matrix-matrix multiplication by row merging on many-core architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Felix</forename><surname>Gremse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kerstin</forename><surname>Küpper</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Uwe</forename><surname>Naumann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="page" from="C429" to="C449" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,253.42,377.45,7.26;22,62.85,263.38,136.47,7.26" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Two fast algorithms for sparse matrices: Multiplication and permuted transposition</title>
+		<author>
+			<persName coords=""><forename type="first">Fred</forename><forename type="middle">G</forename><surname>Gustavson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Software</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="250" to="269" />
+			<date type="published" when="1978">1978. 1978</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,273.38,377.42,7.22;22,62.85,283.31,377.44,7.26;22,62.85,293.26,111.36,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Adaptive sparse tiling for sparse matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Changwan</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aravind</forename><surname>Sukumaran-Rajam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Israt</forename><surname>Nisa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kunal</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2019 SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;19)</title>
+				<meeting>of the 2019 SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;19)</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="300" to="314" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,303.26,378.79,7.22;22,62.85,313.19,378.33,7.26;22,62.66,323.19,35.78,7.22" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Straggler-exploiting fully private distributed matrix multiplication with chebyshev polynomials</title>
+		<author>
+			<persName coords=""><forename type="first">Sangwoo</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Heecheol</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Youngseok</forename><surname>Yoon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jungwoo</forename><surname>Lee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Communications</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="page" from="1579" to="1594" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,333.15,377.65,7.22;22,62.85,343.07,377.44,7.26;22,62.85,353.04,133.55,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">CAD-Deform: Deformable fitting of CAD models to 3D scans</title>
+		<author>
+			<persName coords=""><forename type="first">Vladislav</forename><surname>Ishimtsev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexey</forename><surname>Bokhovkin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexey</forename><surname>Artemov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Savva</forename><surname>Ignatyev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthias</forename><surname>Nießner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Denis</forename><surname>Zorin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Evgeny</forename><surname>Burnaev</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the Computer Vision 2020 European Conference (ECCV&apos;20)</title>
+				<meeting>of the Computer Vision 2020 European Conference (ECCV&apos;20)</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="599" to="628" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,363.04,377.44,7.22;22,62.85,372.96,206.03,7.26" xml:id="b16">
+	<monogr>
+		<title level="m" type="main">HPMaX: Heterogeneous parallel matrix multiplication using CPUs and GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Homin</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Duksu</forename><surname>Hyuck-Chan Kwon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Kim</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+			<publisher>Springer Computing</publisher>
+			<biblScope unit="volume">102</biblScope>
+			<biblScope unit="page" from="2607" to="2631" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,382.96,378.78,7.22;22,62.85,392.93,377.41,7.22;22,62.85,402.85,377.44,7.26;22,62.85,412.81,238.60,7.26" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Mathematical foundations of the GraphBLAS</title>
+		<author>
+			<persName coords=""><forename type="first">Jeremy</forename><surname>Kepner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Aaltonen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">A</forename><surname>Bader</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aydin</forename><surname>Buluç</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Franz</forename><surname>Franchetti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">R</forename><surname>Gilbert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dylan</forename><surname>Hutchison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manoj</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Lumsdaine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Henning</forename><surname>Meyerhenke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Mcmillan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carl</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marcin</forename><surname>Zalewski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">G</forename><surname>Mattson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">José</forename><forename type="middle">E</forename><surname>Moreira</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2016 High Performance Extreme Computing Conference (HPEC&apos;16</title>
+				<meeting>of the 2016 High Performance Extreme Computing Conference (HPEC&apos;16</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="9" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,422.81,377.43,7.22;22,62.85,432.74,377.43,7.26;22,62.36,442.70,50.63,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Accelerating 128-bit floating-point matrix multiplication on FPGAs</title>
+		<author>
+			<persName coords=""><forename type="first">Fumiya</forename><surname>Kono</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naohito</forename><surname>Nakasato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maho</forename><surname>Nakata</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2023 Annual International Symposium on Field-Programmable Custom Computing Machines</title>
+				<meeting>of the 2023 Annual International Symposium on Field-Programmable Custom Computing Machines</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page">204</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,452.70,378.79,7.22;22,62.85,462.63,377.46,7.26;22,62.85,472.59,129.96,7.26" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Optimization of GPU-based sparse matrix multiplication for large sparse networks</title>
+		<author>
+			<persName coords=""><forename type="first">Jeongmyung</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Seokwon</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongseung</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yong-Yeon</forename><surname>Jo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sang-Wook</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongjun</forename><surname>Park</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2020 International Conference on Data Engineering (ICDE&apos;20)</title>
+				<meeting>of the 2020 International Conference on Data Engineering (ICDE&apos;20)</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="925" to="936" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,482.59,377.60,7.22;22,62.55,492.51,335.16,7.26" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">A memristive neural network based matrix equation solver with high versatility and high energy efficiency</title>
+		<author>
+			<persName coords=""><forename type="first">Jiancong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Houji</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangshui</forename><surname>Miao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science China Information Sciences</title>
+		<imprint>
+			<biblScope unit="volume">66</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page">122402</biblScope>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,502.52,377.42,7.22;22,62.85,512.44,201.96,7.26" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Efficient error detection for matrix multiplication with systolic arrays on FPGAs</title>
+		<author>
+			<persName coords=""><forename type="first">Fabiano</forename><surname>Libano</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paolo</forename><surname>Rech</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Brunhaver</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Comput</title>
+		<imprint>
+			<biblScope unit="volume">72</biblScope>
+			<biblScope unit="page" from="2390" to="2403" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,522.44,378.64,7.22;22,62.85,532.36,321.01,7.26" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">An efficient GPU general sparse matrix-matrix multiplication for irregular data</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2014 International Parallel and Distributed Processing Symposium (IPDPS&apos;14</title>
+				<meeting>of the 2014 International Parallel and Distributed essing Symposium (IPDPS&apos;14</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="370" to="381" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,542.36,378.75,7.22;22,62.85,552.28,241.23,7.26" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">A framework for general sparse matrix-matrix multiplication on GPUs and heterogeneous processors</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Parallel and Distrib. Comput</title>
+		<imprint>
+			<biblScope unit="volume">85</biblScope>
+			<biblScope unit="page" from="47" to="61" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+	<note>C</note>
+</biblStruct>
+
+<biblStruct coords="22,62.85,562.28,377.43,7.22;22,62.85,572.21,304.98,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">An intelligent framework for oversubscription management in CPU-GPU unified memory</title>
+		<author>
+			<persName coords=""><forename type="first">Xinjian</forename><surname>Long</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangyang</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huiyang</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Springer Journal of Grid Computin</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page">11</biblScope>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,582.21,378.66,7.22;22,62.85,592.13,228.53,7.26" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">TileSpTRSV: A tiled algorithm for parallel sparse triangular solve on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Zhengyang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">CCF Transactions on High Performance Computing</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="129" to="143" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,602.13,377.45,7.22;22,62.85,612.06,378.33,7.26;22,62.66,622.06,24.00,7.22" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Performance optimization, modeling and analysis of sparse matrix-matrix products on multi-core and many-core processors</title>
+		<author>
+			<persName coords=""><forename type="first">Yusuke</forename><surname>Nagasaka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Satoshi</forename><surname>Matsuoka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ariful</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aydın</forename><surname>Buluç</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">102545</biblScope>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note>C</note>
+</biblStruct>
+
+<biblStruct coords="22,62.84,632.02,377.42,7.22;22,62.85,641.94,377.45,7.26;22,62.36,651.91,61.54,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">High-performance and memory-saving sparse general matrix-matrix multiplication for NVIDIA pascal GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Yusuke</forename><surname>Nagasaka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Akira</forename><surname>Nukada</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Satoshi</forename><surname>Matsuoka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2017 International Conference on Parallel Processing</title>
+				<meeting>of the 2017 International Conference on Parallel essing</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="101" to="110" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,45.64,55.82,51.89,8.97;23,419.74,55.82,20.73,8.97" xml:id="b28">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">ApSpGEMM</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page">23</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,84.09,377.44,7.22;23,63.02,94.02,377.45,7.26;23,63.02,103.98,214.93,7.26" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">TileSpGEMM: A tiled algorithm for parallel sparse general matrix-matrix multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Yuyao</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhengyang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haonan</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuhui</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jin</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2022 ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>of the 2022 ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="90" to="106" />
+		</imprint>
+	</monogr>
+	<note>PPoPP&apos;22</note>
+</biblStruct>
+
+<biblStruct coords="23,63.01,113.98,378.76,7.22;23,63.02,123.94,377.42,7.22;23,63.02,133.87,377.46,7.26;23,63.02,143.83,105.75,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">OuterSPACE: An outer product based sparse matrix multiplication accelerator</title>
+		<author>
+			<persName coords=""><forename type="first">Subhankar</forename><surname>Pal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Beaumont</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dong-Hyeon</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aporva</forename><surname>Amarnath</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siying</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chaitali</forename><surname>Chakrabarti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hun-Seok</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">T</forename><surname>Blaauw</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><forename type="middle">N</forename><surname>Mudge</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ronald</forename><forename type="middle">G</forename><surname>Dreslinski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2018 International Symposium on High Performance Computer Architecture (HPCA&apos;18)</title>
+				<meeting>of the 2018 International Symposium on High Performance Computer Architecture (HPCA&apos;18)</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="724" to="736" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,153.83,378.83,7.22;23,63.02,163.75,377.43,7.26;23,63.02,173.72,145.54,7.26" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">spECK: Accelerating GPU sparse matrixmatrix multiplication through lightweight analysis</title>
+		<author>
+			<persName coords=""><forename type="first">Mathias</forename><surname>Parger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Mlakar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Markus</forename><surname>Steinberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2020 SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;20)</title>
+				<meeting>of the 2020 SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;20)</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="362" to="375" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,183.72,377.47,7.22;23,63.02,193.64,377.44,7.26;23,63.02,203.61,148.10,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">A compressed, divide and conquer algorithm for scalable distributed matrix-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Majid</forename><surname>Rasouli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><forename type="middle">M</forename><surname>Kirby</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hari</forename><surname>Sundar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2021 International Conference on High Performance Computing in Asia-Pacific Region (HPC-Asia&apos;21)</title>
+				<meeting>of the 2021 International Conference on High Performance Computing in Asia-Pacific Region (HPC-Asia&apos;21)</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="110" to="119" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,213.61,378.80,7.22;23,63.02,223.53,378.33,7.26;23,63.02,233.53,51.41,7.22" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">TSM2X: Highperformance tall-and-skinny matrix-matrix multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Cody</forename><surname>Rivera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jieyang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nan</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jing</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuaiwen</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leon</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dingwen</forename><surname>Tao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Parallel Distributed Computing</title>
+		<imprint>
+			<biblScope unit="volume">151</biblScope>
+			<biblScope unit="page" from="70" to="85" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+	<note>C</note>
+</biblStruct>
+
+<biblStruct coords="23,63.02,243.50,377.46,7.22;23,63.02,253.42,378.24,7.26;23,63.02,263.38,180.45,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">HIRAC: A hierarchical accelerator with sorting-based packing for SpGEMMs in DNN applications</title>
+		<author>
+			<persName coords=""><forename type="first">Hesam</forename><surname>Shabani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abhishek</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bishoy</forename><surname>Youhana</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaochen</forename><surname>Guo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2023 International Symposium on High-Performance Computer Architecture (HPCA&apos;23)</title>
+				<meeting>of the 2023 International Symposium on High-Performance Computer Architecture (HPCA&apos;23)</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="247" to="258" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,273.38,377.65,7.22;23,63.02,283.31,358.29,7.26" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Improving hardware efficiency of a sparse training accelerator by restructuring a reduction network</title>
+		<author>
+			<persName coords=""><forename type="first">Banseok</forename><surname>Shin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sehun</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jaeha</forename><surname>Kung</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2023 Interregional NEWCAS Conference</title>
+				<meeting>of the 2023 Interregional NEWCAS Conference</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="5" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,293.30,378.79,7.22;23,63.02,303.22,378.67,7.26;23,63.02,313.23,28.36,7.22" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Out-of-core GPU memory management for MapReducebased large-scale graph processing</title>
+		<author>
+			<persName coords=""><forename type="first">Koichi</forename><surname>Shirahata</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hitoshi</forename><surname>Sato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Satoshi</forename><surname>Matsuoka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2014 International Conference on Cluster Computing (CLUSTER&apos;14)</title>
+				<meeting>of the 2014 International Conference on Cluster Computing (CLUSTER&apos;14)</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="221" to="229" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,323.19,377.41,7.22;23,63.02,333.11,378.25,7.26;23,63.02,343.07,189.69,7.26" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Sextans: A streaming accelerator for general-purpose sparse-matrix dense-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Linghao</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuze</forename><surname>Chi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atefeh</forename><surname>Sohrabizadeh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Young-Kyu</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Lau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Cong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2022 International Symposium on Field-Programmable Gate Arrays (FPGA&apos;22)</title>
+				<meeting>of the 2022 International Symposium on Field-Programmable Gate Arrays (FPGA&apos;22)</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="65" to="77" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,353.08,377.47,7.22;23,63.02,363.00,377.44,7.26;23,62.53,372.96,76.85,7.26" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Fast dynamic updates and dynamic SpGEMM on MPI-Distributed graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Van Der Grinten</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Geert</forename><surname>Custers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Duy</forename><surname>Le Thanh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Henning</forename><surname>Meyerhenke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2022 International Conference on Cluster Computing (CLUSTER&apos;22)</title>
+				<meeting>of the 2022 International Conference on Cluster Computing (CLUSTER&apos;22)</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="429" to="439" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,382.96,378.69,7.22;23,63.02,392.89,357.23,7.26" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Dual-side sparse tensor core</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiqiang</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cong</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunxin</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingwen</forename><surname>Leng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2021 ACM/IEEE Annual International Symposium on Computer Architecture (ISCA&apos;21)</title>
+				<meeting>of the 2021 ACM/IEEE Annual International Symposium on Computer Architecture (ISCA&apos;21)</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1083" to="1095" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,402.89,378.77,7.22;23,63.02,412.81,377.44,7.26;23,63.02,422.78,103.95,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Adaptive sparse matrixmatrix multiplication on the GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Mlakar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rhaleb</forename><surname>Zayer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hans-Peter</forename><surname>Seidel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Markus</forename><surname>Steinberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2019 SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;19)</title>
+				<meeting>of the 2019 SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;19)</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="68" to="81" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,432.78,377.44,7.22;23,63.02,442.70,343.85,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Scaling sparse matrix multiplication on CPU-GPU nodes</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gagan</forename><surname>Agrawal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajiv</forename><surname>Ramnath</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2021 International Parallel and Distributed Processing Symposium (IPDPS&apos;21</title>
+				<meeting>of the 2021 International Parallel and Distributed essing Symposium (IPDPS&apos;21</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="392" to="401" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,452.70,377.44,7.22;23,63.02,462.63,377.46,7.26;23,63.02,472.59,172.27,7.26" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">WISE: Predicting the performance of sparse matrix vector multiplication with machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">Serif</forename><surname>Yesil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Azin</forename><surname>Heidarshenas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Morrison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Josep</forename><surname>Torrellas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2023 SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;23)</title>
+				<meeting>of the 2023 SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;23)</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="329" to="341" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,482.59,377.45,7.22;23,63.02,492.51,378.34,7.26;23,62.84,502.52,35.83,7.22" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">ASA: Accelerating sparse accumulation in column-wise SpGEMM</title>
+		<author>
+			<persName coords=""><forename type="first">Chao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maximilian</forename><forename type="middle">H</forename><surname>Bremer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cy</forename><forename type="middle">P</forename><surname>Chan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Shalf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaochen</forename><surname>Guo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="page">24</biblScope>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,512.48,378.78,7.22;23,63.02,522.40,377.45,7.26;23,63.02,532.36,189.85,7.26" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Memoryaware optimization for sequences of sparse matrix-vector multiplications</title>
+		<author>
+			<persName coords=""><forename type="first">Yichen</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shengguo</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dezun</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaojian</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. of the 2023 International Parallel and Distributed Processing Symposium (IPDPS&apos;23)</title>
+				<meeting>of the 2023 International Parallel and Distributed essing Symposium (IPDPS&apos;23)</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="379" to="389" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

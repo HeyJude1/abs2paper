@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Oikonomos-II: A Reinforcement-Learning, Resource-Recommendation System for Cloud HPC</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-12-18">2023-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,200.25,155.54,57.48,9.81"><forename type="first">J</forename><forename type="middle">L F</forename><surname>Betting</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Neuroscience</orgName>
+								<orgName type="institution">Erasmus Medical Center</orgName>
+								<address>
+									<settlement>Rotterdam</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,268.23,155.54,63.37,9.81"><forename type="first">C</forename><forename type="middle">I</forename><surname>De Zeeuw</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Neuroscience</orgName>
+								<orgName type="institution">Erasmus Medical Center</orgName>
+								<address>
+									<settlement>Rotterdam</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">Netherlands Institute for Neuroscience</orgName>
+								<address>
+									<settlement>Amsterdam</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,366.46,155.54,42.69,9.81"><forename type="first">C</forename><surname>Strydis</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Department of Neuroscience</orgName>
+								<orgName type="institution">Erasmus Medical Center</orgName>
+								<address>
+									<settlement>Rotterdam</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff2">
+								<orgName type="department">Quantum and Computer Engineering Department</orgName>
+								<orgName type="institution">Delft University of Technology</orgName>
+								<address>
+									<settlement>Delft</settlement>
+									<country key="NL">The Netherlands</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Oikonomos-II: A Reinforcement-Learning, Resource-Recommendation System for Cloud HPC</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 IEEE 30th International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="266" to="276"/>
+							<date type="published" when="2023-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">D7BC939BE1CA9925B92C6C8EDE0CEADE</idno>
+					<idno type="DOI">10.1109/hipc58850.2023.00044</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>High-Performance Computing</term>
+					<term>resource recommendation</term>
+					<term>cloud computing</term>
+					<term>prediction</term>
+					<term>middleware 266</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The cloud has become a powerful and useful environment for the deployment of High-Performance Computing (HPC) applications, but the large number of available instance types poses a challenge in selecting the optimal platform. Users often do not have the time or knowledge necessary to make an optimal choice. Recommender systems have been developed for this purpose but current state-of-the-art systems either require large amounts of training data, or require running the application multiple times; this is costly. In this work, we propose Oikonomos-II, a resource-recommendation system based on reinforcement learning for HPC applications in the cloud. Oikonomos-II models the relationship between different input parameters, instance types, and execution times. The system does not require any preexisting training data or repeated job executions, as it gathers its own training data opportunistically using user-submitted jobs, employing a variant of the Neural-LinUCB algorithm. When deployed on a mix of HPC applications, Oikonomos-II quickly converged towards an optimal policy. The system eliminates the need for preexisting training data or auxiliary runs, providing an economical, general-purpose, resource-recommendation system for cloud HPC.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>High-Performance Computing (HPC) refers to the use of high computational power to solve complex calculations at high speed. Examples of HPC applications include brain simulations, weather and climate modeling, and genome sequencing. Traditionally, such computations take place on computing clusters and supercomputers, where HPC jobs are executed on a statically defined hardware allocation after being placed in a queue. However, modern cloud environments such as Amazon EC2 and Microsoft Azure offer a wide range of computing resources on demand, often without waiting times, and on a pay-per-hour basis. This makes them an attractive alternative for HPC calculations.</p><p>At the time of writing, Amazon EC2 offers 637 different instance types. The instance types are categorized into families and the available hardware and costs per hour are available on Amazon's website. Nevertheless, it remains challenging for users to make an optimal choice for their application. Recognizing this problem, Amazon offers instance type recommendation, which recommends an instance type to a user based on historical use over a 14-day period <ref type="bibr" coords="1,453.53,224.48,10.05,8.92" target="#b0">[1]</ref>. However, application execution time is affected by input size and parameters, in combination with the hardware characteristics, in a typically hard-to-predict way. This means that the optimal instance type can be different, even for the same application. Smaragdos et al. <ref type="bibr" coords="1,325.41,281.27,11.04,8.92" target="#b1">[2]</ref> showed that for a simulation model of the human brain, a CPU version, a GPU-optimized version, and a FPGA version of the application can all be optimal choices, depending on the input parameters such as size of the neural network and connectivity.</p><p>We present Oikonomos-II, a reinforcement-learning resource-recommendation system for cloud HPC. Oikonomos-II approaches cloud-resource recommendation as a contextual multi-armed bandit problem. It uses incoming jobs from researchers to both explore different cloud instance type options, while also exploiting the knowledge it gains in the process. As opposed to earlier work, which was either search-based or prediction-based, Oikonomos-II combines the best elements of both approaches, and eliminates their main weaknesses. It can therefore be seen as the first hybrid system for this purpose. This work is a novel approach over our previous work, Oikonomos <ref type="bibr" coords="1,438.63,464.21,10.05,8.92" target="#b2">[3]</ref>, which used an MLP, but was still purely prediction-based.</p><p>The contributions of this work are as follows:</p><p>• A novel, reinforcement-learning instance recommender for HPC applications in heterogeneous cloud environments. By using a deep contextual bandit algorithm, it overcomes several limitations of earlier approaches. • An improvement of the Neural-LinUCB algorithm by Xu et al. <ref type="bibr" coords="1,377.67,560.74,10.25,8.92" target="#b3">[4]</ref>: applying the principle of soft update makes it possible to use much deeper artificial neural networks, and thus the representation of much more complex context-reward relationships. • A performance analysis of Oikonomos-II on four diverse HPC applications, showing the robustness of its reinforcement-learning approach and its potential for general (re)use.</p><p>The paper is organized as follows: in Section II, we give an extensive overview of related works, addressing the strengths and weaknesses of the various publications. In Section III, we describe our system and the underlying algorithms in detail. In Section IV, the four applications that we used for evaluation are described as well as the relevant implementation-specific details. In Section V, the performance of Oikonomos-II is evaluated on four existing HPC applications. We show that Oikonomos-II explores the available options effectively and exploits the knowledge it gains, successfully selecting the best instance type for incoming jobs in the vast majority of cases, for all applications. In Section VI, we present a discussion of our findings as well as potential improvements. Section VII concludes the work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. RELATED WORK</head><p>Work in the field of cloud-HPC resource recommendation generally falls in one of two categories: searched-based algorithms and prediction-based algorithms. Search-based algorithms evaluate different hardware combinations in succession to find the optimal choice. These algorithms do not rely on earlier data but usually need to run a job multiple times to find an optimal instance type; this leads to extra costs. Predictionbased algorithms use offline evaluation of data to predict performance and can immediately suggest an optimal instance type. This removes the need to actively search, but these algorithms require either prior knowledge about the behavior of the application in the form of a model or historical data. A summary of related work can be found in Table <ref type="table" coords="2,248.15,323.02,2.76,8.92">I</ref>.</p><p>Venkataraman et al. <ref type="bibr" coords="2,145.72,334.50,11.04,8.92" target="#b4">[5]</ref> proposed Ernest, a prediction-based framework that works with a non-negative least-squares solver, using historic data about the size of the input data, the number of virtual machines used and the execution time to fit four parameter values to a formula. This formula is then used to predict execution times, and can be extended to include more parameter values. However, Ernest is less suitable if the application behavior is unknown. It is also unsuitable for heterogeneous hardware configurations, since it only takes the number of machines into account.</p><p>Samreen et al. <ref type="bibr" coords="2,132.81,448.18,11.04,8.92" target="#b5">[6]</ref> presented Daleel, a prediction-based framework to support decision making in Infrastructure-asa-Service (IaaS) environments, such as clouds. Daleel uses a multivariate polynomial model to predict execution times, which is fit to the training data through different regression methods. In this respect, Daleel is similar to Ernest's formulafitting approach. The amount of vCPUs, RAM, and the day of the week are used as input parameters. Even though Daleel achieved low Mean Square Error, like Ernest, it is less suitable for heterogeneous-hardware configurations or complex relationships between input parameters and execution time.</p><p>Yadwadkar et al. <ref type="bibr" coords="2,134.24,573.23,11.04,8.92" target="#b6">[7]</ref> proposed PARIS, another a predictionbased approach, for selecting the best Virtual Machine (VM) among multiple clouds. A central innovation of PARIS is the decoupling of instance performance characterization from the workload-specific resource requirements. It does this by profiling the instance types using a set of benchmark workloads -this has to be done only once for each instance type. It then lets the user choose and run a representative workload to analyse the resource usage patterns and create a fingerprint of the application. It uses this fingerprint to recommend an instance type based on the user's needs. The decoupling of application characteristics from instance-type characteristics is important. However, PARIS burdens the user with choosing a representative workload, and does not take the influence of application parameter values on resource usage patterns into account.</p><p>Alipourfard et al. <ref type="bibr" coords="2,394.02,118.93,11.04,8.92" target="#b7">[8]</ref> presented CherryPick, a search-based approach that uses Bayesian optimization to build a performance model for applications. A central insight of CherryPick is that a recommendation system does not need to predict the execution time as accurately as possible; it just needs to be good enough to recommend an optimal cloud configuration. The user is asked to give the objective (e.g. minimizing costs or execution time) and constraints (budget, maximum execution time), as well as a workload representative of the application. CherryPick then finds a list of candidates for the optimal hardware configuration in multiple clouds, and finds an optimal cloud configuration in an iterative manner. The authors compared CherryPick to Ernest, and found that CherryPick performed similarly when it comes to running costs, but with lower search time and cost. However, it still needs to run a workload several times, and like PARIS, burdens the user with providing representative workloads.</p><p>Hsu et al. published three search-based approaches; Scout <ref type="bibr" coords="2,339.26,323.36,10.05,8.92" target="#b8">[9]</ref>, Arrow <ref type="bibr" coords="2,383.99,323.36,14.51,8.92" target="#b9">[10]</ref>, and Micky <ref type="bibr" coords="2,450.66,323.36,14.51,8.92" target="#b10">[11]</ref>. Scout is a pair-wisecomparison approach that uses past performance information to search efficiently. A key insight from Scout is that any search-based algorithm has a trade-off between exploration and exploitation. Historical data can be used to optimize the exploration process in order to exploit more. Arrow, like Cher-ryPick, uses Bayesian optimization, but augments it with lowlevel metrics in order to reduce search costs. The authors found that including this information led to enhanced performance compared to CherryPick's original Bayesian approach. Building on the insights from Scout and Arrow, the authors propose Micky, which casts the problem of finding the best VM as a multi-armed bandit problem and uses the Upper Confidence Bound (UCB) algorithm to optimize rewards. Micky optimizes for a batch of workloads, rather than a single workload, and aims to find a cloud configuration that is near-optimal for the majority of workloads. The authors suggest combining Micky with Arrow or Scout to find the best cloud configuration for individual workloads. Even though all of these approaches address some of the problems of search-based algorithms, all of them require running a workload multiple times to find the best configuration, which implies additional costs.</p><p>Recently, more prediction-based systems were published. Samreen et al. presented Tamakkon <ref type="bibr" coords="2,456.47,584.58,14.51,8.92" target="#b11">[12]</ref>. A key insight from Tamakkon is that historical performance data can be used for resource recommendation of new applications or VM types, if we can determine their similarity. Tamakkon does this using a Kolmogorov-Smirnov test. Based on the degree of similarity, Tamakkon adapts a machine-learning model to a specific task by using profiling data from similar applications. This makes the algorithm useful for different applications and hardware configurations. The systems does require the production of auxiliary data in the cloud, which entails additional costs. Also, Tamakkon simply labels workloads as 'similar' or 'partly similar', but does not further specify in which way the workloads are similar. Samuel et al. <ref type="bibr" coords="4,118.70,96.22,15.77,8.92" target="#b12">[13]</ref> proposed A2Cloud-RF, a prediction-based approach which, like PARIS, decouples the characteristics of the applications and cloud instances. This is done by profiling them separately: the instances for performance using standard benchmark applications, and the applications for resource usage with the Linux perf application. A Random-Forest Classifier (RFC) is used to recommend an instance. The RFC can directly classify instance types as 'excellent', 'good', 'okay', or 'bad', based on these profiles. It can also classify applications as either computationally intensive, balanced, or memory-intensive, and use historical data of similar applications to create the aforementioned classification. Even though this classification of instance types is useful, but given the huge amount of available instance types, a classification in four categories is rather rough. Decoupling applications and instance types reduces the need for test runs, but also makes it more difficult to capture the complex interplay between application performance, resource use, and available hardware. It remains unclear how the perf traces generated for each application account for the differences in behavior that applications may have on various heterogeneous types of architecture.</p><p>Ai et al. <ref type="bibr" coords="4,99.59,334.72,15.77,8.92" target="#b13">[14]</ref> presented an expanded version of A2Cloud-RF, named A2Cloud-H (Hierarchy). Rather than only using a RFC, A2Cloud-H uses a variety of machine learning algorithms, divided into two modules: an unsupervised learning module (USL), and a supervised learning module (SL). Both modules are contained in a decision module. When a job request comes in, the decision module selects an algorithm from both modules, based on the popularity of the model (measured by the number of publications and the number of citations), the historical accuracy, and the F1 score. Users themselves get the final say as to whether the want to use the algorithm from the USL or the SL module. Even though offering a variety of algorithms might make the system more generalizable, it also makes it more complex: it creates the need for an additional algorithm to select a recommender algorithm.</p><p>Our previous work, Oikonomos <ref type="bibr" coords="4,197.04,505.08,10.05,8.92" target="#b2">[3]</ref>, is a prediction-based algorithm that works in an opportunistic, data-driven fashion. Starting with the assumption that a single HPC application is executed a myriad times with different parameter values, Oikonomos consists of a Multi-Layer Perceptron (MLP) artificial neural network that takes the specific parameter values of the job and the hardware characteristics of a specific instance type as its input, and returns a prediction of the execution time. The network is trained using historical data. The users themselves only have to provide the parameter values they want to use. Oikonomos showed that a general MLP can be used as a general-purpose solution for cloud recommendation. The main weakness of Oikonomos is that it relies on a large amount of historical data, which might not be practical or available, especially for new applications. This is a problem that Oikonomos shares with other data-driven, predictionbased algorithms but neural networks tend to be especially vulnerable to it. Furthermore, the application was tested on balanced datasets; in reality, the datasets will not be balanced.</p><p>In summary, in the prediction-based approaches, there tends to exist a trade-off between more specific modeling (for instance by fitting a formula or by fingerprinting) and a reliance on considerable amounts of data. For search-based approaches, there is a trade-off between exploration and exploitation: more exploration might lead to better recommendations, but will also lead to higher overhead costs, whereas early exploitation will lead to lower overhead costs but might make the recommendations less accurate.</p><p>The work we present in this paper, Oikonomos-II, like Oikonomos, has an MLP at its core, and uses historical data. However, like Micky, we approach the problem of cloud resource recommendation as a multi-armed bandit problem, in order to explore the search space for giving better recommendations. Oikonomos-II can be seen as a hybrid approach, combining the advantages of search-based and predictionbased algorithms. In this way, it overcomes the limitations of earlier approaches.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. DESIGN</head><p>As the extensive related-work section demonstrates, there is a need for a middleware layer for resource recommendation in a heterogeneous HPC system that aids the user in selecting the hardware platform that is best-suited for the job they need to run. We avoid performance-model construction, as the complex interplay between the application parameters and the execution platform call for an application-agnostic approach. We also avoid running the same job more than once: we assume a stream of incoming jobs with different parameter values each time. Oikonomos-II gets to make only one decision regarding the instance type per job, and gets to observe the execution time and costs of only that particular job execution. In contrast to recommenders like Oikonomos, we assume the absence of any preexisting historical execution data. Therefore, the decisions that Oikonomos-II makes not only influence the costs and execution time of one particular job but also the available data to base future decisions on.</p><p>Because of the absence of preexisting historical data, Oikonomos-II is forced to take risks by recommending instance types it has not encountered before. At the same time, though, Oikonomos-II has to optimize performance for its users. This dilemma is known as the exploration-exploitation dilemma, which is a general problem to be found in datadriven, decision-making processes where a feedback loop exists between data gathering and decision making <ref type="bibr" coords="4,514.84,584.95,14.50,8.92" target="#b14">[15]</ref>. This becomes most clear in a class of problems known a multiarmed bandit problems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. The Contextual Multi-Armed Bandit Problem</head><p>Lattimore and Szepesvári <ref type="bibr" coords="4,425.78,641.37,15.77,8.92" target="#b15">[16]</ref> describe the bandit problem as a sequential game between a learner and an environment. Played over n rounds, for each round t ∈ [n], the learner picks an action a t from a set of actions A. After the action is chosen, the environment reveals a reward r t ∈ R. The learner does not get to see the rewards associated with the other actions.</p><p>The learner cannot see into the future, so in the classical multi-armed bandit problem, it has to rely on the history H t−1 = (a 1 , r 1 , . . . , a t−1 , r t−1 ) in order to make decisions. The learner is expected to adopt a policy π: a mapping from histories to actions. Most commonly, the goal is for the learner to find a policy that maximizes the cumulative reward over all rounds n t=1 r t . The regret of a policy π is defined as the difference between the cumulative expected reward using policy π and the cumulative reward of an optimal policy π * . Cumulative regret will often grow in a logarithmic fashion for good policies: cumulative regret will increase relatively fast in the beginning, when there is little historical data and a strong need for exploration, and will slow down with time, as the amount of historical data grows, allowing for more exploitation. Bandit algorithms are part of the wider class of reinforcement-learning algorithms.</p><p>The bandit problem has been studied since the 1930s <ref type="bibr" coords="5,279.34,254.90,14.51,8.92" target="#b16">[17]</ref>, but interest has skyrocketed over the last two decades because of its applicability in online environments. Dynamic pricing of online airplane bookings is a good example of a bandit problem: when a visitor searches for a flight, the website picks a price to offer to the visitor. The reward is revealed when the customer either books the flight or leaves without booking. The goal of the algorithm is to maximize total cumulative profit over all visitors <ref type="bibr" coords="5,146.60,345.76,14.51,8.92" target="#b17">[18]</ref>.</p><p>Contextual knowledge can be essential for adopting a policy to make decisions. For instance, in the airplane booking example, it might be useful to know the IP address of the visitor. After all, the visitor's location might be correlated to the price they are willing to pay. Context can also consist of similarity information regarding the actions in A. A visitor might be willing to book a flight on a different date, or to a different airport, and showing them such options could lead to a higher chance of booking. Multi-armed bandit problems where context plays a role are known as contextual bandits.</p><p>Two of the most widely used algorithms for solving the exploration-exploitation dilemma in multi-armed bandit problems are Upper Confidence Bound (UCB) and Thompson Sampling (TS). UCB was first proposed by Auer et al. <ref type="bibr" coords="5,279.34,504.76,14.51,8.92" target="#b18">[19]</ref>, and is based on the principle of optimism in the face of uncertainty. This means that the algorithm estimates the expected reward, as well as a confidence bound for each action, and chooses the action that has the highest upper confidence bound. Whereas UCB is aimed at estimating the reward (see Figure <ref type="figure" coords="5,87.77,572.91,3.42,8.92" target="#fig_1">1</ref>), TS builds a probability model based on previous rewards, and then samples from this model to choose an action <ref type="bibr" coords="5,84.38,595.62,14.51,8.92" target="#b16">[17]</ref>. Both TS and UCB are widely used and have strong theoretical guarantees on the regret bound.</p><p>The original UCB and TS algorithms do not take contextual information into account. However, they have been used as bases for algorithms that do work with contextual information. One of the most popular contextual bandit algorithms is LinUCB, proposed by Li et al. <ref type="bibr" coords="5,185.02,663.77,14.51,8.92" target="#b19">[20]</ref>. The algorithm assumes a linear relationship between the context parameters and the rewards. The relationship is represented by a vector θ, which is to be learned. LinUCB was presented in two versions: a disjoint version (where only one vector of context parameters in used) and a hybrid version (where two context vectors are used: one for parameters describing the context in round t, and one for parameters that describe the actions in A).</p><p>Li et al. applied the algorithm to personalized news-article recommendation and showed that it performs better than the original UCB algorithm.</p><p>The requirement of a linear relationship between context parameters and rewards in LinUCB is restrictive. For instance, in the case of cloud HPC, the relationship between application parameters, hardware, and execution time is potentially complex. This requirement, however, can be overcome using an artificial neural network (ANN). We will mention two relevant publications. Zhou et al. presented NeuralUCB, which feeds the context vector to a neural network <ref type="bibr" coords="5,486.49,459.86,14.72,8.92" target="#b20">[21]</ref>; NeuralUCB is a generalized version of LinUCB, achieving the regret bound of LinUCB without the aforementioned requirement. However, as the whole network is used for exploration, the algorithm is very complex and computationally expensive for large neural networks. Addressing this issue, Xu et al. presented an adaptation where representation is decoupled from exploration <ref type="bibr" coords="5,360.49,539.36,10.05,8.92" target="#b3">[4]</ref>. Their algorithm, Neural-LinUCB, is based on the principle of deep representation and shallow exploration: it uses the entire ANN to learn the relationship between the context vectors and the rewards, but only uses the last layer for exploration. In this way, deeper and wider ANNs can be used, allowing for the representation more complex context-reward relationships. Additionally, the way in which the relationship vector θ is calculated after each round is highly parallelizable, allowing for better performance. The authors showed that Neural-LinUCB achieves similar performance to NeuralUCB, while being much less computationally expensive.</p><p>Betting et al. <ref type="bibr" coords="5,376.49,664.71,11.04,8.92" target="#b2">[3]</ref> showed with Oikonomos that a deep MLP can be used to recommend an optimal cloud-instance type for HPC applications, based on the input-parameter values. However, as Oikonomos was purely prediction-based, it relied on a large amount of preexisting training data. The absence of this data creates a contextual multi-armed bandit problem.</p><p>A consists of all possible instance type recommendations, whereas the rewards are a function of execution time and/or usage costs. Each round t involves a decision to recommend an instance type to a specific job. We define 'job' as the (requested) execution of the application with specific parameter values. The context, therefore, consists of both roundspecific context (the input parameters of the job), as well as action-specific context (the hardware parameters of the instance types). The non-linear relationship between context and rewards rules out traditional LinUCB. Because of the complexity and computational costs of NeuralUCB for deeper neural networks, as well as the opportunities for parallelism that Neural-LinUCB offers, Neural-LinUCB was chosen to solve the multi-armed bandit problem that Oikonomos-II faces.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Oikonomos-II design</head><p>Figure <ref type="figure" coords="6,96.33,661.14,4.73,8.92">2</ref> shows the overall architecture of Oikonomos-II, and a detailed description of its workings can be found in Algorithms 1 and 2. We assume a sequential stream of jobs, with each round t corresponding to the recommendation of an instance type and subsequent execution of job j t . Job j t is defined by a vector p t of parameter values. Furthermore, we assume a set of S available instance types s; for every s, there is a vector h s containing hardware-parameter values of the instance type, such as the number of vCPU cores, memory size, GPU type, etc. A matrix A 0 , and vectors b 0 and θ 0 are initialized before any jobs are processed.</p><p>We make the assumption that each job j t can start only when job j t−1 has finished. Each action a ∈ A is the act of assigning a job to an instance type. Action a t,s signifies the act of assigning job j t to instance type s for execution. The context vectors x for Oikonomos-II consist of both the application parameters and the hardware parameters of the instance type. Here, we simply concatenate the vectors p t and h s to create x t,s . Theoretically, it is possible to implement a hybrid version of Neural-LinUCB to evaluate p t and h s separately, but this is to a large extent non-parallelizable and computationally much more expensive, to the extent that we consider it infeasible. Furthermore, combining p t and h s in a single context vector allows the MLP to learn possibly complex interplays between hardware and application parameters.</p><p>We use the combined context vector x t,s to calculate the Algorithm 1 Oikonomos-II adaptation of Neural-LinUCB 1: Input: regularization parameter λ &gt; 0, number of jobs J, vector of retraining rounds k, exploration parameter α &gt; 0, MLP φ(x, w), context scaler function σ x (x), reward scaler function σ r (r), custom reward function r(T ) 2: Initialization: A 0 = λI, b 0 = 0, and vector θ 0 of length d filled with values     </p><formula xml:id="formula_0">A t = A t−1 + φ(x (σ) t,at ; w L )φ(x (σ) t,at ; w L ) , b t = b t−1 + r t φ(x (σ)</formula><formula xml:id="formula_1">L min = L v 14:</formula><p>end if 15: end for 16: w L = w min 17: Use φ(x, w L ) to recalculate A t and b t 18: Output: w L ; σ x (x); σ r (r); A t ; b t upper confidence bound for the reward of each job-instance type combination, as is done in the original Neural-LinUCB algorithm. The vector q t = φ(x t,s ; w L ) is obtained by passing x t,s through the MLP. q t is multiplied with vector θ t−1 to find the expected reward, and the inverse of A t−1 is used to calculate the confidence bound. Following the notation used by Xu et al., we use [k] to denote a set {1, . . . , k}, k ∈ N + . For a semi-definite matrix A ∈ R d×d and vector x ∈ R d , the Mahalanobis norm is denoted as x A = √ x Ax. The process is visualized in Figure <ref type="figure" coords="7,150.61,677.02,3.55,8.92">3</ref>. The action with the highest upper confidence bound is recommended to the user.</p><p>As shown in Figure <ref type="figure" coords="7,148.73,702.49,3.55,8.92">2</ref>, after the algorithm recommends an instance type, the job is executed there. The job output is then returned to the user. The execution time T t , as well as vectors p t and h s are stored in a database. The ANN is retrained periodically; it would be computationally expensive to retrain after every round. However, A t , b t , and θ t are calculated after every round, and are used for UCB calculation and instancetype recommendation in the next round. The Oikonomos-II algorithm is described in detail in Algorithms 1 and 2. For a more detailed explanation of Neural-LinUCB and proof of the regret bound, we refer the reader to the original paper. We made several adaptations to the Neural-LinUCB algorithm to make it suitable for our application. The original Neural-LinUCB algorithm retrains the ANN every k steps. We noticed that the network requires frequent retraining in the beginning, and requires less frequent retraining later, when there is more data available. Therefore, rather than defining k as an integer, we define k as a vector of positive integers. If t ∈ k, the ANN is retrained after round t. The size and content of k can be chosen by the user.</p><p>It was also noted that, when training the ANN, there exists a feedback loop between the weights of the ANN and the feature vector θ: after all, θ depends on A and b, and A, b are updated after every round using the MLP output vector q. This led to instability and reduced performance during backpropagation, as θ is used in the loss function (see Algorithm 2). We resolved the issue by applying soft updating, as described by Lillicrap et al. <ref type="bibr" coords="8,178.16,349.39,14.51,8.92" target="#b21">[22]</ref>, where the target network is used to recalculate θ for each data point at the start of each epoch, and backpropagation is applied to the training network. A soft-update step is performed at the end of each epoch. This allowed us to use deeper neural networks, which makes it possible to represent more complex relationships between inputs and rewards. We also improved the MLP training process by applying best-practise techniques, such as data scaling, training with mini-batches, and early stopping with separate training and validation sets in Oikonomos-II.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. IMPLEMENTATION</head><p>The system was implemented in Python. As machinelearning framework, we used PyTorch <ref type="bibr" coords="8,208.87,498.32,14.51,8.92" target="#b25">[26]</ref>. An MLP of nine linear layers was used, with a maximum width of 2,000. Normalization and dropout layers were used to enhance performance. (Leaky) ReLU functions were used as activation layers, except for the last layer, where a sigmoid function was used (which was observed to improve performance). The full architecture is summarized in Figure <ref type="figure" coords="8,206.20,566.47,3.55,8.92" target="#fig_6">4</ref>. The length d of the output vector (which corresponds to the length of vector θ) is 700. As loss function L, we used the Mean-Squared Error (MSE) loss function. The data set (X, Y ) used for training consists of a maximum of random 3000 samples from D; for t ≤ 3000, (X, Y ) = D. The minibatch size was initialized at 1, and slowly increased as D increased, to a maximum of 16.</p><p>The MLP was retrained after 50 episodes, and then at intervals of 500 episodes. Of the dataset, 85% was used as a training set, and the remaining 15% as a validation set. Backpropagation is performed using the Adam optimizer <ref type="bibr" coords="8,277.59,680.27,14.51,8.92" target="#b26">[27]</ref>. Training is done for 500 episodes, the weights of the episode with the lowest validation loss are retained. As for the reward function: as LinUCB strives to maximize the reward value, and our goal is to minimize either costs or execution time, we defined the reward function r(x) = 1 x , with x the costs in dollars, or the execution time in seconds. The parameter set was scaled using StandardScaler, the rewards were scaled using PowerTransformer, both from the sklearn.preprocessing library for Python.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. EVALUATION</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Experimental setup</head><p>For the evaluation of Oikonomos-II, we used four different benchmark applications. Three of these are real HPC applications, the other one is a synthetic benchmark from the ARCHER suite. The first is simHH, a neurosimulator developed at the Erasmus Medical Center, Rotterdam <ref type="bibr" coords="8,525.83,413.15,14.51,8.92" target="#b22">[23]</ref>. It simulates a wide range of biologically plausible, conductancebased Hodgkin-Huxley neural models. These models work on non-embarrassingly parallel workloads and uses basic solvers operating on short time intervals. The second application involves training an MLP Deep Neural Network with Google TensorFlow using the widely-used MNIST database <ref type="bibr" coords="8,534.97,481.29,14.51,8.92" target="#b23">[24]</ref>. MNIST is a standard dataset in TensorFlow for testing AI classification. Training time varies based on adjustable hyperparameters. The third application is training a TensorFlowbased Convolutional Neural Network (CNN) using the CIFAR-10 database. CIFAR-10 consists of color images from ten classes; the CNN is trained to classify images. The training time is influenced by variable parameters such as the number of convolutional layers, fully-connected layer size, epochs, and test/training minibatch sizes. HPCC <ref type="bibr" coords="8,453.01,583.51,15.77,8.92" target="#b24">[25]</ref> is a collection of synthetic benchmarks that measure the range of memory-access patterns. The application has MPI and OpenMP support. There are no available GPU or FPGA implementations of HPCC, but the number of MPI processes can be varied. The application parameters we varied are stated in Table <ref type="table" coords="8,480.02,640.30,5.78,8.92" target="#tab_3">II</ref>. As for instance type parameters, we used the number of vCPUs, the instance memory in MiB, and the number of GPUs.</p><p>The Amazon instance types that we have used for our evaluation are shown in Table <ref type="table" coords="8,434.79,685.97,8.87,8.92" target="#tab_4">III</ref>. Without loss of generality, they were selected so as to create a diversity of hardware options, but we also selected some instance types from the same family. This allows us to test if Oikonomos-II can discern between instances that are relatively similar. Two instance types have a GPU available, three are compute-optimized, and three are general-purpose instances.</p><p>To evaluate the performance of Oikonomos-II, we used datasets where all the jobs have been executed fully on each of the eight instance types. We call these datasets oracle sets, since they provide us with full insight into the best possible policy and the regret of each different policy. 1 By using these sets as a simulation environment, it was possible to evaluate the regret for each application. For our four applications, we used oracle sets of 5,000 jobs. The sets were created by executing jobs on the Amazon EC2 instances, and then augmenting the data by manually studying the behavior of these applications, in order to create sets that reliably represent the application behavior on the cloud instances. We randomized the order of each of the jobs and presented the jobs one by one to Oikonomos-II. The algorithm only gets to see the execution time of a job for the instance type it has chosen, and it cannot see into the future.</p><p>Comparing Oikonomos-II to other work is challenging, since each author uses their own HPC application to evaluate performance -the absence of a good benchmark set for cloud HPC recommendation is a persistent issue in this field. Even when the same applications are used, differences in parameter ranges can lead to vastly different data sets. Most standard HPC benchmark sets are unsuitable for our purpose: they are 1 The oracle sets that were used for evaluation can be found at: https:// gitlab.com/c7859/neurocomputing-lab/oikonomos-II data. designed to characterize specific HPC platforms, and fail to capture the complex interplay between application characteristics, individual job input parameter values, and hardware. We therefore decided to evaluate the performance of Oikonomos-II in its own right.</p><p>We employed three metrics. The first metric is the percentage of all rounds for which the best instance type was recommended. This shows the performance of Oikonomos-II, including the exploration phase. The second metric is the percentage of the last 1,000 rounds for which the best instance type was recommended. By this time, the algorithm has had the opportunity to explore and should be mostly exploiting. The last metric is the regret. Regret is usually defined as the difference between the optimal policy and the actual policy. The unit and size of the regret differs for every application. In order to compare the applications, it was decided to express regret as a percentage of the regret of random policy.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Results</head><p>We evaluated the performance of Oikonomos-II on all four applications, optimizing for both execution time and costs. We analyzed the oracle sets to determine the distribution of the best option. The most interesting cases are those where the best choice of instance type depends on the parameter values. As shown in Table <ref type="table" coords="9,390.07,458.91,8.23,8.92" target="#tab_5">IV</ref>, to varying degrees, this is the case for all benchmarks except for CIFAR-10, where g4dn.4xlarge is the overall best choice for both cost and time.</p><p>Table <ref type="table" coords="9,349.79,493.05,6.83,8.92" target="#tab_5">V</ref> shows the evaluation results for all four applications, employing the three metrics. Despite the fact that Oikonomos-II starts without any knowledge about any of the applications, over 5,000 episodes it is able to recommend the best instance type for jobs it has not seen before. The percentage of optimal recommendations becomes even higher when only the last 1,000 episodes are considered. This is expected: after all, the later the episode, the more the algorithm can rely on previous observations. However, the numbers are not much different, as Oikonomos-II has likely converged much earlier. It is interesting to compare these two metrics to the data in Table <ref type="table" coords="9,395.43,617.98,8.23,8.92" target="#tab_5">IV</ref>. For example, simHH shows a lot of variation regarding the optimal instance type: the best choice is heavily dependent on job parameters. The high percentage of optimal recommendations shows that Oikonomos-II is able to effectively learn the relationship between input parameters and optimal instance type. Oikonomos-II appears to perform less well in predicting the instance with the fastest execution time for HPCC. We found that this was caused by the fact that two Since Oikonomos-II has not explored the space yet, it is forced to explore and make suboptimal choices. C: Confusion matrix for the last 100 episodes for the same application. Now that Oikonomos-II has explored the relationship between parameters and performance, it mostly exploits and makes optimal choices: most recommendations coincide with the true best option. instance types have similar performance for this application. Therefore, which of those two performs for a particular job is in part determined by chance. For all applications, the regret is only a small percentage of the regret of a random policy, which shows that Oikonomos-II far outperforms a random policy.</p><p>Figure <ref type="figure" coords="10,94.75,467.92,4.73,8.92" target="#fig_7">5</ref> gives a more detailed look into the performance of one of the applications, simHH, optimized for costs. Figure <ref type="figure" coords="10,284.76,479.27,11.57,8.92" target="#fig_7">5A</ref> shows the cumulative regret over time. Cumulative regret increases rapidly in the beginning as Oikonomos-II is forced to make sub-obtimal choices in order to explore. However, it rapidly flatlines. However, regret seems to increase faster again after about 3,500 episodes. This was likely due to the fact that, after this point, only a sample of D is used to train the MLP, in order to increase training speed -when we reran the experiment without sampling, the sudden jump in regret disappeared. Even though the original Neural-LinUCB paper states that performance loss is limited, this figure suggests that it is not negligible.</p><p>Figure <ref type="figure" coords="10,96.96,615.60,11.05,8.92" target="#fig_7">5B</ref> shows the confusion matrix for the first 100 episodes for simHH, and Figure <ref type="figure" coords="10,196.68,626.96,11.05,8.92" target="#fig_7">5C</ref> shows the confusion matrix for the last 100 episodes. In the first 100 episodes, Oikonomos-II has not explored the space yet, but is forced to explore and make suboptimal choices, which is why the confusion matrix is rather scattered. However, in the last 100 episodes, Oikonomos-II has explored the relationship between parameters and performance, and is able to exploit, which is shown by the fact that almost all points in the matrix lie along the diagonal.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. DISCUSSION</head><p>So far, we made the assumption that cloud instances are up and running, and are readily available; start-up times were not taken into account. In a real-life scenario, it might be useful to keep instances running in some situations (for example, when there is a continuous stream of jobs), whereas in other situations, it would be better to shut them down between runs. Developing an algorithm that takes this into account would be useful, but requires additional information about usage patterns, which was outside the scope of Oikonomos-II. Still, this could be an interesting extension of the current work, when combined with a suitable scheduling algorithm.</p><p>Oikonomos-II uses a deep neural network which needs to be retrained regularly. Retraining can be a time-consuming task that is best done on specific hardware types, such as a GPU; this might incur extra costs. However, in our evaluation, we showed that Oikonomos-II can deliver outstanding results with a long retraining interval of 500 episodes. Furthermore, it is possible to reduce the training time by retraining on only a sample of the data. Xu et al. argued that this is possible for Neural-LinUCB without significant reduction in performance, and we expect the same for Oikonomos-II.</p><p>The current number of instance types offered by AWS is over 600. Oikonomos-II was tested on data from eight instance types, which is only a fraction of the number of instances offered. However, as there is currently no standard benchmark set for resource recommendation in cloud HPC, it was necessary to collect our own oracle datasets to evaluate performance. This required that we limit ourselves to a small selection of instance types. Even so, the small set of eight instance types contains sufficient diversity. The fact that oftentimes, there is not one overall 'best' instance type, attests to this.</p><p>Oikonomos-II was tested on two types of reward functions: cost-and time-optimized. A fixed reward function for all episodes was assumed. However, in a real-life situation, some users might want the instance type that delivers the fastest results, whereas other users want to have results at the lowest cost. Yet others might prefer a balance between these two or have additional requirements. The current implementation of Oikonomos-II does not support this diversity of user requirements but its design can be easily extended to accommodate a variety of custom reward functions in the future.</p><p>Finally, the assumption was made that jobs arrive and are dispatched in a sequential manner: a new job arrives when the previous job has completed. In reality, however, jobs may arrive simultaneously, and a new job may arrive before the previous ones have finished. This might affect recommender performance. However, the problem of delayed feedback in bandits is well-studied <ref type="bibr" coords="11,145.97,254.34,14.51,8.92" target="#b27">[28]</ref>, and the structure of Oikonomos-II is suitable for expansion to incorporate solutions to challenges that may arise in practice. In addition, it would also be valuable to assess how Oikonomos-II would perform on other contextual bandit algorithms, such as Thompson Sampling. However, this falls beyond the scope of the current work. VII. CONCLUSION Oikonomos-II casts the problem of cloud instance-type selection for different HPC jobs as a contextual multi-armed bandit problem. It applies a variant of the Neural-LinUCB algorithm, balancing exploration and exploitation. The system starts off without knowledge of the application behavior, and is forced to explore when recommending instances for incoming jobs. However, as it gathers knowledge, Oikonomos-II starts exploiting and converges towards optimal choices. We evaluated Oikonomos-II on four diverse HPC applications, where it was shown to converge towards optimal choices, demonstrating its effectiveness and robustness. Oikonomos-II avoids the main issues of both prediction-based and searchbased recommenders. Combining the best elements of these two approaches into a reinforcement-learning recommender system, Oikonomos-II is both generalizable and accessible, making it a promising tool for researchers who want to harness the power of the cloud for their high-performance computing applications.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,65.59,688.64,230.93,7.13;1,58.02,697.16,238.50,7.13;1,58.02,705.67,238.51,7.13;1,58.02,712.86,227.38,8.46"><head></head><label></label><figDesc>This paper is supported by the European Union's Horizon Europe research and innovation programme under projects SEPTON (Gr. Agr. No. 101094901) and SECURED (Gr. Agr. No. 101095717) and by the Dutch Research Council's Gravitation programme under project DBI 2 (No. 024.005.022).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="5,314.48,250.07,238.51,7.26;5,314.48,258.72,238.50,7.13;5,314.48,267.24,238.51,7.13;5,314.48,275.75,238.51,7.13;5,314.48,284.14,142.85,7.26"><head>Fig. 1 .</head><label>1</label><figDesc>Fig.1. The UCB algorithm: The expected reward E[r] is assessed for each option, as well as the confidence interval. The algorithm will choose the option with the highest upper confidence bound. Even though E[r] is the highest for action B, the algorithm will choose action A, as its upper confidence bound is higher: optimism in the face of uncertainty.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,57.84,215.89,488.38,7.26;6,57.84,224.54,273.94,7.13"><head>Fig. 2 .Fig. 3 .</head><label>23</label><figDesc>Fig.2. Schematic overview of Oikonomos-II: While the user gets the job output they want, the algorithm saves the parameters of the job and its execution time, saves it in a database, and uses Neural-LinUCB to make better choices over time.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="7,69.16,406.37,343.62,10.05"><head>6 :</head><label>6</label><figDesc>Use φ(x, w L ) to recalculate A and b for each data point ∈ X, Y (see Algorithm 1</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="7,412.78,406.74,3.94,8.92"><head></head><label></label><figDesc>)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="7,69.16,417.72,245.62,10.18;7,69.16,433.50,367.34,10.17;7,436.51,438.42,12.54,6.36;7,449.53,433.87,15.56,9.09;7,465.09,430.71,10.53,6.63;7,465.09,438.22,8.68,6.36;7,476.10,433.50,24.87,10.05;7,509.76,427.69,11.45,9.44;7,506.83,438.22,2.86,6.36;7,69.16,449.59,187.95,10.05;7,65.37,460.94,328.82,10.17;7,65.37,472.52,94.94,9.96;7,65.37,485.38,9.68,7.13;7,98.71,483.66,42.82,10.06;7,65.37,496.74,9.68,7.13"><head>7 : 8 : 9 :</head><label>789</label><figDesc>Recalculate θ t for each data point in X tr , Y tr and X v , Y v Update w T by performing backpropagation using the training set and loss function L θ t−1 φ(x (σ) t,s ; w Tr ), r(σr) t Soft update step: w L ← τ w Tr + (1 − τ )w L 10: Calculate validation loss L v , using w L , the validation set, and loss function L 11: if L v &lt; L min then 12: w min = w L 13:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="8,83.76,169.76,185.41,7.13"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. The architecture of the MLP used in Oikonomos-II</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="10,57.81,254.54,488.36,7.26;10,57.81,263.18,488.38,7.13;10,57.81,271.57,488.37,7.26;10,57.81,280.22,488.37,7.13;10,57.81,288.74,180.69,7.13;10,253.42,88.40,121.77,121.66"><head>Fig. 5 .</head><label>5</label><figDesc>Fig.5. A: Cumulative regret for simHH (cost-optimized). Regret increases rapidly in the beginning, but then mostly flatlines. B: Confusion matrix of recommendation choices for the first 100 episodes for simHH (cost-optimized). True labels are on the x-axis, whereas recommendations are on the y-axis. Since Oikonomos-II has not explored the space yet, it is forced to explore and make suboptimal choices. C: Confusion matrix for the last 100 episodes for the same application. Now that Oikonomos-II has explored the relationship between parameters and performance, it mostly exploits and makes optimal choices: most recommendations coincide with the true best option.</figDesc><graphic coords="10,253.42,88.40,121.77,121.66" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="7,65.37,109.17,459.32,153.47"><head></head><label></label><figDesc>with vectors {h 0 , . . . , h S } to obtain unscaled context vectors {x t,0 , . . . , x t,S }</figDesc><table coords="7,65.37,109.17,459.32,153.47"><row><cell></cell><cell>MLP weights w L initialized in a randomized way, empty database D</cell><cell>1 d ,</cell></row><row><cell cols="2">3: for t = 1, . . . , J do</cell><cell></cell></row><row><cell>4:</cell><cell>receive job parameter vector p t</cell><cell></cell></row><row><cell cols="4">5: concatenate p t 6: scale each context vector with scaler function σ(x) to obtain scaled context vectors {x</cell><cell>(σ) t,0 , . . . , x</cell><cell>(σ) t,S }</cell></row><row><cell>7: 8:</cell><cell cols="2">choose action a t = argmax s∈[S] σ −1 x calculate reward r t from T t , using reward function r(T ) θ t−1 φ(x (σ) t,s ; w L ) + α t φ(x (σ) t,s ; w L ) A −1 t−1</cell><cell>, and obtain execution time T t</cell></row><row><cell>9:</cell><cell>store tuple {x t,at ; T t } in D</cell><cell></cell></row><row><cell>10:</cell><cell>if t ∈ k then</cell><cell></cell></row><row><cell>11:</cell><cell>σ x (x); σ r (r); A t ; b t ← outputs of Algorithm 2</cell><cell></cell></row><row><cell>12:</cell><cell>else</cell><cell></cell></row><row><cell>13:</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="7,63.69,253.78,488.37,150.52"><head></head><label></label><figDesc>, and divide into training set X tr , Y tr and validation set X v , Y v 4: Refit σ x to X tr and σ r to Y tr , and scale vectors X, X tr , X v , Y , Y tr , Y v accordingly. Divide the sets into mini-batches.</figDesc><table coords="7,63.69,253.78,330.56,80.42"><row><cell></cell><cell>t,at ; w L )</cell></row><row><cell>14:</cell><cell>end if</cell></row><row><cell>15:</cell><cell>update θ t = A −1 t b t</cell></row><row><cell cols="2">16: end for</cell></row><row><cell cols="2">17: Output: w L,J ; D</cell></row><row><cell cols="2">Algorithm 2 Update ANN weights and refit scalers</cell></row></table><note>1: Input: Database D, weights w L , MLP φ(x, w), current round t, soft update parameter τ ∈ (0, 1] 2: Initialization: For each tuple {x t,at ; T t } ∈ D, load all x t,at into feature set X. Calculate rewards r t from T t and load these into target set Y . Copy w L into w Tr . Define a loss function L. Initialize L min = ∞ 3: Take a sample from X, Y 5: for each epoch do</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="8,321.41,74.28,226.52,153.47"><head>TABLE II HPC</head><label>II</label><figDesc>APPLICATIONS USED FOR THE OIKONOMOS-II EVALUATION, AND</figDesc><table coords="8,321.41,91.50,226.52,136.25"><row><cell></cell><cell cols="2">THEIR PARAMETER RANGES</cell><cell></cell></row><row><cell cols="2">(E) HPCC</cell><cell cols="2">(F) simHH</cell></row><row><cell>parameter</cell><cell>range</cell><cell>parameter</cell><cell>range</cell></row><row><cell>MPI-procs</cell><cell>4-8</cell><cell>time-steps</cell><cell>1 -110,000</cell></row><row><cell>N</cell><cell>20,000 -40,000</cell><cell>connectivity</cell><cell>0.5 -1.0</cell></row><row><cell>NB</cell><cell>100 -20,000</cell><cell>neurons</cell><cell>1000 -10,000</cell></row><row><cell cols="2">(G) MNIST (MLP)</cell><cell cols="2">(H) CIFAR-10 (CNN)</cell></row><row><cell>parameter</cell><cell>range</cell><cell>parameter</cell><cell>range</cell></row><row><cell>epochs</cell><cell>1 -1000</cell><cell>epochs</cell><cell>1 -1000</cell></row><row><cell>Training</cell><cell>1 -5000</cell><cell>Training</cell><cell>1 -3000</cell></row><row><cell>batch size</cell><cell></cell><cell>batch size</cell><cell></cell></row><row><cell cols="2">Test batch size 1 -5000</cell><cell>Test batch size</cell><cell>1 -3000</cell></row><row><cell>Layer 1 size</cell><cell>1 -750</cell><cell>Layer 1 size</cell><cell>1 -500</cell></row><row><cell>Layer 2 size</cell><cell>1 -1000</cell><cell cols="2">Architecture type 1 -4</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="9,61.98,74.16,436.87,279.78"><head>TABLE III AMAZON</head><label>III</label><figDesc>EC2 INSTANCE TYPES USED FOR OIKONOMOS-II EVALUATION</figDesc><table coords="9,61.98,94.50,436.87,259.44"><row><cell cols="2">Instance type</cell><cell>CPU type</cell><cell></cell><cell></cell><cell>vCPU no.</cell><cell>Memory (GiB)</cell><cell>GPU type</cell><cell>GPU mem. (GiB)</cell></row><row><cell cols="2">t2.2xlarge</cell><cell cols="3">Intel Xeon Family @ 3.3 GHz</cell><cell>8</cell><cell>32</cell><cell>-</cell><cell>-</cell></row><row><cell cols="2">c5a.4xlarge</cell><cell cols="3">AMD EPYC 7R32 @ 2.8 GHz</cell><cell>16</cell><cell>32</cell><cell>-</cell><cell>-</cell></row><row><cell cols="2">m5a.4xlarge</cell><cell cols="3">AMD EPYC 7571 @ 2.5 GHz</cell><cell>16</cell><cell>64</cell><cell>-</cell><cell>-</cell></row><row><cell cols="2">m5a.8xlarge</cell><cell cols="3">AMD EPYC 7571 @ 2.5 GHz</cell><cell>32</cell><cell>128</cell><cell>-</cell><cell>-</cell></row><row><cell cols="2">c5a.8xlarge</cell><cell cols="3">AMD EPYC 7R32 @ 2.8 GHz</cell><cell>32</cell><cell>64</cell><cell>-</cell><cell>-</cell></row><row><cell cols="5">c5a.12xlarge AMD EPYC 7R32 @ 2.8 GHz</cell><cell>48</cell><cell>192</cell><cell>-</cell><cell>-</cell></row><row><cell cols="2">g3.4xlarge</cell><cell cols="3">Intel Xeon E5-2686 v4 @ 2.3 GHz</cell><cell>16</cell><cell>122</cell><cell>Tesla M60</cell><cell>8.0</cell></row><row><cell cols="5">g4dn.4xlarge Intel Xeon Family @ 2.5 GHz</cell><cell>16</cell><cell>64</cell><cell>Tesla T4</cell><cell>16.0</cell></row><row><cell></cell><cell></cell><cell>TABLE IV</cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="5">DISTRIBUTION OF BEST INSTANCE TYPE IN ORACLE SETS (TIME / COST)</cell><cell></cell></row><row><cell></cell><cell>simHH</cell><cell>MNIST</cell><cell>HPCC</cell><cell>CIFAR-10</cell><cell></cell></row><row><cell>t2.2xlarge</cell><cell>1.66% /</cell><cell>0.00% /</cell><cell>0.34% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>2.44%</cell><cell>1.52%</cell><cell>1.60%</cell><cell>0.00%</cell><cell></cell></row><row><cell>c5a.4xlarge</cell><cell>4.66% /</cell><cell>1.06% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>25.58%</cell><cell>34.00%</cell><cell>98.40%</cell><cell>0.00%</cell><cell></cell></row><row><cell>m5a.4xlarge</cell><cell>2.70% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>1.10%</cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell></cell></row><row><cell>m5a.8xlarge</cell><cell>0.16% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell></cell></row><row><cell>c5a.8xlarge</cell><cell>6.70% /</cell><cell>0.34% /</cell><cell>75.44% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>0.18%</cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell></cell></row><row><cell>c5a.12xlarge</cell><cell>26.28% /</cell><cell>2.10% /</cell><cell>24.22% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell></cell></row><row><cell>g3.4xlarge</cell><cell>5.02% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell>0.00% /</cell><cell></cell></row><row><cell></cell><cell>18.06%</cell><cell>0.00%</cell><cell>0.00%</cell><cell>0.00%</cell><cell></cell></row><row><cell>g4dn.4xlarge</cell><cell>52.82% /</cell><cell>96.50% /</cell><cell>0.00% /</cell><cell>100.00% /</cell><cell></cell></row><row><cell></cell><cell>52.64%</cell><cell>64.48%</cell><cell>0.00%</cell><cell>100.00%</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="10,63.49,306.46,226.35,94.16"><head>TABLE V OIKONOMOS</head><label>V</label><figDesc>-II EVALUATION RESULTS (TIME / COST)</figDesc><table coords="10,63.49,335.76,226.35,64.87"><row><cell></cell><cell>simHH</cell><cell>MNIST</cell><cell>HPCC</cell><cell>CIFAR-10</cell></row><row><cell>Optimal action over</cell><cell>79.34% /</cell><cell>92.92% /</cell><cell>54.56% /</cell><cell>95.88% /</cell></row><row><cell>all episodes</cell><cell>91.28%</cell><cell>87.16%</cell><cell>97.40%</cell><cell>95.82%</cell></row><row><cell>Optimal action over</cell><cell>81.40% /</cell><cell>95.60% /</cell><cell>68.50% /</cell><cell>99.00% /</cell></row><row><cell>last 1000 episodes</cell><cell>94.24%</cell><cell>89.50%</cell><cell>97.50%</cell><cell>95.00%</cell></row><row><cell>Regret as perc. of</cell><cell>2.12% /</cell><cell>4.42% /</cell><cell>2.46% /</cell><cell>0.99% /</cell></row><row><cell>random policy regret</cell><cell>1.57 %</cell><cell>10.59%</cell><cell>1.42%</cell><cell>2.16%</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:23:17 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="11,75.30,565.09,221.16,7.26;11,75.30,573.61,221.16,7.26;11,75.30,582.26,216.72,7.13" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Amazon EC2 Instance Recommendations</title>
+		<ptr target="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recommendations.html" />
+	</analytic>
+	<monogr>
+		<title level="j">AWS</title>
+		<imprint>
+			<biblScope unit="page" from="12" to="16" />
+		</imprint>
+	</monogr>
+	<note>Amazon Web Services Documentation</note>
+</biblStruct>
+
+<biblStruct coords="11,75.30,590.78,221.16,7.13;11,75.30,599.29,221.17,7.13;11,75.30,607.81,221.16,7.13;11,75.30,616.20,221.16,7.26;11,75.30,624.85,49.59,7.13" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">BrainFrame: a node-level heterogeneous accelerator platform for neuron simulations</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Smaragdos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Chatzikonstantis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Kukreja</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Sidiropoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Rodopoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Sourdis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Al-Ars</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Kachris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Soudris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">I</forename><surname>De Zeeuw</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Neural Engineering</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,75.30,633.37,221.16,7.13;11,75.30,641.88,221.17,7.13;11,75.30,650.27,221.16,7.26;11,75.30,658.79,221.16,7.26;11,75.30,667.44,17.04,7.13" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Oikonomos: An Opportunistic, Deep-Learning Resource Recommendation System for Cloud HPC</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">L F</forename><surname>Betting</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Liakopoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Engelen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Strydis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 IEEE 34th International Conference on Application-specific Systems, Architectures and Processors (ASAP)</title>
+				<imprint>
+			<biblScope unit="page">2023</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,75.30,675.96,221.16,7.13;11,75.30,684.47,221.16,7.13;11,75.30,692.86,199.16,7.26" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Neural Contextual Bandits with Deep Representation and Shallow Exploration</title>
+		<author>
+			<persName coords=""><forename type="first">Pan</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Handong</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Quanquan</forename><surname>Gu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,73.31,221.17,7.13;11,330.82,81.83,221.17,7.13;11,330.82,90.34,195.89,7.13" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Ernest: Efficient performance prediction for large-scale advanced analytics</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Venkataraman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">13th USENIX Symposium on Networked Systems Design and Implementation (NSDI 16)</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,99.10,221.16,7.13;11,330.82,107.49,221.16,7.26;11,330.82,116.00,221.17,7.26;11,330.82,124.65,60.19,7.13" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Daleel: Simplifying cloud instance selection using machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Samreen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Elkhatib</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Rowe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">S</forename><surname>Blair</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">NOMS 2016-2016 IEEE/IFIP Network Operations and Management Symposium</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="557" to="563" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,133.40,221.16,7.13;11,330.82,141.92,221.16,7.13;11,330.82,150.44,164.53,7.13" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Selecting the best VM across multiple public clouds: A data-driven performance modeling approach</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">J</forename><surname>Yadwadkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2017 Symposium on Cloud Computing</title>
+				<meeting>the 2017 Symposium on Cloud Computing</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,159.19,221.16,7.13;11,330.82,167.71,221.16,7.13;11,330.82,176.23,221.16,7.13;11,330.82,184.75,17.04,7.13" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">CherryPick: Adaptively Unearthing the Best Cloud Configurations for Big Data Analytics</title>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Alipourfard</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">14th USENIX Symposium on Networked Systems Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,193.50,221.16,7.13;11,330.82,202.02,172.47,7.13" xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Scout: An Experienced Guide to Find the Best Cloud Configuration</title>
+		<author>
+			<persName coords=""><forename type="first">C.-J</forename><surname>Hsu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1803.01296</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="11,330.82,210.77,221.17,7.13;11,330.82,219.29,221.17,7.13;11,330.82,227.81,206.21,7.13" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Arrow: Low-level augmented bayesian optimization for finding the best cloud vm</title>
+		<author>
+			<persName coords=""><forename type="first">C.-J</forename><surname>Hsu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE 38th International Conference on Distributed Computing Systems (ICDCS)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,236.56,221.16,7.13;11,330.82,245.08,221.16,7.13;11,330.82,253.60,110.37,7.13" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Micky: A cheaper alternative for selecting cloud instances</title>
+		<author>
+			<persName coords=""><forename type="first">C.-J</forename><surname>Hsu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE 11th International Conference on Cloud Computing (CLOUD)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,262.35,221.16,7.13;11,330.82,270.87,221.16,7.13;11,330.82,279.38,87.04,7.13" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Transferable Knowledge for Low-cost Decision Making in Cloud Environments</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Samreen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Blair</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Elkhatib</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Cloud Computing</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,288.14,221.16,7.13;11,330.82,296.65,221.17,7.13;11,330.82,305.17,221.16,7.13;11,330.82,313.69,106.05,7.13" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A2Cloud-RF: A random forest based statistical framework to guide resource selection for high-performance scientific computing on the cloud</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Samuel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="issue">24</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,322.44,221.16,7.13;11,330.82,330.96,221.16,7.13;11,330.82,339.35,221.16,7.26;11,330.82,347.87,202.32,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">A2Cloud-H: A Multi-tiered Machine Learning Framework for Cost-Effective Cloud Resource Selection</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Ai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Jena</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Hughes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">K</forename><surname>Pallipuram</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Future Technologies Conference (FTC) 2021</title>
+				<meeting>the Future Technologies Conference (FTC) 2021</meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="272" to="291" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,356.75,221.16,7.13;11,330.82,365.14,151.62,7.26;11,330.82,373.79,163.24,7.13" xml:id="b14">
+	<monogr>
+		<title level="m" type="main">The exploration-exploitation trade-off: intuitions and strategies</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Rocca</surname></persName>
+		</author>
+		<ptr target="https://tinyurl.com/rocca2021" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="20" to="26" />
+		</imprint>
+	</monogr>
+	<note>published in Toward Data Science</note>
+</biblStruct>
+
+<biblStruct coords="11,330.82,382.41,221.17,7.26;11,330.82,391.06,51.15,7.13" xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Bandit algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Lattimore</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Szepesvári</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,399.81,221.16,7.13;11,330.82,408.20,221.16,7.26;11,330.82,416.85,113.13,7.13" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">On the likelihood that one unknown probability exceeds another in view of the evidence of two samples</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">R</forename><surname>Thompson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Biometrika</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="issue">3-4</biblScope>
+			<biblScope unit="page" from="285" to="294" />
+			<date type="published" when="1933">1933</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,425.47,221.16,7.26;11,330.82,433.99,221.16,7.26;11,330.82,442.64,98.20,7.13" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Introduction to multi-armed bandits</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Slivkins</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Foundations and Trends® in Machine Learning</title>
+				<imprint>
+			<publisher>Now Publishers, Inc</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="1" to="286" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,451.39,221.16,7.13;11,330.82,459.78,221.16,7.26;11,330.82,468.42,80.60,7.13" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Finite-time analysis of the multiarmed bandit problem</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Auer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Cesa-Bianchi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Fischer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Machine Learning</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="page" from="235" to="256" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,477.18,221.16,7.13;11,330.82,485.57,221.16,7.26;11,330.82,494.08,221.16,7.26;11,330.82,502.73,17.04,7.13" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">A contextual-bandit approach to personalized news article recommendation</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Chu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Langford</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">E</forename><surname>Schapire</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 19th International Conference on World Wide Web</title>
+				<meeting>the 19th International Conference on World Wide Web</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="661" to="670" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,511.48,221.16,7.13;11,330.82,519.87,221.17,7.26;11,330.82,528.52,133.86,7.13" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Neural contextual bandits with UCBbased exploration</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Gu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<publisher>PMLR</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="11492" to="11502" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.82,537.27,221.16,7.13;11,330.82,545.79,221.16,7.13;11,330.82,554.17,155.74,7.30" xml:id="b21">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">P</forename><surname>Lillicrap</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">J</forename><surname>Hunt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Pritzel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Heess</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Erez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Tassa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Wierstra</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1509.02971</idno>
+		<title level="m">Continuous control with deep reinforcement learning</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="11,330.81,563.10,221.16,7.13;11,330.81,571.61,221.16,7.13;11,330.81,580.13,218.74,7.13" xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Scalable GPU Acceleration for Complex Brain Simulations</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Engelen</surname></persName>
+		</author>
+		<ptr target="http://resolver.tudelft.nl/uuid:b79bbfa7-0c57-4949-b974-83a7d9ee6b39" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+		<respStmt>
+			<orgName>Delft University of Technology</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">MSc thesis</note>
+</biblStruct>
+
+<biblStruct coords="11,330.81,588.88,217.37,7.13;11,330.81,597.41,126.22,7.13" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Image classification</title>
+		<ptr target="http://neupy.com/2016/11/12/mnistclassification.html" />
+	</analytic>
+	<monogr>
+		<title level="m">MNIST digits</title>
+				<imprint>
+			<biblScope unit="page" from="14" to="26" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.81,606.16,221.16,7.13;11,330.81,614.68,221.16,7.13;11,330.81,623.19,81.14,7.13" xml:id="b24">
+	<monogr>
+		<title level="m" type="main">Introduction to the HPC challenge benchmark suite</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Luszczek</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<pubPlace>Berkeley, CA (United States</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>Lawrence Berkeley National Lab (LBNL)</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical report</note>
+</biblStruct>
+
+<biblStruct coords="11,330.81,631.95,221.16,7.13;11,330.81,640.34,221.17,7.26;11,330.81,648.85,106.50,7.26" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">PyTorch: An Imperative Style, High-Performance Deep Learning Library</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Paszke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="8024" to="8035" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,330.81,657.74,221.16,7.13;11,330.81,666.12,119.77,7.26" xml:id="b26">
+	<monogr>
+		<title level="m" type="main">Adam: A method for stochastic optimization</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">P</forename><surname>Kingma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ba</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1412.6980</idno>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="11,330.81,675.01,221.16,7.13;11,330.81,683.40,221.16,7.26;11,330.81,691.91,106.09,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Best arm identification in multi-armed bandits with delayed feedback</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Grover</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Artificial Intelligence and Statistics</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="833" to="842" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

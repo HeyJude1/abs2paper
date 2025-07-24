@@ -1,0 +1,38 @@
+4 Minimizing Weighted Counterfactual
+Regret with OMD and Optimistic Variant
+In various situations, it makes sense to consider recent iterations as more crucial than earlier ones. Take equilibriumfinding algorithms as an example, earlier iterations are prone to selecting incorrect actions, resulting in substantial losses and causing significant regrets . Additionally, it is typical for recent iterations to generate strategies that are closer to a NE . Therefore, assigning more weights to recent iterations is a natural choice, potentially leading to fast convergence . Moreover, it is a prevalent practice to permit distinct weighting sequences for regrets and average strategies to facilitate fast convergence. For instance, CFR+ adopts a linearly weighted average strategy while employing a uniform weighting sequence for regrets. Besides, DCFR takes this approach a step further by using distinct weighting sequences for both regrets and average strategy.
+In a weighted regret minimization algorithm applied to the sequence-form strategy space, the loss lt incurred at iteration Algorithm 1: Construction of a weighed CFR variant using a general regret minimization algorithm from player 1's perspective.
+Input: game G, total iterations T , general regret minimization algorithm A, weighting sequences w and τ .
+1 for j ∈ J do 2 A j ← instantiate A with D = R nj ≥0 ; 3 x 1 j ← A j .first decision(); 4 construct ẋ1 by x 1 j | j ∈ J ; 5 for t = 1 → T do 6 decompose ẋt into x t j | j ∈ J ; 7 calculate the counterfactual loss ℓ t j | j ∈ J based on the loss lt = A ẏt ; 8 for j ∈ J do 9 r t j ← ℓ t j , x t j 1 − ℓ t j ; 10 lt j ← −w t r t j ; 11 A j .observe loss( lt j ); 12 xt+1 j ← A j .next decision(); 13 x t+1 j ← xt+1 j / xt+1 j 1 ; 14 construct ẋt+1 by x t+1 j | j ∈ J ; 15 X t ← X t−1 + τ t ẋt ; 16 xt ← X t / ∥X t ∥ 1 ;
+Output: The final average strategy xT .
+t is scaled by the weight w t , forming a sequence of weights denoted as w. The total weighted regret by the sequence w is
+R T w = max ẋ′ ∈X T t=1 w t lt , ẋt − ẋ′ .
+Moreover, define xt τ to be the weighted average strategy scaled by the weighting sequence τ :
+xt τ = X t τ / X t τ 1 , X t τ = X t−1 τ + τ t ẋt .
+To minimize the total weighted regret R T w , we first decompose it into the sum of the total weighted counterfactual regrets R T j,w under each decision node by constructing the counterfactual loss ℓ t j at each iteration t, where
+R T j,w = max x ′ j ∈∆ n j T t=1 w t ℓ t j , x t j − x ′ j ,
+so that we have the guarantee R T w ≤ j∈J [R T j,w ] + and transform the objective to minimize the total weighted counterfactual regret R T j,w at each decision node. To develop an algorithm for minimizing weighted counterfactual regret by leveraging a general regret minimization algorithm, we propose a construction method similar to the one described in , but with a modified loss lt j = −w t r t j . A concise summary of this approach is presented in Algorithm 1.
+As demonstrated in Theorem 1 (all proofs of the theorems are in Appendix C), when employing OMD with ψ
+= 1 2 ∥•∥ 2 2
+as the algorithm A, it simplifies to the WCFR+ algorithm:
+R t j = R t−1 j + w t r t j + , x t+1 j = R t j / R t j 1 , X t = X t−1 + τ t ẋt .
+Similarly, when employing optimistic OMD with ψ =
+1 2 ∥•∥ 2 2
+, it reduces to the PWCFR+ algorithm:
+R t j = R t−1 j + w t r t j + , Rt+1 j = R t j + w t+1 v t+1 j + , x t+1 j = Rt+1 j / Rt+1 j 1 , X t = X t−1 + τ t ẋt
+Theorem 1. For all η > 0, when employing OMD and optimistic OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A, they reduce to WCFR+ and PWCFR+, respectively.
+As illustrated in Theorem 2, when both players employ a weighted regret minimization algorithm in a 2p0s IIG, the weighted average strategy profile converges to a NE. Theorem 2. Assuming both players employ a weighted regret minimization algorithm with the weighting sequence τ for the average strategy in a 2p0s IIG, and given that the two players have total weighted regrets R T τ ,x and R T τ ,y respectively, the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a
+R T τ,x +R T τ ,y T t=1 τ t -NE.
+Although WCFR+ and PWCFR+ algorithms aim to minimize the total weight regret R T w , we show that they also minimize the total weighted regret R T τ as long as the weighting sequence w is more aggressive than τ . Theorem 3. Assuming both players employ the WCFR+ algorithm with the weighting sequence w for loss and τ for the average strategy in a 2p0s IIG, and { τt wt } t≤T is a positive non-increasing sequence, the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a
+j∈Jx∪Jy τ 1 w 1 T t=1 τ t w t r t j 2 2 / T t=1 τ t -NE.
+Theorem 4. Assuming both players employ the PWCFR+ algorithm with the weighting sequence w for loss and τ for the average strategy in a 2p0s IIG, and { τt wt } t≤T is a positive non-increasing sequence, the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a j∈Jx∪Jy
+2 τ 1 w 1 T t=1 τ t w t r t j − v t j 2 2 / T t=1 τ t -NE.
+A question remains regarding the selection of suitable weighting sequences in practical applications. Inspired by DCFR ] and to avoid potential numerical issues, we adopt a similar less-aggressive discounting sequence, resulting in a specific algorithm DCFR+:
+R t j = R t−1 j (t − 1) α (t − 1) α + 1 + r t j + , x t+1 j = R t j / R t j 1 , X t = X t−1 t − 1 t γ + ẋt .
+DCFR+ integrates features from both CFR+ and DCFR in a principled manner. It discounts cumulative regrets, assigning more weights to recent instantaneous regrets. Additionally, it clips the negative part of cumulative regrets, allowing for quick reuse of promising actions. Notably, the CFR variant discovered through evolutionary search emerges as a special case of DCFR+ where α = 1.5 and γ = 4, showcasing faster convergence than DCFR. We adopt a similar weighting sequence for PWCFR+, resulting in the PDCFR+ algorithm. PDCFR+ utilizes predicted cumulative regrets to compute new strategy akin to PCFR+, while updating cumulative regrets similar to DCFR+:
+R t j = R t−1 j (t−1) α (t−1) α +1 + r t j + , Rt+1 j = R t j t α t α +1 + v t+1 j + , x t+1 j = Rt+1 j / Rt+1 j 1 , X t = X t−1 t−1 t γ + ẋt .
+Interestingly, our connection between OMD and WCFR+ also provides a new perspective to understand the increasing weight w t in DCFR and DCFR+. When employing OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A, it updates the decision xt+1 j , corresponding to the cumulative regrets R t j in WCFR+:
+xt+1 j = argmin x′ j ∈R n j ≥0 −w t r t j , x′ j + 1 2η x′ j − xt j 2 2 .
+It can be equivalently written as:
+xt+1 j = argmin x′ j ∈R n j ≥0 −r t j , x′ j + 1 2ηw t x′ j − xt j 2 2 = argmin x′ j ∈R n j ≥0 −r t j , x′ j + 1 2η 1 w t x′ j − xt j 2 2 .
+We can interpret the increasing weight w t in two ways: an increasing learning rate η t = ηw t or a decreasing regularization term 1 wt . As a result, during the early iterations, cumulative regrets R t j , i.e., xt+1 j , are learned at a gradual pace or regularized by a substantial strength. This interpretation aligns with our intuition, as we aim to control cumulative regrets from growing excessively large in the initial stages.

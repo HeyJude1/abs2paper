@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Accelerating Decision-Tree-Based Inference Through Adaptive Parallelization</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-10-21">2023-10-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,272.45,171.96,72.75,9.70"><forename type="first">Jan</forename><surname>Van Lunteren</surname></persName>
+							<email>jvl@zurich.ibm.com</email>
+							<affiliation key="aff0">
+								<orgName type="institution">IBM Research Europe Rüschlikon</orgName>
+								<address>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Accelerating Decision-Tree-Based Inference Through Adaptive Parallelization</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 32nd International Conference on Parallel Architectures and Compilation Techniques (PACT)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="176" to="186"/>
+							<date type="published" when="2023-10-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">8288F4B391F707CEAF3D36A29A980159</idno>
+					<idno type="DOI">10.1109/pact58117.2023.00023</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>decision trees</term>
+					<term>random forests</term>
+					<term>machine learning</term>
+					<term>parallel processing</term>
+					<term>multithreading</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Gradient-boosted trees and random forests are among the most popular machine learning algorithms. They are applied to a broad spectrum of applications as diverse as search engine ranking, credit card fraud detection, customer relationship management, fault diagnosis in machinery, and geological studies, to name a few. Inference of these models is supported by many widely-used libraries and frameworks including Scikit-Learn, XGBoost, and ONNX Runtime.</p><p>Many of the inference algorithms integrated in these libraries are optimized for performing fast predictions for large input batches, often targeted at ensemble models containing relatively shallow decision trees. This does not necessarily match well with the requirements of new emerging applications that depend on real-time predictions for individual samples or small input batches. Also, cloud-based inference services put more emphasis on small memory footprints.</p><p>This paper aims to fill this gap by proposing a novel inference scheme for decision-tree ensembles that efficiently handles a wider range of application requirements and model characteristics. Performance is maximized for an extensive number of parameter combinations through a new concept in which a predict function is selected dynamically at runtime. This is done in a way that the processing resources, including the use of SIMD vector processing units and multithreading, are optimally exploited. Experiments have shown substantial performance improvements over state-of-the-art algorithms for common models.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Decision trees in machine learning have a long history. Automatic Interaction Detection (AID) <ref type="bibr" coords="1,199.96,541.22,10.92,8.82" target="#b0">[1]</ref> and THeta Automatic Interaction Detection (THAID) <ref type="bibr" coords="1,182.06,552.46,10.92,8.82" target="#b1">[2]</ref> are often considered to be the first published decision tree algorithms for regression and classification, respectively, which were combined and extended into the Classification And Regression Trees (CART) algorithm <ref type="bibr" coords="1,83.92,597.41,9.95,8.82" target="#b2">[3]</ref>. Later, ensemble learning methods such as bagging <ref type="bibr" coords="1,60.20,608.64,9.95,8.82" target="#b3">[4]</ref>, gradient boosting <ref type="bibr" coords="1,144.94,608.64,11.37,8.82" target="#b4">[5]</ref>- <ref type="bibr" coords="1,160.09,608.64,11.37,8.82" target="#b6">[7]</ref> and random forests <ref type="bibr" coords="1,248.75,608.64,9.95,8.82" target="#b7">[8]</ref>, <ref type="bibr" coords="1,264.55,608.64,10.92,8.82" target="#b8">[9]</ref> were developed, which combine multiple decision trees to substantially improve prediction accuracy over individual decision trees. Despite this long history, decision trees and ensemble methods such as random forests and gradient boosting are still among the most frequently used machine learning algorithms today, as shown by a recent Kaggle survey <ref type="bibr" coords="1,244.88,676.07,14.35,8.82" target="#b9">[10]</ref>. This is because of the inherent advantages coming from the relatively simple concept, support for numerical and categorical features and interpretability of predictions.</p><p>Although basic research on decision trees has existed for decades, the widespread deployment of machine learning in recent years has boosted research into innovative approaches to further increase performance. This research was initially centered around training, but inference has gradually become more important as well, as can be seen from the increase in related publications in this field <ref type="bibr" coords="1,466.06,307.60,15.29,8.82" target="#b10">[11]</ref>- <ref type="bibr" coords="1,485.18,307.60,15.29,8.82" target="#b19">[20]</ref>. Originally, these efforts were focused on the inference of larger input batches, for which the prediction latency of an individual input sample was less important and processing delays could be amortized over the entire batch. This has fundamentally changed with the emergence of new applications that rely on real-time online predictions involving only one or a few input samples. Such applications are typically encountered in the financial services sector and include the scoring of credit card transactions for fraud detection as well as real-time anti-money laundering operations, for example. Low latency operation is critical because the inference operation is part of a real-time processing pipeline, in which individual transactions or small batches of transactions are processed on-the-fly. In addition, small memory footprints are important in shared, multi-user applications, e.g., in cloud serving, where multiple models may simultaneously be held in memory to support concurrent model inference requests.</p><p>This paper addresses these challenges in multiple ways. A first contribution consists of optimized versions of conventional breadth-first and depth-first decision tree traversal algorithms that enable efficient use of SIMD vectorization and the exploitation of node-level access probabilities to speedup the processing of both shallow and deep tree structures. This is in contrast to state-of-the-art schemes, where the use of SIMD vectorization is typically limited to shallow trees and is not combined with optimizations based on node-level access characteristics. A second contribution enables efficient inference for individual samples and small to large input batches through a novel concept in which a collection of predict functions is designed, with each function implementing a different combination of parallelization using SIMD vectorization and multithreading. The most suitable and performant predict function is then selected dynamically during inference based on model, request and platform parameters. To the best of our knowledge, this is the first time that such a concept has been proposed for decision tree inference. The remainder of the paper is organized as follows.</p><p>Section II describes the design of the proposed inference function. Section III discusses related work. Optimized data structures for breadth-first and depth-first tree structures are presented in Section IV. Sections V and VI describe how the tree traversal algorithms for those data structures can be accelerated using SIMD vectorization and multithreading, respectively. Section VII presents experimental results and a performance comparison with other state-of-the-art schemes and Section VIII concludes the paper. II. DESIGN OVERVIEW Fig. <ref type="figure" coords="2,88.67,364.61,4.68,8.82" target="#fig_0">1</ref> shows a block diagram of the CPU-based decisiontree inference function that is presented in this paper. It supports importing random forest and gradient boosting models trained in Scikit-Learn <ref type="bibr" coords="2,154.66,398.32,14.35,8.82" target="#b20">[21]</ref>, XGBoost <ref type="bibr" coords="2,217.06,398.32,15.60,8.82" target="#b21">[22]</ref> and LightGBM <ref type="bibr" coords="2,60.91,409.56,15.60,8.82" target="#b22">[23]</ref> and exported to PMML [24], ONNX <ref type="bibr" coords="2,234.27,409.56,15.60,8.82" target="#b23">[25]</ref> or selected proprietary formats. Imported models are first converted into an internal decision-tree ensemble representation that is used as input to a data structure selector, which selects a data structure type out of two candidates (the OBF and ODF structures that will be introduced in Section IV) based on model and platform parameters. The selected data structure is then generated and optimized for the given platform, taking into account cache sizes, the availability of SIMD instructions, and other platform characteristics. For each data structure type, multiple predict functions have been implemented, involving different combinations of SIMD vectorization and multithreading, as will be discussed in Section V. At inference time, the predict function that is expected to perform best is selected based on prediction request parameters, in particular the batch size and the number of CPU threads available for the given prediction request. None of the steps shown in Fig. <ref type="figure" coords="2,292.22,589.37,4.68,8.82" target="#fig_0">1</ref> changes the basic functionality of the imported model, and, consequently, the inference function will generate exactly the same prediction results as if the original model was scored in its native runtime, i.e., Scikit-Learn, XGBoost or LightGBM.</p><p>The selection of the best data structure and predict function involves complex dependencies on platform parameters (e.g., cache sizes, SIMD instructions), model parameters (e.g., tree counts and depths), and prediction request parameters which renders the creation of general selection rules for the above data structure selector and dynamic predict function selector impractical. Therefore, instead a benchmarking function is applied, as shown in Fig. <ref type="figure" coords="2,421.51,267.30,3.51,8.82" target="#fig_0">1</ref>, which, using training data or other data serving this purpose, evaluates the performance of the various predict functions for both data structure types and for a range of prediction request parameters. This information is then used by the data structure selector and the dynamic predict function selector. If no data is available for the benchmarking operation, then the selection will be based on previously collected benchmarking data for general models. Ongoing research investigates the possibility of training a machine learning model for data structure and prefix function selection, however, this is outside the scope of this paper.</p><p>The inference function is implemented in C++ code as part of an extension module that can be accessed in Python using a Scikit-Learn-like interface.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. RELATED WORK</head><p>The importance of random forests and gradient boosting models has triggered a considerable amount of research in recent years to accelerate the inference of decision-treeensemble models on a range of platforms, including CPUs, GPUs <ref type="bibr" coords="2,341.37,489.07,14.35,8.82" target="#b10">[11]</ref>, <ref type="bibr" coords="2,364.28,489.07,14.35,8.82" target="#b24">[26]</ref>, FPGAs <ref type="bibr" coords="2,419.73,489.07,14.35,8.82" target="#b11">[12]</ref>, CPUs with neural network hardware accelerators <ref type="bibr" coords="2,397.88,500.31,14.35,8.82" target="#b12">[13]</ref>, and memristor-based memory <ref type="bibr" coords="2,532.09,500.31,14.35,8.82" target="#b25">[27]</ref>.</p><p>Because of the scope of this paper, this section will focus on CPU-based inference, which can be roughly divided into 1) methods that translate the decision-tree ensemble into compilable code with the decision-tree-node comparisons directly mapped on if-then-else statements or predicates, and 2) methods that generate internal data structures from the decision-tree definitions that are processed by fixed functions to perform the inference. Examples of the first category include TreeLite <ref type="bibr" coords="2,349.11,601.32,14.35,8.82" target="#b13">[14]</ref>, VPRED <ref type="bibr" coords="2,404.07,601.32,14.35,8.82" target="#b26">[28]</ref>, an optimized version of VPRED using cache-blocking <ref type="bibr" coords="2,397.18,612.56,14.35,8.82" target="#b27">[29]</ref>, lleaves <ref type="bibr" coords="2,446.44,612.56,14.35,8.82" target="#b28">[30]</ref>, and the optimized 'ifelse' trees presented in <ref type="bibr" coords="2,405.68,623.79,14.35,8.82" target="#b14">[15]</ref>, <ref type="bibr" coords="2,426.90,623.79,14.35,8.82" target="#b15">[16]</ref>.</p><p>Scikit-Learn <ref type="bibr" coords="2,373.87,634.90,14.35,8.82" target="#b20">[21]</ref>, XGBoost <ref type="bibr" coords="2,434.51,634.90,14.35,8.82" target="#b21">[22]</ref>, LightGBM <ref type="bibr" coords="2,501.39,634.90,14.35,8.82" target="#b22">[23]</ref>, ONNX Runtime <ref type="bibr" coords="2,350.96,646.14,15.60,8.82" target="#b29">[31]</ref> and the native tree discussed in <ref type="bibr" coords="2,504.28,646.14,15.60,8.82" target="#b14">[15]</ref> belong to the second category and implement more conventional algorithms based on breadth-first and depth-first traversal of the decision trees. QuickScorer <ref type="bibr" coords="2,442.62,679.85,14.35,8.82" target="#b16">[17]</ref>, <ref type="bibr" coords="2,465.20,679.85,15.60,8.82" target="#b30">[32]</ref> takes a different approach that is based on processing feature comparisons related to multiple split nodes throughout the tree ensemble in a first step, followed by determining the actual traversed paths through the trees and the overall prediction result from these processing results that are encoded as bit vectors and are operated on using logical bitwise instructions. This is fundamentally different from conventional tree-traversal algorithms that only process tree nodes when they are on a currently traversed path through a tree. V-QuickScorer <ref type="bibr" coords="3,240.37,162.65,15.60,8.82" target="#b31">[33]</ref> is an improved version of QuickScorer exploiting SIMD extensions. RapidScorer <ref type="bibr" coords="3,110.96,185.13,15.60,8.82" target="#b18">[19]</ref> can be regarded as a further improvement of QuickScorer removing some of its limitations related to deeper trees. The tree tiling technique proposed as part of the TreeBeard compiler <ref type="bibr" coords="3,154.37,218.84,15.60,8.82" target="#b19">[20]</ref> is also based on performing the feature comparisons for all nodes within a given tree tile in parallel using SIMD instructions, from which the traversed paths are then determined. Tree tiles are, however, located within individual trees, and different data structures are used.</p><p>Besides the above schemes that process a decision-tree ensemble model 'as is', other optimizations have been proposed that optimize performance by limiting or omitting part of the processing. One example are 'early exit' schemes <ref type="bibr" coords="3,60.15,320.01,15.60,8.82" target="#b32">[34]</ref>  <ref type="bibr" coords="3,79.78,320.01,14.35,8.82" target="#b17">[18]</ref>, which do not process all trees in an ensemble to improve inference performance by compromising slightly on accuracy. Another example are oblivious decision trees such as CatBoost <ref type="bibr" coords="3,109.54,353.72,15.60,8.82" target="#b33">[35]</ref> and others <ref type="bibr" coords="3,171.64,353.72,14.35,8.82" target="#b34">[36]</ref>, <ref type="bibr" coords="3,192.95,353.72,15.60,8.82" target="#b35">[37]</ref> which are constrained to use identical node comparisons involving the same input features and thresholds for split nodes at the same tree depth.</p><p>Many of the above methods convert the decision trees into perfect trees of the same size. These are trees in which each split node has two child nodes and all leaf nodes are at the same level, resulting in identical path lengths between the root node and any leaf node. This enables efficient exploitation of SIMD instructions to parallelize multiple tree traversals by performing these in lock-step with all traversals ending at the same time. In order to keep the processing steps simple for SIMD exploitation, typically no node-level optimizations are performed to improve spatial locality properties. The main disadvantage of perfect trees is the exponential growth of the number of nodes as a function of the tree depth, which limits its application to shallow trees (e.g., with a maximum depth up to around eight) to prevent a tree-size 'explosion'. Although perfect trees can work efficiently for gradient boosting models that usually involve more shallow trees, this may not always apply to random forests which can involve deeper tree structures <ref type="bibr" coords="3,81.63,578.50,14.35,8.82" target="#b15">[16]</ref>.</p><p>When comparing the above related work with the approaches proposed in this paper, the following are notable. In the next section, we will describe two optimized tree traversal algorithms, OBF and ODF, based on conventional breadth-first and depth-first tree traversal concepts, that have been extended to support SIMD vectorization and node-level access probability exploitation (ODF) for both shallow and deep trees. Except for <ref type="bibr" coords="3,150.70,668.44,15.60,8.82" target="#b15">[16]</ref> which describes an optimization sorting the most likely child node at the left side but uses a different data structure, we have not found anything similar to our optimizations, in particular related to the efficient application of SIMD vectorization to process deeper trees through partition-and node-level iterations that will be described in the next section. Sections V and VI will present different combinations of SIMD vectorization and multithreading to parallelize multiple tree traversals processing multiple input samples within a batch and/or multiple trees within an ensemble. Although some of the above related work applies similar parallelization concepts in a static fashion, we have not found a comparable approach involving runtime selection between the large number of combinations covered in this paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. DATA STRUCTURES FOR TREE TRAVERSAL</head><p>This section will introduce the optimized data structures that form the basic components of the presented inference function. These structures will be illustrated using an exemplary binary decision tree as shown in Fig. <ref type="figure" coords="3,431.70,269.61,3.51,8.82" target="#fig_1">2</ref>, which is comprised of seven split nodes (S 0 to S 6 ) represented by circles and eight leaf nodes (L 0 to L 7 ) represented by squares, having a maximum depth equal to three (the root node S 0 is considered to be at depth 0, nodes S 1 and S 2 at depth 1, and so on).</p><p>The processing of a decision tree for a given input sample, also denoted as tree traversal, starts at the root node and ends when a leaf node is reached. Each split node that is visited during a tree traversal, selects a feature of the input sample and compares it against a threshold value. Based on the outcome of the comparison, processing continues with either the left or the right child node. In this example, the left child node is selected if the feature value is less than or equal to the threshold, and the right child node is selected otherwise, as indicated by the symbols along the edges.</p><p>Each leaf node contains a label of a type that is determined by the model type. For example, for random forests the label can be an integer or floating-point value for regression, or a class identifier or set of class probabilities for hard or soft voting classification, respectively. The prediction result for a given input sample is derived from the labels in the leaf nodes that have been reached by traversing all trees in the ensemble.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Optimized breadth-first tree structure</head><p>A commonly used approach is to map the decision-tree nodes according to a breadth-first order within an array in the memory, starting with the root node being mapped at an offset 1. This allows the node interconnection structure to be encoded through the node offsets, without requiring explicit fields to define the child nodes of each split node (e.g., using pointers or offsets): the left and right child nodes of a given split node that is mapped at offset k, are mapped at offsets 2 × k and 2 × k + 1. This approach, however, requires the decision tree to be a perfect tree (as described in Section III) such as the tree shown in Fig. <ref type="figure" coords="3,428.64,657.22,3.51,8.82" target="#fig_1">2</ref>. In this figure, the node offsets according to a breadth-first order are shown next to each node in red.   The main advantages of this data structure are its compactness and the simple calculation of the offset of the child nodes from the parent node offset enabling efficient SIMD vectorization. An important disadvantage is the requirement of a perfect tree, which limits its application to relatively shallow trees. Another disadvantage is that the nodes on traversal paths between the root node and leaf nodes are typically not mapped near to each other, except in small trees, but are scattered throughout the memory array, resulting in minimal spatial locality and therefore low caching efficiency.</p><p>To overcome these disadvantages, an optimized breadth-first tree structure is proposed, henceforth referred to as OBF. The OBF scheme divides trees into multiple partitions, which are expanded to perfect subtrees as shown in the example in Fig. <ref type="figure" coords="4,289.32,591.26,3.51,8.82" target="#fig_2">3</ref>. In this example, the colored nodes comprise the original tree structure, and the other nodes were added to expand the shown partitions to perfect subtrees. The nodes at the lowest level in a partition are denoted as result nodes. A result node can either correspond to a leaf node in the original tree structure (and will then be represented by a square), or it can comprise a reference (e.g., pointer or offset) to another partition containing the next nodes from the original tree structure (in which case it will be represented by a circle). A tree traversal is completed if a result node of the former type is accessed and the label can be retrieved from that result node. If a result node of the latter type is accessed, then processing continues with the partition that it refers to.</p><p>As can be understood from the example in Fig. <ref type="figure" coords="4,510.79,129.21,3.51,8.82" target="#fig_2">3</ref>, this approach allows non-perfect trees to be handled more efficiently by only 'covering' the actual existing subtrees using partitions instead of expanding the entire tree to become a perfect tree for the maximum tree depth. As a result, however, tree traversals from the root to a leaf node can be of different lengths, resulting in certain tree traversals reaching leaf nodes earlier than other tree traversals, which makes SIMD vectorization more difficult. The OBF scheme handles this by iterating the processing of the last partition for the tree traversals that finished earlier at leaf nodes that are not at the maximum tree depth until all tree traversals are completed. These iterations are represented by the looping edges attached to result nodes corresponding to leaf nodes in Fig. <ref type="figure" coords="4,452.56,275.30,3.51,8.82" target="#fig_2">3</ref>.</p><p>The partition size is selected such that a partition fits in one or two cache lines to optimize spatial locality. In this paper, a fixed partition depth of 4 levels is used, corresponding to a perfect subtree with 15 split nodes and 16 result nodes. Fig. <ref type="figure" coords="4,333.68,331.63,4.68,8.82" target="#fig_3">4</ref> illustrates the corresponding data structure for each partition, which consists of three arrays, with the first two arrays storing the feature selectors and threshold values (32 bit single-precision floats) of the 15 split nodes in the partition, and the third array comprising the 16 result nodes (32-bit values) as mentioned above. A vector containing 16 singlebit flags indicates for each result node if it corresponds to a leaf node and contains a label, or if it contains a reference to another partition. Using a separate array for the feature selectors makes it possible to reduce the memory footprint by adapting the data type to the actual number of features used in the given model, e.g., by using bytes for supporting models with up to 256 features, 16-bit shorts to support up to 64K features, and 32-bit words otherwise. The entries in each array are sorted according to the breadth-first order of the nodes and indexed using the offset calculation described above.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Optimized depth-first tree structure</head><p>Another common approach is to apply a depth-first ordering of the nodes within a memory array, starting with the root node being mapped at offset 0, which is illustrated in Fig. <ref type="figure" coords="4,543.01,556.07,3.51,8.82" target="#fig_4">5</ref>. This node interconnection structure is also encoded through the node offsets: the left child node of a split node mapped at offset k is mapped at offset k + 1 and the right child node at offset k + m d with the 'offset increment' m d being dependent on the depth d at which the parent node is located within the tree. For the example in Fig. <ref type="figure" coords="4,423.57,623.50,3.51,8.82" target="#fig_5">6</ref>, m 0 = 8, m 1 = 4, and m 2 = 2, with m d+1 = md 2 . Similar to the OBF structure, this structure also requires a perfect tree to work correctly.</p><p>An optimized depth-first tree structure is proposed, which will hereby be denoted by ODF, which modifies the basic depth-first tree structure to exploit node-level access proba-  bilities. In order to illustrate this, the nodes are colored to show a heatmap which reflects the node access probability as indicated by the legend shown in Fig. <ref type="figure" coords="5,205.35,238.88,3.51,8.82" target="#fig_4">5</ref>. This information can, for example, be derived from leaf cardinality information generated during training, which reflects the number of training samples that are 'mapped' on each path between the root node and any leaf node. Alternatively, node access probabilities can also be generated for the internal decision-tree ensemble representation to which an imported model is converted as was described in Section II, using training or similar data.</p><p>As can be seen in Fig. <ref type="figure" coords="5,164.35,328.55,3.51,8.82" target="#fig_4">5</ref>, paths that consist of sequences of 'left-child-nodes' (e.g., S 0 , S 1 , S 3 , and L 0 ) are mapped on consecutive offsets which results in higher cache locality when traversing those paths. As also can be seen, these paths do not necessarily align with the most probable (frequently) travelled paths (e.g., S 0 , S 2 , S 5 , and L 5 ) as indicated by the heatmap color. In order to 'correct' this alignment, the ODF scheme applies a per-node selection of the comparison operator (either less-than-or-equal-to or greater-than) such that the child node that is most likely to be accessed next corresponds to a positive comparison result and 'becomes' the left child node. The resulting structure for the example tree is shown in Fig. <ref type="figure" coords="5,289.49,452.16,3.51,8.82" target="#fig_5">6</ref>. In this example, the compare operators of nodes S 0 , S 1 , and S 5 have been changed as reflected by the symbols at the edges. Because of the above adaptation of the comparison operator in each node, now large parts of the most likely traversed paths are mapped on consecutive offsets, thus improving cache locality. To realize this, the applied comparison, ≤ or &gt;, has to be encoded in the data structure. ODF does this by using the most significant bit of the feature selector field.</p><p>To support deeper trees, ODF removes the need for perfect trees by supporting an 'optional' selection of the offset increment for the right child node for each individual split node by storing it explicitly in the node structure in an additional field, while the offset of the left child node remains equal to the offset of the parent node incremented by one. This is illustrated by the example of a non-perfect tree in Fig. <ref type="figure" coords="5,238.72,620.50,4.68,8.82">7</ref> in which the offset-increment selection is applied to all split nodes as can be seen from the differences between the offsets of the right child nodes and the parent nodes that can be selected independently.</p><p>This flexible offset-increment selection can be applied to all split nodes in the entire tree as shown in Fig. <ref type="figure" coords="5,235.54,676.45,3.64,8.82">7</ref>; however, it is more efficient to use the above discussed structure shown in Fig. <ref type="figure" coords="5,331.95,227.98,4.68,8.82" target="#fig_5">6</ref> for traversing nodes near the root node and using the structure shown in Fig. <ref type="figure" coords="5,405.05,239.22,4.68,8.82">7</ref> for nodes at the greater tree depths. The depth at which processing switches between the two structures constitutes an additional implementation parameter that is selected by the data-structure selector component in Fig. <ref type="figure" coords="5,331.99,284.17,4.68,8.82" target="#fig_0">1</ref> when a model is imported. The first structure will be denoted as ODF1 and the second as ODF2.</p><p>With the requirement for perfect trees removed, the traversal of different paths can now take a variable number of steps. In order to enable efficient SIMD vectorization, the leaf nodes are implemented and processed as a special kind of split nodes for which the comparison always produces a negative result. By using a zero offset increment when processing these nodes, the tree processing function will simply start looping over the same leaf node upon arrival. This continues until all parallel tree traversals have arrived at a leaf node. These loops are illustrated in Fig. <ref type="figure" coords="5,423.33,407.86,3.51,8.82">7</ref>. This concept is similar to the partition-level iterations applied by the OBF scheme discussed in Section IV-A, but applied at the node-level.</p><p>The OBF scheme maps the leaf nodes on the last consecutive offsets in each partition as can be seen in Fig. <ref type="figure" coords="5,523.55,452.89,3.51,8.82" target="#fig_1">2</ref>. The depth-first ordering applied by the ODF scheme, however, interleaves the offsets upon which the split nodes and leaf nodes are mapped as Figures <ref type="figure" coords="5,429.60,486.60,29.82,8.82" target="#fig_5">6 and 7</ref> show. Because of this, an array-based data structure as shown in Fig. <ref type="figure" coords="5,511.59,497.84,4.68,8.82" target="#fig_3">4</ref> for the OBF scheme does not make sense for the ODF structures discussed here. Instead, each node will be mapped on a singlenode structure combining multiple fields storing the node's feature, node-level comparison type flag, threshold, and offset increment (for the ODF2 structure), as is shown in Figures <ref type="figure" coords="5,544.76,554.03,4.68,8.82;5,313.44,565.26,20.31,8.82" target="#fig_5">6  and 7</ref>. For efficient processing, all fields are 32 bits wide.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. SIMD VECTORIZATION</head><p>The OBF and ODF schemes enable multiple tree traversals to be performed in parallel through the use of SIMD instructions operating on wide vector registers. These parallel tree traversals can process multiple trees within an ensemble for a single input sample, or multiple input samples using a single decision tree. A hybrid version, involving the parallel processing of multiple input samples using multiple decision trees is also feasible, but will not be considered here.  on the node-level compare types defined by the flag bits that are extracted from the most-significant featureselector bits (see Section IV-B). 6 Generate a node-offset-increments vector, that will be used to update the current-node-offsets vector, from the compare-results vector and a right-child-offsetincrements vector. 7 Update current-node-offsets vector using the node-offsetincrements vector. If the parallel tree traversal is completed, retrieve the results from the current node offsets in the data structure, otherwise iterate steps 2 to 7 . In step 3 , the feature values are extracted from the current input sample in case of parallelization over trees, and from successive input samples within the input batch in case of parallelization over input samples. The actual loops that will cover all trees in the ensemble and all input samples within a batch will be discussed in Section VI.</p><p>For the OBF scheme, the right-child-offset-increments vector comprises only elements equal to 1. These elements only need to be added to the current-node-offsets vector if the corresponding comparison result is negative. This can be implemented using masked add operations (e.g., AVX-512) or similar operations. This addition is executed as part of step 7 , which first shifts the current-node-offsets vector to the left by one in order to multiply the node offsets by two as described in Section IV-A. If the parallel tree traversals through the OBF partitions all end in result nodes that correspond to leaf nodes, then the parallel tree traversals have completed. Otherwise step 7 involves retrieving the references to other partitions from result nodes that do not correspond to leaf nodes and start processing these partitions as described above, while iterating the processing of the same partitions for result nodes that correspond to leaf nodes, until all traversals have completed. Note that the latter partition-level processing is not covered in Fig. <ref type="figure" coords="6,332.02,173.38,3.51,8.82" target="#fig_6">8</ref>.</p><p>For ODF1, the right-child-offset-increments vector is loaded at the start of the prediction with an initial value that is determined by the tree depth and it is shifted to the right by one (divided by two) at the end of each loop as was discussed in Section IV-B. For ODF2, the right-child-offset-increments vector is retrieved in each loop from the node structures at the current-node-offset vector. ODF does not require a shift operation in step 7 as OBF does. Leaf nodes in the ODF2 structure are processed as a special split node involving a zero offset increment which triggers repeated processing of these nodes as discussed in Section IV-B. Consequently, if the nodeoffset-increments vector only contains zero elements, then all parallel tree traversals have completed and the loop ends.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. MAIN LOOPS AND MULTITHREADING</head><p>During inference, all trees within an ensemble have to be traversed for each sample in a given input batch. Consequently, there exist two basic loops in a predict function, one iterating through the samples in an input batch and one iterating through the trees in the ensemble:</p><p>for i ∈ {0, . . . , I − 1} do for t ∈ {0, . . . , T − 1} do tree traversal(t, i) end for end for with I being the input batch size, T being the number of trees in the ensemble, i being the index of the current input sample, and t being the index of the current tree being processed. Alternatively, the order of the loops can also be exchanged:</p><p>for t ∈ {0, . . . , T − 1} do for i ∈ {0, . . . , I − 1} do tree traversal(t, i) end for end for</p><p>The latter code fragment will involve higher spatial and temporal locality properties in relation to the trees that are being processed in the outer loop because each tree structure will be processed during a longer continuous period of time, whereas this applies in a similar way to the input samples for the former code fragment. Although the final prediction result will be the same in both cases, the two loop orders can result in different prediction speeds on a given computer system.</p><p>If the predict function uses SIMD instructions to process multiple trees in parallel or multiple samples within an input batch as was discussed in the previous section, then the loop variable t of the 'tree loop' respectively i of the 'input loop' will be incremented by the number of tree traversals that are processed in parallel in each loop iteration using SIMD instructions, denoted here by p. In case the number of trees within an ensemble would not be a multiple of p then this can be resolved by 'padding' the ensemble with additional trees that do not impact the final prediction results (e.g., zero leaf labels). Alternatively, the 'remaining' trees can be processed by non-simd-vectorized predict functions. The same principle can be applied to the input batch in case of SIMD parallelization over the input samples.</p><p>In addition to SIMD vectorization, the predict function can also be accelerated using multithreading. As part of the experiments that are presented in the next section, one of the two loops in the above code fragments will be parallelized using OpenMP <ref type="bibr" coords="7,122.92,275.74,14.35,8.82" target="#b36">[38]</ref>. If the tree loop is parallelized, special precautions have to be taken to prevent race conditions to occur when the results of two parallel tree traversals that process the same input sample are added to the (intermediate) prediction results of that sample. These precautions (e.g., an OpenMP reduction clause) can, however, negatively affect the performance gain that is achieved through multithreading.</p><p>Considering the two possible combinations of the tree and sample loops as inner and outer loops, the three possible applications of OpenMP to these loops (outer loop, inner loop, no application), and the three possible applications of SIMD vectorization (vectorized processing of multiple trees for one input sample, vectorized processing of multiple input samples for a single tree, no application), then this results in a total of 2 × 3 × 3 = 18 possible combinations. The loop order will now be represented by a two character combination ti or it for an outer tree/inner input sample loop respectively outer input sample/inner tree loop. If a loop is parallelized using OpenMP, then the corresponding character will be written as uppercase. If SIMD vectorization is applied to parallelize the processing of input samples or trees then the corresponding character will be underlined. For example, a predict function involving a 'tree outer loop' and 'sample inner loop' with the latter being parallelized using OpenMP, also using SIMD vectorization to simultaneously process multiple trees for a single input sample is represented by the character combination tI.  <ref type="bibr" coords="7,92.13,647.21,12.48,7.06" target="#b37">[40]</ref> class. 2 28 8250 K 2750 K SUSY <ref type="bibr" coords="7,88.39,655.64,12.48,7.06" target="#b38">[41]</ref> class. 2 18 3750 K 1250 K Covertype <ref type="bibr" coords="7,100.23,664.07,12.48,7.06" target="#b39">[42]</ref> class. 7 54 11.3 K 3.8 K YearPredictionMSD <ref type="bibr" coords="7,130.08,672.50,12.48,7.06" target="#b40">[43]</ref> regr.</p><p>-90 463 K 51 K</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VII. EXPERIMENTS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Setup</head><p>A large number of experiments were performed using the publicly available classification and regression datasets listed in Table <ref type="table" coords="7,349.22,126.40,3.12,8.82">I</ref> that are frequently used in publications for benchmarking inference algorithms. Multiple gradient boosting and random forest models with various tree count and depth combinations were trained for each dataset using XGBoost 1.7.4, LightGBM 3.3.5, and Scikit-Learn 1.2.2. The trained models were both serialized using pickle and exported to ONNX format. The resulting files were then loaded for performing inference experiments with the native runtime (i.e., the scheme that was used to train the model), with ONNX Runtime 1.14.1 and with our inference function. The LightGBM models were also scored using lleaves 1.0.0.</p><p>The experiments were carried out on a single node of a shared-memory NUMA system, having 128GB of main memory and two Intel ® Xeon ® Gold 6230 CPUs running at 2.10GHz. Each CPU had 20 cores, dedicated 32KB L1 and 1MB L2 caches and a shared 27.5MB L3 cache, and supported AVX2 and AVX-512 SIMD instructions. The system was running Ubuntu 20.04.6 LTS. As discussed in Section II, the inference function was implemented as a C++ extension module that is accessed through a Python script. The C++ code was compiled using gcc 9.4.0 with the -O3 flag. All timing measurements were performed as part of the Python script. For each model many prediction requests were executed such that the test data available for the corresponding data sets as listed in Table <ref type="table" coords="7,372.37,396.42,3.12,8.82">I</ref> was covered at least once by all batches and such that there were at least 64 prediction requests for each batch size. The batches were selected in various ways from the test data, but the exact order and alignment did not appear to have much impact on the measured performance. Finally, the arithmetic mean was determined over all measured predict times for each given batch size.</p><p>Inference is typically executed as part of an application framework, implying that in addition to the predict function other tasks are executed on the CPU, which also consume computer resources and therefore could degrade predict performance. It is assumed that there are mechanisms in place (e.g., by setting processor affinity attributes) that dedicate one or multiple cores to the inference task and that the execution of the application framework will not significantly impact the predict operation nor affect decision-tree data stored in the caches of those cores. This seems to be in line with the way in which experimental results are obtained and presented by most of the published related work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Dynamic predict function selection</head><p>Fig. <ref type="figure" coords="7,342.75,634.55,4.68,8.82" target="#fig_8">9</ref> shows the average predict time (latency) per input sample that was measured on the test system for four singlethreaded predict functions implemented as part of the ODF scheme that involve various ways of parallelization using AVX2 SIMD instructions as described in Section VI, for a range of batch sizes. Each function is identified using the representation of the inner/outer loop, SIMD vectorization and multithreading defined in that same section. The model was trained using XGBoost for the epsilon dataset with the number of trees, T , tree depth, d, and number of CPU threads, thr, listed in Fig. <ref type="figure" coords="8,168.43,129.25,3.51,8.82" target="#fig_8">9</ref>. Fig. <ref type="figure" coords="8,198.06,129.25,9.36,8.82" target="#fig_9">10</ref> shows a similar graph for 12 multithreaded predict functions (also for ODF and implemented using AVX2 instructions) for a model trained for the HIGGS dataset. Both figures illustrate that there can be considerable differences in the performance of the predict functions for the same batch sizes.</p><p>Intuitively it can be expected that for short batch sizes, which provide less options to parallelize over the input samples, predict functions that parallelize traversals over multiple trees using either SIMD vectorization and/or multithreading will perform better. This can be seen clearly in Fig. <ref type="figure" coords="8,277.50,241.78,4.68,8.82" target="#fig_8">9</ref> for batch sizes below 8 samples, for which predict functions ti and it, which use SIMD vectorization to process multiple trees in parallel, both perform well. It is interesting to see in Fig. <ref type="figure" coords="8,285.92,275.49,7.80,8.82" target="#fig_9">10</ref>, that when in addition also multithreading is enabled over the tree loop (functions Ti and iT), the performance becomes worse in comparison to ti and it. The latter can be explained by realizing that the multithreading over the tree loop will introduce additional tree structures into the cache, which can result in cache conflicts ('thrashing') between the parallel tree traversals which consequently degrades performance. The extent to which these cache conflicts occur between parallel tree traversals depends on several factors, including obviously the number of parallel traversals, the size of each tree and the number of active paths (e.g., the heatmap in Fig. <ref type="figure" coords="8,275.67,399.11,3.38,8.82" target="#fig_4">5</ref>). In a similar way, when tree traversals are parallelized to process multiple input samples, then the size of these samples (i.e., the number of features) and how these samples are accessed can also result in cache conflicts and affect performance. The selection of the best predict function taking into account these effects, is automatically done based on benchmarking data as was described in Section II.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Comparison with other schemes</head><p>In this section the performance of the inference function that is proposed in this paper and comprises the various components discussed in the previous sections is compared to state-of-the-art algorithms. Figures <ref type="figure" coords="8,217.85,545.00,37.41,8.82" target="#fig_12">11 to 13</ref> show the measured performance expressed as average predict latency per input sample for three models trained and scored using XGBoost, LightGBM and Scikit-Learn (random forest) as described in Section VII-A. The graphs also show the inference performance for the ONNX Runtime library and for the dynamically selected OBF and ODF predict functions implemented using AVX2 and AVX-512 SIMD instructions.</p><p>The OBF and ODF schemes outperform XGBoost, Light-GBM, Scikit-Learn, and ONNX Runtime throughout the entire range of batch sizes, with the largest performance gain occurring for short batch sizes. The latter was to be expected, given that most decision-tree algorithms are optimized for processing  larger batch sizes. The fact that OBF and ODF also achieve the best performance for longer batch sizes, is clearly due to the dynamic predict function selection, which also appears to be very effective in this case.</p><p>Table <ref type="table" coords="8,347.41,498.29,6.24,8.82">II</ref> shows performance results, in terms of latency per sample, for a large variety of model parameters, batch sizes and number of threads. This table consists of five horizontal sections, one for each dataset listed in Table <ref type="table" coords="8,502.69,532.01,2.73,8.82">I</ref>, and three vertical sections corresponding to XGBoost, LightGBM and Scikit-Learn, respectively. Each intersection of a horizontal and vertical table section corresponds to a model that is trained using one of the three schemes for one of the five datasets.   which show the measured average prediction times per sample for the native runtime, for the ONNX Runtime library, for lleaves (LightGBM models only), and for OBF and ODF, respectively, for four different batch sizes (the maximum batch size for scoring models trained using the Covertype dataset was reduced because of the limited number of test samples -see Table <ref type="table" coords="9,361.17,72.73,2.86,8.82">I</ref>). The last row shows the model sizes in bytes, which equal the serialized (pickled) file sizes, except for the ONNX Runtime library which does not support serialization and for which the ONNX file size is used instead, and except for lleaves for which the size of the exported binary ELF file is used. The best (i.e., smallest) latency and model size values are highlighted using a bold font.</p><p>Because random forests can involve deeper trees than gradient boosting models <ref type="bibr" coords="9,417.09,162.66,14.35,8.82" target="#b15">[16]</ref>, the latter models (XGBoost, LightGBM) were trained for a larger number of shallower trees and the former (Scikit-Learn) for fewer but deeper trees. It also appeared that for several experiments involving multithreading, Scikit-Learn and lleaves performed better using single-threaded operation. Although these two schemes do not support an automatic reduction of the number of actually used threads to improve performance, we decided to list the better single-threaded latency values (marked with an '*') for both schemes in Table <ref type="table" coords="9,385.83,263.80,6.24,8.82">II</ref> for having a fairer comparison. For the same reason, we also limited the number of threads used for scoring the Scikit-Learn models.</p><p>As can be seen from Table <ref type="table" coords="9,439.81,297.55,5.72,8.82">II</ref>, the dynamically selected OBF and ODF predict functions outperform all other schemes across all models. Performance gains of one to two orders of magnitude are achieved for single-sample prediction compared to XGBoost, LightGBM and Scikit-Learn, and a factor two to ten for longer batches for most models. The AVX2 implementations of OBF and ODF predict functions outperform ONNX Runtime on average by more than a factor four and lleaves by about a factor three for the models in Table <ref type="table" coords="9,496.45,387.45,5.72,8.82">II</ref>. The AVX-512 implementations of the OBF and ODF predict functions outperform the AVX2 implementations on average by about a factor 1.5. Table II also shows that for all models, OBF or ODF achieve the smallest (serialized) model sizes.</p><p>Detailed analysis and further experiments have revealed that compared to a non-parallel implementation of the OBF and ODF predict functions, the performance was improved by approximately a factor 2 and 3 by only using AVX2 or AVX-512 SIMD vectorization, respectively, by about a factor 6 when only using multithreading, and by a factor of 11.4 and 14.2 when using both multithreading and AVX2 or AVX-512 SIMD vectorization, respectively. Note that these are average values for all experiments listed in Table <ref type="table" coords="9,479.49,533.57,5.72,8.82">II</ref>. These numbers can change substantially for individual models, batch sizes and number of CPU threads.</p><p>For determining the average latency numbers listed in Table II from the measured prediction latencies, the following coefficients of variation (standard deviation divided by mean) were observed for the respective batch sizes 1, 128, 1024 and 8192 (2048 for the Covertype models): 1.2, 0.20, 0.071, and 0.027. Because delays can be amortized more easily over longer batches, obviously the shortest batch sizes show the most variability. This is also reflected in the observed 95th and 99th percentiles which were on average 28%, 20%, 9.4% and 4.5%, respectively 67%, 59%, 13%, and 4.8% greater than the mean value. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VIII. CONCLUSIONS</head><p>In this paper, we have presented the OBF and ODF tree structures that combine the advantages of traditional breadthfirst and depth-first trees, namely compactness and ease of processing, with the support for deeper trees by removing the need for the decision trees to be perfect trees that have the disadvantage of growing exponentially with the tree depth. The two schemes can be accelerated efficiently using SIMD vectorization, applying partition-level and node-level iterations, respectively, to handle parallel traversals that do not complete at the same time. Furthermore, the ODF scheme includes a mechanism for improving the spatial locality properties of the data structure by exploiting node-level access probabilities.</p><p>The OBF and ODF schemes are implemented as part of a decision tree inference function which can import decision tree models that are trained using different frameworks and exported in formats such as PMML or ONNX. At model import time, the inference function selects which of the two schemes is used and determines the corresponding parameters.</p><p>A key innovation of the inference function is the dynamic selection of the predict function at predict time from a predetermined collection, each applying a different combination of SIMD vectorization and multithreading to perform multiple tree traversals in parallel. This selection is based on model and compute platform parameters as well as predict-time parameters such as input batch size and the number of CPU threads, and is guided by benchmarking data.</p><p>An extensive number of experiments have shown that this concept achieves substantial performance gains over stateof-the-art decision-tree inference algorithms, while it can efficiently handle a wide range of model parameters and application requirements, including those of emerging applications requiring real-time predictions for individual samples. Additionally, the OBF and ODF structures realize a sizeable decrease in model size, which can be a key feature for cases where many models need to be scored for multiple users in parallel, for example, in a cloud environment.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,238.80,199.02,139.24,7.06;2,93.30,71.39,164.37,120.49"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Block diagram of inference function.</figDesc><graphic coords="2,93.30,71.39,164.37,120.49" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,125.08,176.68,106.54,7.06;4,60.11,197.33,67.70,54.51"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Breadth-first decision tree.</figDesc><graphic coords="4,60.11,197.33,67.70,54.51" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,108.01,344.50,140.68,7.06;4,60.11,251.59,67.70,54.39"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Partitioned breadth-first decision tree.</figDesc><graphic coords="4,60.11,251.59,67.70,54.39" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="4,129.92,408.65,96.86,7.06"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Partition data structure.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="5,104.84,187.79,101.13,7.06;5,83.67,81.84,56.38,66.69"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Depth-first decision tree.</figDesc><graphic coords="5,83.67,81.84,56.38,66.69" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="5,242.34,187.79,139.13,7.06;5,401.53,187.79,133.72,7.06;5,239.44,124.93,85.24,56.87"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. 'Remapped' depth-first decision tree. Fig. 7. Optimized depth-first decision tree.</figDesc><graphic coords="5,239.44,124.93,85.24,56.87" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="6,92.29,247.94,171.46,7.06;6,192.44,71.22,88.46,165.50"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. SIMD vectorization for multiple tree traversals.</figDesc><graphic coords="6,192.44,71.22,88.46,165.50" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="6,69.39,282.55,226.63,8.82;6,60.02,293.63,235.99,8.98;6,60.02,304.86,95.97,8.98;6,66.21,317.88,229.81,9.10;6,78.85,329.40,25.09,8.82;6,66.21,340.36,229.82,9.10;6,78.85,351.88,100.40,8.82;6,66.21,362.83,229.81,9.10;6,78.85,374.35,102.89,8.82;6,66.21,385.31,194.16,9.10;6,66.21,396.55,229.82,9.10;6,78.85,408.06,217.17,8.82;6,78.85,419.30,217.17,8.82;6,78.85,430.54,122.71,8.82;6,66.21,441.50,229.81,9.10;6,78.85,453.02,217.17,8.82;6,78.85,464.25,217.17,8.82;6,78.85,475.49,69.46,8.82;6,66.21,486.45,229.81,9.10;6,78.85,497.97,217.17,8.82;6,78.85,509.21,217.17,8.82;6,78.85,520.16,205.84,9.10;6,69.39,533.30,226.63,9.10;6,60.02,544.82,236.00,8.82;6,60.02,556.06,235.99,8.82;6,60.02,567.30,235.98,8.82;6,60.02,578.53,235.99,8.82;6,60.02,589.77,146.86,8.82;6,69.39,600.87,226.63,8.98;6,60.02,612.27,235.99,8.82;6,60.02,623.50,235.99,8.82;6,60.02,634.74,236.00,8.82;6,60.02,645.98,235.99,8.82;6,60.02,656.94,235.99,9.10;6,60.02,668.45,235.99,8.82;6,60.02,679.69,235.99,8.82"><head>Fig. 8</head><label>8</label><figDesc>Fig. 8 illustrates a common set of steps and vectors for implementing SIMD-based traversal functions for the OBF and ODF tree structures: 1 Load offset(s) of root node(s) into current-node-offsets vector. 2 Load feature selectors and thresholds for the current nodes (gather instruction). 3 Extract feature values from current input sample(s) based on feature-selectors vector. 4 Compare feature-values and thresholds vectors. 5 Only for ODF, update the compare-results vector basedon the node-level compare types defined by the flag bits that are extracted from the most-significant featureselector bits (see Section IV-B). 6 Generate a node-offset-increments vector, that will be used to update the current-node-offsets vector, from the compare-results vector and a right-child-offsetincrements vector. 7 Update current-node-offsets vector using the node-offsetincrements vector. If the parallel tree traversal is completed, retrieve the results from the current node offsets in the data structure, otherwise iterate steps 2 to 7 . In step 3 , the feature values are extracted from the current input sample in case of parallelization over trees, and from successive input samples within the input batch in case of parallelization over input samples. The actual loops that will cover all trees in the ensemble and all input samples within a batch will be discussed in Section VI.For the OBF scheme, the right-child-offset-increments vector comprises only elements equal to 1. These elements only need to be added to the current-node-offsets vector if the corresponding comparison result is negative. This can be implemented using masked add operations (e.g., AVX-512) or similar operations. This addition is executed as part of step 7 , which first shifts the current-node-offsets vector to the left by one in order to multiply the node offsets by two as described</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="8,368.07,230.15,128.60,7.06"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Single-threaded predict functions.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="8,368.69,411.80,127.35,7.06"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Multithreaded predict functions.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="9,120.88,229.96,114.47,7.06"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Comparison with XGBoost.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="9,118.38,409.74,119.47,7.06"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. Comparison with LightGBM.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="9,116.31,588.19,123.62,7.06"><head>Fig. 13 .</head><label>13</label><figDesc>Fig. 13. Comparison with Scikit-Learn.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="10,268.73,72.73,80.27,15.49"><head>TABLE II EXPERIMENTAL RESULTS</head><label>IIRESULTS</label><figDesc></figDesc><table /></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 14:39:36 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="11,77.32,90.43,218.82,7.06;11,77.32,98.73,218.83,7.18;11,77.32,107.29,47.57,7.06" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Problems in the analysis of survey data, and a proposal</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Morgan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Sonquist</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the American Statistical Association</title>
+		<imprint>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="page" from="415" to="434" />
+			<date type="published" when="1963">1963</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,116.07,218.83,7.06;11,77.32,124.37,218.83,7.19;11,77.32,132.80,157.52,7.18" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">A modal search technique for predictive nominal scale multivariate analysis</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">C</forename><surname>Messenger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Mandell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the American Statistical Association</title>
+		<imprint>
+			<biblScope unit="volume">67</biblScope>
+			<biblScope unit="page" from="768" to="772" />
+			<date type="published" when="1972">1972</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,141.58,218.83,7.19;11,77.32,150.01,129.74,7.18" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Classification and Regression Trees</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Breiman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Friedman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">A</forename><surname>Olshen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">J</forename><surname>Stone</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1984">1984</date>
+			<pubPlace>Wadsworth</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,158.79,218.84,7.19;11,77.32,167.35,47.57,7.06" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Bagging predictors</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Breiman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Machine Learning</title>
+				<imprint>
+			<date type="published" when="1996">1996</date>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="123" to="140" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,176.13,218.83,7.06;11,77.32,184.55,107.00,7.06" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Arcing the edge</title>
+	</analytic>
+	<monogr>
+		<title level="m">Statistics Department</title>
+				<imprint>
+			<date type="published" when="1997">1997</date>
+		</imprint>
+		<respStmt>
+			<orgName>University of California at Berkeley</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Tech. Rep. 486</note>
+</biblStruct>
+
+<biblStruct coords="11,77.32,193.21,218.83,7.18;11,77.32,201.64,146.82,7.19" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Stochastic gradient boosting</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Friedman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computational Statistics and Data Analysis</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page" from="367" to="378" />
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,210.54,218.83,7.06;11,77.32,218.84,156.40,7.19" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Greedy function approximation: A gradient boosting machine</title>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of Statistics</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page" from="1189" to="1232" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,227.63,218.83,7.18;11,77.32,236.05,218.83,7.18;11,77.32,244.61,28.09,7.06" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Random decision forests</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">K</forename><surname>Ho</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of 3rd International Conference on Document Analysis and Recognition</title>
+				<meeting>3rd International Conference on Document Analysis and Recognition</meeting>
+		<imprint>
+			<date type="published" when="1995">1995</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="278" to="282" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,253.26,218.83,7.18;11,77.32,261.82,36.34,7.06" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Random forests</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Breiman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Machine Learning</title>
+				<imprint>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="page" from="5" to="32" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,270.60,218.83,7.06;11,77.32,279.03,198.86,7.06" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">State of data science and machine learning 2021</title>
+		<author>
+			<persName coords=""><surname>Kaggle</surname></persName>
+		</author>
+		<ptr target="https://www.kaggle.com/kaggle-survey-2021" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,287.81,218.83,7.06;11,77.32,296.24,218.83,7.06;11,77.32,304.54,218.84,7.18;11,77.32,312.97,120.36,7.18" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Tahoe: Tree structureaware high performance inference engine for decision tree ensemble on GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Sixteenth European Conference on Computer Systems</title>
+				<meeting>the Sixteenth European Conference on Computer Systems</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="426" to="440" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,321.87,218.83,7.06;11,77.32,330.30,218.83,7.06;11,77.32,338.60,218.83,7.19;11,77.32,347.03,177.99,7.18" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Scalable inference of decision tree ensembles: Flexible design for CPU-FPGA platforms</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Owaida</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Alonso</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th International Conference on Field Programmable Logic and Applications</title>
+				<meeting>the 27th International Conference on Field Programmable Logic and Applications</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,355.94,218.83,7.06;11,77.32,364.37,218.83,7.06;11,77.32,372.67,218.83,7.18;11,77.32,381.10,165.74,7.19" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A tensor compiler for unified machine learning prediction serving</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Nakandala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Saur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G.-I</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Karanasos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Curino</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Weimer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Interlandi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation</title>
+				<meeting>the 14th USENIX Conference on Operating Systems Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,390.00,218.83,7.06;11,77.32,398.31,218.84,7.18;11,77.32,406.86,177.31,7.06" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Treelite: Toolbox for decision tree deployment</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Li</surname></persName>
+		</author>
+		<ptr target="https://www.amazon.science/publications/treelite-toolbox-for-decision-tree-deployment" />
+	</analytic>
+	<monogr>
+		<title level="m">SysML</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.32,415.64,218.82,7.06;11,77.31,424.07,218.83,7.06;11,77.31,432.37,218.83,7.18;11,77.31,440.93,16.86,7.06" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Efficient realization of decision trees for real-time inference</title>
+		<author>
+			<persName coords=""><forename type="first">K.-H</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Hakert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Buschjäger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C.-L</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-K</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Morik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-J</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Embed. Comput. Syst</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,449.71,218.84,7.06;11,77.31,458.14,218.83,7.06;11,77.31,466.44,218.83,7.18;11,77.31,474.87,80.70,7.18" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Realization of random forest for real-time evaluation through tree framing</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Buschjager</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K.-H</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Morik</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE International Conference on Data Mining (ICDM)</title>
+				<meeting>the IEEE International Conference on Data Mining (ICDM)</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="19" to="28" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,483.77,218.83,7.06;11,77.31,492.20,218.83,7.06;11,77.31,500.50,218.83,7.18;11,77.31,509.06,87.28,7.06" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Parallel traversal of large ensembles of decision trees</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Lettich</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lucchese</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">M</forename><surname>Nardini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Orlando</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Perego</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Tonellotto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Venturini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="2075" to="2089" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,517.84,218.83,7.06;11,77.31,526.27,218.83,7.06;11,77.31,534.57,218.83,7.18;11,77.31,543.00,218.83,7.18;11,77.31,551.55,13.11,7.06" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Post-learning optimization of tree ensembles for efficient ranking</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lucchese</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">M</forename><surname>Nardini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Orlando</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Perego</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Silvestri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Trani</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 39th International ACM SIGIR Conference on Research and Development in Information Retrieval</title>
+				<meeting>the 39th International ACM SIGIR Conference on Research and Development in Information Retrieval</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="949" to="952" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,560.33,218.83,7.06;11,77.31,568.76,218.83,7.06;11,77.31,577.06,218.83,7.18;11,77.31,585.49,218.83,7.18;11,77.31,594.05,13.11,7.06" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">RapidScorer: Fast tree ensemble evaluation by maximizing compactness in data level parallelization</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><forename type="middle">Y</forename><surname>Zou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the 24th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="941" to="950" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,602.83,218.83,7.06;11,77.31,611.26,218.83,7.06;11,77.31,619.56,218.83,7.18;11,77.31,627.98,159.13,7.18" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Treebeard: An optimizing compiler for decision tree based ML inference</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Prasad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Rajendra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Rajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Govindarajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">U</forename><surname>Bondhugula</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 55th IEEE/ACM International Symposium on Microarchitecture (MICRO)</title>
+				<meeting>the 55th IEEE/ACM International Symposium on Microarchitecture (MICRO)</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="494" to="511" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,636.89,218.84,7.06;11,77.31,645.32,50.06,7.06" xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Scikit-learn, machine learning in Python</title>
+		<ptr target="https://scikit-learn.org" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,654.10,218.83,7.06;11,77.31,662.53,51.83,7.06" xml:id="b21">
+	<monogr>
+		<title level="m" type="main">XGBoost, scalable and flexible gradient boosting</title>
+		<ptr target="https://xgboost.ai" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,77.31,671.31,218.83,7.06;11,77.31,679.74,76.99,7.06;11,313.85,72.77,235.99,7.06;11,331.01,81.20,65.44,7.06" xml:id="b22">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Lightgbm</forename></persName>
+		</author>
+		<ptr target="https://dmg.org/pmml" />
+		<title level="m">Predictive model markup language (PMML)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,89.59,218.83,7.06;11,331.01,98.02,26.43,7.06" xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Open neural network exchange (ONNX)</title>
+		<ptr target="https://onnx.ai" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,106.45,218.83,7.06;11,331.01,114.88,97.54,7.06" xml:id="b24">
+	<monogr>
+		<ptr target="https://developer.nvidia.com/blog/sparse-forests-with-fil" />
+		<title level="m">Sparse Forests with FIL</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,123.31,218.83,7.06;11,331.01,131.73,218.83,7.06;11,331.01,140.04,218.83,7.18;11,331.01,148.59,62.99,7.06" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Tree-based machine learning performed in-memory with memristive analog CAM</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Pedretti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">E</forename><surname>Graves</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Serebryakov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Sheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Foltin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">P</forename><surname>Strachan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,157.02,218.83,7.06;11,331.01,165.32,218.84,7.18;11,331.01,173.75,172.33,7.19" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Runtime optimizations for treebased machine learning models</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Asadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">P</forename><surname>Vries</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Knowledge and Data Engineering</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="issue">9</biblScope>
+			<biblScope unit="page" from="2281" to="2292" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,182.30,218.83,7.06;11,331.01,190.61,218.83,7.18;11,331.01,199.03,218.83,7.18;11,331.01,207.59,67.05,7.06" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Cache-conscious runtime optimization for ranking ensembles</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 37th International ACM SI-GIR Conference on Research and Development in Information Retrieval</title>
+				<meeting>the 37th International ACM SI-GIR Conference on Research and Development in Information Retrieval</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="1123" to="1126" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,216.02,218.83,7.06;11,331.01,224.45,48.02,7.06" xml:id="b28">
+	<monogr>
+		<ptr target="https://github.com/siboehm/lleaves" />
+		<title level="m">lleaves GitHub repository</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,232.87,218.83,7.06;11,331.01,241.30,170.61,7.06" xml:id="b29">
+	<monogr>
+		<title level="m" type="main">Optimize and accelerate machine learning inferencing and training</title>
+		<author>
+			<persName coords=""><surname>Onnx Runtime</surname></persName>
+		</author>
+		<ptr target="https://onnxruntime.ai" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,249.73,218.83,7.06;11,331.01,258.16,218.83,7.06;11,331.01,266.46,218.83,7.19;11,331.01,274.89,218.83,7.18;11,331.01,283.32,130.79,7.18" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">QuickScorer: A fast algorithm to rank documents with additive ensembles of regression trees</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lucchese</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">M</forename><surname>Nardini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Orlando</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Perego</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Tonellotto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Venturini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 38th International ACM SIGIR Conference on Research and Development in Information Retrieval</title>
+				<meeting>the 38th International ACM SIGIR Conference on Research and Development in Information Retrieval</meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="73" to="82" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,291.87,218.83,7.06;11,331.01,300.17,218.83,7.18;11,331.01,308.60,218.83,7.18;11,331.01,317.16,59.56,7.06" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Exploiting CPU SIMD extensions to speed-up document scoring with tree ensembles</title>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 39th International ACM SI-GIR Conference on Research and Development in Information Retrieval</title>
+				<meeting>the 39th International ACM SI-GIR Conference on Research and Development in Information Retrieval</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="833" to="836" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,325.59,218.83,7.06;11,331.01,334.02,218.84,7.06;11,331.01,342.32,218.82,7.18;11,331.01,350.74,218.84,7.19;11,331.01,359.30,28.09,7.06" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Early exit optimizations for additive machine learned ranking systems</title>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">B</forename><surname>Cambazoglu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Zaragoza</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Chapelle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Degenhardt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Third ACM International Conference on Web Search and Data Mining</title>
+				<meeting>the Third ACM International Conference on Web Search and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="411" to="420" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,367.73,218.83,7.06;11,331.01,376.03,218.83,7.19;11,331.01,384.46,218.83,7.18;11,331.01,392.89,95.27,7.18" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">CatBoost: Unbiased boosting with categorical features</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Prokhorenkova</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Gusev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Vorobev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">V</forename><surname>Dorogush</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Gulin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 32nd International Conference on Neural Information Processing Systems</title>
+				<meeting>the 32nd International Conference on Neural Information Processing Systems</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="6639" to="6649" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,401.44,218.83,7.06;11,331.01,409.74,218.83,7.18" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Oblivious decision trees and abstract cases</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Langley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Sage</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Working Notes of the AAAI-94 Workshop on Case-Based Reasoning</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,418.30,218.84,7.06;11,331.01,426.60,218.83,7.18;11,331.01,435.03,218.83,7.18;11,331.01,443.46,93.19,7.19" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">BDT: Gradient boosted decision tables for high accuracy and scoring efficiency</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Lou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Obukhov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1893" to="1901" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.01,452.01,218.83,7.06;11,331.01,460.44,107.39,7.06" xml:id="b36">
+	<monogr>
+		<title level="m" type="main">The OpenMP API specification for parallel programming</title>
+		<ptr target="https://www.openmp.org" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.02,485.73,218.83,7.06;11,331.02,494.16,193.98,7.06" xml:id="b37">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Whiteson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">"</forename><surname>Higgs</surname></persName>
+		</author>
+		<ptr target="https://archive.ics.uci.edu/dataset/280/higgs" />
+		<title level="m">UCI Machine Learning Repository</title>
+				<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.02,502.58,218.83,7.06;11,331.02,511.01,161.19,7.06" xml:id="b38">
+	<monogr>
+		<ptr target="https://archive.ics.uci.edu/dataset/279/susy" />
+		<title level="m">SUSY,&quot; UCI Machine Learning Repository</title>
+				<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.02,519.44,218.83,7.06;11,331.02,527.87,203.31,7.06" xml:id="b39">
+	<monogr>
+		<title level="m" type="main">UCI Machine Learning Repository</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Blackard</surname></persName>
+		</author>
+		<ptr target="https://archive.ics.uci.edu/dataset/31/covertype" />
+		<imprint>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+	<note>Covertype</note>
+</biblStruct>
+
+<biblStruct coords="11,331.02,536.30,218.83,7.06;11,331.02,544.73,218.83,7.06;11,331.02,553.15,69.08,7.06" xml:id="b40">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Bertin-Mahieux</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">"</forename><surname>Yearpredictionmsd</surname></persName>
+		</author>
+		<ptr target="https://archive.ics.uci.edu/dataset/203/yearpredictionmsd" />
+		<title level="m">UCI Machine Learning Repository</title>
+				<imprint>
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

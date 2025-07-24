@@ -1,0 +1,1600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">MemoriaNova: Optimizing Memory-Aware Model Inference for Edge Computing</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2025-03-19">2025-03-19</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.95,123.75,74.86,9.82"><forename type="first">Renjun</forename><surname>Zhang</surname></persName>
+							<email>renjun_zhang@sjtu.</email>
+							<idno type="ORCID">0009-0002-3022-5174</idno>
+						</author>
+						<author>
+							<persName coords="1,45.65,136.70,88.06,9.82"><forename type="first">Tianming</forename><surname>Zhang</surname></persName>
+							<email>zhang_tianming@sjtu.edu.cn</email>
+							<idno type="ORCID">0009-0001-9530-8344</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Zinuo</forename><surname>Cai</surname></persName>
+							<idno type="ORCID">0000-0001-9373-8474</idno>
+						</author>
+						<author>
+							<persName coords="1,335.72,537.12,37.80,7.22"><forename type="first">Dongmei</forename><surname>Li</surname></persName>
+							<idno type="ORCID">0000-0002-5462-5773</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,175.55,48.38,9.82"><forename type="first">Ruhui</forename><surname>Ma</surname></persName>
+							<email>ruhuima@sjtu.edu.cn</email>
+							<idno type="ORCID">0000-0001-9592-8490</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Buyya</forename><surname>Rajkumar</surname></persName>
+							<idno type="ORCID">0000-0001-9754-6496</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution" key="instit1">ZINUO CAI</orgName>
+								<orgName type="institution" key="instit2">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">DONGMEI LI</orgName>
+								<orgName type="institution">Beijing Institute of Microelectronics Technology</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="department">Computer Science</orgName>
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">BUYYA RAJKUMAR</orgName>
+								<orgName type="institution">The University of Melbourne</orgName>
+								<address>
+									<settlement>Melbourne</settlement>
+									<country key="AU">Australia</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="laboratory">Shanghai Key Laboratory of Scalable Computing and Systems, and National Key Laboratory of Ship Structural Safety. Authors&apos; Contact Information: Renjun Zhang</orgName>
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="institution" key="instit1">edu.cn; Tianming Zhang</orgName>
+								<orgName type="institution" key="instit2">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff8">
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff9">
+								<orgName type="institution">Beijing Institute of Microelectronics Technology</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff10">
+								<orgName type="institution">Shanghai Jiao Tong University</orgName>
+								<address>
+									<settlement>Shanghai</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff11">
+								<orgName type="institution" key="instit1">Buyya Rajkumar</orgName>
+								<orgName type="institution" key="instit2">The University of Melbourne</orgName>
+								<address>
+									<settlement>Melbourne</settlement>
+									<region>Victoria</region>
+									<country key="AU">Australia</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">MemoriaNova: Optimizing Memory-Aware Model Inference for Edge Computing</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">22</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<biblScope unit="page" from="1" to="25"/>
+							<date type="published" when="2025-03-19" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">B660F8F549E8A1AEA08F2C61DCA4581C</idno>
+					<idno type="DOI">10.1145/3701997</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>CCS Concepts:</term>
+					<term>Hardware → Emerging tools and methodologies</term>
+					<term>• Computing methodologies → Distributed computing methodologies</term>
+					<term>Machine learning</term>
+					<term>Optimization algorithms</term>
+					<term>Deep learning, edge computing, memory optimization, distributed system, inference latency optimization</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In recent years, deploying deep learning models on edge devices has become pervasive, driven by the increasing demand for intelligent edge computing solutions across various industries. From industrial automation to intelligent surveillance and healthcare, edge devices are being leveraged for real-time analytics and decision-making. Existing methods face two challenges when deploying machine learning models on edge devices. The first challenge is handling the execution order of operators with a simple strategy, which can lead to a potential waste of memory resources when dealing with directed acyclic graph structure models. The second challenge is that they usually process operators of a model one by one to optimize the inference latency, which may lead to the optimization problem getting trapped in local optima.</p><p>We present MemoriaNova, comprising BTSearch and GenEFlow, to solve these two problems. BTSearch is a graph state backtracking algorithm with efficient pruning and hashing strategies designed to minimize memory overhead during inference and enlarge latency optimization search space. GenEFlow, based on genetic algorithms (GA), integrates latency modeling, and memory constraints to optimize distributed inference latency. This innovative approach considers a comprehensive search space for model partitioning, ensuring robust and adaptable solutions. We implement BTSearch and GenEFlow and test them on 11 deep-learning models with different structures and scales. The results show that BTSearch can reach 12% memory optimization compared with the widely used random execution strategy. At the same time, GenEFlow reduces inference latency by 33.9% in distributed systems with four-edge devices.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="25" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>The artificial intelligence paradigm has experienced significant advancement and widespread applications across various domains. Deep learning (DL) methods <ref type="bibr" coords="2,335.59,172.61,16.36,9.03" target="#b44">[45]</ref> have achieved stateof-the-art results in many machine learning applications <ref type="bibr" coords="2,286.77,184.56,14.83,9.03" target="#b37">[38]</ref>, such as object detection, image classification, and face recognition <ref type="bibr" coords="2,187.56,196.52,14.83,9.03" target="#b21">[22]</ref>. Traditionally, the inference task <ref type="bibr" coords="2,339.25,196.52,16.35,9.03" target="#b32">[33]</ref> of DL models occurs on high-performance cloud servers, necessitating large data transfers and incurring substantial time overhead. To address this challenge, deploying models on edge devices near data sources becomes common <ref type="bibr" coords="2,121.28,232.39,14.84,9.03" target="#b9">[10]</ref>. Consequently, researchers explore distributed inference mechanisms that distribute inference workloads across multiple edge devices to mitigate latency <ref type="bibr" coords="2,386.73,244.34,14.82,9.03" target="#b33">[34]</ref>. Beyond reducing network transmission load, deploying DL models at the edge confers additional benefits <ref type="bibr" coords="2,45.77,268.25,14.84,9.03" target="#b38">[39]</ref>. These include reduced latency, enhanced privacy and security, improved reliability, and offline capability. These advantages make edge deployment an attractive option for various applications requiring real-time or near-real-time processing and decision-making capabilities.</p><p>However, inference tasks are often computationally intensive, and the limited resources of edge devices can exacerbate overall latency. For example, in a smart home, the camera processes real-time video data and recognizes visitors. Subsequently, the camera sends the visitor information to the smart speaker, which provides voice announcements based on the recognition results and performs corresponding actions as instructed by the homeowner, such as opening the door or sending an alert. Meanwhile, environmental sensors continuously monitor indoor air quality, temperature, and humidity, adjusting the operation of air conditioners or humidifiers based on the analysis results to ensure a comfortable and healthy home environment. These devices require complex deep learning models for inference, which exceeds the capabilities of a single device.</p><p>Although distributed inference <ref type="bibr" coords="2,183.99,411.71,16.35,9.03" target="#b27">[28]</ref> has attracted much attention, several challenges remain to be solved. The first challenge is addressing the memory constraint of edge devices during model distribution. Edge devices <ref type="bibr" coords="2,153.34,435.63,16.36,9.03" target="#b43">[44]</ref> such as intelligent surveillance cameras <ref type="bibr" coords="2,336.87,435.63,10.45,9.03" target="#b4">[5]</ref>, intelligent door locks <ref type="bibr" coords="2,45.78,447.58,14.84,9.03" target="#b10">[11]</ref>, smart TVs <ref type="bibr" coords="2,112.45,447.58,10.44,9.03" target="#b8">[9]</ref>, and smart speakers <ref type="bibr" coords="2,211.78,447.58,16.36,9.03" target="#b29">[30]</ref> typically have limited memory. In contrast, several sources of memory overhead exist when conducting distributed inference. A DL model can be abstracted as a directed acyclic graph (DAG), which means there may be more than one reasonable operator execution order of the model. According to Reference <ref type="bibr" coords="2,319.10,483.44,14.83,9.03" target="#b39">[40]</ref>, operator execution order influences the lifetime of intermediate tensors of the model, leading to variable memory overhead. Besides, partitioning a model involves operator partition while an operator's type and partition number cause additional memory overhead. Existing methods like in References <ref type="bibr" coords="2,385.42,519.31,16.34,9.03" target="#b47">[48]</ref> and <ref type="bibr" coords="2,423.94,519.31,16.35,9.03" target="#b45">[46]</ref> only consider latency optimization, not memory constraints. HMCOS <ref type="bibr" coords="2,336.39,531.26,16.34,9.03" target="#b39">[40]</ref> reduces the memory footprint of inference tasks by adjusting operator execution order but only on a single GPU. Moreover, traversing the topological sorting of directed acyclic graphs is a P-Complete (PC) problem mathematically <ref type="bibr" coords="2,111.12,567.13,10.44,9.03" target="#b1">[2]</ref>. Efficiently conducting this search remains a challenging problem.</p><p>The second challenge lies in determining a suitable model partition configuration to minimize inference latency. Common distributed strategies for model partitioning encompass horizontal, vertical, and hybrid partitioning. We delve into addressing model partitioning issues under the hybrid partitioning strategy, which considers both horizontal and vertical partitioning, along with the interdependence among operators. This process involves considerations of dimension, partition number, and proportions. The partitioning of operators impacts both computing and communication time, thereby influencing overall inference latency. Moreover, the decision on operator partitioning affects the following adjacent operators. Thus, partitioning a model for reduced inference latency presents a complex optimization problem. Unfortunately, existing solutions often provide coarse-grained approximations. For instance, References <ref type="bibr" coords="3,385.07,113.16,16.36,9.03" target="#b45">[46]</ref> and <ref type="bibr" coords="3,424.11,113.16,16.36,9.03" target="#b15">[16]</ref> address the operator partition problem individually, which may not guarantee optimal results. These methods typically focus on a single operator partition dimension. Additionally, Reference <ref type="bibr" coords="3,45.95,149.03,16.36,9.03" target="#b15">[16]</ref> employs an approximation method to transform the optimization problem into a linear program, which introduces errors and diminishes effectiveness.</p><p>To address the challenges mentioned above during the optimization of inference latency of DL models on memory-constrained distributed edge devices, we conduct a memory-time cost analysis of operator partitioning in model parallelism and propose two optimization methods, namely BTSearch and GenEFlow. BTSearch graph state backtracking algorithm traverses all topological sorting in a DAG structure model. It guarantees to find the optimal operator execution order of a DL model. The result execution order has minimal overall memory overhead without considering operator partition, which enlarges the search space for operator partition optimization. We apply an efficient pruning strategy on BTSearch. The strategy prunes the branches with no potential for better results according to the state of the computation graph. GenEFlow is a GA-based method aiming to optimize the inference latency while satisfying the memory constraints of the edge devices. We model the partition decision of the whole model as a chromosome and consider different operator partition dimensions, thus constructing a more comprehensive search space. GenEFlow can search for the optimal solution from a global perspective through these designs. Moreover, we use constraint violation parameters to guarantee memory constraints.</p><p>Our main contributions are as follows: <ref type="bibr" coords="3,215.87,340.31,10.57,9.03" target="#b0">(1)</ref> We analyze the memory-time cost of operator partitioning and operator execution order in model parallelism. Specifically, we examine the available partitioning methods for each operator and their memory overhead, calculating the memory consumption for different partitioning methods to determine the optimal partitioning method for each operator. Additionally, we analyze the impact of operator execution order on memory, finding that adjusting the execution order under memory constraints reduces the maximum memory overhead and increases the available memory space per device. <ref type="bibr" coords="3,259.86,412.04,10.57,9.03" target="#b1">(2)</ref> We propose the BTSearch, which employs efficient pruning strategies to optimize the execution order of operators in DL models with DAG structures. BTSearch reduces the overall memory overhead and provides a more extensive search space for optimizing inference latency. (3) We introduce the GenEFlow method, which optimizes inference latency for distributed edge devices without altering the model computation results. GenE-Flow models the model partition decision as a chromosome and employs GAs for optimization. GenEFlow considers two dimensions of operator partitioning and covers a more extensive search space, offering a more comprehensive search space and robust solution than traditional methods. (4) We merge BTSearch and GenEFlow into MemoriaNova and validate it on 11 deep-learning models. Our results demonstrate significant improvements in memory optimization and inference latency reduction. Specifically, BTSearch achieves up to 12% overall memory optimization, while GenEFlow reduces model inference latency by 33.9% in our distributed edge device system.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background and Motivation</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Operator Partition Methods and Memory Overhead Analysis</head><p>2.1.1 Operator Partition Optimization. Operator partition optimization <ref type="bibr" coords="3,346.53,593.03,16.36,9.03" target="#b40">[41]</ref> is vital for efficient model inference <ref type="bibr" coords="3,116.76,604.98,11.72,9.03" target="#b3">[4]</ref> on edge devices. It breaks down complex tasks into smaller distributable operators across multiple devices, reducing inference latency and maximizing resource utilization. Determining the correspondence among the input data, operator parameters, and output data becomes necessary to accomplish this objective. The convolution operator's partitioning along the feature map's high dimension is illustrated in Figure <ref type="figure" coords="4,285.94,281.64,3.44,9.03" target="#fig_0">1</ref>(a), with no processing done on the channel dimension, remaining consistent with the original operator.</p><p>After partitioning, the output tensors are executed on different devices, each storing a copy of the operator parameters (Kernel). The input tensor is partitioned according to the convolution computation rules, resulting in a small amount of duplicate data, as shown in the gray area in Figure <ref type="figure" coords="4,74.20,341.42,3.44,9.03" target="#fig_0">1</ref>(a). Following this partitioning process, the subsequent equation provides the calculation formula for the input data range when partitioning the feature map's high dimension for the convolution operator. If the output tensor's high dimension range is [x s , x e ), then the corresponding input tensor range is given by the following:</p><formula xml:id="formula_0">[x s × S − P, (x e − 1) × S + K h − P],<label>(1)</label></formula><p>where S represents the Stride, P represents the Padding, and K h represents the height of the convolution kernel.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1.2">Analysis of Memory Overhead in Operator</head><p>Partitioning. Partitioning operators <ref type="bibr" coords="4,423.94,447.16,16.35,9.03" target="#b26">[27]</ref> impact computation time and memory. Concurrently, parallel execution <ref type="bibr" coords="4,337.04,459.11,16.34,9.03" target="#b19">[20]</ref> reduces computation time but may raise memory overhead. Additionally, partitioning strategy <ref type="bibr" coords="4,351.41,471.08,16.34,9.03" target="#b28">[29]</ref> and device setup determine the balance between time and memory. While parallel execution reduces the computation time by distributing the workload, it may introduce additional memory overhead due to data duplication and synchronization requirements across devices. The choice of partitioning strategy and device configuration plays a crucial role in determining the tradeoff between computation time and memory overhead. Figure <ref type="figure" coords="4,191.94,530.85,15.61,9.03" target="#fig_0">1(b)</ref> shows convolutional output channel partitioning, where kernels partition without redundant data. Each device retains a copy of the input tensor. Various partitioning methods result in different memory overheads due to input tensor and kernel memory footprints.</p><p>To determine the optimal partitioning method, we perform memory calculations for the obtained operator execution order. We consider different partitioning optimization methods from a memory perspective. The partitioning optimization methods for various types of operators and the resulting memory overhead are shown in Table <ref type="table" coords="4,278.10,614.54,3.41,9.03" target="#tab_1">1</ref>. In the table, "cout" denotes "Channel out, " and "fmh" denotes "Feature map height. " "len" represents the length of the vector. The operators listed in   <ref type="table" coords="5,375.79,223.13,4.63,9.03" target="#tab_1">1</ref> indicates that partitioning the operator will not incur additional memory overhead. The memory analysis and the handling of the partitioning overhead for convolutional operators are particularly beneficial, given that convolutional operators typically have a large parameter size in DL models.</p><p>Taking the convolution operator as an example, we introduce the method for determining its partitioning. Assuming there are n devices in the distributed system, each device has an available memory limit:</p><formula xml:id="formula_1">M = [m 1 , m 2 , . . . ,m n ].<label>(2)</label></formula><p>The total available memory limit for each device is as follows:</p><formula xml:id="formula_2">M f ull = n i=1 m i .<label>(3)</label></formula><p>For the current convolution operation Conv, memory allocation includes M in for input, M out for output, M ker nel for parameters, and M other s for intermediate tensors. The operator is partitioned into k 1 partitions along the output channel dimension, respecting device memory limits. We have the following:</p><formula xml:id="formula_3">M other s + k 1 * M in + M ker nel + M out ≤ M f ull .<label>(4)</label></formula><p>The current convolution operator is partitioned along the height dimension of the output tensor feature map, with the number of partitions being k 2 . Similarly,</p><formula xml:id="formula_4">M other s + M in + k 2 * M ker nel + M out ≤ M f ull .<label>(5)</label></formula><p>Based on the current operator parameters and the current state of the computation graph, we can calculate the values of k 1 and k 2 and then round them down to yield the final results. When k 1 &lt; k 2 , we adopt output channel (cout) partitioning for the current convolution. Otherwise, we assume feature map height (fmh) partitioning.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Analysis of Operator Execution Order on Memory Overhead</head><p>In DL model inference, the operator arrangement in computational graphs impacts memory usage. Sequential execution causes fluctuating memory footprints, especially in models with multi-branch structures. Variability arises from memory allocation for tensors, parameters, and results. Memory remains constant for simpler models with one input/output tensor. However, complex models with multi-branch structures introduce memory management challenges. Different operator execution orders impact memory overhead, emphasizing the need for efficient topology sorting. Optimization can reduce memory overhead, leading to smoother inference processes. The following example illustrates this process.   The model in Figure <ref type="figure" coords="6,138.44,435.70,4.63,9.03" target="#fig_1">2</ref>  For a float32 data type, the memory space for tensor T 0 is calculated as follows:</p><formula xml:id="formula_5">Mem(T 0 ) = 1 × 3 × 224 × 224 × 4/1, 024 = 588KB.</formula><p>Similarly, the memory space occupied by tensors T 1 to T 4 is 12,544, 6,272, 6,272, and 6,272 KB, respectively. Based on the earlier analysis of memory overhead during the operator execution process, we divide the entire inference process into several execution stages and interval stages. The execution stage represents the process where an operator is actively performing computations. In contrast, the interval stage corresponds to the period when one operator has completed execution, and the execution of the next operator has not yet commenced. Memory overhead during execution and interval stages is denoted as M e and M i , respectively. The memory overhead analysis for all valid operator execution orders of the example model in Figure <ref type="figure" coords="6,111.19,591.12,4.63,9.03" target="#fig_1">2</ref> is provided in Table <ref type="table" coords="6,199.08,591.12,3.41,9.03" target="#tab_2">2</ref>. The values in the table round to the nearest whole integer. Taking Order1 as an example, the inference process proceeds as follows: (1) Before the execution of the first operator, only the input tensor T 0 is present in memory, with a memory overhead of M i1 = M(T 0 ) = 588 KB; (2) during Conv1's execution, memory usage is M e1 = M(T 0 ) + M(T 1 ) + M(Conv1 ker nel ) = 13, 139 KB; (3) before the execution of the second operator MemoriaNova: Optimizing Memory-Aware Model Inference for Edge Computing 3:7</p><p>Conv2, the intermediate result tensors to be stored in memory are T 0 and T 1 , with a memory overhead of M i2 = T 0 + T 1 = 588 + 12, 544 = 13, 132 KB; (4) during the execution of the second operator Conv2, in addition to the memory space required for Conv2 computation, tensor T 0 needs to be additionally saved. The memory overhead is calculated as  <ref type="formula" coords="7,67.06,220.76,3.52,9.03" target="#formula_13">8</ref>) during the execution of the fourth operator Sum, assuming an in-place addition method where the input and output tensors share the same memory space, the memory overhead is calculated as M e4 = T 2 + T 3 = 6, 272 + 6, 272 = 12, 544 KB; and (9) after the completion of all operators' computations, the output tensor T 4 needs to be stored in memory, with a memory overhead of</p><formula xml:id="formula_6">M e2 = M(T 1 ) + M(T 2 ) + M(Conv2 ker nel ) + M(T 0 ) = 12,</formula><formula xml:id="formula_7">M i5 = T 4 = 6, 272 KB.</formula><p>In Order1, the maximum memory overhead is 19,692 KB. Order2 and Order3 are similar to Or-der1, and their maximum memory overhead is 25,376 KB. Hence, optimizing memory usage by adjusting the order of operator execution is crucial in limited memory scenarios. This minimizes overhead, increases memory space, and reduces computation time, especially for intensive tasks like partitioning operators. Efficient topology sorting becomes pivotal in managing memory overhead and enhancing model performance in constrained environments. Therefore, adjusting execution order impacts memory overhead, highlighting the importance of efficient topology sorting for improved performance. Even with similar maximum overhead for Order2 and Order3, differences in local memory overhead exist. Computation time improvement in inference tasks can involve sacrificing memory space via operator slicing. Additionally, the number, method, and ratio of sliced sub-operators cause computation time and additional memory overhead. Adjusting operator execution order under limited memory can reduce maximum memory overhead, increase available memory space, and reduce computation time through operator slicing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Design 3.1 Overview</head><p>This section introduces MemoriaNova, a comprehensive approach designed to optimize DL models for edge devices. Within MemoriaNova, we present two core algorithms: BTSearch and GenEFlow. BTSearch focuses on exploring the computational graph of the target DL model to identify the optimal operator execution order, thereby expanding the search space for GenEFlow. Subsequently, based on hardware specifications and the determined execution order, GenEFlow utilizes the information acquired from BTSearch to optimize the model's parallel configuration. This process aims to minimize inference latency while adhering to the memory constraints of each device. Figure <ref type="figure" coords="7,106.01,562.08,4.63,9.03" target="#fig_5">4</ref> provides an overview of our methodology, illustrating the seamless integration of BTSearch and GenEFlow to achieve enhanced DL performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">BTSearch: A Backtracking Algorithm for Optimizing Model Operator Topological</head><p>Sorting To reduce the memory overhead from the sequence of operator executions, we bring up BTSearch. BTSearch is a graph state backtracking algorithm that aims to find an operator execution order that minimizes memory overhead and widens optimization opportunities for operator slicing efficiency gains.</p><p>The computational graph of a DL model can be represented as G = {V, E}, where V is vertices and E is edges. An edge e i j ∈ E signifies a connection, implying op i precedes op j during inference. Sorting all operators ensures no path from op j to op i , termed topological sort. Computing sorts for a graph is a PC problem, typically requiring exponential time. In the worst-case scenario, it requires exponential time to traverse all topological sorts of a directed acyclic graph. Fortunately, multi-branch DL models typically exhibit a concatenated parallel structure, where the topological structure comprises several small-scale parallel structures. The fact results in a relatively smaller number of possible topological sorts. For ease of algorithm description, the following definitions are provided.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Definition 3.1 (Operator State).</head><p>In the process of an inference task for a DL model, the state of an operator is defined as a Boolean variable, indicating whether the operator has completed its computation. For example, b i denotes the state of the operator op i .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Definition 3.2 (Computational Graph State).</head><p>In the process of an inference task for a DL model, the states of all operators in the computational graph constitute the current state of the graph, denoted as State G = b 1 , b 2 , . . . ,b N (where N is the number of operators in the computational graph).</p><p>We aim to optimize operator execution to maximize available memory during model inference, expanding efficiency optimization opportunities. The evaluation metric Metric(Order i ) sums the memory overhead of each operator in a topological order: The pseudocode for BTSearch is shown in Algorithm 1. BTSearch's input is the computation graph of a DL model, and its output is the optimal topological order under a certain metric condition. BTSearch perform a backtracking iteration on the graph that has not yet started computing. Based on the current state of the graph, all legal next states are derived and recursively processed in sequence. As the main steps, BTSearch initializes the graph state and the current local order first. And then, it calls the backtracking algorithm to obtain the optimal order. BTSearch's backtracking recursive function first determines the recursion exit. If all operators have been executed, i.e., State G = true, true, . . . , true, then it is necessary to check whether the metric value of the currently found topological order is better. If so, then update the current best result. Then, the function returns. Parse the current graph state. Based on the current graph state, the status of each operator, the list of currently executable operators, and the tensor information stored in memory can be parsed. Loop through the current list of executable operators. For each operator in the list, assume the operator is chosen as the next to be executed, add it to the current local order list, and update the graph state. Recursively call the backtracking function with the parameters updated in the previous step. Finally, the regional order list and graph state were restored to the state before the last operator was chosen.</p><formula xml:id="formula_8">Metric(Order i ) = N j=1 (Mem f ull − Mem op j e ).</formula><p>The graph state parsing function calculates the list of currently executable operators and the memory overhead based on the current graph state for all operators in the graph that still need to be executed loop through. Identify all directed edges that have the operator as the endpoint; for each such edge, increment the in-degree of that operator by one. Finally, Check the in-degree of all operators, adding operators with an in-degree of zero to the list of executable operators.</p><p>Additionally, the input tensors of all operators with an in-degree of zero are set as intermediate result tensors, and the memory overhead of all intermediate result tensors is calculated based on the current graph state.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.1">Pruning Optimization Based on State</head><p>Marking. During backtracking, repeated state transitions may lead to the same graph state. As the backtracking is depth-first, if a certain state recurs, then all subsequent iterations from that point have been processed, indicating subsequent local optimal solutions. The graph state updates with each recursive call, enabling the following optimization: Maintain a state marking dictionary outside the function to record encountered graph states and their local metric values. Before the loop, check if the state is recorded in the statemarking dictionary. If the state is recorded, then prune if the current metric exceeds the recorded value; otherwise, continue execution as usual. Finally, update the dictionary after the loop.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.2">Hash Optimization for the Parsing Function.</head><p>Even with previous optimization, redundant computations may occur during backtracking. Hash optimization eliminates redundant computations by recording graph states and parsing results in a dictionary. Check if parsing results exist in the dictionary; if found, return them; otherwise, compute and register the results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.3">Time Complexity Analysis. The algorithm has an exponential time complexity of O(2 n )</head><p>for general directed acyclic graphs. In practice, most deep learning models exhibit a topology characterized by a series-parallel graph. In such a graph, it is assumed that the structure consists of N parallel graphs concatenated, with each parallel graph containing M branches and each branch comprising K nodes. After pruning, each serial subgraph is processed only once. Best-case time complexity per subgraph is O(M * K), while the worst-case is O(K M ), and overall complexity is</p><formula xml:id="formula_9">O(N * M * K) ∼ O(N * K M ).</formula><p>In practice, with limited branches and operators in serial subgraphs, the algorithm's execution time is acceptable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">GenEFlow: GA-based Model Parallel Scheduling Optimization Method</head><p>To decrease the inference latency of the target model by optimizing the model parallel schedule, we devise GenEFlow, a GA-based method, to optimize model parallel schedules to reduce inference latency. GenEFlow operates in a router-edge devices setup, considering broadcast and point-to-point communication. It abstracts model operator partition optimization as a chromosome configuration. Furthermore, GenEFlow constructs a search space, defines an objective function, and iteratively refines configurations using GAs. It ensures legal configurations and employs a GA Solution to minimize model inference latency in distributed systems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.1">Search Space Construction.</head><p>We optimize the model's slicing configuration using a GA instead of optimizing operators individually. Operators execute synchronously, involving data transfer and computation stages. An operator's execution time is linearly related to its scale. By uniformly partitioning operators, parallel execution time decreases. Memory constraints guide the maximum splits per operator. Memory calculations inform optimal partitioning methods, detailed in Table <ref type="table" coords="10,81.81,551.41,3.41,9.03" target="#tab_1">1</ref>. The computation of convolutions, typically large, benefits from efficient partitioning, reducing memory overhead.</p><p>Chromosome Encoding. Based on the current graph state, k 1 and k 2 are calculated from relevant parameters. If k 1 &lt; k 2 , then partitioning occurs along output channels (cout). Otherwise, it is along feature map height (fmh). Chromosome encoding for all operators' partitioning configurations is necessary to invoke GAs. For a single operator op i , its partitioning encoding vector is defined as follows: The encoding vector needs to satisfy the following constraints:</p><formula xml:id="formula_10">ì x i = [x 0 , x 1 , . . . , x n ].<label>(6)</label></formula><formula xml:id="formula_11">x i ∈ N, i ∈ [0, . . . , n], (<label>7</label></formula><formula xml:id="formula_12">)</formula><formula xml:id="formula_13">x 0 = 0,<label>(8)</label></formula><p>x n = lenдth, (9)</p><formula xml:id="formula_14">x 0 ≤ x 1 ≤ . . . x n , (<label>10</label></formula><formula xml:id="formula_15">)</formula><p>where lenдth is the size of the operator along the partitioning dimension, and n is the number of edge devices in the system. The partitioning encoding vector assigns tasks to devices based on output tensor indices, which are crucial for constraint calculations. Note that when x i−1 = x i , it signifies that device d i will not be assigned the computation task for the current operator. This characteristic is used in the subsequent calculation of constraint violation parameters.</p><p>From the partitioning vector of a single operator, where each partitioning operator corresponds to a single gene in the GA's chromosome representation, the chromosome encoding for the entire model's partitioning configuration can be obtained as</p><formula xml:id="formula_16">ì X = [ ì x 1 , ì x 2 , . . . , ì x N ].<label>(11)</label></formula><p>Through chromosome encoding analysis, we form a comprehensive search space. It fulfills distributed system memory needs and encompasses varied operator partitioning configurations. This space is denoted as a set as follows:</p><p>{ ì X } s.t. ( <ref type="formula" coords="11,235.04,436.69,3.28,9.03" target="#formula_11">7</ref>),( <ref type="formula" coords="11,248.15,436.69,3.28,9.03" target="#formula_13">8</ref>),( <ref type="formula" coords="11,261.26,436.69,3.28,9.03">9</ref>), <ref type="bibr" coords="11,271.09,436.69,13.11,9.03" target="#b9">(10)</ref>. <ref type="bibr" coords="11,425.27,436.69,15.21,9.03" target="#b11">(12)</ref> In Section 3.2, considering the example model, Figure <ref type="figure" coords="11,270.48,453.44,4.63,9.03" target="#fig_6">5</ref> illustrates the relationship between chromosome encoding and model partitioning configuration. With three devices, operators execute in Order1: Conv1, Conv2, Conv3, Sum. In the figure, x i, j denotes the partitioning vector elements for the ith operator. The range [x i, j−1 , x i, j ) assigns computation to the jth device. If x i, j−1 = x i, j , then it implies device j is not involved in operator i computation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.2">Objective Function.</head><p>The GA adopted in GenEFlow is a single-objective optimization GA, and the optimization target is the single inference latency. Therefore, for any given valid chromosome encoding, it must be mapped to inference latency. This mapping is the optimization objective function.</p><p>Device Modeling Optimization and Communication. In our distributed edge device system, each of the n edge devices is linked via a router. Two communication methods are employed: point-topoint and broadcast. Point-to-point involves direct communication between two devices through the router. Broadcast sends data from one device, transmitting it to multiple devices through the router. This modeling mirrors real-world scenarios like interconnected smart home devices.</p><p>Chromosome Encoding to Inference Time Mapping. The algorithm calculates inference latency by processing operators sequentially in a deep-learning model. Its execution phase is divided into data synchronization and computation phases. The predecessor operators of the operator op i are defined as pred(op i ). For any op j ∈ pred(op i ), there exists an edge e ji in the computation graph G. Similarly, the successor operators of the operator op i are defined as succ(op i ). For any op j ∈ succ(op i ), there exists an edge e i j in the computation graph G. During data synchronization, the algorithm determines the distribution of output tensors from predecessor operators to calculate data transfer amounts. The operator type and its partitioning method have an impact on communication mode (broadcast or point-to-point). This information is encapsulated in the chromosome ì X for inference latency calculation. (i) If op i adopts cout partitioning, then data from op j is synchronized to all devices. The total transferred parameters amount to M out (op j ), incrementing all Comm[j] elements. (ii) If op i uses fmh and op j cout partitioning, then devices need partial feature map data. Data transfer is computed based on feature map indices, excluding portions saved on d k . Transferred data amount: M out (op j ) × C comm /C j f ull × (x j e − x j s ). (iii) If both op i and op j use fmh partitioning, then the data required by op i on d k as input and currently not held by the current device d k needs to be transferred from other devices to d k . As for the transferred data, it is calculated as M out (op j ) × H comm /H j f ull , where H comm = max(x j e − x j s , max(0, x j e − x j k ) + max(0, x j k−1 − x j s )). The communication volume for convolutional operators is depicted in Figure <ref type="figure" coords="13,366.70,518.46,3.41,9.03">6</ref>. Cases (a) and (b) represent Case (i), while (c) and (d) correspond to Cases (ii) and (iii). In (c) and (d), the characteristic of convolution determines that there may be duplicated data in Input i , marked by shaded areas. For other scenarios, M need in op j 's output and M hold on d k are computed. Data to be transferred are M need − M hold . Broadcast communication is used if data are required by multiple devices, considering a single transmission's data volume.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Calculation of Data Transfer</head><p>Communication Time and Computation Time. According Algorithm 2, the total data communication volume for op i transmitted in device k is CommNum+ = Comm[j] <ref type="bibr" coords="13,350.66,602.09,13.67,9.08">[k]</ref>, where op j is the predecessor operator of op i , and Comm[j] <ref type="bibr" coords="13,214.72,614.04,14.38,9.08">[k]</ref> indicates the data amount transferred from the ith predecessor operator to device d j . Then, the total communication time of operator op i is calculated as CommTime←CommNum / D.Bandwidth.</p><p>We assume that for a specific operator and device, the execution time is linearly related to the size of the input or output feature map. Therefore, a linear function Y i can be used to calculate the computation time of operator op i on device d k as CompTime = Y i (x i,k − x i,k−1 , op i ). Here, x i,k − x i,k−1 represents the part of the operator split on device d i corresponding to the partitioned dimension.</p><p>Therefore, the time expense for this operator op i on device k is DeviceTime = CommTime + CompTime, and the longest time spent on each device for operator op i is the time cost TmpTime i of this operator. Summing up, all operators' time yields the total inference latency FinishTime. When calculating the time cost of each operator op i , the communication time CommOpTime i generated by this segment is the communication time of that operator. Summing up the communication times of all operators gives GenEFlow the total communication time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.3">Constraint Violation Parameters.</head><p>We utilize the high-performance GA library Geatpy <ref type="bibr" coords="14,423.94,215.81,16.35,9.03" target="#b18">[19]</ref> to implement the optimization iteration process. In the iteration process of Geatpy, The constraint conditions considered are Legitimacy of chromosome parameters; (ii) Legitimacy of the total memory in the distributed system; and (iii) Legitimacy of memory on each device in the distributed system.</p><p>Only the chromosomes (model partitioning configurations) that pass all three legitimacy checks are considered legal. Constraint violation parameters define the degree of violation for a specific constraint in the optimization problem. For example, assuming a constraint in the optimization problem is a ≤ b, the constraint violation parameter corresponding to this constraint is a − b. The larger this value, the higher the degree of constraint violation.</p><p>Legitimacy of Chromosome Parameters. For the chromosome ì</p><formula xml:id="formula_17">X = [ ì x 1 , ì x 2 , . . . , ì x N ],</formula><p>where ì x i = [x i,0 , x i,1 , . . . , x i,n ], it corresponds to the partitioning configuration of the ith operator in the execution sequence. The parameters in it need to satisfy the constraint conditions given by ( <ref type="formula" coords="14,416.26,360.32,3.19,9.03" target="#formula_11">7</ref>), ( <ref type="formula" coords="14,431.81,360.32,3.19,9.03" target="#formula_13">8</ref>), <ref type="bibr" coords="14,45.48,372.27,9.57,9.03" target="#b8">(9)</ref>, and <ref type="bibr" coords="14,78.33,372.27,13.92,9.03" target="#b9">(10)</ref>. The constraint condition <ref type="bibr" coords="14,201.62,372.27,10.58,9.03" target="#b6">(7)</ref> is ensured by specifying that the parameters within the chromosome are integers when defining the optimization problem, and there is no need to add it to the constraint violation parameters. Constraint condition (8) corresponds to two constraint violation parameters,</p><formula xml:id="formula_18">cv 1,i = x i,0 , cv 2,i = −x i,0 .<label>(13)</label></formula><p>Similarly, constraint condition (8) corresponds to two constraint violation parameters,</p><formula xml:id="formula_19">cv 3,i = x i,n − lenдth, cv 4,i = lenдth − x i,n ,<label>(14)</label></formula><p>where lenдth is the size of op i in the corresponding partitioning dimension. Constraint condition <ref type="bibr" coords="14,45.48,487.07,15.21,9.03" target="#b9">(10)</ref> corresponds to n constraint violation parameters,</p><formula xml:id="formula_20">cv 5,i j = x i, j−1 − x i, j , j ∈ [1, 2, . . . , n]. (<label>15</label></formula><formula xml:id="formula_21">)</formula><p>Legitimacy of the Total Memory in the Distributed System. In Section 3.3.1, we discussed the impact of the total available memory in the distributed system on the upper limit of the number of partitions in the model partitioning configuration. Assuming the upper limit of the number of partitions for op i is k max , then op i corresponds to a constraint violation parameter,</p><formula xml:id="formula_22">cv 6,i = n − n j=1 I j − min(n, k max ), i ∈ [1, 2, . . . , N ],<label>(16)</label></formula><p>where</p><formula xml:id="formula_23">I j = 0 x i, j−1 = x i, j−1 1 x i, j−1 x i, j−1 . (<label>17</label></formula><formula xml:id="formula_24">)</formula><p>Legitimacy of Memory on Each Device in the Distributed System. During inference, each operator's execution on devices must adhere to device memory limits. Given the fixed execution order and result tensor storage on devices, memory consumption per operator on each device is derived from model partitioning configuration ì X . Assume device memory limits as M limits = [M l 1 , M l 2 , . . . , M ln ], where M li denotes the ith device's available memory. For the operator op i , it has a total of n constraint violation parameters on various devices,</p><formula xml:id="formula_25">cv 7,i j = M e,i j + M o,i j − M l j , j ∈ [1, 2, . . . n]. (<label>18</label></formula><formula xml:id="formula_26">)</formula><p>The memory consumption during operator execution on device d j is denoted as M e,i j , and M o,i j represents the memory consumed by other tensors on d j during op i execution. Based on the analysis in Section 3.2, it can be inferred that the memory overhead of operators during execution is always greater than or equal to that of the intermediate stages. Therefore, it is only necessary to ensure that the execution phase complies with the memory constraints.</p><p>The vector representing the constraint violation parameters for a single operator is given by</p><formula xml:id="formula_27">ì cv i = [cv 1,i , cv 2,i , cv 3,i , cv 4,i , cv 5,i1 , . . . , cv 5,in , cv 6,i , cv 7,i1 , . . . , cv 7,in ]. (<label>19</label></formula><formula xml:id="formula_28">)</formula><p>The vector representing the constraint violation parameters for the entire model is as follows:</p><formula xml:id="formula_29">ì CV = [cv 1 , cv 2 , . . . , cv N ]. (<label>20</label></formula><formula xml:id="formula_30">)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.4">GA Solving.</head><p>The model parallel scheduling problem seeks to minimize inference latency by optimizing partition vectors for each operator in the distributed system. GAs are well suited for this nonlinear optimization task. However, conventional crossover operations may disrupt superior chromosomes, affecting overall performance. Therefore, we adopt a single-objective GA with an elite preservation strategy. This approach initializes a large population and computes fitness based on latency. A new population is generated through crossover and mutation operators, preserving privileged individuals. The process continues until convergence or a specified generation limit is reached, resulting in optimized model parallel scheduling.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Evaluation</head><p>This section mainly presents the experimental results and analysis of the previously mentioned methods, divided into six parts. In Section 4.1, we introduce the configurations and settings of both the simulated and real environments. In Section 4.2, we select multiple DNN models and large language models (LLMs) to evaluate the memory optimization effectiveness of BTSearch compared to other methods. In Section 4.3, we compare the inference latency optimization of GenEFlow with other methods under the same configuration. The experiments assess the model inference efficiency of these methods without considering memory constraints. In Section 4.4, we set different device memory limitations to validate the minimum memory requirements for model inference optimization and evaluate the optimization effects of various methods. In Section 4.5, we evaluate the inference latency of GenEFlow across multiple models by altering the number of devices and heterogeneous configurations, analyzing how these factors impact model inference latency. In Section 4.6, we compare the inference latency optimization of GenEFlow with other methods in a real environment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Experimental Setup</head><p>Experiment Platforms. The parameters of the experimental platform and simulation configuration are shown in Table <ref type="table" coords="15,130.77,627.07,3.41,9.03" target="#tab_4">3</ref>. Our experiments are conducted in two distinct environments. The first scenario is a simulated environment using a local PC (CPU*8 @2.5GHz, 32GB RAM) to mimic Experiment Models. We select VGG13 <ref type="bibr" coords="16,219.52,339.95,14.84,9.03" target="#b34">[35]</ref>, ResNet50 <ref type="bibr" coords="16,285.56,339.95,14.84,9.03" target="#b12">[13]</ref>, InceptionV3 <ref type="bibr" coords="16,363.23,339.95,14.85,9.03" target="#b36">[37]</ref>, MobileNetV3 <ref type="bibr" coords="16,45.78,351.92,14.84,9.03" target="#b13">[14]</ref>, SqueezeNet <ref type="bibr" coords="16,120.14,351.92,14.84,9.03" target="#b17">[18]</ref>, GoogLeNet <ref type="bibr" coords="16,193.35,351.92,14.84,9.03" target="#b35">[36]</ref>, and RegNet <ref type="bibr" coords="16,269.45,351.92,16.35,9.03" target="#b30">[31]</ref> as the models. The models are pretrained models sourced from PyTorch.hub. They are converted to the .onnx format using the torch.onnx .export() command from PyTorch. Moreover, we also evaluate our framework on three LLMs, BERT <ref type="bibr" coords="16,99.66,387.78,10.44,9.03" target="#b6">[7]</ref>, GPT-2 <ref type="bibr" coords="16,144.88,387.78,14.84,9.03" target="#b22">[23]</ref>, and Qwen2 <ref type="bibr" coords="16,215.96,387.78,14.84,9.03" target="#b23">[24]</ref>. For running CNN models, the input data shape is <ref type="bibr" coords="16,45.78,399.73,10.37,9.03" target="#b0">[1,</ref><ref type="bibr" coords="16,58.64,399.73,6.83,9.03" target="#b2">3,</ref><ref type="bibr" coords="16,67.95,399.73,16.09,9.03">224,</ref><ref type="bibr" coords="16,86.53,399.73,15.71,9.03">224]</ref>, and for LLMs, the input data shape is <ref type="bibr" coords="16,262.38,399.73,10.37,9.03" target="#b0">[1,</ref><ref type="bibr" coords="16,275.24,399.73,15.71,9.03">128]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Memory Optimization Analysis during Inference Process</head><p>This experiment aims to validate the memory optimization method proposed in Section 3.2. The comparison of the method with different baselines is shown in Table <ref type="table" coords="16,326.66,447.13,3.41,9.03" target="#tab_5">4</ref>.</p><p>The adopted baselines are as follows: (i) Random, which randomly selects an executable operator each time; (ii) PEFT <ref type="bibr" coords="16,128.01,471.03,10.43,9.03" target="#b0">[1]</ref>, a heuristic algorithm optimizing for inference efficiency; and (iii) Greedy <ref type="bibr" coords="16,45.78,482.99,14.84,9.03" target="#b20">[21]</ref>, which selects the operator with the largest input tensor to execute each time, aiming to minimize memory consumption as much as possible.</p><p>BTsearch consistently achieves optimal results across all models. All methods yield the same for VGG13 and GPT-2 with a single valid topological order. Similarly, models like MobileNetV3, SqueezeNet, and EfficientNet-50, despite having branching structures, result in identical outcomes due to simplified operators. However, ResNet-50, InceptionV3, GoogLeNet, BERT, and Qwen2 variations occur. PEFT optimizes execution time, favoring larger-scale operators early in the order. Greedy selects operators based on input tensor size, outperforming PEFT. BTSearch guarantees optimal results by exploring all legal topological orders. Compared to random selection, BTSearch achieves up to a 12% improvement. To illustrate BTSearch's efficacy, we use GoogLeNet to compare memory overheads under Random and BTSearch. As shown in Figure <ref type="figure" coords="16,354.07,602.54,3.41,9.03">8</ref>, while initial stages show minimal optimization due to fixed orders, subsequent multi-branch DAG structures benefit from optimized execution, reducing memory usage and expanding optimization possibilities for inference latency. Next, we analyze the efficiency of the BTSearch algorithm. In models with multiple valid operator execution orders, compare the execution times of different methods. In addition, a comparison is made between the pruning frequency of the BTSearch algorithm and the total number of complete topological orderings searched. The comparative data are shown in Table <ref type="table" coords="17,368.27,423.37,3.41,9.03" target="#tab_6">5</ref>.</p><p>From the table, Random, PEFT, and Greedy optimize memory quickly, with time complexity O(N) for N model operators. BTSearch, despite higher time complexity, completes optimization and reaches the millisecond level of 10 3 ms, which is acceptable for fixed hardware environments and single inference tasks. Because the BTSearch method aims to optimize memory consumption, GenEFlow is provided with a broader search space to support more complex models and computational tasks. The "Pruned" and "Searched" columns in BTSearch show pruned and total searched orderings, respectively. BTSearch efficiently prunes orders that do not meet requirements based on graph states. Pruning reduces the search space significantly, considering fewer complete orderings and is especially effective when executed before many DAG operators start. Due to the lack of complex branching structures in GPT-2, the number of pruned orderings by BTSearch is 0. For the BERT and Qwen2 models, due to their complexity and the large number of operators, BTSearch prunes and searches a more significant number of orderings, resulting in better optimization. This approach ensures BTSearch navigates a manageable number of orderings, enhancing efficiency for complex models like InceptionV3, GoogLeNet, BERT, and Qwen2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Acceleration Optimization Analysis during Inference Process</head><p>The experiment evaluates the GenEFlow algorithm for model inference efficiency, excluding memory constraints. Inter-device bandwidth is limited to 2000 Mbps, and memory limits per device Here K fmh represents</p><formula xml:id="formula_31">N fmh i =1 (k fmh i + 1) D−1 , K cout represents N cout j =1 (k cout j + 1) D−1</formula><p>, and K len represents</p><formula xml:id="formula_32">N len l =1 (k len l + 1) D−1 .</formula><p>are set to 5000 MB, eliminating memory impact. GenEFlow parameters include a single-objective GA, elite preservation, 250,000 population size, 50 max iterations, 1e-6 convergence threshold, and 10 max convergence generations. These settings aim to optimize model partitioning for efficient distributed inference.</p><p>The GA search space upper bound S, as shown in Table <ref type="table" coords="18,333.39,338.42,3.41,9.03" target="#tab_7">6</ref>, can be expressed as</p><formula xml:id="formula_33">S = N fmh i (k fmh i +1) D−1 × N cout j (k cout j +1) D−1 × N len l (k len l +1) D−1 ,</formula><p>where k fmh i represents the output tensor size of the operators split by feature map height (fmh), k cout j represents the output channel size of the operators split by output channels (cout), k len l represents the tensor size of the operators split by output length (len), and D represents the number of distributed devices. Additionally, N fmh represents the number of operators split by feature map height (fmh), N cout represents the number of operators split by output channels (cout), and N len represents the number of operators split by output length (len). The table shows that the GPT-2, BERT, and Qwen2 models have a large search space due to their higher number of operators (Op Number). Consequently, the upper bounds of the search space for these models are much higher compared to models like VGG13 and ResNet50.</p><p>The comparison in Figure <ref type="figure" coords="18,162.65,471.52,4.63,9.03">7</ref> illustrates GenEFlow's superior inference latency without memory constraints. It outperforms CoEdge <ref type="bibr" coords="18,190.97,483.48,16.35,9.03" target="#b45">[46]</ref> by up to 33.9%. GenEFlow incurs minimal computational overhead and partitions each layer individually, enhancing its efficiency. In contrast, CoEdge optimizes layers individually, yielding inferior results holistically. Model size strongly correlates with inference latency. GenEFlow excels in optimizing complex models but produces similar results to CoEdge for smaller models like SqueezeNet. The slight dip in GenEFlow's performance for Incep-tionV3 may stem from longer chromosome encoding and inadequate population size, leading to local optima. The Efficient-b0 model, with minimal computational overhead, favors DeepThings, which achieves marginally better results than GenEFlow.</p><p>As shown in Figure <ref type="figure" coords="18,141.00,579.12,3.41,9.03">9</ref>, it compares the data transfer volume in the final operator scheduling obtained by the EfficientNet-b0 model under the GenEFlow and CoEdge methods. Compared to CoEdge, GenEFlow notably reduces communication by analyzing data transfer volumes, which is attributed to its holistic optimization objective encompassing computation and communication processes. The GA fosters offspring with lower latency, indirectly minimizing data communication during distributed inference.   <ref type="table" coords="20,80.60,278.32,4.63,9.03" target="#tab_8">7</ref> compares the optimization time for each method in this experiment. Except for GenE-Flow, all methods optimize the operators sequentially, resulting in faster optimization speeds at the second level. In contrast, the GenEFlow algorithm takes significantly longer, ranging from 1.7 to 36.4 hours. This is mainly due to using a genetic algorithm, which involves a lot of computation. In this experiment, the number of distributed devices is fixed at 4, so the chromosome encoding length in the GenEFlow algorithm is proportional to the number of model operators. Therefore, models with a more significant number of operators require more time for population initialization and individual fitness evaluation within the population.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Optimization Effect Analysis under Memory Limitation Conditions</head><p>We aim to validate the optimization effects of different methods on model inference efficiency while considering memory constraints. We set various device memory limitations to verify whether the optimization methods meet the specified memory constraints. If the memory requirements are met, then the inference acceleration effects of each model under memory constraints are analyzed as shown in Table <ref type="table" coords="20,121.32,447.38,3.41,9.03" target="#tab_9">8</ref>.</p><p>Prioritizing the adjustment of operator partitioning, GenEFlow optimizes inference memory overhead, facilitating efficient task execution even under stringent memory constraints. Memory thresholds are directly linked to the scale of model operators. CoEdge and GenEFlow minimize computational overhead, significantly reducing memory consumption compared to local and DeepThings' deployment methods. Tight memory constraints limit partitioning methods, reducing GenEFlow's search space and potential acceleration. GenEFlow adapts to varying memory constraints by considering device memory limits during GA application. Other methods lack memory consideration and remain fixed at specific thresholds, limiting their applicability and latency reduction even with increased memory availability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">Heterogeneous Device Scalability and Inference Latency Analysis</head><p>We evaluate GenEFlow's inference latency on VGG13, ResNet50, MobileNetV3, and EfficientNet-b0 models by changing the number of devices and heterogeneous device configurations. The communication bandwidth is 2000 MB/s, the memory limit for each device is 5000 MB, the number of distributed devices is four, and the CFLOPS of the devices for each device is set to 0.5. Figure <ref type="figure" coords="20,90.71,638.35,9.27,9.03" target="#fig_0">10</ref> shows that as the number of devices increases, the inference latency of the models The memory limit is applied to each device. × indicates that the inference task cannot be completed under this memory limit. -indicates that increasing memory will not improve the optimization effect. first increases and then decreases, reaching the lowest latency when the number of distributed devices grows to four. When the number of distributed devices exceeds four, the inference latency gradually increases because the increase in communication time between devices outweighs the reduction in computation time due to distributed inference. We then fixed the number of devices to four and varied the CFLOPS values of each device to test the inference latency of models under heterogeneous device configurations. As shown in Figure <ref type="figure" coords="21,295.07,531.96,7.64,9.03" target="#fig_0">11</ref>. "Heterogeneous Configuration" refers to the CFLOPS settings of the four devices. Configurations 1 through 7 correspond to the following CFLOPS settings: 1 (0.8, 0.8, 0.8, 0.8), 2 (0.8, 0.8, 0.8, 0.5), 3 (0.8, 0.8, 0.5, 0.5), 4 (0.8, 0.5, 0.5, 0.3), 5 (0.5, 0.5, 0.5, 0.3), 6 (0.5, 0.5, 0.3, 0.3), and 7 (0.3, 0.3, 0.3, 0.3). As the CFLOPS values decrease, the overall inference time of the models tends to decrease, particularly for the VGG13 and ResNet50 models, where the reduction in latency is most significant in Configurations 6 and 7.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.6">Analysis of Inference Acceleration on Heterogeneous Edge Devices</head><p>In a real environment, we compare the inference acceleration effects of different baselines on the models InceptionV3, ResNet50, Vgg19, SqueezeNet, and MobileNetV3. Each operator of these models can be executed individually in all hardware configurations. The baseline methods include the following: (1) Local, where inference tasks are performed individually on each core and the average is taken as the result; (2) DeepThings, as described previously; and (3) CoEdge, as described previously. Figure <ref type="figure" coords="22,162.22,268.25,9.27,9.03" target="#fig_11">12</ref> shows the inference acceleration effects under different hardware configurations, with the results normalized to GenEFlow. From the results, it can be seen that GeneFlow is able to achieve optimal inference latency optimization in most cases. Therefore, on heterogeneous edge devices, the GeneFlow method can significantly enhance the inference performance of the models.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Related Work</head><p>Optimizing DL models for deployment on edge devices. Deploying DL models on edge devices poses challenges due to limited resources. Lightweight models like MobileNets <ref type="bibr" coords="22,422.87,364.11,14.81,9.03" target="#b14">[15]</ref>, Single Shot Detector <ref type="bibr" coords="22,139.84,376.06,14.83,9.03" target="#b25">[26]</ref>, YOLO <ref type="bibr" coords="22,193.29,376.06,14.84,9.03" target="#b31">[32]</ref>, and SqueezeNet <ref type="bibr" coords="22,289.65,376.06,16.35,9.03" target="#b17">[18]</ref> are designed for edge deployment, utilizing techniques such as filter decomposition and specialized convolution filters to reduce computations while maintaining accuracy. Model compression methods, including parameter quantization, pruning, and knowledge distillation, aim to minimize accuracy loss in existing models. DeepIoT <ref type="bibr" coords="22,168.60,423.89,16.37,9.03" target="#b42">[43]</ref> offer pruning methods for IoT devices, enabling immediate deployment on edge devices. Knowledge distillation trains smaller models to mimic larger ones, while Fast Exiting provides approximate classification results by utilizing initial layer computations. Techniques like AdaDeep <ref type="bibr" coords="22,213.12,459.75,14.84,9.03" target="#b24">[25]</ref>, and DeepMon <ref type="bibr" coords="22,294.87,459.75,16.36,9.03" target="#b16">[17]</ref> combine compression methods to meet the accuracy and resource constraints. These methods aim to reduce model complexity for efficient inference on distributed edge devices while preserving computational integrity.</p><p>Distributed DL inference optimization. Deploying DL inference tasks across distributed systems involves optimizing efficiency through various strategies <ref type="bibr" coords="22,303.09,519.52,14.83,9.03" target="#b46">[47]</ref>. In the simplest approach, individual model operators are distributed across devices for sequential execution <ref type="bibr" coords="22,380.53,531.49,10.43,9.03" target="#b2">[3]</ref>, enhancing throughput via pipeline formation. Guo et al. <ref type="bibr" coords="22,235.89,543.44,14.70,9.03" target="#b11">[12]</ref> adopt hierarchical optimization, employing a GA to vertically partition models and reduce pipeline latency.</p><p>In scenarios where devices execute tasks serially, pipeline design aims to enhance computational throughput <ref type="bibr" coords="22,133.68,579.30,10.44,9.03" target="#b5">[6]</ref>. Alternatively, parallel execution partitions models into sub-models deployed across devices, leveraging internal parallelism for improved resource utilization and reduced latency.</p><p>DeepThings <ref type="bibr" coords="22,109.68,615.17,14.83,9.03" target="#b47">[48]</ref>, proposed by Zhao et al., adopt a classic model horizontal partitioning approach, dividing the model into independent sub-models to fully utilize each device's computational resources without inter-device data transmission overhead. <ref type="bibr" coords="23,178.99,77.29,14.83,9.03" target="#b45">[46]</ref>, which partitions model operators without overlap to minimize computational overhead. CoEdge employs inter-device communication for overlapping input data, dividing each operator execution phase into data transfer and execution phases. However, while efficient, CoEdge's optimization process may lead to suboptimal solutions due to its greedy approach. EdgeFlow <ref type="bibr" coords="23,131.73,125.12,16.35,9.03" target="#b15">[16]</ref> extends the theoretical analysis for heterogeneous distributed edge devices by considering data transfer and computation phases during operator partitioning. It converts partitioning problems into linear programming and adopts a greedy approach to achieve local optimality. However, EdgeFlow may need to pay more attention to the impact of operator execution orders on performance, potentially leading to suboptimal solutions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Zeng et al. introduce CoEdge</head><p>Optimization utilizing a model's directed acyclic graph structure. The optimization method utilizing DAG structures organizes tasks or dependencies into directed acyclic graphs to streamline computational processes efficiently. IOS <ref type="bibr" coords="23,261.63,208.80,11.71,9.03" target="#b7">[8]</ref> allowed parallel execution of operators within stages, employing a dynamic programming algorithm to find optimal execution schedules. However, its coarse optimization granularity limits scalability to distributed devices. HMCOS <ref type="bibr" coords="23,45.94,244.66,16.36,9.03" target="#b39">[40]</ref> optimized memory usage by simplifying DAG structures through a hierarchical perspective, reducing memory overhead during inference. AGO <ref type="bibr" coords="23,266.43,256.62,16.35,9.03" target="#b41">[42]</ref> partitioned computation graphs into subgraphs, optimizing operator execution efficiency for specific convolution operators. While effective, it is limited to certain convolution types and complex DAG handling. PEFT <ref type="bibr" coords="23,386.16,280.53,11.71,9.03" target="#b0">[1]</ref> scheduled DAG tasks onto heterogeneous devices, considering earliest start times and device completion times. However, it must address task division possibilities and may not fully optimize memory usage. Applying PEFT directly to DL models' DAG structure may underutilize device resources and provide suboptimal memory optimization results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Conclusion and Future Work</head><p>We propose MemoriaNova, a framework that includes two innovative algorithms, BTSearch and GenEFlow, for optimizing memory and inference latency in distributed deep learning on edge devices. The BTSearch method optimizes the cumulative memory overhead of models structured as DAGs. Through meticulous exploration of the operator execution order, BTSearch effectively minimizes memory usage during model inference. This application significantly enhances memory efficiency and enlarges the latency optimization search space. Our experimental results demonstrate that BTSearch achieves up to a remarkable 12% reduction in memory overhead. GenEFlow targets the optimization of communication latency in distributed inference tasks from a holistic model perspective. It strategically configures operator placements by leveraging GAs to minimize communication delays across distributed edge devices and offering a comprehensive search space for model partitioning. Our empirical evaluations indicate that GenEFlow achieves impressive results, with a 33.9% reduction in inference latency. With the popularity of large language models, our future work will consider how to deploy large language models with higher memory requirements in memory-constrained edge devices and optimize their inference performance.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,130.49,255.66,225.09,8.07"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Convolution operator partition along two dimensions.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="6,96.07,208.67,293.93,8.07"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Example of the impact of operator execution order on memory footprint.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,129.07,326.04,227.91,8.07"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Three different execution orders of the example model.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,145.04,435.70,295.27,9.03;6,45.77,447.66,394.53,9.03;6,45.77,459.61,394.55,9.03;6,45.77,471.57,394.76,9.03"><head></head><label></label><figDesc>demonstrates a single-input, single-output model with four operators and two branching dataflows. There are three valid execution sequences that conform to topological sorting: Order1 = [Conv1, Conv2, Conv3, Sum]; Order2 = [Conv1, Conv3, Conv2, Sum]; Order3 = [Conv3, Conv1, Conv2, Sum]. Operator execution orders are shown in Figure 3 as (a), (b), and (c).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="7,173.41,124.26,267.07,9.96;7,45.95,137.07,394.79,9.03;7,45.95,148.98,191.16,9.92;7,241.46,148.17,199.61,10.73;7,45.95,160.98,394.71,9.03;7,45.95,172.88,394.55,9.92;7,45.95,184.84,26.02,9.92;7,75.23,184.04,152.07,10.84;7,227.36,188.17,3.38,6.59;7,233.99,184.04,207.18,9.96;7,45.65,196.84,394.81,9.03;7,45.95,208.75,220.27,9.92;7,269.48,207.94,171.23,10.73;7,45.95,220.76,21.11,9.03"><head></head><label></label><figDesc>544 + 6, 272 + 641, 283 * 3/256 + 588 = 19, 692 KB; (5) before the execution of the third operator Conv3, the intermediate result tensors to be stored in memory are T 0 and T 2 , with a memory overhead of M i3 = M(T 0 ) + M(T 2 ) = 588 + 6, 272 = 6, 860 KB; (6) during the execution of the third operator Conv3, in addition to the memory space required for Conv3 computation, tensor T 2 needs to be additionally saved. The memory overhead is calculated as M e3 = M(T 0 ) + M(T 3 ) + M(Conv3 ker nel ) +T 2 = 588 + 6, 272 + 31, 283 * 3/256 + 6, 272 = 13, 146 KB; (7) before the execution of the fourth operator Sum, the intermediate result tensors to be stored in memory are T 2 and T 3 , with a memory overhead of M i4 = M(T 2 ) + M(T 3 ) = 6, 272 + 6, 272 = 12, 544 KB; (</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="8,198.22,343.67,89.63,8.07"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. System overview.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="11,45.95,155.67,394.54,8.07;11,45.95,166.62,57.71,8.07"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Illustration of the relation between chromosome encoding and model partition configuration of the example model.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="12,45.44,79.03,187.74,8.12;12,56.73,92.47,223.98,10.27;12,274.57,93.85,147.80,10.07;12,80.14,105.33,247.05,8.45;12,56.73,116.54,271.14,8.12;12,48.67,127.50,67.27,8.12;12,48.67,140.22,46.96,8.45;12,89.48,138.31,23.96,11.21;12,107.32,140.43,18.96,8.17;12,48.67,153.41,3.07,5.42;12,72.07,151.43,53.30,8.12;12,48.67,166.39,3.07,5.42;12,71.53,162.25,106.45,10.35;12,171.85,164.15,22.71,8.45;12,48.67,178.34,3.07,5.42;12,72.07,176.11,72.94,9.93;12,48.67,189.30,3.07,5.42;12,87.42,187.32,119.51,8.12;12,48.67,201.25,3.07,5.42;12,87.42,199.27,60.54,8.12;12,48.67,213.21,3.07,5.42;12,87.42,210.97,101.03,9.31;12,48.67,224.17,3.07,5.42;12,102.75,222.14,101.11,8.17;12,45.60,235.13,6.14,5.42;12,118.10,233.10,101.65,8.17;12,45.60,247.08,6.14,5.42;12,118.10,245.10,22.49,8.12;12,45.60,259.03,6.14,5.42;12,102.75,257.05,15.51,8.12;12,45.60,270.00,6.14,5.42;12,118.10,267.97,101.65,8.17;12,45.60,281.95,6.14,5.42;12,102.75,279.96,14.94,8.12;12,45.60,293.91,6.14,5.42;12,87.42,291.93,14.94,8.12;12,45.60,305.86,6.14,5.42;12,87.42,303.63,155.10,8.45;12,45.60,317.81,6.14,5.42;12,87.42,315.06,129.54,10.46;12,45.60,329.77,6.14,5.42;12,87.42,327.79,147.94,8.12;12,45.60,341.73,6.14,5.42;12,87.42,339.70,113.59,8.17;12,45.60,352.69,6.14,5.42;12,102.21,350.66,110.85,9.10;12,45.60,364.64,6.14,5.42;12,87.42,362.66,14.94,8.12;12,45.60,376.59,6.14,5.42;12,87.42,374.61,150.64,8.12;12,45.60,388.55,6.14,5.42;12,72.07,386.57,14.94,8.12;12,45.60,400.51,6.14,5.42;12,72.07,398.52,93.06,8.12;12,45.60,410.47,26.06,8.12;12,45.60,422.39,81.26,8.17"><head>ALGORITHM 2 : 8 foreach 9 if Use Broadcast Mode then 10 CommNum 17 CompTime← 18 DeviceTime←CommTime</head><label>289101718</label><figDesc>Optimization Objective Function Data: DL model operator partitioning configuration vector ì X = [x 1 , x 2 . . . , x N ], model computation graph G, and hardware information for distributed edge devices D. Result: Execution time of inference tasks under the current configuration 1 FinishTime← 0; op j ∈ pred(op i ) do Y i (x i,k − x i,k−1 , op i );</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="13,45.95,185.57,396.01,9.10;13,45.94,196.33,394.52,9.31"><head>13 Fig. 6 .ALGORITHM 3 : 3 foreach d k ∈ D do 4 Calculate</head><label>136334</label><figDesc>Fig. 6. Data communication of convolution operator with different partition methods. Output i−1 is the output tensor of operator i − 1, Input i is the input of convolution operator i. D 1 and D 2 are distributed devices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="19,124.13,472.66,238.15,8.07"><head>Fig. 7 .Fig. 8 .</head><label>78</label><figDesc>Fig. 7. Comparison of inference latency among different models.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="21,45.95,440.13,177.53,8.07;21,45.95,451.09,72.72,8.07"><head>Fig. 10 .Fig. 11 .</head><label>1011</label><figDesc>Fig. 10. Compare the inference with different numbers of devices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="22,99.81,207.67,286.43,8.07"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. Comparison of inference acceleration on heterogeneous edge devices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="4,126.54,638.45,22.01,9.03"><head>Table</head><label></label><figDesc></figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="4,152.56,638.45,287.74,9.03"><head>Table 1 .</head><label>1</label><figDesc>1 are the leading operators for the slicing operation. The activation Operator Partition Method and Memory Consumption</figDesc><table coords="5,45.95,55.82,394.56,176.33"><row><cell cols="3">MemoriaNova: Optimizing Memory-Aware Model Inference for Edge Computing</cell><cell>3:5</cell></row><row><cell>Operator</cell><cell cols="2">Partition Method Sources of Memory Overhead</cell></row><row><cell>Convolution</cell><cell>fmh cout</cell><cell>Convolution kernel Input tensor</cell></row><row><cell>Pool</cell><cell>fmh</cell><cell>None</cell></row><row><cell>Element-wise addition (Add)</cell><cell>fmh</cell><cell>None</cell></row><row><cell>Matrix multiplication (Gemm)</cell><cell>len</cell><cell>None</cell></row><row><cell cols="4">layer is merged into the convolution operator. Due to the direct transfer of the corresponding</cell></row><row><cell cols="4">data to the connected device before the start of the calculation for each operator and the absence</cell></row><row><cell cols="4">of tensor reshaping operations, operators that reorder tensor data have their execution process</cell></row><row><cell cols="3">combined into the data communication phase. The lack of a symbol in Table</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="6,61.36,346.46,368.32,74.51"><head>Table 2 .</head><label>2</label><figDesc>Memory Footprint Analysis of Different Operator Execution Orders (Metric: KB)</figDesc><table coords="6,61.36,362.45,368.32,58.51"><row><cell>Execution</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Sequence M i1 M e1</cell><cell>M i2</cell><cell>M e2</cell><cell>M i3</cell><cell>M e3</cell><cell>M i4</cell><cell>M e4</cell><cell>M i5 Memory</cell></row><row><cell cols="8">Order1 588 13,139 13,132 19,692 6,860 13,146 12,544 12,544 6,272 19,692</cell></row><row><cell cols="8">Order2 588 13,139 13,132 19,418 18,816 25,376 12,544 12,544 6,272 25,376</cell></row><row><cell cols="8">Order3 588 7,329 6,860 19,411 18,816 25,376 12,544 12,544 6,272 25,376</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="8,45.50,639.19,280.28,32.46"><head>then 11 return; 12 else 13</head><label></label><figDesc>Smaller metric values signify better performance.</figDesc><table coords="9,45.61,55.82,394.85,238.67"><row><cell>MemoriaNova: Optimizing Memory-Aware Model Inference for Edge Computing</cell><cell>3:9</cell></row><row><cell>ALGORITHM 1: BTSearch</cell><cell></cell></row><row><cell>Data: DL model computation graph.</cell><cell></cell></row><row><cell>Result: Optimal order of operator execution for memory optimization.</cell><cell></cell></row><row><cell>1 Function Main():</cell><cell></cell></row><row><cell>// Initialize the graph state and current local order. Initialize the state</cell><cell></cell></row><row><cell>marking dictionary and the parsing function dictionary.</cell><cell></cell></row><row><cell>Update StateMark;</cell><cell></cell></row></table><note>ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 3. Publication date: March 2025.2 GraphState← InitialState, CurrentOrder← [], StateMark← {}, ParseMark← {}; 3 MemMetric← 0, BestMemMetric← 0; 4 Recursive(GraphState, CurrentOrder); 5 return BestExecuteOrder; 6 Function Recursive(GraphState, CurrentOrder, MemMetric): 7 if All element in GraphState is true and MemMetric &gt; BestMemMetric then 8 Update BestMemMetric and ExecutionOrder; 9 end // Pruning. 10 if GraphState in StateMark and MemMetric ≤ StateMark[GraphState] 14 end 15 Executable, CurrentMem← ParseState(GraphState); 16 foreach operator in Executable do 17 Update GraphState and CurrentOrder; 18 Recursive(GraphState, CurrentOrder, MemMetric + CurrentMem); 19 Downgrade GraphState and CurrentOrder; 20 end</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="16,45.41,75.71,396.01,261.32"><head>Table 3 .</head><label>3</label><figDesc>Hardware Information Used in the Simulation Environment and Simulation Configuration In this setup, four simulated devices are configured with a communication bandwidth of 2,000 Mbps, each having 50 MB of memory, with CFLOPS values set to [1.0, 1.0, 0.8, 0.8]. The second scenario is a real environment where GenEFlow optimization experiments are performed on a platform consisting of one desktop PC, one Jetson TX2, one Raspberry Pi 3B (RPi3), and one Raspberry Pi 4B (RPi4). An SE109 (2.5 Gbps) is used for wired connections and configuration, with the communication bandwidth limited to 2000 Mbps.</figDesc><table coords="16,45.77,94.20,394.52,171.10"><row><cell cols="2">Simulation Configuration</cell><cell cols="2">Hardware Information</cell><cell></cell></row><row><cell>Parameter</cell><cell>Value</cell><cell>Hardware</cell><cell>Model Information</cell><cell>CFLOPS</cell></row><row><cell>Number of Devices</cell><cell>4</cell><cell>PC</cell><cell>CPU*8 @2.5GHz 32GB</cell><cell>0.24</cell></row><row><cell>Memory (MB)</cell><cell>[50, 50, 50, 50]</cell><cell>Jetson TX2</cell><cell>GPU*1 @1.12GHz, 8GB CPU*6 @1.4GHz</cell><cell>0.50</cell></row><row><cell>Bandwidth (Mbps)</cell><cell>2000</cell><cell>RPi4</cell><cell>CPU*4 @1.5GHz 4GB</cell><cell>0.80</cell></row><row><cell>CFLOPS</cell><cell>[1.0, 1.0, 0.8, 0.8]</cell><cell>RPi3</cell><cell>CPU*4 @1.2GHz 1GB</cell><cell>1.00</cell></row><row><cell cols="5">edge devices with varying performance levels by limiting the number of CPU cores and</cell></row><row><cell cols="3">floating-point computational performance (CFLOPS).</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="17,118.66,75.71,251.59,169.72"><head>Table 4 .</head><label>4</label><figDesc>Comparison of Cumulative Memory Overhead during the Execution Process of Each Operator (MB)</figDesc><table coords="17,118.66,104.49,251.59,140.94"><row><cell>Model</cell><cell>Random</cell><cell>PEFT</cell><cell cols="2">Greedy BTSearch</cell></row><row><cell>VGG13</cell><cell>194.17</cell><cell>194.17</cell><cell>194.17</cell><cell>194.17</cell></row><row><cell>ResNet50</cell><cell>395.35</cell><cell>394.97</cell><cell>390.37</cell><cell>390.37</cell></row><row><cell>InceptionV3</cell><cell>483.10</cell><cell>471.36</cell><cell>460.07</cell><cell>437.22</cell></row><row><cell>MobileNetV3</cell><cell>27.78</cell><cell>27.78</cell><cell>27.78</cell><cell>27.78</cell></row><row><cell>SqueezeNet</cell><cell>70.41</cell><cell>70.41</cell><cell>70.41</cell><cell>70.41</cell></row><row><cell>EfficientNet-b0</cell><cell>236.88</cell><cell>236.88</cell><cell>236.88</cell><cell>236.88</cell></row><row><cell>GoogLeNet</cell><cell>159.58</cell><cell>156.27</cell><cell>151.02</cell><cell>139.71</cell></row><row><cell>RegNet</cell><cell>694.39</cell><cell>698.51</cell><cell>695.92</cell><cell>692.86</cell></row><row><cell>GPT-2</cell><cell>1000.88</cell><cell cols="2">1000.88 1000.88</cell><cell>1000.88</cell></row><row><cell>BERT</cell><cell>703.91</cell><cell>701.91</cell><cell>673.03</cell><cell>646.03</cell></row><row><cell>Qwen2</cell><cell cols="4">20590.18 20481.18 20179.93 19224.75</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="17,54.81,258.15,384.51,116.18"><head>Table 5 .</head><label>5</label><figDesc>Comparison of Efficiency of Memory Optimization Methods</figDesc><table coords="17,54.81,275.72,384.51,98.61"><row><cell>Model</cell><cell cols="4">Op Num Random (ms) PEFT (ms) Greedy (ms)</cell><cell></cell><cell>BTSearch</cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="3">Time (ms) Pruned Searched</cell></row><row><cell>ResNet50</cell><cell>71</cell><cell>1.03</cell><cell>2.02</cell><cell>2.03</cell><cell>5.98</cell><cell>20</cell><cell>20</cell></row><row><cell>InceptionV3</cell><cell>108</cell><cell>7.01</cell><cell>6.98</cell><cell>7.01</cell><cell>3435.12</cell><cell>1,387,509</cell><cell>1,529</cell></row><row><cell>GoogLeNet</cell><cell>71</cell><cell>2.99</cell><cell>2.99</cell><cell>2.99</cell><cell>1530.76</cell><cell>336,654</cell><cell>2,666</cell></row><row><cell>RegNet</cell><cell>94</cell><cell>3.00</cell><cell>2.99</cell><cell>3.44</cell><cell>4.99</cell><cell>28</cell><cell>3</cell></row><row><cell>GPT-2</cell><cell>159</cell><cell>39.41</cell><cell>39.47</cell><cell>39.37</cell><cell>50.84</cell><cell>0</cell><cell>1</cell></row><row><cell>BERT</cell><cell>173</cell><cell>23.48</cell><cell>23.04</cell><cell>22.49</cell><cell>130.57</cell><cell>11,021</cell><cell>46</cell></row><row><cell>Qwen2</cell><cell>283</cell><cell>293.99</cell><cell>302.92</cell><cell>302.83</cell><cell cols="2">2351.12 496,743,478</cell><cell>225</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="18,104.99,75.71,281.07,172.74"><head>Table 6 .</head><label>6</label><figDesc>GA Search Space Upper Bound Calculation</figDesc><table coords="18,104.99,94.09,281.07,154.35"><row><cell>Model</cell><cell>D</cell><cell>lд(K fmh )</cell><cell>lд(K cout )</cell><cell>lд(K len )</cell><cell>lд(S)</cell></row><row><cell>VGG13</cell><cell>4</cell><cell>142.0</cell><cell>74.9</cell><cell>0.0</cell><cell>216.9</cell></row><row><cell>ResNet50</cell><cell>4</cell><cell>351.0</cell><cell>576.0</cell><cell>0.0</cell><cell>927.0</cell></row><row><cell>InceptionV3</cell><cell>4</cell><cell>601.0</cell><cell>1100.0</cell><cell>0.0</cell><cell>1701.0</cell></row><row><cell>MobileNetV3</cell><cell>4</cell><cell>352.0</cell><cell>394.0</cell><cell>0.0</cell><cell>746.0</cell></row><row><cell>SqueezeNet</cell><cell>4</cell><cell>246.0</cell><cell>117.0</cell><cell>0.0</cell><cell>363.0</cell></row><row><cell>EfficientNet-b0</cell><cell>4</cell><cell>537.0</cell><cell>728.0</cell><cell>0.0</cell><cell>1270.0</cell></row><row><cell>GoogLeNet</cell><cell>4</cell><cell>647.9</cell><cell>409.76</cell><cell>0.0</cell><cell>1057.6</cell></row><row><cell>RegNet</cell><cell>4</cell><cell>256.0</cell><cell>647.0</cell><cell>0.0</cell><cell>904.0</cell></row><row><cell>GPT-2</cell><cell>4</cell><cell>0.0</cell><cell>0.0</cell><cell>2318.1</cell><cell>2318.1</cell></row><row><cell>BERT</cell><cell>4</cell><cell>0.0</cell><cell>0.0</cell><cell>2522.2</cell><cell>2522.2</cell></row><row><cell>Qwen2</cell><cell>4</cell><cell>0.0</cell><cell>0.0</cell><cell>4125.9</cell><cell>4125.9</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="20,55.74,75.71,304.94,211.64"><head>Table 7 .</head><label>7</label><figDesc>Comparison of Time Consumption of the Optimization Process (s)</figDesc><table coords="20,55.74,105.32,302.57,182.02"><row><cell>Model</cell><cell cols="3">DeepThings CoEdge GenEFlow</cell></row><row><cell>VGG13</cell><cell>1.05</cell><cell>9.95</cell><cell>6371.59</cell></row><row><cell>ResNet50</cell><cell>1.28</cell><cell>9.97</cell><cell>20123.58</cell></row><row><cell>InceptionV3</cell><cell>2.26</cell><cell>9.97</cell><cell>21380.50</cell></row><row><cell>MobileNetV3</cell><cell>1.43</cell><cell>8.55</cell><cell>12351.91</cell></row><row><cell>SqueezeNet</cell><cell>1.02</cell><cell>7.65</cell><cell>12442.12</cell></row><row><cell>EfficientNet-b0</cell><cell>0.99</cell><cell>7.33</cell><cell>38615.78</cell></row><row><cell>GoogLeNet</cell><cell>2.43</cell><cell>10.50</cell><cell>18248.82</cell></row><row><cell>RegNet</cell><cell>1.90</cell><cell>9.93</cell><cell>25876.56</cell></row><row><cell>BERT</cell><cell>1.05</cell><cell>48.41</cell><cell>108210.81</cell></row><row><cell>GPT-2</cell><cell>1.99</cell><cell>50.03</cell><cell>131025.18</cell></row><row><cell>Qwen2</cell><cell>5.98</cell><cell>60.02</cell><cell>232352.55</cell></row><row><cell>Table</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9" coords="21,51.77,75.71,389.06,221.64"><head>Table 8 .</head><label>8</label><figDesc>Comparison of Inference Latency of Different Models under Memory Constraints (ms)</figDesc><table coords="21,51.77,93.00,389.06,204.35"><row><cell>Model</cell><cell cols="5">Memory Local DeepThings CoEdge GenEFlow</cell><cell>Model</cell><cell cols="5">Memory Local DeepThings CoEdge GenEFlow</cell></row><row><cell></cell><cell>10MB</cell><cell>×</cell><cell>×</cell><cell>242.48</cell><cell>217.26</cell><cell></cell><cell>5MB</cell><cell>×</cell><cell>×</cell><cell>×</cell><cell>315.54</cell></row><row><cell>VGG13</cell><cell>20MB 30MB</cell><cell>× ×</cell><cell>× 277.23</cell><cell>--</cell><cell>--</cell><cell>ResNet50</cell><cell>10MB 15MB</cell><cell>× ×</cell><cell>370.83 -</cell><cell>329.04 -</cell><cell>--</cell></row><row><cell></cell><cell cols="2">40MB 311.80</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell></cell><cell cols="2">20MB 435.98</cell><cell>-</cell><cell>-</cell><cell>-</cell></row><row><cell></cell><cell>5MB</cell><cell>×</cell><cell>×</cell><cell>×</cell><cell>304.52</cell><cell></cell><cell>0.5MB</cell><cell>×</cell><cell>×</cell><cell>52.52</cell><cell>31.38</cell></row><row><cell>InceptionV3</cell><cell>7MB 10MB</cell><cell>× ×</cell><cell>× 361.52</cell><cell>296.12 -</cell><cell>301.60 -</cell><cell>MobileNetV3</cell><cell>1MB 1.5MB</cell><cell>× ×</cell><cell>× 49.62</cell><cell>--</cell><cell>--</cell></row><row><cell></cell><cell cols="2">15MB 397.52</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell></cell><cell>2MB</cell><cell>46.10</cell><cell>-</cell><cell>-</cell><cell>-</cell></row><row><cell></cell><cell>2.5MB</cell><cell>×</cell><cell>×</cell><cell>72.08</cell><cell>72.78</cell><cell></cell><cell>5MB</cell><cell>×</cell><cell>×</cell><cell>305.96</cell><cell>218.38</cell></row><row><cell>SqueezeNet</cell><cell>5MB 7.5MB</cell><cell>× ×</cell><cell>× 74.18</cell><cell>--</cell><cell>72.37 -</cell><cell>EfficientNet-b0</cell><cell>10MB 15MB</cell><cell>× ×</cell><cell>× 211.80</cell><cell>--</cell><cell>214.40 -</cell></row><row><cell></cell><cell>10MB</cell><cell>74.23</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell></cell><cell cols="2">20MB 210.18</cell><cell>-</cell><cell>-</cell><cell>-</cell></row><row><cell></cell><cell>2MB</cell><cell>×</cell><cell>×</cell><cell>×</cell><cell>105.40</cell><cell></cell><cell>10MB</cell><cell>×</cell><cell>×</cell><cell>×</cell><cell>512.33</cell></row><row><cell>GoogLeNet</cell><cell>3MB 5MB</cell><cell>× ×</cell><cell>× 136.63</cell><cell>113.81 -</cell><cell>103.99 -</cell><cell>RegNet</cell><cell>20MB 30MB</cell><cell>× ×</cell><cell>565.79 -</cell><cell>592.79 -</cell><cell>--</cell></row><row><cell></cell><cell>7MB</cell><cell>140.03</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell></cell><cell cols="2">40MB 651.06</cell><cell>-</cell><cell>-</cell><cell>-</cell></row><row><cell></cell><cell>1MB</cell><cell>×</cell><cell>×</cell><cell>×</cell><cell>5.84</cell><cell></cell><cell>5MB</cell><cell>×</cell><cell>×</cell><cell>30.65</cell><cell>26.23</cell></row><row><cell>BERT</cell><cell>1.5MB 2MB</cell><cell>× ×</cell><cell>× 7.33</cell><cell>× 7.15</cell><cell>--</cell><cell>GPT-2</cell><cell>10MB 15MB</cell><cell>× ×</cell><cell>× 31.79</cell><cell>--</cell><cell>--</cell></row><row><cell></cell><cell>2.5MB</cell><cell>8.83</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell></cell><cell>18MB</cell><cell>32.06</cell><cell>-</cell><cell>-</cell><cell>-</cell></row><row><cell></cell><cell>10MB</cell><cell>×</cell><cell>×</cell><cell>×</cell><cell>10.59</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Qwen2</cell><cell>20MB 30MB</cell><cell>× ×</cell><cell>× 13.26</cell><cell>12.82 -</cell><cell>--</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell>40MB</cell><cell>13.59</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 3. Publication date: March 2025.</note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="23,63.02,559.62,377.44,7.22;23,63.02,569.53,209.35,7.26" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">List scheduling algorithm for heterogeneous systems by an optimistic cost table</title>
+		<author>
+			<persName coords=""><forename type="first">Hamid</forename><surname>Arabnejad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jorge</forename><forename type="middle">G</forename><surname>Barbosa</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Parallel Distrib. Syst</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page" from="682" to="694" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,579.49,323.23,7.26" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Counting linear extensions</title>
+		<author>
+			<persName coords=""><forename type="first">Graham</forename><surname>Brightwell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Winkler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Order</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="225" to="242" />
+			<date type="published" when="1991">1991. 1991</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,589.50,377.47,7.22;23,63.02,599.42,378.39,7.26;23,62.77,609.42,117.56,7.22" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">RIDIC: Real-time intelligent transportation system with dispersed computing</title>
+		<author>
+			<persName coords=""><forename type="first">Zinuo</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zebin</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zihan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Quanmin</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruhui</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haibing</forename><surname>Guan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TITS.2023.3303877</idno>
+		<ptr target="https://doi.org/10.1109/TITS.2023.3303877" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Intell. Transport. Syst</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page" from="1013" to="1022" />
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,619.38,377.43,7.22;23,63.02,629.31,378.69,7.26;23,62.84,639.31,78.53,7.22" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">SMSS: Stateful model serving in metaverse with serverless computing and GPU sharing</title>
+		<author>
+			<persName coords=""><forename type="first">Zinuo</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zebin</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruhui</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haibing</forename><surname>Guan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/JSAC.2023.3345401</idno>
+		<ptr target="https://doi.org/10.1109/JSAC.2023.3345401" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. Select. Areas. Commun</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="799" to="811" />
+			<date type="published" when="2023-12">2023. December 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,78.61,377.45,7.22;24,62.85,88.54,323.80,7.26" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Smart video surveillance system based on edge computing</title>
+		<author>
+			<persName coords=""><forename type="first">Antonio</forename><surname>Carlos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cob-Parro</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cristina</forename><surname>Losada-Gutiérrez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marta</forename><surname>Marrón-Romera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alfredo</forename><surname>Gardel-Vicente</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ignacio</forename><surname>Bravo-Muñoz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sensors</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page">9</biblScope>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,98.50,377.44,7.26;24,62.60,108.50,51.69,7.22" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">A design-to-device pipeline for data-driven materials discovery</title>
+		<author>
+			<persName coords=""><forename type="first">Jacqueline</forename><forename type="middle">M</forename><surname>Cole</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Accounts Chem. Res</title>
+		<imprint>
+			<biblScope unit="volume">53</biblScope>
+			<biblScope unit="page" from="599" to="610" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,118.46,377.43,7.22;24,62.85,128.39,378.67,7.26;24,62.85,138.39,18.54,7.22" xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Bert: Pre-training of deep bidirectional transformers for language understanding</title>
+		<author>
+			<persName coords=""><forename type="first">Jacob</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ming-Wei</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kenton</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kristina</forename><surname>Toutanova</surname></persName>
+		</author>
+		<idno>CoRR abs/1810.04805</idno>
+		<ptr target="https://arxiv.org/abs/1810.04805" />
+		<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,148.35,377.61,7.22;24,62.85,158.27,191.50,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Ios: Inter-operator scheduler for cnn acceleration</title>
+		<author>
+			<persName coords=""><forename type="first">Yaoyao</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ligeng</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhihao</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gennady</forename><surname>Pekhimenko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proc. Mach. Learn. Syst</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="167" to="180" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,168.28,377.40,7.22;24,62.85,178.24,377.42,7.22;24,62.85,188.16,378.33,7.26;24,62.85,198.16,16.58,7.22" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Convolutional neural network-based personalized program recommendation system for smart television users</title>
+		<author>
+			<persName coords=""><forename type="first">Khasim</forename><surname>Vali Dudekula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hussain</forename><surname>Syed</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohamed</forename><surname>Iqbal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mahaboob</forename><surname>Basha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sudhakar</forename><surname>Ilango Swamykan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Purna</forename><surname>Prakash Kasaraneni</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yellapragada</forename><surname>Venkata Pavan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aymen</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ahmad</forename><forename type="middle">Taher</forename><surname>Flah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Azar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sustainability</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page">2206</biblScope>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,208.13,377.42,7.22;24,62.85,218.05,316.81,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Scheduling IoT applications in edge and fog computing environments: A taxonomy and future directions</title>
+		<author>
+			<persName coords=""><forename type="first">Mohammad</forename><surname>Goudarzi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marimuthu</forename><surname>Palaniswami</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajkumar</forename><surname>Buyya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Comput. Surv</title>
+		<imprint>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="page" from="1" to="41" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,228.05,378.67,7.22;24,62.85,237.98,283.63,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">IoT-Enhanced smart door locking system with security</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jalalu Guntur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Srinivasulu Raju</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Niranjan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kiran</forename><surname>Sai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rakesh</forename><surname>Kilaru</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Dronavalli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Seshu</forename><surname>Surya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SN Comput. Sci</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">209</biblScope>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,247.98,377.43,7.22;24,62.85,257.90,377.60,7.26;24,62.85,267.90,118.14,7.22" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Hierarchical design space exploration for distributed CNN inference at the edge</title>
+		<author>
+			<persName coords=""><forename type="first">Xiaotian</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><forename type="middle">D</forename><surname>Pimentel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Todor</forename><surname>Stefanov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Machine Learning and Principles and Practice of Knowledge Discovery in Databases</title>
+				<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer Nature Switzerland</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="545" to="556" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,277.83,377.44,7.26;24,62.85,287.83,226.45,7.22" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Deep residual learning for image recognition</title>
+		<author>
+			<persName coords=""><forename type="first">Kaiming</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangyu</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaoqing</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jian</forename><surname>Sun</surname></persName>
+		</author>
+		<idno>CoRR abs/1512.03385</idno>
+		<ptr target="http://arxiv.org/abs/1512.03385" />
+		<imprint>
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,297.79,377.44,7.22;24,62.85,307.71,377.44,7.26;24,62.85,317.72,226.45,7.22" xml:id="b13">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Howard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><surname>Sandler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Grace</forename><surname>Chu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liang-Chieh</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mingxing</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weijun</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yukun</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruoming</forename><surname>Pang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Vasudevan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Quoc</forename><forename type="middle">V</forename><surname>Le</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hartwig</forename><surname>Adam</surname></persName>
+		</author>
+		<ptr target="http://arxiv.org/abs/1905.02244" />
+		<title level="m">Searching for MobileNetV3</title>
+				<imprint>
+			<date type="published" when="1905">2019. 1905.02244. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,327.67,378.29,7.22;24,62.85,337.59,377.44,7.26;24,62.85,347.60,226.45,7.22" xml:id="b14">
+	<monogr>
+		<title level="m" type="main">MobileNets: Efficient convolutional neural networks for mobile vision applications</title>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><forename type="middle">G</forename><surname>Howard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Menglong</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dmitry</forename><surname>Kalenichenko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weijun</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Weyand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marco</forename><surname>Andreetto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hartwig</forename><surname>Adam</surname></persName>
+		</author>
+		<idno>CoRR abs/1704.04861</idno>
+		<ptr target="http://arxiv.org/abs/1704.04861" />
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,357.56,377.41,7.22;24,62.85,367.48,326.18,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Distributed inference with deep learning models across heterogeneous edge devices</title>
+		<author>
+			<persName coords=""><forename type="first">Chenghao</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Baochun</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Communications (INFOCOM&apos;22)</title>
+				<meeting>the IEEE Conference on Computer Communications (INFOCOM&apos;22)</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="330" to="339" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,377.48,377.64,7.22;24,62.85,387.41,378.25,7.26;24,62.85,397.37,97.51,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Deepmon: Mobile GPU-based deep learning framework for continuous vision applications</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Loc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Youngki</forename><surname>Huynh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajesh</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Krishna Balan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 15th Annual International Conference on Mobile Systems, Applications, and Services</title>
+				<meeting>the 15th Annual International Conference on Mobile Systems, Applications, and Services</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="82" to="95" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,407.37,378.66,7.22;24,62.85,417.29,378.68,7.26;24,62.85,427.30,151.02,7.22" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &lt;1MB model size</title>
+		<author>
+			<persName coords=""><forename type="first">Forrest</forename><forename type="middle">N</forename><surname>Iandola</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><forename type="middle">W</forename><surname>Moskewicz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Khalid</forename><surname>Ashraf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kurt</forename><surname>Keutzer</surname></persName>
+		</author>
+		<idno>CoRR abs/1602.07360</idno>
+		<ptr target="http://arxiv.org/abs/1602.07360" />
+		<imprint>
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,437.26,357.78,7.22" xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Geatpy: The genetic and evolutionary algorithm toolbox with high performance in Python</title>
+		<author>
+			<persName coords=""><forename type="first">Jazzbin</forename></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,447.22,378.79,7.22;24,62.55,457.14,378.60,7.26;24,62.85,467.11,232.52,7.26" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Multi-agent deep reinforcement learning framework for renewable energy-aware workflow scheduling on distributed cloud data centers</title>
+		<author>
+			<persName coords=""><forename type="first">Amanda</forename><surname>Jayanetti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Halgamuge</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajkumar</forename><surname>Buyya</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPDS.2024.3360448</idno>
+		<ptr target="https://doi.org/10.1109/TPDS.2024.3360448" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Parallel Distrib. Syst</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="12" />
+			<date type="published" when="2024-04">2024. April 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,477.07,237.11,7.26" xml:id="b20">
+	<monogr>
+		<title level="m" type="main">The Greedy Algorithm</title>
+		<author>
+			<persName coords=""><forename type="first">Dieter</forename><surname>Jungnickel</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="135" to="161" />
+			<pubPlace>Berlin</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,487.03,378.32,7.26;24,62.85,497.03,27.03,7.22" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Face recognition systems: A survey</title>
+		<author>
+			<persName coords=""><forename type="first">Yassin</forename><surname>Kortli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maher</forename><surname>Jridi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Sensors</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+	<note>Ayman Al Falou, and Mohamed Atri</note>
+</biblStruct>
+
+<biblStruct coords="24,62.84,506.96,378.34,7.26;24,62.60,516.96,174.34,7.22" xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Patent claim generation by fine-tuning OpenAI GPT-2. CoRR abs</title>
+		<author>
+			<persName coords=""><forename type="first">Jieh-Sheng</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jieh</forename><surname>Hsiang</surname></persName>
+		</author>
+		<ptr target="http://arxiv.org/abs/1907.02052" />
+		<imprint>
+			<date type="published" when="1907">2019. 1907.02052. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,526.92,377.44,7.22;24,62.85,536.89,319.89,7.22" xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Towards general text embeddings with multi-stage contrastive learning</title>
+		<author>
+			<persName coords=""><forename type="first">Zehan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yanzhao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dingkun</forename><surname>Long</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pengjun</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meishan</forename><surname>Zhang</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2308.03281" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,546.85,378.78,7.22;24,62.85,556.77,377.45,7.26;24,62.85,566.73,378.30,7.26;24,62.85,576.73,209.26,7.22" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">On-demand deep model compression for mobile devices: A usage-driven model selection framework</title>
+		<author>
+			<persName coords=""><forename type="first">Sicong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yingyan</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zimu</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaiming</forename><surname>Nan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hui</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junzhao</forename><surname>Du</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3210240.3210337</idno>
+		<ptr target="https://doi.org/10.1145/3210240.3210337" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys &apos;18)</title>
+				<meeting>the 16th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys &apos;18)<address><addrLine>Munich, Germany</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="389" to="400" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,586.69,378.67,7.22;24,62.85,596.61,378.32,7.26;24,62.85,606.61,317.87,7.22" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">SSD: Single shot multibox detector</title>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dragomir</forename><surname>Anguelov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dumitru</forename><surname>Erhan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Szegedy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Reed</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cheng-Yang</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><forename type="middle">C</forename><surname>Berg</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the European Conference on Computer Vision (ECCV&apos;16)</title>
+				<editor>
+			<persName><forename type="first">Bastian</forename><surname>Leibe</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jiri</forename><surname>Matas</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Nicu</forename><surname>Sebe</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Max</forename><surname>Welling</surname></persName>
+		</editor>
+		<meeting>the European Conference on Computer Vision (ECCV&apos;16)<address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="21" to="37" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,616.58,378.65,7.22;24,62.85,626.52,123.67,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Resolvent splitting for sums of monotone operators with minimal lifting</title>
+		<author>
+			<persName coords=""><forename type="first">Yura</forename><surname>Malitsky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><forename type="middle">K</forename><surname>Tam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Math. Program</title>
+		<imprint>
+			<biblScope unit="volume">201</biblScope>
+			<biblScope unit="page" from="231" to="262" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,78.61,377.43,7.22;25,62.72,88.54,377.74,7.26;25,62.53,98.50,98.83,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Distributed inference acceleration with adaptive DNN partitioning and offloading</title>
+		<author>
+			<persName coords=""><forename type="first">Thaha</forename><surname>Mohammed</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlee</forename><surname>Joe-Wong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rohit</forename><surname>Babbar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mario</forename><surname>Di</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Francesco</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Communications (INFOCOM&apos;20)</title>
+				<meeting>the IEEE Conference on Computer Communications (INFOCOM&apos;20)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="854" to="863" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,108.50,377.45,7.22;25,63.02,118.42,378.68,7.26;25,63.02,128.43,55.21,7.22" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Tsplit: Fine-grained gpu memory management for efficient dnn training via tensor splitting</title>
+		<author>
+			<persName coords=""><forename type="first">Xiaonan</forename><surname>Nie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xupeng</forename><surname>Miao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhi</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bin</forename><surname>Cui</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE 38th International Conference on Data Engineering (ICDE&apos;22)</title>
+				<meeting>the IEEE 38th International Conference on Data Engineering (ICDE&apos;22)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="2615" to="2628" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,138.39,377.60,7.22;25,63.02,148.31,269.26,7.26" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Text mining-based four-step framework for smart speaker product improvement and sales planning</title>
+		<author>
+			<persName coords=""><forename type="first">Jeongeun</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Donguk</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ha</forename><forename type="middle">Young</forename><surname>Kim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Retail. Consum. Serv</title>
+		<imprint>
+			<biblScope unit="volume">71</biblScope>
+			<biblScope unit="page">103186</biblScope>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,158.31,377.46,7.22;25,63.02,168.24,337.23,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Designing network design spaces</title>
+		<author>
+			<persName coords=""><forename type="first">Ilija</forename><surname>Radosavovic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Raj</forename><forename type="middle">Prateek</forename><surname>Kosaraju</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ross</forename><surname>Girshick</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern</title>
+				<meeting>the IEEE/CVF Conference on Computer Vision and Pattern</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note>Kaiming He, and Piotr Dollar. Recognition (CVPR&apos;20</note>
+</biblStruct>
+
+<biblStruct coords="25,63.02,178.20,377.45,7.26;25,63.02,188.16,166.38,7.26" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">YOLO9000: Better, faster, stronger</title>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><surname>Redmon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Farhadi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR&apos;17)</title>
+				<meeting>the IEEE Conference on Computer Vision and Pattern Recognition (CVPR&apos;17)</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,198.16,378.80,7.22;25,63.02,208.09,269.77,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">A survey on collaborative DNN inference for edge intelligence</title>
+		<author>
+			<persName coords=""><forename type="first">Wei-Qing</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu-Ben</forename><surname>Qu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chao</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu-Qian</forename><surname>Jing</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hao</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qi-Hui</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Guo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mach. Intell. Res</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="370" to="395" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,218.09,378.77,7.22;25,63.02,228.01,377.45,7.26;25,63.02,237.98,261.68,7.26" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Automatic pipeline parallelism: A parallel inference framework for deep learning applications in 6G mobile communication systems</title>
+		<author>
+			<persName coords=""><forename type="first">Hongjian</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weichu</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zifei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruhui</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haibing</forename><surname>Guan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/JSAC.2023.3280970</idno>
+		<ptr target="https://doi.org/10.1109/JSAC.2023.3280970" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. Select. Areas Commun</title>
+		<imprint>
+			<biblScope unit="volume">41</biblScope>
+			<biblScope unit="page" from="2041" to="2056" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,247.98,378.67,7.22;25,63.02,257.94,150.43,7.22" xml:id="b34">
+	<monogr>
+		<title level="m" type="main">Very deep convolutional networks for large-scale image recognition</title>
+		<author>
+			<persName coords=""><forename type="first">Karen</forename><surname>Simonyan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Zisserman</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/1409.1556" />
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,267.90,377.46,7.22;25,62.76,277.83,377.70,7.26;25,63.02,287.79,166.38,7.26" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Going deeper with convolutions</title>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Szegedy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yangqing</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pierre</forename><surname>Sermanet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Reed</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dragomir</forename><surname>Anguelov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dumitru</forename><surname>Erhan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vincent</forename><surname>Vanhoucke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Rabinovich</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR&apos;15)</title>
+				<meeting>the IEEE Conference on Computer Vision and Pattern Recognition (CVPR&apos;15)</meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,297.79,377.42,7.22;25,63.02,307.71,377.44,7.26;25,62.53,317.68,33.88,7.26" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Rethinking the inception architecture for computer vision</title>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Szegedy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vincent</forename><surname>Vanhoucke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sergey</forename><surname>Ioffe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jon</forename><surname>Shlens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zbigniew</forename><surname>Wojna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR&apos;16)</title>
+				<meeting>the IEEE Conference on Computer Vision and Pattern Recognition (CVPR&apos;16)</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,327.67,378.69,7.22;25,63.02,337.59,377.98,7.26;25,62.84,347.60,25.95,7.22" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Anastasios Doulamis, Eftychios Protopapadakis, and Diego Andina</title>
+		<author>
+			<persName coords=""><forename type="first">Athanasios</forename><surname>Voulodimos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikolaos</forename><surname>Doulamis</surname></persName>
+		</author>
+		<idno type="DOI">10.1155/2018/7068349</idno>
+		<ptr target="https://doi.org/10.1155/2018/7068349" />
+	</analytic>
+	<monogr>
+		<title level="j">Intell. Neurosci</title>
+		<imprint>
+			<biblScope unit="volume">DOI</biblScope>
+			<date type="published" when="2018-01">2018. January 2018</date>
+		</imprint>
+	</monogr>
+	<note>Deep learning for computer vision: A brief review</note>
+</biblStruct>
+
+<biblStruct coords="25,63.02,357.56,377.47,7.22;25,63.02,367.48,378.32,7.26;25,63.02,377.44,102.96,7.26" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Deep reinforcement learning-based scheduling for optimizing system load and response time in edge and fog computing environments</title>
+		<author>
+			<persName coords=""><forename type="first">Zhiyu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohammad</forename><surname>Goudarzi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mingming</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajkumar</forename><surname>Buyya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Future Gener. Comput. Syst</title>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="page" from="55" to="69" />
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,387.45,377.44,7.22;25,63.02,397.37,377.45,7.26;25,63.02,407.33,276.51,7.26" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Hierarchical memory-constrained operator scheduling of neural architecture search networks</title>
+		<author>
+			<persName coords=""><forename type="first">Zihan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengcheng</forename><surname>Wan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuting</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziyi</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">He</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Qiao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 59th ACM/IEEE Design Automation Conference (DAC&apos;22)</title>
+				<meeting>the 59th ACM/IEEE Design Automation Conference (DAC&apos;22)<address><addrLine>New York, NY</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="493" to="498" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,417.33,377.44,7.22;25,63.02,427.26,377.43,7.26;25,63.02,437.22,226.49,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">EOP: Efficient operator partition for deep learning inference over edge servers</title>
+		<author>
+			<persName coords=""><forename type="first">Yuanjia</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Heng</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenbo</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 18th ACM SIGPLAN/SIGOPS International Conference on Virtual Execution Environments (VEE&apos;22)</title>
+				<meeting>the 18th ACM SIGPLAN/SIGOPS International Conference on Virtual Execution Environments (VEE&apos;22)</meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="45" to="57" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,447.22,377.47,7.22;25,63.02,457.14,378.69,7.26;25,62.84,467.15,17.24,7.22" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">AGO: Boosting mobile AI inference performance by removing constraints on graph optimization</title>
+		<author>
+			<persName coords=""><forename type="first">Zhiying</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongding</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE Conference on Computer Communications (INFOCOM&apos;23)</title>
+				<meeting>the IEEE Conference on Computer Communications (INFOCOM&apos;23)</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,477.11,377.68,7.22;25,63.02,487.03,378.40,7.26;25,62.76,497.03,85.07,7.22" xml:id="b42">
+	<monogr>
+		<title level="m" type="main">Compressing deep neural network structures for sensing systems with a compressor-critic framework</title>
+		<author>
+			<persName coords=""><forename type="first">Shuochao</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiran</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aston</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lu</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tarek</forename><forename type="middle">F</forename><surname>Abdelzaher</surname></persName>
+		</author>
+		<idno>CoRR abs/1706.01215</idno>
+		<ptr target="http://arxiv.org/abs/1706.01215" />
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,507.00,378.67,7.22;25,63.02,516.92,378.34,7.26;25,62.84,526.92,35.78,7.22" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Accurate threat hunting in industrial internet of things edge devices</title>
+		<author>
+			<persName coords=""><forename type="first">Abbas</forename><surname>Yazdinejad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Behrouz</forename><surname>Zolfaghari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Dehghantanha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hadis</forename><surname>Karimipour</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gautam</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Reza</forename><forename type="middle">M</forename><surname>Parizi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Digit. Commun. Netw</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="1123" to="1130" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,536.89,377.45,7.22;25,63.02,546.81,220.69,7.26" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">A deep learning approach for intrusion detection using recurrent neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Chuanlong</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuefei</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jinlong</forename><surname>Fei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xinzheng</forename><surname>He</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="21954" to="21961" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,556.81,377.45,7.22;25,63.01,566.73,359.27,7.26" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">CoEdge: Cooperative DNN inference with adaptive workload partitioning over heterogeneous edge devices</title>
+		<author>
+			<persName coords=""><forename type="first">Liekang</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xu</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhi</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junshan</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE/ACM Trans. Netw</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page" from="595" to="608" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,576.73,378.79,7.22;25,63.01,586.65,378.31,7.26;25,62.83,596.65,68.54,7.22" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">OSTTD: Offloading of splittable tasks with topological dependence in multi-tier computing networks</title>
+		<author>
+			<persName coords=""><forename type="first">Rui</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xuesen</forename><surname>Chu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruhui</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liwei</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Honghao</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haibing</forename><surname>Guan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE J. Select. Areas Commun</title>
+		<imprint>
+			<biblScope unit="volume">41</biblScope>
+			<biblScope unit="page" from="555" to="568" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,606.61,377.45,7.22;25,63.01,616.54,377.64,7.26;25,62.78,626.54,59.10,7.22" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">DeepThings: Distributed adaptive deep learning inference on resource-constrained IoT edge clusters</title>
+		<author>
+			<persName coords=""><forename type="first">Zhuoran</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kamyar</forename><forename type="middle">Mirzazad</forename><surname>Barijough</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andreas</forename><surname>Gerstlauer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Comput.-Aid. Des. Integr. Circ. Syst</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="page" from="2348" to="2359" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

@@ -1,0 +1,5 @@
+论文标题：EC-SpMM: Efficient Compilation of SpMM Kernel on GPUs
+
+关键词：CCS Concepts:，Computing methodologies → Parallel algorithms，Neural networks，Sparse-dense matrix multiplication, deep neural network, tensor compiler, GPU
+
+摘要：As deep neural networks (DNNs) become increasingly large and complicated, pruning techniques are proposed for lower memory footprint and more efficient inference. The most critical kernel to execute pruned sparse DNNs on GPUs is Sparse-dense Matrix Multiplication (SpMM). To maximize the performance of SpMM, despite the high-performance implementation generated from advanced tensor compilers, they often take a long time to iteratively search tuning configurations. Such a long time slows down the cycle of exploring better DNN architectures or pruning algorithms. In this article, we propose LO-SpMM to efficiently generate

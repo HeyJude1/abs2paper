@@ -1,0 +1,2243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Performance Embeddings: A Similarity-Based Transfer Tuning Approach to Performance Optimization</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2023-06-21">2023-06-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,104.91,131.50,75.11,10.59"><forename type="first">Lukas</forename><surname>Trümper</surname></persName>
+							<email>lukashans.truemper@inf.ethz.ch</email>
+							<idno type="ORCID">0000-0002-0961-7723</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+							<idno type="ORCID">0000-0002-3657-6568</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Philipp</forename><surname>Schaad</surname></persName>
+							<idno type="ORCID">0000-0002-8429-7803</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Alexandru</forename><surname>Calotoiu</surname></persName>
+							<idno type="ORCID">0000-0001-9095-9108</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+							<idno type="ORCID">0000-0002-1333-9797</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">Lawrence Livermore National Laboratory</orgName>
+								<address>
+									<country>USA Philipp Schaad</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">ICS &apos;23</orgName>
+								<address>
+									<addrLine>June 21-23</addrLine>
+									<postCode>2023</postCode>
+									<settlement>Orlando</settlement>
+									<region>FL</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Performance Embeddings: A Similarity-Based Transfer Tuning Approach to Performance Optimization</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 37th International Conference on Supercomputing</title>
+						<meeting>the 37th International Conference on Supercomputing						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="50" to="62"/>
+							<date type="published" when="2023-06-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">4ECAF68E5B790027DADFEEFE7B1791B8</idno>
+					<idno type="DOI">10.1145/3577193.3593714</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>compilers</term>
+					<term>embeddings</term>
+					<term>transfer tuning</term>
+					<term>peephole optimization</term>
+					<term>performance optimization</term>
+					<term>autotuning</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Performance optimization is an increasingly challenging but often repetitive task. While each platform has its quirks, the underlying code transformations rely on data movement and computational characteristics that recur across applications. This paper proposes to leverage those similarities by constructing an embedding space for subprograms. The continuous space captures both static and dynamic properties of loop nests via symbolic code analysis and performance profiling, respectively. Performance embeddings enable direct knowledge transfer of performance tuning between applications, which can result from autotuning or tailored improvements. We demonstrate this transfer tuning approach on case studies in deep neural networks, dense and sparse linear algebra compositions, and numerical weather prediction stencils. Transfer tuning reduces the search complexity by up to four orders of magnitude and outperforms the MKL library in sparse-dense matrix multiplication. The results exhibit clear correspondences between program characteristics and optimizations, outperforming prior specialized state-of-the-art approaches and generalizing beyond their capabilities.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CCS CONCEPTS</head><p>• Software and its engineering → Compilers; • Computing methodologies → Machine learning.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">INTRODUCTION</head><p>Automatic performance optimization of programs for modern computing architectures is challenging. Even for smaller programs, the possibilities to schedule the operations and the data movement become infeasible to explore exhaustively. To efficiently navigate the optimization space, a performance model could be constructed as a surrogate to approximate the search; the searched parameters can be limited to a small number for brute-force tuning; or, more often than not, the program is optimized manually by a performance engineer.</p><p>Several performance models have been developed for specific program classes, notably Polyhedral subprograms <ref type="bibr" coords="1,504.55,624.78,13.45,7.94" target="#b11">[12]</ref>. The polyhedral model has helped develop several automated tuning methods based on integer-linear programming <ref type="bibr" coords="1,474.76,646.70,10.68,7.94" target="#b3">[4]</ref> and machine learning <ref type="bibr" coords="1,331.92,657.66,9.31,7.94" target="#b0">[1,</ref><ref type="bibr" coords="1,343.47,657.66,6.13,7.94" target="#b4">5,</ref><ref type="bibr" coords="1,351.85,657.66,11.51,7.94" target="#b17">18]</ref> as well. Such methods primarily target optimizations on the loop level such as interchanging their order and tiling the iteration space. However, these techniques are limited in representing real-world applications due to the need for expressing programs with affine array accesses and simple loop bounds.</p><p>Methods for optimizing data-dependent applications, such as sparse linear algebra routines, must rely on specialized, inputspecific models <ref type="bibr" coords="2,113.93,109.71,13.50,7.94" target="#b25">[27]</ref>. Because such models are hard to integrate into a general tuning framework, performance engineers often fall back to general profiling-based performance models, such as the roofline model <ref type="bibr" coords="2,109.04,142.59,13.32,7.94" target="#b59">[61]</ref>, for custom applications. Since profiling-based models lack a connection to the algorithmic structure, their interpretation requires significant experience <ref type="bibr" coords="2,209.62,164.51,13.49,7.94" target="#b53">[55]</ref>, which makes the search for optimizations hard to automate. Optimization efforts for real-world applications are thus often resource-intensive manual processes where the outcome strongly depends on the skill set of the individual performance engineer <ref type="bibr" coords="2,189.96,208.34,9.33,7.94" target="#b7">[8,</ref><ref type="bibr" coords="2,201.54,208.34,10.31,7.94" target="#b15">16,</ref><ref type="bibr" coords="2,214.09,208.34,10.13,7.94" target="#b52">54]</ref>.</p><p>In this paper, we present a similarity-based approach to the automatic performance optimization of general loop nests, summarized in Figure <ref type="figure" coords="2,91.05,241.22,3.13,7.94">1</ref>. We develop a method for encoding both static and dynamic performance characteristics of loop nests and capturing them as performance embeddings -a latent, continuous space in which a multidimensional point represents a subprogram. Based on these embeddings, which are trained separately, optimizations derived from a variety of methods (such as brute force, manual tuning, or state-of-the-art auto-schedulers) are stored in an optimization database. This enables knowledge transfer of optimization between different programs with similar static or runtime characteristics, which we call transfer tuning.</p><p>During transfer tuning, loop nests are then optimized by fuzzy matching the optimizations of the k-nearest neighbors from the database according to their performance embeddings. We demonstrate the effectiveness of our approach on a series of polyhedral and non-polyhedral real-world applications, significantly reducing the search complexity for performance optimizations and outperforming state-of-the-art auto-schedulers by reaching up to 92% better runtime improvements.</p><p>In summary, this paper makes the following contributions:</p><p>• Methodology for encoding performance characteristics of general loop nests in performance embeddings; • Development of a general matching algorithm for loop nest optimizations; • Reduction of the optimization search space size by orders of magnitude through transfer tuning; • Demonstration of effectiveness compared with state-of-theart auto-optimizers and extension to tailored optimizations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">SIMILARITY IN PERFORMANCE OPTIMIZATION</head><p>Programs with different structural properties may still share similar performance characteristics, which allow them to be optimized in similar manners.</p><p>The following example shows a standard matrix multiplication and a min-plus matrix multiplication commonly used for shortestpath problems:</p><p>The loop nests are structurally identical, thus trivially sharing similar performance characteristics. Consequently, the min-plus matrix multiplication can be optimized using the same tiling, buffering, and vectorization strategies found in the literature for matrix-matrix mutliplication <ref type="bibr" coords="2,372.00,131.63,13.39,7.94" target="#b29">[31]</ref>. Due to the structural similarity, existing autoschedulers based on the polyhedral model are able to detect this reliably <ref type="bibr" coords="2,347.77,153.55,9.39,7.94" target="#b0">[1]</ref>, reaching a significant speedup over the naïve version.</p><p>The same potential for optimizations can, however, also be observed in a structurally different application, such as the sparsedense matrix multiplication shown below:</p><p>Compared to the regular, dense matrix multiplication from before, this loop nest is no longer data-oblivious since the innermost loop bounds are data-dependent. The sparsity pattern of the input thus determines the workload's characteristics (e.g., load balancing over multiple threads). Regardless of those characteristics, both programs exhibit a strided memory access to the dense matrix B, which can be resolved by interchanging the two innermost loops to improve performance. Existing auto-schedulers <ref type="bibr" coords="2,485.31,330.38,9.39,7.94" target="#b0">[1,</ref><ref type="bibr" coords="2,496.94,330.38,7.39,7.94" target="#b4">5]</ref> can apply this optimization to the original matrix multiplication, but can only transfer these optimizations to the sparse multiplication if their performance models indicate similar performance characteristics. Such static models must, however, make simplifying assumptions on the code, either assuming a fixed sparsity pattern and overapproximating the loop bounds <ref type="bibr" coords="2,431.14,396.13,13.23,7.94" target="#b9">[10]</ref>, or using an inspector-executor model <ref type="bibr" coords="2,342.16,407.09,14.60,7.94" target="#b51">[53]</ref> to produce code conditionally. Both assumptions hinder possible further optimizations with regard to load imbalance and dynamic characteristics.</p><p>A case where the structural differences are even more pronounced is shown below, where the first program computes a sparse matrixvector product, and the second program performs a prime number check on an array of 20,000 numbers: Despite their structural differences, both programs are inherently prone to an imbalanced distribution of work among different threads when parallelizing the outermost loop. In both cases, a dynamic assignment of work to threads yields significantly better performance for specific input distributions. While a purpose-built, dataspecific model <ref type="bibr" coords="2,371.93,690.53,14.66,7.94" target="#b25">[27]</ref> can address this problem for the sparse matrixvector product, the same model cannot directly be applied to the structurally-different prime number filter. Hence, in order to identify similarities and transfer optimizations between data-dependent applications, the integration of a larger number of specialized models would be necessary.</p><p>In contrast, performance engineers are able to identify similarities between both data-oblivious and data-dependent applications treating data-dependent aspects as gaps, which are inferred through profiling. Performance embeddings adopt this observation by encoding both static and dynamic performance characteristics of parallel loop nests, enabling the transfer of optimizations across more general problems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">EMBEDDING PARALLEL LOOP NESTS</head><p>The basis of the similarity search is a representation of parallel loop nests which captures a rich set of performance-relevant properties. This representation should encode static properties such as the structure of loops, and the data accesses, but also reflect dynamic properties such as the bandwidth utilization, the thread imbalance, or the amount of mispredicted branches. In contrast to approaches solely focusing on runtime prediction for data-oblivious applications <ref type="bibr" coords="3,74.71,504.11,9.44,7.94" target="#b0">[1,</ref><ref type="bibr" coords="3,86.56,504.11,6.18,7.94" target="#b4">5,</ref><ref type="bibr" coords="3,95.16,504.11,10.21,7.94" target="#b49">51]</ref>, the purpose of this representation is to provide a detailed description of performance for general parallel loop nests; the runtime itself does not expose information about the potential for optimization.</p><p>We compute the representation of parallel loop nests using neural networks based on both static and dynamic features, depicted in Figure <ref type="figure" coords="3,90.05,569.86,3.13,7.94" target="#fig_0">2</ref>. Dynamic features (performance counters) measured on representative inputs allow the model to treat input-specific aspects of a parallel loop nest as gaps in the static analysis. These features inform the model about the behavior of the loop nest via hardware metrics. For example, the load imbalance between threads is a direct result of a matrix's sparsity pattern in a sparse matrix multiplication.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Parallel Loop Nests</head><p>Before introducing the representation, the term parallel loop nest shall be defined in detail. A parallel loop defines a parallel iteration space and a (possibly empty) body of computations executed for each iteration. A parallel loop nest is an ordered tree where each node is a parallel loop nested inside the iteration space of the parent.</p><p>A program is considered a set of parallel loop nests, which are optimized independently. This assumes that optimizations on the full program have been determined beforehand, e.g., the identification of parallelism and the fusion of parallel loop nests. A fusion strategy based on similarity is briefly discussed in Section 8.</p><p>The computations and loop extents are not assumed to be known at compile-time. In particular, the body may comprise sequential loops and recursions whose function depends on input data. Compared with other models <ref type="bibr" coords="3,410.69,383.44,9.39,7.94" target="#b0">[1,</ref><ref type="bibr" coords="3,422.33,383.44,6.25,7.94" target="#b4">5]</ref>, this definition relaxes the requirements of compile-time known loop extents, operations, and memory access patterns.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Encoding</head><p>The encoding maps the parallel loop nest given in an intermediate representation (IR) to a set of features, which can be processed by a neural network. The encoding of parallel loop nests consists of two parts: a graph encoding of the static IR and an encoding of the dynamic profiling information in a single vector. A detailed list of the used static and dynamic features is presented in Appendix A.</p><p>Static Encoding. The basis of the static encoding is a parallel loop nest represented as a stateful dataflow multigraph (SDFG) <ref type="bibr" coords="3,547.08,531.04,9.37,7.94" target="#b6">[7]</ref>. SDFGs combine state machines with dataflow graphs to represent complete programs, which makes them amenable for static analysis and simplifies the mapping to a graph encoding. However, the approach could equally be implemented with other IRs, e.g., LLVM IR <ref type="bibr" coords="3,327.86,585.84,13.36,7.94" target="#b39">[41]</ref>.</p><p>At the outermost scope, the SDFG of a parallel loop nest is a dataflow graph comprising at least a single parallel loop, called map. As shown in Figure <ref type="figure" coords="3,392.82,618.71,3.13,7.94" target="#fig_1">3</ref>, the body of the map may comprise nested maps, tasklets (operations), or nested SDFGs. The components of an SDFG are mapped to a graph of nodes with features and edges as follows:</p><p>• Access node: Access nodes represent data in the data-flow graph and are mapped to corresponding nodes in the encoding. These nodes are represented by features such as shape, total size, data type, and data layout.  in an SDFG defining the structure of the data accesses. Accordingly, memlets also define the edges of the encoding. In order to collect features for memlets, each edge is split into two edges and an intermediate node encodes the memlet itself. Data accesses are additionally encoded in an access matrix following the format of the polyhedral model <ref type="bibr" coords="4,278.56,447.40,13.50,7.94" target="#b26">[28]</ref>.</p><p>Non-affine accesses are represented by an empty access matrix and a special flag indicating a non-affine access.</p><p>Dynamic Encoding. Processor hardware architectures provide facilities called performance counters to collect detailed statistics about the execution of a program. For example, counters for the total number of executed instructions, or the number of bytes transferred between different levels of the memory hierarchy. We encode the dynamic profile of a parallel loop nest in a single vector of performance counters for the entire parallel loop nest. In total, 19 counters are selected from 8 different categories: instructions, FP32, FP64, branching, main memory, L3 cache, L2 cache and DRAM controller. A detailed list of the counters can be found in the appendix. The selected counters are available on all modern high-performance CPUs, ensuring the portability of the approach. Each counter is measured for all threads during the profiling, and the statistics min, max, mean, std. deviation, and sum are computed over all threads. Hence, the resulting vector contains 95 different features.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Model</head><p>As illustrated in Figure <ref type="figure" coords="4,139.93,679.58,3.08,7.94" target="#fig_0">2</ref>, the two encodings are first processed in separate branches of the neural network. A linear embedding layer maps the dynamic encoding to a dynamic embedding. A graph neural  network (GNN) based on the graph transformer operator <ref type="bibr" coords="4,522.02,246.39,14.70,7.94" target="#b47">[49]</ref> maps the static encoding to node embeddings, which are summarized into a graph embedding by an attentional pooling layer <ref type="bibr" coords="4,500.06,268.31,13.22,7.94" target="#b41">[43]</ref>. Finally, the graph embedding is concatenated with the dynamic embedding and mapped by another MLP to an embedding of the entire parallel loop nest. The size of the embeddings is fixed to 128 for node and graph embeddings. In total, the model comprises 44 layers and 862,000 trainable parameters. The implementation of the model is written in PyTorch 1.13, using standard GNN layers from PyTorch Geometric.</p><p>Targets and Training. To train the model, we add another linear layer to the model, which predicts a target vector based on the embedding of the parallel loop nest. These targets comprise 20 standard performance metrics of the parallel loop nest summarized in Figure <ref type="figure" coords="4,353.77,394.44,3.13,7.94" target="#fig_2">4</ref>. This includes the runtime, the instructions per cycle, different bandwidths, cache miss ratios, and several rates of specific operations per total instructions. We choose the mean absolute error as the loss function and train the model for 20 epochs using Adam at a learning rate of 1e−3. We do not specifically tune the hyperparameters of the model beyond manually setting an initial learning rate, and use an early stopping approach for the weights.</p><p>Dataset. We synthetically generate the training and validation set from standard kernels such as maps, reductions, and stencils. In particular, we include non-data-oblivious kernels such as boolean masks. The test set is extracted from real-world applications implemented in NPBench <ref type="bibr" coords="4,390.87,520.57,14.68,7.94" target="#b61">[63]</ref> by automatically cutting out each parallel loop nest. The sizes of the training, validation, and test sets cover approximately 6,500, 2,000, and 1,000 parallel loop nests, respectively. In contrast to other models designed to predict the speedup of different schedules, we consider a single canonical schedule, which significantly reduces the input variation. The canonical schedule executes the outermost loop of the loop nest in parallel.</p><p>Target Architecture. The target architecture is an Intel Xeon Gold 6140 CPU with a base clock rate of 2.3 GHz and 768 GB of main memory. The entire dataset is labeled automatically with LIKWID <ref type="bibr" coords="4,542.51,624.78,13.35,7.94" target="#b53">[55]</ref>, which defines groups of performance metrics that can be measured simultaneously. Each group of metrics is measured in two phases: In a warmup phase, the program is executed 𝑛 𝑤 times, where 𝑛 𝑤 is chosen such that the logical number of bytes moved corresponds to twice the size of the L2 cache but clipped to a maximum of 1,000 repetitions. In the measurement phase, the program is executed ten times and the median is taken over those measurements to convert the measurements into a single label. In general, most metrics report the measured mean over all threads. However, global throughput metrics such as bandwidths or the instruction per cycle are summed over the threads; the runtime is considered as the maximum over all threads.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Validation</head><p>Before evaluating the quality of embeddings on application-specific tasks, we validate the model on the prediction of the performance metrics. Figure <ref type="figure" coords="5,110.95,188.28,4.20,7.94" target="#fig_2">4</ref> lists the Pearson correlation coefficient between the targets and the model's predictions on the test set for the different performance metrics. In this figure, the performance metrics are ranked by their difficulty of prediction by our model in descending order. The minimum correlation of 0.60 is found for Instructions Per Cycle and the maximum correlation of 0.98 for the metric of Dropped Cache-Lines Bandwidth. For 17 out of 20 targets, the correlation is at least 0.80, indicating a strong correlation between the model prediction and the target labels. These results also correlate with the difficulty of prediction in general, as, e.g., the Instructions Per Cycle metric depends on multiple hardware and system factors.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">PERFORMANCE SIMILARITY</head><p>A similarity search for performance optimization requires that similar embeddings imply similar performance optimization potentials. For instance, if a parallel loop nest has a low memory bandwidth utilization, this loop nest should be mapped to an embedding that is similar to the embeddings of other parallel loop nests with low memory bandwidth utilization.</p><p>We evaluate this hypothesis based on the local variation of parallel loop nests under different performance metrics. Specifically, for each parallel loop nest in the test set, we query the 3-nearestneighbors based on the embedding distance and compute the relative standard deviation among these four loop nests for a specific performance metric. We define the mean of the local variations in the test set as the performance similarity of the model. Below, we discuss the similarity metrics we use for our evaluation, the state-of-the-art baselines we compare with, and analyze similarity on the NPBench dataset.</p><p>Assessing similarity. Since the cost for data movement is the dominant factor in performance optimization <ref type="bibr" coords="5,219.42,524.23,13.43,7.94" target="#b54">[56,</ref><ref type="bibr" coords="5,235.09,524.23,10.06,7.94" target="#b55">57]</ref>, we focus on memory-specific performance metrics for evaluation. The memory usage efficiency (MUE) <ref type="bibr" coords="5,141.42,546.15,14.85,7.94" target="#b27">[29]</ref> combines the following two performance metrics to assess the optimization potential of a program:</p><p>• Main / L3 / L2 Memory Bandwidth: The attained memory bandwidth on different levels of the memory hierarchy is a standard metric to identify optimization potentials in typical bound-and-bottleneck analyses (cf., Roofline model <ref type="bibr" coords="5,263.65,602.86,13.45,7.94" target="#b33">[35,</ref><ref type="bibr" coords="5,279.33,602.86,9.66,7.94" target="#b59">61]</ref>). • Data Locality: Fuhrer et al. <ref type="bibr" coords="5,180.75,613.82,14.85,7.94" target="#b27">[29]</ref> point out that an analysis based on solely the attained memory bandwidth ignores the intrinsic limitations of the algorithm. For instance, a loop nest with a strided memory access pattern and a loop nest with a random memory access pattern may both yield low memory bandwidths. However, the former may still be optimized through a loop interchange, while the latter already achieves its maximal bandwidth utilization. The data locality accounts for these algorithmic limitations and is defined as the ratio of the I/O lower bound Q of the algorithm and the measured transferred bytes from main memory D, in short, 𝑄 𝐷 . Q is estimated automatically by SOAP-Analysis <ref type="bibr" coords="5,374.27,122.15,13.26,7.94" target="#b38">[40]</ref>, which is based on the concept of the Red-Blue Pebble Game <ref type="bibr" coords="5,390.61,133.10,13.36,7.94" target="#b35">[37]</ref>.</p><p>Baselines. To assess the model's performance, we compare the similarity of our embeddings with three other models that map parallel loop nests to embeddings, and perform ablation studies on the input features.</p><p>The reuse distance analysis <ref type="bibr" coords="5,427.24,194.54,13.50,7.94" target="#b10">[11,</ref><ref type="bibr" coords="5,442.97,194.54,10.31,7.94" target="#b18">19,</ref><ref type="bibr" coords="5,455.51,194.54,11.53,7.94" target="#b46">48]</ref> is a traditional approach to loop nest analysis, which simulates the execution of the loop for a specified number of iterations on a simplified cache model. Using this simulation-based analysis, we map each loop nest to a fourdimensional vector of the cache miss ratio, the bytes read from and written to the memory, and the arithmetic intensity. The movement of bytes gives a strong indication of the efficiency of the memory access patterns, and the arithmetic intensity is typically used to estimate the performance of a program on a target architecture. Since the simulation of loop nests is expensive, we only simulate the first 500 iterations of the loop nest.</p><p>IR2Vec <ref type="bibr" coords="5,354.23,315.08,14.84,7.94" target="#b58">[60]</ref> provides embeddings of programs based on LLVM IR. The embeddings are trained in an unsupervised manner and can be used for various machine learning tasks related to program properties and source code.</p><p>Baghdadi et al. <ref type="bibr" coords="5,389.12,358.92,10.68,7.94" target="#b4">[5]</ref> introduce a state-of-the-art performance model for optimizing polyhedral programs. The model estimates the speedup of a schedule and a loop nest based on static features and a recurrent neural network. Since the model is designed to predict the speedup of a certain schedule, we remove the linear prediction layer and obtain the embedding of the parallel loop nest from the input of this last layer. Results. Table <ref type="table" coords="5,381.12,613.82,4.25,7.94" target="#tab_2">1</ref> summarizes the performance similarity of the baseline feature extractors and our model. Our model has a strictly lower local variation for all performance metrics and thus yields a higher performance similarity. Hence, the performance optimization based on the local neighbors in our embedding space is more likely to resolve the actual performance bottlenecks of a parallel loop nest. Furthermore, we run ablation studies using only one set of the static/dynamic features. The studies show that the selected dynamic features are sufficient for reasoning over bandwidth. However, static features (such as array accesses) are crucial to understand memory access patterns for data locality and I/O complexity.</p><p>Similarly to text analogies for word embeddings, we additionally verify our representation through the use of several distance tests. For example, one of our tests implements three operations: linear copy of two arrays (denoted as 𝑎), indirect copy with a random permutation on the indices (𝑏), and indirect copy with the identity index permutation (𝑐). In all of our learned embeddings, 𝑑 (𝑎, 𝑐) &lt; 𝑑 (𝑎, 𝑏) for the cosine distance 𝑑.</p><p>To further understand the similarity induced by our model, Figure <ref type="figure" coords="6,68.00,383.22,4.14,7.94" target="#fig_3">5</ref> visualizes the embeddings of the test set in a t-SNE plot <ref type="bibr" coords="6,278.77,383.22,13.33,7.94" target="#b56">[58]</ref>. A t-SNE plot reduces high-dimensional data onto a 2D plane based on neighborhood minimization. In the figure, each sample is a point colored by its data locality; a plot that is separable by color, as our model's embedding space is (Figure <ref type="figure" coords="6,190.29,427.06,6.58,7.94" target="#fig_3">5a</ref>), indicates a strong influence of the performance metric in the representation of the sample. For comparison, Figure <ref type="figure" coords="6,143.39,448.97,8.76,7.94" target="#fig_3">5b</ref> shows that the data locality is not an important factor for the representation of the sample, depicted by scattered clusters.</p><p>Evaluating importance of static features. Since the model has a rich set of dynamic features available, the question arises whether the static encoding is used by the model. To analyze this question, we analyze the structure of the node embeddings for the input array access nodes of a parallel loop nest. We extract the node embeddings of input arrays from 350 synthetically generated parallel loop nests. For each array, we measure the L2 load bandwidth of the isolated access to the array.</p><p>We programmatically isolate the access by modifying the parallel loop nests. For example, the isolated access to a matrix 𝐵 in a matrixmatrix multiplication is shown below:</p><p>The resulting t-SNE plot of the node embeddings of input nodes is depicted in Figure <ref type="figure" coords="6,131.50,657.66,3.13,7.94" target="#fig_4">6</ref>. The samples are colored by the measured L2 load bandwidth showing that local groups of node embeddings are similar in the bandwidth of their access. This indicates that the model generates meaningful embeddings for these nodes based on static features such as the access's stride and the array's size. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">TRANSFER TUNING</head><p>Peephole optimization is a compiler technique that replaces a local window of instructions with an equivalent set. Such local windows are usually found using a pattern-matching algorithm. However, since the replacement rules of peephole optimizations are designed for bit-exactness, the applicability of the optimization is limited to small windows of a few instructions. Our transfer tuning algorithm extends the idea of peephole optimizations to larger loop nests by fuzzy matching program transformations from one loop nest to another via similar node embeddings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">A Matching Problem for Program Transformations</head><p>Transferring a transformation from a source loop nest to a target loop nest requires identifying the corresponding instructions, to which the transformation shall be applied in the target. As an example, consider the pair of loop nests in Figure <ref type="figure" coords="6,476.64,469.59,4.09,7.94" target="#fig_5">7</ref> and a transformation that marks a loop for parallel execution. To transfer it to the target loop nest, the corresponding loop must be identified. Since parallel for (int i=1; i &lt; 10000; i++)</p><formula xml:id="formula_0">A[i] = B[i-1] + B[i] + B[i+1];</formula><p>#pragma omp parallel for for (int i=1; i &lt; 10000; i++)  loop nests are represented by graphs in our model, instructions correspond to nodes and edges of the graph. Furthermore, since the node embeddings generated by the model have a one-to-one correspondence with the nodes in the IR, transformations shall be transferred from the source to the target parallel loop nest by a matching of the node embeddings, as illustrated in Figure <ref type="figure" coords="7,277.73,287.32,3.13,7.94" target="#fig_6">8</ref>. In detail, the transfer tuning algorithm consists of four steps:</p><formula xml:id="formula_1">A[i] = B[i-1] + B[i] + B[</formula><p>(1) Let 𝐺 𝐿 = (𝑉 𝐿 , 𝐸 𝐿 ) be the source parallel loop nest and let 𝐺 𝑇 = (𝑉 𝑇 , 𝐸 𝑇 ) be the induced subgraph for a transformation 𝑇 . We compute the source node embeddings 𝑒𝑚𝑏𝑠 𝑆 for each 𝑣 ∈ 𝑉 𝑇 . (2) Let 𝐺 𝐿 ′ = (𝑉 𝐿 ′ , 𝐸 𝐿 ′ ) be the target parallel loop nest. We compute the target node embeddings 𝑒𝑚𝑏𝑠 𝑇 for each 𝑣 ∈ 𝑉 𝐿 ′ . (3) Let 𝑀 = (𝑉 𝐿 ′ , 𝑉 𝑇 ; 𝐸, 𝐶) be a complete, bi-partite graph between the source subgraph's nodes 𝑉 𝑇 and the target nodes 𝑉 𝐿 ′ , where 𝐶 is the cost matrix of the pair-wise ℓ 2 distances between 𝑒𝑚𝑏𝑠 𝑇 and 𝑒𝑚𝑏𝑠 𝑆 . We solve the matching problem 𝑀 using the Hungarian method <ref type="bibr" coords="7,194.15,421.63,14.69,7.94" target="#b36">[38]</ref> obtaining the mapping between source subgraph's nodes 𝑉 𝑇 and the target subgraph's nodes 𝑉 ′ 𝑇 ⊆ 𝑉 𝐿 ′ . (4) The transformation 𝑇 ′ can now be instantiated from 𝑉 ′ 𝑇 and be applied on 𝐺 𝐿 ′ accordingly .</p><p>A program transformation can thereby range from a simple change of a node's property to a complex rewrite of a subgraph. For instance, a tiling transformation may split the nodes of a map into a pair of maps with corresponding edges. For sequences of transformations, the four steps are repeated for every new source and target parallel loop nest of each step. If the matching problem cannot be solved or the resulting matching does not yield a valid subgraph for the specific transformation, the transformation is skipped. In practice, we add further constraints to the cost matrix, e.g., setting the cost to infinity for pairs of nodes that do not have the same type. Furthermore, each transformation requires specific handling of its properties. For instance, a tiling transformation may not evenly divide the target loop extents.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">EVALUATION</head><p>We now evaluate transfer tuning in two case studies: In the first case study, the optimizations found by a state-of-the-art auto-scheduler for polyhedral applications <ref type="bibr" coords="7,153.88,668.62,10.49,7.94" target="#b4">[5]</ref> are transfer tuned between applications from different domains such as image processing, numerical weather prediction, and linear algebra. In the second case study, dynamic scheduling decisions are transfer tuned between sparse matrix-matrix multiplication (SpMM) for matrices from suitesparse <ref type="bibr" coords="7,358.94,98.75,13.36,7.94" target="#b21">[23]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Case Study: Auto-Scheduler</head><p>Baghdadi et. al. <ref type="bibr" coords="7,376.75,137.23,10.62,7.94" target="#b4">[5]</ref> train a speedup prediction model and use this model to guide the search of the Tiramisu auto-scheduler in a large scheduling space consisting of typical loop transformations such as loop interchange, tiling, parallelization, and vectorization. We show that transfer tuning the discovered optimizations between applications based on the performance embeddings reduces performance optimization to a local search. The evaluation set consists of 12 applications comprising approximately one hundred parallel loop nests.</p><p>Experimental Setup. To find a strong reference optimization for each parallel loop nest, we run the Tiramisu auto-scheduler's Monte-Carlo Tree Search (MCTS) for a larger number of epochs. Additionally, we test the 100 best hypotheses found by the search on the target architecture to determine the overall best-performing configuration. Hence, the optimization database comprises approximately one hundred schedules corresponding to the total number of parallel loop nests. The transfer tuned optimization for a parallel loop nest is found by a 𝑘-nearest-neighbor search in the embedding space of all parallel loop nests except for the parallel loop nest to be tuned (leave-one-out). To apply the Tiramisu auto-scheduler to our graph IR, we implement a converter from SDFGs to the representation of programs used by this model. <ref type="table" coords="7,379.14,396.51,4.09,7.94" target="#tab_4">2</ref> lists the results of the Tiramisu auto-scheduler's optimization of each application as well as the results obtained by transfer tuning for 𝑘 = 5 and 𝑘 = 10 neighbors. For the majority of applications, the transfer-tuned runtime is within 5% of the reference at a fraction of the search complexity, see MCTS Space column for the number of configurations tested by the auto-scheduler. Since the reference optimizations are found once and then stored in the database, transfer tuning enables exhaustive offline optimization of applications with a large scheduling space.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Results. Table</head><p>Daubechies Wavelet. In the embedding space, the neighbors of a parallel loop nest act as a of explored search paths based on slightly varied input conditions. The Daubechies wavelet benchmark is an example where this neighborhood yields a considerable speedup. The application consists of a single parallel loop nest, where the outermost loop iterates over the 3 channels of an image. Parallelizing over this loop induces a major performance bottleneck on a CPU with 36 cores since most cores are idling.</p><p>Upon inspecting the transferred transfer tuning results, we see that it optimized according to the Haar wavelet: MCTS fails to find an optimization maximizing the parallelism for the Daubechies wavelet, but succeeds in finding an optimization for the almost identical Haar wavelet. This also showcases an important feature of performance embeddings -as opposed to end-to-end neural networks, transfer tuning provides explainability for its optimization decisions.</p><p>Other examples are the Harris filter and the histogram filter, in which transfer tuning finds additional potential for applying the optimization found within the same benchmark. The runtime difference of transfer tuning for five and ten neighbors relative to the runtime of the Tiramisu autoscheduler <ref type="bibr" coords="8,94.55,320.67,11.59,7.70" target="#b4">[5]</ref> for polyhedral applications. The auto-scheduler uses Monte-Carlo Tree Search (MCTS) to explore a large schedule space, whereas transfer tuning is a local search based on a few nearest neighbors.</p><p>Multi-Layer Perceptron (MLP). Although matmul and min-plus matrix multiplication are potential candidates for optimizing the layers in mlp, we see that transfer tuning performs worse for this particular benchmark. The matrix multiplications of matmul and mlp differ significantly in the dimensions of the matrices: while matmul multiplies a 1024 × 2048 and a 2048 × 1024 matrix, mlp multiplies weight matrices, which have a small leading dimension of 64 corresponding to the batch size. Hence, the matrix multiplications define different trade-offs of data locality and parallelization. This shows that the optimization database's density (i.e., the availability of similar neighbors) is an important hyperparameter of transfer tuning.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Case Study: Tailored Optimization</head><p>In the second case study, we demonstrate the extensibility of transfer tuning to custom optimizations by dynamically scheduling Sp-MMs for matrices from suitesparse <ref type="bibr" coords="8,189.26,551.22,13.49,7.94" target="#b21">[23]</ref>. A typical performance bottleneck of SpMM is an imbalanced distribution of work among the threads, resulting from the distribution of the non-zero elements. The standard optimization is then to change the scheduling from a static assignment of work to threads to a dynamic assignment, which incurs some overhead for the execution.</p><p>Experimental Setup. To define an optimization database for the scheduling decision, we determine the optimal schedule for 42 sparse matrices from suitesparse <ref type="bibr" coords="8,174.84,646.70,14.71,7.94" target="#b21">[23]</ref> by benchmarking OpenMP's default static schedule and a dynamic schedule of chunk size 8. The matrices are multiplied by a dense matrix of 512 columns filled with random values. We evaluate whether transfer tuning can decide the optimal schedule by splitting this set of matrices into a set that is stored in the optimization database and a test set. The scheduling of the test set matrices is then determined by a 1-nearest neighbor query to the database. The resulting runtime of the matrices is compared with the Intel MKL 2021.3 implementation of SpMM. Results. The t-SNE plot of the SpMM embeddings of all matrices is depicted in Figure <ref type="figure" coords="8,408.68,624.78,3.10,7.94" target="#fig_7">9</ref>, where the embeddings of the different matrices are colored by their optimal schedule. The separation of groups by colors already indicates the applicability of the 1-nearestneighbor approach to dynamic scheduling. Table <ref type="table" coords="8,495.41,657.66,4.09,7.94" target="#tab_5">3</ref> summarizes the runtimes of both schedules, the runtime after transfer tuning as well as the Intel MKL baseline. Transfer tuning picks the correct scheduling decision for 8 out of the 10 test benchmarks. Furthermore, the comparison with the Intel MKL baseline shows a significant speedup of the optimal scheduling for a different subset of 8 out of 10 benchmarks.</p><p>BERT. The BERT transformer <ref type="bibr" coords="9,173.05,306.33,14.69,7.94" target="#b23">[25]</ref> is a standard neural network architecture in natural language processing. The sparsification of the dense layers is a common technique to enable efficient inference by sacrificing a reasonable amount of accuracy <ref type="bibr" coords="9,233.84,339.20,13.49,7.94" target="#b32">[34]</ref>. In order to show the cross-domain transfer of this knowledge, we repeat the above experiment for the sparse weights of a sparsified model <ref type="bibr" coords="9,278.48,361.12,13.24,7.94" target="#b37">[39]</ref>, yielding a similarly separable embedding space for transfer tuning. The tSNE plot of the sparse weights is depicted in Figure <ref type="figure" coords="9,263.35,383.04,6.87,7.94" target="#fig_8">10</ref>.</p><p>In conclusion, transfer tuning yields comparable performance speedups on all tested cases, at times outperforming existing tools and libraries by inferring cross-application optimizations. It can adapt to additional insights gained by automated tools and tailored optimizations and can be inspected to explain its reasoning behind certain optimizations via the chosen neighbor.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">RELATED WORK</head><p>Automatic performance optimization and performance modeling for optimization has been studied by a variety of works. The following section summarizes prior related research.</p><p>Performance Modeling and Extrapolation. Several wo-rks focused on the automatic prediction of program and subprogram performance. One of the earlier instances of using machine learning for performance modeling was performed by Ipek et al. <ref type="bibr" coords="9,244.72,559.03,13.35,7.94" target="#b34">[36]</ref>, who use an MLP to predict application performance. Carrington et al. <ref type="bibr" coords="9,279.32,569.99,14.72,7.94" target="#b16">[17]</ref> and Siegmund et al. <ref type="bibr" coords="9,129.10,580.95,14.72,7.94" target="#b48">[50]</ref> also provide performance prediction for tuning via heuristic means on an application-level, and Calotoiu et al. <ref type="bibr" coords="9,74.13,602.86,14.72,7.94" target="#b14">[15]</ref> model and extrapolate runtime dependency on parameters of general codes via time measurement of multiple small experiments. Most such works do not focus on the optimization transformations and their choice, but rather on accurate execution time prediction.</p><p>Application-specific performance models <ref type="bibr" coords="9,216.78,657.66,13.52,7.94" target="#b31">[33,</ref><ref type="bibr" coords="9,232.53,657.66,10.32,7.94" target="#b40">42,</ref><ref type="bibr" coords="9,245.09,657.66,11.54,7.94" target="#b60">62]</ref> introduce domain knowledge into the prediction and often use the generated communication or performance model to inform an optimization search without executing the program, which might be expensive due to running on distributed environments.  <ref type="bibr" coords="9,422.69,294.94,14.86,7.70" target="#b37">[39]</ref>. The embeddings are colored by the optimal scheduling type, i.e., static (purple ) and (orange ).</p><p>Polyhedral Compilers. The Pluto <ref type="bibr" coords="9,451.53,354.63,13.49,7.94" target="#b12">[13]</ref>, PENCIL <ref type="bibr" coords="9,503.12,354.63,9.52,7.94" target="#b2">[3]</ref>, and LLVM Polly <ref type="bibr" coords="9,337.82,365.59,14.60,7.94" target="#b30">[32]</ref> compilers express performance optimizations as the solution of an integer linear program (ILP) with respect to a hand-crafted cost model of the target architecture. For reasons of tractability of the ILP, the cost model makes strong simplifying assumptions, often yielding sub-optimal results on complex architectures <ref type="bibr" coords="9,538.03,409.42,9.39,7.94" target="#b3">[4]</ref>.</p><p>Deep Code Representations. inst2vec <ref type="bibr" coords="9,462.92,429.43,9.52,7.94" target="#b8">[9]</ref>, GNN-CDFG <ref type="bibr" coords="9,524.65,429.43,13.49,7.94" target="#b13">[14]</ref>, Pro-GraML <ref type="bibr" coords="9,345.29,440.39,13.28,7.94" target="#b20">[21]</ref>, and IR2Vec <ref type="bibr" coords="9,405.34,440.39,14.65,7.94" target="#b58">[60]</ref> are examples of neural code representations that map static code to embeddings. The embeddings are designed to solve typical compiler tasks and classify applications according to their semantics. In contrast, performance embeddings encode static and dynamic properties, aiming to capture performance aspects regardless of the underlying algorithm.</p><p>Optimizing Compilers. Optimizing compilers are subject to extensive research. Tiramisu <ref type="bibr" coords="9,414.31,526.15,9.29,7.94" target="#b5">[6]</ref>, Halide <ref type="bibr" coords="9,454.23,526.15,14.61,7.94" target="#b45">[47]</ref> and TVM <ref type="bibr" coords="9,506.83,526.15,14.61,7.94" target="#b17">[18]</ref> introduce deep learning performance models <ref type="bibr" coords="9,442.85,537.11,9.23,7.94" target="#b0">[1,</ref><ref type="bibr" coords="9,453.82,537.11,6.10,7.94" target="#b4">5,</ref><ref type="bibr" coords="9,461.65,537.11,11.47,7.94" target="#b17">18]</ref> based on static features, which guide the search in the scheduling space. Singh et al. <ref type="bibr" coords="9,543.48,548.07,14.72,7.94" target="#b49">[51]</ref> extends these performance models to graph neural networks, improving the prediction's accuracy. Steiner et al. <ref type="bibr" coords="9,483.88,569.99,14.72,7.94" target="#b50">[52]</ref> re-formulate the search problem as a Markov Decision Problem, which can be solved using reinforcement learning. Other works utilize input-specific and profiling features to optimize programs based on classification problems: For instance, Elafrou et al. <ref type="bibr" coords="9,456.95,613.82,14.72,7.94" target="#b25">[27]</ref> train a neural network to choose between classes of optimizations for sparse linear algebra routines. Dutta et al. <ref type="bibr" coords="9,421.07,635.74,14.72,7.94" target="#b24">[26]</ref> combine a pattern classifier and performance counters for selecting OpenMP configurations. Our approach separates the performance model from the optimization by introducing an offline optimization database. This allows the local search in the application space, which significantly reduces the complexity of the search and allows for the extension of the optimization space without re-training the model. In particular, our database-based approach is not limited to a fixed set of optimizations.</p><p>Transfer Tuning. Martins et al. <ref type="bibr" coords="10,175.08,115.77,14.72,7.94" target="#b42">[44]</ref> cluster C functions based on static features to select the optimal compiler passes according to the cluster assignment. Gibson and Cano <ref type="bibr" coords="10,200.56,137.69,14.72,7.94" target="#b28">[30]</ref> provide a constrained definition of the term transfer tuning as the reuse of optimizations found by auto-schedulers for specific operations in tensor programs. The discovered optimizations are matched by hand-crafted heuristics to other operations. Our approach extends this concept to intermediate representations and optimizations based on a fuzzy matching of node embeddings. The similarity of performance embeddings thereby generalizes hand-crafted transfer rules.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">DISCUSSION</head><p>The following section briefly discusses possible extensions of the presented similarity-based framework.</p><p>Scalability. The density of the optimization database is a crucial hyperparameter for the validity of the similarity-based approach. However, the separation of the model and the transformations enables offline search for further optimizations. This allows to continuously improve the quality of the search by extending the database (i.e., online learning) with suboptimal examples. For existing auto-schedulers, a corresponding extension of the approach means expensive re-training and a significant increase in the scheduling space for all applications. This is a practical problem since current auto-schedulers often fail for basic applications, such as the jacobi2d benchmark on the model of Baghdadi et al. <ref type="bibr" coords="10,242.26,387.42,10.55,7.94" target="#b4">[5]</ref> or the max filter on Adams et al. <ref type="bibr" coords="10,133.32,398.38,9.41,7.94" target="#b0">[1]</ref>. A possible next step for the approach is to evaluate transfer tuning with larger databases.</p><p>Transformation Alignment. The matching algorithm matches a transformation to a parallel loop nest using the Hungarian method. However, the matching of a sequence of transformations is modeled greedily, which means that a database is required that covers symmetric cases as separate entries. However, such cases typically require a simple modification of the transformation sequence. For instance, a loop interchange, which is a common infix in transformation sequences, may often be skipped or replaced by a similar interchange for specific pairs of loop nests. This problem could be modeled as a sequence alignment problem, where the skipping or insertion of specific transformations are latent decisions (represented by, e.g., a Hidden Markov Model). Sequence alignments are well-known in the field of machine translation <ref type="bibr" coords="10,219.98,557.86,13.40,7.94" target="#b44">[46,</ref><ref type="bibr" coords="10,235.47,557.86,10.05,7.94" target="#b57">59]</ref>. Understanding performance optimization as a sequence alignment between a reference optimization and a similar loop nest gives rise to the idea of a model-based alternative to the model-free reinforcement learning approach presented by Steiner et al. <ref type="bibr" coords="10,219.74,601.70,13.36,7.94" target="#b50">[52]</ref>.</p><p>Loop Fusion. The fusion of parallel loop nests is an important optimization to reduce the volume of necessary data movement. In order to support this optimization in the similarity-based framework, a model is necessary which produces subgraph embeddings for graphs of parallel loop nests. Such models are subject to current research <ref type="bibr" coords="10,86.84,673.51,9.39,7.94" target="#b1">[2]</ref>.</p><p>Target Architecture. The separation of the model and the optimizations also facilitates porting the approach to new architectures.</p><p>In particular, learning a representation for similarity search is significantly simpler than training a model that accurately predicts the speedups of complex optimization sequences. In fact, the dynamic encoding and the targets only need to be substituted by appropriate performance counters and metrics for the new target architecture. Performance models usually provide a good basis for finding relevant metrics and are available for most architectures, e.g., NUMA nodes <ref type="bibr" coords="10,341.68,164.51,13.36,7.94" target="#b22">[24]</ref>, FPGA <ref type="bibr" coords="10,384.43,164.51,13.36,7.94">[22]</ref>, GPU <ref type="bibr" coords="10,422.96,164.51,13.36,7.94" target="#b43">[45]</ref>, and distributed computing <ref type="bibr" coords="10,541.26,164.51,13.36,7.94" target="#b19">[20]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9">CONCLUSION</head><p>In this paper, we present a similarity-based tuning framework that lifts peephole optimizations by fuzzy-matching larger program transformations. The approach separates the performance model from the optimizations in the form of performance embeddings and an optimization database. This enables local search for optimizations over the nearest neighbors in the embedding space.</p><p>We demonstrate the approach in different case studies highlighting the reduction of the search complexity by up to four orders of magnitude, and the extensibility of the approach to tailored optimizations on data-dependent applications, outperforming the state-of-the-art MKL library in certain use cases. The approach creates a new space that can be used for explainable and robust optimization, while remaining adaptive to future applications and hardware -transferring a new optimization technique is as simple as adding a row to the database.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A APPENDIX</head><p>The static encoding maps nodes and edges of an SDFG to a set of features. The mapping of SDFG node types to features is summarized in Table <ref type="table" coords="13,85.38,123.41,3.07,7.94" target="#tab_6">4</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Node Type Features</head><p>Access  </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,137.31,245.88,337.37,7.70"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: An overview of the model architecture to construct loop nest embeddings.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,66.76,210.82,214.32,7.70"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: SDFG representation of a parallel loop nest.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,317.96,216.03,240.24,7.70;4,317.96,226.99,48.00,7.70"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Pearson correlation coefficient of targets and model predictions.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,53.80,212.04,240.48,7.70;6,53.80,223.00,240.24,7.70;6,53.80,233.96,240.24,7.70;6,53.80,244.92,204.80,7.70"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: t-SNE plots of the embedding space generated by our model and Baghdadi et al. [5] for the test set. Each sample is colored by the Data Locality MUE metric. The colors are based on binning the range to account for outliers.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,317.96,213.08,240.23,7.70;6,317.96,224.04,240.24,7.70;6,317.96,235.00,240.24,7.70;6,317.96,245.96,240.23,7.70;6,317.96,256.92,142.12,7.70"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: t-SNE plot of the node embeddings of input nodes colored by the L2 load bandwidth. The similarity of local groups indicates that the model utilizes static features of the encoding. The colors are based on binning the range of the bandwidths to account for outliers.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,317.96,621.26,241.84,7.70;6,317.96,632.21,240.23,7.70"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: Fuzzy matching similar loop nests allows transferring program transformations, such as loop parallelizations.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,53.80,233.75,241.84,7.70;7,53.80,244.71,240.24,7.70;7,53.80,255.67,51.05,7.70"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: Matching the subgraph of a transformation to another parallel loop nest based on the distances of the node embeddings.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="8,317.96,568.91,241.85,7.94;8,317.96,580.09,241.84,7.70;8,317.96,591.05,226.98,7.70"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: t-SNE plot of the SpMM embeddings for 42 suitesparse matrices. Embeddings are colored by the optimal scheduling type, i.e., static (purple ) and dynamic (orange ).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="9,317.96,283.98,240.24,7.70;9,317.61,294.94,240.59,7.70;9,317.96,305.90,240.24,7.70;9,355.38,316.86,43.60,7.70"><head>Figure 10 :</head><label>10</label><figDesc>Figure10: t-SNE plot of the SpMM embeddings for the sparse weights of a BERT model<ref type="bibr" coords="9,422.69,294.94,14.86,7.70" target="#b37">[39]</ref>. The embeddings are colored by the optimal scheduling type, i.e., static (purple ) and (orange ).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="5,317.66,453.09,242.14,122.51"><head>Table 1 :</head><label>1</label><figDesc>The mean coefficient-of-variation of different feature extractors on the test set. A lower value means higher similarity among the three closest neighbors.</figDesc><table coords="5,344.65,453.09,186.86,86.04"><row><cell></cell><cell cols="2">Bandwidth</cell><cell>Data</cell></row><row><cell></cell><cell>Main</cell><cell>L3</cell><cell>L2 Locality</cell></row><row><cell>Reuse Distance [11, 19]</cell><cell cols="3">0.78 1.02 0.82</cell><cell>0.87</cell></row><row><cell>IR2Vec [60]</cell><cell cols="3">0.47 0.66 0.45</cell><cell>0.41</cell></row><row><cell>Baghdadi et al. [5]</cell><cell cols="3">0.32 0.41 0.35</cell><cell>0.35</cell></row><row><cell>Our Model</cell><cell cols="3">0.25 0.30 0.28</cell><cell>0.31</cell></row><row><cell>Dynamic Features</cell><cell cols="3">0.26 0.33 0.25</cell><cell>0.45</cell></row><row><cell>Static Features</cell><cell cols="3">0.28 0.42 0.33</cell><cell>0.33</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="8,53.50,88.75,381.94,228.66"><head>Table 2 :</head><label>2</label><figDesc></figDesc><table coords="8,176.56,88.75,258.89,214.06"><row><cell></cell><cell cols="2">Baghdadi et al. [5]</cell><cell cols="2">Transfer Tuning</cell></row><row><cell></cell><cell cols="2">MCTS Space Runtime [ms]</cell><cell>k=5</cell><cell>k=10</cell></row><row><cell>Deep Learning</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>mlp</cell><cell>111,508</cell><cell cols="3">1.47 +38.8% +37.4%</cell></row><row><cell>softmax</cell><cell>183,427</cell><cell>110.40</cell><cell>+0.6%</cell><cell>+0.5%</cell></row><row><cell>Image Processing</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>blur filter</cell><cell>1,342</cell><cell>1.03</cell><cell>0.0%</cell><cell>0.0%</cell></row><row><cell>daubechies wavelet</cell><cell>9,101</cell><cell>8.73</cell><cell cols="2">-3.7% -92.0%</cell></row><row><cell>haar wavelet</cell><cell>8,639</cell><cell>0.22</cell><cell>0.0%</cell><cell>0.0%</cell></row><row><cell>harris filter</cell><cell>1,651</cell><cell>9.06</cell><cell>+0.2%</cell><cell>-4.0%</cell></row><row><cell>histogram filter</cell><cell>147,438</cell><cell>32.51</cell><cell>+1.2%</cell><cell>-4.9%</cell></row><row><cell>unsharpening filter</cell><cell>25,080</cell><cell>29.66</cell><cell>+3.1%</cell><cell>+0.5%</cell></row><row><cell>Weather Stencils</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>heat 3D</cell><cell>69,080</cell><cell>13428.98</cell><cell>+3.6%</cell><cell>+2.8%</cell></row><row><cell>horizontal diffusion</cell><cell>34,534</cell><cell>7.00</cell><cell>+4.8%</cell><cell>+4.8%</cell></row><row><cell>Linear Algebra</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>matmul</cell><cell>65,986</cell><cell>14,17</cell><cell>+5.3%</cell><cell>+4.1%</cell></row><row><cell>Graphs</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>min-plus mm</cell><cell>65,999</cell><cell>24.76</cell><cell>+9.0%</cell><cell>+8.5%</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="9,53.50,88.70,240.53,147.67"><head>Table 3 :</head><label>3</label><figDesc>Runtime of SpMM for the static and the dynamic scheduling in the left part of the table and the runtime of transfer tuning and Intel MKL in the right part of the table.</figDesc><table coords="9,76.50,88.70,194.85,111.21"><row><cell>Sparse Matrix</cell><cell cols="3">Static Dynamic Transfer</cell><cell>MKL</cell></row><row><cell>as-Skitter</cell><cell>2574.19</cell><cell>719.31</cell><cell cols="2">719.31 1264.84</cell></row><row><cell>delaunay_n19</cell><cell>132.46</cell><cell>111.78</cell><cell cols="2">111.78 101.59</cell></row><row><cell>poisson3Db</cell><cell>157.94</cell><cell>86.00</cell><cell>86.00</cell><cell>112.79</cell></row><row><cell>citationCiteseer</cell><cell>135.59</cell><cell>125.43</cell><cell>135.59</cell><cell>134.23</cell></row><row><cell>FullChip</cell><cell>4081.38</cell><cell cols="3">3028.05 3028.05 3863.76</cell></row><row><cell>belgium_osm</cell><cell>180.88</cell><cell>206.83</cell><cell>180.88</cell><cell>240.03</cell></row><row><cell>com-YouTube</cell><cell>911.14</cell><cell>286.34</cell><cell>286.34</cell><cell>392.93</cell></row><row><cell>bcsstk13</cell><cell>2.90</cell><cell>1.82</cell><cell>1.82</cell><cell>0.62</cell></row><row><cell>bundle_adj</cell><cell>4395.73</cell><cell>437.39</cell><cell>437.39</cell><cell>840.43</cell></row><row><cell>SiO2</cell><cell>450.68</cell><cell>174.84</cell><cell>450.68</cell><cell>263.09</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="13,53.50,162.00,240.78,386.21"><head>Table 4 :</head><label>4</label><figDesc>Node data type, bytes per element, shape, total size, stride, alignment, offset, transient, storage type Map Entry map level, map dimensions, map extents, map steps Map Exit one-hot encoding Memlet start access matrix, stop access matrix, steps vector, dynamic, indirection, reduction, type of reduction An overview of the static features selected for the static encoding of parallel loop nests. Most features directly correspond to the properties of nodes in an SDFG. The dynamic encoding maps the profiling to 19 performance counters selected from 8 different groups. Table 5 lists the counters and groups in detail.</figDesc><table coords="13,57.97,361.13,230.03,187.07"><row><cell>Group</cell><cell>Counters</cell></row><row><cell>Instructions</cell><cell>INSTR_RETIRED_ANY</cell></row><row><cell></cell><cell>FP_ARITH_INST_RETIRED_SCALAR_SINGLE</cell></row><row><cell>FP 32</cell><cell>FP_ARITH_INST_RETIRED_128B_PACKED_SINGLE FP_ARITH_INST_RETIRED_256B_PACKED_SINGLE</cell></row><row><cell></cell><cell>FP_ARITH_INST_RETIRED_512B_PACKED_SINGLE</cell></row><row><cell></cell><cell>FP_ARITH_INST_RETIRED_SCALAR_DOUBLE</cell></row><row><cell>FP 64</cell><cell>FP_ARITH_INST_RETIRED_128B_PACKED_DOUBLE FP_ARITH_INST_RETIRED_256B_PACKED_DOUBLE</cell></row><row><cell></cell><cell>FP_ARITH_INST_RETIRED_512B_PACKED_DOUBLE</cell></row><row><cell>Branching</cell><cell>BR_INST_RETIRED_ALL_BRANCHES BR_MISP_RETIRED_ALL_BRANCHES</cell></row><row><cell>DRAM Controller</cell><cell>MEM_INST_RETIRED_ALL_LOADS MEM_INST_RETIRED_ALL_STORES</cell></row><row><cell>Main Memory</cell><cell>CAS_COUNT_RD CAS_COUNT_WR</cell></row><row><cell>L3 Cache</cell><cell>L2_LINES_IN_ALL L2_TRANS_L2_WB</cell></row><row><cell>L2 Cache</cell><cell>L1D_REPLACEMENT L1D_M_EVICT</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="13,53.50,554.49,240.54,18.66"><head>Table 5 :</head><label>5</label><figDesc>An overview of the performance counters selected for the dynamic encoding on the Intel Xeon Gold 6140 CPU.</figDesc><table /></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENTS</head><p>This work was performed under the auspices of the U.S. Department of Energy by Lawrence Livermore National Laboratory. LLNL-CONF-848643. This work received EuroHPC-JU funding with support from the European Union's Horizon 2020 program and from the European Research Council under grant agreement PSAP, number 101002047, and grant DEEP-SEA, No. 955606. The authors also wish to acknowledge the support from the PASC program (Platform for Advanced Scientific Computing) for the DaCeMI project. T.B.N. (while at ETH Zurich) and P.S. were supported by the Swiss National Science Foundation (Ambizione Project #185778). L.T. wants to thank Hannah, Aileen, and friends for their support.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="10,333.39,543.39,225.58,6.18;10,333.39,551.36,226.00,6.18;10,333.39,559.33,224.82,6.18;10,333.39,567.25,225.58,6.23;10,333.23,575.27,144.27,6.18" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Learning to Optimize Halide with Tree Search and Random Programs</title>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karima</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luke</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Riyadh</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tzu-Mao</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michaël</forename><surname>Gharbi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benoit</forename><surname>Steiner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Steven</forename><surname>Johnson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kayvon</forename><surname>Fatahalian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frédo</forename><surname>Durand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Ragan-Kelley</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3306346.3322967</idno>
+		<ptr target="https://doi.org/10.1145/3306346.3322967" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Graph</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">121</biblScope>
+			<date type="published" when="2019-07">2019. jul 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,333.39,583.24,225.99,6.18;10,333.39,591.16,225.58,6.23;10,333.39,599.18,225.89,6.18;10,333.39,607.15,225.27,6.18;10,333.39,615.12,143.37,6.18" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Subgraph Neural Networks</title>
+		<author>
+			<persName coords=""><forename type="first">Emily</forename><surname>Alsentzer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Samuel</forename><surname>Finlayson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marinka</forename><surname>Zitnik</surname></persName>
+		</author>
+		<ptr target="https://proceedings.neurips.cc/paper/2020/file/5bca8566db79f3788be9efd96c9ed70d-Paper.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<editor>
+			<persName><forename type="first">H</forename><surname>Larochelle</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Ranzato</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Hadsell</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><forename type="middle">F</forename><surname>Balcan</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">H</forename><surname>Lin</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Curran Associates, Inc</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="8017" to="8029" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,333.39,623.09,224.81,6.18;10,333.39,631.06,225.99,6.18;10,333.39,639.03,224.81,6.18;10,333.39,647.00,224.81,6.18;10,333.39,654.92,225.51,6.23;10,333.39,662.89,225.89,6.23;10,333.39,670.91,104.94,6.18" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">PENCIL: A Platform-Neutral Compute Intermediate Language for Accelerator Programming</title>
+		<author>
+			<persName coords=""><forename type="first">Riyadh</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ulysse</forename><surname>Beaugnon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Grosser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Kruse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chandan</forename><surname>Reddy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sven</forename><surname>Verdoolaege</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Betts</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alastair</forename><forename type="middle">F</forename><surname>Donaldson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeroen</forename><surname>Ketema</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Javed</forename><surname>Absar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sven</forename><surname>Van Haastregt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexey</forename><surname>Kravets</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anton</forename><surname>Lokhmotov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>David</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Elnar</forename><surname>Hajiyev</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/PACT.2015.17</idno>
+		<ptr target="https://doi.org/10.1109/PACT.2015.17" />
+	</analytic>
+	<monogr>
+		<title level="m">2015 International Conference on Parallel Architecture and Compilation (PACT)</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="138" to="149" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,333.39,678.88,225.89,6.18;10,333.39,686.85,225.89,6.18;10,333.39,694.77,225.64,6.23;10,333.17,702.79,97.00,6.18" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Improved Loop Tiling Based on the Removal of Spurious False Dependences</title>
+		<author>
+			<persName coords=""><forename type="first">Riyadh</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sven</forename><surname>Verdoolaege</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Konrad</forename><surname>Trifunović</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2400682.2400711</idno>
+		<ptr target="https://doi.org/10.1145/2400682.2400711" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Archit. Code Optim</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="issue">52</biblScope>
+			<date type="published" when="2013-01">2013. jan 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,89.10,224.81,6.18;11,68.99,97.07,225.30,6.18;11,69.23,104.99,225.51,6.23;11,69.23,112.96,225.99,6.23;11,69.23,120.98,225.27,6.18;11,69.23,128.95,129.64,6.18" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">A Deep Learning Based Cost Model for Automatic Code Optimization</title>
+		<author>
+			<persName coords=""><forename type="first">Riyadh</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Massinissa</forename><surname>Merouani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohamed-Hicham</forename><surname>Leghettas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kamel</forename><surname>Abdous</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Taha</forename><surname>Arbaoui</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karima</forename><surname>Benatchba</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<ptr target="https://proceedings.mlsys.org/paper/2021/file/3def184ad8f4755ff269862ea77393dd-Paper.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Machine Learning and Systems</title>
+				<editor>
+			<persName><forename type="first">A</forename><surname>Smola</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Dimakis</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">I</forename><surname>Stoica</surname></persName>
+		</editor>
+		<meeting>Machine Learning and Systems</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="181" to="193" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,136.92,225.99,6.18;11,69.23,144.89,224.81,6.18;11,68.99,152.86,225.06,6.18;11,69.23,160.78,224.81,6.23;11,69.23,168.75,224.81,6.23;11,69.23,176.77,42.96,6.18" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Tiramisu: A Polyhedral Compiler for Expressing Fast and Portable Code</title>
+		<author>
+			<persName coords=""><forename type="first">Riyadh</forename><surname>Baghdadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jessica</forename><surname>Ray</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Malek</forename><surname>Ben Romdhane</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Emanuele</forename><surname>Del Sozzo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abdurrahman</forename><surname>Akkas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Patricia</forename><surname>Suriana</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shoaib</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 IEEE/ACM International Symposium on Code Generation and Optimization</title>
+				<meeting>the 2019 IEEE/ACM International Symposium on Code Generation and Optimization<address><addrLine>Washington, DC, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2019">2019. 2019</date>
+			<biblScope unit="page" from="193" to="205" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,184.74,226.00,6.18;11,69.23,192.71,224.82,6.18;11,69.23,200.63,225.51,6.23;11,69.23,208.60,225.57,6.23;11,69.23,216.57,82.87,6.23" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Stateful Dataflow Multigraphs: A Data-Centric Model for Performance Portability on Heterogeneous Architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Johannes</forename><surname>De Fine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Licht</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC &apos;19)</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis (SC &apos;19)</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note>Alexandros Nikolaos Ziogas, Timo Schneider, and Torsten Hoefler</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,224.59,225.99,6.18;11,69.23,232.56,225.58,6.18;11,69.23,240.53,226.00,6.18;11,69.23,248.50,225.89,6.18;11,69.23,256.42,225.58,6.23;11,69.23,264.39,116.42,6.23" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Productive Performance Engineering for Weather and Climate Modeling with Python</title>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Linus</forename><surname>Groner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Florian</forename><surname>Deconinck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Wicky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Johann</forename><surname>Dahm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oliver</forename><surname>Elbert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rhea</forename><surname>George</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeremy</forename><surname>Mcgibbon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lukas</forename><surname>Trümper</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Elynn</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oliver</forename><surname>Fuhrer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Schulthess</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;22)</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;22)</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,272.41,225.99,6.18;11,69.23,280.38,225.89,6.18;11,69.23,288.30,226.00,6.23;11,69.23,296.32,225.58,6.18;11,69.00,304.29,225.50,6.18;11,69.07,312.26,131.31,6.18" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Neural Code Comprehension: A Learnable Representation of Code Semantics</title>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alice</forename><forename type="middle">Shoshana</forename><surname>Jakobovits</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<ptr target="https://proceedings.neurips.cc/paper/2018/file/17c3433fecc21b57000debdf7ad5c930-Paper.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<editor>
+			<persName><forename type="first">H</forename><surname>Bengio</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">H</forename><surname>Wallach</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">K</forename><surname>Larochelle</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">N</forename><surname>Grauman</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Cesa-Bianchi</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Garnett</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Curran Associates, Inc</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">31</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,320.23,224.81,6.18;11,69.23,328.20,224.81,6.18;11,69.03,336.12,225.79,6.23;11,69.23,344.14,79.98,6.18" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">The Polyhedral Model Is More Widely Applicable Than You Think</title>
+		<author>
+			<persName coords=""><forename type="first">Mohamed-Walid</forename><surname>Benabderrahmane</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Louis-Noël</forename><surname>Pouchet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cédric</forename><surname>Bastoul</surname></persName>
+		</author>
+		<editor>Compiler Construction, Rajiv Gupta</editor>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="283" to="303" />
+			<pubPlace>Berlin Heidelberg; Berlin, Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,352.11,224.81,6.18;11,69.23,360.03,224.81,6.23;11,69.23,368.00,94.91,6.23" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Reuse Distance as a Metric for Cache Behavior</title>
+		<author>
+			<persName coords=""><forename type="first">Kristof</forename><surname>Beyls</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Erik</forename><forename type="middle">H D</forename><surname>Hollander</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IASTED Conference on Parallel and Distributed Computing and Systems</title>
+				<meeting>the IASTED Conference on Parallel and Distributed Computing and Systems</meeting>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="617" to="662" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,376.02,225.58,6.18;11,68.99,383.94,225.06,6.23;11,69.23,391.91,225.52,6.23;11,69.23,399.88,225.64,6.23;11,69.01,407.90,110.28,6.18" xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Automatic Transformations for Communication-Minimized Parallelization and Locality Optimization in the Polyhedral Model</title>
+		<author>
+			<persName coords=""><forename type="first">Uday</forename><surname>Bondhugula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Muthu</forename><surname>Baskaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sriram</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ramanujam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atanas</forename><surname>Rountev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-540-78791-4_9</idno>
+		<ptr target="https://doi.org/10.1007/978-3-540-78791-4_9" />
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="132" to="146" />
+			<pubPlace>Berlin Heidelberg; Berlin, Heidelberg</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,415.87,225.06,6.18;11,69.23,423.79,224.81,6.23;11,69.23,431.76,225.51,6.23;11,69.23,439.73,225.58,6.23;11,69.23,447.75,202.70,6.18" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">A Practical Automatic Polyhedral Parallelizer and Locality Optimizer</title>
+		<author>
+			<persName coords=""><forename type="first">Uday</forename><surname>Bondhugula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Hartono</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ramanujam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1375581.1375595</idno>
+		<ptr target="https://doi.org/10.1145/1375581.1375595" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM SIGPLAN Conference on Programming Language Design and Implementation</title>
+				<meeting>the 29th ACM SIGPLAN Conference on Programming Language Design and Implementation<address><addrLine>Tucson, AZ, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="101" to="113" />
+		</imprint>
+	</monogr>
+	<note>PLDI &apos;08)</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,455.72,225.89,6.18;11,69.23,463.69,225.89,6.18;11,69.23,471.61,224.81,6.23;11,69.23,479.58,225.58,6.23;11,69.23,487.60,171.33,6.18" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Compiler-Based Graph Representations for Deep Learning Models of Code</title>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Brauckmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrés</forename><surname>Goens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sebastian</forename><surname>Ertel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeronimo</forename><surname>Castrillon</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3377555.3377894</idno>
+		<ptr target="https://doi.org/10.1145/3377555.3377894" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th International Conference on Compiler Construction</title>
+				<meeting>the 29th International Conference on Compiler Construction<address><addrLine>San Diego, CA, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="page" from="201" to="211" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,495.57,224.82,6.18;11,69.23,503.54,224.82,6.18;11,69.23,511.46,225.89,6.23;11,69.07,519.48,146.13,6.18" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Fast Multi-parameter Performance Modeling</title>
+		<author>
+			<persName coords=""><forename type="first">Alexandru</forename><surname>Calotoiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Beckinsale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><forename type="middle">W</forename><surname>Earl</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ian</forename><surname>Karlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Schulz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Felix</forename><surname>Wolf</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/CLUSTER.2016.57</idno>
+		<ptr target="https://doi.org/10.1109/CLUSTER.2016.57" />
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE International Conference on Cluster Computing (CLUSTER)</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="172" to="181" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,527.45,226.00,6.18;11,69.23,535.37,224.81,6.23;11,69.23,543.34,79.35,6.23" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Improvements to the performance portability of boundary conditions in Albany Land Ice</title>
+		<author>
+			<persName coords=""><forename type="first">Max</forename><surname>Carlson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jerry</forename><surname>Watkins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Irina</forename><surname>Tezaur</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">CSRI Summer Proceedings</title>
+		<imprint>
+			<biblScope unit="page" from="177" to="187" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,551.36,225.06,6.18;11,69.23,559.33,225.58,6.18;11,69.23,567.30,133.57,6.18" xml:id="b16">
+	<monogr>
+		<title level="m" type="main">A Performance Prediction Framework for Scientific Applications</title>
+		<author>
+			<persName coords=""><forename type="first">Laura</forename><surname>Carrington</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Allan</forename><surname>Snavely</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaofeng</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicole</forename><surname>Wolter</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/3-540-44863-2_91</idno>
+		<ptr target="https://doi.org/10.1007/3-540-44863-2_91" />
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="volume">2659</biblScope>
+			<biblScope unit="page" from="926" to="935" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,575.27,224.81,6.18;11,69.23,583.24,224.82,6.18;11,69.03,591.16,225.03,6.23;11,69.23,599.13,224.81,6.23;11,69.23,607.15,104.64,6.18" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Learning to Optimize Tensor Programs</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thierry</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Arvind</forename><surname>Krishnamurthy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 32nd International Conference on Neural Information Processing Systems</title>
+				<meeting>the 32nd International Conference on Neural Information Processing Systems<address><addrLine>Montréal, Canada; Red Hook, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Curran Associates Inc</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="3393" to="3404" />
+		</imprint>
+	</monogr>
+	<note>NIPS&apos;18)</note>
+</biblStruct>
+
+<biblStruct coords="11,69.23,615.07,225.89,6.23;11,69.00,623.09,126.27,6.18" xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Operating systems theory</title>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><surname>Grady</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Coffman</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><forename type="middle">J</forename><surname>Denning</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1973">1973</date>
+			<biblScope unit="volume">973</biblScope>
+			<pubPlace>Englewood Cliffs, NJ</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,631.06,225.59,6.18;11,69.23,639.03,225.64,6.18;11,69.03,646.95,225.79,6.23;11,69.07,654.97,126.98,6.18" xml:id="b19">
+	<monogr>
+		<title level="m" type="main">LogP: Towards a Realistic Model of Parallel Computation. SIGPLAN Not</title>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Culler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Karp</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Patterson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abhijit</forename><surname>Sahay</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Klaus</forename><forename type="middle">Erik</forename><surname>Schauser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eunice</forename><surname>Santos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramesh</forename><surname>Subramonian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thorsten</forename><surname>Von Eicken</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/173284.155333</idno>
+		<ptr target="https://doi.org/10.1145/173284.155333" />
+		<imprint>
+			<date type="published" when="1993-07">1993. jul 1993</date>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,69.23,662.94,224.81,6.18;11,69.23,670.91,226.00,6.18;11,69.23,678.83,224.81,6.23;11,69.23,686.80,225.51,6.23;11,69.23,694.77,225.89,6.23;11,69.23,702.79,150.72,6.18;11,317.96,89.10,241.32,6.18;11,333.39,97.07,225.99,6.18;11,333.39,104.99,225.89,6.23;11,333.39,113.01,100.89,6.18" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations</title>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Cummins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zacharias</forename><forename type="middle">V</forename><surname>Fisches</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F P O'</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hugh</forename><surname>Boyle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Leather</surname></persName>
+		</author>
+		<idno type="DOI">10.1155/2013/428078</idno>
+		<idno>PMLR, 2244-2253</idno>
+		<ptr target="https://doi.org/10.1155/2013/428078" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 38th International Conference on Machine Learning</title>
+		<title level="s">Proceedings of Machine Learning Research</title>
+		<editor>
+			<persName><forename type="first">An</forename><surname>Silva</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Erik</forename><forename type="middle">H</forename><surname>Braeken</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Abdellah</forename><surname>Hollander</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Touhafi</surname></persName>
+		</editor>
+		<meeting>the 38th International Conference on Machine Learning</meeting>
+		<imprint>
+			<date type="published" when="2013-01">2021. 2013. 2013. jan 2013</date>
+			<biblScope unit="volume">139</biblScope>
+		</imprint>
+	</monogr>
+	<note>Performance Modeling for FPGAs: Extending the Roofline Model with High-Level Synthesis Tools. 1 pages</note>
+</biblStruct>
+
+<biblStruct coords="11,333.39,120.98,224.98,6.18;11,333.39,128.90,225.64,6.23;11,333.17,136.92,97.00,6.18" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">The University of Florida Sparse Matrix Collection</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2049662.2049663</idno>
+		<ptr target="https://doi.org/10.1145/2049662.2049663" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">25</biblScope>
+			<date type="published" when="2011-12">2011. dec 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,144.89,224.81,6.18;11,333.39,152.86,224.82,6.18;11,333.13,160.78,225.77,6.23;11,333.39,168.75,225.89,6.23;11,333.39,176.77,22.70,6.18" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Modeling Non-Uniform Memory Access on Large Compute Nodes with the Cache-Aware Roofline Model</title>
+		<author>
+			<persName coords=""><forename type="first">Nicolas</forename><surname>Denoyelle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brice</forename><surname>Goglin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aleksandar</forename><surname>Ilic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Emmanuel</forename><surname>Jeannot</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leonel</forename><surname>Sousa</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPDS.2018.2883056</idno>
+		<ptr target="https://doi.org/10.1109/TPDS.2018.2883056" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="1374" to="1389" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,184.74,225.64,6.18;11,333.39,192.71,224.81,6.18;11,333.39,200.63,224.81,6.23;11,333.39,208.60,224.81,6.23;11,333.39,216.57,225.59,6.23;11,333.23,224.59,141.15,6.18" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
+		<author>
+			<persName coords=""><forename type="first">Jacob</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ming-Wei</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kenton</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kristina</forename><surname>Toutanova</surname></persName>
+		</author>
+		<idno type="DOI">10.18653/v1/N19-1423</idno>
+		<ptr target="https://doi.org/10.18653/v1/N19-1423" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies</title>
+		<title level="s">Long and Short Papers</title>
+		<meeting>the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies<address><addrLine>Minneapolis, Minnesota</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="4171" to="4186" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,232.56,225.58,6.18;11,333.39,240.53,224.81,6.18;11,333.39,248.45,224.82,6.23;11,333.39,256.42,225.63,6.23;11,333.17,264.44,112.08,6.18" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Pattern-based Autotuning of OpenMP Loops using Graph Neural Networks</title>
+		<author>
+			<persName coords=""><forename type="first">Akash</forename><surname>Dutta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jordi</forename><surname>Alcaraz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Tehranijamsaz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anna</forename><surname>Sikora</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eduardo</forename><surname>Cesar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Jannesari</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/AI4S56813.2022.00010</idno>
+		<ptr target="https://doi.org/10.1109/AI4S56813.2022.00010" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE/ACM International Workshop on Artificial Intelligence and Machine Learning for Scientific Applications</title>
+		<imprint>
+			<biblScope unit="issue">AI4S</biblScope>
+			<biblScope unit="page" from="26" to="31" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,272.41,224.81,6.18;11,333.15,280.38,225.06,6.18;11,333.39,288.30,224.82,6.23;11,333.39,296.27,182.68,6.23" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Performance Analysis and Optimization of Sparse Matrix-Vector Multiplication on Modern Multi-and Many-Core Processors</title>
+		<author>
+			<persName coords=""><forename type="first">Athena</forename><surname>Elafrou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Georgios</forename><surname>Goumas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nectarios</forename><surname>Koziris</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICPP.2017.38</idno>
+		<ptr target="https://doi.org/10.1109/ICPP.2017.38" />
+	</analytic>
+	<monogr>
+		<title level="m">2017 46th International Conference on Parallel Processing (ICPP)</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="292" to="301" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,304.24,225.58,6.23;11,333.39,312.26,206.53,6.18" xml:id="b26">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><surname>Feautrier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Lengauer</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-0-387-09766-4_502</idno>
+		<title level="m">Polyhedron Model</title>
+				<meeting><address><addrLine>Boston, MA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer US</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="1581" to="1592" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,320.23,225.58,6.18;11,333.39,328.20,224.81,6.18;11,333.39,336.17,224.81,6.18;11,333.23,344.09,225.74,6.23;11,333.23,352.11,138.49,6.18" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Near-global climate simulation at 1 km resolution: establishing a performance baseline on 4888 GPUs with COSMO 5.0</title>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Fuhrer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chadha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Kwasniewski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Lapillonne</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Leutwyler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lüthi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Osuna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Schär</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">C</forename><surname>Schulthess</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Vogt</surname></persName>
+		</author>
+		<idno type="DOI">10.5194/gmd-11-1665-2018</idno>
+		<ptr target="https://doi.org/10.5194/gmd-11-1665-2018" />
+	</analytic>
+	<monogr>
+		<title level="m">Geoscientific Model Development</title>
+				<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="1665" to="1681" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,360.08,224.81,6.18;11,333.39,368.00,225.27,6.23;11,333.39,376.02,42.32,6.18" xml:id="b28">
+	<monogr>
+		<title level="m" type="main">Reusing Auto-Schedules for Efficient DNN Compilation</title>
+		<author>
+			<persName coords=""><forename type="first">Perry</forename><surname>Gibson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">José</forename><surname>Cano</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2201.05587</idno>
+		<ptr target="https://arxiv.org/abs/2201.05587" />
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,383.99,224.81,6.18;11,333.39,391.91,225.58,6.23;11,333.39,399.93,144.27,6.18" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Anatomy of High-Performance Matrix Multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Kazushige</forename><surname>Goto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><forename type="middle">A</forename><surname>Van De Geijn</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1356052.1356053</idno>
+		<ptr target="https://doi.org/10.1145/1356052.1356053" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">12</biblScope>
+			<date type="published" when="2008-05">2008. may 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,407.90,225.99,6.18;11,333.39,415.87,225.89,6.18;11,333.39,423.79,218.75,6.23" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Polly -Performing Polyhedral Optimizations on a Low-Level Intermediate Representation</title>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Grosser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Armin</forename><surname>Größlinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Lengauer</surname></persName>
+		</author>
+		<idno type="DOI">10.1142/S0129626412500107</idno>
+		<ptr target="https://doi.org/10.1142/S0129626412500107" />
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Process. Lett</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page">4</biblScope>
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,431.81,224.81,6.18;11,333.15,439.78,226.24,6.18;11,333.39,447.70,225.52,6.23;11,333.39,455.67,225.99,6.23;11,333.39,463.69,224.81,6.18" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">MODESTO: Data-Centric Analytic Optimization of Complex Stencil Programs on Heterogeneous Architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Gysi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Grosser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2751205.2751223</idno>
+		<ptr target="https://doi.org/10.1145/2751205.2751223" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM on International Conference on Supercomputing</title>
+				<meeting>the 29th ACM on International Conference on Supercomputing<address><addrLine>Newport Beach, California, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="177" to="186" />
+		</imprint>
+	</monogr>
+	<note>ICS &apos;15)</note>
+</biblStruct>
+
+<biblStruct coords="11,333.39,471.66,225.89,6.18;11,333.39,479.63,224.81,6.18;11,333.18,487.55,225.79,6.23;11,333.23,495.57,29.14,6.18" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Sparsity in Deep Learning: Pruning and Growth for Efficient Inference and Training in Neural Networks</title>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Alistarh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikoli</forename><surname>Dryden</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandra</forename><surname>Peste</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Mach. Learn. Res</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">241</biblScope>
+			<biblScope unit="page">pages</biblScope>
+			<date type="published" when="2022-07">2022. jul 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,503.54,224.81,6.18;11,333.39,511.46,225.89,6.23;11,333.39,519.48,101.38,6.18" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Cache-aware Roofline model: Upgrading the loft</title>
+		<author>
+			<persName coords=""><forename type="first">Aleksandar</forename><surname>Ilic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frederico</forename><surname>Pratas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leonel</forename><surname>Sousa</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/L-CA.2013.6</idno>
+		<ptr target="https://doi.org/10.1109/L-CA.2013.6" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Computer Architecture Letters</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="21" to="24" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,527.45,224.82,6.18;11,333.15,535.37,225.06,6.23" xml:id="b34">
+	<monogr>
+		<title level="m" type="main">An Approach to Performance Prediction for Parallel Applications</title>
+		<author>
+			<persName coords=""><forename type="first">Engin</forename><surname>Ipek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Bronis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>De Supinski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sally</forename><forename type="middle">A</forename><surname>Schulz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Mckee</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005. 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,559.33,225.89,6.18;11,333.39,567.25,224.82,6.23;11,333.18,575.22,225.79,6.23;11,333.39,583.24,196.21,6.18" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Complexity: The Red-Blue Pebble Game</title>
+		<author>
+			<persName coords=""><forename type="first">Hong</forename><surname>Jia-Wei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">T</forename><surname>Kung</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/800076.802486</idno>
+		<ptr target="https://doi.org/10.1145/800076.802486" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirteenth Annual ACM Symposium on Theory of Computing</title>
+				<meeting>the Thirteenth Annual ACM Symposium on Theory of Computing<address><addrLine>Milwaukee, Wisconsin, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1981">1981</date>
+			<biblScope unit="page" from="326" to="333" />
+		</imprint>
+	</monogr>
+	<note>STOC &apos;81)</note>
+</biblStruct>
+
+<biblStruct coords="11,333.39,591.21,70.59,6.18;11,428.98,591.21,130.40,6.18;11,333.39,599.18,61.72,6.18;11,424.32,599.13,134.65,6.23;11,333.23,607.15,67.74,6.18;11,445.80,607.15,112.41,6.18;11,333.39,615.12,197.34,6.18" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">The Hungarian method for the assignment problem</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">W</forename><surname>Kuhn</surname></persName>
+		</author>
+		<idno type="DOI">10.1002/nav.3800020109</idno>
+		<ptr target="https://onlinelibrary.wiley.com/doi/pdf/10.1002/nav.3800020109" />
+	</analytic>
+	<monogr>
+		<title level="j">Naval Research Logistics Quarterly</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="83" to="97" />
+			<date type="published" when="1955">1955. 1955</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,623.09,224.81,6.18;11,333.39,631.06,225.64,6.18;11,333.39,639.03,225.64,6.18;11,333.17,647.00,105.28,6.18" xml:id="b37">
+	<monogr>
+		<title level="m" type="main">The Optimal BERT Surgeon: Scalable and Accurate Second-Order Pruning for Large Language Models</title>
+		<author>
+			<persName coords=""><forename type="first">Eldar</forename><surname>Kurtic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Campos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tuan</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Elias</forename><surname>Frantar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><surname>Kurtz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benjamin</forename><surname>Fineran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Goin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Alistarh</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/ARXIV.2203.07259</idno>
+		<ptr target="https://doi.org/10.48550/ARXIV.2203.07259" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,654.97,225.58,6.18;11,333.18,662.94,226.10,6.18;11,333.39,670.91,224.95,6.18;11,333.39,678.83,224.81,6.23;11,333.39,686.80,225.23,6.23;11,332.97,694.77,226.32,6.23;11,333.39,702.79,113.15,6.18" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Alexandros Nikolaos Ziogas, Maciej Besta, and Torsten Hoefler. 2021. Pebbles, Graphs, and a Pinch of Combinatorics: Towards Tight I/O Lower Bounds for Statically Analyzable Programs</title>
+		<author>
+			<persName coords=""><forename type="first">Grzegorz</forename><surname>Kwasniewski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lukas</forename><surname>Gianinazzi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandru</forename><surname>Calotoiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Timo</forename><surname>Schneider</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3409964.3461796</idno>
+		<ptr target="https://doi.org/10.1145/3409964.3461796" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 33rd ACM Symposium on Parallelism in Algorithms and Architectures (Virtual Event, USA) (SPAA &apos;21)</title>
+				<meeting>the 33rd ACM Symposium on Parallelism in Algorithms and Architectures (Virtual Event, USA) (SPAA &apos;21)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<biblScope unit="page" from="328" to="339" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,89.10,225.99,6.18;12,69.23,97.02,224.81,6.23;12,69.23,104.99,225.89,6.23;12,69.07,113.01,22.70,6.18" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">LLVM: a compilation framework for lifelong program analysis &amp; transformation</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lattner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Adve</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/CGO.2004.1281665</idno>
+		<ptr target="https://doi.org/10.1109/CGO.2004.1281665" />
+	</analytic>
+	<monogr>
+		<title level="m">International Symposium on Code Generation and Optimization</title>
+				<imprint>
+			<date type="published" when="2004">2004. 2004. 2004</date>
+			<biblScope unit="page" from="75" to="86" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,120.98,225.58,6.18;12,69.00,128.95,225.04,6.18;12,69.23,136.92,225.99,6.18;12,69.23,144.84,224.81,6.23;12,69.23,152.81,225.58,6.23;12,69.23,160.83,224.98,6.18" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Automatic Code Generation and Optimization of Large-Scale Stencil Computation on Many-Core Processors</title>
+		<author>
+			<persName coords=""><forename type="first">Mingzhen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hailong</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongmin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qingxiao</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bangduo</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoyan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhongzhi</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Depei</forename><surname>Qian</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3472456.3473517</idno>
+		<ptr target="https://doi.org/10.1145/3472456.3473517" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 50th International Conference on Parallel Processing</title>
+				<meeting>the 50th International Conference on Parallel Processing<address><addrLine>Lemont, IL, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">34</biblScope>
+		</imprint>
+	</monogr>
+	<note>ICPP &apos;21)</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,168.80,224.82,6.18;12,69.23,176.72,224.81,6.23;12,69.23,184.69,224.81,6.23;12,69.23,192.66,225.90,6.23;12,69.23,200.68,16.21,6.18" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Gated Graph Sequence Neural Networks</title>
+		<author>
+			<persName coords=""><forename type="first">Yujia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Tarlow</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Brockschmidt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><forename type="middle">S</forename><surname>Zemel</surname></persName>
+		</author>
+		<idno>ICLR 2016</idno>
+		<ptr target="http://arxiv.org/abs/1511.05493" />
+	</analytic>
+	<monogr>
+		<title level="m">4th International Conference on Learning Representations</title>
+				<editor>
+			<persName><forename type="first">Yann</forename><surname>Bengio</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Lecun</surname></persName>
+		</editor>
+		<meeting><address><addrLine>San Juan, Puerto Rico</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2016-05-02">2016. May 2-4, 2016</date>
+		</imprint>
+	</monogr>
+	<note>Conference Track Proceedings</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,208.65,225.58,6.18;12,69.23,216.62,224.81,6.18;12,69.23,224.54,224.81,6.23;12,69.23,232.56,158.46,6.18" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Clustering-Based Selection for the Exploration of Compiler Optimization Sequences</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">A</forename><surname>Luiz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ricardo</forename><surname>Martins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Nobre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">P</forename><surname>João</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Cardoso</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">B</forename><surname>Alexandre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eduardo</forename><surname>Delbem</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Marques</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2883614</idno>
+		<ptr target="https://doi.org/10.1145/2883614" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Archit. Code Optim</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<date type="published" when="2016-03">2016. mar 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,240.53,224.81,6.18;12,69.23,248.50,225.89,6.18;12,69.23,256.42,224.81,6.23" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">The Boat Hull Model: Adapting the Roofline Model to Enable Performance Prediction for Parallel Computing</title>
+		<author>
+			<persName coords=""><forename type="first">Cedric</forename><surname>Nugteren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Henk</forename><surname>Corporaal</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2370036.2145859</idno>
+		<ptr target="https://doi.org/10.1145/2370036.2145859" />
+	</analytic>
+	<monogr>
+		<title level="j">SIGPLAN Not</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="page" from="291" to="292" />
+			<date type="published" when="2012-02">2012. feb 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,264.44,224.81,6.18;12,69.23,272.36,224.81,6.23;12,69.23,280.33,189.40,6.23" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Improved Alignment models for Statistical Machine Translation</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">J</forename><surname>Och</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Tillmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Ney</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Conference on Empirical Methods in Natural Language Processing</title>
+				<meeting><address><addrLine>College Park, MD, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+			<biblScope unit="page" from="20" to="28" />
+		</imprint>
+		<respStmt>
+			<orgName>University of Maryland</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,288.35,225.99,6.18;12,69.06,296.32,225.81,6.18;12,69.23,304.29,225.89,6.18;12,69.23,312.21,210.93,6.23" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Halide: Decoupling Algorithms from Schedules for High-Performance Image Processing</title>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Ragan-Kelley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dillon</forename><surname>Sharlet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Connelly</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sylvain</forename><surname>Paris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Levoy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frédo</forename><surname>Durand</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3150211</idno>
+		<ptr target="https://doi.org/10.1145/3150211" />
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">61</biblScope>
+			<biblScope unit="page" from="106" to="115" />
+			<date type="published" when="2017-12">2017. dec 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,320.23,224.82,6.18;12,69.23,328.15,224.81,6.23;12,69.23,336.12,224.81,6.23;12,69.23,344.09,195.89,6.23" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Boosting Performance Optimization with Interactive Data Movement Visualization</title>
+		<author>
+			<persName coords=""><forename type="first">Philipp</forename><surname>Schaad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference on High Performance Computing, Networking, Storage and Analysis<address><addrLine>Dallas, Texas</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Press</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">64</biblScope>
+		</imprint>
+	</monogr>
+	<note>SC &apos;22)</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,352.11,224.81,6.18;12,69.03,360.08,225.15,6.18;12,69.23,368.00,224.82,6.23;12,69.23,375.97,224.82,6.23;12,69.12,383.99,225.75,6.18;12,69.01,391.96,128.50,6.18" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Classification</title>
+		<author>
+			<persName coords=""><forename type="first">Yunsheng</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhengjie</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shikun</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hui</forename><surname>Zhong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenjing</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Sun</surname></persName>
+		</author>
+		<idno type="DOI">10.24963/ijcai.2021/214</idno>
+		<ptr target="https://doi.org/10.24963/ijcai.2021/214MainTrack" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirtieth International Joint Conference on Artificial Intelligence, IJCAI-21, Zhi-Hua Zhou</title>
+				<meeting>the Thirtieth International Joint Conference on Artificial Intelligence, IJCAI-21, Zhi-Hua Zhou</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1548" to="1554" />
+		</imprint>
+	</monogr>
+	<note>International Joint Conferences on Artificial Intelligence Organization</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,399.93,225.89,6.18;12,69.23,407.85,224.81,6.23;12,69.23,415.82,225.58,6.23;12,69.23,423.79,225.59,6.23;12,69.23,431.81,159.31,6.18" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Performance-Influence Models for Highly Configurable Systems</title>
+		<author>
+			<persName coords=""><forename type="first">Norbert</forename><surname>Siegmund</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Grebhahn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sven</forename><surname>Apel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Kästner</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2786805.2786845</idno>
+		<ptr target="https://doi.org/10.1145/2786805.2786845" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering</title>
+				<meeting>the 2015 10th Joint Meeting on Foundations of Software Engineering<address><addrLine>Bergamo, Italy; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2015">2015. 2015</date>
+			<biblScope unit="page" from="284" to="294" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,439.78,224.82,6.18;12,69.23,447.75,225.89,6.18;12,69.23,455.67,224.82,6.23;12,69.23,463.64,224.81,6.23;12,69.23,471.66,224.81,6.18" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">A Graph Neural Network-Based Performance Model for Deep Learning Applications</title>
+		<author>
+			<persName coords=""><forename type="first">Shikhar</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Hegarty</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hugh</forename><surname>Leather</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benoit</forename><surname>Steiner</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3520312.3534863</idno>
+		<ptr target="https://doi.org/10.1145/3520312.3534863" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 6th ACM SIGPLAN International Symposium on Machine Programming</title>
+				<meeting>the 6th ACM SIGPLAN International Symposium on Machine Programming<address><addrLine>San Diego, CA, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="11" to="20" />
+		</imprint>
+	</monogr>
+	<note>MAPS 2022)</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,479.63,224.81,6.18;12,69.23,487.55,225.51,6.23;12,69.23,495.52,225.99,6.23;12,69.23,503.54,225.27,6.18;12,69.07,511.51,131.89,6.18" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Value Learning for Throughput Optimization of Deep Learning Workloads</title>
+		<author>
+			<persName coords=""><forename type="first">Benoit</forename><surname>Steiner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Cummins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Horace</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hugh</forename><surname>Leather</surname></persName>
+		</author>
+		<ptr target="https://proceedings.mlsys.org/paper/2021/file/73278a4a86960eeb576a8fd4c9ec6997-Paper.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Machine Learning and Systems</title>
+				<editor>
+			<persName><forename type="first">A</forename><surname>Smola</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Dimakis</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">I</forename><surname>Stoica</surname></persName>
+		</editor>
+		<meeting>Machine Learning and Systems</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="323" to="334" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,519.48,224.81,6.18;12,69.23,527.45,224.95,6.18;12,69.23,535.37,225.89,6.23;12,69.23,543.39,22.70,6.18" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">The Sparse Polyhedral Framework: Composing Compiler-Generated Inspector-Executor Code</title>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><surname>Mills Strout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Catherine</forename><surname>Olschanowsky</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/JPROC.2018.2857721</idno>
+		<ptr target="https://doi.org/10.1109/JPROC.2018.2857721" />
+	</analytic>
+	<monogr>
+		<title level="j">Proc. IEEE</title>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<biblScope unit="page" from="1921" to="1934" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,551.36,225.58,6.18;12,69.23,559.33,225.64,6.18;12,68.99,567.30,225.06,6.18;12,69.23,575.22,225.58,6.23;12,69.23,583.19,225.58,6.23;12,68.99,591.21,168.77,6.18" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">KEDM: A Performance-Portable Implementation of Empirical Dynamic Modeling Using Kokkos</title>
+		<author>
+			<persName coords=""><forename type="first">Keichi</forename><surname>Takahashi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wassapon</forename><surname>Watanakeesuntorn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kohei</forename><surname>Ichikawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ryousei</forename><surname>Takano</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Haga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Sugihara</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gerald</forename><forename type="middle">M</forename><surname>Pao</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3437359.3465571</idno>
+		<ptr target="https://doi.org/10.1145/3437359.3465571" />
+	</analytic>
+	<monogr>
+		<title level="m">Practice and Experience in Advanced Research Computing</title>
+				<meeting><address><addrLine>Boston, MA, USA; New York, NY, USA, Article 8, 8 pages</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>PEARC &apos;21)</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,599.18,224.81,6.18;12,69.23,607.15,225.99,6.18;12,69.23,615.07,224.82,6.23;12,69.23,623.09,224.82,6.18;12,69.23,631.06,225.59,6.18;12,69.23,639.03,225.58,6.18;12,69.23,647.00,79.98,6.18" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Performance Patterns and Hardware Metrics on Modern Multicore Processors: Best Practices for Performance Engineering</title>
+		<author>
+			<persName coords=""><forename type="first">Jan</forename><surname>Treibig</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Georg</forename><surname>Hager</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gerhard Wellein ; Ioannis</forename><surname>Caragiannis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Alexander</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rosa</forename><forename type="middle">Maria</forename><surname>Badia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mario</forename><surname>Cannataro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandru</forename><surname>Costan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marco</forename><surname>Danelutto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frédéric</forename><surname>Desprez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Euro-Par 2012: Parallel Processing Workshops</title>
+				<editor>
+			<persName><forename type="first">Bettina</forename><surname>Krammer</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Julio</forename><surname>Sahuquillo</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Stephen</forename><forename type="middle">L</forename><surname>Scott</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Josef</forename><surname>Weidendorfer</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Berlin Heidelberg; Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="451" to="460" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,654.97,224.82,6.18;12,69.23,662.94,225.58,6.18;12,69.23,670.91,224.81,6.18;12,69.23,678.88,224.82,6.18;12,69.23,686.85,225.89,6.18;12,69.23,694.77,225.89,6.23;12,69.23,702.79,121.16,6.18" xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Trends in Data Locality Abstractions for HPC Systems</title>
+		<author>
+			<persName coords=""><forename type="first">Didem</forename><surname>Unat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anshu</forename><surname>Dubey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Shalf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><surname>Abraham</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mauro</forename><surname>Bianco</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bradford</forename><forename type="middle">L</forename><surname>Chamberlain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Romain</forename><surname>Cledat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">Carter</forename><surname>Edwards</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hal</forename><surname>Finkel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karl</forename><surname>Fuerlinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Hannig</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Emmanuel</forename><surname>Jeannot</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Amir</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeff</forename><surname>Keasler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H J</forename><surname>Paul</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vitus</forename><surname>Kelly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hatem</forename><surname>Leung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naoya</forename><surname>Ltaief</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><forename type="middle">J</forename><surname>Maruyama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Miquel</forename><surname>Newburn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Pericás</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPDS.2017.2703149</idno>
+		<ptr target="https://doi.org/10.1109/TPDS.2017.2703149" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="3007" to="3020" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,89.10,225.00,6.18;12,333.39,97.07,225.64,6.18;12,333.39,104.99,224.81,6.23;12,333.39,112.96,225.89,6.23;12,333.39,120.98,143.70,6.18" xml:id="b55">
+	<analytic>
+		<title level="a" type="main">TiDA: High-Level Programming Abstractions for Data Locality Management</title>
+		<author>
+			<persName coords=""><forename type="first">Didem</forename><surname>Unat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tan</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weiqun</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Muhammed</forename><surname>Nufail Farooqi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Burak</forename><surname>Bastem</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Michelogiannakis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ann</forename><surname>Almgren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Shalf</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">High Performance Computing</title>
+				<editor>
+			<persName><forename type="first">Julian</forename><forename type="middle">M</forename><surname>Kunkel</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Pavan</forename><surname>Balaji</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Jack</forename><surname>Dongarra</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="116" to="135" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,128.95,224.81,6.18;12,333.39,136.87,225.63,6.23;12,333.17,144.89,124.61,6.18" xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Visualizing Data using t-SNE</title>
+		<author>
+			<persName coords=""><forename type="first">Laurens</forename><surname>Van Der Maaten</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Geoffrey</forename><surname>Hinton</surname></persName>
+		</author>
+		<ptr target="http://jmlr.org/papers/v9/vandermaaten08a.html" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Machine Learning Research</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="2579" to="2605" />
+			<date type="published" when="2008">2008. 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,152.86,225.58,6.18;12,333.15,160.83,225.06,6.18;12,333.39,168.75,224.82,6.23;12,333.39,176.77,225.59,6.18;12,333.16,184.74,225.50,6.18;12,333.39,192.71,131.31,6.18" xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Attention is All you Need</title>
+		<author>
+			<persName coords=""><forename type="first">Ashish</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Noam</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Niki</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jakob</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Llion</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aidan</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ł</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Illia</forename><surname>Polosukhin</surname></persName>
+		</author>
+		<ptr target="https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf" />
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<editor>
+			<persName><forename type="first">I</forename><surname>Guyon</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">U</forename><surname>Von Luxburg</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Bengio</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">H</forename><surname>Wallach</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Fergus</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">S</forename><surname>Vishwanathan</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">R</forename><surname>Garnett</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Curran Associates, Inc</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">30</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,200.68,225.58,6.18;12,333.39,208.65,224.81,6.18;12,333.39,216.57,225.58,6.23;12,333.39,224.59,120.04,6.18" xml:id="b58">
+	<analytic>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Venkatakeerthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rohit</forename><surname>Aggarwal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shalini</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maunendra</forename><surname>Sankar Desarkar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramakrishna</forename><surname>Upadrasta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><forename type="middle">N</forename><surname>Srikant</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3418463</idno>
+		<ptr target="https://doi.org/10.1145/3418463" />
+	</analytic>
+	<monogr>
+		<title level="j">LLVM IR Based Scalable Program Embeddings. ACM Trans. Archit. Code Optim</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">27</biblScope>
+			<date type="published" when="2020-12">2020. dec 2020</date>
+		</imprint>
+	</monogr>
+	<note>Article</note>
+</biblStruct>
+
+<biblStruct coords="12,333.39,232.56,224.82,6.18;12,333.39,240.48,224.81,6.23;12,333.39,248.50,183.00,6.18" xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Roofline: An Insightful Visual Performance Model for Multicore Architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Samuel</forename><surname>Williams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Waterman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Patterson</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1498765.1498785</idno>
+		<ptr target="https://doi.org/10.1145/1498765.1498785" />
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="page" from="65" to="76" />
+			<date type="published" when="2009-04">2009. apr 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,256.47,224.81,6.18;12,333.39,264.39,225.63,6.23;12,333.17,272.41,97.00,6.18" xml:id="b60">
+	<analytic>
+		<title level="a" type="main">ScalaExtrap: Trace-Based Communication Extrapolation for SPMD Program</title>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Mueller</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2038037.1941569</idno>
+		<ptr target="https://doi.org/10.1145/2038037.1941569" />
+	</analytic>
+	<monogr>
+		<title level="j">Sigplan Notices -SIGPLAN</title>
+		<imprint>
+			<biblScope unit="volume">46</biblScope>
+			<biblScope unit="page" from="113" to="122" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,280.38,225.99,6.18;12,333.39,288.35,224.81,6.18;12,333.39,296.27,225.89,6.23;12,333.15,304.29,226.14,6.18;12,333.23,312.26,62.16,6.18" xml:id="b61">
+	<analytic>
+		<title level="a" type="main">NPBench: A Benchmarking Suite for High-Performance NumPy</title>
+		<author>
+			<persName coords=""><forename type="first">Alexandros</forename><surname>Nikolaos Ziogas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Timo</forename><surname>Schneider</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3447818.3460360</idno>
+		<ptr target="https://doi.org/10.1145/3447818.3460360" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM International Conference on Supercomputing (ICS &apos;21)</title>
+				<meeting>the ACM International Conference on Supercomputing (ICS &apos;21)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

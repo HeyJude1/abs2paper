@@ -1,0 +1,1763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Optimizing Attention by Exploiting Data Reuse on ARM Multi-core CPUs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2024-05-30">2024-05-30</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,162.57,127.58,37.75,10.59;1,200.32,125.33,1.00,7.77"><forename type="first">Xiao</forename><surname>Fu</surname></persName>
+							<email>fuxiao21@nudt.edu.cn</email>
+							<idno type="ORCID">0009-0000-7370-391X</idno>
+						</author>
+						<author>
+							<persName coords="1,395.12,127.58,64.92,10.59;1,460.04,125.33,1.00,7.77"><forename type="first">Weiling</forename><surname>Yang</surname></persName>
+							<email>w.yang@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0001-7167-4086</idno>
+						</author>
+						<author>
+							<persName coords="1,149.33,188.10,61.47,10.59;1,210.80,185.84,2.58,7.77"><forename type="first">Dezun</forename><surname>Dong</surname></persName>
+							<email>dong@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0001-6243-8479</idno>
+						</author>
+						<author>
+							<persName coords="1,406.73,188.10,38.72,10.59;1,445.45,185.84,2.58,7.77"><forename type="first">Xing</forename><surname>Su</surname></persName>
+							<email>xingsu@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0002-7514-1495</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">National University of Defence Technology China</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">National University of Defence Technology China</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">National University of Defence Technology China</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">National University of Defence Technology China</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Optimizing Attention by Exploiting Data Reuse on ARM Multi-core CPUs</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 38th ACM International Conference on Supercomputing</title>
+						<meeting>the 38th ACM International Conference on Supercomputing						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="137" to="149"/>
+							<date type="published" when="2024-05-30" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">5324F7E4ED9F4D33CB8B44163C22A549</idno>
+					<idno type="DOI">10.1145/3650200.3656620</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Attention module</term>
+					<term>ARM multi-cores</term>
+					<term>Fusion</term>
+					<term>Optimization</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Transformers reign supreme in natural language processing, representing a milestone innovation in deep learning. For highperformance model inference, optimizing the time-consuming attention module is crucial. Owing to the irregular-shaped matrix workloads and intricate data access patterns, the attention operator is bounded by memory bandwidth. Existing works utilize kernel fusion to reduce memory access overhead, resulting in promising performance enhancements. However, these efforts primarily focus on GPU or X86 architectures, leaving ARM multi-cores, commonly encountered in emerging HPC systems, insufficiently explored. We present MEATTEN, a memory-efficient attention fusion scheme and batched approach to exploit ARM multi-core CPUs effectively. It builds on fused micro-kernels and a new data layout suitable for SIMD vectorization. An analytic model is used to guide loop permutation, tiling, and batched parallelization according to the on-chip hierarchical memory architecture and workload characterization. We apply MEATTEN to three representative ARM multicores against state-of-the-art libraries and compilers. Experimental results demonstrate that our approach consistently outperforms prior approaches across various evaluation scenarios and platforms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CCS CONCEPTS</head><p>• Software and its engineering → Software libraries and repositories; • Theory of computation → Shared memory algorithms.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">INTRODUCTION</head><p>Recently, the field of deep learning (DL) has achieved significant success in natural language processing with Transformer-based models <ref type="bibr" coords="1,347.16,360.03,14.85,7.94" target="#b38">[40]</ref> such as Bert <ref type="bibr" coords="1,413.20,360.03,14.85,7.94" target="#b12">[14]</ref> and GPT <ref type="bibr" coords="1,466.31,360.03,13.49,7.94" target="#b34">[36]</ref>. Transformers use a self-attention mechanism that simultaneously computes the dependencies between any two tokens in a sequence <ref type="bibr" coords="1,494.10,381.94,13.49,7.94" target="#b13">[15]</ref>. This feature endows the models with exceptional algorithmic parallelism and accuracy while mitigating gradient vanishing and exploding issues <ref type="bibr" coords="1,317.96,414.82,13.50,7.94" target="#b13">[15,</ref><ref type="bibr" coords="1,333.70,414.82,10.13,7.94" target="#b15">17]</ref>.</p><p>As shown in Figure <ref type="figure" coords="1,398.66,425.78,3.01,7.94" target="#fig_0">1</ref>, the execution time of the attention module accounts for 70% of the overall time when inferencing the Bertbase model. This demonstrates that the module is a significant performance bottleneck of the Transformer-based models. It mainly comprises two batched matrix multiplication <ref type="foot" coords="1,481.39,467.47,3.38,6.44" target="#foot_0">1</ref> (MM) operators and a softmax positioned between them <ref type="bibr" coords="1,447.08,480.57,13.22,7.94" target="#b23">[25]</ref>. In real model deployment, the performance optimization of the attention poses three considerable challenges. Firstly, the MM workload in attention is typically small and irregular-shaped, with the second MM having the opportunity to benefit from the first MM when fusing them <ref type="bibr" coords="1,522.41,524.41,13.49,7.94" target="#b53">[55]</ref>. This is because the sequence lengths of Transformers are variable and small <ref type="bibr" coords="1,340.15,546.33,13.61,7.94" target="#b13">[15,</ref><ref type="bibr" coords="1,356.15,546.33,10.20,7.94" target="#b39">41]</ref>. For instance, the MM has 𝑀 = 𝑁 = 512, 𝐾 = 64 in the Bert-base model, which is considered a non-common matrix shape and hard to optimize <ref type="bibr" coords="1,420.86,568.25,13.57,7.94" target="#b20">[22,</ref><ref type="bibr" coords="1,436.67,568.25,10.18,7.94" target="#b45">47]</ref>. Secondly, the softmax operator is memory-intensive and exhibits complex data dependencies, necessitating the meticulous design to fuse it into the two MM while ensuring accuracy. Lastly, the current optimization support for batched MM remains rudimentary on CPUs <ref type="bibr" coords="1,493.10,612.08,9.33,7.94" target="#b2">[4,</ref><ref type="bibr" coords="1,504.68,612.08,10.13,7.94" target="#b28">30]</ref>.</p><p>Existing dense linear algebra libraries have adopted highly optimized strategies for large-scale MM and can achieve about 80% of a processor's peak performance <ref type="bibr" coords="1,437.32,644.96,13.56,7.94" target="#b42">[44,</ref><ref type="bibr" coords="1,453.13,644.96,10.17,7.94" target="#b48">50]</ref>. However, these libraries exhibit poor performance for the matrix sizes commonly used in Transformer models. To accelerate small and irregular-shaped MM, LIBXSMM <ref type="bibr" coords="2,93.69,228.31,14.67,7.94" target="#b20">[22]</ref> and LIBSHALOM <ref type="bibr" coords="2,176.39,228.31,13.46,7.94" target="#b45">[47,</ref><ref type="bibr" coords="2,192.10,228.31,11.50,7.94" target="#b46">48]</ref> have designed new computation micro-kernels targeted at X86 and ARM platforms, respectively. LIBXSMM utilizes cache and vector-friendly data layouts, which makes it unable to be directly integrated into DL frameworks <ref type="bibr" coords="2,78.72,272.15,14.85,7.94" target="#b40">[42]</ref> (e.g., PyTorch <ref type="bibr" coords="2,148.41,272.15,13.06,7.94" target="#b33">[35]</ref>). These works focus solely on optimizing MM operations and do not consider operator fusion across operations. To overcome the limitation, XNNPACK [2] fuses the MM and softmax operations within the attention module to reduce the overhead imposed by the softmax operation. Nevertheless, it does not carefully design the micro-kernel and batched parallelization strategy for the MM operation, resulting in its inability to utilize the processor's cores and SIMD units fully. Ansor <ref type="bibr" coords="2,245.07,348.86,14.85,7.94" target="#b52">[54]</ref> employs an automated tuning approach to optimize the attention module and is unable to perceive the details of the underlying hardware, thus delivering inferior performance compared to a hand-written library <ref type="bibr" coords="2,80.77,392.69,13.35,7.94" target="#b43">[45]</ref>. The library FLASHATTENTION <ref type="bibr" coords="2,220.53,392.69,14.72,7.94" target="#b11">[13]</ref> achieves highly promising acceleration on GPUs. GPUs exhibit numerous architectural differences, and further exploration is still needed to optimize the attention module on CPUs. ARM multi-cores are widely used in high-performance clusters and data centers <ref type="bibr" coords="2,118.41,447.49,9.44,7.94" target="#b0">[1,</ref><ref type="bibr" coords="2,130.54,447.49,10.35,7.94" target="#b24">26,</ref><ref type="bibr" coords="2,143.58,447.49,10.35,7.94" target="#b36">38,</ref><ref type="bibr" coords="2,156.63,447.49,10.35,7.94" target="#b44">46,</ref><ref type="bibr" coords="2,169.67,447.49,10.21,7.94" target="#b47">49]</ref>. For instance, Japan's Fugaku supercomputer <ref type="bibr" coords="2,112.42,458.45,14.85,7.94" target="#b36">[38]</ref> is a homogeneous system ranking at the top 500 <ref type="bibr" coords="2,69.14,469.41,10.68,7.94" target="#b1">[3]</ref> list and entirely constructed based on the Fujitsu A64FX ARM CPU <ref type="bibr" coords="2,94.15,480.37,13.39,7.94" target="#b32">[34]</ref>. Recent research also indicates that utilizing ARM multi-cores for DL workloads is highly suitable <ref type="bibr" coords="2,225.04,491.32,9.23,7.94" target="#b3">[5,</ref><ref type="bibr" coords="2,236.44,491.32,6.10,7.94" target="#b4">6,</ref><ref type="bibr" coords="2,244.71,491.32,10.27,7.94" target="#b22">24,</ref><ref type="bibr" coords="2,257.15,491.32,10.27,7.94" target="#b23">25,</ref><ref type="bibr" coords="2,269.59,491.32,10.27,7.94" target="#b26">28,</ref><ref type="bibr" coords="2,282.03,491.32,10.05,7.94" target="#b40">42]</ref>. This motivates us to develop an efficient attention library on the ARM architecture.</p><p>To this end, the paper presents MEATTEN <ref type="foot" coords="2,219.26,522.05,3.38,6.44" target="#foot_2">2</ref> , an open-source library dedicated to optimizing the self-attention module on ARM multi-core CPUs. Novel computation micro-kernel, data format, and parallelization strategies have been implemented. Specifically, we develop micro-kernels based on outer product and vector instructions while utilizing an online strategy for the register-level fusion pattern of "softmax to MM". We design a data format suitable for matrix multiplication and judicious loop layouts to reduce memory access overhead and improve data locality. Informed by an analytical model, our decisions on loop permutation, tiling, and parallelization are tailored to the characteristics of workloads and the hierarchical memory system. Intra-and inter-MM parallelism are exploited while achieving load balance. We share our experience that the core insight of the proposed holistic optimizations lies in leveraging data reuse to mitigate the expensive overhead associated with memory read and write operations. We demonstrate the advantages of MEATTEN by applying it to three modern ARM multi-core CPUs, Phytium 2000+ <ref type="bibr" coords="2,518.33,290.25,15.56,7.94" target="#b16">[18]</ref>, Kunpeng 920 (KP920) <ref type="bibr" coords="2,385.12,301.20,13.49,7.94" target="#b41">[43]</ref>, and ThunderX2 <ref type="bibr" coords="2,465.35,301.20,13.49,7.94" target="#b30">[32]</ref>. We compare it with the state-of-the-art solutions, including both library [2, 31] and compilation methods <ref type="bibr" coords="2,398.64,323.12,13.46,7.94" target="#b52">[54]</ref>. Experimental results indicate that our approach delivers optimal performance across various scenarios, including batch size, sequence length, and thread number. To further show the benefits of MEATTEN on end-to-end inference, we integrate it into the DL framework PyTorch <ref type="bibr" coords="2,459.82,366.96,13.22,7.94" target="#b33">[35]</ref>. Our integration shows that MEATTEN achieves a speedup of over 3× on the representative Bert-base model.</p><p>The contributions of the paper can be summarized as follows:</p><p>• It provides an analytical model that guides data reuse and derives the algorithmic parameters for different architectures and workloads (Section 4). • It presents a new method to develop fused micro-kernels, reducing memory access overhead (Section 5). • It designs a bathed parallelization algorithm, enabling intraand inter-MM parallelism (Section 6).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">BACKGROUND 2.1 Transformer-based Models</head><p>Transformer-based language models <ref type="bibr" coords="2,449.74,537.11,9.24,7.94" target="#b6">[8,</ref><ref type="bibr" coords="2,460.88,537.11,11.47,7.94" target="#b38">40]</ref> typically consist of four modules: embedding, encoder, decoder, and output. The encoder and decoder dominate the execution time of a model and are a key optimization focus. The encoder is formed by stacking multiple encoder blocks with the same structure but independently trained parameters such as weights and biases. The construction of the decoder follows a similar approach. Different networks exhibit distinct structures; for instance, Bert-base <ref type="bibr" coords="2,443.23,613.82,14.73,7.94" target="#b12">[14]</ref> comprises only an encoder of 12 blocks but without a decoder. Additionally, the number of blocks is configurable. For simplicity, in Figure <ref type="figure" coords="2,484.49,635.74,6.69,7.94" target="#fig_1">2a</ref>, we only illustrate the architecture of a single encoder block, which mainly includes two sub-layers: a multi-head self-attention and a fully connected feed-forward network. The simple feed-forward sub-layer consists of two linear transformation operators and an activation operator between them, while the multi-head self-attention sub-layer involves a series of operators with a more intricate structure. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Attention Module</head><p>The self-attention mechanism serves as a core building block in Transformers <ref type="bibr" coords="3,104.03,227.71,13.40,7.94" target="#b12">[14,</ref><ref type="bibr" coords="3,119.40,227.71,10.05,7.94" target="#b38">40]</ref>. It computes the representation of a sequence by capturing relationships between tokens at different positions. Table <ref type="table" coords="3,75.82,249.63,4.22,7.94" target="#tab_0">1</ref> summarizes the parameters used in the paper. Given a sequence that undergoes tokenization and embedding, a matrix of shape 𝑠𝑒𝑞 𝑙𝑒𝑛 × 𝑑 𝑚𝑜𝑑𝑒𝑙 is produced, where 𝑠𝑒𝑞 𝑙𝑒𝑛 is the number of tokens, and 𝑑 𝑚𝑜𝑑𝑒𝑙 is the length of a word vector. This matrix is then fed into the attention module, undergoing a three-step calculation, as illustrated in Figure <ref type="figure" coords="3,165.11,304.42,7.05,7.94" target="#fig_1">2b</ref>. 1) It requires the multiplication of three weight matrices, W Q , W K , and W V , to generate queries (Q), keys (K), and values (V). 2) Following Formula 1 , the process involves: ① computing the dot product of matrices Q and K T to obtain the attention matrix <ref type="bibr" coords="3,151.70,348.51,13.22,7.94" target="#b17">[19]</ref>, ② applying a mask to the attention matrix to conceal certain token-to-token relationships, ③ softmax normalization along the rows of the matrix to derive the attention probability matrix <ref type="bibr" coords="3,120.09,381.38,13.22,7.94" target="#b17">[19]</ref>, and ④ multiplying the matrix by V to obtain the output. This process is conducted in parallel with h attention heads, where 𝑑 𝑘 = 𝑑 𝑚𝑜𝑑𝑒𝑙 / h after splitting.</p><p>3) The data from multiple attention heads is concatenated and linearly transformed to yield the attention module's output.</p><formula xml:id="formula_0">𝐴𝑡𝑡𝑒𝑛𝑡𝑖𝑜𝑛(Q, K, V) = 𝑠𝑜 𝑓 𝑡𝑚𝑎𝑥 ( QK T √︁ 𝑑 𝑘 )V<label>(1)</label></formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Characteristic of Workloads</head><p>Modern software systems commonly adopt a modular and hierarchical design approach to reduce code coupling and development costs <ref type="bibr" coords="3,53.80,519.17,9.38,7.94" target="#b6">[8]</ref>. They typically decompose the workflow of the attention module into several segments and seek support from operator libraries that are highly optimized for specific architectures. As depicted in Figure <ref type="figure" coords="3,89.46,552.04,6.78,7.94" target="#fig_1">2c</ref>, we categorize the matrix operations involved in the module into four classes and aim to analyze the characteristics of the workloads.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.1">Matrix Multiplication.</head><p>The linear transformation illustrated in steps 1) and 3) essentially involves a GEMM (GEneral Matrix Multiplication) routine. The optimization of GEMM is a well-explored area, with classical dense linear algebra libraries such as OpenBLAS <ref type="bibr" coords="3,53.80,635.74,14.81,7.94" target="#b42">[44]</ref> and BLIS <ref type="bibr" coords="3,106.29,635.74,14.81,7.94" target="#b29">[31]</ref> providing high-performance implementations. Small values of 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 and 𝑠𝑒𝑞 𝑙𝑒𝑛 may lead to small or irregularshaped GEMM <ref type="bibr" coords="3,110.19,657.66,9.33,7.94" target="#b5">[7,</ref><ref type="bibr" coords="3,121.76,657.66,10.13,7.94" target="#b45">47]</ref>, as shown in Figure <ref type="figure" coords="3,208.95,657.66,6.83,7.94">3a</ref>, and recent research, including works like LIBSHALOM <ref type="bibr" coords="3,186.11,668.62,14.85,7.94" target="#b45">[47]</ref> and LIBXSMM <ref type="bibr" coords="3,261.75,668.62,13.49,7.94" target="#b20">[22]</ref>, has delved into this issue thoroughly. Therefore, the paper's focus is not the acceleration of a single large-scale or irregular matrix multiplication operator.</p><formula xml:id="formula_1">× × × (a) Generate Q, K, V in step 1) (b) Q × K T in step 2) (c) QK T × V in step 2) batch size seq len d model d model 3 W Q W K W V seq len batch size h d k seq len d k Q K T V × × × Figure 3</formula><p>: Key workloads in the attention module.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.2">Batched MM.</head><p>Transformers use h attention heads, allowing the model to learn representations from different subspaces <ref type="bibr" coords="3,542.33,298.13,13.49,7.94" target="#b38">[40]</ref>, as seen in models like GPT-2, where h=12 <ref type="bibr" coords="3,478.55,309.09,13.49,7.94" target="#b35">[37]</ref>. Considering the batch processing technique during model inference, the process represented by Formula 1 is computed 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 × h times. Batched matrix multiplication dominates the overall computation, with the shape being illustrated in Figures <ref type="figure" coords="3,448.67,352.93,35.64,7.94">3b and 3c</ref>. Unlike the matrix workload in linear transformation, developing parallelism solely within a single MM (intra-MM) is insufficient for utilizing multicore CPUs. Particularly in natural language processing tasks, the range of 𝑠𝑒𝑞 𝑙𝑒𝑛 variation can be substantial <ref type="bibr" coords="3,473.10,396.76,13.40,7.94" target="#b13">[15,</ref><ref type="bibr" coords="3,488.38,396.76,10.05,7.94" target="#b14">16]</ref>, and small-scale MMs generated by short sequences result in very low computational efficiency. Therefore, batch parallelization of MMs (inter-MM) is highly essential. Moreover, in the case of variable sequence lengths, the on-chip cache requirements for MMs vary, posing a challenge in kernel fusion and devising parallel algorithms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2.3.3</head><p>Point-wise Operation. Mask and Scale are typically implemented as matrix addition and scalar multiplication, respectively. They are both memory-intensive point-wise operations and lack opportunities for data reuse. Previous work has optimized them through straightforward fusion strategies <ref type="bibr" coords="3,472.00,516.86,13.36,7.94" target="#b51">[53]</ref>.</p><formula xml:id="formula_2">𝑦 𝑖 = 𝑒 𝑥 𝑖 −𝑚𝑎𝑥 𝑠𝑢𝑚 = 𝑒 𝑥 𝑖 −𝑚𝑎𝑥 𝑠𝑒𝑞 𝑙𝑒𝑛 𝑗=1 𝑒 𝑥 𝑗 −𝑚𝑎𝑥</formula><p>(2) 2.3.4 Reduction. Softmax reduces the values of the attention matrix to the interval [0, 1], where the shape of each attention matrix is 𝑠𝑒𝑞 𝑙𝑒𝑛 × 𝑠𝑒𝑞 𝑙𝑒𝑛 . For each row vector X of length 𝑠𝑒𝑞 𝑙𝑒𝑛 in the matrix, softmax <ref type="bibr" coords="3,376.42,624.78,13.40,7.94" target="#b9">[11,</ref><ref type="bibr" coords="3,391.93,624.78,11.47,7.94" target="#b31">33]</ref> is performed according to Formula 2. Here, max is the maximum element in the vector, and sum is the row sum after taking the exponentials of the vector elements. Four iterations are required on X to obtain each output 𝑦 𝑖 : find the row maximum, exponentiate each element, accumulate the row sum, and normalize by dividing by sum. It is evident that the softmax operator features significant memory access overhead, and its serial workflow introduces complex and strict data dependencies. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">Hierarchical Memory System</head><p>High-performance multi-core processors typically adopt a hierarchical on-chip cache architecture, leading to inconsistent access latency. We illustrate this design using the Phytium 2000+ <ref type="bibr" coords="4,263.68,247.76,14.60,7.94" target="#b16">[18]</ref> processor, which serves as a building block for China's next-generation exascale computer <ref type="bibr" coords="4,122.25,269.67,14.60,7.94" target="#b47">[49]</ref> as an example. As depicted in Figure <ref type="figure" coords="4,272.47,269.67,3.01,7.94" target="#fig_2">4</ref>, this processor organizes every four cores into a core group, where each core has an L1 cache size of 32KB, and the four cores share a 2MB L2 cache <ref type="bibr" coords="4,88.24,302.55,13.58,7.94" target="#b18">[20,</ref><ref type="bibr" coords="4,104.06,302.55,10.19,7.94" target="#b50">52]</ref>. Eight cores form a panel, and the whole chip is composed of eight panels. Accessing the local L1 and L2 caches yields the fastest speeds, with a latency difference of 4 to 5 times between them <ref type="bibr" coords="4,107.76,335.43,13.48,7.94" target="#b18">[20,</ref><ref type="bibr" coords="4,123.48,335.43,10.11,7.94" target="#b50">52]</ref>. When data is not in the local L2 cache, the access latency depends on the distance between the data and the CPU core. For instance, accessing data in panel 6 from the CPU core in panel 0 incurs the highest on-chip data access overhead, approximately 10 times that of accessing the local L2 cache <ref type="bibr" coords="4,252.08,379.26,13.49,7.94" target="#b18">[20]</ref>. When data is off-chip, the memory access latency becomes significantly higher.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">CHALLENGES AND OVERVIEW 3.1 Problem Scope</head><p>Given the insights from the preceding analysis, we concentrate our optimization efforts on the procedure illustrated in step 2) of Figure <ref type="figure" coords="4,80.45,476.99,3.13,7.94" target="#fig_1">2</ref>. Termed scaled dot-product attention (SDPA) <ref type="bibr" coords="4,260.44,476.99,13.49,7.94" target="#b38">[40]</ref>, this process is encapsulated as a function primitive in deep learning frameworks like PyTorch <ref type="bibr" coords="4,148.24,498.91,13.37,7.94" target="#b33">[35]</ref>, serving developers in constructing transformer-based neural networks. Based on our comprehension of existing research, we summarize three technical perspectives for optimizing and enhancing the performance of the SDPA operator.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Optimization Challenges</head><p>3.2.1 How do we devise computation kernels for SDPA with operator fusion techniques. A fundamental direction is using the outer product formula to construct a GEMM kernel <ref type="bibr" coords="4,229.64,591.90,14.85,7.94" target="#b42">[44]</ref> as a starting point. Subsequently, while ensuring the correctness of data dependencies, we gradually integrate functionalities such as softmax into the GEMM kernel. Specifically, we split these steps into sub-steps based on their memory access characteristics and fuse them into the GEMM kernel, generating multiple computational kernels with different functionalities. This allows us to use these customized kernels to describe the computational logic of SDPA. Additionally, we typically use data packing techniques to rearrange data into contiguous buffers to ensure continuous data access during kernel computation. A combination of on-the-fly packing techniques <ref type="bibr" coords="4,279.41,701.49,14.64,7.94" target="#b45">[47]</ref> and thoughtful data format design is necessary to mitigate associated costs. Therefore, we face multiple challenges, such as data formats, complex memory access patterns of operators, and data dependencies.</p><p>3.2.2 How do we exploit intra-and inter-MM parallelism based on the characteristics of the workload. The computational complexity of the SDPA varies with different sequence lengths and batch sizes. This results in varying intra-and inter-MM parallelism. Recent research has initiated preliminary attempts at optimizing batched GEMM on CPUs, often imposing constraints on the matrix shape.</p><p>For instance, LIBXSMM <ref type="bibr" coords="4,408.91,206.32,14.85,7.94" target="#b20">[22]</ref> requires the three dimensions of an MM to satisfy 3 √ 𝑀𝑁 𝐾 ≤ 32, a condition rarely met in practical scenarios. Other approaches either lack the capability to dynamically adjust task partitioning strategies for varying sequence lengths [2], thus failing to effectively utilize on-chip caches, or resort to table lookup methods that cannot cover all cases <ref type="bibr" coords="4,475.58,261.73,13.25,7.94" target="#b23">[25]</ref>. This indicates the need for an adaptive parallel algorithm capable of allocating tasks and parallelizing threads in real-time based on workload characteristics. Simultaneously, leveraging the hierarchical memory system for locality-aware task mapping is crucial.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.2.3</head><p>How can we derive algorithmic parameters using analytical models to achieve portability. Deducing parameters rationally based on architectural disparities and workload variations is foundational for ensuring high algorithmic performance. Additionally, even though the kernel is coded in assembly language on a specific instruction set architecture, it is essential to abstract critical parameters of the algorithm and guide its design using analytical models to avoid binding parallel algorithms to specific platforms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Overview</head><p>3.3.1 High-level view. Figure <ref type="figure" coords="4,427.08,440.50,4.15,7.94">5</ref> illustrates a high-level perspective of MEATTEN's algorithm design. The algorithm's inputs Q, K, V, and output O are all four-dimensional tensors with a shape of 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 × h × 𝑠𝑒𝑞 𝑙𝑒𝑛 × 𝑑 𝑘 . We assume that each tensor is stored in row-major order, aligning with the data format conventions of mainstream deep learning frameworks such as PyTorch <ref type="bibr" coords="4,542.72,495.29,13.49,7.94" target="#b33">[35]</ref>. MEATTEN draws inspiration from Goto's blocked algorithm <ref type="bibr" coords="4,545.58,506.25,13.61,7.94" target="#b19">[21,</ref><ref type="bibr" coords="4,317.96,517.21,11.59,7.94" target="#b37">39]</ref> and is primarily composed of a seven-layer nested loop, with the innermost loop, known as the micro-kernel, being written in assembly instructions. The crucial optimizations of the algorithm encompass micro-kernel, loop layouts, and parallelization, aiming to enhance data reuse while improving parallelism.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.2">Roadmap.</head><p>In the subsequent sections, we will elaborate on the technical details of MEATTEN. We begin by elucidating how data reuse is achieved on the hierarchical cache architecture through loop tiling and permutation (Section 4). An analytical model is provided to guide the optimization of the loop layout. Next, we introduce the design principles of micro-kernels within the loop, complemented by the enhancement in data format (Section 5). Finally, we discuss the parallelization techniques, encompassing task partition, distribution, and thread mapping (Section 6). We describe the algorithm's design using single floating-point data (fp32), but the methodology can be applied to other precisions such as fp16, fp64, and int16.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">LOOP OPTIMIZATION</head><p>Loop tiling and permutation are two paramount loop optimization techniques with crucial implications for improving data reuse <ref type="bibr" coords="5,278.85,112.45,13.26,7.94" target="#b27">[29]</ref>. For conciseness, Figure <ref type="figure" coords="5,142.33,123.41,4.25,7.94">6</ref> exclusively presents one head of SDPA, with its workflow and components mirroring Figure <ref type="figure" coords="5,238.60,134.37,3.01,7.94">5</ref>, excluding the L1 loop. Our analysis initiates from the two micro-kernels of loop L6 and L7 in Figure <ref type="figure" coords="5,125.90,156.29,3.02,7.94">5</ref>, progressively elucidating how we determine the order of the nested loop. Subsequently, we deduce the tiling parameters of the algorithm based on an analytical model.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Loop Order</head><formula xml:id="formula_3">4.1.1 Q × K T .</formula><p>Kernel one primarily computes the product of Q and K T , simultaneously fusing two point-wise operations, namely scale and mask, along with a substep of the softmax involving finding the row-wise maximum (max). Detailed design considerations regarding the functionality of kernels will be explained in Section 5. Here, our focus is solely on how to manipulate data reuse.</p><p>In the L6 loop, we access two panels from Q and K T , each of size 𝑚𝑟 ×𝑑 𝑘 and 𝑑 𝑘 ×𝑛𝑟 , as depicted by the dashed box in Figure <ref type="figure" coords="5,260.83,292.43,3.01,7.94">6</ref>. During the loop, we load data from main memory for Q and K T , compute their product, and store the product to a tile of size 𝑚𝑟 × 𝑛𝑟 directly in registers. Along the reduction dimension 𝑑 𝑘 , this tile accumulates partial results <ref type="bibr" coords="5,107.56,336.51,14.85,7.94" target="#b25">[27]</ref> generated by outer-product computations for each 𝑚𝑟 × 1 column slice and 1 × 𝑛𝑟 row slice, achieving registerlevel data reuse. Transitioning to the L5 loop, it is noteworthy that in the first iteration of the L5 loop, we opt to pack the elements of the 𝑑 𝑘 × 𝑛𝑟 panel from K T to a linear buffer. Employing an online packing method <ref type="bibr" coords="5,115.63,391.55,13.55,7.94" target="#b40">[42,</ref><ref type="bibr" coords="5,131.43,391.55,10.16,7.94" target="#b45">47]</ref>, we achieve instruction overlap between data packing and micro-kernel computation, thereby amortizing the overhead of memory access instructions of data packing. 𝑑 𝑘 is typically a small value (64 in Bert <ref type="bibr" coords="5,179.17,424.43,12.97,7.94" target="#b12">[14]</ref>), and nr is not large due to register constraints. Therefore, the 𝑑 𝑘 × 𝑛𝑟 buffer is much smaller than the capacity of the L1 cache. Hence, in subsequent iterations of the L5 loop, we can reuse this buffer along the b1 dimension, fetching each 𝑚𝑟 × 𝑑 𝑘 panel of Q from main memory until the 𝑏1 × 𝑑 𝑘 block Q fills the L1 cache. Following this, in the L4 loop, we reuse block Q from the L1 cache along the b2 dimension until  In iterations of the L4 loop, we pack each 𝑑 𝑘 × 𝑛𝑟 panel of K T into the previously allocated buffer to achieve low memory space consumption. Notably, the old buffer can reside in the L1 cache. It significantly reduces memory write overhead, as there is no need to pack data into a newly allocated cold buffer outside the cache. Meanwhile, we allocate a contiguous memory space of 𝑏1 × 𝑏2 for the runtime-generated data block S. The space serves as the output for kernel one and is subsequently fed into kernel two as input. It is expected to be held in the L2 cache and reused in each iteration of the L3 loop. Moreover, this buffer can also be reused along the 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 and h dimensions for a thread when dealing with different attention heads. We empirically demonstrate that buffer reuse has a highly positive impact on performance.</p><p>4.1.2 S × V. Kernel two computes the product of S and V, concurrently fusing the remaining three substeps of softmax, namely exponentiation (exp), the sum of rows (sum), and normalization (norm). At the L7 loop, we access panels of S and V, each of size 𝑚𝑟 × 𝑏3 and 𝑏3 × 𝑛𝑟 , respectively. The 𝑚𝑟 × 𝑏3 panel is respected to reside in the L2 cache, while the 𝑏3 × 𝑛𝑟 panel needs to be loaded from main memory. At the L6' loop, we traverse the block V of size 𝑏3 × 𝑑 𝑘 , ensuring that the L1 cache can hold the block. Unlike Goto's algorithm, we do not pack each discontinuous 𝑏3 × 𝑛𝑟 panel of V. Although we cannot continuously read data at the L7 and L6' loops, we can reuse the data block V residing in the L1 cache during each L5' loop iteration. Our approach avoids any performance degradation due to discontinuous memory access. Instead, it leverages the L1 cache efficiently without introducing any memory write overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Tiling Size</head><p>The preceding research <ref type="bibr" coords="5,405.16,624.53,14.69,7.94" target="#b19">[21]</ref> indicates that the key to selecting the block algorithm's parameters lies in the effective utilization of L2 and L1 cache. We will provide the choices for the parameters mr and nr in Section 5, which are related to the micro-kernel design and the register capacity. At the L2 loop, Q is partitioned into blocks of 𝑏1 ×𝑑 𝑘 , which can be accommodated in the L1 cache when iterating loop L4. Meanwhile, space needs to be reserved for K T and S of size 𝑑 𝑘 × 𝑛𝑟 and 𝑏1 × 𝑛𝑟 , respectively. Thus, we have inequality 3.</p><p>Similarly, at the L3 loop, K T and S are divided into blocks of size 𝑑 𝑘 × 𝑏2 and 𝑏1 × 𝑏2. We expect the L2 cache to hold these blocks, thus imposing constraint 4. The L4' loop partitions V into blocks of size 𝑏3 × 𝑑 𝑘 that can not exceed the size of the L1 cache and be reused during the iteration of loop L5', satisfying constraint 5. The constraint inequalities 3-5 derive 𝑏1, 𝑏2, and 𝑏3 boundary values, respectively. We need minor empirical fine-tuning of them, which is consistent with BLIS <ref type="bibr" coords="6,139.67,164.51,13.36,7.94" target="#b29">[31]</ref>.</p><formula xml:id="formula_4">𝑏1 × 𝑑 𝑘 + 𝑑 𝑘 × 𝑛𝑟 + 𝑏1 × 𝑛𝑟 &lt; 𝐶 𝐿1<label>(3)</label></formula><formula xml:id="formula_5">𝑏1 × 𝑑 𝑘 + 𝑑 𝑘 × 𝑏2 + 𝑏1 × 𝑏2 &lt; 𝐶 𝐿2<label>(4)</label></formula><formula xml:id="formula_6">𝑏3 × 𝑑 𝑘 + 𝑚𝑟 × 𝑏3 + 𝑚𝑟 × 𝑑 𝑘 &lt; 𝐶 𝐿1<label>(5)</label></formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">MICRO-KERNEL DESIGN</head><p>MEATTEN has two types of micro-kernels designed for computing Q × K T and S × V while fusing non-matmul steps such as softmax. Micro-kernels are built upon the ARMv8 architecture, which provides 32 128-bit vector registers (V0-V31) and fused multiplyaccumulate instructions (FMA). The micro-kernels aim to fully exploit the modern CPU's out-of-order instruction execution ability by employing classic instruction-level parallelism <ref type="bibr" coords="6,237.39,326.68,14.73,7.94" target="#b21">[23]</ref> techniques such as loop unrolling and instruction scheduling.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Online Softmax</head><p>The softmax introduces intricate data dependencies because it can only be performed once all elements in a row of S are computed. We introduce an online softmax <ref type="bibr" coords="6,159.82,397.11,14.77,7.94" target="#b10">[12]</ref> method and then decompose its process into four substeps, seamlessly integrating them forward and backward into the computation of Q × K T and S × V, as illustrated in Figure <ref type="figure" coords="6,86.92,430.24,3.01,7.94" target="#fig_5">7</ref>. Considering a simple scenario with five matrix blocks: Q, (K (1) ) T , (K (2) ) T , V (1) , and V (2) , we seek to calculate softmax(Q</p><formula xml:id="formula_7">× (K (1) ) T (K (2) ) T ) × V (1)</formula><p>V (2) to obtain the output O. This process can be decomposed into two stages. In the first stage, we calculate the product S (1) of Q and (K (1) ) T , simultaneously identifying the local maximum m (1) for each row in S (1) . Then, we exponentiate the matrix S (1) in place and obtain the sum of each row, denoted as sum (1) . Finally, the matrix multiplication of S (1)  and V (1) yields O (1) . It is notable that we do not normalize each row of O (1) by dividing by the corresponding elements of sum (1) . Therefore, the first stage is formulated as follows: </p><formula xml:id="formula_8">𝐒 𝟏 𝐒 𝟐 (𝐊 𝟏 ) 𝐓 (𝐊 𝟐 ) 𝐓 Q 𝐞 𝐒 𝟏 −𝐦 𝟏 𝐞 𝐒 𝟐 −𝐦 𝟐 𝐕 𝟏 O 𝐦 𝟏 𝐦 𝟐 𝐬𝐮𝐦 𝟏 𝐬𝐮𝐦 𝟐 𝐕 𝟐</formula><p>𝑖, 𝑘 × V</p><p>(1) 𝑘, 𝑗</p><p>In the second stage, a similar computation is performed for Q and (K (2) ) T , resulting in the product S (2) . While reducing the value m (2) for each row of S (2) , a comparison is made with the values of m (1) to determine the global maximum. The exponentiated result of S (2) is then multiplied by V (2) to obtain O (2) . Note that each element of sum (2) is the sum of each row of S (2) , augmented by the updated sum (1) . Thus, the final output O is computed as O (1) multiplied by e m (1) −m (2)  plus O (2) , then divided by sum (2) . Therefore, we have:</p><formula xml:id="formula_10">S (2) 𝑖, 𝑗 = ∑︁ 𝑘 Q 𝑖, 𝑘 × (K (2) ) T 𝑘, 𝑗 , m (2) 𝑖 = 𝑚𝑎𝑥 (m<label>(1)</label></formula><p>𝑖 , 𝑚𝑎𝑥 𝑗 S</p><p>(2)</p><formula xml:id="formula_11">𝑖, 𝑗 ) S (2) 𝑖, 𝑗 = 𝑒 S (2) 𝑖, 𝑗 −m (2) 𝑖 , sum<label>(2)</label></formula><formula xml:id="formula_12">𝑖 = sum (1) 𝑖 × 𝑒 m (1) 𝑖 −m (2) 𝑖 + ∑︁ 𝑗 S (2) 𝑖, 𝑗 O (2) 𝑖, 𝑗 = ∑︁ 𝑘 S (2) 𝑖, 𝑘 × V (2) 𝑘, 𝑗 O 𝑖, 𝑗 = (O<label>(1)</label></formula><p>𝑖, 𝑗 × 𝑒 m (1)</p><formula xml:id="formula_13">𝑖 −m (2) 𝑖 + O<label>(2)</label></formula><p>𝑖, 𝑗 )/sum</p><p>(2) 𝑖</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Micro Kernels</head><p>We have designed two types of micro-kernels based on the functionalities and memory access characteristics of loops L6 and L7, as indicated by the dashed boxes in Figures 5. They can be regarded as the minimal computational unit that partitions the computation space constructed by the nested loop. As shown in Figure <ref type="figure" coords="6,538.43,439.86,3.13,7.94" target="#fig_6">8</ref>, we interpret the design with a 32-bit floating-point data type (FP32), with each vector register capable of storing four FP32 data. The micro-kernels are coded with the ARMv8 ISA with NEON extension <ref type="bibr" coords="6,317.96,483.69,13.36,7.94" target="#b30">[32]</ref>.</p><formula xml:id="formula_14">5.2.1 Q × K T .</formula><p>We allocate 𝑚𝑟 and 𝑛𝑟 /4 registers for reading Q and K T , requiring a total of 𝑚𝑟 × 𝑛𝑟 /4 registers to store the product results. Notably, the data of matrix K T is packed into a contiguous buffer to facilitate vectorization. Additionally, three registers should be reserved for holding the value of 1</p><formula xml:id="formula_15">d k</formula><p>, loading the value of the mask matrix, and storing the row maximum value. It is desirable for the value of 𝑚𝑟 to be as close as possible to 𝑛𝑟 to maximize the computation-to-memory ratio (CMR) of the micro-kernels <ref type="bibr" coords="6,543.04,582.11,13.24,7.94" target="#b29">[31]</ref>. Ultimately, we set 𝑚𝑟 = 5, 𝑛𝑟 = 16, utilizing all 32 vector registers. In summary, the usage of registers needs to satisfy: </p><p>𝑛𝑟 mod 4 == 0 (7)</p><formula xml:id="formula_17">𝐶𝑀𝑅 = 2 × 𝑚𝑟 × 𝑛𝑟 𝑚𝑟 + 𝑛𝑟<label>(8)</label></formula><p>The detailed computation process is outlined in Algorithm 1. We calculate the product of Q and K T using the outer product formula and FMA instructions. Before writing the product back to memory, we scale it by 1   d k and perform addition with the loaded mask matrix data. Crucially, we also use FMAX instructions to derive the maximum value in a row-wise manner (max), which is the first step of softmax. Our micro-kernel allows for a series of memory-intensive operations performed on the product stored in registers, thus can significantly reduce memory access overhead.</p><p>The results are typically written back to memory in a row-major or column-major fashion in classical dense linear algebra libraries. To facilitate the computation of S × V in the subsequent microkernel, we store the result data as tiles of size mr × 4. The advantage of this data storage format lies in the fact that when the subsequent micro-kernel uses mr registers to read the matrix S, the data will be accessed continuously. This eliminates the need for data packing and facilitates data access using vector instructions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2.2">S×V.</head><p>The second micro-kernel exponentiates the values of S with the base e prior to performing matrix multiplication, as shown in Algorithm 2. Here, S represents the output of the preceding Q × K T , expected to reside in the L2 cache. Exponential operations impose high register demands, preventing their integration into the matrix multiplication computation. However, when computing the exponentiation (exp) of S by loading data into vector registers, we can fuse the computation of row sums (sum) before writing the exponential values back to memory. Subsequently, we calculate the product of S and V, denoted as O. A condition must be introduced to ensure normalization is performed only on the last iteration of loop L3. As scalar multiplication (norm) is a memory-intensive point-wise operation, we similarly fuse this step before writing the values of O stored in registers back to memory. Therefore, the four steps of softmax, except for exp, which can only achieve cachelevel fusion, max, sum, and norm, can be fused at the register level, mitigating expensive memory access overhead.</p><formula xml:id="formula_18">Algorithm 1: Micro-kernel for Q × K T 1 for kk = 0 → 𝑑 𝑘 step 4 do 2 (V0 -V4) ← Q(ii : ii+5, kk : kk+4) 3 (V8 -V11) ← K T (kk, jj : jj+16) 4 (V12 -V31) ← FMA((V0 -V4)[0], (V8 -V11)) ⊲ Outer Product 5 • • • ⊲ Loop unroll 6 (V8 -V11) ← K T (kk+3, jj : jj+16) 7 (V12 -V31) ← FMA((V0 -V4)[3], (V8 -V11)) 8 V5 ← BCAST(1 / d k ) 9 V12 ← FMUL(V12, V5) ⊲ Scale 10 V6 ← LDR(mask(ii, jj : jj+4)), V12 ← FADD(V12, V6) ⊲ Mask 11 V7 ← BCAST(max[ii]), V7 ← FMAX(V12, V7) ⊲ Max 12 • • • 13 V31 ← FMUL(V31, V5) 14 V6 ← LDR(mask(ii+4, jj+12 : jj+16)), V31 ← FADD(V31, V6) 15 V7 ← BCAST(max[ii+4]), V7 ← FMAX(V31, V7) Algorithm 2: Micro-kernel for S × V 1 Exponentiate S[ii : ii+5, p : p+b3] if jj == 0 ⊲ Exp and Sum 2 for kk = p → 𝑝 + 𝑏3 step 4 do 3 (V0 -V4) ← S(ii : ii+5, kk : kk+4) 4 (V8 -V11) ← V(kk, jj : jj+16) 5 (V12 -V31) ← FMA((V0 -V4)[0], (V8 -V11)) ⊲ Outer Product 6 • • • ⊲ Loop unroll 7 (V8 -V11) ← V(kk+3, jj : jj+16) 8 (V12 -V31) ← FMA((V0 -V4)[3], (V8 -V11)) 9 if 𝑗 == 𝑠𝑒𝑞 𝑙𝑒𝑛 − 𝑏2 and 𝑝 == 𝑗 + 𝑏2 − 𝑏3 then 10 V5 ← BCAST(1 / sum[ii]) 11 V12 ← FMUL(V12, V5) ⊲ Norm 12 • • • 13 V5 ← BCAST(1 / sum[ii+4]) 14 V31 ← FMUL(V31, V5)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">PARALLELIZATION SCHEME</head><p>Our adaptive parallel algorithm aims to exploit intra-and inter-MM parallelism while maintaining load balance and data locality. We employ the widely used shared-memory programming model OpenMP for parallelization. Users can set the thread count T through OMP_NUM_THREADS, and our algorithm evenly distributes tasks among T threads to harness hardware parallelism. Simultaneously, the environment variable GOMP_CPU_AFFINITY is utilized to establish thread-to-core affinity, which is a crucial step for performance enhancement. Below, we will elucidate the parallelization methodology from three perspectives.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Task Partition</head><p>We parallelize the dimensions 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 , h, and 𝑠𝑒𝑞 𝑙𝑒𝑛 , as depicted in loops L1 and L2 of Figure <ref type="figure" coords="7,429.55,417.34,3.13,7.94">5</ref>. Loops L3 and L4' are not parallelized because the reduction step of matrix multiplication would introduce write-after-write data dependencies at these two loops. It necessitates costly synchronization operations to ensure consistency. We partition the computation space of each SDPA head into ⌈𝑠𝑒𝑞 𝑙𝑒𝑛 / 𝑏1⌉ partitions. Therefore, in the case of batch processing, we generate parts partitions, where parts equals ⌈𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 × ℎ × 𝑠𝑒𝑞 𝑙𝑒𝑛 / 𝑏1⌉ . When parts is not divisible by T, we iteratively reduce the b1 by a step of 1, ensuring an even workload distribution among T threads. This means our parallel algorithm adaptively adjusts the number of parallel threads for each dimension based on 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 , 𝑠𝑒𝑞 𝑙𝑒𝑛 , and ℎ. Therefore, we have:</p><formula xml:id="formula_19">𝑝𝑎𝑟𝑡𝑠 = ⌈ 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 × ℎ × 𝑠𝑒𝑞 𝑙𝑒𝑛 𝑏1 ⌉<label>(9)</label></formula><p>𝑝𝑎𝑟𝑡𝑠 mod 𝑇 == 0 (10)</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Task Distribution</head><p>We assign sequential indices starting from 0 to all partitions, resulting in a 𝑝𝑎𝑟𝑡 𝑖𝑛𝑑𝑒𝑥 of range [0, parts − 1]. Based on the index of each partition, we determine the corresponding thread index number 𝑡ℎ𝑟𝑒𝑎𝑑 𝑖𝑛𝑑𝑒𝑥 of the thread that is responsible for the partition's execution. The calculation of the 𝑡ℎ𝑟𝑒𝑎𝑑 𝑖𝑛𝑑𝑒𝑥 is as follows:</p><formula xml:id="formula_20">𝑡ℎ𝑟𝑒𝑎𝑑 𝑖𝑛𝑑𝑒𝑥 = 𝑝𝑎𝑟𝑡 𝑖𝑛𝑑𝑒𝑥 mod 𝑇<label>(11)</label></formula><p>Next, we need to determine the positional information for each partition to facilitate locating the corresponding matrix data during task execution. We introduce two variables: 𝑖𝑛𝑡𝑟𝑎 𝑖𝑛𝑑𝑒𝑥 and 𝑖𝑛𝑡𝑒𝑟 𝑖𝑛𝑑𝑒𝑥 . Here, 𝑖𝑛𝑡𝑟𝑎 𝑖𝑛𝑑𝑒𝑥 signifies the task index within a attention head, while 𝑖𝑛𝑡𝑒𝑟 𝑖𝑛𝑑𝑒𝑥 indicates which attention head the task belongs. Therefore, we have:</p><formula xml:id="formula_21">𝑖𝑛𝑡𝑟𝑎 𝑖𝑛𝑑𝑒𝑥 = 𝑝𝑎𝑟𝑡 𝑖𝑛𝑑𝑒𝑥 mod ⌈ 𝑠𝑒𝑞 𝑙𝑒𝑛 𝑏1 ⌉ (<label>12</label></formula><formula xml:id="formula_22">)</formula><formula xml:id="formula_23">𝑖𝑛𝑡𝑒𝑟 𝑖𝑛𝑑𝑒𝑥 = 𝑝𝑎𝑟𝑡 𝑖𝑛𝑑𝑒𝑥 ⌈ 𝑠𝑒𝑞 𝑙𝑒𝑛 𝑏1 ⌉<label>(13)</label></formula><p>Consider a simplified scenario with parameters set as 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 =1, h=2, and 𝑠𝑒𝑞 𝑙𝑒𝑛 =200. Assuming b1=100, then two attention heads will generate four partitions designated by the index range [0, 3]. The partition with index 2 is assigned to thread 2 by our method when using four parallel threads. The 𝑖𝑛𝑡𝑒𝑟 𝑖𝑛𝑑𝑒𝑥 for this partition is 1, signifying its affiliation with the second attention head. Meanwhile, the 𝑖𝑛𝑡𝑟𝑎 𝑖𝑛𝑑𝑒𝑥 is 0, reflecting that this partition is the first partition within the attention head.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">Thread Mapping</head><p>Configuring thread-to-core affinity helps mitigate the performance degradation caused by thread migration across CPU cores. This is because when a CPU core undergoes a thread switch, there is a need to reload the data required by the current thread into the on-chip cache. Moreover, mapping multiple threads that share data to multiple cores with a shared cache can reduce the redundancy of data copying and the overhead of remote data access.</p><p>Within a single attention head, multiple partitions can share K T and V. Therefore, we map the parallel threads within a single attention head to multiple closer CPU cores, such as the CPU cores within the same panel of a Phytium 2000+. There is no opportunity for data sharing among multiple attention heads in SDPA, requiring no special treatment.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">EXPERIMENTAL SETUP 7.1 Platform Details</head><p>We have conducted a comprehensive performance evaluation on three representative ARMv8 multi-core processors: Phytium 2000+ <ref type="bibr" coords="8,53.80,533.98,13.22,7.94" target="#b16">[18]</ref>, KP920 <ref type="bibr" coords="8,97.25,533.98,13.23,7.94" target="#b41">[43]</ref>, and ThunderX2 <ref type="bibr" coords="8,174.41,533.98,13.22,7.94" target="#b30">[32]</ref>. Table <ref type="table" coords="8,214.66,533.98,4.09,7.94" target="#tab_1">2</ref> details the hardware specifications for each platform. Notably, Phytium 2000+ employs a shared 2MB L2 cache for every four cores. In contrast, the L2 cache in the other two platforms is individually assigned to each core, with a collective utilization of a large-capacity L3 cache shared among 64 cores. We measure the performance of the SDPA operator and conduct end-to-end inference.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2">Competitive Works</head><p>We evaluate MEATTEN by comparing it with four existing works, namely: XNN_F. XNNPACK is a high-performance and prevailing handtuned library offered by Google <ref type="bibr" coords="8,173.07,668.62,9.48,7.94">[2]</ref>. It utilizes techniques such as thread pooling to exploit hardware parallelism and achieve load balancing. XNNPACK includes a fused SDPA operator, referred to here as XNN_F. XNN_NF. Since SDPA is a complex operator formed by stacking multiple sub-steps, we have constructed an SDPA operator using various routines provided by XNNPACK, denoted as XNN_NF here.</p><p>Each sub-step is implemented by calling an individual parallel routine without fusion.</p><p>Ansor. Ansor <ref type="bibr" coords="8,373.74,274.78,13.49,7.94" target="#b52">[54]</ref>, a submodule of the deep learning compiler TVM <ref type="bibr" coords="8,340.31,285.74,9.52,7.94" target="#b7">[9]</ref>, is responsible for generating schedules for operators automatically. We run auto-tuning up to 1000 measurement trails per test case, as per the default configuration of Ansor. For an entire deep neural network, we set the number of measurement trials to 1000×𝑛, where n is the number of subgraphs. It is typically sufficient for the search or auto-tuning to converge. We use TVM 0.12.0. BLIS. BLIS <ref type="bibr" coords="8,360.62,351.49,14.74,7.94" target="#b29">[31]</ref> is a classical dense linear algebra library that provides high-performance GEMM routines. As BLIS does not offer softmax routines, we invoke relevant functions from XNNPACK. We parallelize the 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 and h dimensions using OpenMP, with individual GEMM relying on BLIS as the backend.</p><p>PyTorch. We use PyTorch <ref type="bibr" coords="8,415.38,406.29,14.60,7.94" target="#b33">[35]</ref> version 2.0.0 with BLIS as the backend. This serves as the baseline for our end-to-end experiments.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.3">Workloads</head><p>The number of attention heads h and the hidden dimension 𝑑 𝑚𝑜𝑑𝑒𝑙 serve as hyperparameters for transformers. In the Bert-base model <ref type="bibr" coords="8,317.96,479.86,13.49,7.94" target="#b12">[14]</ref>, with h=12 and 𝑑 𝑚𝑜𝑑𝑒𝑙 =768, the resulting 𝑑 𝑘 is 64. This parameter configuration remains fixed during our evaluation. The work <ref type="bibr" coords="8,338.91,501.78,14.72,7.94" target="#b13">[15]</ref> has statistically analyzed sequence lengths in 8 corpora of the GLUE benchmark <ref type="bibr" coords="8,407.47,512.74,13.25,7.94" target="#b39">[41]</ref>, revealing that, excluding certain outliers, sequence lengths predominantly concentrate within the interval [0, 1024]. We have conducted tests on sequences with lengths distributed in the range [160, 1600] to ensure good coverage. We mainly utilize batch sizes of 32 and 64.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.4">Evaluation Methodology</head><p>We perform a warm-up to load the code into the instruction cache for each experimental case; the time taken for this warm-up is not considered. We conduct three repeated tests for each case and calculate the arithmetic mean of the three results to obtain stable performance. We measure performance using GFLOPS as the metric and only consider the floating-point operations of the two batched matrix multiplication in SDPA. Therefore, we have: sequences. We reduce data packing overhead by using optimized loop layouts and a newly designed data format. Secondly, unlike MEATTEN, it does not adopt multidimensional loop tiling, failing to leverage on-chip hierarchical cache storage architecture fully. BLIS achieves performance comparable to that of XNN_NF, and on Phytium 2000+, BLIS even slightly outperforms XNN_NF. However, BLIS and XNN_NF do not exploit fusion strategies and fail to achieve optimal performance. Additionally, compared to the other two processors, MEATTEN achieves the highest performance speedup on Phytium 2000+, which is attributed to our thread mapping strategy that can efficiently utilize the shared L2 cache.</p><formula xml:id="formula_24">𝐺𝐹 𝐿𝑂𝑃𝑆 = 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 × ℎ × (4 × 𝑠𝑒𝑞 𝑙𝑒𝑛 × 𝑠𝑒𝑞 𝑙𝑒𝑛 × 𝑑 𝑘 ) 𝑡𝑖𝑚𝑒 𝑐𝑜𝑠𝑡 × 1.0𝑒9<label>(14)</label></formula><p>Figure <ref type="figure" coords="10,88.60,340.30,8.42,7.94">9b</ref> shows the throughput of the SDPA with a batch size of 64. MEATTEN outperforms the optimal method and delivers average speedups of 1.75×, 1.36×, and 1.30× on Phytium 2000+, KP920, and ThunderX2, respectively. The performance results presented in Figure <ref type="figure" coords="10,78.67,384.14,8.42,7.94">9b</ref> closely align with those in Figure <ref type="figure" coords="10,209.65,384.14,6.69,7.94">9a</ref>, which demonstrates the excellent performance of our approach across various batch sizes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.2">64 Cores</head><p>All 64 cores are employed in this experiment to leverage hardware parallelism fully. This implies that KP920 and ThunderX2 utilize two NUMA nodes, posing a challenge to the scalability of the tested methods.</p><p>As shown in Figure <ref type="figure" coords="10,140.13,479.82,7.01,7.94" target="#fig_0">10</ref>, with a batch size of 32, MEATTEN improves computational throughput by 2.17×, 2.67×, and 2.12× on Phytium 2000+, KP920, and ThunderX2, respectively. For a batch size of 64, MEATTEN achieves acceleration ratios of 1.72×, 2.35×, and 2.07×. The performance of the best-performing XNN_F does not significantly grow with an increase in the number of cores, indicating a notable impact on its performance due to cross-NUMAnode memory access. We emphasize that all methods use the numactl command to specify identical memory allocation strategies. MEATTEN, utilizing fusion and thread mapping techniques, effectively reduces the demand for memory bandwidth and remote memory access, achieving excellent scalability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.3">Comparison with Ansor</head><p>To our knowledge, Ansor currently does not support dynamic shapes. Therefore, we perform 1000 tuning trials for each instance of the SDPA operator with different 𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 and 𝑠𝑒𝑞 𝑙𝑒𝑛 . This indicates that we have allocated sufficient budget for Ansor's tuning. In these experiments, we utilize all 64 cores. Ansor does not achieve optimal performance because its search method cannot generate efficient fusion strategies, as shown in Figure <ref type="figure" coords="10,485.41,278.25,6.87,7.94" target="#fig_7">11</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.4">Scalability</head><p>We assess the scalability performance of each method using varying CPU cores, with a single thread assigned to each core. As depicted in Figure <ref type="figure" coords="10,351.80,337.20,6.74,7.94" target="#fig_8">12</ref>, MEATTEN and XNN_F exhibit significant performance gains with increasing cores, and MEATTEN demonstrates better performance than XNN_F. We observe sub-optimal scalability of XN-NPACK on Phytium 2000+, primarily due to this processor having 8 NUMA nodes, posing significant challenges for memory access optimization. On the other two processors, XNNPACK's performance demonstrates almost linear growth with increased cores when using only one NUMA node. It is when the cores exceeds 32, leading to cross-NUMA-node memory access, that XNNPACK's performance even starts to decline with more parallelism.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.5">Ablation Study</head><p>In this experiment, we analyze the impact of each optimization step on performance, as shown in Figure <ref type="figure" coords="10,448.20,478.16,6.74,7.94" target="#fig_0">13</ref>. We focus on analyzing four steps: softmax fusion (V2), MM fusion (V3), tuning of the parameter 𝑏2 (V4), and buffer S reuse (MEATTEN). V1 refers to not using any optimization, while MEATTEN uses all four mentioned steps. Compared to V1, V2 decomposes the softmax into several substeps and fuses them forward and backward into the two matrix multiplications. This significantly reduces memory access overhead, as sub-steps can be fused at the register level. V3 further combines the two matrix multiplications into the same loop, as illustrated in the L3 loop of Figure <ref type="figure" coords="10,392.90,576.79,3.01,7.94">5</ref>, referred to as MM fusion. This practice effectively exploits the locality between producers and consumers, thus significantly improving performance. V4 fine-tunes the parameter 𝑏2. By adjusting the value of 𝑏2, we aim to keep the temporarily generated block S in the L2 cache. Finally, the buffer reuse's impact has been evaluated. Experimental results demonstrate that buffer reuse reduces memory consumption and yields a noticeable performance improvement.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.6">End-to-end Performance</head><p>We use Bert-base as a study case and perform end-to-end performance benchmarks on ThunderX2, as shown in Figure <ref type="figure" coords="10,515.34,701.49,6.74,7.94" target="#fig_2">14</ref>. We have  We load the Bert-base model from PyTorch and subsequently optimize the entire network using Ansor. We currently consider two batch sizes, 32 and 64, with a sequence length set to 480. Our approach outperforms Ansor by 1.27× and 1.23×, respectively.</p><p>We have also benchmarked the performance of Vision Transformer <ref type="bibr" coords="11,81.90,545.15,13.49,7.94" target="#b8">[10]</ref>. As shown in Table <ref type="table" coords="11,173.79,545.15,3.13,7.94" target="#tab_2">3</ref>, our method achieved a 2.76 × and 2.85 × acceleration compared to PyTorch.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="9">RELATED WORK</head><p>The self-attention mechanism <ref type="bibr" coords="11,162.65,591.90,13.22,7.94" target="#b38">[40]</ref>, serving as a core building block in Transformer-based models <ref type="bibr" coords="11,164.83,602.86,13.57,7.94" target="#b12">[14,</ref><ref type="bibr" coords="11,180.65,602.86,10.34,7.94" target="#b34">36,</ref><ref type="bibr" coords="11,193.23,602.86,10.17,7.94" target="#b35">37]</ref>, is commonly identified as a bottleneck during model inference. The DL stack usually seeks hand-tuned libraries or compilers for low-level optimizations <ref type="bibr" coords="11,277.38,624.78,9.28,7.94" target="#b6">[8,</ref><ref type="bibr" coords="11,288.91,624.78,6.12,7.94" target="#b7">9,</ref><ref type="bibr" coords="11,53.59,635.74,10.27,7.94" target="#b10">12,</ref><ref type="bibr" coords="11,65.52,635.74,10.27,7.94" target="#b11">13,</ref><ref type="bibr" coords="11,77.46,635.74,10.27,7.94" target="#b13">15,</ref><ref type="bibr" coords="11,89.39,635.74,10.27,7.94" target="#b15">17,</ref><ref type="bibr" coords="11,101.32,635.74,10.27,7.94" target="#b23">25,</ref><ref type="bibr" coords="11,113.25,635.74,10.27,7.94" target="#b49">51,</ref><ref type="bibr" coords="11,125.18,635.74,7.59,7.94" target="#b51">[53]</ref><ref type="bibr" coords="11,132.77,635.74,3.79,7.94" target="#b52">[54]</ref><ref type="bibr" coords="11,136.56,635.74,11.38,7.94" target="#b53">[55]</ref>, aiming to harness hardware capabilities efficiently. This section delineates prior efforts related to this paper from three technical perspectives. Loop optimization. Loop permutation and tiling are crucial loop optimization techniques with significant implications for enhancing data locality. Chimera <ref type="bibr" coords="11,152.22,690.53,14.85,7.94" target="#b53">[55]</ref> and MOpt <ref type="bibr" coords="11,209.43,690.53,14.85,7.94" target="#b27">[29]</ref> formalize the data movement volume of a nested loop through analytic models and employ constraint-solving methods to derive the optimal optimization strategy under constraints. Ansor <ref type="bibr" coords="11,460.39,222.12,14.74,7.94" target="#b52">[54]</ref> employs an automatic tuning approach, generating extensive schedules for an operator and then evaluating their performance using a cost model to select the most efficient one. Inspired by Goto's blocked algorithm <ref type="bibr" coords="11,317.96,265.96,13.38,7.94" target="#b19">[21]</ref>, MEATTEN analyzes how to organize the loop layout for data reuse on the on-chip memory hierarchy, from registers to L1 and L2 caches. Micro-kernel design. Classical dense linear algebra libraries such as OpenBLAS <ref type="bibr" coords="11,372.81,309.79,14.85,7.94" target="#b42">[44]</ref> and BLIS <ref type="bibr" coords="11,427.54,309.79,14.85,7.94" target="#b29">[31]</ref> typically adopt outer-productbased micro-kernels that can achieve exceptional performance for large-scale matrices. LIBXSMM <ref type="bibr" coords="11,431.66,331.71,14.60,7.94" target="#b20">[22]</ref> and LIBSHALOM <ref type="bibr" coords="11,512.56,331.71,13.40,7.94" target="#b45">[47,</ref><ref type="bibr" coords="11,527.87,331.71,11.47,7.94" target="#b46">48]</ref> have undertaken aggressive optimizations for small or irregular-shaped matrices, including key techniques like data packing hiding and instruction scheduling. However, these approaches are limited to MMs. By dissecting the memory access patterns of each step in the attention module, MEATTEN has devised highly efficient microkernels capable of fusing multiple memory-intensive steps. Its micro-kernels reduce the need for data packing by coupling it with innovative data formats, thus significantly enhancing performance. Parallel strategy. XNNPACK [2] utilizes thread pooling to exploit multi-cores. However, its task partition strategy overlooks the hierarchical cache structure and leads to sub-optimal locality. The work <ref type="bibr" coords="11,357.92,463.22,14.85,7.94" target="#b23">[25]</ref> employs a table-based method to determine the thread allocation strategy for different workloads, making a tradeoff between performance and portability. While LIBXSMM <ref type="bibr" coords="11,543.35,485.14,14.85,7.94" target="#b20">[22]</ref> achieves batched parallelism for operators, it imposes restrictions on the shape of operators. MEATTEN's adaptive parallel algorithm can dynamically explore intra-and inter-MM parallelism based on workload characteristics while maintaining data locality.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="10">DISCUSSION</head><p>MEATTEN has currently implemented support for 128-bit NEON on ARMv8 platforms. However, its technologies can be easily ported to other platforms, including the ARM Scalable Vector Extension (SVE) and the Intel AVX-512 SIMD extension. This entails deriving tiling parameters, such as b1, b2, and b3, specific to the architecture using our analytical model and rewriting micro-kernels with assembly. Our parallelism approach is applicable for accelerating the commonly used batched matrix-multiplication workload in deep learning. Furthermore, MEATTEN is advantageous for compiler frameworks like TVM, as the fused SDPA operator provided by MEATTEN can be utilized as a backend for aggressive low-level optimizations. This paper introduces MEATTEN, an open-source library optimizing self-attention performance on ARMv8 multi-cores. MEATTEN presents innovations in loop optimization, micro-kernel design, and parallel algorithms for the attention operator. We conduct performance evaluations for single operators and end-to-end inference. The results indicate that MEATTEN achieves highly competitive performance across various platforms, thread counts, batch sizes, and sequence lengths.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,53.80,181.22,241.85,7.70;2,53.80,192.18,240.24,7.70;2,53.80,203.14,62.10,7.70"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Time breakdown of the Bert-base model on a 64core ThunderX2 server. We utilize PyTorch 2.0.0 with BLIS as the backend.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="2,317.96,213.30,241.86,7.70;2,317.96,224.26,118.83,7.70"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: The architecture of an encoder block and the workflow of the attention module.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,53.80,171.23,241.85,7.70;4,53.80,182.19,18.82,7.70"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: A high-level view of the Phytium 2000+ architecture.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,63.17,523.63,150.72,10.58;5,63.17,534.25,136.89,10.58;5,63.17,544.87,126.36,9.66;5,63.17,555.49,10.68,9.15;5,89.18,555.49,81.45,9.66;5,63.17,566.11,10.68,9.15;5,96.00,566.11,82.31,9.15;5,63.17,576.74,10.68,9.15;5,102.81,576.74,85.03,9.15;5,109.18,587.36,83.76,10.58;5,63.17,597.98,10.68,9.15;5,109.63,597.98,83.98,9.66;5,239.05,597.98,40.66,9.15;5,115.99,608.63,122.19,9.15;5,133.03,619.22,127.16,9.15;5,63.17,629.85,10.80,8.94;5,96.11,629.85,82.79,9.15;5,63.17,640.47,10.80,8.94;5,102.93,640.47,85.03,9.15;5,63.17,651.09,10.80,8.94;5,109.74,651.09,77.39,9.66;5,63.17,661.71,10.68,9.15;5,116.45,661.71,92.02,9.15;5,238.00,661.71,40.66,9.15;5,122.81,672.36,123.15,9.15;5,139.85,682.96,121.73,9.15;5,65.58,617.97,35.64,9.15;5,65.58,681.54,36.64,9.15"><head></head><label></label><figDesc>Input Q, K, V and Output O: [batch size , h, seq len , d k ] L1 : parallel for b = 0; b &lt; batch size ×h; b += 1 do L2 : parallel for i = 0; i &lt; seq len ; i += b1 do L3 : for j = 0; j &lt; seq len ; j += b2 do L4 : for jj = j; jj &lt; j+b2; jj += nr do L5 : for ii = i; ii &lt; i+b1; ii += mr do pack K T [0:d k , jj:jj+nr] if ii == i L6 : for kk = 0; kk &lt; d k ; kk += 4 do micro-kernel S[ii:ii+mr, jj:jj+nr] += Q[ii:ii+mr, kk:kk+4] × K T [kk:kk+4, jj:jj+nr] (Fused Scale, Mask, Max) L4': for p = j; p &lt; j+b2; p += b3 do L5': for ii = i; ii &lt; i+b1; ii += mr do L6': for jj = 0; jj &lt; d k ; jj += nr do L7 : for kk = p; kk &lt; p+b3; kk += 4 do micro-kernel O[ii:ii+mr, jj:jj+nr] += S[ii:ii+mr, kk:kk+4] × V[kk:kk+4, jj:jj+nr] (Fused Exp, Sum, Norm) Kernel-One Kernel-Two</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="5,92.04,709.77,163.77,7.70"><head>Figure 5 :L3Figure 6 :</head><label>56</label><figDesc>Figure 5: Algorithm design of MEATTEN.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,81.73,709.77,184.38,7.70"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: The workflow of the online softmax</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="6,372.23,709.77,131.70,7.70"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: Design of micro-kernel</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="10,53.80,189.26,231.42,7.70;10,288.74,188.74,5.31,7.74;10,53.80,199.70,45.84,8.24;10,103.20,199.70,46.29,8.24"><head>Figure 11 :</head><label>11</label><figDesc>Figure 11: Ansor's performance. Higher is better. (𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 = 32, ℎ = 12, 𝑑 𝑘 = 64,𝑇 = 64)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,53.80,698.81,241.85,7.70;10,53.80,709.77,50.57,7.70;10,107.88,709.25,67.43,8.24;10,178.56,709.25,31.33,8.24;10,213.45,709.25,18.96,8.24"><head>Figure 12 :</head><label>12</label><figDesc>Figure 12: Scalability study of different works. Higher is better. (𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 = 32, ℎ = 12, 𝑠𝑒𝑞 𝑙𝑒𝑛 = 480, 𝑑 𝑘 = 64)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="11,100.72,194.53,303.56,7.70;11,407.79,194.01,53.64,8.24;11,464.99,194.01,46.29,8.24"><head>Figure 13 :Figure 14 :</head><label>1314</label><figDesc>Figure 13: Ablation study on the three platforms. Higher is better. (𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 = 16, ℎ = 12, 𝑑 𝑘 = 64,𝑇 = 64)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="3,60.50,85.73,226.37,98.82"><head>Table 1 :</head><label>1</label><figDesc>Terminology used throughout the paper</figDesc><table coords="3,60.50,112.38,226.37,72.16"><row><cell>Variable</cell><cell>Description</cell></row><row><cell>𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒</cell><cell>number of the input sequences in a batch</cell></row><row><cell>𝑠𝑒𝑞 𝑙𝑒𝑛</cell><cell>length (tokens) of an input request sequence</cell></row><row><cell>𝑑 𝑚𝑜𝑑𝑒𝑙</cell><cell>vector length of a token (hidden dimension)</cell></row><row><cell>h</cell><cell>number of attention heads</cell></row><row><cell>𝑑 𝑘</cell><cell>vector length of each attention head after splitting</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="8,324.73,85.73,226.70,98.98"><head>Table 2 :</head><label>2</label><figDesc>Main characteristics of each platform</figDesc><table coords="8,324.73,111.56,226.70,73.14"><row><cell></cell><cell cols="3">Phytium 2000+ KP920 ThunderX2</cell></row><row><cell>Peak FP32 GFLOPS</cell><cell>1126.4</cell><cell>2662.4</cell><cell>2559.4</cell></row><row><cell>Cores</cell><cell>64</cell><cell>64</cell><cell>64</cell></row><row><cell>Frequency</cell><cell>2.2GHz</cell><cell>2.6GHz</cell><cell>2.5GHz</cell></row><row><cell>L1 cache</cell><cell>32KB</cell><cell>64KB</cell><cell>32KB</cell></row><row><cell>L2 cache</cell><cell>2MB</cell><cell>512KB</cell><cell>256KB</cell></row><row><cell>L3 cache</cell><cell>None</cell><cell>64MB</cell><cell>64MB</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="11,53.50,349.89,240.55,137.46"><head>Table 3 :</head><label>3</label><figDesc>The normalized inference performance of Vision Transformer. (ℎ = 12, 𝑑 𝑘 = 64,𝑇 = 64)</figDesc><table coords="11,53.80,383.89,240.25,103.46"><row><cell cols="4">𝑏𝑎𝑡𝑐ℎ 𝑠𝑖𝑧𝑒 PyTorch XNN_F MEATTEN</cell></row><row><cell>32</cell><cell>1.0</cell><cell>2.25 ×</cell><cell>2.76 ×</cell></row><row><cell>64</cell><cell>1.0</cell><cell>2.49 ×</cell><cell>2.85 ×</cell></row><row><cell cols="4">observed similar results on the other two platforms. The maximum</cell></row><row><cell cols="4">allowed sequence length for the Bert-base model is 512. Under a</cell></row><row><cell cols="4">batch size of 32, XNN_F and MEATTEN achieve average speedup</cell></row><row><cell cols="4">ratios of 2.52× and 3.26× compared to PyTorch, respectively. With</cell></row><row><cell cols="4">a batch size of 64, XNN_F and MEATTEN improve the throughput</cell></row><row><cell cols="2">by 2.80× and 3.39×, respectively.</cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">Batched MM can be expressed asC i = 𝛼 𝑖 A i B i + 𝛽 𝑖 C i , 𝑖 = 1,</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1">, ..., where the matrices A i , B i , and C i have sizes 𝑀 × 𝐾, 𝐾 × 𝑁 , and 𝑀 × 𝑁 , respectively.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_2">The data and code associated with this paper are openly available at https://github.com/FuncJ.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENTS</head><p>We extend our sincere gratitude to the anonymous reviewers for their constructive feedback, which has been instrumental in enhancing the quality of our work. Additionally, we are indebted to Pengyu Wang for his invaluable assistance and to Xiaoyun Zhang, Jian Wang, and Yanghai Wang for their insightful suggestions. This work is supported by the National Key Research and Development Program of China under Grant No.2022YFB4501702.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>8 EVALUATION RESULTS</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8.1">32 Cores</head><p>In this experiment, we measure the parallel performance of the SDPA operator using 32 cores, with each core spawning a thread. We consider two commonly used batch sizes, 32 and 64, and the experimental results indicate that both are sufficient for the tested method to harness the multi-core CPUs effectively. Figure <ref type="figure" coords="9,90.13,657.59,8.43,7.94">9a</ref> presents the experimental results of a batch size 32. Compared to the optimal baseline, MEATTEN achieves average speedups of 1.96×, 1.37×, and 1.27× on Phytium 2000+, KP920, and ThunderX2, respectively. The arithmetic mean is used for the average performance measurement and demonstrates the effectiveness of our approach.</p><p>XNN_F achieves much superior performance in most scenarios compared to XNN_NF, revealing the importance of fusion. However, notable performance improvement potential remains for XNN_F. Through a thorough study of the XNNPACK codebase, we have discovered the following reasons: Firstly, it uses an offline data pack approach, packing all input data into a contiguous buffer before kernel computation to facilitate vectorization and realize data continuity. This packing approach introduces significant overhead, especially in scenarios involving small MMs generated by short</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="12,62.51,320.23,190.71,6.18" xml:id="b0">
+	<analytic>
+		<title/>
+		<ptr target="https://aws.amazon.com/cn/ec2/graviton/" />
+	</analytic>
+	<monogr>
+		<title level="j">AWS Gravition</title>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,62.51,336.17,123.92,6.18" xml:id="b1">
+	<monogr>
+		<ptr target="https://top500.org" />
+		<title level="m">The Top500 list</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,344.14,225.58,6.18;12,69.23,352.11,224.81,6.18;12,69.03,360.08,225.25,6.18;12,69.23,367.99,223.16,6.25" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">A set of batched basic linear algebra subprograms and LAPACK routines</title>
+		<author>
+			<persName coords=""><forename type="first">Ahmad</forename><surname>Abdelfattah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><surname>Costa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jack</forename><surname>Dongarra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><surname>Gates</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Azzam</forename><surname>Haidar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sven</forename><surname>Hammarling</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicholas</forename><forename type="middle">J</forename><surname>Higham</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jakub</forename><surname>Kurzak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Piotr</forename><surname>Luszczek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stanimire</forename><surname>Tomov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="page" from="1" to="23" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,376.02,224.94,6.18;12,69.23,383.99,225.89,6.18;12,69.23,391.96,225.99,6.18;12,69.23,399.87,216.44,6.25" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Reformulating the direct convolution for high-performance deep learning inference on ARM processors</title>
+		<author>
+			<persName coords=""><forename type="first">Sergio</forename><surname>Barrachina</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adrián</forename><surname>Castelló</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tze</forename><forename type="middle">Meng</forename><surname>Manuel F Dolz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Héctor</forename><surname>Low</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Enrique</forename><forename type="middle">S</forename><surname>Martínez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Upasana</forename><surname>Quintana-Ortí</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrés</forename><forename type="middle">E</forename><surname>Sridhar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Tomás</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Systems Architecture</title>
+		<imprint>
+			<biblScope unit="volume">135</biblScope>
+			<biblScope unit="page">102806</biblScope>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,407.90,224.81,6.18;12,69.23,415.87,224.81,6.18;12,69.23,423.78,225.58,6.25;12,69.07,431.81,50.20,6.18" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">PipeBERT: high-throughput BERT inference for arm big. Little multi-core processors</title>
+		<author>
+			<persName coords=""><forename type="first">Hung-Yang</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Seyyed</forename><surname>Hasan Mozafari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cheng</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">J</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brett</forename><forename type="middle">H</forename><surname>Meyer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Warren</forename><forename type="middle">J</forename><surname>Gross</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Signal Processing Systems</title>
+		<imprint>
+			<biblScope unit="volume">95</biblScope>
+			<biblScope unit="page" from="877" to="894" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,439.78,225.58,6.18;12,69.23,447.75,225.64,6.18;12,69.23,455.66,224.81,6.25;12,69.23,463.63,184.69,6.25" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">TSM2: optimizing tall-and-skinny matrix-matrix multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jieyang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nan</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dingwen</forename><surname>Tao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sihuan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaiming</forename><surname>Ouyang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><surname>Debardeleben</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qiang</forename><surname>Guan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zizhong</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM International Conference on Supercomputing</title>
+				<meeting>the ACM International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="106" to="116" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,471.66,224.81,6.18;12,69.23,479.63,224.94,6.18;12,69.23,487.54,224.81,6.25;12,69.23,495.52,197.44,6.25" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Et: re-thinking self-attention for transformer models on gpus</title>
+		<author>
+			<persName coords=""><forename type="first">Shiyang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaoyi</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Santosh</forename><surname>Pandey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bingbing</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guang</forename><forename type="middle">R</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Long</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Caiwen</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hang</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="18" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,503.54,224.81,6.18;12,69.23,511.51,224.81,6.18;12,69.23,519.43,224.81,6.25;12,69.23,527.40,223.18,6.25" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">TVM: An automated End-to-End optimizing compiler for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thierry</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haichen</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meghan</forename><surname>Cowan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuwei</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">13th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="578" to="594" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,535.42,225.89,6.18;12,69.23,543.34,224.81,6.25;12,69.23,551.31,148.67,6.25" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Visformer: The vision-friendly transformer</title>
+		<author>
+			<persName coords=""><forename type="first">Zhengsu</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lingxi</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianwei</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xuefeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Longhui</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qi</forename><surname>Tian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF international conference on computer vision</title>
+				<meeting>the IEEE/CVF international conference on computer vision</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="589" to="598" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,559.33,225.89,6.18;12,69.23,567.30,224.81,6.18;12,69.23,575.22,225.58,6.25;12,69.23,583.24,21.57,6.18" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Accelerating transformer networks through recomposing softmax layers</title>
+		<author>
+			<persName coords=""><forename type="first">Jaewan</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hailong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Byeongho</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Seunghwan</forename><surname>Hwang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jung</forename><surname>Ho Ahn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE International Symposium on Workload Characterization (IISWC)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="92" to="103" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,591.21,224.99,6.18;12,69.23,599.13,146.07,6.25" xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Flashattention-2: Faster attention with better parallelism and work partitioning</title>
+		<author>
+			<persName coords=""><forename type="first">Tri</forename><surname>Dao</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2307.08691</idno>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,607.15,225.99,6.18;12,69.23,615.07,224.81,6.25;12,69.23,623.04,183.02,6.25" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Flashattention: Fast and memory-efficient exact attention with io-awareness</title>
+		<author>
+			<persName coords=""><forename type="first">Tri</forename><surname>Dao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stefano</forename><surname>Ermon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atri</forename><surname>Rudra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><surname>Ré</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="page" from="16344" to="16359" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,631.06,225.63,6.18;12,69.23,638.98,224.81,6.25;12,69.23,646.95,91.11,6.25" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Bert: Pre-training of deep bidirectional transformers for language understanding</title>
+		<author>
+			<persName coords=""><forename type="first">Jacob</forename><surname>Devlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ming-Wei</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kenton</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kristina</forename><surname>Toutanova</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1810.04805</idno>
+		<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,654.97,224.81,6.18;12,69.23,662.89,224.81,6.25;12,69.23,670.86,157.61,6.25" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Handling heavy-tailed input of transformer inference on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jiangsu</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiazhi</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yutong</forename><surname>Lu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 36th ACM International Conference on Supercomputing</title>
+				<meeting>the 36th ACM International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,678.88,225.99,6.18;12,69.23,686.85,224.81,6.18;12,69.03,694.77,225.02,6.25;12,69.23,702.74,88.74,6.25" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Improving Computation and Memory Efficiency for Real-world Transformer Inference on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jiangsu</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiazhi</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiang</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongbin</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yutong</forename><surname>Lu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="1" to="22" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,89.10,225.64,6.18;12,333.39,97.01,224.81,6.25;12,333.39,104.98,225.88,6.25;12,333.39,113.01,24.81,6.18" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Turbotransformers: an efficient gpu serving system for transformer models</title>
+		<author>
+			<persName coords=""><forename type="first">Jiarui</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengduo</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="389" to="402" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,120.98,224.81,6.18;12,333.39,128.95,224.81,6.18;12,333.39,136.86,219.45,6.25" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Performance evaluation of memory-centric armv8 many-core architectures: A case study with phytium</title>
+		<author>
+			<persName coords=""><forename type="first">Jian-Bin</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiang-Ke</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chun</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">De-Zun</forename><surname>Dong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Computer Science and Technology</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="33" to="43" />
+			<date type="published" when="2000">2021. 2000+. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,144.89,225.88,6.18;12,333.39,152.86,224.99,6.18;12,333.39,160.77,135.56,6.25" xml:id="b17">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hyeran</forename><surname>Jeon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Filip</forename><surname>Blagojevic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cyril</forename><surname>Guyot</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qing</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dong</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2301.09262</idno>
+		<title level="m">MEMO: Accelerating Transformers with Memoization on Big Memory Systems</title>
+				<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,333.39,168.80,225.88,6.18;12,333.39,176.77,224.81,6.18;12,333.15,184.68,225.82,6.25;12,333.23,192.71,129.83,6.18" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">wrBench: Comparing Cache Architectures and Coherency Protocols on ARMv8 Many-Core Systems</title>
+		<author>
+			<persName coords=""><forename type="first">Wan-Rong</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jian-Bin</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chun</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chuan-Fu</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s11390-021-1251-x</idno>
+		<ptr target="https://doi.org/10.1007/s11390-021-1251-x" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Computer Science and Technology</title>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,200.68,224.81,6.18;12,333.39,208.59,224.81,6.25;12,333.18,216.62,35.49,6.18" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Anatomy of high-performance matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Kazushige</forename><surname>Goto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><forename type="middle">A</forename><surname>Van De Geijn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="1" to="25" />
+			<date type="published" when="2008">2008. 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,224.59,225.88,6.18;12,333.39,232.56,225.99,6.18;12,333.39,240.47,224.81,6.25;12,333.39,248.44,172.58,6.25" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">LIBXSMM: accelerating small matrix multiplications by runtime code generation</title>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Heinecke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Greg</forename><surname>Henry</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maxwell</forename><surname>Hutchinson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hans</forename><surname>Pabst</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;16: Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="981" to="991" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,256.41,225.51,6.25;12,333.39,264.38,70.60,6.25" xml:id="b21">
+	<monogr>
+		<title level="m" type="main">Computer architecture: a quantitative approach</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>John</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">A</forename><surname>Hennessy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Patterson</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<publisher>Elsevier</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,272.41,224.81,6.18;12,333.39,280.38,224.81,6.18;12,333.39,288.29,187.26,6.25" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Full-stack Optimizing Transformer Inference on ARM Many-core CPU</title>
+		<author>
+			<persName coords=""><forename type="first">Jiazhi</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiangsu</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiguang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yutong</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangke</forename><surname>Liao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,296.32,225.88,6.18;12,333.39,304.29,224.81,6.18;12,333.39,312.20,225.88,6.25;12,333.23,320.23,15.08,6.18" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Characterizing and optimizing transformer inference on arm many-core processor</title>
+		<author>
+			<persName coords=""><forename type="first">Jiazhi</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiangsu</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dan</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dongsheng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiang</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yutong</forename><surname>Lu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 51st International Conference on Parallel Processing</title>
+				<meeting>the 51st International Conference on Parallel Processing</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,328.20,224.81,6.18;12,333.15,336.11,225.06,6.25;12,333.39,344.08,181.66,6.25" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">The power of ARM64 in public clouds</title>
+		<author>
+			<persName coords=""><forename type="first">Qingye</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Young</forename><surname>Choon Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><forename type="middle">Y</forename><surname>Zomaya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">20th IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing (CCGRID)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="page" from="459" to="468" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,352.11,224.81,6.18;12,333.39,360.02,224.81,6.25;12,333.39,367.99,206.98,6.25" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Cake: matrix multiplication using constant-bandwidth blocks</title>
+		<author>
+			<persName coords=""><forename type="first">Vikas</forename><surname>Ht Kung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Natesh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sabot</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,376.02,225.58,6.18;12,333.16,383.99,225.86,6.18;12,333.39,391.90,224.81,6.25;12,333.39,399.87,196.76,6.25" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">FeatherCNN: Fast inference computation with TensorGEMM on ARM architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Haidong</forename><surname>Lan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jintao</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Hundt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bertil</forename><surname>Schmidt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Minwen</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoning</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weiguo</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Qiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shengzhong</forename><surname>Feng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page" from="580" to="594" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,407.90,225.89,6.18;12,333.39,415.87,224.81,6.18;12,333.39,423.78,224.81,6.25;12,333.39,431.75,195.55,6.25" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Analytical characterization and design space exploration for optimization of CNNs</title>
+		<author>
+			<persName coords=""><forename type="first">Rui</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yufan</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aravind</forename><surname>Sukumaran-Rajam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atanas</forename><surname>Rountev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="928" to="942" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,439.78,225.06,6.18;12,333.39,447.69,225.51,6.25;12,333.39,455.66,225.88,6.25;12,333.39,463.69,24.81,6.18" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">A coordinated tiling and batching framework for efficient GEMM on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Xiuhong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yun</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shengen</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liancheng</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yinghan</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th symposium on principles and practice of parallel programming</title>
+				<meeting>the 24th symposium on principles and practice of parallel programming</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="229" to="241" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,471.66,225.99,6.18;12,333.39,479.57,224.81,6.25;12,333.39,487.54,184.76,6.25" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Analytical modeling is enough for high-performance BLIS</title>
+		<author>
+			<persName coords=""><forename type="first">Meng</forename><surname>Tze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Francisco</forename><forename type="middle">D</forename><surname>Low</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tyler</forename><forename type="middle">M</forename><surname>Igual</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Enrique</forename><forename type="middle">S</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Quintana-Orti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="page" from="1" to="18" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,495.57,224.81,6.18;12,333.39,503.54,225.88,6.18;12,333.39,511.51,224.94,6.18;12,333.39,519.43,225.57,6.25;12,333.39,527.45,24.81,6.18" xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Performance and energy consumption of HPC workloads on a cluster based on Arm ThunderX2 CPU. Future generation computer systems</title>
+		<author>
+			<persName coords=""><forename type="first">Filippo</forename><surname>Mantovani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marta</forename><surname>Garcia-Gasulla</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">José</forename><surname>Gracia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Esteban</forename><surname>Stafford</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabio</forename><surname>Banchelli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Josep-Fabrego</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><surname>Criado-Ledesma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mathias</forename><surname>Nachtmann</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="volume">112</biblScope>
+			<biblScope unit="page" from="800" to="818" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,535.42,224.94,6.18;12,333.39,543.34,135.42,6.25" xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Online normalizer calculation for softmax</title>
+		<author>
+			<persName coords=""><forename type="first">Maxim</forename><surname>Milakov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Natalia</forename><surname>Gimelshein</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1805.02867</idno>
+		<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,333.39,551.36,224.81,6.18;12,333.39,559.33,224.81,6.18;12,333.39,567.25,224.81,6.25;12,333.39,575.22,126.65,6.25" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Preliminary performance evaluation of the Fujitsu A64FX using HPC applications</title>
+		<author>
+			<persName coords=""><forename type="first">Tetsuya</forename><surname>Odajima</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuetsu</forename><surname>Kodama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Miwako</forename><surname>Tsuji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Motohiko</forename><surname>Matsuda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yutaka</forename><surname>Maruyama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mitsuhisa</forename><surname>Sato</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE international conference on cluster computing (cluster)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="523" to="530" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,583.24,224.99,6.18;12,333.39,591.21,225.88,6.18;12,333.39,599.13,224.81,6.25;12,333.39,607.10,141.66,6.25" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Pytorch: An imperative style, high-performance deep learning library</title>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Paszke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sam</forename><surname>Gross</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Francisco</forename><surname>Massa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Lerer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Bradbury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gregory</forename><surname>Chanan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Killeen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zeming</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Natalia</forename><surname>Gimelshein</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luca</forename><surname>Antiga</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in neural information processing systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,615.12,225.88,6.18;12,333.39,623.09,199.71,6.18" xml:id="b34">
+	<monogr>
+		<title level="m" type="main">Improving language understanding by generative pre-training</title>
+		<author>
+			<persName coords=""><forename type="first">Alec</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karthik</forename><surname>Narasimhan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tim</forename><surname>Salimans</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ilya</forename><surname>Sutskever</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,631.06,225.58,6.18;12,333.39,638.98,224.81,6.25;12,333.23,647.00,36.69,6.18" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Language models are unsupervised multitask learners</title>
+		<author>
+			<persName coords=""><forename type="first">Alec</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rewon</forename><surname>Child</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dario</forename><surname>Amodei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ilya</forename><surname>Sutskever</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">OpenAI blog</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page">9</biblScope>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,654.97,225.99,6.18;12,333.39,662.89,225.58,6.25;12,333.39,670.91,18.33,6.18" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Codesign and system for the supercomputer &quot;Fugaku</title>
+		<author>
+			<persName coords=""><forename type="first">Mitsuhisa</forename><surname>Sato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuetsu</forename><surname>Kodama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Miwako</forename><surname>Tsuji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tesuya</forename><surname>Odajima</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE micro</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="page" from="26" to="34" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,678.88,224.81,6.18;12,333.39,686.80,224.81,6.25;12,333.39,694.77,203.57,6.25" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Automatic generation of fast BLAS3-GEMM: A portable compiler approach</title>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiangke</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingling</forename><surname>Xue</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="122" to="133" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,89.10,225.58,6.18;13,68.99,97.07,225.06,6.18;13,69.23,104.98,199.83,6.25" xml:id="b38">
+	<monogr>
+		<title level="m" type="main">Attention is all you need. Advances in neural information processing systems</title>
+		<author>
+			<persName coords=""><forename type="first">Ashish</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Noam</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Niki</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jakob</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Llion</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aidan</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Łukasz</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Illia</forename><surname>Polosukhin</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+			<biblScope unit="page">30</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,113.01,224.81,6.18;13,69.23,120.98,224.81,6.18;13,69.23,128.89,180.86,6.25" xml:id="b39">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Alex</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Amanpreet</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Felix</forename><surname>Hill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Omer</forename><surname>Levy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Samuel R Bowman</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1804.07461</idno>
+		<title level="m">GLUE: A multi-task benchmark and analysis platform for natural language understanding</title>
+				<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="13,69.23,136.92,224.81,6.18;13,69.23,144.89,224.81,6.18;13,69.23,152.80,224.81,6.25;13,69.23,160.77,182.13,6.25" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Optimizing Direct Convolutions on ARM Multi-Cores</title>
+		<author>
+			<persName coords=""><forename type="first">Pengyu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weiling</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianbin</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dezun</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chun</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,168.80,225.88,6.18;13,69.23,176.77,225.88,6.18;13,69.23,184.68,85.84,6.25" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Kunpeng 920: The first 7-nm chiplet-based 64-core arm soc for cloud services</title>
+		<author>
+			<persName coords=""><forename type="first">Jing</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chuanning</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiping</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuxing</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Chun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Micro</title>
+		<imprint>
+			<biblScope unit="volume">41</biblScope>
+			<biblScope unit="page" from="67" to="75" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,192.71,224.81,6.18;13,69.23,200.62,224.81,6.25;13,69.23,208.59,192.53,6.25" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Model-driven level 3 BLAS performance optimization on Loongson 3A processor</title>
+		<author>
+			<persName coords=""><forename type="first">Zhang</forename><surname>Xianyi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wang</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhang</forename><surname>Yunquan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE</title>
+		<imprint>
+			<biblScope unit="page" from="684" to="691" />
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,216.62,224.81,6.18;13,69.23,224.59,224.81,6.18;13,69.23,232.50,225.57,6.25;13,69.23,240.47,224.81,6.25;13,69.23,248.50,120.86,6.18" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Bolt: Bridging the Gap between Auto-tuners and Hardware-native Performance</title>
+		<author>
+			<persName coords=""><forename type="first">Jiarong</forename><surname>Xing</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jack</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yibo</forename><surname>Zhu</surname></persName>
+		</author>
+		<ptr target="mlsys.org" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Machine Learning and Systems</title>
+				<editor>
+			<persName><forename type="first">Diana</forename><surname>Marculescu</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Yuejie</forename><surname>Chi</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Carole-Jean</forename><surname>Wu</surname></persName>
+		</editor>
+		<meeting>Machine Learning and Systems<address><addrLine>MLSys; Santa Clara, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2022-08-29">2022. 2022. 2022. August 29 -September 1, 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,256.47,224.81,6.18;13,69.23,264.44,224.81,6.18;13,69.23,272.35,224.81,6.25;13,69.23,280.32,200.89,6.25" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Arm meets Cloud: A Case Study of MPI Library Performance on AWS Arm-based HPC Cloud with Elastic Fabric Adapter</title>
+		<author>
+			<persName coords=""><forename type="first">Shulei</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aamir</forename><surname>Shafi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hari</forename><surname>Subramoni</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dhabaleswar</forename><forename type="middle">K</forename><surname>Panda</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="449" to="456" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,69.23,288.35,225.99,6.18;13,69.23,296.32,224.81,6.18;13,69.23,304.23,224.81,6.25;13,333.39,89.04,145.85,6.25" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Libshalom: optimizing small and irregular-shaped matrix multiplications on armv8 multi-cores</title>
+		<author>
+			<persName coords=""><forename type="first">Weiling</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianbin</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dezun</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,97.07,225.99,6.18;13,333.39,104.98,224.81,6.25;13,333.39,112.95,155.46,6.25" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Optimizing Full-Spectrum Matrix Multiplications on ARMv8 Multi-Core CPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Weiling</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianbin</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dezun</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,120.98,224.81,6.18;13,333.39,128.95,225.88,6.18;13,333.39,136.86,188.79,6.25" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Performance evaluation and analysis of linear algebra kernels in the prototype tianhe-3 cluster</title>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hailong</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhongzhi</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Depei</forename><surname>Qian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Asian Conference on Supercomputing Frontiers</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="86" to="105" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,144.89,224.94,6.18;13,333.39,152.80,225.58,6.25;13,333.23,160.83,31.35,6.18" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">BLIS: A Framework for Rapidly Instantiating BLAS Functionality</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Field</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><forename type="middle">A</forename><surname>Van Zee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Van De Geijn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">41</biblScope>
+			<biblScope unit="page">33</biblScope>
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,168.80,224.81,6.18;13,333.39,176.77,224.81,6.18;13,333.39,184.68,224.81,6.25;13,333.39,192.65,175.05,6.25" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">ByteTransformer: A high-performance transformer boosted for variable-length inputs</title>
+		<author>
+			<persName coords=""><forename type="first">Yujia</forename><surname>Zhai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengquan</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoying</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zizhong</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yibo</forename><surname>Zhu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 IEEE International Parallel and Distributed Processing Symposium (IPDPS)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="344" to="355" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,200.62,224.81,6.25;13,333.39,208.59,93.71,6.25" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Mars: A 64-core ARMv8 processor</title>
+		<author>
+			<persName coords=""><forename type="first">Charles</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 IEEE Hot Chips 27 Symposium (HCS)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="1" to="23" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,216.62,224.81,6.18;13,333.39,224.53,224.81,6.25;13,333.39,232.50,110.27,6.25" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">NIOT: A Novel Inference Optimization of Transformers on Modern CPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Zining</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yao</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bingsheng</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhenjie</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,240.53,224.94,6.18;13,333.39,248.50,225.63,6.18;13,333.39,256.41,224.81,6.25;13,333.39,264.38,223.01,6.25" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Ansor: Generating High-Performance tensor programs for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengfan</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Minmin</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhao</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cody</forename><forename type="middle">Hao</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ameer</forename><surname>Haj-Ali</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yida</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Danyang</forename><surname>Zhuo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koushik</forename><surname>Sen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">14th USENIX symposium on operating systems design and implementation</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="863" to="879" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,333.39,272.41,225.58,6.18;13,333.39,280.38,225.99,6.18;13,333.39,288.29,224.81,6.25;13,333.39,296.26,225.88,6.25;13,333.39,304.29,48.30,6.18" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Chimera: An Analytical Optimizing Framework for Effective Compute-intensive Operators Fusion</title>
+		<author>
+			<persName coords=""><forename type="first">Size</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siyuan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peidi</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Renze</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiuhong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shengen</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dahua</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingwen</forename><surname>Leng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yun</forename><surname>Liang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 IEEE International Symposium on High-Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1113" to="1126" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

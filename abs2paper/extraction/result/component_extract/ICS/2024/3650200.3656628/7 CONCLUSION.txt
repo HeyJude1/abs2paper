@@ -1,0 +1,2 @@
+7 CONCLUSION
+This paper proposes Hepti, a practical inference framework designed to facilitate the transformer model parallelism in heterogeneous edge device environments. Hepti incorporates three parallelization methods for transformer inference and autonomously determines acceptable workload partitioning strategies for parallelization. The experimental results show the partitioning overhead is negligible while simultaneously improving the performance advantages of inference.

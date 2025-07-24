@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Leveraging LLVM OpenMP GPU Offload Optimizations for Kokkos Applications</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2024-12-18">2024-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,101.92,160.78,85.48,8.94"><forename type="first">Rahulkumar</forename><surname>Gayatri</surname></persName>
+							<email>rgayatri@lbl.gov</email>
+							<affiliation key="aff0">
+								<orgName type="institution">NERSC Lawrence Berkeley National Laboratory Berkeley</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,296.53,160.78,46.20,8.94"><forename type="first">Shilei</forename><surname>Tian</surname></persName>
+							<email>shilei.tian@stonybrook.edu</email>
+							<affiliation key="aff1">
+								<orgName type="department">Institute for Advanced Computational Science</orgName>
+								<orgName type="institution">Stony Brook University Stony Brook</orgName>
+								<address>
+									<region>NY</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,441.17,160.78,78.24,8.94"><forename type="first">Stephen</forename><forename type="middle">L</forename><surname>Olivier</surname></persName>
+							<affiliation key="aff2">
+								<orgName type="department">Center for Computing Research</orgName>
+								<orgName type="institution">Sandia National Laboratories Albuquerque</orgName>
+								<address>
+									<region>NM</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,114.85,230.81,49.98,8.94"><forename type="first">Eric</forename><surname>Wright</surname></persName>
+							<email>wright117@llnl.gov</email>
+							<affiliation key="aff3">
+								<orgName type="institution">Livermore Computing Lawrence Livermore National Laboratory Livermore</orgName>
+								<address>
+									<region>CA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,343.43,230.81,76.30,8.94"><forename type="first">Johannes</forename><surname>Doerfert</surname></persName>
+							<email>doerfert1@llnl.gov</email>
+							<affiliation key="aff4">
+								<orgName type="department">Center for Applied Scientific Computing</orgName>
+								<orgName type="institution">Lawrence Livermore National Laboratory Livermore</orgName>
+								<address>
+									<region>CA</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Leveraging LLVM OpenMP GPU Offload Optimizations for Kokkos Applications</title>
+					</analytic>
+					<monogr>
+						<title level="m">2024 IEEE 31st International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="277" to="287"/>
+							<date type="published" when="2024-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">9FDA18700494E5F007A0C5AD7761B2B6</idno>
+					<idno type="DOI">10.1109/hipc62374.2024.00035</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Computing methodologies → Parallel programming languages → Kokkos</term>
+					<term>OpenMP</term>
+					<term>CUDA</term>
+					<term>HIP 277</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>OpenMP provides a cross-vendor API for GPU offload that can serve as an implementation layer under performance portability frameworks like the Kokkos C++ library. However, recent work identified some impediments to performance with this approach arising from limitations in the API or in the available implementations. Advanced programming concepts such as hierarchical parallelism and use of dynamic shared memory were a particular area of concern. In this paper, we apply recent improvements and extensions in the LLVM/Clang OpenMP compiler and runtime library to the Kokkos backend that targets GPUs via OpenMP offload. We focus on efficient hierarchical parallelism and use of fast GPU scratch memory. We compare the performance of applications written using the Kokkos library with this improved OpenMP backend against the same programs using the CUDA and HIP backends. This evaluation shows progress toward closing the performance gaps between native and OpenMP backends and offers insights that may be useful to users and implementers of other runtime systems and programming frameworks for GPUs.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Kokkos is a performance portability library that allows a single C++ code base to efficiently execute on diverse GPUs and CPUs <ref type="bibr" coords="1,102.72,566.10,9.95,8.12" target="#b7">[1]</ref>. Many scientific applications, especially those developed via the United States Exascale Computing Project (ECP), use it as a programming model. The Linux Foundation assumed ownership of Kokkos to ensure lasting sustainability.</p><p>While the front end interface of Kokkos is modern ISO standard C++, its implementation provides several different backends depending on the target architecture. Backends using the vendor preferred programming models (NVIDIA's CUDA, AMD's HIP, and Intel's DPC++ dialect of SYCL) provide the best performance on each vendor's hardware. However, vendor preferred programming models are poorly supported, if at all, on the other vendors' hardware. OpenMP's device offload model <ref type="bibr" coords="1,116.29,701.22,10.93,8.12" target="#b8">[2]</ref> provides an alternative to vendor preferred programming model backends of Kokkos. The OpenMP API enjoys broad compiler support, including GCC, Clang/LLVM, and vendor implementations (many of which are based on LLVM). Kokkos includes one backend for OpenMP on host CPUs only, and another with GPU support using the offload model. The latter, which Kokkos refers to as the OpenMP-Target backend, is the subject of this paper. For the rest of the paper, whenever we refer to Kokkos-OMP backend, it is specifically to the OpenMPTarget backend that targets GPUs.</p><p>Previous work investigated the performance of Kokkos-OMP backend compared to the CUDA and HIP backends on NVIDIA and AMD GPUs, respectively, in the context of a conjugate gradient solver <ref type="bibr" coords="1,419.37,442.21,9.94,8.12" target="#b9">[3]</ref>. That study found that while performance of single level parallelism was adequate, the Kokkos-OMP backend handled hierarchical parallelism, e.g., sparse-matrix vector multiplication, poorly.</p><p>In this paper, we demonstrate improvements to the Kokkos-OMP backend by integrating recent capabilities from LLVM/OpenMP in the following new extensions:</p><p>• Support for GPU scratch memory (often referred to as "shared" memory on NVIDIA GPUs or "Local Data Storage (LDS)" on AMD GPUs), with a focus on dynamic scratch memory allocation. • Implementation of grid parallelism in OpenMP, analogous to CUDA/HIP, along with comprehensive support for all three levels of hierarchical parallelism. • Integration of advanced reduction techniques, including shuffle instructions in OpenMP. We evaluate these improvements using Kokkos-based applications, comparing their performance against existing implementations and vendor-preferred backends for each target architecture.</p><p>The remainder of the paper is organized as follows. In Section II and Section III we explain the motivation and background for the work. Section IV discusses the extensions to the LLVM/OpenMP ecosystem and how they are integrated into the Kokkos framework, along with empirical results to demonstrate performance impact. We discuss some related works in Section V, and conclude the paper in Section VI.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. MOTIVATION</head><p>Kokkos has native backends for all three major GPU vendors, i.e., NVIDIA, AMD and Intel. The OpenMPTarget backend is considered a secondary backend for the GPUs. The motivation for a secondary backend is two-fold: 1) risk mitigation, especially in scenarios where Kokkos applications might need to interact with external libraries that use OpenMP and 2) preparedness for any future hardware that relies on OpenMP as its first or primary framework, so that applications based on Kokkos can compile and run on such an architecture.</p><p>As a C++ framework, Kokkos templates its backend implementation on vendor specific programming models such as CUDA, HIP and SYCL. It also provides constructs to users that may be unavailable even to the native backends such as atomics on user defined data types. Providing implementation for such involved and advance concepts using the OpenMP offload directives provides a litmus test for the compiler implementations and a proof of concept for C++ applications that might consider OpenMP for their portable implementations.</p><p>Additionally, the OpenMPTarget backend enables interoperability between OpenMP tooling infrastructure such as record and replay <ref type="bibr" coords="2,101.94,343.94,10.93,8.12" target="#b10">[4]</ref> and advanced OpenMP features in LLVM such as remote OpenMP offloading <ref type="bibr" coords="2,178.28,355.19,10.93,8.12">[5]</ref> and JIT compilation <ref type="bibr" coords="2,273.11,355.19,9.95,8.12" target="#b12">[6]</ref>.</p><p>However, the performance of Kokkos applications using the OpenMPTarget backend is typically slower than the native backends. While compiler maturity is one of the reasons for such slowdowns, a major contributor is also the lack of features in the OpenMP standard to completely exploit the available parallelism on a GPU. In our study, we aim to demonstrate how OpenMP can compete against native backends through small changes and extensions to OpenMP and efficient design choices in the implementation of the API.</p><p>Our evaluation used NVIDIA A100 GPUs (40GB HBM) available on NERSC Perlmutter located at Lawrence Berkeley National Laboratory and AMD MI250X GPUs on OLCF Frontier at Oak Ridge National Laboratory. For the CUDA builds we used cuda/12.2 and for HIP we used rocm/6.0.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. BACKGROUND</head><p>Kokkos enables developers to write a common code base that can compile and run on multiple CPU and GPU architectures with minimal changes. Fig. <ref type="figure" coords="2,190.31,568.76,4.69,8.12">1</ref> shows its available backends and supported architectures. Execution patterns such as parallel_for and parallel_reduce are provided for parallel iteration over loop ranges or items in a view (Kokkos multidimensional array). The body of the loop is specified as a C++ lambda. The parallelism may be flat or hierarchical. This paper presents modifications to the implementation of the execution patterns in one backend and hence user code changes are not required to benefit from the optimizations described.</p><p>While OpenMP has been available since the late 1990's for CPUs, OpenMP GPU offload is a more recent development, both in the API specification and in compiler implementations. The widely used parallel for directive creates a team of threads that execute a loop in parallel. When used in a target construct along with teams distribute for GPU offload, it results in the creation of multiple teams spread across the blocks of a GPU, wherein, each team has multiple threads running in parallel. Fig. <ref type="figure" coords="2,342.40,388.69,4.69,8.12">2</ref> shows how OpenMP offload parallelism corresponds to parallelism in Kokkos and CUDA. However, the mapping does not indicate fully equivalent behavior. Firstly, below the thread level, the simd directive can enable vector parallelism, but this directive is commonly ignored by many compilers when generating GPU code. Secondly, simple block and thread indexing in grid languages like CUDA keeps overheads low, in comparison to the more heavyweight state required by OpenMP semantics. A major focus of the work described in this paper is the adaptation of the grid style expression of parallelism to OpenMP offload, as well as GPU scratch memory use and optimization of reduction operations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. LLVM OPENMP EXTENSIONS</head><p>In this section we discuss extensions proposed to the LLVM/OpenMP ecosystem. We explain the motivation for these extensions and their use in Kokkos-OMP backend. We also show the performance impact on Kokkos applications using the newly optimized Kokkos-OMP backend.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Dynamic Shared Memory Extension</head><p>One limitation of current OpenMP API is the inability to expose dynamic memory as "shared" among threads in an OpenMP team. While OpenMP 6.0 has proposed extensions to address the issue for stack or compile time constant variables, support for sharing of dynamically allocated memory among members of a team is still unavailable. LLVM/OpenMP has introduced extensions to ad-  dress this issue. It provides a new target directive clause ompx_dyn_cgroup_mem(&lt;N&gt;) that allocates N bytes of data per team that can be shared among threads in that team. This feature corresponds to the shared memory that is allocated during a CUDA kernel invocation. The llvm_omp_target_dynamic_shared_alloc routine, called inside the target region, returns a pointer to the shared memory. The routine returns the same value to each thread of a target team and returns a NULL pointer on the host. The extension is available in upstream LLVM since release 18.</p><p>Kokkos provides a similar abstraction called the "scratchpad" to share data among threads in a team. Multiple levels of scratch-pad are provided in Kokkos. The first level (level-0) of the scratch-pad is typically mapped to the team specific allocatable local storage in the memory hierarchy, and hence is restricted to a few kilobytes. The native backends of Kokkos, those for CUDA and HIP, use the unified L1 / shared memory and local data share (LDS), on NVIDIA and AMD GPUs respectively. The second level (level-1) of scratch-pad is typically mapped to the high bandwidth memory (HBM). Until the availability of the ompx_dyn_cgroup_mem(&lt;N &gt;) clause in LLVM/OpenMP, Kokkos-OMP backend provided support for this feature by allocating the required scratch memory (for both level-0 and level-1) on the main memory of a GPU by using the omp_target_alloc routine. This led to negative performance implications in certain applications since the expectation that shared reads/writes within a team take place in the fast access local storage specific to each team did not match the implementation. We resolved this issue with the use of the new clause when LLVM/Clang is 18 or newer.</p><p>The basic behavior of Kokkos and its ability to pass functors to the backends and its subsequent handling of them is explained in prior work <ref type="bibr" coords="3,158.69,635.69,9.95,8.12" target="#b7">[1]</ref>. Subsequent work <ref type="bibr" coords="3,248.00,635.69,10.93,8.12" target="#b9">[3]</ref> provides a deeper discussion specific to the Kokkos-OMP backend.</p><p>Fig. <ref type="figure" coords="3,88.04,659.82,4.69,8.12" target="#fig_0">3</ref> shows an example of how the scratch-pad can be used in Kokkos. Elements in scratch memory are accessed through a custom version of Kokkos::View, the primary Kokkos data structure. The first line in Fig. <ref type="figure" coords="3,232.48,693.55,4.69,8.12" target="#fig_0">3</ref>   view, ScratchViewType. The second template parameter indicates that the memory space where the data would reside is the scratch space of the default execution space, i.e., the default architecture on which a Kokkos parallel_pattern would be executed. Lines 4 and 5 determine how much scratch memory is needed per team. The Kokkos::team_policy specifies the dimensions of a work grid of thread teams, in this case N teams with 32 threads per team. To request scratch space shared among threads of a team we use a member function to the team_policy called set_scratch_size as shown in the Kokkos parallel pattern. The first parameter to set_scratch_size is the scratch level (0 or 1). The second parameter is the amount of scratch memory needed per team. To access scratch memory inside the parallel_for kernel, we create a view of ScratchViewType. Fig. <ref type="figure" coords="3,536.64,635.64,4.69,8.12">4</ref> is the CUDA equivalent implementation of Fig. <ref type="figure" coords="3,492.66,646.89,3.51,8.12" target="#fig_0">3</ref>.</p><p>In Fig. <ref type="figure" coords="3,352.11,659.82,3.51,8.12" target="#fig_1">5</ref>, we show two implementations for scratch memory in Kokkos-OMP. The choice of the implementation is based on LLVM versions. shmem_size_L0 and shmem_size_L1 refer to scratch memory requested by the user for level-0  and level-1 of a TeamPolicy. For LLVM 18 and higher, we use the LLVM extension ompx_dyn_cgroup_mem to allocate shmem_size_L0 in shared memory. Level-1 of scratch memory is then allocated on HBM using omp_target_alloc. For LLVM prior to 18, both level-0 and level-1 scratch memory is allocated on HBM and indexed accordingly when accessed in a scratch view. The implementation using LLVM extensions in Kokkos-OMP is our contribution and is already available since the 4.3 Kokkos release. The code inside the parallel region in Fig. <ref type="figure" coords="4,265.90,297.91,4.69,8.12" target="#fig_1">5</ref> leverages hierarchical parallelism, as explained in later sections.</p><p>Fig. <ref type="figure" coords="4,87.20,320.69,4.69,8.12" target="#fig_2">6</ref> shows how a scratch memory view is created in Kokkos. It is a common interface across all backends that uses a routine named scratch_memory_space. The first two parameters to the routine are pointers for level-0 and its corresponding size. The last two parameters follow the same pattern for level-1 of the scratch memory. scratch_ptr refers to the memory allocated using omp_target_alloc from Fig. <ref type="figure" coords="4,75.42,399.40,3.51,8.12" target="#fig_1">5</ref>. For LLVM 18 and above, level-0 scratch is accessed via the llvm_omp_dynamic_shared_alloc extension. For LLVM 17 or lower, we index into scratch_ptr according to the size of level-0 and level-1 scratch memory requested.</p><p>As shown in Fig. <ref type="figure" coords="4,137.88,444.66,28.48,8.12" target="#fig_2">5 and 6</ref>, using the extensions to allocate dynamic shared memory within a team enables Kokkos-OMP to match the implementation of level-0 scratch memory as intended by the framework.</p><p>To demonstrate the impact of dynamic shared memory in the Kokkos-OMP backend, consider TestSNAP proxy application that is modelled on Spectral Neighborhood Analysis Potential (SNAP) computations in the LAMMPS molecular dynamics simulator. It calculates the total energy of a configuration of atoms as the sum of energies of individual atoms, each of which is dependent on its neighbor atoms within a certain distance. We select a problem from the Exascale Computing Project, with 2000 atoms on one GPU and 26 neighbors per atom. Of the three main kernels in TestSNAP that consume more than 98% of the total execution time, two (ui and duarray) use level-0 scratch memory to store team specific intermediate information for fast access <ref type="bibr" coords="4,214.01,624.85,9.95,8.12">[7]</ref>.</p><p>The ui kernel calculates expansion coefficients for each pair of neighbor atoms. It is implemented by generating the number of teams based on the outer loop while the inner loops are iterated in a 2-dimensional thread-block. The kernel uses scratch memory to store partial updates to coefficients for fast access. The duarray kernel computes the partial derivative Fig. <ref type="figure" coords="4,332.68,336.58,3.65,8.12">7</ref>: TestSNAP performance of native and OMP backend under scratch-levels 0 (shared memory) and 1 (HBM).</p><p>of the coefficients that impact the force on each atom and neighbor pair. The parallelism exposed in this kernel is similar to the ui kernel and hence implemented similarly. Fig. <ref type="figure" coords="4,341.07,403.05,4.69,8.12">7</ref> shows the impact of of using dynamic shared memory extension in the Kokkos implementation of TestSNAP. We compare the benefits gained by using level-0 scratch memory compared to level-1, i.e., implementation prior to the use of the LLVM extension. The Y axis shows the time for each kernel to run 100 timesteps while the X-axis indicates the two kernels using scratch memory under Kokkos-native and Kokkos-OMP backends. For the rest of the paper we follow the convention of prefixing the Kokkos implementations with "kk" in figures. For a fair evaluation of the benefits of dynamic shared memory we also show the performance using native backends under the two scratch levels. The comparison with the native backend illustrates the performance regression observed if the scratch memory is allocated on HBM rather than in the L1 cache.</p><p>SNAP and TestSNAP use all three levels of hierarchical parallelism available in Kokkos in ui and duarray, i.e., the kernels using scratch memory. Kokkos-OMP backend however has only two levels of effective hierarchical parallelism <ref type="bibr" coords="4,537.40,594.95,9.95,8.12" target="#b9">[3]</ref>. Hence, for a fair comparison, in Fig. <ref type="figure" coords="4,459.73,606.19,3.51,8.12">7</ref>, we restrict the native backends to two levels of hierarchical parallelism.</p><p>Fig. <ref type="figure" coords="4,342.36,629.44,4.69,8.12">7</ref> shows that on NVIDIA A100, ui performance improves by 15% with Kokkos-OMP when data is stored in level-0 scratch versus level-1 scratch while Kokkos-native backend shows a 2× speedup in the same scenario. In duarray we see a ≈4.5× performance improvement with Kokkos-OMP backend and a 5× speedup with the native backend. For both Fig. <ref type="figure" coords="5,78.87,302.65,3.65,8.12">8</ref>: TestSNAP performance with optimized native and OMP backends under scratch-levels 0 and 1.</p><p>kernels, the speedup achieved by Kokkos-native backend is higher than the Kokkos-OpenMP backend when team-shared data is stored in fast access local storage rather than HBM. On AMD GPUs, going from level-1 to level-0 scratch memory gives the same rate of performance improvements on both Kokkos-native and Kokkos-OMP backends. For ui in both the backends, we do not see any observable performance improvement. However, in the case of duarray we observe an ≈15× performance improvement when using the LLVM extensions to store team shared data in LDS on AMD MI250X. This matches the observation from the Kokkos-native backend.</p><p>While we only show one application, our goal of this paper is to show a proof of concept of how the ompx_dyn_cgroup_mem extension in LLVM/OpenMP can bridge one of the gaps between OpenMP and native frameworks. There are several other applications written in Kokkos that can take advantage of the fast access local storage per team available through the level-0 scratch-pad memory interface. With the new extension in LLVM, Kokkos-OMP can provide the intended implementation to the user. The ability to allocate and access dynamic scratch memory that can be shared among threads in a team is a major capability previously missing in OpenMP but available in the native frameworks. Fig. <ref type="figure" coords="5,87.14,596.59,4.69,8.12">7</ref> might give an impression that the dynamic memory extension largely closes the performance gap between native and OpenMP backends. However, as mentioned earlier, we had restricted the Kokkos-native backends to use only two hierarchical parallelism levels for an equivalent comparison with the Kokkos-OMP backend. Fig. <ref type="figure" coords="5,207.98,652.81,4.69,8.12">8</ref> shows a comparison with the optimized native versions that use all three levels of hierarchical parallelism. The differences in kernel execution times between the Kokkos backends is still significantly dif-ferent. For ui on both NVIDIA A100 and AMD MI250X, the native backend benefits significantly with the addition of three levels of parallelism, making it ≈4.5× faster on Kokkosnative compared to Kokkos-OMP. Currently the Kokkos-OMP backend has no meaningful way to extract the 3rd parallelism level <ref type="bibr" coords="5,335.95,130.30,9.95,8.12" target="#b9">[3]</ref>. The remainder of this paper addresses that need.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. LLVM OpenMP Kernel Mode Extension</head><p>The second LLVM extension we leverage is perhaps an even more important addition to the LLVM/OpenMP ecosystem, enabling us to bridge the gap between native frameworks and OpenMP. While existing OpenMP offers a rich set of parallel semantics, which includes a fork-join model and automatic workload distribution, it needs the support of an extensive runtime library to manage execution. Runtime operations often limit performance and consume substantial resources, particularly on a GPU. Also this overhead has been generally regarded as unavoidable under the existing API semantics <ref type="bibr" coords="5,537.69,273.83,9.95,8.12" target="#b14">[8]</ref>.</p><p>To overcome the runtime overhead, LLVM/OpenMP proposed a new set of extensions that allow OpenMP target regions to execute in a "bare metal" mode, also known as kernel mode <ref type="bibr" coords="5,368.00,319.69,9.95,8.12" target="#b15">[9]</ref>. This feature enables OpenMP GPU code to be written in single instruction multiple threads (SIMT) style, facilitating an easy transition of an existing GPU code written in kernel languages such as CUDA and HIP to OpenMP thereby benefiting from the portability offered by OpenMP. Furthermore, the OpenMP kernel mode only requires a thin layer of runtime library support compared to existing OpenMP, eliminating runtime overhead to potentially improve performance. This work is built on the work of Tian et al. <ref type="bibr" coords="5,540.04,409.64,10.93,8.12" target="#b15">[9]</ref> to implement features necessary for supporting the Kokkos programming model using a combination of the existing OpenMP and the extended OpenMP kernel mode.</p><p>We use the LLVM extension ompx_bare as an additional clause to the pragma omp target teams construct that directs the compiler to execute the associated code block in "bare metal" SIMT mode. As with the dynamic shared memory feature, the additional clause is an extension and not in the OpenMP standard. Therefore it is prefaced with ompx instead of the usual omp. Multiple extensions are needed to support CUDA/HIP style code generation in OpenMP, the first of which is the implementation of multi-dimensional grid and blocks. For that LLVM extends the num_teams and thread_limit clauses to accept a list of integers. For instance, a three-dimensional CUDA block size represented as dim3 blockSize(4, 32, 2) can be equivalently expressed using thread_limit(4, 32, 2). Similarly, a 3-D grid can be generated as num_teams(x,y,z), which would be equivalent to dim3 gridsize(x,y,z).</p><p>We can replicate the CUDA style kernel launch shown in Fig. <ref type="figure" coords="5,333.10,647.52,4.69,8.12" target="#fig_7">9</ref> in OpenMP by using the two kernel mode extensions: 1) the SIMT style code generation clause and 2) multidimensional grid and blocks. The OpenMP version using the extensions is shown in the first line of Fig. <ref type="figure" coords="5,503.87,681.25,7.81,8.12">10</ref>. In both programming models, it generates a grid of 128 thread-blocks 1 cu_kernel&lt;&lt;&lt;dim3(128,1,1), dim3(4,32,2)&gt;&gt;&gt;(a); Fig. <ref type="figure" coords="6,140.16,93.27,3.54,7.88" target="#fig_7">9</ref>: CUDA kernel launch.</p><p>1 #pragma omp target teams ompx_bare num_teams(128, 1, 1) thread_limit(4, 32, 2) firstprivate(a) 2 { 3 // number of teams in X-dimension 4 int blockDimx = ompx::block_dim(ompx::dim_x); 5 // team-id in X-dimension 6 int blockIdx = ompx::block_id(ompx::dim_x); 7 // thread-id in X-dimension 8 int threadIdx = ompx::thread_id(ompx::dim_x); 9 // thread-id in Y-dimension 10 int threadIdy = ompx::thread_id(ompx::dim_y); 11 ... 12 } Fig. <ref type="figure" coords="6,106.15,214.61,7.75,7.88">10</ref>: OpenMP target region (kernel launch). in X-dimension, in which each thread-block/team contains 4, 32 and 2 threads in X,Y and Z dimensions respectively. Fig. <ref type="figure" coords="6,86.31,269.74,9.37,8.12">10</ref> also shows the C++ specific access mechanisms for grid and thread dimensions and the corresponding team and thread ID inside the kernel mode.</p><p>The kernel mode extensions allow the Kokkos-OMP backend to have a meaningful implementation for three levels of hierarchical parallelism which include, 1) a league of teams, 2) each team comprising multiple threads and 3) each thread comprising of multiple vectors. Having a vector level allows optimizations on CPUs with hardware vector units and instructions. Fig. <ref type="figure" coords="6,125.73,372.19,9.38,8.12" target="#fig_4">11</ref> shows how multi-level parallelism can be exposed using the three levels of parallel hierarchy in Kokkos.</p><p>Fig. <ref type="figure" coords="6,87.82,395.92,9.37,8.12" target="#fig_4">11</ref> creates a 3-dimensional Kokkos::View that is initialized by traversing each dimension in each of the hierarchical levels. The current implementation of the Kokkos-OMP backend available in upstream Kokkos maps the outer league level to omp target teams, the intermediate thread level to omp for and the final vector level to omp simd. However, the simd clause inside a target region is serialized in most OpenMP implementations, including LLVM. Prior work Gayatri et al. <ref type="bibr" coords="6,138.28,485.87,10.93,8.12" target="#b9">[3]</ref> discusses in detail the drawbacks of such a mapping and its impact on the performance of Kokkos applications that use the Kokkos-OMP backend.  The introduction of the ompx_bare extension allows SIMT style kernel generation such that the Kokkos-OMP backend can now exploit all three levels of hierarchical parallelism, similar to native Kokkos backends. The CU-DA/HIP backends map the outer level to teams (thread blocks). Within each team, the native backends generate a 2dimensional block of threads. Within a thread block, Kokkos ::TeamThreadRange is mapped to Y-dimension of threads and Kokkos::ThreadVectorRange is mapped to Xdimension of the threads. The innermost loop is mapped onto consecutive threads to improve memory coalescing.</p><p>Fig. <ref type="figure" coords="6,342.81,199.28,9.37,8.12" target="#fig_5">12</ref> shows our implementation of Fig. <ref type="figure" coords="6,493.92,199.28,9.37,8.12" target="#fig_4">11</ref> in Kokkos-OMP when kernel mode extensions are enabled. This implementation is currently in a separate fork <ref type="foot" coords="6,499.72,220.19,3.28,5.69" target="#foot_1">1</ref> . When the extensions are available in upstream LLVM, we will submit a pull request for the implementation to be adopted in the main Kokkos repository. For the rest of the paper, to differentiate between our implementation of Kokkos-OMP backend using the kernel mode extensions and the upstream Kokkos-OMP backend discussed in <ref type="bibr" coords="6,404.32,289.23,9.95,8.12" target="#b9">[3]</ref>, we call our implementation the Kokkos-OMPX backend. Fig. <ref type="figure" coords="6,429.79,300.47,9.37,8.12" target="#fig_5">12</ref> shows the effective code and not the exact Kokkos code as we want to focus on the Kokkos-OMPX backend rather than the Kokkos API.</p><p>The functor from the league (outermost) level parallel_for pattern in Fig. <ref type="figure" coords="6,460.70,347.23,9.37,8.12" target="#fig_4">11</ref> is passed to the ParallelFor class shown in Fig. <ref type="figure" coords="6,474.69,358.47,7.81,8.12" target="#fig_5">12</ref>. The execution policy and its associated information is passed as a template parameter, shown in the second template parameter to the ParallelFor class. The execute member function in ParallelFor implements the parallel pattern. This style is consistent for all patterns in all Kokkos backends.</p><p>Requests for the two levels of scratch memory are represented by shmem_size_L0 and shmem_size_L1. The dynamic shared memory extension, discussed in the previous section, is used to request shmem_size_L0 amount of shared memory. Kernel mode is entered using the ompx_bare clause and the grid dimensions are generated using the num_teams and thread_limit extensions. Instead of generating a kernel with the same number of teams as requested by the user, the implementation calculates an optimized number of teams to maximize performance of the kernel. Using a larger number of teams can improve GPU occupancy for better code performance. However, it can also increase the memory footprint required by Kokkos to maintain team specific metadata, e.g., the level-1 scratch memory allocated on HBM. Conversely, generating fewer teams can limit the available parallelism. Kokkos backends try to optimize the number of teams generated based on the underlying architecture and scratch memory requested. In Fig. <ref type="figure" coords="6,452.59,618.86,7.81,8.12" target="#fig_5">12</ref>, this number is represented as max_teams. A loop inside the kernel mode handles cases where max_teams is smaller than the requested league_size (iteration space of the outermost loop in Kokkos hierarchical parallelism).  Below the ParallelFor class, we show the code snippet for the parallel_for implementation of the TeamThreadRange hierarchy. The Kokkos-OMPX backend iterates through the Y-dimension of the team threads rather than using omp for directives as in Kokkos-OMP.</p><p>At the end of Fig. <ref type="figure" coords="7,137.85,568.60,7.81,8.12" target="#fig_5">12</ref>, we demonstrate the parallel_for implementation for ThreadVectorRange. In Kokkos-OMPX we iterate through the X-dimension of threads in a team until we reach the loop boundaries. The same is implemented using simd in Kokkos-OMP as mentioned earlier. The ability to use parallelism in all 3-levels of parallel hierarchy is one of the main advantages of kernel mode extensions. Fig. <ref type="figure" coords="7,86.27,648.38,9.37,8.12" target="#fig_6">13</ref> shows the performance of TestSNAP when running with the Kokkos-OMPX backend compared to Kokkos-native and Kokkos-OMP backends. The team and vector sizes in the kernel mode are similar to the native backend, matching the best grid dimension for the backend, i.e., a vector_size of 32 on NVIDIA A100 and 64 on AMD MI250X. The vector size is a constant across TestSNAP and team sizes are chosen based on the amount of scratch memory that can be requested without oversubscribing the resource.</p><p>On NVIDIA A100, the impact of kernel mode is minimal for duarray, but using dynamic shared memory (also available in Kokkos-OMP) already improved the performance of the kernel, now only 3-4% slower than the native backend. For ui, Kokkos-OMPX is 4× faster than Kokkos-OMP, although 40% slower than the Kokkos-native backend. However on AMD MI250X, Kokkos-OMPX performs better on ui by 15% compared to the Kokkos-native (HIP) backend. Although in duarray Kokkos-OMPX is faster than Kokkos-OMP, it is still slower than the native backend. We are currently investigating the slowdowns. The slowdown might be due to the small but still existing LLVM/OpenMP runtime overhead, or differences in generating the optimal kernel parameters, i.e., max_teams. The overhead can also be caused by the presence of lambdas as explained in <ref type="bibr" coords="7,457.66,613.78,9.95,8.12" target="#b9">[3]</ref>. Kokkos supports multi-dimensional parallelism in closely nested loops using MDRangePolicy, passing in the number of nested loops and iteration ranges for each of the loops. MDRangePolicy is semantically equivalent to the OpenMP collapse clause, and the Kokkos-OMP backend implements it using that clause.  A bonus of kernel mode is that kernel yi, which uses MDRangePolicy, now exposes more parallelism because the vector_size is now 32 and 64. The yi kernel performs a Clebsh-Gordon product on the coefficients calculated in ui. It is a 3 dimensional perfectly nested loop whose parallelism is exploited using the collapse clause from OpenMP where the iteration range of the innermost loop is equal to vector_size. Since there was no effective implementation for simd used for the ThreadVector loop in Kokkos-OMP, we had to restrict vector_size to "1" in Kokkos-OMP to maintain correctness. This restriction is eliminated in kernel mode, so the collapse clause can now extract more parallelism and performance of yi improves by 25% on both NVIDIA A100 and AMD MI250X as shown in Fig. <ref type="figure" coords="8,264.29,459.26,7.81,8.12" target="#fig_6">13</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Reductions in OpenMP Kernel Mode</head><p>The introduction of kernel mode also allows us to perform inter team reductions using an efficient implementation that can exploit dynamic shared memory and advanced techniques of shuffle instructions. Gayatri et al. <ref type="bibr" coords="8,211.52,523.85,10.93,8.12" target="#b9">[3]</ref> used a conjugate gradient solver (CGSolve) application as a vehicle to understand performance differences between the Kokkos-OMP and Kokkos-native backends. It discussed how the performance of CGSolve is heavily dependent on the Sparse Matrix Vector (SPMV) computation which uses three levels of hierarchical parallelism to extract maximum parallelism out of the kernel. Fig. <ref type="figure" coords="8,88.43,602.42,9.37,8.12" target="#fig_8">14</ref> describes how all three hierarchical parallelism levels are used to implement SPMV. A group of rows is distributed among teams. Within each team, each thread is assigned a set of rows and a reduction over all non-zero elements in each row is performed by vectors in a thread.</p><p>The Kokkos-OMPX backend with LLVM/OpenMP extensions preallocates a dynamic shared buffer sized to the number of threads in a team to store partial results for nested reductions. Fig. <ref type="figure" coords="8,100.93,692.24,9.37,8.12" target="#fig_9">15</ref> shows the Kokkos-OMPX backend's allocation  in scratch memory of one element per thread of a team for team local reductions. Fig. <ref type="figure" coords="8,425.62,241.90,9.37,8.12" target="#fig_2">16</ref> shows how the reduction in Fig. <ref type="figure" coords="8,333.74,253.14,9.37,8.12" target="#fig_8">14</ref> is implemented in the Kokkos-OMPX backend. For simplicity, we omit the fallback code used for compilers that do not support kernel mode.</p><p>Fig. <ref type="figure" coords="8,346.26,287.17,9.37,8.12" target="#fig_2">16</ref> shows the implementation of reductions using dynamic shared memory in the native frameworks. Fig. <ref type="figure" coords="8,334.03,309.66,9.37,8.12" target="#fig_2">16</ref> shows the implementation of parallel_reduce in KK-OMPX, which has an additional parameter compared to parallel_for shown in Fig. <ref type="figure" coords="8,501.22,332.14,9.37,8.12" target="#fig_5">12</ref> to store the final result. The pointer to the shared memory buffer is acquired via the LLVM/OpenMP extension llvm_omp_target_dynamic_shared_alloc as shown in line 7. The right element within the buffer is indexed by advancing the pointer with the amount of level-0 scratch requested. The first elements in the buffer are used for level-0 scratch memory as shown in Fig. <ref type="figure" coords="8,449.36,410.85,3.51,8.12" target="#fig_2">6</ref>. In SPMV, scratch_0 would be zero, since it does not request any scratch memory. The type of the reduction result is abstracted in ValueType class. The indexed shared memory is then initialized to the default value and the partial update of each thread is accumulated into the thread specific index. The default constructor for the ValueType class can be used to assign an initial value. A sync operation is performed at the end of the partial updates for all threads in a team to finish their work. This would be equivalent to the __syncthreads operation available in both CUDA and HIP. The LLVM/OpenMP has been extended by the authors to provide a portable synchronization called ompx::sync_block_acq_rel. The partial results are then accumulated by a single thread, thread-0, to calculate the final result, which is stored in a location that is accessible to each thread in the team. Kokkos semantics do not require any specific thread to do the final write, and every thread in the ThreadVectorRange shall have the final result to maintain correctness. Ultimately, an optimized implementation would provide a common mask for each set of threads in the Xdimension corresponding to a single thread in the Y-dimension and broadcast to all threads with the same mask.</p><p>Fig. <ref type="figure" coords="8,343.93,658.51,9.37,8.12">18</ref> shows a performance comparison of SPMV using the Kokkos-OMPX backend against Kokkos-OMP and Kokkos-native backends. There is also a direct OpenMP version that uses LLVM extensions without Kokkos, which we Fig. <ref type="figure" coords="9,102.18,380.55,7.82,7.96" target="#fig_2">16</ref>: Kokkos-OMPX ThreadVector reduction. call "direct-ompx". The Y-axis of Fig. <ref type="figure" coords="9,203.69,400.85,9.37,8.12">18</ref> shows the bandwidth achieved by SPMV. There are three different blocks of bars in the figure to illustrate the impact of problem size. On NVIDIA A100, the Kokkos-OMPX backend performs at-least 15% better than the the upstream Kokkos-OMP backend. The difference between the two versions increases with the amount of data transferred. The Kokkos-OMPX backend is however always slightly less performant compared to the native backend. The best performance was achieved by the direct-ompx version. On AMD MI250X, Kokkos-OMPX backend is atleast 2× more performant than the Kokkos-OMP backend. However the Kokkos-OMPX backend is 2× slower than the Kokkos-native backend and the direct-ompx implementation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Optimizing Occupancy and Shuffle Operations</head><p>Remaining performance gaps concern GPU occupancy and shuffle operations. Both native and OpenMP backends use multiple heuristics to improve the occupancy of a Kokkos kernel. One heuristic is based on the maximum number of possible teams that can simultaneously run on a given architecture, such as the number of thread blocks that can be simultaneously scheduled on a single streaming multiprocessor (SM) on NVIDIA GPUs. A kernel is generated using this heuristic to determine the number of teams, implying that a loop is needed to meet the user provided league_size. Even if the number of teams generated in the backend is similar to the requested league_size, the overhead of a loop is still inevitable.  To avoid this overhead, we modified both backends to create special instances of kernel generation in which the loop can be eliminated depending on the league_size requested.</p><p>Kokkos native backends use shuffle primitives from CUDA and HIP to implement optimized reductions. An equivalent interface (ompx::shfl_down_sync) has been added as an LLVM OpenMP extension. The parameters to this routine are similar to those in the native frameworks, i.e., mask, value and offset. Fig. <ref type="figure" coords="9,361.19,384.41,9.37,8.12" target="#fig_10">17</ref> shows how the accumulation of values from Fig. <ref type="figure" coords="9,332.65,395.65,9.37,8.12" target="#fig_2">16</ref> can be modified to use the shuffle primitive.</p><p>Fig. <ref type="figure" coords="9,345.03,408.10,9.37,8.12" target="#fig_7">19</ref> shows the performance of SPMV when both Kokkos-native and Kokkos-OMPX backends optimize the number of teams generated, i.e., elimination of the loop when league_size is at most max_teams. The Kokkos-OMPX backend additionally uses shuffle primitives to accumulate updates same as what the direct-ompx version does.</p><p>On NVIDIA A100, the Kokkos-OMPX backend sees 15% better performance when running in the optimized mode and reaches the equivalent performance as native backend in cases of higher data transfer. However, the version of SPMV using OpenMP extensions still achieves a 5% higher performance compared to the Kokkos versions. In this scenario we can attribute some overhead to using the Kokkos framework.</p><p>On AMD MI250X, the optimized Kokkos-OMPX versions are 50% faster for higher data transfers compared to nonoptimized versions. The optimized Kokkos-OMPX backend outperforms the direct-ompx version with LLVM/OpenMP extensions and the Kokkos-native backend. Profiling reveals several key differences between optimized the Kokkos-OMPX version and the direct-ompx version that contribute to their performance difference on AMD MI250X: Kokkos-OMPX uses fewer total registers (64 versus 80) for direct-ompx, resulting in slightly higher occupancy (29.42% vs 26.49%). Kokkos-OMPX also exhibits a higher L2 cache hit rate (65.07% versus 61.65%), indicating more efficient memory access patterns. Inspection of the intermediate representation Fig. <ref type="figure" coords="10,103.19,356.38,7.98,8.12">18</ref>: SPMV performance using kernel mode.</p><p>(IR) reveals differences in instruction sequence order rather than significant structural variations, suggesting that the performance gap stems from subtle optimizations rather than fundamental algorithmic differences. This target-dependent performance variation strongly indicates that the observed differences on the AMD platform are likely due to distinct backend optimization pipelines employed by the two targets.</p><p>In summary, we have shown how LLVM/OpenMP extensions can be used to optimize Kokkos parallel patterns on GPUs. The new Kokkos-OMPX backend can now match the native backends of Kokkos on NVIDIA and AMD GPUs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. RELATED WORK</head><p>Due to the high potential performance benefits of its use, GPU shared memory has been a topic of several recent efforts regarding OpenMP offload. Huber et al. <ref type="bibr" coords="10,244.42,559.94,15.61,8.12" target="#b16">[10]</ref> describe how recent versions of the LLVM/OpenMP runtime examine variables and determine placement, including use of shared memory where safe and appropriate <ref type="bibr" coords="10,199.83,593.67,14.36,8.12" target="#b16">[10]</ref>. Gammelmark et al. <ref type="bibr" coords="10,58.57,604.92,15.61,8.12" target="#b17">[11]</ref> show how programs can be structured to allow the compiler to infer that GPU shared memory can be used, in the absence of explicit annotations. Talaashrafi et al. <ref type="bibr" coords="10,279.09,627.40,15.61,8.12" target="#b18">[12]</ref> show how the OpenMP runtime library can in some cases automatically make use of GPU shared memory.</p><p>Although we focus on NVIDIA and AMD GPUs in this study, TestSNAP can also run on Intel GPUs <ref type="bibr" coords="10,244.84,673.09,14.36,8.12" target="#b19">[13]</ref>. Testing our use of LLVM/OpenMP extensions in the Kokkos-OpenMP backend on Intel GPUs is a topic for future work, as upstream LLVM does not currently support OpenMP offload for them. Kokkos is one of several C++ performance portability frameworks. Others, such as RAJA <ref type="bibr" coords="10,448.07,414.20,14.36,8.12">[14]</ref>, may also benefit from LLVM-OpenMP extensions using techniques similar to ours. Additionally, since the OpenMP API also supports Fortran, eventual inclusion of the extensions in the specification would also benefit programmers in that language, which currently has few performance portable options besides OpenMP offload.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUSION</head><p>OpenMP is a widely used parallel programming model with support from open source and vendor compilers. However, adoption of OpenMP offload for GPUs has been more limited. Contributing factors include lack of support for advanced optimization techniques, e.g., use of dynamic memory shared among a team of threads, and heavyweight runtime library requirements compared to the simple multi-dimensional grid model of CUDA and HIP.</p><p>In this paper we have discussed two extensions to the LLVM/OpenMP ecosystem for GPUs, 1) the ability to request dynamic shared memory within a team and 2) the option to write SIMT style code in OpenMP. Together the extensions bridge key feature gaps between native frameworks such as CUDA/HIP and OpenMP. We have also shown how the extensions can be combined with additional performance tuning extensions in LLVM/OpenMP such as shuffle instructions to further optimize reductions on GPUs. The result is that users can leverage OpenMP's wider portability compared to vendor supported frameworks without major performance penalties.</p><p>We have demonstrated the use of new extensions in performance portable frameworks through the exemplar of Kokkos, in which we have extended the OpenMPTarget backend to use LLVM/OpenMP extensions when offloading Kokkos execution patterns to GPUs. Using these extensions, the performance of representative programs is now competitive with the native (CUDA/HIP) backends of Kokkos on NVIDIA and AMD GPUs. Our demonstration of these extensions provides motivation for the OpenMP Language Committee to consider adoption of them in the API for eventual availability in other OpenMP implementations beyond LLVM. Moreover, our evaluation of Kokkos with LLVM/OpenMP extensions provides evidence of viability for OpenMP GPU offload in large C++ based projects for performance portability.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,91.51,239.68,173.21,7.88"><head>Fig. 3 :</head><label>3</label><figDesc>Fig. 3: Scratch memory invocation in Kokkos.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="3,323.54,444.30,216.33,7.96"><head>Fig. 5 :</head><label>5</label><figDesc>Fig. 5: Scratch memory implementation in Kokkos-OMP.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,105.08,170.47,142.47,7.96"><head>Fig. 6 :</head><label>6</label><figDesc>Fig. 6: Scratch view in Kokkos-OMP.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,65.99,537.19,222.29,6.39;6,92.63,544.88,56.73,5.12;6,65.99,552.58,95.74,5.12;6,65.99,560.27,217.93,5.12;6,65.99,567.96,187.38,5.12;6,88.26,575.65,87.28,5.12;6,65.99,583.34,148.10,5.12;6,65.99,591.03,183.02,5.12;6,65.99,598.73,104.46,5.12;6,65.99,607.51,2.27,3.94;6,87.54,606.42,187.65,5.12;6,105.72,614.11,52.37,5.12;6,65.99,622.89,2.27,3.94;6,87.54,621.80,157.11,5.12;6,63.72,630.58,4.55,3.94;6,87.54,629.49,91.65,5.12;6,63.72,638.28,4.55,3.94;6,96.27,637.18,174.56,5.12;6,114.45,644.87,78.55,5.12;6,63.72,653.66,4.55,3.94;6,96.27,652.57,65.46,5.12;6,63.72,660.26,28.18,5.12;6,63.72,667.95,28.18,5.12;6,63.72,675.64,23.82,5.12"><head>1 6 // iterate over rows owned by this team 7 Kokkos</head><label>67</label><figDesc>Kokkos::View&lt;int *** ,Kokkos::DefaultExecutionSpace&gt; a("a",N,N,N); 2 Kokkos::parallel_for( 3 Kokkos::TeamPolicy&lt;&gt;(N, team_size, vector_size), 4 KOKKOS_LAMBDA(const Kokkos::TeamPolicy&lt;&gt;:: member_type &amp;team) { 5 const int i = team.league_id();</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,101.26,689.96,152.22,7.88"><head>Fig. 11 :</head><label>11</label><figDesc>Fig. 11: Kokkos hierarchical parallelism.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="7,61.39,482.02,229.47,7.96"><head>Fig. 12 :</head><label>12</label><figDesc>Fig. 12: Hierarchical parallelism in Kokkos-OMPX backend.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,314.78,362.42,236.13,8.12;7,314.78,373.66,15.87,8.12"><head>Fig. 13 :</head><label>13</label><figDesc>Fig. 13: TestSNAP performance with Kokkos-OMPX backend.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="8,64.41,78.66,96.70,5.17;8,64.41,86.43,189.27,5.17;8,86.91,94.20,57.30,5.17;8,64.41,101.97,189.27,5.17;8,86.91,109.74,88.16,5.17;8,64.41,117.51,167.23,5.17;8,64.41,125.28,167.23,5.17;8,64.41,134.15,2.30,3.98;8,64.41,140.82,180.45,5.17;8,64.41,148.59,101.11,5.17;8,64.41,156.36,189.27,5.17;8,95.73,164.13,44.08,5.17;8,62.11,171.89,121.04,5.17;8,62.11,179.66,151.89,5.17;8,62.11,187.43,28.47,5.17;8,62.11,195.20,72.55,5.17;8,62.11,202.97,187.16,5.17;8,62.11,210.74,121.04,5.17;8,62.11,218.51,209.20,5.17;8,62.11,227.38,4.59,3.98;8,81.77,226.28,154.28,5.17;8,62.11,235.15,4.59,3.98;8,81.77,234.05,136.65,5.17;8,62.11,242.92,4.59,3.98;8,81.77,241.82,13.22,5.17;8,62.11,249.59,59.33,5.17;8,62.11,257.36,81.36,5.17;8,62.11,265.12,24.06,5.17;8,62.11,272.89,19.65,5.17"><head>1 9 Kokkos</head><label>9</label><figDesc>Kokkos::parallel_for( 2 Kokkos::TeamPolicy&lt;&gt;(num_teams, team_size, vector_size), 3 KOKKOS_LAMBDA(const Kokkos::TeamPolicy&lt;&gt;:: member_type &amp;team) { 4 int64_t first_row = ...; // per team 5 int64_t last_row = ...; // per team 6 7 // iterate over rows owned by this team 8 Kokkos::parallel_for(</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="8,80.44,287.35,192.93,7.96"><head>Fig. 14 :</head><label>14</label><figDesc>Fig. 14: Kokkos hierarchical parallelism for SPMV.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="8,350.94,210.94,163.86,8.04"><head>Fig. 15 :</head><label>15</label><figDesc>Fig. 15: Kokkos team specific scratch size.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="9,346.94,264.15,171.34,7.96"><head>Fig. 17 :</head><label>17</label><figDesc>Fig. 17: Kokkos shuffle reductions in a team.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="10,319.39,355.89,225.96,8.12"><head>Data</head><label></label><figDesc>Fig.19: Optimized SPMV performance using kernel mode.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="2,320.18,88.57,226.12,208.38"><head></head><label></label><figDesc>Kokkos code (templated on the choice of the backend but otherwise the same across all architectures)</figDesc><table coords="2,320.18,132.56,226.12,164.39"><row><cell>OpenMP Host Backend</cell><cell>CUDA Backend</cell><cell cols="2">OpenMP Target Backend</cell><cell>HIP Backend</cell><cell>SYCL Backend</cell></row><row><cell>CPU</cell><cell cols="2">NVIDIA GPU</cell><cell cols="2">AMD GPU</cell><cell>Intel GPU</cell></row><row><cell cols="6">Fig. 1: Kokkos backends and supported architectures.</cell></row><row><cell cols="6">Level Kokkos CUDA OpenMP</cell></row><row><cell>Top</cell><cell>teams</cell><cell></cell><cell>block</cell><cell>teams</cell></row><row><cell>Mid</cell><cell cols="5">threads Y dim parallel</cell></row><row><cell>Low</cell><cell>vector</cell><cell></cell><cell cols="2">X dim simd</cell></row><row><cell cols="6">Fig. 2: Parallelism levels in Kokkos, CUDA, and OpenMP</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="7,61.33,79.10,226.83,393.63"><head></head><label></label><figDesc>1 template &lt;class Functor, class... Properties&gt; 2 class ParallelFor&lt;Functor, Kokkos::TeamPolicy&lt; Properties...&gt;, Kokkos::OpenMPTarget&gt; {</figDesc><table coords="7,61.33,117.95,226.83,308.17"><row><cell>5</cell><cell>void execute() {</cell></row><row><cell>6</cell><cell>// scratch request for level-0 and 1</cell></row><row><cell>7</cell><cell>int shmem_size_L0 = ...;</cell></row><row><cell>8</cell><cell>int shmem_size_L1 = ...;</cell></row><row><cell>9</cell><cell>// number of teams based on occupancy</cell></row><row><cell>10</cell><cell>int max_teams = ...;</cell></row><row><cell cols="2">11 #pragma omp target teams ompx_bare num_teams(</cell></row><row><cell></cell><cell>max_teams) thread_limit(vector_size,team_size</cell></row><row><cell></cell><cell>,1) ompx_dyn_cgroup_mem(shmem_size_L0)</cell></row><row><cell>12</cell><cell>{</cell></row><row><cell>13</cell><cell>int blockId = ompx::block_id(ompx::dim_x);</cell></row><row><cell>14</cell><cell>int gridDim = ompx::grid_dim(ompx::dim_x);</cell></row><row><cell>15</cell><cell></cell></row><row><cell>16</cell><cell>for (int lId = blockId; lId &lt; league_size; lId</cell></row><row><cell></cell><cell>+= gridDim) {</cell></row><row><cell>17</cell><cell>team(lId, league_size, team_size,</cell></row><row><cell></cell><cell>vector_length, scratch_ptr, blockId,</cell></row><row><cell></cell><cell>shmem_size_L0, shmem_size_L1);</cell></row><row><cell>18</cell><cell>f(team); // Inner loop inside</cell></row><row><cell>19</cell><cell>}</cell></row><row><cell>20</cell><cell>}</cell></row><row><cell>21 }</cell><cell></cell></row><row><cell>22</cell><cell></cell></row><row><cell cols="2">23 template &lt;class Lambda&gt;</cell></row><row><cell cols="2">24 void parallel_for(const TeamThreadRangeBoundaries</cell></row><row><cell></cell><cell>&lt;...&gt;&amp; loop_boundaries, const Lambda&amp; lambda)</cell></row><row><cell></cell><cell>{</cell></row><row><cell>25</cell><cell>int start = loop_boundaries.start;</cell></row><row><cell>30</cell><cell>lambda(i);</cell></row><row><cell>31 }</cell><cell></cell></row><row><cell>32</cell><cell></cell></row><row><cell cols="2">33 template &lt;class Lambda&gt;</cell></row><row><cell cols="2">34 void parallel_for(</cell></row><row><cell cols="2">35 const ThreadVectorRangeBoundaries&lt;...&gt;&amp;</cell></row><row><cell></cell><cell>loop_boundaries, const Lambda&amp; lambda) {</cell></row><row><cell>36</cell><cell>int start = loop_boundaries.start;</cell></row></table><note>3... 4 Functor f; 26 int end = loop_boundaries.end; 27 int blockDimy=ompx::block_dim(ompx::dim_y); 28 int threadIdy=ompx::thread_id(ompx::dim_y); 29 for (int i=start+threadIdy; i&lt;end; i+=blockDimy) 37 int end = loop_boundaries.end; 38 int blockDimx=ompx::block_dim(ompx::dim_x); 39 int threadIdx=ompx::thread_id(ompx::dim_x); 40 for (int i=start+threadIdx; i&lt;end; i+=blockDimx) 41 lambda(i); 42 }</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="8,316.92,78.62,225.41,122.94"><head></head><label></label><figDesc>1 template &lt;class Functor, class... Properties&gt; 2 class ParallelFor&lt;Functor, Kokkos::TeamPolicy&lt; Properties...&gt;, Kokkos::OpenMPTarget&gt; { 3 ...</figDesc><table coords="8,316.92,110.01,225.41,91.55"><row><cell cols="2">4 Functor f;</cell></row><row><cell cols="2">5 void execute() {</cell></row><row><cell>6</cell><cell>int scratch_size = shmem_size_L0 + team_size *</cell></row><row><cell></cell><cell>vector_size * sizeof(size_t);</cell></row><row><cell>7</cell><cell></cell></row><row><cell cols="2">8 #pragma omp target teams ompx_bare num_teams(</cell></row><row><cell></cell><cell>max_teams) thread_limit(vector_size,team_size</cell></row><row><cell></cell><cell>,1) firstprivate(...) ompx_dyn_cgroup_mem(</cell></row><row><cell></cell><cell>scratch_size)</cell></row><row><cell>9</cell><cell>... // Same as Fig. 12</cell></row><row><cell>10</cell><cell>}</cell></row><row><cell>11 };</cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 03:27:50 UTC from IEEE Xplore. Restrictions apply.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_1">https://github.com/rgayatri23/kokkos/tree/ompt kernel mode.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>ACKNOWLEDGMENT This research used resources of the National Energy Research Scientific Computing Center (NERSC), a Department of Energy Office of Science User Facility using NERSC award DDR-ERCAP0030946. This research used resources of the Oak Ridge Leadership Computing Facility at the Oak Ridge National Laboratory, which is supported by the Office of Science of the U.S. Department of Energy under Contract No. DE-AC05-00OR22725. This work was performed under the auspices of the U.S. Department of Energy by Lawrence Livermore National Laboratory under Contract DE-AC52-07NA27344 (LLNL-CONF-2000576). Sandia National Laboratories is multi-mission laboratory managed and operated by National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS), a wholly owned subsidiary of Honeywell International Inc., for the U.S. Department of Energy's National Nuclear Security Administration (DOE/NNSA) under contract DE-NA0003525</p><p>. This written work is authored by an employee of NTESS. The employee, not NTESS, owns the right, title and interest in and to the written work and is responsible for its contents. Any subjective views or opinions that might be expressed in the written work do not necessarily represent the views of the U.S. Government. The publisher acknowledges that the U.S. Government retains a non-exclusive, paid-up, irrevocable, world-wide license to publish or reproduce the published form of this written work or allow others to do so, for U.S. Government purposes. The DOE will provide public access to results of federally sponsored research in accordance with the DOE Public Access Plan.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="9,67.98,78.63,101.38,5.17;9,63.84,86.40,96.70,5.17;9,63.84,94.17,176.05,5.17;9,86.34,101.94,167.51,5.17;9,86.34,109.71,88.16,5.17;9,63.84,117.48,158.41,5.17" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">&gt;&amp; loop_boundaries, const Lambda&amp; lambda, ValueType&amp; result) { 4 int start = loop_boundaries</title>
+		<imprint/>
+	</monogr>
+	<note>template &lt;class Lambda&gt; 2 void parallel_reduce( 3 const ThreadVectorRangeBoundaries&lt;. start</note>
+</biblStruct>
+
+<biblStruct coords="9,72.38,125.25,132.24,5.17" xml:id="b1">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">int end = loop_boundaries</title>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,72.38,140.78,180.73,6.46;9,90.75,148.55,180.73,5.17;9,90.75,156.32,44.08,5.17" xml:id="b2">
+	<monogr>
+		<title level="m">ValueType * buf = static_cast&lt;ValueType * &gt;( llvm_omp_target_dynamic_shared_alloc()) + scratch_0</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,61.55,179.63,200.38,5.17" xml:id="b3">
+	<monogr>
+		<title level="m">10 int threadIdy=ompx::thread_id(ompx::dim_y)</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,61.55,218.48,222.42,5.17;9,90.75,226.24,4.41,5.17;9,61.55,234.01,138.67,5.17" xml:id="b4">
+	<monogr>
+		<title level="m">15 for (int i=start+threadIdx; i&lt;end; i+=blockDimx) { 16 ValueType tmp = ValueType</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,195.81,265.09,48.49,5.17;9,61.55,273.96,4.59,3.98;9,61.55,280.63,103.41,5.17;9,61.55,288.40,195.97,5.17;9,61.55,297.27,4.59,3.98;9,81.20,296.17,193.96,6.46;9,99.57,303.94,22.04,5.17" xml:id="b5">
+	<monogr>
+		<title level="m" type="main">//team sync 21 22 if (threadIdx == 0) { 23 for (int tid = 0; tid &lt; blockDimx; ++tid) 24 vector_reduce += buf</title>
+		<imprint/>
+	</monogr>
+	<note>threadIdy * blockDimx + tid</note>
+</biblStruct>
+
+<biblStruct coords="9,72.38,350.55,189.55,5.17;9,61.55,358.32,160.71,6.46" xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Every thread should have the final value 31 result = buf</title>
+		<imprint/>
+	</monogr>
+	<note>threadIdy * blockDimx</note>
+</biblStruct>
+
+<biblStruct coords="11,76.08,625.76,218.94,6.50;11,76.08,634.19,218.94,6.50;11,76.08,642.62,218.94,6.50;11,76.08,651.05,218.94,6.50;11,76.08,659.35,218.95,6.63;11,76.08,667.79,184.47,6.63" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Kokkos 3: Programming model extensions for the exascale era</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">R</forename><surname>Trott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lebrun-Grandié</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Arndt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ciesko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Ellingwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gayatri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Harvey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">S</forename><surname>Hollman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Ibanez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Liber</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Madsen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Miles</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Poliakoff</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Powell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Rajamanickam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Simberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Sunderland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Turcksin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Wilke</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="805" to="817" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,76.08,676.35,218.94,6.50;11,76.08,684.79,218.94,6.50;11,76.08,693.22,212.59,6.50" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">OpenMP Application Programming Interface, Version 5.2</title>
+		<ptr target="https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5-2.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">OpenMP Architecture Review Board</title>
+		<imprint>
+			<date type="published" when="2021-11">November 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,74.48,218.94,6.50;11,331.82,82.91,218.94,6.50;11,331.82,91.21,218.94,6.63;11,331.82,99.64,218.94,6.63;11,331.82,108.21,218.94,6.50;11,331.82,116.64,119.17,6.50" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">The Kokkos OpenMPTarget backend: Implementation and lessons learned</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gayatri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">L</forename><surname>Olivier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">R</forename><surname>Trott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ciesko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lebrun-Grandie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OpenMP: Advanced Task-Based, Device and Compiler Programming</title>
+				<editor>
+			<persName><forename type="first">M</forename><surname>Mcintosh-Smith</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">B</forename><forename type="middle">R</forename><surname>Klemm</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>De Supinski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Deakin</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Klinkenberg</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer Nature Switzerland</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="99" to="113" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,125.07,218.94,6.50;11,331.82,133.51,218.94,6.50;11,331.82,141.80,218.94,6.63;11,331.82,150.24,218.94,6.63;11,331.82,158.80,207.51,6.50" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Scalable tuning of (OpenMP) GPU applications via kernel record and replay</title>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Parasyris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Georgakoudis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Rangel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Laguna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3581784.3607098</idno>
+		<ptr target="https://doi.org/10.1145/3581784.3607098" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;23</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis, ser. SC &apos;23</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,167.10,218.95,6.63;11,331.82,175.54,218.94,6.63;11,331.82,184.10,173.23,6.50" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Remote OpenMP offloading</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Patel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">High Performance Computing</title>
+				<editor>
+			<persName><forename type="first">A.-L</forename><surname>Varbanescu</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><surname>Bhatele</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">P</forename><surname>Luszczek</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">B</forename><surname>Marc</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,192.54,218.94,6.50;11,331.82,200.97,218.94,6.50;11,331.82,209.27,218.94,6.63;11,331.82,217.70,218.94,6.46;11,331.82,226.13,218.94,6.46;11,331.82,234.57,218.94,6.63;11,331.82,243.13,218.94,6.50;11,331.82,251.57,218.94,6.50;11,331.82,260.00,140.62,6.50" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Just-in-time compilation and link-time optimization for OpenMP target offloading</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Huber</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Tramm</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">M</forename><surname>Chapman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/978-3-031-15922-010</idno>
+		<ptr target="https://doi.org/10.1007/978-3-031-15922-010" />
+	</analytic>
+	<monogr>
+		<title level="m">OpenMP in a Modern World: From Multi-device Support to Meta Programming -18th International Workshop on OpenMP, IWOMP 2022</title>
+				<editor>
+			<persName><forename type="first">B</forename><forename type="middle">R</forename><surname>De Supinski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Klinkenberg</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">B</forename><surname>Neth</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Chattanooga, TN, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2022">September 27-30, 2022. 2022</date>
+			<biblScope unit="volume">13527</biblScope>
+			<biblScope unit="page" from="145" to="158" />
+		</imprint>
+	</monogr>
+	<note>Proceedings, ser. Lecture Notes in Computer Science</note>
+</biblStruct>
+
+<biblStruct coords="11,331.82,268.43,218.94,6.50;11,331.82,276.86,218.94,6.50;11,331.82,285.30,218.94,6.50;11,331.82,293.60,161.27,6.63" xml:id="b13">
+	<monogr>
+		<title level="m" type="main">Rapid exploration of optimization strategies on advanced architectures using TestSNAP and LAMMPS</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gayatri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Moore</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Weinberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Lubbers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Deslippe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Perez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">P</forename><surname>Thompson</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2011.12875</idno>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="11,331.82,302.16,218.94,6.50;11,331.82,310.60,218.94,6.50;11,331.82,318.89,218.94,6.63;11,331.82,327.33,218.94,6.46;11,331.82,335.76,218.94,6.63;11,331.82,344.33,210.30,6.50" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Co-designing an OpenMP GPU runtime and optimizations for near-zero overhead execution</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Patel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Huber</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">M M</forename><surname>Diaz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">M</forename><surname>Chapman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Georgakoudis</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/IPDPS53621.2022.00055</idno>
+		<ptr target="https://doi.org/10.1109/IPDPS53621.2022.00055" />
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE International Parallel and Distributed Processing Symposium, IPDPS 2022</title>
+				<meeting><address><addrLine>Lyon, France</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022-06-03">May 30 -June 3, 2022. 2022</date>
+			<biblScope unit="page" from="504" to="514" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,352.76,218.94,6.50;11,331.82,361.19,218.94,6.50;11,331.82,369.49,218.95,6.63;11,331.82,377.92,218.94,6.46;11,331.82,386.36,218.94,6.63;11,331.82,394.93,218.94,6.50;11,331.82,403.36,125.01,6.50" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">OpenMP kernel language extensions for performance portable GPU codes</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Scogland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Chapman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3624062.3624164</idno>
+		<ptr target="https://doi.org/10.1145/3624062.3624164" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the SC &apos;23 Workshops of The International Conference on High Performance Computing, Network, Storage, and Analysis, ser. SC-W &apos;23</title>
+				<meeting>the SC &apos;23 Workshops of The International Conference on High Performance Computing, Network, Storage, and Analysis, ser. SC-W &apos;23<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="876" to="883" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,411.79,218.94,6.50;11,331.82,420.22,218.94,6.50;11,331.82,428.52,218.94,6.63;11,331.82,436.95,169.70,6.63" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Efficient execution of OpenMP on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Huber</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cornelius</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Georgakoudis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">M M</forename><surname>Diaz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Dinel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Chapman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE/ACM International Symposium on Code Generation and Optimization (CGO)</title>
+				<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="41" to="52" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,445.52,218.94,6.50;11,331.82,453.82,218.95,6.63;11,331.82,462.25,218.94,6.63;11,331.82,470.82,218.94,6.50;11,331.82,479.25,122.92,6.50" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">OpenMP target offload utilizing GPU shared memory</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Gammelmark</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Rydahl</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Karlsson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OpenMP: Advanced Task-Based, Device and Compiler Programming</title>
+				<editor>
+			<persName><forename type="first">S</forename><surname>Mcintosh-Smith</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">M</forename><surname>Klemm</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">B</forename><forename type="middle">R</forename><surname>De Supinski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>Deakin</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Klinkenberg</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer Nature Switzerland</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="114" to="128" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,487.69,218.94,6.50;11,331.82,495.98,218.95,6.63;11,331.82,504.42,218.94,6.46;11,331.82,512.99,218.94,6.50;11,331.82,521.42,158.03,6.50" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Towards automatic OpenMP-aware utilization of fast GPU memory</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Talaashrafi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">M</forename><surname>Maza</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Doerfert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">OpenMP in a Modern World: From Multi-device Support to Meta Programming</title>
+				<editor>
+			<persName><forename type="first">B</forename><forename type="middle">R</forename><surname>De Supinski</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">J</forename><surname>Klinkenberg</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">B</forename><surname>Neth</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="67" to="80" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,529.85,218.94,6.50;11,331.82,538.28,218.94,6.50;11,331.82,546.58,218.95,6.63;11,331.82,555.02,218.94,6.46;11,331.82,563.45,167.56,6.63" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Evaluating performance portability of OpenMP for SNAP on NVIDIA, Intel, and AMD GPUs using the roofline methodology</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">A</forename><surname>Mehta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gayatri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Ghadar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Knight</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Deslippe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Accelerator Programming Using Directives: 7th International Workshop</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2020-11-20">November 20. 2020. 2021</date>
+			<biblScope unit="volume">2020</biblScope>
+			<biblScope unit="page" from="3" to="24" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,331.82,572.02,218.94,6.50;11,331.82,580.45,218.94,6.50;11,331.82,588.88,218.94,6.50;11,331.82,597.18,218.94,6.46;11,331.82,605.61,164.19,6.63" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">RAJA: Portable performance for large-scale scientific applications</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">A</forename><surname>Beckingsale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Burmark</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Hornung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Killian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">J</forename><surname>Kunen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Pearce</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Robinson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">S</forename><surname>Ryujin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">R</forename><surname>Scogland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE/ACM International Workshop on Performance, Portability and Productivity in HPC (P3HPC)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="71" to="81" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

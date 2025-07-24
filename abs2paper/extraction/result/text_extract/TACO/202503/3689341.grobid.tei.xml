@@ -1,0 +1,2168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">GraphService: Topology-aware Constructor for Large-scale Graph Applications</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2025-03-22">2025-03-22</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,45.63,123.70,63.29,9.82"><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+							<email>xinbiaogan@nudt.edu.cn.</email>
+							<idno type="ORCID">0000-0003-3622-1772</idno>
+							<affiliation key="aff0">
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha, Hunan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">GraphService: Topology-aware Constructor for Large-scale Graph Applications</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">22</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<biblScope unit="page" from="1" to="24"/>
+							<date type="published" when="2025-03-22" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">C3727BDE87158880A94A340410A56308</idno>
+					<idno type="DOI">10.1145/3689341</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Graph construction</term>
+					<term>graph partitioning</term>
+					<term>graph representation</term>
+					<term>sorted graph</term>
+					<term>graph processing</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Graph-based services are becoming integrated into everyday life through graph applications and graph learning systems. While traditional graph processing approaches boast excellent throughput with millisecond-level processing time, the construction phase before executing kernel graph operators (e.g., breadth-first search, single-source shortest path) can take up to tens of hours, severely impacting the quality of graph service. Is it feasible to develop a fast graph constructor that can complete the construction process within minutes, or even seconds?</p><p>This article aims to answer this question. We present GraphService, a flexible and efficient graph constructor for fast graph applications. To facilitate graph applications with better service, we equip GraphService with a hierarchy-aware graph partitioner based on communication topology as well as a graph topologyaware compression by exploiting a huge number of identical-degree vertices within graph topology. Our evaluation, performed on a range of graph operations and datasets, shows that GraphService significantly reduces communication cost by three orders of magnitude to construct a graph. Furthermore, we tailor Graph-Service for downstream graph tasks and deploy it on a production supercomputer using 79,024 computing nodes, achieving a remarkable graph processing throughput that outperforms the top-ranked supercomputer on the latest Graph500 list, with construction time reduced by orders of magnitude. CCS Concepts: • Mathematics of computing; • Theory of computation → Parallel computing models; Distributed computing models;</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>2:2 X. Gan</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Graph-based services provide an efficient solution for managing the continually growing largescale applications in both industry and academia <ref type="bibr" coords="2,254.70,104.19,14.99,9.03" target="#b11">[13,</ref><ref type="bibr" coords="2,273.38,104.19,11.46,9.03" target="#b22">24,</ref><ref type="bibr" coords="2,288.54,104.19,11.45,9.03" target="#b23">25,</ref><ref type="bibr" coords="2,303.69,104.19,11.46,9.03" target="#b38">40,</ref><ref type="bibr" coords="2,318.84,104.19,11.45,9.03" target="#b56">57,</ref><ref type="bibr" coords="2,334.00,104.19,11.45,9.03" target="#b61">62,</ref><ref type="bibr" coords="2,349.15,104.19,11.46,9.03" target="#b66">67,</ref><ref type="bibr" coords="2,364.30,104.19,11.25,9.03" target="#b68">69]</ref>, for which the quality of service (QoS) <ref type="bibr" coords="2,156.06,116.15,16.35,9.03" target="#b66">[67]</ref> is essential. A graph encompasses a series of properties used to describe throughput, response time, and other relevant metrics.</p><p>As the graph scale (i.e., the number of vertices and edges) explosively grows, large-scale graphs need distributed machines to store and handle. For instance, the Sogou graph <ref type="bibr" coords="2,363.58,152.02,16.36,9.03" target="#b68">[69]</ref> contains 271.8 billion vertices and 12.3 trillion edges that need 38,656 nodes during testing <ref type="bibr" coords="2,349.67,163.97,14.97,9.03" target="#b38">[40]</ref>; the 155.25K-node Fugaku supercomputer conducts breadth-first search (BFS) on a Kronecker graph at scale=42 (having 4.4 trillion vertices and 70.4 trillion edges <ref type="bibr" coords="2,251.09,187.88,10.13,9.03" target="#b7">[9]</ref>). No single machine can accommodate and process such big graphs. As such, many real-world and mimic graphs need distributed machines to store and handle them.</p><p>While graphs show promise as applications on distributed systems at scale <ref type="bibr" coords="2,366.41,223.75,15.01,9.03" target="#b22">[24,</ref><ref type="bibr" coords="2,384.34,223.75,11.45,9.03" target="#b23">25,</ref><ref type="bibr" coords="2,398.72,223.75,11.46,9.03" target="#b25">27,</ref><ref type="bibr" coords="2,413.10,223.75,11.45,9.03" target="#b38">40,</ref><ref type="bibr" coords="2,427.48,223.75,8.54,9.03" target="#b72">73</ref>] and provide high QoS for many supercomputing users <ref type="bibr" coords="2,268.72,235.70,15.01,9.03" target="#b61">[62,</ref><ref type="bibr" coords="2,286.16,235.70,11.26,9.03" target="#b68">69]</ref>, current graph processing systems often prioritize one aspect of QoS: high throughput, which refers to the processing speed of graph algorithms, also known as graph operators. However, such criteria do not always address the bottleneck factors that affect the performance of service-oriented graph applications. This is because the complete graph-based service comprises both the graph operator and the graph constructor. Indeed, the graph construction time is usually orders of magnitude higher than the processing time on graph operators. That is primarily because all state-of-the-art graph engines compete in the throughput of graph algorithms and take the processing speed of the graph operators as the sole criterion for graph applications. While this assertion might hold for standard graph processing on small-sized high-performance computing (HPC) systems, typically involving at most tens of computing nodes, it does not necessarily apply to distributed graph processing at scale.</p><p>In large-scale graph processing, graph construction is often a must, as shown in Figure <ref type="figure" coords="2,405.74,367.21,3.41,9.03">1</ref>. Graph processing typically involves four stages: (i) loading the graph, during which real-world graphs or synthetic graphs are handled by a graph constructor; (ii) graph preprocessing; (iii) graph construction, which mainly includes graph partition and graph storage; and (iv) graph application. During the preprocessing stage, various tasks are performed, such as counting degrees and sorting graphs <ref type="bibr" coords="2,91.68,426.99,15.00,9.03" target="#b17">[19,</ref><ref type="bibr" coords="2,109.27,426.99,11.45,9.03" target="#b21">23,</ref><ref type="bibr" coords="2,123.31,426.99,11.46,9.03" target="#b25">27,</ref><ref type="bibr" coords="2,137.35,426.99,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="2,151.40,426.99,11.45,9.03" target="#b38">40,</ref><ref type="bibr" coords="2,165.44,426.99,11.45,9.03" target="#b58">59,</ref><ref type="bibr" coords="2,179.48,426.99,11.26,9.03" target="#b72">73]</ref>. For the graph construction stage, vertices and edges are distributed into many computing nodes by using an advanced graph partitioning algorithm (known as a partitioner) such as XTree <ref type="bibr" coords="2,168.27,450.89,16.36,9.03" target="#b27">[29]</ref> and stored based on a specified format such as the compressed sparse row (CSR) or its variants <ref type="bibr" coords="2,181.89,462.85,10.37,9.03" target="#b7">[9,</ref><ref type="bibr" coords="2,194.53,462.85,11.46,9.03" target="#b13">15,</ref><ref type="bibr" coords="2,208.25,462.85,11.45,9.03" target="#b21">23,</ref><ref type="bibr" coords="2,221.97,462.85,11.46,9.03" target="#b58">59,</ref><ref type="bibr" coords="2,235.69,462.85,11.25,9.03" target="#b65">66]</ref>. Finally, the constructed graphs are passed into graph processing algorithms such as BFS <ref type="bibr" coords="2,219.08,474.80,10.37,9.03" target="#b6">[8,</ref><ref type="bibr" coords="2,232.70,474.80,11.25,9.03" target="#b25">27]</ref>, single-source shortest path (SSSP) <ref type="bibr" coords="2,408.13,474.80,15.01,9.03" target="#b29">[31,</ref><ref type="bibr" coords="2,426.38,474.80,11.25,9.03" target="#b62">63]</ref>, connected component (CC) <ref type="bibr" coords="2,169.68,486.76,15.00,9.03" target="#b42">[44,</ref><ref type="bibr" coords="2,186.90,486.76,11.26,9.03" target="#b55">56]</ref>, PageRank (PR) <ref type="bibr" coords="2,273.73,486.76,10.37,9.03" target="#b5">[7,</ref><ref type="bibr" coords="2,286.33,486.76,11.25,9.03" target="#b57">58]</ref>, and community detection with label propagation (CDLP) <ref type="bibr" coords="2,161.09,498.71,15.01,9.03" target="#b17">[19,</ref><ref type="bibr" coords="2,178.13,498.71,11.25,9.03" target="#b20">22]</ref>. To provide user-friendly graphic services, we take QoS as the total cost (i.e., Θ) of four graph processing stages for distributed graph applications. Θ(QoS) is a lower-is-better metric for large-scale graph applications on HPC systems. Θ(QoS) = τ g + τ c + τ pre + τ loadinд <ref type="bibr" coords="2,429.72,543.78,10.57,9.03" target="#b0">(1)</ref> Herein, τ g represents the processing time of graph operators, which determines the throughput. τ c represents the processing time of graph construction that can affect the throughput of the graph operators. τ pre and τ loadinд are the preprocessing time and loading time of the graph, respectively. Since τ pre can be parallelled in advance and τ loadinд can be processed offline, we can approximate Θ(QoS) as follows.</p><p>Θ(QoS) ≈ τ g + τ c</p><p>(2)</p><p>GraphService: Topology-aware Constructor for Large-scale Graph Applications 2:3 Fig. <ref type="figure" coords="3,179.96,173.67,3.07,8.07">1</ref>. A typical graph processing pipeline.</p><p>According to Equation <ref type="bibr" coords="3,153.40,198.92,9.58,9.03" target="#b1">(2)</ref>, when processing large-scale graphs on HPC systems, the QoS of distributed graph applications encompasses two aspects, not just throughput. Further, τ c is the bottleneck of the Θ(QoS) because it is often 3 ∼ 5 orders of magnitude higher than τ g <ref type="bibr" coords="3,401.08,222.84,10.37,9.03" target="#b7">[9,</ref><ref type="bibr" coords="3,414.27,222.84,11.26,9.03" target="#b43">45]</ref>. In detail, communication costs within τ c exceed 80% due to significant variability among different computing nodes <ref type="bibr" coords="3,119.46,246.74,15.00,9.03" target="#b25">[27,</ref><ref type="bibr" coords="3,137.35,246.74,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="3,151.70,246.74,11.26,9.03" target="#b43">45]</ref>. This trend is expected to become even more pronounced with the increase of computing nodes.</p><p>The success of large-scale graph processing systems heavily relies on efficient partitioning algorithms and communication optimization techniques <ref type="bibr" coords="3,271.66,282.62,15.01,9.03" target="#b27">[29,</ref><ref type="bibr" coords="3,289.65,282.62,11.45,9.03" target="#b69">70,</ref><ref type="bibr" coords="3,304.07,282.62,11.26,9.03" target="#b72">73]</ref>. As such, various graph partitioning strategies have been proposed <ref type="bibr" coords="3,202.71,294.57,10.37,9.03" target="#b4">[6,</ref><ref type="bibr" coords="3,215.55,294.57,11.45,9.03" target="#b18">20,</ref><ref type="bibr" coords="3,229.47,294.57,11.45,9.03" target="#b27">29,</ref><ref type="bibr" coords="3,243.40,294.57,11.45,9.03" target="#b28">30,</ref><ref type="bibr" coords="3,257.32,294.57,11.46,9.03" target="#b30">32,</ref><ref type="bibr" coords="3,271.24,294.57,11.46,9.03" target="#b31">33,</ref><ref type="bibr" coords="3,285.17,294.57,11.45,9.03" target="#b40">42,</ref><ref type="bibr" coords="3,299.10,294.57,11.45,9.03" target="#b41">43,</ref><ref type="bibr" coords="3,313.02,294.57,11.46,9.03" target="#b43">45,</ref><ref type="bibr" coords="3,326.94,294.57,11.46,9.03" target="#b48">50,</ref><ref type="bibr" coords="3,340.87,294.57,11.45,9.03" target="#b49">51,</ref><ref type="bibr" coords="3,354.80,294.57,11.25,9.03" target="#b54">55]</ref>. Indeed, all graph processing systems utilize some form of graph partitioning to take advantage of the sparsity of the graph data<ref type="foot" coords="3,104.27,316.65,3.38,6.59" target="#foot_1">1</ref> to distribute vertices and edges across computing nodes <ref type="bibr" coords="3,336.88,318.48,15.00,9.03" target="#b25">[27,</ref><ref type="bibr" coords="3,354.03,318.48,11.45,9.03" target="#b27">29,</ref><ref type="bibr" coords="3,367.63,318.48,11.25,9.03" target="#b38">40]</ref>. However, current advancements in large-scale graph engines have focused on achieving excellent throughput, often at the cost of longer construction times <ref type="bibr" coords="3,237.08,342.38,15.00,9.03" target="#b10">[12,</ref><ref type="bibr" coords="3,255.27,342.38,11.45,9.03" target="#b17">19,</ref><ref type="bibr" coords="3,269.90,342.38,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="3,284.53,342.38,11.46,9.03" target="#b38">40,</ref><ref type="bibr" coords="3,299.18,342.38,11.45,9.03" target="#b46">48,</ref><ref type="bibr" coords="3,313.81,342.38,11.25,9.03" target="#b72">73]</ref>. A key reason is that these engines assume consistent communication overhead between any two nodes. While this assumption may be true for small-sized HPC systems <ref type="bibr" coords="3,234.10,366.30,15.00,9.03" target="#b17">[19,</ref><ref type="bibr" coords="3,251.57,366.30,11.26,9.03" target="#b72">73]</ref>, it is not the case for processing big graphs at scale. Recent approaches utilize fine-grained partitioning techniques to exploit graph operators and leverage graph-specific attributes such as vertex distribution to mitigate communication overhead. While important, they only consider the graph-based topologies at best, such as sparsity, and ignore the communication hierarchy of the target HPC system, which severely hampers the graph construction. Although GraphCube <ref type="bibr" coords="3,194.48,426.08,16.37,9.03" target="#b24">[26]</ref> takes both the sparsity of the graph and the communication hierarchies into account, it is basically exploited to expedite graph traversal. In contrast, GraphService dedicates to leveraging hierarchical communication domains (in terms of a group of computing nodes attached to the same routing cell <ref type="bibr" coords="3,261.88,461.94,15.01,9.03" target="#b24">[26,</ref><ref type="bibr" coords="3,279.05,461.94,11.83,9.03" target="#b27">29]</ref>) to accelerate graph construction before graph operations (e.g., traversal) ingress. As we will show in this article, state-of-the-art graph processing systems, such as Fugaku <ref type="bibr" coords="3,191.92,485.85,10.36,9.03" target="#b7">[9,</ref><ref type="bibr" coords="3,204.42,485.85,12.82,9.03" target="#b43">45]</ref> and the Wuhan supercomputer <ref type="bibr" coords="3,347.21,485.85,10.44,9.03" target="#b7">[9]</ref>, struggle with rapid graph construction.</p><p>To tackle this problem, we introduce GraphService, <ref type="foot" coords="3,267.71,507.92,3.38,6.59" target="#foot_2">2</ref> which is specifically designed to optimize graph construction in order to minimize the overall online processing time rather than solely concentrating on graph operators. The key idea of GraphService is to (i) develop a hierarchy-aware partitioner that leverages the communication topology of target HPC systems to minimize communication costs and (ii) provide a space-time-efficient graph compression by grouping identicaldegree vertices, enabling batch memory access for fast graph construction based on graph topology, where many graph vertices have the same degree <ref type="bibr" coords="3,249.10,581.49,14.83,9.03" target="#b25">[27]</ref>.</p><p>We evaluate GraphService by applying it to representative graph operations across three different HPC systems with varying scales, using up to 79,024 nodes and over 1.2 million processor cores.  We show that GraphService consistently outperforms state-of-the-art graph partitioning methods, CSR-like formats, and graph systems on different graph scales and hardware setups. Specifically, GraphService achieves 162,494 and 23,021 giga-traversed edges per second (GTEPS), respectively, for BFS and SSSP according to the Graph500 specification <ref type="bibr" coords="4,339.83,307.54,10.45,9.03" target="#b7">[9]</ref>. These results can be translated to 1.17× and 1.50× improvements, with three orders of magnitude construction time reduction for BFS and SSSP, respectively, compared with the top-ranked systems on the latest Graph500 ranking (November 2023). We also test GraphService on real-world graphs, for which it outperforms three state-of-the-art graph processing engines, Gemini <ref type="bibr" coords="4,329.03,355.35,14.82,9.03" target="#b72">[73]</ref>, Gluon <ref type="bibr" coords="4,376.10,355.35,14.84,9.03" target="#b16">[18]</ref>, and Graph-Scope <ref type="bibr" coords="4,72.07,367.31,14.85,9.03" target="#b17">[19]</ref>, with a speedup of up to 18.9×.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Conference extension.</head><p>A preliminary version of this article "GraphCube: Interconnection Hierarchy-aware Graph Processing" by Gan et al. appeared at the 29th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming (PPoPP), 2024 <ref type="bibr" coords="4,360.57,403.17,14.84,9.03" target="#b24">[26]</ref>. This extended version makes the following new contributions to the conference paper, providing new insights based on the original paper.</p><p>-We extend our approach to support large-scale graph construction, demonstrating the generality and performance advantages over prior approaches (Section 5.2). -We explore a space-time-efficient graph compression to store and index identical-degree vertices, which not only allows for batching and coalescing memory accesses for further boosting graph construction but also reduces memory footprint (Section 5.5). -We conduct extensive experiments to demonstrate the effectiveness and efficiency of Graph-Service. More specially, GraphService achieved the top position in the Graph500 ranking, utilizing up to 77.2K nodes with 17% higher throughput and more than 1,218× reduction in construction time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Communication Topology of HPC</head><p>Large-scale HPC systems often implement a hierarchical communication topology <ref type="bibr" coords="4,382.27,588.62,15.02,9.03" target="#b47">[49,</ref><ref type="bibr" coords="4,399.71,588.62,11.45,9.03" target="#b53">54,</ref><ref type="bibr" coords="4,413.59,588.62,11.46,9.03" target="#b61">62,</ref><ref type="bibr" coords="4,427.48,588.62,12.81,9.03" target="#b64">65]</ref> through routing cells (RCS) to link different computing nodes. In Figure <ref type="figure" coords="4,375.56,600.58,3.41,9.03" target="#fig_1">2</ref>  denoted as R j i ; thus, the domains can be represented as D 0 0 = {R 0 0 , C1, C2, C3}, D 0 1 = {R 0 1 , C4, C5, C6}, D 1 0 = {R 1 0 , C1, C2, C3, C4, C5, C6}, etc. We can observe that C1 and C4 are in different leaf domains, i.e., D 0 0 and D 0 1 , but they are in the same domain D 1 0 , i.e., the first-level domain. In practice, there are significant differences in the communication latency at different levels of the communication domains. This drives us to orchestrate data layout among communication domains to minimize communication overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">CSR and Graph Distribution</head><p>A graph is usually represented using an adjacency matrix. The CSR format is widely used for storing sparse matrices in large-scale graph processing <ref type="bibr" coords="5,268.38,493.59,15.01,9.03" target="#b15">[17,</ref><ref type="bibr" coords="5,285.48,493.59,11.45,9.03" target="#b35">37,</ref><ref type="bibr" coords="5,299.02,493.59,11.25,9.03" target="#b39">41]</ref>. CSR represents a sparse matrix using three one-dimensional arrays: val, RST, and COL. The val array stores the non-zero values in contiguous locations, with the rows packed together. The RST array specifies the starting index of each row in the val array, while the COL array maps each non-zero value to its corresponding column. Graph processing algorithms mostly focus on accessing each vertex and then filtering vertices on demand. For clarity, the val array can be omitted for better understanding. Figure <ref type="figure" coords="5,83.96,565.32,4.63,9.03" target="#fig_2">3</ref> gives an example of how an undirected graph as shown in Figure <ref type="figure" coords="5,354.13,565.32,3.75,9.03" target="#fig_2">3</ref>(a) and its adjacency matrix as shown in Figure <ref type="figure" coords="5,154.72,577.28,3.90,9.03" target="#fig_2">3</ref>(b) can be represented using the CSR format as shown in Figure <ref type="figure" coords="5,420.85,577.28,13.49,9.03" target="#fig_8">3(c)</ref>.</p><p>Many real-world graphs are sparse and uneven. <ref type="foot" coords="5,254.29,587.40,3.38,6.59" target="#foot_3">3</ref> Prior sparse matrix storage formats <ref type="bibr" coords="5,411.84,589.24,15.00,9.03" target="#b9">[11,</ref><ref type="bibr" coords="5,430.11,589.24,11.45,9.03" target="#b12">14,</ref><ref type="bibr" coords="5,45.95,601.19,11.46,9.03" target="#b60">61,</ref><ref type="bibr" coords="5,59.72,601.19,12.81,9.03" target="#b65">66]</ref> essentially distinguish solely between zero and non-zero elements, meticulously recording 2:6 X. Gan all non-zero entries of the matrix while concentrating efforts on eliminating 0-degree vertices to enhance memory utilization efficiency. However, GraphService is tailored for graph processing by further compressing the graph adjacency matrix by grouping the same-degree vertices (e.g., vertices{2, 3}, {4, 5}, and {6, 7} shown in Figure <ref type="figure" coords="6,240.10,113.16,3.27,9.03" target="#fig_2">3</ref>). It is worth noting that identical-degree vertices make up the vast majority of real-world and synthetic graphs <ref type="bibr" coords="6,293.21,125.12,14.84,9.03" target="#b25">[27]</ref>. As a result, there is lots of room for GraphService to demonstrate its potential.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Related Work</head><p>Blocksome et al. developed a single-sided communication interface for the IBM Blue Gene/L supercomputer, leading to a threefold improvement in maximum bandwidth <ref type="bibr" coords="6,336.45,184.89,14.82,9.03" target="#b8">[10]</ref>. Faraj et al. proposed various enhancements by thoroughly utilizing the interconnection architecture and hardware capabilities of IBM Blue Gene/P, enabling near-peak efficiency in message passing interface (MPI) collective communication on the Blue Gene/P system <ref type="bibr" coords="6,264.03,220.76,14.84,9.03" target="#b19">[21]</ref>. IBM developed the LAPI (Low-level Applications Programming Interface), which is a low-level, high-performance communication interface available on the IBM RS/6000 SP system <ref type="bibr" coords="6,246.05,244.66,14.84,9.03" target="#b50">[52]</ref>. It provides an active message-like interface along with remote memory copy and synchronization functionality. However, the limited set from the LAPI does not compromise on functionality expected on a communication API. Even worse, the topology mapping library and LAPI are designed for IBM supercomputers, resulting in difficulties in adaptation to applications running on general supercomputers, especially for Graph500 testing on other supercomputers.</p><p>To improve task mapping on the Blue Gene/L supercomputer, a topology mapping library was incorporated into the BG/L MPI library, enhancing both communication efficiency and application scalability <ref type="bibr" coords="6,88.87,340.31,14.83,9.03" target="#b67">[68]</ref>. This library could also offer scalable support for the MPI virtual topology interface. To tackle the significant challenges posed by Blue Gene/Q's extreme parallelism and scale, Kumar et al. developed the Parallel Active Message Interface (PAMI), a communication library designed to maximize the performance of large-scale supercomputing applications <ref type="bibr" coords="6,370.68,376.17,14.86,9.03" target="#b33">[35]</ref>. IBM created the LAPI as a high-performance, low-level communication tool for the IBM RS/6000 SP system <ref type="bibr" coords="6,45.77,400.09,14.84,9.03" target="#b50">[52]</ref>. This interface provides features akin to active messages, along with capabilities for remote memory copying and synchronization. While LAPI's limited functionality set might appear constrained, it still meets the essential requirements for a communication API. However, the design of both the topology mapping library and the LAPI is specific to IBM supercomputers, which presents challenges when adapting these tools for applications on other general-purpose supercomputers. This issue is particularly pronounced during Graph500 testing on non-IBM systems.</p><p>Unlike the communication enhancements tailored for IBM supercomputers, Shida et al. created a specialized MPI library and low-level communication infrastructure for the K supercomputer, leveraging Open MPI and addressing the tofu topology <ref type="bibr" coords="6,275.62,495.73,15.02,9.03" target="#b44">[46,</ref><ref type="bibr" coords="6,293.66,495.73,11.25,9.03" target="#b52">53]</ref>. This approach, while similar in intent to IBM's solution, is specifically designed to optimize performance for the K supercomputer rather than for IBM's systems. To explore how MPI communication affects Graph500 performance, Li et al. performed a comprehensive examination of MPI Send/Recv and MPI-2 RMA, uncovering several performance bottlenecks. They then introduced an advanced, scalable design for Graph500 utilizing MPI-3 RMA, which enhanced GTEPS and achieved a twofold speed increase on the TACC Stampede Cluster <ref type="bibr" coords="6,120.28,567.46,14.84,9.03" target="#b34">[36]</ref>. Despite these advancements, translating these insights and optimizations into a universal communication library applicable to the Graph500 benchmark remains a challenge.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Motivation and Overview 4.1 Motivation Example</head><p>As a motivation, we consider the construction time released in the latest Graph500 rankings <ref type="bibr" coords="6,427.47,630.23,10.44,9.03" target="#b7">[9]</ref>, as shown in Tables <ref type="table" coords="6,127.93,642.18,29.38,9.03" target="#tab_2">1 and 2</ref>. According to Graph500 specification <ref type="bibr" coords="6,317.62,642.18,10.45,9.03" target="#b7">[9]</ref>, the GTEPS is the ranking  <ref type="table" coords="7,327.71,394.16,3.41,9.03" target="#tab_1">1</ref>. Similarly, the top-ranked Wuhan Supercomputer and Pengcheng Cloudbrain-II <ref type="foot" coords="7,265.21,404.29,3.38,6.59" target="#foot_5">5</ref> respectively take milliseconds to process the SSSP kernel while consuming 16,285 seconds (equivalent to 4.52 hours) and 57,218 seconds (equivalent to 15.89 hours) to construct graphs before entering SSSP, as shown in Table <ref type="table" coords="7,402.37,430.03,3.41,9.03" target="#tab_2">2</ref>.</p><p>Although these systems win top-ranked throughout when processing graph operators, they wait up to tens of hours to ingress. It severely conflicts with the QoS according to Equation (2) and damages the experience of large-scale HPC systems. Breakdown. Figure <ref type="figure" coords="7,134.23,480.69,4.63,9.03" target="#fig_4">4</ref> illustrates communication and computation, including synchronization times per testing scale for Graph500 BFS. Communication time is split into the time of calling send/recv, allgatherv, and alltoallv. As the number of parallel nodes increases, communication overhead grows, while computation time decreases due to enhanced parallelism in graph processing. However, increased node counts can result in communication becoming a significant bottleneck in the overall program execution time. The total communication time, i.e., the accumulative time of send/recv, allgatherv, alltoallv and synchronization, can be up to 87% when running large-scale BFS on 65,536 computing nodes on the latest Tianhe supercomputer <ref type="bibr" coords="7,305.33,564.37,15.02,9.03" target="#b26">[28,</ref><ref type="bibr" coords="7,322.67,564.37,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="7,336.45,564.37,11.25,9.03" target="#b36">38]</ref>. The main reasons are that (i) current systems ignore communication hierarchies, resulting in expensive communication costs and (ii) there is substantial irregular memory access and prior solutions failing to leverage access coalesce.  For example, the intra-domain communication is about 0.1μs, but inter-domain communication is increased by almost 10 times for one layer. Thus, the communication cost between CPUs 1 and 2 is 0.1μs, between CPUs 1 and 3 is 1μs, and between CPUs 1 and 5 is 10μs. Given that one CPU can accept one graph vertex for computing, traditional methods are used to balance the workload for each domain, as shown in Figure <ref type="figure" coords="8,285.28,432.69,3.40,9.03" target="#fig_5">5</ref></p><formula xml:id="formula_0">(c): a → 1, b → 3, c → 5, d → 2.</formula><p>According to the communication costs mentioned above, the total communication cost is 1μs(a : b) + 10μs(a : c) + 1μs(b : d) = 12μs. This is a sub-optimal assignment. If we are aware of the hierarchical topology of the target HPC system, we can come up with a better solution, which is shown in Figure <ref type="figure" coords="8,116.35,480.52,10.68,9.03" target="#fig_5">5(d</ref></p><formula xml:id="formula_1">): a → 1, b → 3, c → 2, d → 4.</formula><p>To this end, the final communication cost is 1μs(a : b) + 0.1μs(a : c) + 0.1μs(b : d) = 1.2μs. By doing so, communication costs can be reduced by orders of magnitude. This is a motivation of GraphService to orchestrate data layout for expediting graph construction. Coalescing access. In addition to communication topology boosting graph construction, CSR transformation can also batch memory access to further advance graph construction. Many realworld and mimic graphs are sparse and exhibit a skewed distribution, where many vertices have the same degree <ref type="bibr" coords="8,114.55,567.03,14.84,9.03" target="#b23">[25]</ref>. However, CSR-like formats only differ zero values from non-zero elements and then record all non-zero entries of the matrix. Specifically, there is a key regarding the row index array, RST, when using CSR to store the adjacency matrix of a sorted graph. Vertices with the same edge degree have adjacent lists stored in a contiguous manner in the COL array. We further observe that identical-degree vertices constitute a large proportion of real-life graphs, implying that they take up most of the storage space. Figure <ref type="figure" coords="8,262.03,626.81,4.63,9.03" target="#fig_7">6</ref> shows how the vertices distribute in two real-world graphs, clueweb12 and twitter2010. Whereas clueweb12 owns 978,408,098 vertices and GraphService: Topology-aware Constructor for Large-scale Graph Applications 2:9 has a sparsity (i.e., non-zero degree vertices ratio) of 90.5%, twitter2010 owns 41,652,230 vertices and has a sparsity of 86.7%. In Figure <ref type="figure" coords="9,201.66,397.31,3.41,9.03" target="#fig_7">6</ref>, we show that accumulative 1-degree (i.e., in-degree and out-degree) vertices are up to 49.57% and 16.03% of the total vertices, respectively, for clueweb12 and twitter2010. Interestingly, the same-degree distribution does not vary significantly with the sparsity of the graph though the number of zeros decreases as the graph gets denser. More details of the vertices distribution can be referred to TianheGraph <ref type="bibr" coords="9,280.40,445.13,14.85,9.03" target="#b25">[27]</ref>. This gives us an extra dimension of motivation to develop GraphService for batching and coalescing memory accesses with memory reduction. Lessons learned. The experimental results demonstrate the limitations of current graph processing engines in constructing graphs although they give excellent throughput. It also highlights the need to build an ultra-fast constructor, including a communication hierarchy-aware partitioner and a space-time-efficient graph compression.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Preliminaries</head><p>Definition 4.1 (Computing Node (CN)). A computing node (CN), denoted as C, represents a kind of device in the exascale cluster that is responsible for message computing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Definition 4.2 (Routing Cell (RC)</head><p>). An RC, denoted as R, represents a kind of device in the largescale HPC systems that is responsible for transferring messages between CNs, which can be further classified into leaf RC and high-level RC. A leaf RC is the lowest level of RC, which is responsible for the lowest level of message communication for CNs. High-level RC is responsible for message communication among RCs.   In practice, the communication costs differ a lot among intra-and inter-domain communications. For example, the intra-domain communication cost can be 1 unit, <ref type="foot" coords="10,312.03,482.64,3.38,6.59" target="#foot_6">6</ref> i.e., cost intr a = 1 U, the interdomain communication cost between D 0 * and D 1 * can be 10 U. Given a graph G = (V , E) and a large-scale hierarchical system (i.e., Exa), we can split and distribute G into a total of s subgraphs P s (G). An ultra-fast constructor aims to orchestrate the P s (G)</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Definition 4.5 (Graph). A graph is denoted as</head><formula xml:id="formula_2">G = (V , E), where V is a set of vertices, v i ∈ V represents the i-th node, and N = |V | is the total number of vertices in G; E ⊆ V × V represents a set of edges, e i = (v j , v k ) ∈ E denotes a connection from v j to v k .</formula><p>GraphService: Topology-aware Constructor for Large-scale Graph Applications 2:11 into different CNs for graph operators ingressing for the best QoS by minimizing the construction time. It can be formulated as follows.</p><formula xml:id="formula_3">Θ(QoS) ≈ min τ д + τ c (3)</formula><p>Owing to τ д τ c <ref type="bibr" coords="11,133.68,122.84,15.01,9.03" target="#b27">[29,</ref><ref type="bibr" coords="11,151.59,122.84,11.46,9.03" target="#b38">40,</ref><ref type="bibr" coords="11,165.95,122.84,11.25,9.03" target="#b59">60]</ref>, the construction time (i.e., τ c ) is dominated by communication cost as shown in Figure <ref type="figure" coords="11,144.18,134.79,4.63,9.03" target="#fig_4">4</ref> so that Equation (4) can be approximated as follows.</p><p>min</p><formula xml:id="formula_4">N i=1 N j=1 ComCost(v i , v j ), subject to v i , v j ∈ Exa.CNs, (<label>4</label></formula><formula xml:id="formula_5">)</formula><p>where N is the total number of vertices in G and Exa.CNs refers to the set of CNs belonging to Exa. ComCost(v i , v j ) is the message communication cost between v i and v j , which are distributed into CNs equipped in the Exa.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Methodology</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Overview of GraphService</head><p>GraphService is designed to build an ultra-fast graph constructor before the kernel operators ingress for large-scale distributed graph-based applications. This is accomplished by orchestrating data layout based on a communication hierarchy-aware partitioner (Section 5.2), with the aim of minimizing communication latency. To further advance graph construction, a space-time-efficient graph compression is built in GraphService by grouping identical-degree vertices (Section 5.5), aiming to batch memory access along with memory reduction. Implementation. We implement GraphService as a library in around 10K lines of C/C++ code tailored for ARM and x86 architectures. It provides application programming interfaces (APIs) for common graph operations, including those evaluated in this work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Hierarchy-Aware Partitioner</head><p>Due to the significantly faster communication within lower-level domains compared with higherlevel ones, GraphService explicitly accounts for variations in communication latencies across different communication domains. It ensures that the graph's locality adapts to the hierarchical communication domains of target HPC systems. Our key idea is to assign high-degree vertices and their clustered vertices to the same communication domain. That is because there are frequent communications among high-degree vertices, and placing high-degree vertices within the same domain can significantly improve locality and advance performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Vertex Clustering</head><p>Like most graph partitioning methods <ref type="bibr" coords="11,200.15,519.49,15.00,9.03" target="#b10">[12,</ref><ref type="bibr" coords="11,217.03,519.49,11.46,9.03" target="#b17">19,</ref><ref type="bibr" coords="11,230.39,519.49,11.46,9.03" target="#b25">27,</ref><ref type="bibr" coords="11,243.75,519.49,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="11,257.10,519.49,11.26,9.03" target="#b72">73]</ref>, we begin by extracting the spatial locality of subgraphs from the input graph. This can be achieved by multiple methods, such as XTree <ref type="bibr" coords="11,423.03,531.46,14.82,9.03" target="#b27">[29]</ref>, core subgraph <ref type="bibr" coords="11,105.95,543.41,14.84,9.03" target="#b10">[12]</ref>, and vertex clustering. In this work, we opt for vertex clustering due to its low time and space complexity, but our partitioning algorithm (detailed in Section 5.4) can work with other methods as well. Vertex clustering is based on an observation that in real-world graphs, only a small number of vertices have a high number of edges. These high-degree vertices and their reachable neighbors will likely be frequently accessed together. Our method differs from previous works in that we strive to position vertices in the same cluster nearby within the communication domains, thereby minimizing communication overhead.</p><p>In the graph preprocessing phase, we sort graph vertices by edge degree and group them into a "vertex cluster" using Algorithm 1. Each cluster is centered around a designated "center vertex", 2:12 X. Gan v 0 , with members consisting of vertices reachable from v 0 within a given number of hops. The iterative clustering process starts by selecting the highest-degree unvisited vertex as v 0 and adding its unvisited neighbors to the C cluster. We then recursively add unvisited vertices at the next level to C until the distance threshold, h, is less than 1 (line 2). After generating clusters for a given v 0 , we repeat the process and move on to the next unvisited vertex with the highest edge degree. We continue until all vertices have been visited at least once, except for isolated ones with no neighbor.</p><p>We generate up to three clusters for each unvisited center vertex, v 0 , with distance thresholds of 1-hop, 2-hop, and 3-hop, though users can adjust this threshold. Each cluster contains vertices at a specific distance from v 0 , with smaller thresholds resulting in stronger vertex locality around v 0 . Because only a small fraction of vertices have a high edge degree and we only add unvisited vertices to a new cluster, we generate a small number of vertex clusters, typically less than 15.</p><p>Essentially, we use the distance threshold, h, to determine the proximity of adjacent vertices to the center vertex, v 0 . We start by considering vertices at a distance of 1 from v 0 , and form a neighboring cluster consisting of these vertices. We then consider vertices at a distance of 2 from v 0 to create a new cluster. We continue this process, forming clusters for vertices at increasing distances from v 0 until all vertices have been assigned to a cluster. Once we have formed the vertex clusters, we assign them to communication domains based on the center vertex's edge degree and the aggregated edge degree of the cluster by starting a cluster whose center vertex has the highest degree.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Topology-Aware Graph Partitioning</head><p>Algorithm 2 outlines partitioning and distributing graph vertices to computing nodes. The algorithm operates on a list of allocated computing nodes, denoted by N, which contains the node IDs. The distribution algorithm considers the locality of graph and communication differences across communication hierarchies.</p><p>Our partitioning algorithm (Algorithm 2) first builds a communication hierarchy for the target hierarchical systems, grouping computing nodes into communication domains according to the interconnection hierarchy of the target HPC systems and getting the total levels of communication hierarchy (lines 1-5). Next, we remove isolated vertices from the vertex list (V) that lack connections to other vertices, storing them in a separate list Ṽ. The remaining vertices in V are distributed among computing nodes using the Partitioning function (lines 9-12). The Partitioning function selects the vertex in V with the highest degree and utilizes the given vertex clusters (explained GraphService: Topology-aware Constructor for Large-scale Graph Applications 2:13   in Section 5.3) to group nearby vertices. Vertices within a vertex cluster C are assigned to computing nodes recursively to adapt to the target communication hierarchies. This method prioritizes node placement within the same communication domain or domains at the same level. To partition the graph based on vertex distance, we set a threshold, denoted as h (see Section 5.3). We then generate a list of h clusters,</p><formula xml:id="formula_6">C v = C 1 v , C 2 v , . . . , C h v ,</formula><p>where each cluster C i v corresponds to a distance of i (1 ≤ i ≤ h) from the highest-degree vertex v that has not been processed yet (lines 25-27). When distributing vertices in each cluster to computing nodes, GraphService recursively starts from the lowest available level of the communication hierarchy and moves to a higher level only if the current level's resources cannot hold all vertices in C.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.5">Topology-Aware Graph Compression</head><p>GraphService builds upon the classical CSR format but employs a folding method to group vertices with the same degree into a single starting offset in the RST array. GraphService will classify the initial RST array into two parts with a key parameter Thr, which is a threshold of vertex degree.  Vertices located before and after Thr will have specified indexing methods separately. While simple, this folding scheme is effective for graph processing by batching identical-degree vertices, thereby coalescing memory accesses and further enhancing graph construction speed in large-scale graphs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.6">GraphService Sparse Format</head><p>To facilitate GraphService, we tailor CSR to enhance large-scale graph storage, which introduces two additional arrays, RST_OFFSET and COL_OFFSET, and a hyperparameter, denoted as Thr. Thr is a threshold that determines whether a vertex is low degree and should be folded. Vertices in RST are classified into two parts by Thr; thus, only a small number of vertices with degrees exceeding Thr are stored and indexed similarly to standard CSR. Otherwise, vertices with degrees no more than Thr are expressed in RST_OFFSET and COL_OFFSET. The RST_OFFSET array stores the minimal IDs of vertices with edge degrees between 1 to Thr while the COL_OFFSET array stores the COL offset values with respect to the vertices in RST_OFFSET. In this way, the low-degree vertices can be traced through the RST_OFFSET and COL_OFFSET arrays. For high-degree vertices whose edge degrees are great than Thr, we store them in the standard CSR RST and COL arrays. Note that we opt not to compress high-degree vertices in GraphService. This decision stems from the observation that high-degree vertices are typically relatively rare in real-world graphs and are often accessed frequently during graph processing <ref type="bibr" coords="14,194.89,412.05,15.01,9.03" target="#b10">[12,</ref><ref type="bibr" coords="14,213.02,412.05,11.45,9.03" target="#b25">27,</ref><ref type="bibr" coords="14,227.59,412.05,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="14,242.17,412.05,11.46,9.03" target="#b38">40,</ref><ref type="bibr" coords="14,256.75,412.05,11.25,9.03" target="#b72">73]</ref>. Therefore, compressing them may incur additional runtime overhead, which could outweigh the benefits of compression.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.7">Graph Storage</head><p>We use Figure <ref type="figure" coords="14,109.12,459.86,4.63,9.03" target="#fig_15">7</ref> to illustrate how GraphService represents a graph adjacency matrix for the example given earlier in Figure <ref type="figure" coords="14,179.31,471.81,3.41,9.03" target="#fig_2">3</ref>. For illustration, we set the edge degree threshold parameter, Thr, to 2. This means that vertices with edge degrees greater than 2 are considered high-degree vertices and will be stored in standard CSR, whereas vertices with degrees equal to or less than 2 are considered low-degree vertices and will be stored in the RST_OFFSET and COL_OFFSET arrays by referring to COL.</p><p>Algorithm 3 outlines how GraphService encodes high-degree and low-degree vertices. Specifically, the RST_OFFSET array stores the minimal IDs of N -degree vertices for N ∈ [1,Thr ], with the edge degree ordered in an ascending manner. For example, in Figure <ref type="figure" coords="14,332.53,555.51,3.41,9.03" target="#fig_15">7</ref>, RST_OFFSET[0] records the minimal ID of vertices with degree = 1 among vertices with ID = 6 and ID = 7, storing only one vertex with ID = 6 for all 1-degree vertices. Similarly, RST_OFFSET <ref type="bibr" coords="14,329.26,579.71,14.93,8.05" target="#b0">[1]</ref> records the minimal ID of vertices with degree = 2 (i.e., degree = Thr) among vertices with ID = 4 and ID = 5, storing only one vertex with ID = 4 for all 2-degree vertices. For others in the RST_OFFSET array, the same rule applies. Correspondingly, COL_OFFSET[0] records the starting offset in COL for the vertex with minimal ID among 1-degree vertices (i.e., the vertex with ID = 6), whereas COL_OFFSET <ref type="bibr" coords="14,393.25,627.53,14.93,8.05" target="#b0">[1]</ref> records the starting offset in COL for the vertex with minimal ID among 2-degree vertices and, thus, a GraphService: Topology-aware Constructor for Large-scale Graph Applications 2:15 </p><formula xml:id="formula_7">1 for v c ∈ RST in parallel do 2 degree = RST [v c +1] -RST [v c ] 3 if 0 &lt; degree ≤ Thr then 4 if v c ≤ RST_OFFSET[deдree-1] then 5 RST_OFFSET[deдree-1]=v c 6 COL_OFFSET[deдree-1]=RST[v c ] 7</formula><p>successive adjacent vertex set {1, 2} for the vertex with ID = 4, and {0, 3} for the next 2-degree vertex with ID = 5, until all 2-degree vertices would be directly accessed without repeated calculations. In contrast, high-degree vertices with degrees greater than Thr are stored in a standard CSR. Overall, this approach optimizes the storage of low-degree vertices while still allowing highdegree vertices to be stored using the standard CSR approach. To this end, GraphService not only saves space but also enables batch memory access since it merely needs one entry for many identical-degree vertices that are continuously stored in a sorted graph.</p><p>6 Experimental Evaluation</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Experimental Workloads</head><p>Our main evaluation is performed on the BFS algorithm defined in the Graph500 benchmark <ref type="bibr" coords="15,428.09,543.24,10.43,9.03" target="#b7">[9]</ref>. Graph500 is the de facto standard for assessing a computer system's capability for graph processing <ref type="bibr" coords="15,62.67,567.15,15.00,9.03" target="#b25">[27,</ref><ref type="bibr" coords="15,81.32,567.15,11.46,9.03" target="#b37">39,</ref><ref type="bibr" coords="15,96.43,567.15,11.46,9.03" target="#b38">40,</ref><ref type="bibr" coords="15,111.54,567.15,11.45,9.03" target="#b45">47,</ref><ref type="bibr" coords="15,126.64,567.15,11.25,9.03" target="#b59">60]</ref>. It provides a graph generator to generate synthetic graphs that mimic real-world graph structures. This tool takes two parameters, a graph factor, and an edдe_f actor. Given a graph size m and an edдe_f actor n, it generates a graph (i.e., Kron −m) of 2 m vertices and n × 2 m edges. Unless stated otherwise, we use the Graph500 default edдe_f actor of 16. For our evaluation, we vary the graph factor between 26 and 41 to generate graphs of different scales for testing our approach on various hardware setups. Table <ref type="table" coords="15,271.46,626.93,4.63,9.03" target="#tab_3">3</ref> lists the synthetic graphs and real-world graphs used in our evaluation.</p><p>2:16 X. Gan In addition to the synthetic graph data generated by Graph500, we also evaluate GraphService on two public real-world graphs <ref type="bibr" coords="16,182.81,154.19,10.36,9.03" target="#b1">[2,</ref><ref type="bibr" coords="16,196.39,154.19,6.91,9.03" target="#b2">3]</ref>, including clueweb12 (with 987 million vertices and 42.6 billion edges) <ref type="bibr" coords="16,102.96,166.14,10.44,9.03" target="#b2">[3]</ref>, and twitter-2010 (with 41.7 million vertices and 1.47 billion edges) <ref type="bibr" coords="16,391.81,166.14,10.44,9.03" target="#b1">[2]</ref>. We also assess other graph processing operations on these datasets, including SSSP, PR, CC, BC, and TC.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Evaluation Platforms</head><p>To evaluate the portability of GraphService, we apply it to three cutting-edge systems with different CPU architectures using 512 nodes to 79,024 nodes. Table <ref type="table" coords="16,320.57,227.43,4.63,9.03" target="#tab_4">4</ref> lists the three HPC systems used in our testing and the maximum number of computing nodes. Each node on the WuzhenLight has two HG2 32-core CPUs at 2.5 GHz that are compatible with the AMD x64 instruction set. Each node on Tianhe-Exa has a Phytium 16-core CPU at 2.0 GHz. The last one is configured with a 512-node Intel Xeon CPU at 2.93 GHz. These three systems run a customized Linux operating system with Linux kernel v9.3.0. We use MPICH 10.2.0 for the MPI and libgomp 4.5 for OpenMP and compile the benchmark using GCC 10.2.0 with "-O3" as the compiler option.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">Competing Baselines</head><p>We compare GraphService to five representative graph partitioners: 2D decomposition <ref type="bibr" coords="16,422.84,336.53,14.83,9.03" target="#b27">[29]</ref>, LDG <ref type="bibr" coords="16,68.04,348.49,14.84,9.03" target="#b48">[50]</ref>, Par-METIS (the parallel version of METIS <ref type="bibr" coords="16,265.69,348.49,14.36,9.03" target="#b30">[32]</ref>), CLUGP <ref type="bibr" coords="16,324.12,348.49,15.00,9.03" target="#b32">[34,</ref><ref type="bibr" coords="16,342.32,348.49,11.26,9.03" target="#b70">71]</ref>, and TopoX <ref type="bibr" coords="16,409.10,348.49,16.36,9.03" target="#b69">[70]</ref> for validating the communication hierarchy-aware partitioner. Moreover, we compare GraphService to six state-of-the-art sparse storage formats: native CSR, DCSR <ref type="bibr" coords="16,344.59,372.40,14.85,9.03" target="#b9">[11]</ref>, COO (Coordinate list) <ref type="bibr" coords="16,64.43,384.35,15.00,9.03" target="#b15">[17,</ref><ref type="bibr" coords="16,82.76,384.35,11.46,9.03" target="#b35">37,</ref><ref type="bibr" coords="16,97.54,384.35,11.25,9.03" target="#b39">41]</ref>, CSCSR (Coarse index + Skip list) <ref type="bibr" coords="16,256.16,384.35,14.83,9.03" target="#b12">[14]</ref>, BCSR (Bitmap-based sparse matrix representation) <ref type="bibr" coords="16,96.75,396.31,14.84,9.03" target="#b60">[61]</ref>, and CSR5 <ref type="bibr" coords="16,158.71,396.31,14.84,9.03" target="#b39">[41]</ref>. We also compare GraphService against Gemini <ref type="bibr" coords="16,377.20,396.31,16.36,9.03" target="#b72">[73]</ref> and Graph-Scope <ref type="bibr" coords="16,73.24,408.27,14.84,9.03" target="#b17">[19]</ref>, two state-of-the-art graph processing engines, using the engineer-tuned algorithm implementations provided by these frameworks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4">Benchmarking Graph500</head><p>We deployed the full implementation of GraphService to benchmark Graph500 BFS and SSSP on Tianhe-Exa. In our experiments, we used 79,024 computing nodes (1,264,384 cores) for BFS and 8,192 nodes (131,072 cores) for SSSP. Our implementation and evaluation fully comply with the Graph500 specification.</p><p>The latest Graph500 ranking, published in November 2023, places Fugaku and Wuhan Supercomputer as the top performers for BFS and SSSP, respectively. However, GraphService on Tianhe-Exa successfully outperforms these top-ranking systems for both benchmarks with three orders of magnitude lower construction time, as listed in Table <ref type="table" coords="16,266.64,541.29,3.41,9.03" target="#tab_5">5</ref>. This notable improvement can be attributed to the communication hierarchy-aware partitioner and space-time-efficient graph compression techniques integrated into GraphService, which significantly enhances the performance of BFS and SSSP.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.5">Compare with Baseline Partitioners</head><p>Figure <ref type="figure" coords="16,73.33,614.52,4.63,9.03" target="#fig_16">8</ref> reports the time spent on constructing the graph. Generally, as the size of the graph and the number of computing nodes increases, the construction time also grows. However, we observe that GraphService has the lowest overhead compared with other baselines. In contrast, LDG, which GraphService: Topology-aware Constructor for Large-scale Graph Applications 2:17  Fig. <ref type="figure" coords="17,123.80,383.06,3.07,8.07">9</ref>. BFS throughput given by different partitioners (higher is better).</p><p>requires significant refactoring of the input graph, incurs 4, 971.83× longer construction time with the 4,096-node available on Tianhe-Exa than that of GraphService. Note that (i) ParMETIS is a general partitioner without taking the structure of the graph into account, resulting in poor performance in processing large-scale graphs. (ii) More importantly, communication time will become the main bottleneck of the graph processing but existing partitioners (such as ParMETIS) fail to exploit communication hierarchies at large scales, which suggests that developing a topology-aware GraphService is crucial to scale graph processing. Figure <ref type="figure" coords="17,84.92,492.24,4.63,9.03">9</ref> compares the throughput of GraphService to five graph partitioning methods. The experiment used up to 4,096 Tianhe-Exa nodes to execute BFS. Some methods led to a runtime error (marked as X). GraphService outperforms all baselines, particularly as the number of computing nodes increases. For instance, when processing a graph scale of 38 using 4,096 Tianhe-Exa nodes, GraphService delivers 33,490.17 GTEPS, 9.7× and 28.7× improvements over TopoX and CLUGP, respectively. We also obtain similar results on SSSP, PR, CC, and CDLP, where GraphService respectively gives 27.2×, 29.1×, 25.6×, and 19.7× throughput improvements over the bestperforming baseline when using 4,096 Tianhe-Exa nodes. This is because GraphService significantly enhances graph distribution, making subsequent communication during graph computation more regular and expediting graph tasks. Note that, while GraphService is motivated by Fat-tree, the underlying methodologies of our work have been generalized across different interconnect topologies, such as 3-D Torus, and Dragonfly. Both are respectively equipped in WuzhenLight and Intel Cluster, and evaluated using GraphService.  × 100%, M(X) represents the memory cost of format X (i.e., CSR or GraphService).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.6">Tuning Thr for Graph Compression</head><p>In this subsection, we will take the real-world graphs, including clubweb12 and twitter2010, to examine the impact of the hyperparameter Thr on the performance of GraphService. In addition, by digging deeper, we demonstrate how to further fine-tune the Thr for fast graph The selection policy for Thr should be highly based on the graph's vertex distribution. As we show in Figure <ref type="figure" coords="18,107.28,358.97,3.41,9.03" target="#fig_7">6</ref>, low-degree vertices account for a high fraction in the real-world graphs, whereas DCSR-mentioned hypersparse graphs are uncommon. Thus, our insight is to make Thr cover most of the low-degree vertices. For example, vertices with deдree ∈ <ref type="bibr" coords="18,306.39,382.60,10.35,9.38" target="#b0">[1,</ref><ref type="bibr" coords="18,318.40,382.88,7.95,9.03" target="#b7">9]</ref> hold more than 78% for the provided real-world graphs (see Figure <ref type="figure" coords="18,203.73,394.84,3.27,9.03" target="#fig_7">6</ref>). We highly recommend users set up their own Thr range and evaluate the sensibility of Thr across different scales of graphs according to the graph degrees' distribution as shown in Figure <ref type="figure" coords="18,175.34,418.74,7.64,9.03" target="#fig_18">10</ref>.</p><p>We evaluate the GraphService's performance by carefully tuning the Thr ∈ {10, 15, 20, 25}. We also list the results of Thr ≤ 9 (see Figure <ref type="figure" coords="18,217.64,442.65,18.85,9.03" target="#fig_18">10(a)</ref>) to prove that based on the degree distribution in Figure <ref type="figure" coords="18,73.84,454.61,3.41,9.03" target="#fig_7">6</ref>, every increase in Thr brings obvious benefits, and the overall yield is linear. On the other hand, Figure <ref type="figure" coords="18,98.61,466.57,20.24,9.03" target="#fig_18">10(b)</ref> shows that when Thr &gt; 9, further changes in Thr have little effect on its performance with the same graph. The largest performance gap would be around 5% when we conduct different Thr on clueweb12 and twitter2010. So far, we may draw the following conclusions.</p><p>(i) Majorities of the graphs have a large scale of N-degree vertices, such that N ≤ 10. In this case, Thr = 9 gains significant benefits. It is strongly recommended that, prior to the meticulous adjustment of the Thr, researchers should refer to the graph's degree distribution. (ii) Although a larger Thr may give a better GraphService performance, GraphService is overall Thr-oblivious when Thr &gt; 10.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.7">Preprocessing Overhead</head><p>Owing to requiring a sorted graph as input, GraphService includes a built-in sorting module configured to accommodate various types of input graphs without the need for manual sorting beforehand. Next, GraphService performs a further reindexing of each vertex by incorporating the RST and COL array, which incurs preprocessing overhead. This preprocessing is a one-off cost and employed by many famous graph systems <ref type="bibr" coords="18,232.88,638.57,15.00,9.03" target="#b14">[16,</ref><ref type="bibr" coords="18,249.82,638.57,11.46,9.03" target="#b16">18,</ref><ref type="bibr" coords="18,263.23,638.57,11.46,9.03" target="#b17">19,</ref><ref type="bibr" coords="18,276.64,638.57,11.46,9.03" target="#b25">27,</ref><ref type="bibr" coords="18,290.06,638.57,11.46,9.03" target="#b27">29,</ref><ref type="bibr" coords="18,303.47,638.57,11.46,9.03" target="#b28">30,</ref><ref type="bibr" coords="18,316.89,638.57,11.45,9.03" target="#b38">40,</ref><ref type="bibr" coords="18,330.30,638.57,11.25,9.03" target="#b72">73]</ref>. Experiments show that the overhead of GraphService preprocessing will get slightly higher but still acceptable when the graph gets bigger (2.07 s while scaling to 512 nodes). We have noticed that many great works of vertex sorting in graph-parallel processing systems have been provided, such as <ref type="bibr" coords="19,371.29,309.13,15.00,9.03" target="#b13">[15,</ref><ref type="bibr" coords="19,388.65,309.13,11.45,9.03" target="#b17">19,</ref><ref type="bibr" coords="19,402.47,309.13,11.46,9.03" target="#b25">27,</ref><ref type="bibr" coords="19,416.28,309.13,11.46,9.03" target="#b28">30,</ref><ref type="bibr" coords="19,430.11,309.13,11.45,9.03" target="#b38">40,</ref><ref type="bibr" coords="19,45.95,321.09,11.46,9.03" target="#b63">64,</ref><ref type="bibr" coords="19,59.95,321.09,11.25,9.03" target="#b72">73]</ref>. GraphService is developed for better servicing graph applications and can be integrated seamlessly with existing graph preprocessing approaches, potentially gaining additional benefits from them.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.8">Compare with Other Sparse Storage Formats</head><p>Figure <ref type="figure" coords="19,75.49,382.94,7.86,9.03" target="#fig_10">11</ref>(a) reports the memory footprint comparison across different sparse formats for BFS. GraphService outperforms all the other CSR-like formats, saving more than 90% memory space over most of the CSRs, especially up to 99.8% of space against the CSCSR. We also evaluate GraphService on a real-world social graph clueweb12 <ref type="bibr" coords="19,360.09,418.80,11.71,9.03" target="#b2">[3]</ref> and report both the memory usage and runtime of BFS in Figure <ref type="figure" coords="19,248.74,430.76,7.64,9.03" target="#fig_10">11</ref>. Figure <ref type="figure" coords="19,292.15,430.76,19.65,9.03" target="#fig_19">11(a)</ref> shows that GraphService has the smallest memory cost over other storage formats (saving average memory). In Figure <ref type="figure" coords="19,419.14,442.72,18.69,9.03" target="#fig_19">11(b)</ref>, GraphService also shows the fastest runtime against others (yielding average runtime speedup).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.9">Scalability</head><p>In this section, we evaluate the scalability of GraphService by applying it to BFS running with different numbers of nodes on Tianhe-Exa <ref type="bibr" coords="19,216.92,504.56,14.85,9.03" target="#b71">[72]</ref>, WuzhenLight [4], and Intel cluster listed in Table <ref type="table" coords="19,435.18,504.56,3.41,9.03" target="#tab_4">4</ref>. Figure <ref type="figure" coords="19,74.85,516.52,9.27,9.03" target="#fig_20">12</ref> reports how the normalized GTEPS changes as we increase the number of computing nodes, with one single node serving as the normalization baseline. We observe a consistent increase in GTEPS for GraphService as the number of computing nodes increases, suggesting that GraphService-based BFS exhibits good scalability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.10">GraphService for Real-World Graphs</head><p>We conduct experiments with GraphService on large real-world graphs using 64 Tianhe-Exa nodes across four communication domains. Figure <ref type="figure" coords="19,254.32,602.29,9.27,9.03" target="#fig_21">13</ref> compares GraphService with Gemini and GraphScope, both of which offer engineer-optimized implementations for the test algorithms. Gemini could not execute some test cases (marked as X) and does not support CDLP. GraphService's partitioning approach leads to shorter preprocessing times than Gemini and GraphScope, 2:20 X. Gan  which need graph repartitioning for load balancing <ref type="bibr" coords="20,259.76,529.21,15.01,9.03" target="#b17">[19,</ref><ref type="bibr" coords="20,277.73,529.21,11.26,9.03" target="#b72">73]</ref>. GraphService consistently outperforms Gemini and GraphScope in all test cases during the graph computation stage, achieving a speedup of up to 18.92× over GraphScope.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion and Future Work</head><p>We have presented GraphService, a groundbreaking framework tailored for constructing largescale graph applications. GraphService revolutionizes performance by innovating hierarchical communication topologies and strategically grouping vertices based on identical degrees within the graph structure. This approach positions GraphService as the leading solution and significantly reduces construction time before graph algorithm execution.</p><p>Extensive evaluations affirm that GraphService consistently surpasses baseline methodologies, delivering unparalleled graph processing throughput. Moreover, it achieves a remarkable reduction in graph construction time by an astounding factor of 4,971.83, thus setting a new standard for efficiency in graph application development. Looking ahead, GraphService promises to redefine the landscape of graph computing. Future iterations will focus on enhancing scalability, integrating advanced optimization techniques, and expanding compatibility with diverse graph structures. By continuing to push the boundaries of performance and usability, GraphService is poised to empower developers and researchers alike with unprecedented capabilities in managing and analyzing large-scale graphs.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,116.58,246.66,252.90,8.07"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. A hierarchical communication topology with 3-level domains.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="5,92.89,355.66,300.63,8.08"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. CSR representation (c) of the graph adjacency matrix (b) for a graph G (a).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="8,137.37,323.66,211.31,8.07"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. BFS communication and computation breakdown.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="9,144.32,358.66,197.75,8.07"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Balance-aware vs. hierarchy-aware placement.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="10,45.77,279.67,394.53,8.07;10,45.77,290.62,136.41,8.07"><head>Fig. 6 .</head><label>6</label><figDesc>Fig.6. Degree cumulative distribution of clueweb12 and twitter-2010, such that graph-in/out represents the in-degree or out-degree of the graph.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,55.74,314.11,384.56,9.08;10,45.77,325.26,394.52,9.96;10,45.77,338.02,394.53,9.08;10,45.40,350.03,394.91,9.03;10,45.77,361.98,394.51,9.03;10,45.77,373.89,39.85,9.08;10,86.17,372.11,3.38,6.59;10,86.07,378.90,3.38,6.59;10,93.31,373.08,19.94,9.96;10,113.70,372.11,3.38,6.59;10,113.64,378.90,3.38,6.59;10,117.48,373.08,199.58,9.88;10,317.50,372.11,3.38,6.59;10,317.45,378.90,3.38,6.59;10,321.38,373.94,118.91,9.03;10,45.48,385.89,395.92,9.03;10,45.68,397.80,6.65,9.08;10,52.87,396.02,3.38,6.59;10,52.77,402.74,3.38,6.59;10,59.51,396.99,19.44,9.96;10,79.40,396.02,3.38,6.59;10,79.34,402.74,3.38,6.59;10,83.18,396.99,315.93,9.88;10,399.56,396.02,3.38,6.59;10,399.50,402.74,3.38,6.59;10,403.43,397.85,2.19,9.03;10,55.74,415.15,384.56,9.08;10,45.77,427.01,153.48,9.96;10,200.09,426.00,18.26,6.63;10,222.14,427.01,6.34,9.96;10,239.26,425.45,4.09,6.63;10,239.29,432.89,12.51,6.63;10,253.50,427.82,15.47,9.08;10,269.81,426.00,17.28,6.63;10,269.22,433.44,3.77,6.63;10,288.56,427.82,49.01,9.08;10,338.41,426.00,18.26,6.63;10,360.82,427.87,79.46,9.03;10,45.77,441.46,101.62,9.08;10,148.23,439.65,17.28,6.63;10,147.64,447.09,3.77,6.63;10,169.27,441.46,240.29,9.08;10,410.00,439.65,12.51,6.63;10,410.00,445.56,3.43,6.85;10,425.30,441.51,15.00,9.03;10,45.68,455.11,6.65,9.08;10,52.76,453.29,3.77,6.63;10,52.77,459.20,3.43,6.85;10,57.75,455.11,244.16,9.08"><head>Definition 4. 3 (</head><label>3</label><figDesc>Communication Domain).A communication domain, D, is a set of CNs that are attached to the same RC, which can be represented as D = {R, C1, C2, • • • , Cn}, where n is the total number of computing nodes in D, and R is the routing node that all the CNs are connected with. Similar to RC, the communication domain can also be further classified into leaf domain and high-level domain. A leaf domain is a set of CNs attached to a leaf RC. For example, in Figure2, leaf domain D 0 0 = R 0 0 , C1, C2, C3 because C1, C2, C3 are attached to R 0 0 , of which the parent domain (i.e., high-level domain) includes a set of CNs attached to the same high-level RC. For example, D 1 0 = R 1 0 , C1, C2, C3, C4, C5, C6 since all the CNs within this domain are attached to R 1 0 . Definition 4.4 (Communication Cost). The communication cost between two CNs, Ci and Cj, can be defined as ComCost(Ci, Cj) = cost intr a + h k=1 cost inter k , where cost intr a is the intra-domain communication cost, cost inter k is the inter-domain communication cost between domain D k−1 * and D k * , and h is the lowest domain level that Ci and Cj are both in.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="10,55.74,554.20,384.55,10.73;10,46.03,566.73,14.97,10.15;10,61.39,566.15,14.78,10.73;10,76.56,566.15,363.73,10.73;10,49.32,576.28,2.91,6.63;10,45.67,593.24,10.91,6.63;10,58.24,583.30,9.37,10.07;10,68.94,582.65,56.52,9.96;10,131.78,576.28,2.91,6.63;10,128.12,593.24,10.91,6.63;10,140.70,583.30,9.37,10.07;10,151.40,582.65,10.54,9.56"><head>Definition 4. 6 (</head><label>6</label><figDesc>Graph Partitioning). An s-cut graph partition of graph G can be defined as P s (G) = {G 1 , G 2 , . . . , G s }, where s is the total number of graph partitions, G i is the i-th subgraph, G.V = s i=1 G i .V , and G.E = s i=1 G i .E.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="12,45.44,79.03,197.72,8.12;12,56.73,92.17,166.52,7.26;12,56.73,102.11,172.47,8.05;12,48.91,115.52,106.64,8.02;12,48.91,127.14,2.84,5.01;12,72.07,124.83,50.93,7.91;12,48.91,137.10,2.84,5.01;12,87.42,135.42,29.56,7.28;12,48.91,148.06,2.84,5.01;12,72.07,146.44,13.28,7.22;12,48.91,159.01,2.84,5.01;12,72.07,157.17,70.36,8.21;12,48.91,168.98,2.84,5.01;12,87.42,167.13,49.99,8.22;12,48.91,179.94,2.84,5.01;12,87.10,177.64,56.73,8.67;12,48.91,190.89,2.84,5.01;12,72.07,189.28,13.28,7.22;12,48.91,201.85,2.84,5.01;12,72.07,200.01,102.24,8.21;12,46.06,211.82,5.69,5.01;12,87.42,209.98,70.62,7.51;12,46.06,222.78,5.69,5.01;12,72.07,221.16,13.28,7.22;12,46.06,233.73,5.69,5.01;12,72.07,232.05,27.38,7.28;12,46.06,243.08,23.95,7.22"><head>ALGORITHM 1 : 1 Function</head><label>11</label><figDesc>Graph Vertex Clustering AlgorithmInput: vertex s and clustering distance threshold hOutput: C: a neighboring graph vertex cluster for v 0 Clustering(v 0 , h)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="13,45.61,79.03,279.11,8.12;13,56.91,92.12,290.46,7.37;13,56.51,102.41,199.25,6.44;13,49.08,113.14,372.54,7.22;13,61.88,123.10,141.09,7.22;13,49.08,133.02,73.30,7.26;13,49.08,144.01,24.18,7.22;13,49.08,154.75,60.08,7.51;13,49.08,166.84,2.84,5.01;13,72.25,163.36,295.07,9.16;13,49.08,177.81,2.84,5.01;13,72.25,176.19,16.98,7.22;13,49.08,187.14,21.11,7.22;13,49.08,196.56,121.66,8.81;13,49.08,209.11,104.99,7.22;13,46.23,219.84,81.22,7.51;13,71.85,230.27,139.48,6.44;13,46.23,242.61,5.69,5.01;13,71.94,240.30,64.20,7.97;13,46.23,253.57,5.69,5.01;13,72.25,251.95,54.09,7.22;13,46.23,262.90,23.96,7.22;13,46.23,273.83,127.17,7.26;13,46.23,285.45,5.69,5.01;13,72.25,283.77,20.29,8.05;13,46.23,296.40,5.69,5.01;13,72.25,294.10,86.84,7.97;13,87.19,304.99,91.66,6.44"><head>ALGORITHM 2 : 8 9 14 Function 15 C</head><label>281415</label><figDesc>Communication Hierarchy-Aware Partitioning AlgorithmInput: Sorted vertex list, V , a list of computing nodes, N, clustering distance threshold, h // Build communication tree and return tree height 1 Organize computing nodes into communication tree with hierarchical communication domains according to the communication topology of target systems; 2 H← hier ar chy(N) 3 i = H 4 while i ≥ 0 do 5 grouping the communication domains as D (H −i ) from bottom to up according to Figure2; Move isolated vertices from V to Ṽ Set all vertices to be unvisited 10 while !empty(V ) do // Remove the highest degree vertex11 v ← V .dequeue() Partitioning(vertex v) v =[]16for (i = 1; i ≤ h; i + +) do // Calling Algorithm 1.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="13,46.23,317.32,5.69,5.01"><head>17</head><label>17</label><figDesc></figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="13,87.59,315.48,77.58,8.21;13,46.23,328.29,5.69,5.01;13,72.25,326.67,13.28,7.22;13,46.23,339.24,5.69,5.01;13,72.25,337.40,75.08,8.21;13,46.23,349.20,5.69,5.01;13,87.47,346.90,18.28,7.97;13,46.23,360.16,5.69,5.01;13,87.59,358.32,55.39,7.51;13,46.23,370.13,5.69,5.01;13,102.93,368.29,61.71,8.21;13,102.54,379.71,243.08,6.44;13,46.23,392.33,5.69,5.01;13,102.93,388.84,187.47,9.86;13,46.23,403.29,5.69,5.01;13,87.59,401.68,13.28,7.22;13,46.23,414.25,5.69,5.01;13,87.59,411.95,202.00,7.97;13,46.23,425.21,5.69,5.01;13,87.59,421.89,193.51,8.92;13,46.23,436.17,5.69,5.01;13,72.25,434.55,13.28,7.22;13,46.23,445.51,23.96,7.22"><head>C v ← Clustering(v, i) 18 end 19 while !empty(C v ) do 20 i = 0; 21 while i ≤ H do 22 C 24 end 25 C</head><label>18192021222425</label><figDesc>max ← max(C v ) // Recursively distribute vertices to the communication tree.23 share C max among nodes attached to D (i ) evenly; i=i+1; ← remaining reachable vertices from v with a distance &gt; h 26 distribute vertices in C into all nodes attached to D 0 evenly</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="14,72.74,184.66,340.59,8.07"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Using GraphService (Thr = 2) to represent the graph adjacency matrix of Figure 3(b).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16" coords="17,126.99,286.20,232.42,8.08"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Construction time before BFS ingress (lower is better).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18" coords="18,45.77,261.67,394.52,8.08;18,47.70,270.81,82.21,6.85;18,75.44,279.18,26.40,6.85"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Sensibility of Thr in graph clueweb12 and twitter2010, in which saving space = |M (CSR)−M (SuperCS R)| M (CSR)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19" coords="19,45.95,253.67,394.54,8.07;19,45.95,264.62,55.49,8.07"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. The memory and construction time of GraphService against other sparse formats when running BFS on graphs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_20" coords="20,131.72,256.66,222.67,8.07"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. GraphService's scalability on various HPC systems.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_21" coords="20,45.77,498.14,394.53,8.07;20,45.53,509.10,43.47,8.07"><head>Fig. 13 .</head><label>13</label><figDesc>Fig.<ref type="bibr" coords="20,63.52,498.14,6.87,8.07" target="#b11">13</ref>. Performance comparison on real-world graph and typical graph operators using 64-node on Tianhe-Exa.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="7,107.83,75.71,273.26,96.99"><head>Table 1 .</head><label>1</label><figDesc>The Latest Graph500 BFS Top-Ranked Supercomputer with Construction Time C_Time (/second) and the Processing Time of Kernel Graph Algorithm (/second)</figDesc><table coords="7,107.83,115.45,273.26,57.25"><row><cell>#Rank</cell><cell>System</cell><cell cols="3">GTEPS (#Scale) C_Time BFS_time</cell></row><row><cell>1</cell><cell>Supercomputer Fugaku</cell><cell>138,867 (42)</cell><cell>2,388.66</cell><cell>1.9</cell></row><row><cell>2</cell><cell>Wuhan Supercomputer</cell><cell>115,357.6 (41)</cell><cell>16,284.8</cell><cell>3.3</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="7,45.45,190.82,396.70,212.37"><head>Table 2 .</head><label>2</label><figDesc>The Latest Graph500 SSSP Top-Ranked Supercomputer with Construction Time C_Time (/second) and the Processing Time of Kernel Graph Algorithm (/second)</figDesc><table coords="7,107.15,230.56,274.60,57.24"><row><cell>#Rank</cell><cell>System</cell><cell cols="3">GTEPS (#Scale) C_Time SSSP_time</cell></row><row><cell>1</cell><cell>Wuhan Supercomputer</cell><cell>15,335.9 (41)</cell><cell>16285</cell><cell>0.436</cell></row><row><cell>2</cell><cell>Pengcheng Cloudbrain-II</cell><cell>11,529.7 (40)</cell><cell>57218</cell><cell>0.655</cell></row></table><note>metric for Graph500, where #scale means the inputting graph has 2 #scale vertices and 16 × 2 #scale edges. The processing time of kernel graph algorithms can be estimated as BFS/SSSP_time = GT EPS/ 16 * 2 #scale since the total traversed edges in practice are very close to the edges of the input graph<ref type="bibr" coords="7,96.41,343.51,10.37,9.03" target="#b7">[9,</ref><ref type="bibr" coords="7,109.27,343.51,11.46,9.03" target="#b25">27,</ref><ref type="bibr" coords="7,123.22,343.51,11.25,9.03" target="#b27">29]</ref>. Graph construction issues. It is evident that even the supercomputers Fugaku and Wuhan Supercomputer 4 achieve top-ranked performance, completing the BFS kernel in 1.9/3.3 seconds, yet they consume 2,388.66 seconds (approximately 40 minutes)<ref type="bibr" coords="7,288.96,382.21,10.35,9.03" target="#b0">[1,</ref><ref type="bibr" coords="7,301.88,382.21,6.83,9.03" target="#b7">9,</ref><ref type="bibr" coords="7,311.26,382.21,12.81,9.03" target="#b43">45]</ref> and 16,284.8 seconds (equivalent to 4.52 hours)<ref type="bibr" coords="7,129.41,394.16,10.44,9.03" target="#b0">[1]</ref>, respectively, for BFS ingress listed in Table</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="15,45.61,75.71,311.70,227.84"><head>Table 3 .</head><label>3</label><figDesc>Synthetic/Real Graph Data Used in Our Evaluation</figDesc><table coords="15,45.61,93.46,311.70,210.09"><row><cell cols="5">G. Scale Real-life graphs Edge factor #Vertices #Edges #Comp. Nodes</cell></row><row><cell>Kron-26</cell><cell>16</cell><cell>64 M</cell><cell>1 B</cell><cell>1</cell></row><row><cell>Kron-28</cell><cell>16</cell><cell>256 M</cell><cell>4 B</cell><cell>4</cell></row><row><cell>Kron-30</cell><cell>16</cell><cell>1 B</cell><cell>16 B</cell><cell>16</cell></row><row><cell>Kron-32</cell><cell>16</cell><cell>4 B</cell><cell>64 B</cell><cell>64</cell></row><row><cell>Kron-34</cell><cell>16</cell><cell>16 B</cell><cell>256 B</cell><cell>256</cell></row><row><cell>Kron-36</cell><cell>16</cell><cell>64 B</cell><cell>1 Tri</cell><cell>1,024</cell></row><row><cell>Kron-37</cell><cell>16</cell><cell>128 B</cell><cell>2 Tri</cell><cell>2,048</cell></row><row><cell>Kron-38</cell><cell>16</cell><cell>256 B</cell><cell>4 Tri</cell><cell>4,096</cell></row><row><cell>Kron-41</cell><cell>16</cell><cell>2 Tri</cell><cell>32 Tri</cell><cell>79,024</cell></row><row><cell></cell><cell>clueweb12 [3]</cell><cell>987 M</cell><cell>42.6 B</cell><cell>16</cell></row><row><cell></cell><cell>twitter2010 [2]</cell><cell>4.2 M</cell><cell>1.5 B</cell><cell>16</cell></row><row><cell></cell><cell>USA road [5]</cell><cell>23.9 M</cell><cell>58.8 M</cell><cell>16</cell></row><row><cell cols="3">ALGORITHM 3: GraphService Constructing Algorithm</cell><cell></cell><cell></cell></row><row><cell>Input: RST of standard CSR</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="2">Thr // threshold of vertex degree</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Output: RST_OFFSET</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>COL_OFFSET</cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="16,56.15,75.71,377.98,48.61"><head>Table 4 .</head><label>4</label><figDesc>Hardware Systems Used in Our Evaluation</figDesc><table coords="16,56.15,92.88,377.98,31.45"><row><cell>System</cell><cell>Max. #nodes used</cell><cell>CPU</cell><cell cols="2">RAM per node Top-level bandwidth</cell></row><row><cell>Tianhe-Exa</cell><cell>79,024</cell><cell>16-core FT-2000 ARMv8 CPU @ 2.2 GHz</cell><cell>16 G</cell><cell>200 Gbps</cell></row><row><cell>WuzhenLight</cell><cell>1,024</cell><cell>64-core HG2 7285H (AMD x86 ISA) CPU @ 2.5 GHz</cell><cell>256 G</cell><cell>100 Gbps</cell></row><row><cell>Intel Cluster</cell><cell>512</cell><cell>12-core Intel Xeon CPU @ 2.93 GHz</cell><cell>64 G</cell><cell>160 Gbps</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="17,122.86,75.71,243.21,110.36"><head>Table 5 .</head><label>5</label><figDesc>The Latest Graph500 BFS/SSSP Ranking with Construction Time -C_Time (/second)</figDesc><table coords="17,122.86,104.49,243.21,81.58"><row><cell cols="2">#Rank BFS/SSSP</cell><cell>System</cell><cell cols="2">GTEPS C_Time</cell></row><row><cell>1</cell><cell>BFS</cell><cell>Supercomputer Fugaku</cell><cell cols="2">138,867 2,388.66</cell></row><row><cell>−</cell><cell>BFS</cell><cell>Tianhe-Exa</cell><cell>162,494</cell><cell>22.61</cell></row><row><cell>1</cell><cell>SSSP</cell><cell>Wuhan Supercomputer</cell><cell cols="2">15,335.9 16,285</cell></row><row><cell>−</cell><cell>SSSP</cell><cell>Tianhe-Exa</cell><cell>23,021</cell><cell>13.37</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 2. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_1">Where most vertices of a real-life graph are low-degree vertices with only a small number of edges connected to them<ref type="bibr" coords="3,425.61,630.17,11.88,7.22" target="#b27">[29]</ref>.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_2">Code available at https://anonymous.4open.science/r/GraphCSR-450E/README.md</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_3">This is also known as a small-world model, in which most vertices of a real-life graph are low-degree vertices with only a small number of edges connected to very few high-degree vertices<ref type="bibr" coords="5,269.60,639.23,11.99,7.22" target="#b14">[16,</ref><ref type="bibr" coords="5,283.58,639.23,9.00,7.22" target="#b25">27]</ref>. ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 2. Publication date: March 2025.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_4">The Fugaku and Wuhan Supercomputer are the top 2 in the latest Graph500 list in BFS ranking<ref type="bibr" coords="7,360.48,629.13,8.35,7.22" target="#b7">[9]</ref>.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_5">The Wuhan Supercomputer and Pengcheng Cloudbrain-II are the top 2 in the latest Graph500 list in SSSP ranking<ref type="bibr" coords="7,421.77,639.10,8.37,7.22" target="#b7">[9]</ref>.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_6">A U may be one microsecond, millisecond, or second depending on the target system. ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 2. Publication date: March 2025.</note>
+		</body>
+		<back>
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This work was supported in part by the National Natural Science Foundation of China (grant nos. 62372455, 62272476, 62032023, 42104078, and 6190241), the PDL Innovation Research Fund (grant no. 2023-JKWPDL-09), and China's National Key Research and Development Program (grant no. 2023YFB3001903).</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="21,63.02,206.14,173.56,7.22" xml:id="b0">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Graph500</surname></persName>
+		</author>
+		<ptr target="https://graph500.org/" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,216.10,370.42,7.22" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Laboratory for Web Algorithmics. 2022. twitter-2020</title>
+		<ptr target="https://law.di.unimi.it/webdata/twitter-2010/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,226.06,332.57,7.22;21,49.65,236.02,255.86,7.22" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">The Lemur Project. The ClueWeb12 Dataset</title>
+		<ptr target="https://www.laitimes.com/en/article/85ga_86m5.html" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,245.98,378.00,7.22;21,63.02,255.95,52.14,7.22" xml:id="b3">
+	<monogr>
+		<ptr target="http://www.diag.uniroma1.it//challenge9/download.shtml" />
+		<title level="m">DIMACS. 2010. 9th DIMACS Implementation Challenge -Shortest Paths</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,265.91,378.78,7.22;21,63.02,275.83,244.32,7.26" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Streaming graph partitioning: An experimental study</title>
+		<author>
+			<persName coords=""><forename type="first">Zainab</forename><surname>Abbas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vasiliki</forename><surname>Kalavri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paris</forename><surname>Carbone</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vladimir</forename><surname>Vlassov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the VLDB Endowment</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="1590" to="1603" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,285.83,377.44,7.22;21,63.02,295.76,377.45,7.26;21,63.02,305.72,49.98,7.26" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">PageRank computation and the structure of the web: Experiments and algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">Arvind</forename><surname>Arasu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jasmine</forename><surname>Novak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Tomkins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Tomlin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 11th International World Wide Web Conference, Poster Track</title>
+				<meeting>the 11th International World Wide Web Conference, Poster Track</meeting>
+		<imprint>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="107" to="117" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,315.72,377.61,7.22;21,62.64,325.64,318.26,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">A graph-structured dataset for Wikipedia research</title>
+		<author>
+			<persName coords=""><forename type="first">Nicolas</forename><surname>Aspert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Volodymyr</forename><surname>Miz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benjamin</forename><surname>Ricaud</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pierre</forename><surname>Vandergheynst</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Companion Proceedings of the 2019 World Wide Web Conference</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1188" to="1193" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,335.65,377.84,7.22;21,63.02,345.61,25.41,7.22" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Graph500 benchmark BFS. 2023. The Graph 500 List</title>
+		<ptr target="https://graph500.org/?page_id=1240" />
+		<imprint>
+			<date>November 3</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,355.57,378.33,7.22;21,63.02,365.54,378.76,7.22;21,63.02,375.46,371.24,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Design and implementation of a onesided communication interface for the IBM eServer blue gene</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Blocksome</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Archer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Inglett</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Mccarthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Mundy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ratterman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Sidelnik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Almási</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Castanos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Lieber</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Moreira</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Tipparaju</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Nieplocha</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM/IEEE SC 2006 Conference (SC&apos;06</title>
+				<imprint>
+			<date type="published" when="2006">2006. 2006</date>
+			<biblScope unit="page" from="54" to="54" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,385.42,377.46,7.26;21,63.02,395.38,241.87,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">On the representation and multiplication of hypersparse matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Aydin</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">R</forename><surname>Gilbert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2008 IEEE International Symposium on Parallel and Distributed Processing</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,405.39,377.42,7.22;21,63.02,415.31,377.45,7.26;21,63.02,425.27,182.83,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Scaling graph traversal to 281 trillion edges with 40 million cores</title>
+		<author>
+			<persName coords=""><forename type="first">Huanqi</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuanwei</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haojie</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Heng</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zixuan</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wanwang</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenguang</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="234" to="245" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,435.27,378.79,7.22;21,63.02,445.20,143.39,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">A graph-based QoS prediction approach for web service recommendation</title>
+		<author>
+			<persName coords=""><forename type="first">Zhenhua</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ding</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Youhao</forename><surname>Xia</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Applied Intelligence</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="15" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,455.20,377.44,7.22;21,63.02,465.12,361.38,7.26" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Traversing trillions of edges in real time: Graph exploration on large-scale parallel machines</title>
+		<author>
+			<persName coords=""><forename type="first">Fabio</forename><surname>Checconi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabrizio</forename><surname>Petrini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2014 IEEE 28th International Parallel and Distributed Processing Symposium</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="425" to="434" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,475.12,377.45,7.22;21,63.02,485.04,205.20,7.26" xml:id="b13">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Chen</surname></persName>
+		</author>
+		<title level="m">PowerLyra: Differentiated graph computation and partitioning on skewed graphs. European Conference on Computer Systems</title>
+				<imprint>
+			<date type="published" when="2015">2015. 2015</date>
+			<biblScope unit="page" from="1" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,495.04,377.44,7.22;21,63.02,504.96,378.34,7.26;21,62.84,514.97,17.24,7.22" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">PowerLyra: Differentiated graph computation and partitioning on skewed graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Rong</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaxin</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yanzhe</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Binyu</forename><surname>Zang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haibing</forename><surname>Guan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haibo</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Parallel Computing (TOPC)</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="1" to="39" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.01,524.93,377.58,7.22;21,63.02,534.85,360.23,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">An efficient SIMD compression format for sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Xinhai</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peizhen</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lihua</forename><surname>Chi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chunye</forename><surname>Gong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page">e4800</biblScope>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,544.85,377.64,7.22;21,63.02,554.78,378.25,7.26;21,63.02,564.74,358.29,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Gluon: A communication-optimizing substrate for distributed heterogeneous graph analytics</title>
+		<author>
+			<persName coords=""><forename type="first">Roshan</forename><surname>Dathathri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gurbinder</forename><surname>Gill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Loc</forename><surname>Hoang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hoang-Vu</forename><surname>Dang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alex</forename><surname>Brooks</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikoli</forename><surname>Dryden</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Snir</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Keshav</forename><surname>Pingali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 39th ACM SIGPLAN Conference on Programming Language Design and Implementation</title>
+				<meeting>the 39th ACM SIGPLAN Conference on Programming Language Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="752" to="768" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,574.74,378.69,7.22;21,63.02,584.67,378.33,7.26;21,63.02,594.67,16.58,7.22" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">GraphScope: A unified engine for big graph processing</title>
+		<author>
+			<persName coords=""><forename type="first">Wenfei</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Longbin</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xue</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhao</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhengping</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Chao Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingbo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the VLDB Endowment</title>
+				<meeting>the VLDB Endowment</meeting>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page" from="2879" to="2892" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,604.63,377.44,7.22;21,63.02,614.55,233.74,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Incrementalization of graph partitioning algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">Wenfei</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Muyang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chao</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruiqi</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingren</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the VLDB Endowment</title>
+				<meeting>the VLDB Endowment</meeting>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="1261" to="1274" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="21,63.02,624.56,377.44,7.22;21,63.02,634.48,378.68,7.26;21,63.02,644.48,119.92,7.22;22,45.77,55.82,16.10,8.97;22,412.51,55.82,27.77,8.97" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">MPI collective communications on the blue Gene/P supercomputer: Algorithms and optimizations</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Faraj</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Mamidala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gunnels</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HOTI.2009.12</idno>
+		<ptr target="https://doi.org/10.1109/HOTI.2009.122:22X.Gan" />
+	</analytic>
+	<monogr>
+		<title level="m">2009 17th IEEE Symposium on High Performance Interconnects. 63-72</title>
+				<imprint>
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,78.57,377.45,7.26;22,62.85,88.54,84.60,7.26" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Sortledton: A universal graph data structure</title>
+		<author>
+			<persName coords=""><forename type="first">Per</forename><surname>Fuchs</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Domagoj</forename><surname>Margan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jana</forename><surname>Giceva</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGMOD Record</title>
+		<imprint>
+			<biblScope unit="volume">52</biblScope>
+			<biblScope unit="page" from="17" to="25" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,98.54,378.78,7.22;22,62.85,108.50,377.42,7.22;22,62.85,118.42,348.55,7.26" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">A scalable synthetic traffic model of Graph500 for computer networks analysis</title>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Fuentes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mariano</forename><surname>Benito</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Enrique</forename><surname>Vallejo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">José</forename><surname>Luis Bosque</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramón</forename><surname>Beivide</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andreea</forename><surname>Anghel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Germán</forename><surname>Rodríguez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mitch</forename><surname>Gusat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cyriel</forename><surname>Minkenberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mateo</forename><surname>Valero</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page">e4231</biblScope>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,128.43,378.38,7.22;22,62.85,138.35,378.23,7.26;22,62.85,148.31,151.02,7.26" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">GraphMedia: Communication-balanced graph searching for billion-scale social media access</title>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaqi</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peilin</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guang</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaqi</forename><surname>Si</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Songzhu</forename><surname>Mei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 31st ACM International Conference on Multimedia</title>
+				<meeting>the 31st ACM International Conference on Multimedia</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="8984" to="8993" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,158.31,377.43,7.22;22,62.85,168.24,377.42,7.26;22,62.85,178.20,377.47,7.26;22,62.85,188.16,378.27,7.26;22,62.85,198.13,152.58,7.26" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">TianheQueries: Ultra-fast and scalable graph queries on Tianhe supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guang</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaqi</forename><surname>Si</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xuguang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+		<ptr target="HPC-C/DSS/SmartCity/DependSys" />
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE 24th International Conference on High Performance Computing &amp; Communications; 8th International Conference on Data Science &amp; Systems; 20th International Conference on Smart City; 8th International Conference on Dependability in Sensor, Cloud &amp; Big Data Systems &amp; Application</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1153" to="1158" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,208.13,377.44,7.22;22,62.85,218.05,377.46,7.26;22,62.85,228.01,288.48,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">GraphCube: Interconnection hierarchy-aware graph processing</title>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guang</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shenghao</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaqi</forename><surname>Si</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianbin</forename><surname>Fang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dezun</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chunye</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 29th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="160" to="174" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,238.02,378.81,7.22;22,62.85,247.94,378.25,7.26;22,62.85,257.90,122.90,7.26" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Tianhe-Graph: Customizing Graph Search for Graph500 on Tianhe Supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruibo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiaojie</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruigeng</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Lu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="941" to="951" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,267.90,378.81,7.22;22,62.85,277.83,378.26,7.26;22,62.85,287.79,235.41,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Tian-heGraph: Customizing graph search for Graph500 on Tianhe supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruibo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiaojie</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruigeng</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Lu</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TPDS.2021.31007852</idno>
+		<ptr target="https://doi.org/10.1109/TPDS.2021.31007852" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="1" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,297.79,378.81,7.22;22,62.85,307.71,377.45,7.26;22,62.85,317.68,156.80,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Xtree: Traversalbased partitioning for extreme-scale graph processing on supercomputers</title>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruigeng</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruibo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiejun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Li</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Lu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE 38th International Conference on Data Engineering (ICDE&apos;22)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="2046" to="2059" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,327.45,377.45,7.51;22,63.52,337.41,377.56,7.51;22,62.85,347.56,89.47,7.26" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">{PowerGraph}: Distributed {Graph-Parallel} computation on natural graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><forename type="middle">E</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yucheng</forename><surname>Low</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haijie</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Danny</forename><surname>Bickson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">10th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="17" to="30" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,357.56,377.59,7.22;22,62.85,367.48,244.99,7.26" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Fast datalog evaluation for batch and stream graph processing</title>
+		<author>
+			<persName coords=""><forename type="first">Muhammad</forename><surname>Imran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gábor</forename><forename type="middle">E</forename><surname>Gévay</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jorge-Arnulfo</forename><surname>Quiané-Ruiz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Volker</forename><surname>Markl</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">World Wide Web</title>
+		<imprint>
+			<biblScope unit="volume">25</biblScope>
+			<biblScope unit="page" from="971" to="1003" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,377.48,378.65,7.22;22,62.85,387.41,191.89,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">A fast and high quality multilevel scheme for partitioning irregular graphs</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vipin</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="359" to="392" />
+			<date type="published" when="1998">1998. 1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,397.41,378.76,7.22;22,62.85,407.37,69.61,7.22" xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Parmetis: Parallel graph partitioning and sparse matrix ordering library</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kirk</forename><surname>Schloegel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vipin</forename><surname>Kumar</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1997">1997. 1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,417.29,377.44,7.26;22,62.85,427.26,229.25,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Clustering-based partitioning for large web graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Deyu</forename><surname>Kong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xike</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhuoxu</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE 38th International Conference on Data Engineering (ICDE&apos;22)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="593" to="606" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,437.26,378.66,7.22;22,62.85,447.22,377.47,7.22;22,62.85,457.14,346.48,7.26" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">PAMI: A parallel active message interface for the blue Gene/Q supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Mamidala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Daniel Faraj</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Blocksome</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Cernohous</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Miller</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Parker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Ratterman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Heidelberger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Steinmacher-Burow</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 26th International Parallel and Distributed Processing Symposium</title>
+				<imprint>
+			<date type="published" when="2012">2012. 2012. 2012</date>
+			<biblScope unit="page" from="763" to="773" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,467.15,377.44,7.22;22,62.55,477.07,333.00,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Scalable Graph500 design with MPI-3 RMA</title>
+		<author>
+			<persName coords=""><forename type="first">Mingzhe</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoyi</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Potluri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Khaled Hamidouche</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Jose</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Tomko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Panda</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Conference on Cluster Computing (CLUSTER)</title>
+				<imprint>
+			<date type="published" when="2014">2014. 2014. 2014</date>
+			<biblScope unit="page" from="230" to="238" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,487.07,378.68,7.22;22,62.58,497.00,377.71,7.26;22,62.85,506.96,122.04,7.26" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">VBSF: A new storage format for SIMD sparse matrix-vector multiplication on modern processors</title>
+		<author>
+			<persName coords=""><forename type="first">Yishui</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peizhen</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xinhai</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shengguo</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chunye</forename><surname>Gong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xinbiao</forename><surname>Gan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Han</forename><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Supercomputing</title>
+		<imprint>
+			<biblScope unit="volume">76</biblScope>
+			<biblScope unit="page" from="2063" to="2081" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,516.96,378.67,7.22;22,62.85,526.88,306.31,7.26" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">FEP-based large-scale virtual screening for effective drug discovery against COVID-19</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on High Performance Computing, Networking, Storage, and Analysis</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,536.89,377.44,7.22;22,62.85,546.81,377.45,7.26;22,62.85,556.77,209.27,7.26" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Scalable graph traversal on sunway TaihuLight with ten million cores</title>
+		<author>
+			<persName coords=""><forename type="first">Xiongchao</forename><surname>Heng Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bowen</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Youwei</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenguang</forename><surname>Zhuo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jidong</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wanwang</forename><surname>Zhai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weimin</forename><surname>Yin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Zheng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE International Parallel and Distributed Processing Symposium (IPDPS&apos;17)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="635" to="645" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,566.77,378.80,7.22;22,62.85,576.69,377.97,7.26;22,62.85,586.65,346.96,7.26" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Shentu: Processing multi-trillion edge graphs on millions of cores in seconds</title>
+		<author>
+			<persName coords=""><forename type="first">Xiaowei</forename><surname>Heng Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bowen</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiongchao</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenguang</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lufei</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaosong</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC18: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="706" to="716" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,596.65,378.80,7.22;22,62.85,606.58,316.12,7.26" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">CSR5: An efficient storage format for cross-platform sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM on International Conference on Supercomputing</title>
+				<meeting>the 29th ACM on International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="339" to="350" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,616.58,377.40,7.22;22,62.85,626.50,306.35,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Pregel: A system for large-scale graph processing</title>
+		<author>
+			<persName coords=""><forename type="first">Grzegorz</forename><surname>Malewicz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><forename type="middle">H</forename><surname>Austern</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">C</forename><surname>Aart</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">C</forename><surname>Bik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ilan</forename><surname>Dehnert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naty</forename><surname>Horn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Grzegorz</forename><surname>Leiser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Czajkowski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIGMOD</title>
+		<imprint>
+			<biblScope unit="page" from="135" to="146" />
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,78.61,377.60,7.22;23,63.02,88.54,348.60,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Hybrid edge partitioner: Partitioning large power-law graphs under memory constraints</title>
+		<author>
+			<persName coords=""><forename type="first">Ruben</forename><surname>Mayer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hans-Arno</forename><surname>Jacobsen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 International Conference on Management of Data</title>
+				<meeting>the 2021 International Conference on Management of Data</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1289" to="1302" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,98.54,378.39,7.22;23,62.74,108.46,339.40,7.26" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Graph structure in the web-revisited: A trick of the heavy tail</title>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Meusel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sebastiano</forename><surname>Vigna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oliver</forename><surname>Lehmberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Bizer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd International Conference on World Wide Web</title>
+				<meeting>the 23rd International Conference on World Wide Web</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="427" to="432" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,118.46,378.81,7.22;23,63.02,128.43,241.91,7.22" xml:id="b43">
+	<monogr>
+		<title level="m" type="main">Performance of the supercomputer Fugaku for breadth-first search in Graph500 benchmark</title>
+		<author>
+			<persName coords=""><forename type="first">Masahiro</forename><surname>Nakao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katsuki</forename><surname>Fujisawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuetsu</forename><surname>Kodama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mitsuhisa</forename><surname>Sato</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,138.39,378.79,7.22;23,63.02,148.31,377.45,7.26;23,63.02,158.27,126.70,7.26" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Performance evaluation of supercomputer Fugaku using breadth-first search benchmark in Graph500</title>
+		<author>
+			<persName coords=""><forename type="first">Masahiro</forename><surname>Nakao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katsuki</forename><surname>Fujisawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuetsu</forename><surname>Kodama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Sato</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Conference on Cluster Computing (CLUSTER)</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020. 2020</date>
+			<biblScope unit="page" from="408" to="409" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,168.28,377.45,7.22;23,63.02,178.20,377.45,7.26;23,63.02,188.16,158.09,7.26" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Performance evaluation of supercomputer Fugaku using breadth-first search benchmark in Graph500</title>
+		<author>
+			<persName coords=""><forename type="first">Masahiro</forename><surname>Nakao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katsuki</forename><surname>Fujisawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuetsu</forename><surname>Kodama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mitsuhisa</forename><surname>Sato</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Conference on Cluster Computing (CLUSTER&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="408" to="409" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,198.16,378.80,7.22;23,63.02,208.09,377.45,7.26;23,63.02,218.05,351.83,7.26" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Performance of the supercomputer Fugaku for breadth-first search in Graph500 benchmark</title>
+		<author>
+			<persName coords=""><forename type="first">Masahiro</forename><surname>Nakao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katsuki</forename><surname>Fujisawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuetsu</forename><surname>Kodama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mitsuhisa</forename><surname>Sato</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">High Performance Computing: 36th International Conference, ISC High Performance 2021, Virtual Event</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2021-06-24">2021. June 24-July 2, 2021</date>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="372" to="390" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,228.05,377.45,7.22;23,63.02,238.02,308.46,7.22" xml:id="b47">
+	<monogr>
+		<title level="m" type="main">Simulating application agnostic process assignment for graph workloads on dragonfly and fat tree topologies</title>
+		<author>
+			<persName coords=""><forename type="first">Md</forename><surname>Nahid Newaz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hua</forename><surname>Ming</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sayan</forename><surname>Ghosh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joshua</forename><surname>Suetterlein</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><forename type="middle">R</forename><surname>Tallent</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,247.98,377.42,7.22;23,63.02,257.90,378.67,7.26;23,62.84,267.90,35.78,7.22" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Restreaming graph partitioning: Simple versatile algorithms for advanced balancing</title>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><surname>Nishimura</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Johan</forename><surname>Ugander</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 19th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the 19th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="1106" to="1114" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,277.83,378.25,7.26;23,63.02,287.79,260.35,7.26" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Experimental analysis of streaming algorithms for graph partitioning</title>
+		<author>
+			<persName coords=""><forename type="first">Anil</forename><surname>Pacaci</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">Tamer</forename><surname>Özsu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 International Conference on Management of Data</title>
+				<meeting>the 2019 International Conference on Management of Data</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1375" to="1392" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,297.79,378.69,7.22;23,62.84,307.75,377.61,7.22" xml:id="b50">
+	<monogr>
+		<title level="m" type="main">Performance and experience with LAPI-a new high-performance communication library for the</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Shah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Nieplocha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Mirza</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chulho</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Harrison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Govindaraju</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Gildea</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><surname>Dinicola</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">A</forename><surname>Bender</surname></persName>
+		</author>
+		<idno>IBM RS/6000</idno>
+		<imprint>
+			<date type="published" when="1998">1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,317.68,377.46,7.26;23,63.02,327.63,86.43,7.26" xml:id="b51">
+	<monogr>
+		<title level="m">SP. Proceedings of the 1st Merged International Parallel Processing Symposium and Symposium on Parallel and Distributed Processing</title>
+				<imprint>
+			<date type="published" when="1998">1998</date>
+			<biblScope unit="page" from="260" to="266" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,337.63,371.77,7.22" xml:id="b52">
+	<monogr>
+		<title level="m" type="main">MPI library and low-level communication on the K computer</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Naoyuki Shida</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atsuya</forename><surname>Sumimoto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Uno</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,347.60,377.45,7.22;23,63.02,357.56,133.49,7.22" xml:id="b53">
+	<monogr>
+		<title level="m" type="main">An analysis of system balance and architectural trends based on Top500 supercomputers</title>
+		<author>
+			<persName coords=""><forename type="first">Hyogi</forename><surname>Sim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Awais</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sudharshan</forename><forename type="middle">S</forename><surname>Vazhkudai</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,367.52,378.35,7.22;23,63.02,377.44,377.45,7.26;23,62.78,387.45,59.10,7.22" xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Scalable, multi-constraint, complex-objective graph partitioning</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><forename type="middle">M</forename><surname>Slota</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cameron</forename><surname>Root</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karen</forename><surname>Devine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kamesh</forename><surname>Madduri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sivasankaran</forename><surname>Rajamanickam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page" from="2789" to="2801" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,397.41,377.46,7.22;23,63.02,407.33,378.33,7.26;23,63.02,417.33,12.88,7.22" xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Shortcutting label propagation for distributed connected components</title>
+		<author>
+			<persName coords=""><forename type="first">Stergios</forename><surname>Stergiou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dipen</forename><surname>Rughwani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kostas</forename><surname>Tsioutsiouliklis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 11th ACM International Conference on Web Search and Data Mining</title>
+				<meeting>the 11th ACM International Conference on Web Search and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="540" to="546" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,427.30,377.43,7.22;23,63.02,437.22,211.72,7.26" xml:id="b56">
+	<analytic>
+		<title level="a" type="main">A graph-based method for ranking of cloud service providers</title>
+		<author>
+			<persName coords=""><forename type="first">Tina</forename><surname>Esther Trueman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Narayanasamy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">Ashok</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Supercomputing</title>
+		<imprint>
+			<biblScope unit="volume">78</biblScope>
+			<biblScope unit="page" from="7260" to="7277" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,447.22,378.73,7.22;23,63.02,457.14,231.06,7.26" xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Panayiotis Tsaparas, Ilias Kleftakis, and Nikos Mamoulis. 2021. Fairnessaware PageRank</title>
+		<author>
+			<persName coords=""><forename type="first">Sotiris</forename><surname>Tsioutsiouliklis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Evaggelia</forename><surname>Pitoura</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Web Conference 2021</title>
+				<meeting>the Web Conference 2021</meeting>
+		<imprint>
+			<biblScope unit="page" from="3815" to="3826" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,467.11,377.44,7.26;23,63.02,477.07,330.25,7.26" xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Highly scalable graph search for the Graph500 benchmark</title>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Toyotaro</forename><surname>Suzumura</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 21st International Symposium on High-Performance Parallel and Distributed Computing</title>
+				<meeting>the 21st International Symposium on High-Performance Parallel and Distributed Computing</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="149" to="160" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,487.07,377.44,7.22;23,63.02,497.00,378.33,7.26;23,62.84,507.00,16.58,7.22" xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Extreme scale breadth-first search on supercomputers</title>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Toyotaro</forename><surname>Suzumura</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naoya</forename><surname>Maruyama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katsuki</forename><surname>Fujisawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Satoshi</forename><surname>Matsuoka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE International Conference on Big Data (Big Data&apos;16)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1040" to="1047" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,516.96,378.79,7.22;23,63.02,526.88,377.89,7.26" xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Efficient breadthfirst search on massively parallel and distributed-memory machines</title>
+		<author>
+			<persName coords=""><forename type="first">Koji</forename><surname>Ueno</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Toyotaro</forename><surname>Suzumura</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Naoya</forename><surname>Maruyama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katsuki</forename><surname>Fujisawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Satoshi</forename><surname>Matsuoka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Data Science and Engineering</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="22" to="35" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,536.89,377.44,7.22;23,62.76,546.81,377.71,7.26;23,62.78,556.81,51.69,7.22" xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Brief introduction of TianHe exascale prototype system</title>
+		<author>
+			<persName coords=""><forename type="first">Ruibo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Juan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenzhe</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jinwen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pingjing</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Libo</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shengguo</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaokang</forename><surname>Fan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Tsinghua Science and Technology</title>
+		<imprint>
+			<biblScope unit="volume">26</biblScope>
+			<biblScope unit="page" from="361" to="369" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,566.77,377.59,7.22;23,63.02,576.69,283.11,7.26" xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Multi-view graph contrastive representation learning for drug-drug interaction prediction</title>
+		<author>
+			<persName coords=""><forename type="first">Yingheng</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yaosen</forename><surname>Min</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xin</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ji</forename><surname>Wu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Web Conference 2021</title>
+				<meeting>the Web Conference 2021</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="2921" to="2933" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,586.69,377.84,7.22;23,62.78,596.65,53.75,7.22" xml:id="b63">
+	<monogr>
+		<title level="m" type="main">Fugaku (Supercomputer)</title>
+		<author>
+			<persName coords=""><surname>Wikipedia</surname></persName>
+		</author>
+		<ptr target="https://en.wikipedia.org/wiki/Fugaku_(supercomputer" />
+		<imprint>
+			<date type="published" when="2021-09-20">2021. September 20</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,606.58,377.44,7.26;23,63.02,616.54,377.46,7.26;23,63.02,626.54,98.87,7.22;24,45.77,55.82,16.10,8.97;24,412.51,55.82,27.77,8.97" xml:id="b64">
+	<monogr>
+		<title level="m" type="main">Opportunities and Limitations of Quality-of-Service (QoS) in Message Passing (MPI) Applications on Adaptively Routed Dragonfly and Fat Tree Networks</title>
+		<author>
+			<persName coords=""><forename type="first">Jeremiah</forename><forename type="middle">J</forename><surname>Wilke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><forename type="middle">P</forename><surname>Kenny</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>Gan</publisher>
+			<pubPlace>Livermore, CA</pubPlace>
+		</imprint>
+		<respStmt>
+			<orgName>Sandia National Lab (SNL-CA</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical Report</note>
+	<note>2:24 X</note>
+</biblStruct>
+
+<biblStruct coords="24,62.85,78.57,377.45,7.26;24,62.85,88.54,181.14,7.26" xml:id="b65">
+	<analytic>
+		<title level="a" type="main">Bidirectional-bitmap based CSR for reducing large-scale graph space</title>
+		<author>
+			<persName coords=""><forename type="first">Gan</forename><surname>Xinbiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tan</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liu</forename><surname>Jie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Computer Research and Development</title>
+		<imprint>
+			<biblScope unit="volume">58</biblScope>
+			<biblScope unit="page">458</biblScope>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,98.54,377.60,7.22;24,62.85,108.46,271.82,7.26" xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Personalized QoS prediction for web services using latent factor models</title>
+		<author>
+			<persName coords=""><forename type="first">Dongjin</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yueshen</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuyu</forename><surname>Yin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2014 IEEE International Conference on Services Computing</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="107" to="114" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,118.42,377.45,7.26;24,62.36,128.39,69.09,7.26" xml:id="b67">
+	<analytic>
+		<title level="a" type="main">Topology mapping for blue Gene/L supercomputer</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Moreira</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM/IEEE SC 2006 Conference (SC&apos;06</title>
+				<imprint>
+			<date type="published" when="2006">2006. 2006</date>
+			<biblScope unit="page" from="52" to="52" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,138.35,378.24,7.26;24,62.85,148.31,102.01,7.26" xml:id="b68">
+	<analytic>
+		<title level="a" type="main">Processing extreme-scale graphs on China&apos;s supercomputers. Commun</title>
+		<author>
+			<persName coords=""><forename type="first">Yiming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenguang</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM</title>
+		<imprint>
+			<biblScope unit="volume">64</biblScope>
+			<biblScope unit="page" from="60" to="63" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,158.31,378.36,7.22;24,62.60,168.24,377.69,7.26;24,62.85,178.20,107.59,7.26" xml:id="b69">
+	<analytic>
+		<title level="a" type="main">TopoX: Topology refactorization for minimizing network communication in graph computations</title>
+		<author>
+			<persName coords=""><forename type="first">Yiming</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haonan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Menghan</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jinyan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guangtao</forename><surname>Dong Sheng Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Tan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE/ACM Transactions on Networking</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="2768" to="2782" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,188.16,377.45,7.26;24,62.85,198.13,301.53,7.26" xml:id="b70">
+	<analytic>
+		<title level="a" type="main">Streaming graph clustering for graph partition</title>
+		<author>
+			<persName coords=""><forename type="first">Zhuoxu</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zezhong</forename><surname>Ding</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE 5th International Conference on Automation, Electronics and Electrical Engineering (AUTEEE&apos;22)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="880" to="884" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,208.13,377.66,7.22;24,62.85,218.09,107.93,7.22" xml:id="b71">
+	<monogr>
+		<title level="m" type="main">FEP-based large-scale virtual screening for effective drug discovery against COVID-19</title>
+		<author>
+			<persName coords=""><forename type="first">Li</forename><surname>Zhe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Li</forename><surname>Wu Chengkun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Yishui</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+	<note>J/OL</note>
+</biblStruct>
+
+<biblStruct coords="24,62.85,228.05,377.43,7.22;24,62.85,237.98,378.29,7.26;24,62.85,247.94,378.38,7.26;24,62.59,257.94,239.50,7.22;24,45.77,276.61,247.57,8.12" xml:id="b72">
+	<analytic>
+		<title level="a" type="main">Gemini: A computation-centric distributed graph processing system</title>
+		<author>
+			<persName coords=""><forename type="first">Xiaowei</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenguang</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weimin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaosong</forename><surname>Ma</surname></persName>
+		</author>
+		<ptr target="https://www.usenix.org/conference/osdi16/technical-sessions/presentation/zhu" />
+	</analytic>
+	<monogr>
+		<title level="m">12th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<editor>
+			<persName><forename type="first">Kimberly</forename><surname>Keeton</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Timothy</forename><surname>Roscoe</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Savannah, GA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2016-11-02">2016. 2016. November 2-4, 2016. 16 May 2024. 2024. August 2024</date>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="301" to="316" />
+		</imprint>
+	</monogr>
+	<note>USENIX Association. revised 22 July</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

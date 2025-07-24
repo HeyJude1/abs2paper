@@ -1,0 +1,61 @@
+{
+  "llm": {
+    "provider": "siliconflow",
+    "api_key": "sk-fzhifogjweigckusscwacalvdxkwgftxxhgxohqujqgnpjvi",
+    "timeout": 60,
+    "request": {
+      "url": "https://api.siliconflow.cn/v1/chat/completions",
+      "payload": {
+        "model": "deepseek-ai/DeepSeek-V3",
+        "stream": false,
+        "max_tokens": 1000,
+        "stop": ["null"],
+        "temperature": 0.7,
+        "top_p": 0.7,
+        "top_k": 50,
+        "frequency_penalty": 0.5,
+        "n": 1,
+        "response_format": {"type": "text"}
+      },
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "embedding": {
+    "provider": "siliconflow",
+    "api_key": "sk-fzhifogjweigckusscwacalvdxkwgftxxhgxohqujqgnpjvi",
+    "timeout": 30,
+    "request": {
+      "url": "https://api.siliconflow.cn/v1/embeddings",
+      "payload": {
+        "model": "BAAI/bge-large-zh-v1.5",
+        "input": "${input}",
+        "encoding_format": "float"
+      },
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "vector_db": {
+    "host": "192.168.70.174",
+    "port": "19530",
+    "db_name": "abs2paper",
+    "embedding_dim": 1024
+  },
+  "grobid": {
+    "grobid_server": "http://localhost:8070",
+    "batch_size": 1000,
+    "sleep_time": 5,
+    "timeout": 60,
+    "coordinates": ["persName", "figure", "ref", "biblStruct"]
+  },
+  "paths": {
+    "text_extract": "/extraction/result/text_extract",
+    "component_extract": "/extraction/result/component_extract",
+    "abstract_extract": "/extraction/result/abstract_extract",
+    "label": "/extraction/result/label",
+    "raw_data": "/data/raw/paper_kb"
+  }
+} 

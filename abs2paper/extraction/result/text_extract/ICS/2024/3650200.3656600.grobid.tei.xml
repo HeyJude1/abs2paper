@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">DAWN: Matrix Operation-Optimized Algorithm for Shortest Paths Problem on Unweighted Graphs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2024-05-30">2024-05-30</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,111.75,142.72,59.78,6.56"><forename type="first">Yelai</forename><surname>Feng</surname></persName>
+							<email>fengyelai@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0002-3134-9227</idno>
+						</author>
+						<author>
+							<persName coords="1,265.30,142.72,77.33,6.56;1,342.63,139.29,1.19,4.78"><forename type="first">Huaixi</forename><surname>Wang</surname></persName>
+							<email>wanghuaixi@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0002-6277-850X</idno>
+						</author>
+						<author>
+							<persName coords="1,436.77,142.72,66.34,6.56"><forename type="first">Yining</forename><surname>Zhu</surname></persName>
+							<idno type="ORCID">0009-0006-8258-8275</idno>
+						</author>
+						<author>
+							<persName coords="1,101.72,244.82,79.79,6.56"><forename type="first">Xiandong</forename><surname>Liu</surname></persName>
+							<email>liuxiandong@perfxlab.com</email>
+							<idno type="ORCID">0009-0008-5693-014X</idno>
+						</author>
+						<author>
+							<persName coords="1,274.65,244.82,62.71,6.56"><forename type="first">Hongyi</forename><surname>Lu</surname></persName>
+							<email>hylu@nudt.edu.cn</email>
+							<idno type="ORCID">0009-0003-1285-6324</idno>
+						</author>
+						<author>
+							<persName coords="1,444.36,244.82,51.57,6.56"><forename type="first">Qing</forename><surname>Liu</surname></persName>
+							<idno type="ORCID">0009-0007-9688-0100</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department" key="dep1">College of Electronic Engineering</orgName>
+								<orgName type="department" key="dep2">College of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology Hefei</orgName>
+								<address>
+									<settlement>Anhui</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">College of Electronic Engineering</orgName>
+								<orgName type="institution">National University of Defense Technology Hefei</orgName>
+								<address>
+									<settlement>Anhui</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">Ningbo Institute of Technology</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">Zhejiang University Ningbo</orgName>
+								<address>
+									<settlement>Zhejiang</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution">PerfXLab(Beijing) Technologies Co</orgName>
+								<address>
+									<settlement>Ltd Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">College of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology Changsha</orgName>
+								<address>
+									<settlement>Hunan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="department">College of Electrical and Computer Engineering</orgName>
+								<orgName type="institution">Technical University of Munich Munich</orgName>
+								<address>
+									<country key="DE">Germany</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="institution">Yelai Feng</orgName>
+								<address>
+									<addrLine>Huaixi Wang, Yining Zhu</addrLine>
+									<settlement>Xiandong Liu, Hongyi Lu</settlement>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">DAWN: Matrix Operation-Optimized Algorithm for Shortest Paths Problem on Unweighted Graphs</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 38th ACM International Conference on Supercomputing</title>
+						<meeting>the 38th ACM International Conference on Supercomputing						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="1" to="13"/>
+							<date type="published" when="2024-05-30" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">AD7C064433152710F8F3DDED8F27D129</idno>
+					<idno type="DOI">10.1145/3650200.3656600</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Graph Theory</term>
+					<term>Shortest Paths</term>
+					<term>Parallel Computing</term>
+					<term>Matrix Operation</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>The shortest paths problem is a fundamental challenge in graph theory, with a broad range of potential applications. The algorithms based on matrix multiplication exhibits excellent parallelism and scalability, but is constrained by high memory consumption and algorithmic complexity. Traditional shortest paths algorithms are limited by priority queues, such as BFS and Dijkstra algorithm, making the improvement of their parallelism a focal issue. We propose a matrix operation-optimized algorithm, which offers improved parallelism, reduced time complexity, and lower memory consumption. The novel algorithm requires 𝑂 (𝐸 𝑤𝑐𝑐 (𝑖)) and 𝑂 (𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ) times for single-source and all-pairs shortest paths problems, respectively, where 𝑆 𝑤𝑐𝑐 and 𝐸 𝑤𝑐𝑐 denote the number of nodes and edges included in the largest weakly connected component in graph. To evaluate the effectiveness of the novel algorithm, we tested it using graphs from SuiteSparse Matrix Collection and Gunrock benchmark dataset. Our algorithm outperformed the BFS implementations from</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">INTRODUCTION</head><p>The shortest paths problem, a fundamental problem in graph theory and network science, has garnered interest from researchers across various disciplines such as transportation planning, computer science, network science, and applied mathematics <ref type="bibr" coords="1,373.45,639.05,10.49,4.55" target="#b5">[6,</ref><ref type="bibr" coords="1,386.59,639.05,6.87,4.55" target="#b6">7,</ref><ref type="bibr" coords="1,396.12,639.05,11.50,4.55" target="#b19">20,</ref><ref type="bibr" coords="1,410.28,639.05,11.50,4.55" target="#b45">46,</ref><ref type="bibr" coords="1,424.43,639.05,11.34,4.55" target="#b47">48]</ref>. As the scale of the graph increases, serial algorithms struggle to adapt to changes, and prompting researchers to explore parallel computing as a solution to the shortest paths problem.</p><p>The state-of-the-art solution for SSSP (Single-Source Shortest Paths) problem is the BFS algorithm on unweighted graph and Δ-stepping Dijkstra's algorithm on weighted graph <ref type="bibr" coords="2,276.78,89.12,14.69,4.55" target="#b27">[28]</ref>, which have garnered significant attention <ref type="bibr" coords="2,222.18,101.07,14.89,4.55" target="#b9">[10,</ref><ref type="bibr" coords="2,239.41,101.07,11.41,4.55" target="#b10">11,</ref><ref type="bibr" coords="2,253.17,101.07,11.41,4.55" target="#b14">15,</ref><ref type="bibr" coords="2,266.93,101.07,11.41,4.55" target="#b42">43,</ref><ref type="bibr" coords="2,280.69,101.07,11.17,4.55" target="#b48">49]</ref>. Currently, there are several solutions available in the industry for rapidly computing the APSP (All-Pairs Shortest Paths) problem on large-scale clusters <ref type="bibr" coords="2,182.60,136.94,15.00,4.55" target="#b34">[35,</ref><ref type="bibr" coords="2,200.10,136.94,11.25,4.55" target="#b35">36]</ref>. <ref type="bibr" coords="2,63.76,148.89,35.88,4.55">Timothy</ref>  ) times for all graphs <ref type="bibr" coords="2,53.80,191.69,14.94,4.55" target="#b10">[11]</ref>, where 𝑚 and 𝑛 respectively represents the number of nodes and edges in graph. The APSP algorithms based on matrix multiplication, such as Seidel's algorithm <ref type="bibr" coords="2,253.57,215.60,14.87,4.55" target="#b36">[37]</ref>, Galil and Margalit's algorithm <ref type="bibr" coords="2,157.84,227.56,14.87,4.55" target="#b22">[23]</ref>, reduces the time complexity by divide-and-conquer strategy, these approaches require significant memory resources for maintaining intermediate matrices.</p><p>We introduce a novel algorithm named DAWN (Distance Assessment algorithm With matrix operations on Networks), which is based on matrix operation-optimizing. DAWN requires 𝑂 (𝑚) space and 𝑂 (𝐸 𝑤𝑐𝑐 (𝑖)) time on unweighted graphs for SSSP tasks. It is also capable of processing APSP tasks and requires 𝑂 (𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ) time. Here, 𝑆 𝑤𝑐𝑐 and 𝐸 𝑤𝑐𝑐 denote the number of nodes and edges included in the largest WCC (Weakly Connected Component) in the graphs, and 𝑖 is the source node of the SSSP task.</p><p>The main contributions of this work are as follows:</p><p>(1) We propose a matrix operation-optimized algorithm, which requires 𝑂 (𝑚) space and 𝑂 (𝐸 𝑤𝑐𝑐 (𝑖)) times on the unweighted graphs for SSSP problem, respectively. In contrast to the prevalent optimization of state-ofthe-art BFS implementation, which commonly rely on priority queues, our approach leverages matrix operations to endow DAWN with enhanced parallelism. <ref type="bibr" coords="2,63.65,494.23,10.57,4.55" target="#b1">(2)</ref> We propose BOVM (Boolean Vector-Matrix Operation) method, which make DAWN to require 𝑂 ( 𝜖 (𝑖 ) 2 𝑚) time for SSSP tasks on unweighted graphs, where 𝜖 (𝑖) is the eccentricity of node 𝑖. Further, we propose an SOVM (Sparse Optimized Boolean Vector-Matrix Operation) method to significantly improve the performance of DAWN on sparse graphs, reducing the time requirements to 𝑂 (𝐸 𝑤𝑐𝑐 (𝑖)) for SSSP tasks and 𝑂 (𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ) for APSP tasks.</p><p>(3) DAWN achieves superior performance compared to Gunrock while utilizing fewer GPU memory resources. It successfully completes the SSSP task on graphs with 214 million nodes and 936 million edges using an RTX 3080TI, a task unattainable by Gunrock. Prior to DAWN, algorithms based on matrix multiplication used a divideand-conquer strategy, such as Seidel's algorithm <ref type="bibr" coords="2,276.62,674.92,14.81,4.55" target="#b36">[37]</ref>, which generated numerous intermediate matrices and required excessive memory.</p><p>In Section 2, we present an overview of the typical shortest paths algorithms. In Section 3, we describe the design of the DAWN and propose optimization methods to make it more widely applicable to various graphs. In Section 4, we conducted comparative experiments of several implementations across various platforms, which demonstrates the high efficiency of DAWN. In Section 5, we summarize the work in this paper and outline future research directions. Table <ref type="table" coords="2,553.80,172.80,4.63,4.55" target="#tab_1">1</ref> lists the notations used throughout the paper. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">RELATED WORKS</head><p>The shortest paths problem is a classic problem in graph theory and network science. In this section, we introduce the typical algorithms for solving the SSSP and APSP problems.</p><p>In addition, we will introduce several APSP algorithms based on matrix multiplication.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">SSSP algorithm</head><p>Dijkstra's algorithm is a common SSSP algorithm <ref type="bibr" coords="2,522.05,505.45,14.88,4.55" target="#b18">[19]</ref>, and the main optimization methods are priority queue of binary heap and Fibonacci heap <ref type="bibr" coords="2,420.73,529.36,15.00,4.55" target="#b11">[12,</ref><ref type="bibr" coords="2,438.22,529.36,11.46,4.55" target="#b21">22,</ref><ref type="bibr" coords="2,452.17,529.36,11.46,4.55" target="#b26">27,</ref><ref type="bibr" coords="2,466.12,529.36,11.46,4.55" target="#b28">29,</ref><ref type="bibr" coords="2,480.07,529.36,11.46,4.55" target="#b32">33,</ref><ref type="bibr" coords="2,494.01,529.36,11.25,4.55" target="#b46">47]</ref>. Meyer et al. proposed an optimized Dijkstra's algorithm, which is a parallel version for a large class of graphs <ref type="bibr" coords="2,522.53,553.27,14.69,4.55" target="#b27">[28]</ref>. The best parallel version of the Δ-stepping Dijkstra's algorithm takes 𝑂 (𝐷 • 𝐿 • log 𝑛 + log 2 𝑛) time and 𝑂 (𝑛 +𝑚 + 𝐷 • 𝐿 • log 𝑛) work on average, where 𝐿 denotes the maximum shortest paths weight from the source node (𝑠) to any node reachable from 𝑠, and 𝐷 represents the maximum node degree <ref type="bibr" coords="2,531.44,613.09,14.84,4.55" target="#b27">[28]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">BFS Algorithm</head><p>Scott Beamer et al. proposed a hybrid BFS algorithm that combines a conventional top-down approach with a novel bottom-up approach <ref type="bibr" coords="2,405.00,674.92,10.55,4.55" target="#b2">[3]</ref>. In the top-down approach, nodes within the active frontier seek unvisited child nodes, whereas in the bottom-up approach, unvisited nodes seek parents within the active frontier. Scott Beamer et al. further optimized the performance of direction-optimized BFS in various application scenarios <ref type="bibr" coords="3,155.84,113.03,10.25,4.55" target="#b4">[5,</ref><ref type="bibr" coords="3,168.30,113.03,6.84,4.55" target="#b8">9]</ref>, ultimately integrating it into GAP (Graph Algorithm Platform benchmark Suite). GAP is a portable high-performance baseline which includes representative implementations of state-of-the-art performance, and is intended to help graph processing research by standardizing evaluations <ref type="bibr" coords="3,138.87,172.80,12.09,4.55" target="#b3">[4]</ref>.</p><p>Julian Shun and Laxman Dhulipala et al. inspired by the direction-optimized BFS algorithm, achieve close to the same efficiency (time and space) as the optimized BFS of Beamer et. al. and using a much simpler implementation code <ref type="bibr" coords="3,262.99,220.62,15.05,4.55" target="#b38">[39,</ref><ref type="bibr" coords="3,280.53,220.62,11.29,4.55" target="#b39">40]</ref>. Further, they promoted widespread applications of this optimization approach and constructed a high-performance computing framework called GBBS (Graph Based Benchmark Suite) which based on the Ligra/Ligra+/Julienne graph processing frameworks <ref type="bibr" coords="3,152.57,280.40,15.11,4.55" target="#b16">[17,</ref><ref type="bibr" coords="3,170.17,280.40,11.50,4.55" target="#b17">18,</ref><ref type="bibr" coords="3,184.16,280.40,11.50,4.55" target="#b37">38,</ref><ref type="bibr" coords="3,198.15,280.40,11.33,4.55" target="#b40">41]</ref>, including betweenness centrality, graph radius estimation, graph connectivity, PageRank and single-source shortest paths etc..</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Matrix algorithm</head><p>The shortest paths algorithm based on matrix squaring multiplication has received extensive attention <ref type="bibr" coords="3,229.52,358.11,14.97,4.55" target="#b20">[21,</ref><ref type="bibr" coords="3,246.99,358.11,11.44,4.55" target="#b29">30,</ref><ref type="bibr" coords="3,260.93,358.11,11.22,4.55" target="#b43">44]</ref>. The matrix squaring multiplication algorithm reduces the number of matrix multiplications from 𝑛 to log 𝑛, but it requires storing many intermediate matrices. When the graph is large, the algorithm needs to consume a significant amount of space.</p><p>Seidel's algorithm is the APSP algorithm based on matrix multiplication <ref type="bibr" coords="3,133.35,441.79,14.99,4.55" target="#b36">[37]</ref>, which is suitable for unweighted undirected graphs and time complexity is 𝑂 (log 𝑛 • 𝑛 𝜔 ). The Seidel's algorithm requires numerous memory to maintain intermediate matrices, due to reduce the time complexity of GEMM (General Matrix-Matrix multiplication) via divideand-conquer strategy <ref type="bibr" coords="3,143.29,501.57,15.00,4.55" target="#b13">[14,</ref><ref type="bibr" coords="3,160.79,501.57,11.46,4.55" target="#b41">42,</ref><ref type="bibr" coords="3,174.73,501.57,11.25,4.55" target="#b51">52]</ref>.</p><p>Arlazarov et al. proposed the APSP algorithm based on the boolean matrix multiplication on the unweighted graphs <ref type="bibr" coords="3,281.41,525.48,10.30,4.55" target="#b1">[2]</ref>, which has alleviated the issue of excessive memory requirements associated with matrix multiplication-based APSP algorithms to a limited extent.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">METHODS</head><p>In this section, we will introduce the DAWN and the technical details of BOVM and SOVM. In Section 3.1, we will illustrate the principle of DAWN. We will then discuss the optimization of boolean vector-matrix operation (BOVM) that enables DAWN's efficiency in Section 3.2. Furthermore, we will expand on BOVM and introduce its extension to sparse matrices, known as sparse optimized boolean vector-matrix operation (SOVM), in Section 3.3. In Section 3.5, we use an example to demonstrate difference between BFS and DAWN.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Principle</head><p>DAWN relies on the result of matrix multiplication to assist in determining which edge visits can be skipped. However, matrix multiplication is a costly operation, requiring 𝑂 (𝑛 3 ) time and 𝑂 (𝑛 2 ) space.</p><p>Our main contribution is the simplification of matrix multiplication, which does not mean that we can compute matrix multiplication faster, but rather that we focus on only a portion of the results of matrix multiplication for the shortest path problem. Specifically, our new approach is able to determine which rows and columns of the matrix multiplication result have an impact on the shortest path problem.</p><p>Figure <ref type="figure" coords="3,356.32,235.57,4.64,4.55" target="#fig_0">1</ref> illustrates the correspondence between Boolean matrix operations and shortest path discovery in a graph. The blue markers indicate the result vector, while the red markers indicate a particular row of the adjacency matrix. 𝑖,𝑗 𝑛×𝑛 , the element 𝑎 (𝑘 )  𝑖,𝑗 represents the number of paths with length 𝑘 from 𝑣 𝑖 to 𝑣 𝑗 . Theorem 3.2. In unweighted graphs, the length of the shortest path from 𝑣 𝑖 to 𝑣 𝑗 is 𝑘 𝑚𝑖𝑛 , if and only if</p><formula xml:id="formula_0">𝑎 (𝑘 𝑚𝑖𝑛 ) 𝑖,𝑗 ≠ 0 ∧ 𝑖 ≠ 𝑗 ∧ 𝑘 𝑚𝑖𝑛 −1 𝑘=1 𝑎 (𝑘 )</formula><p>𝑖,𝑗 = 0. Fact 1. In unweighted graphs, any shortest paths of length 𝑘 can be expressed as the connection of two shortest paths with lengths 𝑘 − 1 and 1, where 𝑘 ≥ 2.</p><p>Obviously, we can obtain an expression for all paths,</p><formula xml:id="formula_1">𝑃 (𝑖, 𝑗) 𝑚𝑖𝑛 = 𝜖 (𝑖 ) ∑︁ 𝑘=1 𝑎 (𝑘 ) 𝑖,𝑗 = 𝑘 𝑚𝑖𝑛 −1 ∑︁ 𝑘=1 𝑎 (𝑘 ) 𝑖,𝑗 + 𝑎 (𝑘 𝑚𝑖𝑛 ) 𝑖,𝑗 + 𝜖 (𝑖 ) ∑︁ 𝑘=𝑘 𝑚𝑖𝑛 +1 𝑎 (𝑘 ) 𝑖,𝑗 ,<label>(1)</label></formula><p>where 1 ≤ 𝑘 𝑚𝑖𝑛 ≤ 𝜖 (𝑖). It is evident that the sum of array is minimized when the first non-zero value of 𝑎 (𝑘 ) 𝑖,𝑗 is encountered.</p><p>Theorem 3.2 and Fact 1 state the sufficient condition for breaking the loop and ending it:</p><p>(1) DAWN already found the shortest paths between all pairs of nodes in the graph; (2) The distance vector does not change when a loop ends, which means no new paths were found in the loop.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">BOVM</head><p>We describe the vector-vector multiplication as follows,</p><formula xml:id="formula_2">𝑎 (2) 𝑖,𝑗 = 𝑎 𝑖,1 𝑎 1,𝑗 + 𝑎 𝑖,2 𝑎 2,𝑗 • • • + 𝑎 𝑖,𝑛 𝑎 𝑛,𝑗 ,<label>(2)</label></formula><p>which denotes the collection of path combinations from 𝑖 to 𝑗 through any node. Thus, it is unnecessary to consider all possible combinations when determining the presence of a path from i to j; only cases where𝑎 𝑖,𝑙 &gt; 0 ∧ 𝑎 𝑙,𝑗 &gt; 0 can affect the value of 𝑎 (2)  𝑖,𝑗 . If 𝑎 (2)  𝑖,𝑗 represents any value greater than 0, it signifies the existence of a shortest path from node 𝑖 to 𝑗. Consequently, we can simplify this formula by utilizing a Boolean data type.</p><p>We converted the Formula 2 to a Boolean-type as follows,</p><formula xml:id="formula_3">𝑎 (2) 𝑖,𝑗 = 𝑛−1 ∑︁ 𝑙=0 𝛼 [𝑙] ∧ 𝛽 [𝑙],<label>(3)</label></formula><p>which requires 𝑂 (𝑛) time. Since only the non-zero elements in 𝛼 and 𝛽 affect the multiplication result, we can compress the vectors by retaining only their non-zero elements, and get Formula 4 as follows,</p><formula xml:id="formula_4">𝑎 (2) 𝑖,𝑗 = 𝑙𝑒𝑛 𝛾 −1 ∑︁ 𝑙=0 𝛼 [𝛾 [𝑙]],<label>(4)</label></formula><p>where 𝑙𝑒𝑛 𝛾 represents the length of 𝛾 and 𝛾 is a compressed version of 𝛽, containing only the indices of non-zero elements.</p><p>In Formula 4, if the value of</p><formula xml:id="formula_5">𝛼 [𝛾 [𝑙]] is 1, the result 𝑎 (2)</formula><p>𝑖,𝑗 will be 1. Once the first element of 𝑡𝑟𝑢𝑒 is obtained, the sum will always yield a value of 𝑡𝑟𝑢𝑒 and indicates that the path exists from 𝑖 to 𝑗. Hence, we let the loop end at the time.</p><p>We can ensure that the path we first discover is the shortest path by Theorem 3.2, and skip the computation of any paths ended with 𝑗 in next operations. We can extend this vector operation to the CSC format matrix to assist DAWN in reducing neighbor node access and discovering the shortest path. We get the BOVM as the Algorithm 1, where 𝛼 and 𝛽 are the dense vector, 𝑠𝑡𝑒𝑝 represents the steps of the shortest paths in the iteration. Line 4 of Algorithm 1 implements the Formula 4, while lines 7-8 implement the stopping criterion provided by Fact 1.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Algorithm 1: Boolean Vector-Matrix Operation</head><p>Input: CSC, 𝛼, 𝛽, distance, step, is_converged Output: distance, is_converged 1 while step &lt; n do 2 step ⇐ step + 1 ; </p><formula xml:id="formula_6">3 for i ∈ [0,n-1] &amp; distance[i] = false do 4 start ⇐ CSC.columns_ptr[𝛼[i]] ; 5 end ⇐ CSC.columns_ptr[𝛼[i] + 1] ; 6 while (j ∈ [start, end-1]) &amp; (𝛼[CSC.row[j]] = true) &amp; (CSC.row[k] != i) do 7 𝛽[i] ⇐ true ; 8 distance[i] ⇐ step ; 9 if is_converged =</formula><formula xml:id="formula_7">𝑇 (𝑛) = 𝜖 (𝑖 ) −1 ∑︁ 𝑥=1 𝑛−𝑙𝑒𝑛[𝛼 𝑥 ] ∑︁ 𝑖=0 𝐷 𝑒𝑥𝑖𝑡 (𝑖, 𝑥) ,<label>(5)</label></formula><formula xml:id="formula_8">𝑇 (𝑛) &lt; 𝜖 (𝑖 ) −1 ∑︁ 𝑥=1 1 − 1 − 𝑝 𝜖 (𝑖) − 1 𝑥 • 𝑚 &lt; 1 + 𝑝 2 𝜖 (𝑖)𝑚. (<label>6</label></formula><formula xml:id="formula_9">)</formula><p>where </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Sparse Optimized Operation</head><p>The performance of BOVM on sparse graphs, especially those with large diameters, is often limited by the expensive cost of vector-matrix multiplication, making it difficult to outperform BFS. Reducing the number of vector multiplications has become a critical issue in enabling DAWN to be widely used.</p><p>We propose the method of SOVM to optimized DAWN on the sparse graphs, which combines graph traversal algorithms with vector-matrix multiplication, limiting the operation to nodes and their neighboring nodes. Specifically, we first obtain the set of neighboring nodes, exclude nodes that have already appeared in the result vector, then calculate the vector multiplication values of these nodes, obtaining paths of length step with target nodes in the neighboring nodes set, and finally update the shortest paths in the result vector.</p><p>Although the process is complex, we can simplify it by utilizing the properties of Boolean matrix operations. It is important to note that SOVM operates on CSR matrices, while BOVM operates on CSC matrices. The boolean vectormatrix multiplication is as follows,</p><formula xml:id="formula_10">𝛾 [𝑖] = 𝑛 ∑︁ 𝑙=0 𝛼 [𝑙] ∧ 𝐴[𝑖] [𝑙].<label>(7)</label></formula><p>If we use matrix</p><formula xml:id="formula_11">𝐴 = {𝛽 0 , 𝛽 1 , • • • 𝛽 𝑛−2 , 𝛽 𝑛−1 }</formula><p>, we can simplify the boolean vector-matrix multiplication as follows,</p><formula xml:id="formula_12">𝛾 = 𝑙𝑒𝑛 𝛽 ′ −1 𝑘=0 𝛽 𝛽 ′ [𝑘 ] ,<label>(8)</label></formula><p>where 𝛽 ′ is the compress version of 𝛽. Formula 8 indicates that the BOVM can be achieved by computing multiple inner products of vectors in succession.</p><p>If we transpose the matrix A to a CSR matrix 𝐴_𝐶𝑆𝑅 = {𝛼 0 , 𝛼 1 , • • • 𝛼 𝑛−2 , 𝛼 𝑛−1 }, Formula 8 can be simplified as follows,</p><formula xml:id="formula_13">𝛽 = 𝑙𝑒𝑛 𝛽 ′ −1 𝑘=0 𝛼 𝛽 ′ [𝑘 ] ,<label>(9)</label></formula><p>and it means that we can use 𝑙𝑒𝑛 𝛽 ′ times of array merges to replace boolean vector-matrix multiplication in the SSSP tasks. We get the optimized method as the Algorithm 2. Algorithm 2 utilizes a simpler method to merge vectors, and is particularly interested in the newly added elements of 𝛽 after merging these arrays. We aim to skip any duplicate elements since these shortest paths have already been discovered. We only visit the edges and update the shortest path when the element is missing in the 𝛽 array.</p><p>Specifically, SOVM starts from the set of neighbor nodes, skips all nodes that have already appeared in the result vector (line 1), finds the target nodes in neighboring nodes set that have not yet appeared in the result vector (line 4), and then updates their shortest paths. Formula 9 provides theoretical support for such operations, and SOVM can automatically exclude the cycles without additional judgment. </p><formula xml:id="formula_14">𝑇 (𝑛) = 𝑆 𝑤𝑐𝑐 (𝑖 ) ∑︁ 𝑗=0 𝑑 + ( 𝑗) = 𝐸 𝑤𝑐𝑐 (𝑖),<label>(10)</label></formula><p>where 𝑑 + ( 𝑗) is the out-degree of node 𝑗. 𝑆 𝑤𝑐𝑐 (𝑖) and 𝐸 𝑤𝑐𝑐 (𝑖) denotes the number of nodes and edges included in the largest WCC (Weakly Connected Component) to which node 𝑖 belongs. The time complexity of DAWN for APSP is determined by the largest WCC in the graph,</p><formula xml:id="formula_15">𝑇 (𝑛) = 𝑛−1 ∑︁ 𝑖=0 𝐸 𝑤𝑐𝑐 (𝑖) = 𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 + 𝑛−1−𝑆 𝑤𝑐𝑐 ∑︁ 𝑖=0 𝐸 𝑤𝑐𝑐 (𝑖),<label>(11)</label></formula><formula xml:id="formula_16">𝑇 (𝑛) &lt; 2𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ,<label>(12)</label></formula><p>where 𝑆 𝑤𝑐𝑐 and 𝐸 𝑤𝑐𝑐 denote the number of nodes and edges included in the largest WCC in graph. The time complexity of DAWN based on the SOVM is 𝑂 (𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ) for APSP tasks.</p><p>In summary, DAWN based on SOVM achieves better time complexity, requiring 𝑂 (𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ) and 𝑂 (𝐸 𝑤𝑐𝑐 (𝑖)) time for APSP and SSSP tasks on the unweighted graphs, compared to BFS which requires 𝑂 (𝑛𝑚) and 𝑂 (𝑚), respectively.</p><p>It is important to note that this complexity improvement only occurs in non-connected graphs, whereas in connected graphs, DAWN and BSF both require 𝑂 (𝑛𝑚) and 𝑂 (𝑚) time for APSP and SSSP tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Memory</head><p>In this section, we elaborate on how DAWN achieves reduced memory usage compared to BFS. Typically, the memory requirements of the BFS algorithm can be divided into three components: CSR matrix, the distance vector, and the priority queue. This implies that BFS cannot operate with less than 4𝑚 + 8𝑛 bytes of memory.</p><p>DAWN's memory requirements also consist of three components: the CSR matrix, the distance vector, and two boolean arrays. The two boolean arrays are utilized to store the paths updated in the previous and current iterations (details in Algorithm 2). As DAWN is a backward BFS algorithm, we can maintain a boolean array on the GPU instead of distance vector, with path length updates occurring in memory. The GPU memory byte-addressable, and even boolean variables are allocated a byte of space.</p><p>Therefore, DAWN necessitates a minimum of 4𝑚+3𝑛 bytes of memory. We can get the formula as follows,</p><formula xml:id="formula_17">𝜂 = 4𝑚 + 3𝑛 4𝑚 + 8𝑛 = 4𝐷 + 3 4𝐷 + 8 ,<label>(13)</label></formula><p>where 𝐷 represents the average degree of the graph. For instance, when considering the theoretical minimum memory usage, DAWN requires only 91.58% of the memory used by Gunrock on the graph uk-2005. While the theoretical difference is approximately 8.4%, in experiments conducted under constrained GPU memory conditions, DAWN can solve the BFS task on uk-2005, whereas Gunrock fails to allocate sufficient GPU memory. It is noteworthy that as the sparsity of the graph increases, the memory advantage of DAWN becomes more pronounced.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.5">Difference</head><p>To further examine the differences between DAWN and BFS, we present the technical details used in these two algorithms. Algorithm 3 describes the general BFS algorithm, and the benchmark implementations from GAP and Gunrock both employed more sophisticated optimization techniques in the experiment, where 𝑝𝑞 represents the priority queue and 𝑠𝑜𝑢𝑟𝑐𝑒 is the source node of the SSSP task.</p><p>For Line 15 of Algorithm 2, if no new shortest paths are found in this loop, then exit, according to Fact 1. We utilize step to mark the current node being visited as a neighbor node of the source node at the layer 𝑠𝑡𝑒𝑝 in DAWN. Lines 4-6 of Algorithm 2 indicate that some edge visitations can be skipped. This means that the nodes that have already been visited in the previous layer do not need to be visited again, as the shortest path has already been determined. The theorem supporting this decision is referred to as Theorem 3.2, which states that the first discovered path from the source node to a reachable node is the shortest path. The processing steps of DAWN is as follows,</p><p>(1) Firstly, DAWN reads the input vector and identifies the single-step reachable nodes from the source node 𝑠, (2) Then, searching for the single-step reachable nodes from the updated nodes which updating in the previous step, while skipping nodes that have already been discovered to have a path from the source node 𝑠 and reachable nodes with an out-degree of 0, (3) Next, DAWN repeats the second step until output vector stabilizes. (4) Finally, exit loop and output the result vector.</p><p>On the other hand, in BFS, the operations of accessing nodes and edges, and checking whether the path needs to be updated are necessary for every node and edge, refer to Line 6-10 in Algorithm 3.</p><p>We illustrate the difference between the BFS algorithm and DAWN through a example in Figure <ref type="figure" coords="6,491.64,615.14,3.48,4.55" target="#fig_2">2</ref>. The red color indicates the nodes and edges that are visited in the current step, the blue nodes and edges represent that have already been visited, and the green edges represent that have not yet been visited. The 𝑖𝑛𝑝𝑢𝑡 represents the paths updated in the previous iteration, while the 𝑜𝑢𝑡𝑝𝑢𝑡 indicates the paths updated in the current iteration. The 𝑟𝑒𝑠𝑢𝑙𝑡 signifies the outcome of the algorithm, specifically denoting the shortest In the third step of Figure <ref type="figure" coords="7,175.45,507.55,3.48,4.55" target="#fig_2">2</ref>, node 5 has four outbound edges to node 1, 4, 6, 10. BFS must traverse these edges, and then BFS would note that the destination vertex of these edges had already been visited and the destination vertex would not be in the output frontier. However, DAWN does not traverse these edges. The compressed vector for node 5 is {1, 2, 3, 6, 10}, and 𝑟𝑒𝑠𝑢𝑙𝑡 is {1, 1, 1, 0, 0, 0, 1, 0, 0, 0}. The values of 𝑟𝑒𝑠𝑢𝑙𝑡 <ref type="bibr" coords="7,119.40,588.72,10.87,8.56" target="#b0">[1]</ref>, 𝑟𝑒𝑠𝑢𝑙𝑡 <ref type="bibr" coords="7,162.02,588.72,10.87,8.56" target="#b1">[2]</ref>, 𝑟𝑒𝑠𝑢𝑙𝑡 <ref type="bibr" coords="7,204.64,588.72,10.87,8.56" target="#b2">[3]</ref>, and 𝑟𝑒𝑠𝑢𝑙𝑡 <ref type="bibr" coords="7,265.73,588.72,11.66,8.56" target="#b5">[6]</ref> are all 1, indicating that DAWN will skip these edges, because the shortest paths of them were already found.</p><p>In the SSSP task for node 𝑠, the BFS algorithm visited a total of 10 nodes and 17 edges, while DAWN visited only 8 nodes and 12 edges, resulting in 2 fewer nodes and 5 fewer edges being visited by DAWN.</p><p>Overall, the fundamental difference between DAWN and BFS lies in whether the algorithm relies on a priority queue to prevent revisiting nodes and edges.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">RESULTS</head><p>In this section, we will outline the experimental setup and present initial experimental data. Following this, we proceed to show the performance of DAWN with regard to scalability and its effect in accelerating the SSSP task.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Experiment Introduction</head><p>In our experimental trials, we leverage a set of 66 general graphs sourced from the SuiteSparse Matrix Collection and the Gunrock benchmark datasets <ref type="bibr" coords="7,454.86,202.07,15.00,4.55" target="#b15">[16,</ref><ref type="bibr" coords="7,472.36,202.07,11.25,4.55" target="#b49">50]</ref>.</p><p>In scenarios where a node is not part of the largest WCC of the graph, but instead resides in a smaller connected component, DAWN has the potential to accomplish the task in constant time, while BFS requires the construction of a priority queue.</p><p>Therefore, we have established a randomly generated set comprising 500 nodes, where each node executes the SSSP task 64 times. All computations are conducted within this node-set. It is noteworthy that these nodes are not exclusively part of the largest connected component, and our dataset includes non-connected graphs. We underscore our focus on evaluating the performance of the BFS algorithm across diverse graph types, including connected and non-connected graphs, as well as both generated and real-world graphs.</p><p>Performing the task consecutively serves to minimize the influence of external factors on experimental results, such as interference from background processes. We adopted the arithmetic mean as the anticipated value and subjected the sample distribution to a t-distribution test. After eliminating samples that deviated from the assumptions of the tdistribution, and computing the mean of the remaining samples, we get the final result. The parameters of the test machine are detailed in Table <ref type="table" coords="7,317.96,639.05,3.34,4.55" target="#tab_5">2</ref>. Our comparison includes various versions of the BFS algorithm, and the results are presented in Table <ref type="table" coords="7,501.84,651.01,3.45,4.55" target="#tab_6">3</ref>. We provide accessible links to graphs: <ref type="bibr" coords="7,427.14,662.96,36.51,4.55">[Dataset]</ref>. The number of nodes in these graphs ranges up to 139𝑀, with edges extending up to 921𝑀. The parameters of the experimental graphs are detailed in Table <ref type="table" coords="7,387.62,698.83,3.41,4.55" target="#tab_7">4</ref>. Edges</p><formula xml:id="formula_18">&lt; 1M 1M ∼ 5M 5M ∼ 20M 20M ∼ 500M &gt; 500M 16 16 23 8 3</formula><p>Specifically, the results for DAWN running on GPUs were obtained using a thread block size of 1024, a configuration viable on GPUs since the Pascal architecture introduced in 2016. Although the optimal block partitioning scheme depends on several factors (e.g., matrix density, shared memory size, bandwidth, etc.), we adopt a fixed block size to enhance result reproducibility.</p><p>Gunrock is a CUDA library for graph-processing designed specifically for the GPU, which achieves a better balance between performance and expressiveness via coupling highperformance GPU computing primitives and optimization strategies, particularly in the area of fine-grained load balancing. <ref type="bibr" coords="8,85.78,504.51,15.00,4.55" target="#b30">[31,</ref><ref type="bibr" coords="8,103.27,504.51,11.46,4.55" target="#b31">32,</ref><ref type="bibr" coords="8,117.22,504.51,11.46,4.55" target="#b49">50,</ref><ref type="bibr" coords="8,131.17,504.51,11.25,4.55" target="#b50">51]</ref>.</p><p>We strongly encourage readers to delve into the provided codebase and verify the reported results. The code and more information for our algorithm are available on [GitHub]. In the repository, we offer additional insights into the actual running times and graph details for each proposed solution, accompanied by a description of artifacts and evaluation methodologies. These details are provided to enhance the reproducibility of any results presented in this paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Scalability</head><p>It is important to validate DAWN's feature of high parallelism and scalability. We measure the scalability of DAWN using multi-threading efficiency as follows, simplified from Gustafson-Barsis's law <ref type="bibr" coords="8,144.33,673.93,16.59,4.55" target="#b24">[25]</ref>,</p><formula xml:id="formula_19">𝜂 𝑡 = 𝑇 𝐵 𝑇 𝑁 × 𝑁 ,<label>(14)</label></formula><p>where 𝑇 𝐵 represents the baseline execution time, 𝑇 𝑁 represents the execution time of the program with 𝑁 threads, and 𝑁 is the number of threads. In Table <ref type="table" coords="8,485.49,113.03,4.63,4.55" target="#tab_8">5</ref> and 6, the multithreading efficiency for DAWN based on SOVM and BFS API from GAP on the I5-13600KF and EPYC Milan 7T83 are depicted, respectively.  When utilizing up to 32 threads on the EPYC processor, the core frequency remains constant at 3.5 GHz. However, when scaling up to 64 threads, the frequency of all cores diminishes to 2.54 GHz. In contrast, the I5 processor does not experience any reduction in core frequency. It is important to note that the exact performance gains are contingent upon the particular hardware configuration utilized, and considerations such as power and thermal constraints impose limitations on the maximum achievable performance.</p><p>The I5 processor integrates a combination of performance and efficiency cores, where the former delivers higher clock speeds, and the latter excels in power efficiency. Hence, DAWN achieves a linear speedup when scaling from 1 thread to 6 threads, but the performance improvement slows down when scaling from 6 to 12 threads due to the performance gap between the two types of cores. Additionally, the I5 processor does not have enough physical cores to achieve significant performance gains beyond 14 threads.</p><p>Across diverse hardware configurations, DAWN demonstrates better multi-threading efficiency compared to GAP. Futhurmore, the scalability of the algorithm is influenced by a considerable number of factors, among which the characteristic of the graph is a significant factor.</p><p>Figure <ref type="figure" coords="8,356.71,651.01,4.71,4.55" target="#fig_3">3</ref> and 4 illustrate DAWN's capability for speedup across different thread counts on some of the graphs. Specifically, on the mycielskian16, which is a dense graph with a lowdiameter of 2, DAWN exhibits lower thread efficiency compared to other sparse graphs. This phenomenon underscores the impact of multiple factors on the increase or decrease in algorithm performance. For instance, Graph mouse_gene is denser than mycielskian16, and with a diameter of 12, yet DAWN exhibits superior thread efficiency on mouse_gene. Therefore, we emphasize the comprehensive performance of the algorithm across a wider variety of graphs.   In Table <ref type="table" coords="9,363.65,256.49,3.46,4.55" target="#tab_10">7</ref>, the speedup for DAWN based on SOVM over BFS API from GAP on an I5-13600KF is depicted, with the values derived from the mean of repeated experiments, following the methodology outlined in Section 4.1. The first row shows the speedup of DAWN <ref type="bibr" coords="9,432.64,304.31,22.53,4.55" target="#b19">(20)</ref> over BFS API from GAP, both on I5-13600KF, and the next row shows the speedup of DAWN on RTX3080TI over BFS API from GAP on I5-13600KF. Due to the significant increase in scalability and parallelism, DAWN based on the SOVM outperformed GAP in most graphs (62 out of 66), achieving an impressive average speedup of 3.769×.</p><p>However, the DAWN algorithm demonstrates comparatively lower performance in four specific graphs (coPapers-DBLP, com-DBLP, coAuthorsDBLP, coPapersCiteseer), all representing citation and collaboration networks. These graph types are characterized by high clustering coefficients and relatively short average shortest paths. Despite the deployment of a more potent processor, BFS API from Gunrock falls short of surpassing the performance of GAP on these graphs. Nevertheless, in other scale-free graphs such as social networks and the internet, the DAWN algorithm exhibits superior performance.</p><p>Numerous well-established studies have presented evidence that the eccentricity of the real graphs is log 𝑛 <ref type="bibr" coords="9,526.54,531.46,10.26,4.55" target="#b0">[1,</ref><ref type="bibr" coords="9,538.95,531.46,6.78,4.55" target="#b7">8,</ref><ref type="bibr" coords="9,547.88,531.46,11.41,4.55" target="#b12">13,</ref><ref type="bibr" coords="9,317.96,543.41,11.41,4.55" target="#b23">24,</ref><ref type="bibr" coords="9,331.83,543.41,11.41,4.55" target="#b33">34,</ref><ref type="bibr" coords="9,345.71,543.41,11.17,4.55" target="#b44">45]</ref>. Therefore, we get the small-world graphs (23 out of 66) which the average shortest path in the graph is less than log 𝑛, includes the citation and collaboration networks mentioned before.</p><p>The Direction-Optimizing BFS algorithm will achieve the speedups when the active frontier is a substantial fraction of the total graph, which commonly occurs in small-world graphs <ref type="bibr" coords="9,347.89,627.10,10.38,4.55" target="#b2">[3]</ref>. However, DAWN outperforms GAP on the most small-world graphs (19 out of 23) and achieves an average speedup of 2.332×. Furthermore, in other real graph with a high-diameter such as road networks, DAWN achieves an average speedup of 4.483× over GAP.</p><p>Figure <ref type="figure" coords="9,355.96,686.87,4.57,4.55">5</ref> shows the running time for DAWN <ref type="bibr" coords="9,497.35,686.87,21.78,4.55" target="#b19">(20)</ref> and GAP. The y-axis represents the average running time, with each </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Performance Comparison with Gunrock</head><p>In Table <ref type="table" coords="10,352.67,645.68,3.34,4.55" target="#tab_11">8</ref>, the first row shows the speedup of DAWN( <ref type="formula" coords="10,529.30,645.68,10.81,4.55">20</ref>) on an I5-13600KF over BFS API from Gunrock on RTX3080TI. The next rows shows the speedup of DAWN over BFS API from Gunrock, both on RTX3080TI. Figure <ref type="figure" coords="10,494.94,681.55,4.68,4.55">6</ref> illustrates the running time for DAWN and BFS API from Gunrock. Red markers correspond to DAWN, while green markers represent Gunrock. Impressively, DAWN outperformed Gunrock in the majority of graphs (63 out of 66), achieving an average speedup of 9.410×. On the Graphs uk-2005 and arabic-2005, Gunrock encountered an out-of-memory error, thus preventing the acquisition of runtime data for these two graphs. The testing machine equipped with 12GB of physical GPU memory, with 9.7GB available. The available GPU memory for both DAWN and Gunrock is identical, indicating that when executing similar tasks, DAWN requires less GPU memory compared to Gunrock. Apart from the aforementioned two graphs, DAWN demonstrates performance inferior to that of Gunrock on the Graph web-BerkStan, and also falls short compared to DAWN <ref type="bibr" coords="11,272.12,338.21,22.53,4.55" target="#b19">(20)</ref> and GAP running on CPU. This phenomenon may be attributed to the scale-free nature of web-BerkStan, leading to load imbalance during computation and significantly impacting algorithm performance. Gunrock, possessing robust load balancing capabilities, holds an advantage in such scenarios. It is crucial to note that DAWN does not prioritize load balancing as the primary focus of our investigation. Nonetheless, despite these challenges, DAWN outperforms Gunrock on the majority of graphs due to algorithmic optimizations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">Performance on Different Platforms</head><p>The differences in the speedup distribution of DAWN compared to different algorithms are attributed to the nature of the graphs, such as the number of nodes and the average shortest path length. Therefore, we will proceed to compare the performance of DAWN on the different platforms. Figure <ref type="figure" coords="11,53.57,543.41,4.73,4.55" target="#fig_6">7</ref> illustrates the performance gap of DAWN between CPU and GPU. Light purple bars indicate cases where DAWN's performance on CPU is inferior to that on GPU, while dark purple bars represent the opposite scenario.</p><p>In more than half of the graphs (37 out of 66), DAWN(20) exhibits superior performance compared to DAWN. For instance, on web graphs, DAWN <ref type="bibr" coords="11,172.76,615.14,22.53,4.55" target="#b19">(20)</ref> and the GAP algorithm achieved enhanced performance, which demonstrates that the powerful single-core performance of CPUs provide better acceleration for algorithms.</p><p>However, this single-core performance acceleration has its limitations. Once the graph size exceeds one million nodes, the advantage of single-core performance can no longer compensate for the performance disparity induced by a greater  <ref type="formula" coords="11,472.80,277.94,11.85,8.56">20</ref>) over DAWN number of cores. Furthermore, on graphs with a smaller number of nodes, the communication overhead between the CPU and GPU appears more costly than computational expenses, leading to inferior performance compared to algorithms running on CPU.</p><p>DAWN <ref type="bibr" coords="11,350.33,372.83,22.41,4.55" target="#b19">(20)</ref> achieved performance superiority on graphs with an average of 0.209 million nodes and 5.854 million edges (considering undirected edges as two directed edges). On the other hand, DAWN demonstrated performance superiority on graphs with an average of 13.820 million nodes and 146.592 million edges.</p><p>In summary, DAWN is more efficient and yielding a higher speedup when compared to Gunrock and GAP.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">CONCLUSION</head><p>In this paper, we propose an enhanced BFS algorithm, which requires 𝑂 (𝐸 𝑤𝑐𝑐 (𝑖)) and 𝑂 (𝑆 𝑤𝑐𝑐 • 𝐸 𝑤𝑐𝑐 ) time for solving SSSP and APSP problems on the unweighted graph, respectively.</p><p>Our research involved a performance evaluation of DAWN, GAP, and Gunrock across various platforms, using graphs from SuiteSparse Matrix Collection and Gunrock benchmark dataset. DAWN achieves average speedup of 3.769× and 9.410×, over GAP and Gunrock respectively.</p><p>The experiment underscores that DAWN based on the SOVM, exhibits remarkable scalability and efficiency in addressing the shortest paths problem on modern processors. The efficient utilization of computational resources is a significant factor contributing to its exceptional performance. These results highlight the potential of DAWN as a powerful tool for graph analytics, particularly in applications that require high processing speed and efficiency.</p><p>Our future research will focus on addressing the balance between optimizing matrix operations and managing the consumption of (min,+) operations. This focus is aimed to expand the applicability of DAWN on weighted graphs, transforming it from a promising proof-of-concept to a practical tool that can be used in various real-world graph analysis applications in the future.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,317.96,464.25,240.24,8.56;3,317.96,476.20,87.06,8.56;3,317.96,291.70,240.25,158.48"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Example for the Shortest Paths Discovery in the Boolean Matrix</figDesc><graphic coords="3,317.96,291.70,240.25,158.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="5,322.57,89.42,212.41,8.56;5,322.94,103.10,71.05,4.55;5,327.92,115.53,129.82,8.56;5,327.92,127.49,73.09,8.56;5,319.35,139.13,80.31,8.91;5,319.75,153.28,3.58,5.99;5,343.26,150.61,68.43,8.56;5,319.75,166.23,3.58,5.99;5,343.26,163.56,143.03,9.37;5,320.15,178.18,3.58,5.99;5,358.60,175.52,97.96,8.56;5,320.15,191.13,3.58,5.99;5,358.60,188.47,109.51,8.56;5,320.15,204.09,3.58,5.99;5,358.60,201.42,108.43,9.37;5,362.98,214.84,112.37,8.91;5,320.55,228.99,3.58,5.99;5,374.05,228.84,85.82,4.64;5,320.55,241.94,3.58,5.99;5,373.95,239.28,116.38,8.56;5,320.55,254.90,3.58,5.99;5,373.95,252.70,110.13,8.91;5,317.36,266.85,7.17,5.99;5,389.29,264.19,89.83,8.56;5,316.96,279.80,7.17,5.99;5,373.95,277.93,16.60,8.56;5,316.56,292.75,7.17,5.99;5,358.60,290.88,16.60,8.56;5,316.17,305.71,7.17,5.99;5,343.26,303.83,16.60,8.56;5,316.17,318.66,7.17,5.99;5,343.01,318.68,61.89,4.46;5,342.76,329.71,134.49,8.01;5,316.17,344.56,7.17,5.99;5,343.26,342.36,110.13,8.91;5,316.56,356.51,7.17,5.99;5,358.60,356.36,27.49,4.55;5,316.17,369.47,7.17,5.99;5,343.26,367.59,16.60,8.56;5,315.77,380.54,28.75,8.56;5,315.77,393.17,80.77,8.91;5,327.92,431.85,230.29,4.55;5,317.96,443.81,195.55,4.64"><head>Algorithm 2 : 9 if is_converged = true then 10 is_converged</head><label>2910</label><figDesc>Sparse Optimized Boolean Vector-Matrix OperationInput: CSR, 𝛼, 𝛽, step, distance Output: distance 1 while step &lt; n do 2 step ⇐ step + 1 ;3 while i ∈ [0, n-1] &amp; (𝛼[i] = true) do4 start ⇐ CSR.row_ptr[i]; 5 end ⇐ CSR.row_ptr[i + 1]; 6 while (j ∈ [start, end-1]) &amp; (distance[CSR.col[j]] = 0) do 7 𝛽[CSR.col[j]]⇐ true; 8 distance[CSR.col[j]] ⇐ step; get the time complexity of DAWN based on SOVM to solve SSSP task of node 𝑖 is as follows,</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="7,53.80,437.92,241.46,8.56;7,53.80,449.87,172.03,8.56;7,53.80,83.67,240.24,340.18"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Example for the BFS and DAWN Processing, Left is the BFS and Right is the DAWN</figDesc><graphic coords="7,53.80,83.67,240.24,340.18" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="9,53.80,385.24,240.25,8.56;9,53.80,397.20,240.52,8.56;9,53.80,409.15,88.42,8.56;9,53.80,167.07,240.25,204.11"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Speedup for DAWN based on SOVM in various threads (baseline 1 thread), with Intel Core i5-13600KF baseline of 1 thread</figDesc><graphic coords="9,53.80,167.07,240.25,204.11" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="9,53.80,658.32,240.25,8.56;9,53.80,670.27,240.25,8.56;9,53.54,682.23,21.86,8.56;9,53.80,441.58,240.25,202.67"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Speedup for DAWN based on SOVM in various threads (baseline 4 threads), with AMD EPYC Milan 7T83</figDesc><graphic coords="9,53.80,441.58,240.25,202.67" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="10,77.04,324.23,457.92,8.56;10,53.80,346.03,504.40,226.48"><head>Figure 5 :Figure 6 :</head><label>56</label><figDesc>Figure 5: Running time for the DAWN based on the SOVM and BFS API from GAP with an I5-13600KF</figDesc><graphic coords="10,53.80,346.03,504.40,226.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="11,329.95,277.94,216.25,8.56;11,317.96,83.69,240.25,180.19"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: The speedup of DAWN(20) over DAWN</figDesc><graphic coords="11,317.96,83.69,240.25,180.19" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="2,53.40,148.89,240.65,37.65"><head></head><label></label><figDesc>M et al. proposed two novel APSP algorithms based on the BFS algorithm, which require 𝑂 ( 𝑚𝑛 log 𝑛 ) (𝑚 ≫ 𝑛 log 2 𝑛) and 𝑂 (</figDesc><table coords="2,119.48,172.42,85.86,14.12"><row><cell>𝑚𝑛 log log 𝑛 log 𝑛</cell><cell>+</cell><cell>𝑛 2 log 2 log 𝑛 log 𝑛</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="2,330.11,207.98,215.93,162.58"><head>Table 1 :</head><label>1</label><figDesc>Definition of notations Edge count of the largest WCC of node 𝑖 𝑆 𝑤𝑐𝑐 (𝑖) Node count of the largest WCC of node 𝑖 𝜖 (𝑖)</figDesc><table coords="2,330.11,234.02,215.93,136.55"><row><cell cols="2">Notation Definition</cell></row><row><cell>𝐴</cell><cell>Adjacency matrix of unweighted graphs</cell></row><row><cell>𝐸 𝑤𝑐𝑐</cell><cell>Maximum edge count of the largest WCC</cell></row><row><cell>𝑆 𝑤𝑐𝑐</cell><cell>Maximum node count of the largest WCC</cell></row><row><cell cols="2">𝐸 𝑤𝑐𝑐 (𝑖) Eccentricity of node 𝑖</cell></row><row><cell>𝜖 𝑚𝑎𝑥</cell><cell>Maximal eccentricity of the graph</cell></row><row><cell>𝑛, 𝑚</cell><cell>Number of nodes and edges in graph</cell></row><row><cell>𝑝</cell><cell>Average connected probability</cell></row><row><cell>𝐶𝑆𝑅</cell><cell>Compressed Sparse Row format</cell></row><row><cell>𝐶𝑆𝐶</cell><cell>Compressed Sparse Column format</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="7,322.94,489.26,244.60,111.50"><head>Table 2 :</head><label>2</label><figDesc>Parameters of the Test Machine</figDesc><table coords="7,322.94,519.48,244.60,81.29"><row><cell>Hardware</cell><cell>Machine1</cell><cell>Machine2</cell></row><row><cell>CPU</cell><cell cols="2">Intel Core i5-13600KF AMD EPYC Milan 7T83</cell></row><row><cell>RAM</cell><cell>32GB</cell><cell>128GB</cell></row><row><cell>GPU</cell><cell>NVIDIA RTX 3080TI</cell><cell>-</cell></row><row><cell cols="2">Compiler NVCC and GCC 9.4.0</cell><cell>GCC 9.4.0</cell></row><row><cell>OS</cell><cell>Ubuntu 20.04</cell><cell>Ubuntu 20.04</cell></row><row><cell>Toolkit</cell><cell>CUDA 12.1</cell><cell>-</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="8,58.78,87.89,238.20,111.50"><head>Table 3 :</head><label>3</label><figDesc>Parameters of the Algorithms</figDesc><table coords="8,58.78,118.11,238.20,81.29"><row><cell cols="2">Abbreviation Solution</cell></row><row><cell>Gunrock</cell><cell>The BFS algorithm running on RXT3080TI,</cell></row><row><cell></cell><cell>from the Gunrock [31, 51]</cell></row><row><cell>GAP</cell><cell>Direction-optimizing BFS algorithm, from</cell></row><row><cell></cell><cell>the GAP [3], running on I5-13600KF</cell></row><row><cell>DAWN</cell><cell>DAWN with RTX 3080TI</cell></row><row><cell cols="2">DAWN(20) DAWN with I5-13600KF</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="8,53.47,223.91,240.58,72.46"><head>Table 4 :</head><label>4</label><figDesc>Parameters of the Experimental Graphs (Nodes and Edges)</figDesc><table coords="8,61.30,262.18,225.25,34.19"><row><cell></cell><cell></cell><cell>Nodes</cell><cell></cell><cell></cell></row><row><cell cols="5">&lt; 100K 100K ∼ 500K 500K ∼ 5M 5M ∼ 100M &gt; 100M</cell></row><row><cell>14</cell><cell>24</cell><cell>14</cell><cell>13</cell><cell>1</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="8,317.63,170.27,240.58,74.64"><head>Table 5</head><label>5</label><figDesc></figDesc><table coords="8,317.96,170.27,240.25,74.64"><row><cell cols="6">: The multi-threading efficiency of DAWN and</cell></row><row><cell cols="2">GAP on I5-13600KF</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Thread</cell><cell>1</cell><cell>3</cell><cell>6</cell><cell>12</cell><cell>20</cell></row><row><cell cols="6">DAWN(20) 100% 99.72% 98.35% 77.96% 37.54%</cell></row><row><cell>GAP</cell><cell cols="5">100% 96.84% 89.51% 66.28% 23.43%</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9" coords="8,317.63,277.87,240.58,74.64"><head>Table 6 :</head><label>6</label><figDesc>The multi-threading efficiency of DAWN and GAP on EPYC Milan 7T83</figDesc><table coords="8,326.84,319.04,222.48,33.47"><row><cell>Thread</cell><cell>4</cell><cell>8</cell><cell>16</cell><cell>32</cell><cell>64</cell></row><row><cell cols="6">DAWN(20) 100% 99.45% 97.73% 84.10% 58.97%</cell></row><row><cell>GAP</cell><cell cols="5">100% 95.69% 88.12% 71.49% 40.16%</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10" coords="9,322.94,171.77,235.89,62.68"><head>Table 7 :</head><label>7</label><figDesc>The speedup of DAWN over GAP</figDesc><table coords="9,322.94,200.98,235.89,33.46"><row><cell cols="6">Speedup &lt;1× 1× ∼ 2× 2× ∼ 4× 4× ∼ 16× &gt;16×</cell></row><row><cell>DAWN(20)</cell><cell>4</cell><cell>15</cell><cell>24</cell><cell>17</cell><cell>6</cell></row><row><cell>DAWN</cell><cell>12</cell><cell>20</cell><cell>11</cell><cell>9</cell><cell>14</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11" coords="11,58.78,229.06,235.89,62.68"><head>Table 8 :</head><label>8</label><figDesc>The speedup of DAWN over Gunrock</figDesc><table coords="11,58.78,258.28,235.89,33.46"><row><cell cols="6">Speedup &lt;1× 1× ∼ 2× 2× ∼ 4× 4× ∼ 16× &gt;16×</cell></row><row><cell>DAWN(20)</cell><cell>5</cell><cell>5</cell><cell>10</cell><cell>23</cell><cell>21</cell></row><row><cell>DAWN</cell><cell>3</cell><cell>16</cell><cell>22</cell><cell>6</cell><cell>19</cell></row></table></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="12,70.87,181.68,224.52,3.64;12,70.87,190.01,198.81,7.13" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Diameter of the world-wide web</title>
+		<author>
+			<persName coords=""><forename type="first">Réka</forename><surname>Albert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hawoong</forename><surname>Jeong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert-László</forename><surname>Barabási</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">nature</title>
+		<imprint>
+			<biblScope unit="volume">401</biblScope>
+			<biblScope unit="page" from="130" to="131" />
+			<date type="published" when="1999">1999. 1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,201.60,224.52,3.64;12,70.87,211.57,223.17,3.64;12,70.87,219.90,224.05,7.13;12,70.61,231.49,157.00,3.64" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">On economical construction of the transitive closure of an oriented graph</title>
+		<author>
+			<persName coords=""><forename type="first">L'vovich</forename><surname>Vladimir</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yefim</forename><forename type="middle">A</forename><surname>Arlazarov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Dinitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Igo-Raleksandrovich</forename><surname>Ma Kronrod</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Faradzhev</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Doklady Akademii Nauk</title>
+		<imprint>
+			<biblScope unit="volume">194</biblScope>
+			<biblScope unit="page" from="487" to="488" />
+			<date type="published" when="1970">1970</date>
+			<publisher>Russian Academy of Sciences</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,241.45,224.52,3.64;12,70.87,249.78,223.97,7.13;12,70.87,259.75,223.17,7.13;12,70.87,269.71,81.18,7.13" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Directionoptimizing breadth-first search</title>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Beamer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Krste</forename><surname>Asanovic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Patterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;12: Proceedings of the International Conference on High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,281.31,223.17,3.64;12,70.87,289.63,182.51,7.13" xml:id="b3">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Beamer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Krste</forename><surname>Asanović</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Patterson</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1508.03619</idno>
+		<title level="m">The GAP benchmark suite</title>
+				<imprint>
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,70.87,301.23,224.40,3.64;12,70.87,311.19,223.18,3.64;12,70.87,319.52,223.17,7.13;12,70.87,329.48,179.73,7.13" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Distributed memory breadth-first search revisited: Enabling bottom-up search</title>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Beamer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aydin</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Krste</forename><surname>Asanovic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Patterson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2013 IEEE International Symposium on Parallel &amp; Distributed Processing</title>
+				<imprint>
+			<publisher>Workshops and Phd Forum. IEEE</publisher>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="1618" to="1627" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,341.08,224.52,3.64;12,70.87,351.04,106.87,3.64" xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Network optimization: continuous and discrete models</title>
+		<author>
+			<persName coords=""><forename type="first">Dimitri</forename><surname>Bertsekas</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1998">1998. 1998</date>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="91" to="112" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,361.01,224.52,3.64;12,70.87,369.33,223.17,7.13;12,70.69,380.93,68.53,3.64" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">An analysis of stochastic shortest path problems</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Dimitri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">N</forename><surname>Bertsekas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Tsitsiklis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mathematics of Operations Research</title>
+		<imprint>
+			<biblScope unit="volume">16</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="580" to="595" />
+			<date type="published" when="1991">1991. 1991</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,389.26,224.05,7.13;12,70.87,399.22,99.51,7.13" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">The diameter of random graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Béla</forename><surname>Bollobás</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Trans. Amer. Math. Soc</title>
+		<imprint>
+			<biblScope unit="volume">267</biblScope>
+			<biblScope unit="page" from="41" to="52" />
+			<date type="published" when="1981">1981. 1981</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,410.82,223.17,3.64;12,70.87,420.78,223.17,3.64;12,70.87,429.11,178.24,7.13" xml:id="b8">
+	<monogr>
+		<title level="m" type="main">Distributed-memory breadth-first search on massive graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Aydin</forename><surname>Buluç</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Beamer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kamesh</forename><surname>Madduri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Krste</forename><surname>Asanovic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Patterson</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1705.04590</idno>
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,70.87,440.71,224.52,3.64;12,70.87,450.67,224.40,3.64;12,70.87,459.00,224.05,7.13;12,70.87,470.60,16.58,3.64" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">An efficient implementation of the Bellman-Ford algorithm for Kepler GPU architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Federico</forename><surname>Busato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicola</forename><surname>Bombieri</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="page" from="2222" to="2233" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,480.56,224.52,3.64;12,70.87,488.89,223.67,7.13;12,70.87,500.48,53.71,3.64" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">All-pairs shortest paths for unweighted undirected graphs in o (mn) time</title>
+		<author>
+			<persName coords=""><forename type="first">Chan</forename><surname>Timothy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Algorithms (TALG)</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="1" to="17" />
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,510.45,223.17,3.64;12,70.87,520.41,224.52,3.64;12,70.87,530.37,44.18,3.64" xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Priority queues and dijkstra&apos;s algorithm</title>
+		<author>
+			<persName coords=""><forename type="first">Rezaul</forename><surname>Mo Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijaya</forename><surname>Alam Chowdhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Ramachandran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lingling</forename><surname>Lan Roche</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Tong</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2007">2007. 2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,540.33,223.17,3.64;12,70.87,548.66,224.12,7.13;12,70.62,560.26,131.24,3.64" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Scale-Free Networks Are Ultrasmall</title>
+		<author>
+			<persName coords=""><forename type="first">Reuven</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shlomo</forename><surname>Havlin</surname></persName>
+		</author>
+		<idno type="DOI">10.1103/PhysRevLett.90.058701</idno>
+		<ptr target="https://doi.org/10.1103/PhysRevLett.90.058701" />
+	</analytic>
+	<monogr>
+		<title level="j">Phys. Rev. Lett</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">58701</biblScope>
+			<date type="published" when="2003-02">2003. Feb 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,570.22,223.17,3.64;12,70.59,578.55,223.45,7.13;12,70.87,588.51,223.18,7.13;12,70.02,598.48,225.25,7.13;12,70.87,610.07,114.48,3.64" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Matrix Multiplication via Arithmetic Progressions</title>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Coppersmith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Winograd</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/28395.28396</idno>
+		<ptr target="https://doi.org/10.1145/28395.28396" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Nineteenth Annual ACM Symposium on Theory of Computing</title>
+				<meeting>the Nineteenth Annual ACM Symposium on Theory of Computing<address><addrLine>New York, New York, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1987">1987</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+	<note>STOC &apos;87)</note>
+</biblStruct>
+
+<biblStruct coords="12,70.87,620.03,224.40,3.64;12,70.87,630.00,223.17,3.64;12,70.87,638.33,223.18,7.13;12,70.87,648.29,88.32,7.13" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Work-efficient parallel GPU methods for single-source shortest paths</title>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Davidson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sean</forename><surname>Baxter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Garland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2014 IEEE 28th International Parallel and Distributed Processing Symposium</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="349" to="359" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,659.89,223.17,3.64;12,70.87,668.21,194.57,7.13" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">The University of Florida Sparse Matrix Collection</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Math. Softw</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<date type="published" when="2011-12">2011. dec 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,679.81,223.45,3.64;12,70.87,689.77,224.52,3.64;12,70.87,698.10,223.18,7.13;12,335.03,88.39,124.79,7.13" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Julienne: A framework for parallel graph algorithms using work-efficient bucketing</title>
+		<author>
+			<persName coords=""><forename type="first">Laxman</forename><surname>Dhulipala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guy</forename><surname>Blelloch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Shun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM Symposium on Parallelism in Algorithms and Architectures</title>
+				<meeting>the 29th ACM Symposium on Parallelism in Algorithms and Architectures</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="293" to="304" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,99.98,224.52,3.64;12,335.03,109.95,224.40,3.64;12,335.03,118.28,223.18,7.13;12,334.54,128.24,24.35,7.13" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Theoretically Efficient Parallel Graph Algorithms Can Be Fast and Scalable</title>
+		<author>
+			<persName coords=""><forename type="first">Laxman</forename><surname>Dhulipala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guy</forename><forename type="middle">E</forename><surname>Blelloch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Shun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM Symposium on Parallelism in Algorithms and Architectures (SPAA)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,139.84,223.17,3.64;12,334.73,148.16,188.46,7.13" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">A note on two problems in connexion with graphs</title>
+		<author>
+			<persName coords=""><surname>Edsger W Dijkstra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Numerische mathematik</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="269" to="271" />
+			<date type="published" when="1959">1959. 1959</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,159.76,224.40,3.64;12,335.03,168.09,132.82,7.13" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">An appraisal of some shortest-path algorithms</title>
+		<author>
+			<persName coords=""><surname>Stuart E Dreyfus</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Operations research</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="395" to="412" />
+			<date type="published" when="1969">1969. 1969</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,179.69,223.17,3.64;12,335.03,188.01,223.17,7.13;12,335.03,197.98,85.84,7.13" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">The cascade algorithm for finding all shortest distances in a directed graph</title>
+		<author>
+			<persName coords=""><surname>Ba Farbey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Land</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Murchland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Management Science</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="page" from="19" to="28" />
+			<date type="published" when="1967">1967. 1967</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,209.57,223.17,3.64;12,335.03,217.90,223.18,7.13;12,335.03,227.87,134.06,7.13" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Fibonacci heaps and their uses in improved network optimization algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Fredman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Endre Tarjan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the ACM (JACM)</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="596" to="615" />
+			<date type="published" when="1987">1987. 1987</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,239.46,223.33,3.64;12,335.03,247.79,223.17,7.13;12,334.84,259.39,72.24,3.64" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">All Pairs Shortest Distances for Graphs with Small Integer Length Edges</title>
+		<author>
+			<persName coords=""><forename type="first">Zvi</forename><surname>Galil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oded</forename><surname>Margalit</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Information and Computation</title>
+		<imprint>
+			<biblScope unit="volume">134</biblScope>
+			<biblScope unit="page" from="103" to="139" />
+			<date type="published" when="1997">1997. 1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,269.35,223.32,3.64;12,335.03,277.68,224.05,7.13;12,335.03,289.28,159.94,3.64" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">On the connectivity and diameter of small-world networks</title>
+		<author>
+			<persName coords=""><forename type="first">Ayalvadi</forename><surname>Ganesh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Xue</surname></persName>
+		</author>
+		<idno type="DOI">10.1239/aap/1198177228</idno>
+		<ptr target="https://doi.org/10.1239/aap/1198177228" />
+	</analytic>
+	<monogr>
+		<title level="j">Advances in Applied Probability</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="page" from="853" to="863" />
+			<date type="published" when="2007">2007. 2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,297.60,223.17,7.13;12,335.03,309.20,68.53,3.64" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Reevaluating Amdahl&apos;s law</title>
+		<author>
+			<persName coords=""><surname>John L Gustafson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page" from="532" to="533" />
+			<date type="published" when="1988">1988. 1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,319.16,224.40,3.64;12,335.03,329.13,224.40,3.64;12,335.03,339.09,64.83,3.64" xml:id="b25">
+	<monogr>
+		<title level="m" type="main">Structural models: An introduction to the theory of directed graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Harary</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Zane Norman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dorwin</forename><surname>Cartwright</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1965">1965. 1965</date>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="111" to="115" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,349.05,223.17,3.64;12,335.03,357.38,206.51,7.13" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Efficient algorithms for shortest paths in sparse networks</title>
+		<author>
+			<persName coords=""><forename type="first">Johnson</forename><surname>Donald</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the ACM (JACM)</title>
+		<imprint>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="1" to="13" />
+			<date type="published" when="1977">1977. 1977</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,366.63,223.18,7.97;12,335.03,377.30,221.08,7.13" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Δ-stepping: a parallelizable shortest path algorithm</title>
+		<author>
+			<persName coords=""><forename type="first">Ulrich</forename><surname>Meyer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Sanders</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Algorithms</title>
+		<imprint>
+			<biblScope unit="volume">49</biblScope>
+			<biblScope unit="page" from="114" to="152" />
+			<date type="published" when="2003">2003. 2003</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,388.90,224.52,3.64;12,335.03,398.86,224.40,3.64;12,335.03,407.19,214.11,7.13" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">An Empirical Assessment of Algorithms for Constructing a Minimum Spanning Tree</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">E</forename><surname>Bernard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Henry</forename><forename type="middle">D</forename><surname>Moret</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Shapiro</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computational Support for Discrete Mathematics</title>
+		<imprint>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="99" to="117" />
+			<date type="published" when="1992">1992. 1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,418.79,223.17,3.64;12,335.03,427.12,223.17,7.13;12,335.03,437.08,129.84,7.13" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">A lower bound for the shortest path problem</title>
+		<author>
+			<persName coords=""><forename type="first">Ketan</forename><surname>Mulmuley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pradyut</forename><surname>Shah</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings 15th Annual IEEE Conference on Computational Complexity</title>
+				<meeting>15th Annual IEEE Conference on Computational Complexity</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="14" to="21" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,448.68,224.40,3.64;12,335.03,457.01,223.17,7.13;12,335.03,466.97,224.40,7.13;12,335.03,478.57,192.30,3.64" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Essentials of Parallel Graph Analytics</title>
+		<author>
+			<persName coords=""><forename type="first">Muhammad</forename><surname>Osama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Serban</forename><forename type="middle">D</forename><surname>Porumbescu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/IPDPSW55747.2022.00061</idno>
+		<ptr target="https://doi.org/10.1109/IPDPSW55747.2022.00061" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Workshop on Graphs, Architectures, Programming, and Learning</title>
+				<meeting>the Workshop on Graphs, Architectures, Programming, and Learning</meeting>
+		<imprint>
+			<date type="published" when="2022">2022. GrAPL 2022</date>
+			<biblScope unit="page" from="314" to="317" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,488.53,224.40,3.64;12,334.75,496.86,223.46,7.13;12,335.03,506.82,223.17,7.13;12,335.03,516.78,223.18,7.13;12,335.03,528.38,177.74,3.64" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">A Programming Model for GPU Load Balancing</title>
+		<author>
+			<persName coords=""><forename type="first">Muhammad</forename><surname>Osama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Serban</forename><forename type="middle">D</forename><surname>Porumbescu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 28th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming<address><addrLine>Montreal, QC, Canada; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="79" to="91" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,538.34,223.17,3.64;12,335.03,546.67,157.40,7.13" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Recent results on the single-source shortest paths problem</title>
+		<author>
+			<persName coords=""><forename type="first">Rajeev</forename><surname>Raman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGACT News</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="page" from="81" to="87" />
+			<date type="published" when="1997">1997. 1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,558.27,224.40,3.64;12,335.03,566.60,106.21,7.13" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">The diameter of a scale-free random graph</title>
+		<author>
+			<persName coords=""><forename type="first">Oliver</forename><surname>Riordan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Combinatorica</title>
+		<imprint>
+			<biblScope unit="volume">24</biblScope>
+			<biblScope unit="page" from="5" to="34" />
+			<date type="published" when="2004">2004. 2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,578.19,224.41,3.64;12,335.03,586.52,223.17,7.13;12,335.03,596.48,223.18,7.13;12,335.03,606.45,75.56,7.13" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">A supernodal all-pairs shortest path algorithm</title>
+		<author>
+			<persName coords=""><forename type="first">Piyush</forename><surname>Sao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramakrishnan</forename><surname>Kannan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Prasun</forename><surname>Gera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Vuduc</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="250" to="261" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,618.04,223.17,3.64;12,334.76,628.00,223.44,3.64;12,335.03,636.33,223.18,7.13;12,335.03,646.30,223.18,7.13;12,335.03,656.26,224.52,7.13;12,335.03,667.86,158.25,3.64" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Scalable All-Pairs Shortest Paths for Huge Graphs on Multi-GPU Clusters</title>
+		<author>
+			<persName coords=""><forename type="first">Ramakrishnan</forename><surname>Hao Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Kannan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Thakkar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Vuduc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Potok</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 30th International Symposium on High-Performance Parallel and Distributed Computing (Virtual Event, Sweden) (HPDC &apos;21)</title>
+				<meeting>the 30th International Symposium on High-Performance Parallel and Distributed Computing (Virtual Event, Sweden) (HPDC &apos;21)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="121" to="131" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,677.82,224.52,3.64;12,334.73,686.15,223.47,7.13;12,335.03,697.74,68.53,3.64" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">On the all-pairs-shortest-path problem in unweighted undirected graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Raimund</forename><surname>Seidel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of computer and system sciences</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<biblScope unit="page" from="400" to="403" />
+			<date type="published" when="1995">1995. 1995</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,88.39,223.97,7.13;13,70.87,98.35,223.17,7.13;13,70.87,108.31,101.67,7.13" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Practical parallel hypergraph algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Shun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="232" to="249" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,119.91,224.52,3.64;13,70.87,128.24,223.18,7.13;13,70.87,138.20,224.40,7.13;13,70.69,149.80,28.36,3.64" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Ligra: a lightweight graph processing framework for shared memory</title>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Shun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guy</forename><forename type="middle">E</forename><surname>Blelloch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 18th ACM SIGPLAN symposium on Principles and practice of parallel programming</title>
+				<meeting>the 18th ACM SIGPLAN symposium on Principles and practice of parallel programming</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="135" to="146" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,159.76,223.18,3.64;13,70.87,168.09,223.18,7.13;13,70.87,178.05,145.84,7.13" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Smaller and faster: Parallel processing of compressed graphs with Ligra+</title>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Shun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Laxman</forename><surname>Dhulipala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guy</forename><forename type="middle">E</forename><surname>Blelloch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 Data Compression Conference. IEEE</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="403" to="412" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,189.65,223.17,3.64;13,70.87,197.98,223.97,7.13;13,70.87,207.94,146.76,7.13" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Parallel Local Graph Clustering</title>
+		<author>
+			<persName coords=""><forename type="first">Julian</forename><surname>Shun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Farbod</forename><surname>Roosta-Khorasani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kimon</forename><surname>Fountoulakis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><forename type="middle">W</forename><surname>Mahoney</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the VLDB Endowment</title>
+				<meeting>the VLDB Endowment</meeting>
+		<imprint>
+			<date type="published" when="2016">2016. 2016</date>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page">12</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,217.90,223.97,7.13;13,70.87,227.87,139.04,7.13" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Gaussian elimination is not optimal</title>
+		<author>
+			<persName coords=""><surname>Volker Strassen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Numerische mathematik</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="354" to="356" />
+			<date type="published" when="1969">1969. 1969</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,239.46,223.17,3.64;13,70.87,247.79,223.17,7.13;13,70.87,257.75,223.17,7.13;13,70.38,267.72,92.40,7.13" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Parallel implementation of bellman-ford algorithm using CUDA architecture</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Ganesh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Medha</forename><forename type="middle">A</forename><surname>Surve</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Shah</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 International conference of Electronics, Communication and Aerospace Technology (ICECA)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="16" to="22" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,279.31,223.17,3.64;13,70.87,287.64,160.56,7.13" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Subcubic cost algorithms for the all pairs shortest path problem</title>
+		<author>
+			<persName coords=""><forename type="first">Tadao</forename><surname>Takaoka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Algorithmica</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="309" to="318" />
+			<date type="published" when="1998">1998. 1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,70.87,299.24,224.52,3.64;13,70.87,307.57,223.17,7.13;13,70.87,319.16,223.70,3.64;13,70.87,329.13,53.64,3.64" xml:id="b44">
+	<monogr>
+		<title level="m" type="main">Determining the Diameter of Small World Networks (CIKM &apos;11)</title>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><forename type="middle">W</forename><surname>Takes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Walter</forename><forename type="middle">A</forename><surname>Kosters</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2063576.2063748</idno>
+		<ptr target="https://doi.org/10.1145/2063576.2063748" />
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<publisher>Association for Computing Machinery</publisher>
+			<biblScope unit="page" from="1191" to="1196" />
+			<pubPlace>New York, NY, USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,335.03,90.02,224.40,3.64;13,334.84,99.98,57.42,3.64" xml:id="b45">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Endre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tarjan</forename></persName>
+		</author>
+		<title level="m">Data structures and network algorithms</title>
+				<imprint>
+			<date type="published" when="1983">1983. 1983</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="39" to="45" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,335.03,108.31,223.36,7.13;13,334.79,119.91,47.97,3.64" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">On RAM priority queues</title>
+		<author>
+			<persName coords=""><forename type="first">Mikkel</forename><surname>Thorup</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM J. Comput</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="86" to="109" />
+			<date type="published" when="2000">2000. 2000</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,335.03,129.87,224.52,3.64;13,335.03,139.84,24.93,3.64" xml:id="b47">
+	<monogr>
+		<author>
+			<persName coords=""><surname>Gary R Waissi</surname></persName>
+		</author>
+		<title level="m">Network Flows: Theory, Algorithms, and Applications</title>
+				<imprint>
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,335.03,149.80,223.17,3.64;13,334.76,159.76,223.59,3.64;13,335.03,168.09,223.17,7.13;13,335.03,178.05,224.40,7.13;13,335.03,189.65,20.95,3.64" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">SEP-Graph: finding shortest execution paths for graph processing under a hybrid framework on GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Hao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liang</forename><surname>Geng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rubao</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaixi</forename><surname>Hou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yanfeng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaodong</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 24th Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="38" to="52" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,335.03,199.61,223.38,3.64;13,335.03,209.57,223.17,3.64;13,335.03,217.90,223.97,7.13;13,335.03,227.87,223.17,7.13;13,334.79,237.83,224.29,7.13;13,335.03,249.42,133.01,3.64" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Gunrock: A High-Performance Graph Processing Library on the GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Yangzihao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Davidson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuechao</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuduo</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><surname>Riffel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 21st ACM SIG-PLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 21st ACM SIG-PLAN Symposium on Principles and Practice of Parallel Programming<address><addrLine>Barcelona, Spain; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">12</biblScope>
+		</imprint>
+	</monogr>
+	<note>PPoPP &apos;16)</note>
+</biblStruct>
+
+<biblStruct coords="13,335.03,259.39,223.17,3.64;13,334.80,269.35,223.41,3.64;13,335.03,279.31,223.17,3.64;13,334.75,287.64,224.33,7.13;13,335.03,299.24,28.41,3.64" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Gunrock: GPU Graph Analytics</title>
+		<author>
+			<persName coords=""><forename type="first">Yangzihao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuechao</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Davidson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuduo</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carl</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Muhammad</forename><surname>Osama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chenshan</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weitang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><forename type="middle">T</forename><surname>Riffel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Parallel Computing</title>
+		<imprint>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page">49</biblScope>
+			<date type="published" when="2017-08">2017. Aug. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="13,335.03,309.20,223.17,3.64;13,335.03,317.53,223.17,7.13;13,335.03,327.49,145.60,7.13" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Multiplying matrices faster than Coppersmith-Winograd</title>
+		<author>
+			<persName coords=""><forename type="first">Virginia</forename><surname>Vassilevska</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Williams</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the forty-fourth annual ACM symposium on Theory of computing</title>
+				<meeting>the forty-fourth annual ACM symposium on Theory of computing</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="887" to="898" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

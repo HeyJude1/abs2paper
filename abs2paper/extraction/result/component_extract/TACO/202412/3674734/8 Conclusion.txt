@@ -1,0 +1,2 @@
+8 Conclusion
+AW is a novel architecture that reduces the transition and the cold-start latency to/from deep power states while maintaining the power savings of deep sleep states. Our evaluation showed that depending on the enabled core C-states (C6Awarm/C6AwarmE), and the baseline configuration, AW can reduce up to 70% the power consumption of a core with 2% end-to-end performance degradation. The results are encouraging toward the adoption of AW in datacenter servers running latency-critical applications based on microservices.

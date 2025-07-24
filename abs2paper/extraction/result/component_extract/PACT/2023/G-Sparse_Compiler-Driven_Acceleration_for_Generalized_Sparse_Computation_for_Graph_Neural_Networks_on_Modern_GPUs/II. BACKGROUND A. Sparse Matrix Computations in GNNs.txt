@@ -1,0 +1,36 @@
+II. BACKGROUND A. Sparse Matrix Computations in GNNs
+GNNs represent an emerging field in deep learning that differs from traditional machine learning techniques. While conventional machine learning primarily focuses on dense matrix computations for image and video analysis, GNNs predominantly operate on irregular and sparse graph datasets, necessitating not only dense matrix computations but also large-scale sparse matrix computations.
+The computational patterns of GNNs can be characterized using message-passing primitives. According to their operations over edges and vertices, we categorize them as g-SDDMM and g-SpMM, the same as DGL , which are widely used for GNN learning. Specifically, g-SpMM calculates the target node representation by aggregating the messages from node and neighbor features, and its inbound edge features. In contrast, g-SDDMM computes the edge representation by gathering its original features, and the features of its incident nodes.
+Given a graph G(V, E) with a node set V and an edge set E, let X u represent the feature (or embedding) of node u ∈ V , and Y eu,v represent the feature (or embedding) of edge e u,v ∈ E, where u is the source node and v is the destination node. Definition 1 (g-SDDMM). We define the output edge embedding Z eu,v of generalized sampled dense-dense matrix multiplication as
+Z eu,v = lhs ⊕ rhs (1)
+where ⊕ is a binary operator that could be add, sub, mul, div, or dot, etc. And inputs lhs and rhs can be any of X u , X v and Y eu,v .
+Definition 2 (g-SpMM). The generalized sparse matrix-matrix multiplication computes the embedding of the output node
+Z v as Z v = Φ u∈N (v) (X u ⊕ Y eu,v ) (2)
+where N (v) is the set of inbound neighbors of v, Φ is a reduce operator over N (v), and ⊕ is also a binary operator but differs slightly from that in Eq. ( ). The operation of Φ can be sum, mean, max or min.
+B. GPU Architecture
+During GNN training and inference, the role of GPUs is as accelerators to complement available CPUs by offloading their portions of the workload. These accelerators follow a single instruction multiple data (SIMD) model, and represent a class of hardware enabling massive thread-level parallelism. Using NVIDIA generations as an example, a GPU consists of a number of streaming multiprocessors (SMs), each of which includes a total of thousands of Compute Unified Device Architecture (CUDA) cores. For ease of programming, these thread lanes are organized in the form of warp, block, and grid. Commonly, a warp of 32 threads executes the same instruction in parallel on consecutive data.
+a) Shared and Global Memory in GPUs: The internal bandwidth of GPU cores accessing global memory is highspeed, e.g., up to 720GB/s for NVIDIA Tesla P100. The shared memory resides on the GPU chip, and each block corresponds to a shared memory unit. Shared memory units are much faster (approximately 1.7TB/s) to access than global memory, and they can be explicitly managed for on-chip data caching and maintaining data locality. This results in fewer global memory transactions and overall performance improvement.
+b) Coalesced Access to Global Memory: The efficiency of global memory access can be measured by calculating the ratio of the transactions actual used to the transactions issued. On CUDA-capable GPU architectures, the concurrent global memory accesses of threads within a warp coalesce into multiple transactions equivalent to the number of 32-byte transactions. For example, in the reducing operations for g-SpMM and the dot reducing operations for g-SDDMM with node or edge parallelism, the threads of a warp only load one element (4 bytes as a floating-point element) once for accessing the nonzero elements in each row of the sparse matrix. However, this results in 28 bytes being wasted in a single 32-byte transaction, leading to a global memory load efficiency of only 1/8.
+C. Tensor Compiler
+To accelerate the training and inference of deep learning models, compiler-based DSLs are widely exploited to efficiently enhance the computational processes of algorithms and offer a useful abstraction of scheduling optimizations such as tiling, vectorization, and thread binding. As a result, optimization code can be rapidly implemented and verified. Frameworks like TVM , Halide , and other similar compiler frameworks , - have demonstrated strong performance in accelerating DNNs and image analysis applications. FeatGraph is the
+A.rowP tr
+The row entry array in A.
+A.colIdx
+The column indices array in A.
+A.values
+The value array in A. balancedIdx
+The row index array for A.rowP tr. m
+The number of rows in A. n
+The number of columns in A. nnz
+The number of nonzero elements in A.
+nnzP erRow
+Non-zero elements for each row in A.
+U
+The input dense matrix.
+O
+The output dense matrix.
+kM T ile
+The tiling size in the row dimension.
+kN T ile
+The tiling size in the column dimension. kN nzT ile the tiling size in each nnzP erRow. only framework to employ TVM IR to implement generalized sparse computations in GNNs, achieving performance comparable to that of cuSPARSE. However, these works only study coarse-grained parallelism at the level of node, edge, and feature dimensions, which significantly limits the attainable performance of GNNs.
+In contrast, our G-Sparse compiler integrates sparsespecific optimizations like 2-D shared memory tiling and introduces a novel NN-based cost model, enabling auto-tuning for GNN performance and achieving much better results than the other tensor compilers mentioned above.

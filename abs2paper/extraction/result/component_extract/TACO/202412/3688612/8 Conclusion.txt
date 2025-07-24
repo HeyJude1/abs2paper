@@ -1,0 +1,2 @@
+8 Conclusion
+We propose a novel SpMM accelerator named Mentor. Built upon the column-wise product, Mentor eliminates random accesses and reduces memory traffic. Mentor further enhances memory and computation efficiency with a pre-processing technique at the software level and a fullypipelined on-chip design at the hardware level. We also provide an analytical model to explore the design space. Our results with an FPGA prototype Mentor on 1250 SpMM operations show the efficacy of our approach.

@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">AllMatch: Exploiting All Unlabeled Data for Semi-Supervised Learning</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,246.29,124.63,51.56,10.75"><forename type="first">Zhiyu</forename><surname>Wu</surname></persName>
+							<email>wuzhiyu@pku.edu.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Intelligence Science and Technology</orgName>
+								<orgName type="laboratory">National Key Laboratory of General Artificial Intelligence</orgName>
+								<orgName type="institution">Peking University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,308.82,124.63,52.16,10.75;1,360.97,123.09,1.41,6.99"><forename type="first">Jinshi</forename><surname>Cui</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Intelligence Science and Technology</orgName>
+								<orgName type="laboratory">National Key Laboratory of General Artificial Intelligence</orgName>
+								<orgName type="institution">Peking University</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">AllMatch: Exploiting All Unlabeled Data for Semi-Supervised Learning</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">920DD68773841A0054097228DAA91925</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Existing semi-supervised learning algorithms adopt pseudo-labeling and consistency regulation techniques to introduce supervision signals for unlabeled samples. To overcome the inherent limitation of threshold-based pseudo-labeling, prior studies have attempted to align the confidence threshold with the evolving learning status of the model, which is estimated through the predictions made on the unlabeled data. In this paper, we further reveal that classifier weights can reflect the differentiated learning status across categories and consequently propose a class-specific adaptive threshold mechanism. Additionally, considering that even the optimal threshold scheme cannot resolve the problem of discarding unlabeled samples, a binary classification consistency regulation approach is designed to distinguish candidate classes from negative options for all unlabeled samples. By combining the above strategies, we present a novel SSL algorithm named AllMatch, which achieves improved pseudo-label accuracy and a 100% utilization ratio for the unlabeled data. We extensively evaluate our approach on multiple benchmarks, encompassing both balanced and imbalanced settings. The results demonstrate that AllMatch consistently outperforms existing state-of-the-art methods.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Semi-supervised learning (SSL) <ref type="bibr" coords="1,189.62,555.85,49.24,9.53" target="#b19">[Zhu, 2005;</ref><ref type="bibr" coords="1,243.12,556.57,53.88,8.82;1,54.00,567.53,39.36,8.82" target="#b10">Rosenberg et al., 2005;</ref><ref type="bibr" coords="1,97.01,567.53,95.91,8.82">Berthelot et al., 2019b;</ref><ref type="bibr" coords="1,196.57,567.53,73.08,8.82" target="#b11">Sohn et al., 2020]</ref>, a research topic that aims to boost the model's generalization performance by leveraging the potential of unlabeled data, has received extensive attention in recent years. Among the proposed techniques, the combination of pseudo-labeling <ref type="bibr" coords="1,278.75,610.65,18.25,8.64;1,54.00,622.50,71.87,8.64">[Lee and others, 2013;</ref><ref type="bibr" coords="1,129.69,622.33,79.27,8.82" target="#b0">Arazo et al., 2020]</ref> and consistency regulation <ref type="bibr" coords="1,85.56,632.57,85.62,9.53" target="#b11">[Sajjadi et al., 2016;</ref><ref type="bibr" coords="1,175.06,633.46,90.16,8.64" target="#b8">Laine and Aila, 2016]</ref>, as introduced by <ref type="bibr" coords="1,104.75,643.53,115.87,9.53">FixMatch [Sohn et al., 2020]</ref>, has emerged as a predominant approach. Specifically, FixMatch first assigns a pseudo-label to each unlabeled sample based on the prediction of its weakly augmented view. Subsequently, pseudo- * Corresponding author Figure <ref type="figure" coords="1,340.70,324.61,3.49,7.77">1</ref>: Pilot study for pseudo-label quality on CIFAR-10 with 40 labels. Regarding SoftMatch, pseudo-labels with a confidence lower than µt − σt are assigned close-to-zero weights and thus considered dropped in the analysis. Here, µt/σt denotes the estimated mean/std of the overall confidence on unlabeled data, respectively. labels exceeding a predefined confidence threshold are used as supervision for corresponding strongly augmented views, while those below the threshold are discarded. To ensure high-quality pseudo-labels, FixMatch uses a high constant threshold throughout training. However, this strategy results in the underutilization of unlabeled data, presenting a central challenge in SSL: making efficient use of unlabeled data.</p><p>To address the trade-off between the quality and quantity of pseudo-labels in threshold-based pseudo-labeling, previous studies introduce dynamic threshold strategies that align with the evolving learning status of the model. For example, FlexMatch <ref type="bibr" coords="1,380.33,508.32,83.27,9.53" target="#b16">[Zhang et al., 2021]</ref> utilizes the number of confident pseudo-labels to estimate the learning difficulty for each class, subsequently mapping the predefined threshold to class-specific thresholds based on the determined difficulty levels. Additionally, FreeMatch <ref type="bibr" coords="1,475.97,552.15,82.03,9.53">[Wang et al., 2022]</ref> leverages the average confidence of unlabeled data to establish a dynamic global threshold. Besides, SoftMatch <ref type="bibr" coords="1,533.65,574.07,24.35,8.64;1,315.00,585.75,54.28,8.82" target="#b2">[Chen et al., 2023a]</ref> employs a Gaussian function representing the disparity between sample-specific and global confidence to model sample weights, assigning a positive weight to each unlabeled sample. However, samples with confidence significantly lower than the global confidence receive close-tozero weights, essentially treated as if they were discarded. This characteristic positions SoftMatch as a variant of the threshold-based method. While the aforementioned algorithms effectively employ pseudo-labels to assess the learning status, the impact of biased data sampling or potential interclass similarities can significantly influence the predictions of arXiv:2406.15763v2 <ref type="bibr" coords="1,18.34,317.26,10.29,61.64">[cs.</ref>LG] 9 Jul 2024 unlabeled data. Consequently, a pivotal question arises: Can we incorporate additional evidence along with pseudo-labels to achieve a more accurate estimation of the learning status?</p><p>While an improved threshold scheme can enhance the utilization of unlabeled data, a portion of unlabeled samples still face exclusion. This raises another question: Can pseudolabels assigned lower confidence provide valuable semantic guidance? To address this concern, we examine the pseudolabel quality of previous algorithms. In the case of CIFAR-10 [ <ref type="bibr" coords="2,71.64,155.61,97.47,9.53" target="#b7">Krizhevsky et al., 2009]</ref> with 40 labeled samples, more than half of the dropped pseudo-labels prove to be correct, as depicted in Figure <ref type="figure" coords="2,130.70,178.43,3.71,8.64">1</ref>(a). Furthermore, Figure <ref type="figure" coords="2,238.60,178.43,4.15,8.64">1</ref>(b) illustrates that the top-5 accuracy of the pseudo-labels reaches 100% within just a few thousand iterations. Accordingly, pseudolabels with lower confidence can eliminate false options (e.g., bottom-5 classes) and provide effective supervision signals.</p><p>Motivated by the aforementioned questions, this paper introduces AllMatch, a novel SSL model designed to enhance learning status estimation and provide semantic guidance for all unlabeled data. Specifically, AllMatch proposes a classspecific adaptive threshold (CAT) strategy, comprising global estimation and local adjustment steps, to achieve an improved characterization of the model's learning status. The global estimation step, similar to FreeMatch, employs the average confidence of unlabeled data as the global threshold. The ensuing local adjustment step utilizes the classifier weights to estimate the learning status of each class, adaptively decreasing thresholds for classes facing challenges. As illustrated in Figure <ref type="figure" coords="2,93.57,365.13,3.94,8.64" target="#fig_5">4</ref>(b, c) and Figure <ref type="figure" coords="2,169.22,365.13,3.53,8.64" target="#fig_5">4</ref>(f, g), CAT outperforms previous approaches in terms of the utilization ratio and pseudolabel accuracy of unlabeled samples. Besides, in response to the underutilization of unlabeled data resulting from the exclusion of low-confidence pseudo-labels, AllMatch introduces a binary classification consistency (BCC) regulation strategy to exploit the latent potential within such pseudolabels. In essence, the BCC regulation divides the class space into candidate and negative classes, encouraging consistent candidate-negative division across diverse perturbed views of the same sample to eliminate negative options. The candidate class for each sample corresponds to its top-k predictions, considering the impressive top-k performance of various algorithms. Note that the parameter k is dynamically determined based on varying sample-specific learning status and evolving model performance. As depicted in Figure <ref type="figure" coords="2,281.78,529.52,15.21,8.64;2,54.00,540.48,4.15,8.64" target="#fig_5">4(c,  d</ref>) and Figure <ref type="figure" coords="2,111.75,540.48,22.52,8.64" target="#fig_5">4(g, h</ref>), the BCC regulation effectively identifies candidate classes for unlabeled samples and achieves a 100% utilization ratio for the unlabeled data. Overall, our contributions can be summarized as follows:</p><p>(1) We revisit existing SSL algorithms and raise two questions: how to develop an effective threshold mechanism and how to utilize the low-confidence pseudo-labels.</p><p>(2) We propose the class-specific adaptive threshold mechanism, which employs pseudo-labels and classifier weights to estimate global and class-specific learning status respectively.</p><p>(3) We design the binary classification consistency regulation to provide supervision signals for all unlabeled samples.</p><p>(4) We conduct experiments on multiple benchmarks, considering both balanced and imbalanced settings. The results indicate that AllMatch achieves state-of-the-art performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Work</head><p>Consistency regulation and pseudo labelling <ref type="bibr" coords="2,493.20,76.22,64.80,9.53;2,315.00,88.08,22.69,8.64" target="#b8">[Laine and Aila, 2016;</ref><ref type="bibr" coords="2,342.56,87.90,85.49,8.82" target="#b11">Sajjadi et al., 2016;</ref><ref type="bibr" coords="2,432.91,88.08,125.09,8.64" target="#b12">Tarvainen and Valpola, 2017]</ref> are fundamental approaches in SSL. The former encourages consistent predictions across different perturbed views of the same sample while the latter assigns pseudo-labels to unlabeled samples. Among established techniques, <ref type="bibr" coords="2,541.39,131.91,16.61,8.64;2,315.00,141.98,112.39,9.53">Fix-Match [Sohn et al., 2020]</ref> perfectly combines both techniques, establishing an effective SSL paradigm. Specifically, FixMatch uses the predictions of weakly augmented samples as pseudo-labels and minimize their divergence from the predictions of the corresponding strongly augmented views.</p><p>To ensure high-quality pseudo-labels, FixMatch utilizes a high constant threshold throughout training to filter out potentially incorrect pseudo-labels. However, this strategy results in the underutilization of unlabeled data. To address this issue, FlexMatch <ref type="bibr" coords="2,385.43,242.17,79.44,9.53" target="#b16">[Zhang et al., 2021]</ref> draws inspiration from curriculum learning <ref type="bibr" coords="2,395.41,253.13,79.64,9.53" target="#b1">[Bengio et al., 2009]</ref>, mapping the predefined threshold to class-specific thresholds based on the learning status of each category. Dash <ref type="bibr" coords="2,456.93,275.05,69.36,9.53" target="#b16">[Xu et al., 2021]</ref> defines the threshold based on the loss of labeled data, eliminating the empirical threshold parameter. FreeMatch <ref type="bibr" coords="2,505.25,296.97,52.75,9.31;2,315.00,308.82,23.24,8.64">[Wang et al., 2022]</ref> employs the average confidence on unlabeled data as the adaptive global threshold. SoftMatch <ref type="bibr" coords="2,479.19,318.88,78.81,9.53" target="#b2">[Chen et al., 2023a]</ref> estimates sample weights by a dynamic Gaussian function, maintaining soft margins between unlabeled samples of different confidence levels. In addition to the threshold-based algorithms, CoMatch <ref type="bibr" coords="2,402.40,362.72,63.15,9.53">[Li et al., 2021]</ref> and SimMatch <ref type="bibr" coords="2,529.23,362.72,28.77,8.64;2,315.00,374.40,48.34,8.82">[Zheng et al., 2022]</ref> leverage contrastive loss to impose sample-level constraints on all unlabeled data. In contrast, AllMatch combines the advantages of both threshold-based and contrastivebased methods by introducing CAT, a learning-status-aware threshold strategy, and BCC regulation, the semantic-level supervision for the entire unlabeled set.</p><p>Concurrent with our work, FullMatch [Chen et al., 2023b] also introduces semantic guidance for all unlabeled samples. Specifically, FullMatch compares the predictions of weakly and strongly augmented samples to identify negative classes. In contrast, AllMatch identifies candidate classes by comparing sample and global top-k confidence, thus considering the learning state of both individual sample and model in this process. Additionally, FullMatch assigns low probability (similar to label smoothing) for the negative classes in the optimization objective, while AllMatch directly encourages consistent candidate-negative division for all unlabeled samples, thus exhibiting better consistency with the unsupervised loss.</p><p>In addition to consistency regulation and pseudo-labeling, entropy-based regulation is another widely adopted strategy. Entropy minimization [Grandvalet and <ref type="bibr" coords="2,478.28,596.88,59.02,8.64">Bengio, 2004]</ref> promotes high-confidence predictions during training. Maximizing the entropy of the expectation over all samples <ref type="bibr" coords="2,526.47,617.91,31.53,8.64;2,315.00,629.58,47.77,8.82" target="#b6">[Krause et al., 2010;</ref><ref type="bibr" coords="2,365.34,629.58,74.67,8.82" target="#b0">Arazo et al., 2020;</ref><ref type="bibr" coords="2,442.58,629.58,71.36,8.82" target="#b17">Zhao et al., 2022]</ref> introduces the concept of fairness, which encourages the model to predict each class with equal frequency. Specifically, distribution alignment (DA) <ref type="bibr" coords="2,403.04,661.74,100.43,9.53" target="#b1">[Berthelot et al., 2019a]</ref> and uniform alignment (UA) <ref type="bibr" coords="2,380.73,672.70,79.85,9.53" target="#b2">[Chen et al., 2023a]</ref> are prevailing strategies for achieving fairness in SSL, which adjusts the pseudo-label based on the overall predictions on the unlabeled data. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Methodology</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Preliminary</head><p>We begin by reviewing the widely adopted SSL framework.</p><formula xml:id="formula_0">Let D L = {(x i , y i )} N L i=1 and D U = {u i } N U i=1</formula><p>represent the labeled and unlabeled datasets, respectively. Here, x i and u i denote the labeled and unlabeled training samples, and y i represents the one-hot label for the labeled sample x i . We denote the prediction of sample x as p(y|x). Given a batch of labeled and unlabeled data, the model is optimized with the objective L = L s + λ u L u . Here, L s represents the crossentropy loss (H) for the labeled batch of size B L .</p><formula xml:id="formula_1">L s = 1 B L B L i=1 H(y i , p(y|x i ))<label>(1)</label></formula><p>L u indicates the consistency regulation between the prediction of the strongly augmented view Ω(u) and the pseudolabel derived from the corresponding weakly augmented view ω(u). To filter out incorrect pseudo-labels, FixMatch <ref type="bibr" coords="3,273.20,465.61,23.80,8.64;3,54.00,477.29,47.49,8.82" target="#b11">[Sohn et al., 2020]</ref> introduces a predefined threshold τ . Specifically, L u is defined as follows.</p><formula xml:id="formula_2">L u = 1 B U B U i=1 λ(p i )H(p i , q i ) (2) λ(p) = 1 if max(p) ≥ τ 0 otherwise (3)</formula><p>Here, pi is the abbreviation for DA(p(y|ω(u i ))), where DA indicates the distribution alignment strategy <ref type="bibr" coords="3,231.51,584.20,65.49,9.31;3,54.00,596.06,25.85,8.64" target="#b1">[Berthelot et al., 2019a]</ref>. pi represents the one-hot pseudo-label obtained from argmax(p i ). Moreover, q i is the abbreviation for p(y|Ω(u i )).</p><p>Lastly, B U corresponds to the batch size of unlabeled data.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Class-Specific Adapative Threshold</head><p>Previous studies <ref type="bibr" coords="3,121.23,650.78,78.80,9.53" target="#b16">[Zhang et al., 2021;</ref><ref type="bibr" coords="3,202.50,651.50,73.57,8.82">Wang et al., 2022]</ref> have demonstrated that the threshold should be aligned with the evolving learning status of the model. To achieve this, these approaches leverage predictions on unlabeled data to establish the dynamic threshold. In this paper, we unveil the abil-ity of the classifier weights to differentiate the learning status of each class. By combining pseudo-labels and classifier weights, we introduce a class-specific adaptive threshold (CAT) mechanism. As depicted in Figure <ref type="figure" coords="3,485.48,292.24,3.74,8.64" target="#fig_1">2</ref>, CAT comprises the global estimation and local adjustment steps. The following parts provide a detailed description of these two steps.</p><p>Global Estimation. The global estimation step learns from FreeMatch <ref type="bibr" coords="3,382.07,335.18,76.34,9.53">[Wang et al., 2022]</ref> and evaluates the overall learning status of the model. Given that deep neural networks tend to prioritize fitting easier samples before memorizing harder and noisier ones, a lower threshold is necessary during early training stages to incorporate more correct pseudolabels. Conversely, as training progresses, a higher threshold is required to filter out incorrect pseudo-labels. Given that the cross-entropy loss encourages confident predictions, the average confidence of the unlabeled set captures information from all unlabeled data and steadily increases throughout training, thereby reflecting the overall learning status. However, making predictions for the entire unlabeled set at each time step incurs significant computational costs. Accordingly, we employ the mean confidence of the current batch as an estimation and update it using exponential moving average (EMA). Specifically, the global learning status estimation at t-th iteration, denoted as τ t , can be computed as follows:</p><formula xml:id="formula_3">τ t =    1 C if t = 0 mτ t−1 + (1 − m) 1 B U B U i=1 max(p i ) otherwise<label>(4)</label></formula><p>Here, p i represents p(y|ω(u i )), m denotes the momentum decay, and C corresponds to the number of classes.</p><p>Local Adjustment. Due to the inherent variations in learning difficulty among different classes and the stochastic nature of parameter initialization, the model's learning status varies across categories. To address this issue, we introduce the local adjustment step, which makes the model pay more attention to the underfitting classes by decreasing their thresholds. Specifically, our study reveals that the L2 norm of the classifier weights provides insights into class-specific learning status. The reasons are explained as follows.</p><p>Firstly, let M = G • F denote the model, where F and G According to the above analysis, the L2 norm of classifier weights characterizes the learning status of each class. Consequently, the local adjustment step leverages this indicator to establish the mapping from the global threshold to classspecific thresholds. Specifically, we linearly scale the threshold for each class based on the deviation of its learning status from the optimal learning status. As such, the threshold for class c at t-th iteration, denoted as τ t (c), can be computed as follows.</p><formula xml:id="formula_4">τ t (c) = τ t • ||W c || max{||W c || : c ∈ [1, • • • , C]} (5)</formula><p>Moreover, to ensure a stable estimation of the learning status, we employ the classifier weights obtained from the EMA model. Notably, in contrast to FlexMatch, which maintains an additional list for recording the selected pseudo-label of each sample, the proposed CAT refrains from storing any samplespecific information during training. This eliminates the indexing budget concerns on large-scale datasets. With CAT incorporated, the mask for unlabeled samples in L u can be expressed as follows.</p><formula xml:id="formula_5">λ(p) = 1 if max(p) ≥ τ t (argmax(p)) 0 otherwise (6)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Binary Classification Consistency Regulation</head><p>While the proposed class-specific adaptive threshold alleviates the underutilization of unlabeled data, a substantial number of pseudo-labels continue to be discarded. As illustrated in Figure <ref type="figure" coords="4,355.76,398.25,3.74,8.64">1</ref>, in the case of CIFAR-10 with 40 labeled samples, the top-5 accuracy of pseudo-labels effortlessly achieves 100% regardless of the adopted algorithm. In other words, pseudo-labels assigned lower confidence contribute to identifying candidate classes (e.g., top-k predictions) and excluding negative options (e.g., classes not included in top-k predictions). Motivated by these observations and the consistency regulation technique, we propose the binary classification consistency (BCC) regulation, whose overview is shown in Figure <ref type="figure" coords="4,355.79,496.88,3.74,8.64" target="#fig_2">3</ref>. In a nutshell, the strategy introduces semantic supervision for all unlabeled data by encouraging consistent candidate-negative division across diverse perturbed views of the same sample. The details are described as follows.</p><p>Given the impressive top-k pseudo-label accuracy obtained by numerous algorithms, the BCC regulation adopts the top-k predictions of each unlabeled sample as its candidate classes and the rest as the negative options. Thus, the candidatenegative division is simplified to the selection of the parameter k. Moreover, considering the variations in learning difficulty among different samples and the evolving performance of the model, the candidate-negative division for each sample should be determined based on both individual and global learning status. To achieve this, the BCC regulation first computes sample-specific top-k confidence and the global top-k confidence of the entire unlabeled set. Specifically, let p k i denote the top-k probability of sample u i , and µ k t represent the global top-k probability at t-th iteration. The global top-k confidence can be estimated by the exponential moving aver-age (EMA) of the average top-k confidence at each time step.</p><formula xml:id="formula_6">p k i = k j=1 p i,cj (p i,c1 ≥ p i,c2 ≥ • • • ) (7) µ k t = k C if t = 0 mµ k t−1 + (1 − m) 1 B U B U i=1 p k i otherwise (8)</formula><p>Here, c 1 , . . . , c k represent the k classes assigned the highest probability in p i . With the global top-k confidence determined, the number of candidate classes for each unlabeled sample is defined as the minimum value that makes individual top-k confidence higher than global top-k confidence. Particularly, the candidate class for confident unlabeled samples is defined as the pseudo-label. Accordingly, the number of candidate classes k i for sample u i can be expressed as follows.</p><formula xml:id="formula_7">k i = 1 if λ(p i ) = 1 min(min{k : pk i ≥ µ k t }, K) otherwise (<label>9</label></formula><formula xml:id="formula_8">)</formula><p>where K is the upper bound for the number of candidate classes to prevent trivial candidate-negative division. With the division obtained, the candidate and negative probabilities for the weakly (b ω i ) and strongly (b Ω i ) perturbed views of the unlabeled sample u i can be calculated as follows.</p><formula xml:id="formula_9">b ω i = [ ki j=1 pi,cj , C j=ki+1 pi,cj ] (p i,c1 ≥ pi,c2 ≥ • • • ) (10) b Ω i = [ ki j=1 q i,cj , C j=ki+1 q i,cj ]<label>(11)</label></formula><p>Here, c 1 , . . . , c ki represents the k i classes assigned the highest probability in pi . Finally, the BCC regulation for a batch of unlabeled data can be calculated as follows:</p><formula xml:id="formula_10">L b = 1 B U B U i=1 H(b ω i , b Ω i ) (12)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Overall Objective</head><p>The overall objective of AllMatch is defined as the weighted sum of all semantic-level supervision.  AllMatch is trained using the SGD optimizer with an initial learning rate of 0.03 and a momentum decay of 0.9. The learning rate is adjusted by a cosine decay scheduler over a total of 2 20 iterations. We set m to 0.999 and generate the EMA model with a momentum decay of 0.999 for inference.</p><formula xml:id="formula_11">L = L s + λ u L u + λ b L b<label>(13)</label></formula><p>The upper bound K is set to 20 for ImageNet and 10 for the other datasets. For SVHN, CIFAR-10 with 10 labels, and STL-10 with 40 labels, we constrain the threshold within the range of [0.9, 1.0] to prevent overfitting noisy pseudo-labels in the early training stages. To account for randomness, we repeat each experiment three times and report the mean and standard deviation of the top-1 accuracy. Detailed implementation and data processing are listed in Appendix C.</p><p>Performance. Table <ref type="table" coords="5,418.56,254.74,4.98,8.64" target="#tab_1">1</ref> presents the top-1 accuracy on CIFAR-10/100, SVHN, and STL-10 with various numbers of labeled samples. The performance on ImageNet is reported in Table <ref type="table" coords="5,339.43,287.61,3.74,8.64" target="#tab_2">2</ref>. The experimental results demonstrate that AllMatch achieves state-of-the-art performance on almost all datasets. For CIFAR-10, AllMatch outperforms FullMatch with only 40 available labels, and performs comparably to FullMatch when there are 250 or 4000 labels. Moreover, regarding CIFAR-100, AllMatch outperforms ReMixMatch when only 400 or 2500 labels are available, while the latter achieves better performance when 10000 labels are available. The competitive results obtained by ReMixMatch mainly stem from the Mixup technique <ref type="bibr" coords="5,401.49,385.35,81.08,9.53" target="#b16">[Zhang et al., 2017]</ref> and the additional self-supervised learning part. Furthermore, AllMatch exhibits substantial advantages over previous algorithms when dealing with extremely limited labeled samples. Specifically, the approach surpasses the second-best counterpart by 1.87% on CIFAR-10 with 10 labels, 0.66% on CIFAR-100 with 400 labels, and 2.86% on STL-10 with 40 labels. Particularly, STL-10 poses significant challenges due to its large unlabeled set that comprises 100k images. Accordingly, the impressive improvement obtained on STL-10 highlights the potential of AllMatch to be deployed in real-world applications.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Imbalanced Semi-Supervised Learning</head><p>Settings. We evaluate AllMatch in the context of imbalanced SSL, where both labeled and unlabeled data exhibit a long-tailed distribution. All experiments are conducted on the TorchSSL codebase. Following prior studies <ref type="bibr" coords="5,513.77,560.21,44.23,9.30;5,315.00,572.07,22.69,8.64" target="#b8">[Lee et al., 2021;</ref><ref type="bibr" coords="5,341.86,571.89,67.70,8.82" target="#b10">Oh et al., 2022;</ref><ref type="bibr" coords="5,413.71,571.89,71.33,8.82" target="#b14">Wei et al., 2021;</ref><ref type="bibr" coords="5,489.19,571.89,68.81,8.82" target="#b8">Lai et al., 2022;</ref><ref type="bibr" coords="5,315.00,582.85,70.15,8.82" target="#b4">Fan et al., 2022;</ref><ref type="bibr" coords="5,389.26,582.85,79.54,8.82" target="#b2">Chen et al., 2023a]</ref>, we generate the labeled and unlabeled sets using the configurations of</p><formula xml:id="formula_12">N c = N 1 • γ − c−1 C−1 and M c = M 1 • γ − c−1 C−1 .</formula><p>Specifically, for CIFAR-10-LT, we set N 1 to 1500, M 1 to 3000, and γ to range from 50 to 150. For CIFAR-100-LT, we set N 1 to 150, M 1 to 300, and γ to range from 20 to 100. In all experiments, we employ WRN-28-2 as the backbone and utilize the Adam optimizer <ref type="bibr" coords="5,340.18,661.74,94.10,9.53" target="#b5">[Kingma and Ba, 2014]</ref> with the weight decay of 4e-5. The batch sizes B L and B U are set to 64 and 128, respectively. The learning rate is initially set to 2e-3 and adjusted by a cosine decay scheduler during training. We repeat each Table <ref type="table" coords="6,81.56,423.62,3.49,7.77">3</ref>: Performance (%) on CIFAR-10-LT and CIFAR-100-LT.</p><p>experiment three times and report the overall performance.</p><p>Detailed implementation is listed in Appendix C. Performance. In the context of imbalanced SSL, we compare AllMatch with several strong baselines, including Fix-Match, FlexMatch, SoftMatch, and FreeMatch. The results in Table <ref type="table" coords="6,90.48,507.12,4.98,8.64">3</ref> demonstrate that AllMatch achieves state-of-theart performance on all benchmarks. It is particularly noteworthy that AllMatch outperforms the second-best approach by 1.69% and 1.65% at γ=100 and γ=150 on CIFAR-10-LT, respectively, highlighting its robustness in handling significant imbalances. Furthermore, as detailed in Appendix B, AllMatch is compatible with existing imbalanced SSL algorithms, and their combination can further enhance resilience against severe imbalances. The consistently impressive performance observed in imbalanced SSL suggests that All-Match can effectively address real-world challenges.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Ablation Study</head><p>In this part, we systematically evaluate each constituent component of AllMatch. Additionally, we provide the grid search of K (upper bound for the number of candidate classes) and λ b (weight for the BCC regulation) in Appendix A.1 and A.2.</p><p>Component analysis. We conduct an ablation study on Table <ref type="table" coords="6,337.40,423.21,3.49,7.77">5</ref>: Threshold comparison study (%). SoftMatch assigns trivial weights to samples with confidence significantly lower than the global confidence, approximating itself as a threshold-based model.</p><p>four challenging datasets: CIFAR-10 with 10 labels, CIFAR-100 with 400 labels, STL-10 with 40 labels, and CIFAR-10-LT with an imbalance ratio of 150. For simplicity, we refer to the performance on the four benchmarks as (a, b, c, d) in subsequent analysis. As shown in Table <ref type="table" coords="6,463.76,520.17,3.74,8.64" target="#tab_3">4</ref>, the global estimation step in CAT (line 2) promotes the performance by (7.35%, 8.00%, 16.45%, 1.20%) compared to the baseline model in line 1. The significant improvement highlights the crucial role of aligning the threshold with the model's global learning status. Furthermore, the local adjustment step in CAT (line 3) yields additional gains of (3.22%, 1.46%, 6.95%, 1.90%), suggesting that it effectively captures class-specific learning difficulties and facilitates the learning of classes facing challenges. Additionally, the BCC regulation enables a 100% utilization ratio of the unlabeled data and achieves the improvement of (2.25%, 0.52%, 0.71%, 0.77%). The substantial improvement observed on CIFAR-10 with 10 labels indicates the potential of the BCC regulation when dealing with extremely limited labeled data. Overall, the results in Table <ref type="table" coords="6,553.02,673.60,4.98,8.64" target="#tab_3">4</ref> demonstrate the effectiveness of the proposed modules and the advantages of their combination in AllMatch.  The threshold for STL-10-40 is restricted within [0.9, 1.0] to mitigate the adverse effects of noisy pseudo-labels. In the analysis of SoftMatch, we employ µt − σt as its threshold. Samples with a confidence lower than µt − σt are assigned negligible weights, essentially treated as if they were discarded. Consequently, the class-average threshold of SoftMatch is µt − σt, and its selected pseudo-label acc and utilization ratio can be computed like other threshold-based models.</p><p>Here, µt/σt denotes the mean/std of the overall confidence on unlabeled data. Detailed analysis for SoftMatch is provided in Appendix A.3.</p><p>Comparative study on threshold strategies. We conduct a comparative analysis of existing threshold mechanisms in two aspects. Firstly, we directly compare the proposed CAT with the threshold strategies adopted in previous models. The results are presented in line 1-4 of Table <ref type="table" coords="7,227.52,399.80,3.74,8.64">5</ref>. Secondly, we assess the threshold strategies within the AllMatch framework, i.e., combining existing threshold schemes with the BCC regulation, and the results are provided in line 5-8 of Table <ref type="table" coords="7,78.60,443.64,3.74,8.64">5</ref>. From both perspectives, AllMatch outperforms previous models in most cases, indicating the effectiveness of the proposed CAT. Moreover, the BCC regulation further boosts the performance of prior methods, suggesting its impressive compatibility and contribution to eliminating false options.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Quantitative Analysis</head><p>To gain further insights into AllMatch, we present various training indicators on CIFAR-10 with 40 labels and STL-10 with 40 labels, as illustrated in Figure <ref type="figure" coords="7,217.51,542.09,3.74,8.64" target="#fig_5">4</ref>. Besides, the indicators on CIFAR-10 with 10 labels and CIFAR-100 with 400 labels are presented in Appendix A.3. From Figure <ref type="figure" coords="7,280.96,564.01,16.04,8.64" target="#fig_5">4(a)</ref> and Figure <ref type="figure" coords="7,99.17,574.97,3.71,8.64" target="#fig_5">4</ref>(e), it can be observed that the threshold exhibits the expected behavior, starting with a small value and gradually increasing thereafter. Moreover, AllMatch demonstrates a smoother threshold evolution in contrast to other classspecific threshold-based models, implying a preferred learning status estimation. Additionally, in comparison to previous algorithms, Figure <ref type="figure" coords="7,129.50,640.72,4.15,8.64" target="#fig_5">4</ref> </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>This paper revisits prior SSL algorithms, focusing on two crucial questions: how to design an effective threshold mechanism and how to utilize the pseudo-labels assigned lower confidence. To address these challenges, we introduce two strategies named class-specific adaptive threshold (CAT) and binary classification consistency (BCC) regulation. CAT leverages predictions on unlabeled data and classifier weights to establish a threshold mechanism that aligns with the evolving learning status of each class. BCC regulation identifies candidate classes for each unlabeled sample and encourages consistent candidate-negative divisions across diverse perturbed views of the same sample. With these two modules incorporated, the proposed AllMatch maximizes the utilization of unlabeled data and achieves impressive pseudo-label accuracy. We conduct extensive experiments on multiple benchmarks, including both balanced and imbalanced settings. The results demonstrate that AllMatch achieves state-of-the-art performance and is capable of dealing with real-world challenges.   The weight associated with the BCC regulation in the overall loss, denoted as λ b , is systematically evaluated in Figure <ref type="figure" coords="10,289.53,378.77,3.74,8.64" target="#fig_8">5</ref>.</p><p>For both CIFAR-10 with 40 labeled samples and CIFAR-100 with 400 labeled samples, AllMatch achieves optimal performance when λ b is set to 1.0. Either larger or smaller values can result in slight performance degradation. Overall, All-Match assigns equal importance to the supervision signals of pseudo-label and candidate-negative division, leveraging the latter to boost the potential within the top-k predictions of low-confidence pseudo-labels.</p><p>A.2 Grid Search for the Upper Bound of the Number of Candidate Classes.</p><p>As shown in Figure <ref type="figure" coords="10,138.85,520.17,3.74,8.64" target="#fig_9">6</ref>, we examine the upper bound of the number of candidate classes, denoted as K. In the case of CIFAR-10 with 40 labeled samples, the performance of All-Match is largely unaffected by K due to its effective distinction between candidate and negative classes through a comparison between local and global top-k confidence. Moreover, for CIFAR-100 with 400 labeled samples, the model achieves optimal performance when K is set to 10. A smaller K may exclude the ground truth from the candidate classes, leading to negative impacts. Additionally, a larger K can result in a trivial division between candidate and negative classes, causing performance degradation. Considering the comparable learning difficulty, we set the upper bound K to 10 for CIFAR-10/100, SVHN, and STL-10. However, Ima-geNet is known to be more challenging than the aforementioned datasets. Through grid search, we find that setting K to 20 provides optimal results on ImageNet.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.3 Learning Process Visualization</head><p>To gain further insights into AllMatch, we compare its learning process with previous algorithms on four benchmarks: CIFAR-10 with 40 labels, STL-10 with 40 labels, CIFAR-10 with 10 labels, and CIFAR-100 with 400 labels. The former two are presented in Figure <ref type="figure" coords="10,426.24,115.32,4.98,8.64" target="#fig_5">4</ref> of the main paper and the latter two are provided in Figure <ref type="figure" coords="10,422.82,126.28,4.98,8.64" target="#fig_11">7</ref> of the Appendix. Among the involved SSL algorithms, SoftMatch serves as a weight-based method, varying from other threshold-based algorithms. In the following parts, we will first describe the analysis regarding SoftMatch in detail and subsequently provide the revealed findings about the learning process of AllMatch. SoftMatch models sample weights by a dynamic Gaussian function, where the mean µ t and standard deviation σ t are evaluated by predictions on unlabeled data. The weight for unlabeled data u, denoted as λ(u), is defined as follows.</p><formula xml:id="formula_13">λ(u) = e − min(c−µ t ,0) 2 2×(σ t /n) 2 (14)</formula><p>Here, c denotes the prediction confidence of sample u and n is set to 2 in SoftMatch to adjust the standard deviation. While each unlabeled sample receives a positive weight, samples with confidence significantly lower than µ t are assigned close-to-zero weights, thus having minimal impact on the overall loss. Consequently, in this paper, we distinguish between the implementation and analysis of SoftMatch. Specifically, the implementation follows the sample weight scheme mentioned in Equation ( <ref type="formula" coords="10,416.21,355.75,7.64,8.64">14</ref>). Besides, in the analysis part, we consider unlabeled samples with confidence lower than µ t − σ t (λ(u) &lt; e −2 ) as dropped samples, thereby approximating SoftMatch as a threshold-based method. Based on the above analysis, the class-average threshold for SoftMatch is defined as µ t − σ t , and its selected pseudo-label acc and utilization ratio for unlabeled data can be computed like other threshold-based algorithms.</p><p>Figure <ref type="figure" coords="10,353.94,443.44,4.98,8.64" target="#fig_11">7</ref> presents the evolving process of numerous training indicators on CIFAR-10 with 10 labels and CIFAR-100 with 400 labels. AllMatch demonstrates several commonalities between the two datasets. Firstly, the threshold exhibits the expected behavior, beginning with a small value and steadily increasing thereafter. Secondly, AllMatch shows a smooth threshold evolution on both benchmarks, thus providing a better estimation of the learning status when compared to previous models. Thirdly, while prior methods suffer from the degradation of pseudo-label accuracy in the later training stages, AllMatch effectively alleviates this issue. Lastly, the binary pseudo-label accuracy consistently outperforms the pseudo-label accuracy, indicating that the BCC regulation effectively identifies the candidate class for all unlabeled data.</p><p>In addition to the aforementioned commonalities, there are also some differences in the performance of AllMatch on different benchmarks. For CIFAR-10 with 10 labels, All-Match not only achieves improved pseudo-label accuracy but also utilizes the unlabeled data more effectively, highlighting its significant advantages over existing algorithms, especially when labeled samples are extremely limited. On the other hand, for CIFAR-100 with 400 labels, FixMatch achieves the optimal pseudo-label accuracy by leveraging a high constant threshold throughout training. In comparison,  The threshold for CIFAR-10 with 10 labels is restricted within the range of [0.9, 1.0] to avoid overfitting noisy pseudo-labels in the early training stages. In the analysis of SoftMatch, we employ µt − σt as its threshold. Samples with a confidence lower than µt − σt are assigned negligible weights, essentially treated as if they were discarded. Consequently, we employ µt − σt as the class-average threshold of SoftMatch. Moreover, its selected pseudo-label acc and utilization ratio for unlabeled data can be computed like other threshold-based algorithms. Here, µt and σt denote the estimated mean and standard deviation of the overall confidence on unlabeled data.  AllMatch achieves comparable pseudo-label accuracy while substantially improving the utilization ratio of the unlabeled set, indicating a better trade-off between the utilization of unlabeled data and pseudo-label accuracy.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.4 T-SNE Visualization</head><p>To gain an intuitive understanding of AllMatch, we employ T-SNE to plot the high-dimensional features of various SSL algorithms, including SoftMatch, FreeMatch, FlexMatch, and AllMatch, on STL-10 with 40 labeled samples, as depicted  in Figure <ref type="figure" coords="12,93.31,326.76,3.74,8.64" target="#fig_13">8</ref>. Compared with FreeMatch and FlexMatch, All-Match achieves more separable and tightly clustered features, indicating that the introduced CAT serves as a better indicator for the evolving learning status of the model. Furthermore, while SoftMatch maintains appropriate inter-class and intraclass distances, it overfits many erroneous pseudo-labels, exemplified by the excessive light blue points within the green cluster. In contrast, AllMatch effectively pushes ambiguous pseudo-labels towards the decision boundary, thus minimizing their impact on the classifier. Consequently, AllMatch extracts easy-to-distinguish features for the unlabeled samples, establishing a solid foundation for a robust classifier.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.5 Confusion Matrix</head><p>In Figure <ref type="figure" coords="12,96.66,481.25,3.74,8.64" target="#fig_16">9</ref>, we provide the confusion matrices of several SSL algorithms when applied to STL-10 with 40 labeled samples: SoftMatch, FlexMatch, FreeMatch, and AllMatch. To emphasize the classes with an accuracy below 0.7, we denote them with red circles. The results presented in Figure <ref type="figure" coords="12,292.02,525.08,4.98,8.64" target="#fig_16">9</ref> suggest that previous models typically encounter challenges when recognizing samples in class 3, class 5, and class 7. Fortunately, AllMatch successfully mitigates this issue and promotes the accuracy of these three categories, which primarily stems from the accurate learning status estimation provided by CAT and the maximal utilization of the unlabeled set supported by BCC. Overall, AllMatch achieves enhanced classwise accuracy compared to previous models, indicating its effectiveness.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B Combination with Imbalanced Algorithms</head><p>To explore the compatibility of the proposed method with existing imbalanced SSL algorithms, we examine the combination of ABC, which is the current state-of-the-art imbalanced SSL algorithm, with several balanced SSL algorithms on CIFAR-10-LT and CIFAR-100-LT. ABC uses Bernoulli masks to approximate class-balanced sampling, thus learning a balanced auxiliary classifier. As illustrated in Table <ref type="table" coords="12,550.53,348.68,3.74,8.64" target="#tab_4">6</ref>, the combination of ABC and AllMatch consistently outperforms the baseline and other methods. Therefore, AllMatch can be jointly deployed with existing imbalanced SSL algorithms when encountering severe class imbalance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C Detailed Training Settings</head><p>For better reproduction, we present the detailed training settings for balanced and imbalanced SSL in Table <ref type="table" coords="12,518.19,442.33,4.98,8.64" target="#tab_5">7</ref> and Table 8, respectively.   </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,321.28,309.10,229.59,7.93"><head></head><label></label><figDesc>(a) Dropped pseudo-label acc. (b) Top-5 acc of pseudo-labels.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="3,54.00,224.83,504.00,7.77;3,54.00,234.80,362.11,7.77;3,54.00,54.00,503.99,159.73"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Pipeline of the class-specific adaptive threshold (CAT) mechanism. CAT employs the average confidence on unlabeled data as the global threshold and subsequently utilizes the classifier weights to establish class-specific thresholds.</figDesc><graphic coords="3,54.00,54.00,503.99,159.73" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,54.00,235.09,504.00,7.77;4,54.00,245.05,504.00,7.77;4,54.00,255.02,401.48,7.77;4,54.00,54.00,504.00,169.99"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Pipeline of the binary classification consistency (BCC) regulation. The module compares global and local top-k confidence to identify the candidate and negative classes for each unlabeled sample. Moreover, it encourages consistent candidate-negative division between different perturbed views of the same sample, thereby introducing supervision signals for all unlabeled samples.</figDesc><graphic coords="4,54.00,54.00,504.00,169.99" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,54.00,543.56,243.00,9.65;5,54.00,554.52,231.16,9.65"><head>λ</head><label></label><figDesc>u and λ b denote the weights to balance different supervision signals. For all experiments, we set both λ u and λ b to 1.0.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="7,70.38,151.04,101.08,7.77;7,189.75,150.88,109.11,7.93;7,331.44,151.04,72.52,7.77;7,439.52,150.88,103.14,7.93;7,70.38,262.02,101.08,7.77;7,190.50,261.86,107.61,7.93;7,331.19,262.02,73.02,7.77;7,439.52,261.86,103.14,7.93"><head></head><label></label><figDesc>(a) Class-average threshold. (b) Selected pseudo-label acc. (c) Utilization ratio. (d) Binary pseudo-label acc. (e) Class-average threshold. (f) Selected pseudo-label acc. (g) Utilization ratio. (h) Binary pseudo-label acc.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="7,54.00,285.88,504.00,7.77;7,54.00,295.55,504.00,8.06;7,54.00,305.52,504.00,8.06;7,54.00,315.48,504.00,8.06;7,54.00,325.44,501.14,8.06;7,62.96,169.78,115.92,87.12"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Learning process visualization on CIFAR-10-40 (a-d) and STL-10-40 (e-h). The threshold for STL-10-40 is restricted within [0.9, 1.0] to mitigate the adverse effects of noisy pseudo-labels. In the analysis of SoftMatch, we employ µt − σt as its threshold. Samples with a confidence lower than µt − σt are assigned negligible weights, essentially treated as if they were discarded. Consequently, the class-average threshold of SoftMatch is µt − σt, and its selected pseudo-label acc and utilization ratio can be computed like other threshold-based models. Here, µt/σt denotes the mean/std of the overall confidence on unlabeled data. Detailed analysis for SoftMatch is provided in Appendix A.3.</figDesc><graphic coords="7,62.96,169.78,115.92,87.12" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,133.65,640.72,163.35,8.64;7,54.00,651.68,243.00,8.64;7,54.00,662.64,243.00,8.64;7,54.00,673.60,243.00,8.64;7,54.00,684.56,243.00,8.64;7,54.00,695.51,243.00,8.64;7,315.00,355.96,243.00,8.64;7,315.00,366.92,243.00,8.64;7,315.00,377.88,243.00,8.64;7,315.00,388.84,243.00,8.64;7,315.00,399.80,243.00,8.64;7,315.00,410.76,243.00,8.64;7,315.00,421.72,243.00,8.64;7,315.00,432.68,243.00,8.64;7,315.00,443.46,243.00,8.82;7,315.00,453.54,243.00,9.47;7,315.00,465.37,227.21,8.59"><head></head><label></label><figDesc>(b) and Figure 4(c), as well as Figure 4(f) and Figure 4(g), indicate that AllMatch achieves improved pseudo-label accuracy and a higher utilization ratio for the unlabeled data. Notably, Figure 4(b) and Figure 4(f) demonstrate that previous models consistently suffer from overfitting noisy pseudo-labels in the later training stages, whereas AllMatch successfully mitigates this issue. Furthermore, as depicted in Figure 4(d) and Figure 4(h), the accuracy of the candidate-negative division consistently outperforms pseudolabel accuracy, suggesting that the BCC regulation effectively identifies the candidate classes for all unlabeled data. Overall, the CAT precisely reflects the learning status of the model and the BCC regulation provides accurate supervision signals for all unlabeled samples. Additionally, to provide a comprehensive analysis of AllMatch, we present feature visualization [Van der Maaten and Hinton, 2008] and confusion matrices on STL-10 with 40 labels in Appendix A.4 and A.5.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="10,72.46,130.11,87.73,8.35;10,186.08,130.11,97.20,8.35"><head></head><label></label><figDesc>(a) λ b on CIFAR-10-40. (b) λ b on CIFAR-100-400.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,69.74,153.62,211.52,8.35;10,60.88,182.38,110.88,66.22"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Grid search for the weight of BCC regulation λ b .</figDesc><graphic coords="10,60.88,182.38,110.88,66.22" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="10,54.00,277.23,243.00,7.77;10,54.00,286.91,37.82,8.06;10,179.24,182.30,110.88,66.30"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: Grid search for the upper bound of the number of candidate classes K.</figDesc><graphic coords="10,179.24,182.30,110.88,66.30" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="11,77.93,147.10,223.44,7.93;11,328.92,147.26,72.52,7.77;11,431.96,147.10,103.14,7.93;11,77.93,254.29,222.69,7.93;11,328.67,254.45,73.02,7.77;11,431.96,254.29,103.14,7.93"><head></head><label></label><figDesc>(a) Class-average threshold. (b) Selected pseudo-label acc. (c) Utilization ratio. (d) Binary pseudo-label acc. (e) Class-average threshold. (f) Selected pseudo-label acc. (g) Utilization ratio. (h) Binary pseudo-label acc.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="11,54.00,278.31,504.00,7.77;11,54.00,288.27,504.00,7.77;11,54.00,297.95,504.00,8.06;11,54.00,307.91,504.00,8.06;11,54.00,318.00,504.00,7.93;11,54.00,327.83,440.91,8.06;11,73.03,166.00,110.88,83.33"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: How AllMatch performs on CIFAR-10 with 10 labels (a-d) and CIFAR-100 with 400 labels (e-h) compared to other methods.The threshold for CIFAR-10 with 10 labels is restricted within the range of [0.9, 1.0] to avoid overfitting noisy pseudo-labels in the early training stages. In the analysis of SoftMatch, we employ µt − σt as its threshold. Samples with a confidence lower than µt − σt are assigned negligible weights, essentially treated as if they were discarded. Consequently, we employ µt − σt as the class-average threshold of SoftMatch. Moreover, its selected pseudo-label acc and utilization ratio for unlabeled data can be computed like other threshold-based algorithms. Here, µt and σt denote the estimated mean and standard deviation of the overall confidence on unlabeled data.</figDesc><graphic coords="11,73.03,166.00,110.88,83.33" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="12,117.96,156.81,136.76,7.77;12,355.28,156.81,140.75,7.77;12,115.73,273.02,141.23,7.77;12,354.85,273.02,141.61,7.77"><head></head><label></label><figDesc>(a) AllMatch (unlabeled set / test set). (b) SoftMatch (unlabeled set / test set). (c) FreeMatch (unlabeled set / test set). (d) FlexMatch (unlabeled set / test set).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="12,132.76,296.53,346.49,7.77;12,309.74,175.37,231.84,92.53"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: Feature visualization for different SSL algorithms on STL-10 with 40 labeled samples.</figDesc><graphic coords="12,309.74,175.37,231.84,92.53" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="13,117.96,355.13,136.76,7.77;13,355.28,355.13,140.75,7.77"><head></head><label></label><figDesc>(a) AllMatch (unlabeled set / test set). (b) SoftMatch (unlabeled set / test set).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="13,115.73,471.34,141.23,7.77;13,354.85,471.34,141.61,7.77"><head></head><label></label><figDesc>(c) FreeMatch (unlabeled set / test set).(d) FlexMatch (unlabeled set / test set).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16" coords="13,67.69,494.85,476.61,7.77;13,309.74,373.69,231.84,92.53"><head>Figure 9 :</head><label>9</label><figDesc>Figure 9: Confusion matrices on STL-10 with 40 labeled samples. Classes with an accuracy below 0.7 are highlighted by red circles.</figDesc><graphic coords="13,309.74,373.69,231.84,92.53" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="5,54.00,56.58,504.00,647.57"><head></head><label></label><figDesc><ref type="bibr" coords="5,88.99,628.86,78.06,9.53" target="#b9">Netzer et al., 2011]</ref>,STL-10 [Coates et al., 2011], and ImageNet<ref type="bibr" coords="5,114.69,639.82,78.86,9.53" target="#b3">[Deng et al., 2009]</ref> with various numbers of labeled data, where the class distribution of the labeled data is balanced. To ensure fair comparisons, we employ the unified codebase TorchSSL<ref type="bibr" coords="5,135.27,672.70,78.88,9.53" target="#b16">[Zhang et al., 2021]</ref> to evaluate all methods. Regarding the backbone architecture, we follow previous studies and use specific models for different datasets:WRN-28-2 [Zagoruyko and Komodakis, 2016]  for CIFAR-10 and SVHN, WRN-28-8 for CIFAR-100, WRN-37-2<ref type="bibr" coords="5,524.05,67.54,33.95,9.31;5,315.00,79.22,39.66,8.82" target="#b18">[Zhou et al., 2020]</ref> forSTL-10, and ResNet-50 [He et al., 2016]  for ImageNet. The batch sizes B L and B U are set to 128 and 128 for ImageNet and 64 and 448 for the remaining datasets.</figDesc><table coords="5,54.00,576.59,243.00,61.81"><row><cell>4 Experiments</cell></row><row><cell>4.1 Balanced Semi-Supervised Learning</cell></row><row><cell>Settings. For balanced image classification, we conduct</cell></row><row><cell>experiments on CIFAR-10/100 [Krizhevsky et al., 2009],</cell></row><row><cell>SVHN [</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="6,54.00,58.62,504.00,241.41"><head>Table 1 :</head><label>1</label><figDesc>Top-1 accuracy (%) on CIFAR-10, CIFAR-100, SVHN, and STL-10 with varying number of labeled samples. Bold indicates the best performance, and underline denotes the second best performance.</figDesc><table coords="6,67.24,58.62,477.52,241.41"><row><cell>Datasets</cell><cell></cell><cell cols="2">CIFAR-10</cell><cell></cell><cell></cell><cell>CIFAR-100</cell><cell></cell><cell>SVHN</cell><cell></cell><cell></cell><cell>STL-10</cell></row><row><cell># Label</cell><cell>10</cell><cell>40</cell><cell>250</cell><cell>4000</cell><cell>400</cell><cell>2500</cell><cell>10000</cell><cell>40</cell><cell>1000</cell><cell>40</cell><cell>1000</cell></row><row><cell cols="12">MixMatch [Berthelot et al., 2019b] 34.24±7.06 63.81±6.48 86.37±0.59 93.34±0.26 32.41±0.66 60.24±0.48 72.22±0.29 69.40±8.39 96.31±0.37 45.07±0.96 78.30±0.68</cell></row><row><cell cols="12">ReMixMatch [Berthelot et al., 2019a] 79.23±7.48 90.12±1.03 93.70±0.05 95.16±0.01 57.25±1.05 73.97±0.35 79.98±0.27 75.96±9.13 94.84±0.31 67.88±6.24 93.26±0.14</cell></row><row><cell>UDA [Xie et al., 2020]</cell><cell cols="11">65.47±10.69 89.38±3.75 94.84±0.06 95.71±0.07 53.61±1.59 72.27±0.21 77.51±0.23 94.88±4.27 98.11±0.01 62.58±8.44 93.36±0.17</cell></row><row><cell>FixMatch [Sohn et al., 2020]</cell><cell cols="11">82.09±2.48 92.53±0.28 95.14±0.05 95.79±0.08 53.58±0.82 71.97±0.16 77.80±0.12 96.19±1.18 98.04±0.03 64.03±4.14 93.75±0.33</cell></row><row><cell>Dash [Xu et al., 2021]</cell><cell cols="11">73.72±14.09 91.07±3.11 94.84±0.23 95.64±0.11 55.18±0.96 72.85±0.22 78.12±0.07 97.81±0.18 98.03±0.01 65.48±4.30 93.61±0.56</cell></row><row><cell>MPL [Pham et al., 2021]</cell><cell cols="11">76.45±6.01 93.38±0.91 94.24±0.24 95.45±0.04 53.74±1.84 72.29±0.19 78.26±0.09 90.67±8.02 97.72±0.02 64.24±4.83 93.34±0.08</cell></row><row><cell>FullMatch [Chen et al., 2023b]</cell><cell>-</cell><cell cols="8">94.11±1.01 95.36±0.12 96.25±0.08 59.42±1.40 73.06±0.40 78.56±0.10 97.65±0.10 98.01±0.03</cell><cell>-</cell><cell>94.26±0.09</cell></row><row><cell>FlexMatch [Zhang et al., 2021]</cell><cell cols="11">90.02±1.95 95.03±0.06 95.02±0.09 95.81±0.01 60.06±1.62 73.51±0.20 78.10±0.15 91.81±3.20 93.28±0.30 76.65±2.07 94.23±0.18</cell></row><row><cell>SoftMatch [Chen et al., 2023a]</cell><cell cols="11">93.04±1.27 95.09±0.12 95.18±0.09 95.96±0.02 62.90±0.77 73.34±0.25 77.97±0.03 97.67±0.25 97.99±0.01 85.28±1.93 94.27±0.24</cell></row><row><cell>FreeMatch [Wang et al., 2022]</cell><cell cols="11">92.09±0.85 95.10±0.04 95.12±0.18 95.90±0.02 62.02±0.42 73.53±0.20 78.32±0.03 98.03±0.02 98.04±0.03 84.68±0.82 94.37±0.15</cell></row><row><cell>AllMatch</cell><cell cols="11">94.91±0.27 95.20±0.08 95.28±0.06 96.14±0.04 63.56±0.78 74.16±0.12 78.66±0.09 97.56±0.12 98.15±0.06 88.14±1.22 94.91±0.26</cell></row><row><cell>Datasets</cell><cell></cell><cell>ImageNet</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell># Label</cell><cell></cell><cell>100k 400k</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="3">FixMatch [Sohn et al., 2020] 56.34 67.72</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="3">FlexMatch [Zhang et al., 2021] 58.15 68.69</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="3">SoftMatch [Chen et al., 2023a] 59.48 70.51</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="3">FreeMatch [Wang et al., 2022] 59.43 69.48</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>AllMatch</cell><cell></cell><cell>59.99 70.82</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="6,63.21,314.53,224.57,94.59"><head>Table 2 :</head><label>2</label><figDesc>Top-1 accuracy (%) on ImageNet.</figDesc><table coords="6,63.21,340.25,224.57,68.87"><row><cell>Dataset</cell><cell></cell><cell>CIFAR-10-LT</cell><cell></cell><cell></cell><cell>CIFAR-100-LT</cell><cell></cell></row><row><cell>γ</cell><cell>50</cell><cell>100</cell><cell>150</cell><cell>20</cell><cell>50</cell><cell>100</cell></row><row><cell cols="7">FixMatch 81.54±0.30 74.89±1.20 70.38±0.88 49.58±0.78 42.11±0.33 37.60±0.48</cell></row><row><cell cols="7">FlexMatch 81.87±0.19 74.49±0.92 70.20±0.36 50.89±0.60 42.80±0.39 37.30±0.47</cell></row><row><cell cols="7">SoftMatch 83.45±0.29 77.07±0.37 72.60±0.46 51.91±0.55 43.76±0.51 38.92±0.81</cell></row><row><cell cols="7">FreeMatch 83.30±0.33 75.96±0.49 71.20±0.64 51.60±0.91 42.95±0.48 37.50±0.23</cell></row><row><cell cols="7">AllMatch 84.21±0.33 78.76±0.33 74.25±0.37 52.52±0.33 44.10±0.36 39.09±0.27</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="6,315.00,231.16,243.00,177.79"><head>Table 4 :</head><label>4</label><figDesc>Ablation study (%). (GE: global estimation in CAT. LA: local adjustment in CAT. BCC: binary classification consistency.)</figDesc><table coords="6,319.65,231.16,233.70,177.79"><row><cell cols="6">GE LA BCC CIFAR-10-10 CIFAR-100-400 STL-10-40 CIFAR-10-LT-150</cell></row><row><cell></cell><cell></cell><cell>82.09</cell><cell>53.58</cell><cell>64.03</cell><cell>70.38</cell></row><row><cell>✓</cell><cell></cell><cell>89.44</cell><cell>61.58</cell><cell>80.48</cell><cell>71.58</cell></row><row><cell>✓ ✓</cell><cell></cell><cell>92.66</cell><cell>63.04</cell><cell>87.43</cell><cell>73.48</cell></row><row><cell>✓ ✓</cell><cell>✓</cell><cell>94.91</cell><cell>63.56</cell><cell>88.14</cell><cell>74.25</cell></row><row><cell cols="6">Threshold BCC CIFAR-10-10 CIFAR-100-400 STL-10-40 CIFAR-10-LT-150</cell></row><row><cell>FlexMatch</cell><cell></cell><cell>90.02</cell><cell>60.06</cell><cell>76.65</cell><cell>70.20</cell></row><row><cell>FreeMatch</cell><cell></cell><cell>92.09</cell><cell>62.02</cell><cell>84.68</cell><cell>71.20</cell></row><row><cell>SoftMatch</cell><cell></cell><cell>93.04</cell><cell>62.90</cell><cell>85.28</cell><cell>72.60</cell></row><row><cell>AllMatch</cell><cell></cell><cell>92.66</cell><cell>63.04</cell><cell>87.43</cell><cell>73.48</cell></row><row><cell cols="2">FlexMatch ✓</cell><cell>92.04</cell><cell>61.18</cell><cell>80.05</cell><cell>70.88</cell></row><row><cell cols="2">FreeMatch ✓</cell><cell>94.19</cell><cell>62.75</cell><cell>86.49</cell><cell>72.04</cell></row><row><cell cols="2">SoftMatch ✓</cell><cell>94.99</cell><cell>63.21</cell><cell>87.10</cell><cell>73.20</cell></row><row><cell cols="2">AllMatch ✓</cell><cell>94.91</cell><cell>63.56</cell><cell>88.14</cell><cell>74.25</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="11,54.00,353.53,504.00,248.08"><head>Table 6 :</head><label>6</label><figDesc>Performance of the combination of ABC with existing balanced SSL algorithms on CIFAR-10-LT and CIFAR-100-LT. ABC trains an auxiliary balanced classifier for FixMatch, and thus FixMatch + ABC serves as the baseline model in the experiment.</figDesc><table coords="11,60.79,353.53,386.56,248.08"><row><cell></cell><cell></cell><cell></cell><cell>Dataset</cell><cell></cell><cell></cell><cell cols="2">CIFAR-10-LT</cell><cell>CIFAR-100-LT</cell></row><row><cell></cell><cell></cell><cell></cell><cell>γ</cell><cell></cell><cell></cell><cell>50</cell><cell>100</cell><cell>150</cell><cell>20</cell><cell>50</cell><cell>100</cell></row><row><cell></cell><cell></cell><cell cols="6">FixMatch + ABC (baseline) 85.81±0.29 81.12±0.55 77.42±0.91 53.10±0.88 45.06±0.68 41.33±1.04</cell></row><row><cell></cell><cell></cell><cell cols="3">FlexMatch + ABC</cell><cell cols="3">85.99±0.22 81.05±0.47 77.04±1.05 53.33±0.53 45.17±0.49 41.08±0.77</cell></row><row><cell></cell><cell></cell><cell cols="2">SoftMatch + ABC</cell><cell></cell><cell cols="3">86.19±0.17 81.49±0.29 77.62±0.77 53.89±0.49 45.82±0.38 41.79±0.73</cell></row><row><cell></cell><cell></cell><cell cols="3">FreeMatch + ABC</cell><cell cols="3">85.49±0.17 81.01±0.39 77.33±0.82 53.62±0.39 45.44±0.61 41.48±0.53</cell></row><row><cell></cell><cell></cell><cell cols="2">AllMatch + ABC</cell><cell></cell><cell cols="3">86.52±0.14 81.83±0.33 78.02±0.52 54.19±0.46 45.91±0.46 41.96±0.67</cell></row><row><cell>Datasets</cell><cell cols="2">CIFAR-10 CIFAR-100</cell><cell>SVHN</cell><cell cols="2">STL-10</cell><cell>ImageNet</cell></row><row><cell>Backbone</cell><cell cols="6">WRN-28-2 WRN-28-8 WRN-28-2 WRN-37-2 ResNet-50</cell></row><row><cell>Weight Decay</cell><cell>5e-4</cell><cell>1e-3</cell><cell>5e-4</cell><cell>5e-4</cell><cell></cell><cell>3e-4</cell></row><row><cell>B L / B U</cell><cell></cell><cell cols="2">64 / 448</cell><cell></cell><cell></cell><cell>128 / 128</cell></row><row><cell>LR / Scheduler</cell><cell></cell><cell cols="3">0.03 / η = η0cos( 7πk 16K )</cell><cell></cell><cell></cell></row><row><cell>SGD Momentum</cell><cell></cell><cell></cell><cell>0.9</cell><cell></cell><cell></cell><cell></cell></row><row><cell>m / Model EMA</cell><cell></cell><cell cols="2">0.999 / 0.999</cell><cell></cell><cell></cell><cell></cell></row><row><cell>K</cell><cell></cell><cell>10</cell><cell></cell><cell></cell><cell></cell><cell>20</cell></row><row><cell>λu / λ b</cell><cell></cell><cell></cell><cell>1.0 / 1.0</cell><cell></cell><cell></cell><cell></cell></row><row><cell>Weak/Strong Aug</cell><cell cols="6">Random Crop, Random Horizontal Flip / RandAugment</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="11,81.21,616.10,188.59,7.77"><head>Table 7 :</head><label>7</label><figDesc>Detailed training settings for balanced SSL.</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="11,337.47,616.10,198.06,7.77"><head>Table 8 :</head><label>8</label><figDesc>Detailed training settings for imbalanced SSL.</figDesc><table /></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="8,58.61,71.84,238.39,9.53;8,65.62,83.70,231.38,8.64;8,65.62,94.65,231.38,8.64;8,65.62,105.43,231.39,8.82;8,65.62,116.39,187.47,8.82" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Pseudolabeling and confirmation bias in deep semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Arazo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 International Joint Conference on Neural Networks (IJCNN)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,130.83,243.00,9.53;8,65.62,142.69,231.38,8.64;8,65.62,153.47,231.39,8.82;8,65.62,164.42,196.21,8.82;8,54.00,178.86,243.00,9.53;8,65.62,190.72,231.38,8.64;8,65.62,201.68,231.38,8.64;8,65.62,212.63,231.38,8.64;8,65.62,223.41,159.58,8.82;8,54.00,237.85,243.00,9.53;8,65.62,249.71,231.38,8.64;8,65.62,260.67,231.38,8.64;8,65.62,271.45,231.38,8.82;8,65.62,282.40,104.60,8.82" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Remixmatch: Semi-supervised learning with distribution alignment and augmentation anchoring</title>
+		<author>
+			<persName coords=""><surname>Bengio</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1911.09785</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th annual international conference on machine learning</title>
+				<editor>
+			<persName><surname>Berthelot</surname></persName>
+		</editor>
+		<meeting>the 26th annual international conference on machine learning</meeting>
+		<imprint>
+			<date type="published" when="2009">2009. 2009. 2019a. 2019. 2019</date>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="41" to="48" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Mixmatch: A holistic approach to semisupervised learning. Advances in neural information processing systems</note>
+</biblStruct>
+
+<biblStruct coords="8,54.00,296.84,243.00,9.53;8,65.62,308.70,231.38,8.64;8,65.62,319.66,231.38,8.64;8,65.62,330.61,231.38,8.64;8,65.62,341.39,159.58,8.82;8,54.00,355.83,243.00,9.53;8,65.62,367.69,231.38,8.64;8,65.62,378.65,231.38,8.64;8,65.62,389.43,231.38,8.82;8,65.62,400.38,231.38,8.82;8,65.62,411.52,72.23,8.64;8,54.00,425.78,243.00,9.53;8,65.62,437.64,231.38,8.64;8,65.62,448.42,231.38,8.82;8,65.62,459.38,231.38,8.59;8,65.62,470.33,231.39,8.82;8,65.62,481.47,141.38,8.64" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Softmatch: Addressing the quantity-quality trade-off in semi-supervised learning</title>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:2301.10921</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the fourteenth international conference on artificial intelligence and statistics</title>
+				<editor>
+			<persName><surname>Coates</surname></persName>
+		</editor>
+		<meeting>the fourteenth international conference on artificial intelligence and statistics</meeting>
+		<imprint>
+			<date type="published" when="2011">2023a. 2023. 2023b. 2023. 2011</date>
+			<biblScope unit="page" from="215" to="223" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>JMLR Workshop and Conference Proceedings</note>
+</biblStruct>
+
+<biblStruct coords="8,58.98,495.73,238.02,9.53;8,65.62,507.59,231.38,8.64;8,65.62,518.37,231.38,8.82;8,65.62,529.32,231.39,8.82;8,65.62,540.46,43.98,8.64" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Imagenet: A large-scale hierarchical image database</title>
+		<author>
+			<persName coords=""><surname>Deng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2009 IEEE conference on computer vision and pattern recognition</title>
+				<imprint>
+			<publisher>Ieee</publisher>
+			<date type="published" when="2009">2009. 2009</date>
+			<biblScope unit="page" from="248" to="255" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,58.53,554.72,238.47,9.53;8,65.62,566.58,231.38,8.64;8,65.62,577.36,231.38,8.82;8,65.62,588.31,231.38,8.59;8,65.62,599.27,206.52,8.82;8,54.00,613.71,243.00,9.53;8,65.62,625.57,231.38,8.64;8,65.62,636.35,231.38,8.82;8,65.62,647.48,37.36,8.64;8,54.00,661.74,243.00,9.53;8,65.62,673.60,231.38,8.64;8,65.62,684.38,231.39,8.82;8,65.62,695.34,212.89,8.82;8,315.00,56.58,243.00,9.53;8,326.62,68.44,231.38,8.64;8,326.62,79.39,231.38,8.64;8,326.62,90.17,231.38,8.82;8,326.62,101.13,100.17,8.82" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Cossl: Co-learning of representation and classifier for imbalanced semi-supervised learning</title>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:1910.09217</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Jiashi Feng, and Yannis Kalantidis. Decoupling representation and classifier for long-tailed recognition</title>
+				<meeting><address><addrLine>Saining Xie, Marcus Rohrbach, Zhicheng Yan, Albert Gordo</addrLine></address></meeting>
+		<imprint>
+			<publisher>Bingyi Kang</publisher>
+			<date type="published" when="2004">2022. 2022. 2004. 2004. 2016. 2016. 2019. 2019</date>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page" from="770" to="778" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</note>
+</biblStruct>
+
+<biblStruct coords="8,315.00,117.06,243.00,9.53;8,326.62,128.73,231.38,8.82;8,326.62,139.69,129.97,8.82" xml:id="b5">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Ba</forename><forename type="middle">;</forename><surname>Kingma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Diederik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jimmy</forename><surname>Kingma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Ba</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1412.6980</idno>
+		<title level="m">Adam: A method for stochastic optimization</title>
+				<imprint>
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="8,315.00,155.61,243.00,9.53;8,326.62,167.47,231.38,8.64;8,326.62,178.25,231.38,8.82;8,326.62,189.21,117.99,8.82" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Discriminative clustering by regularized information maximization</title>
+		<author>
+			<persName coords=""><surname>Krause</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in neural information processing systems</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<date type="published" when="2010">2010. 2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,315.00,205.13,243.00,9.53;8,326.62,216.99,231.38,8.64;8,326.62,227.95,46.20,8.64" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Learning multiple layers of features from tiny images</title>
+		<author>
+			<persName coords=""><surname>Krizhevsky</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,319.15,243.69,238.85,9.53;8,326.62,255.54,231.38,8.64;8,326.62,266.50,231.38,8.64;8,326.62,277.46,231.38,8.64;8,326.62,288.24,231.39,8.82;8,326.62,299.20,180.99,8.82;8,315.00,315.12,243.00,9.53;8,326.62,326.80,231.38,8.82;8,326.62,337.76,134.95,8.82;8,315.00,353.68,243.00,9.53;8,326.62,365.54,231.38,8.64;8,326.62,376.32,231.38,8.82;8,326.62,387.28,231.38,8.82;8,315.00,403.20,243.00,9.53;8,326.62,415.05,231.38,8.64;8,326.62,425.83,231.38,8.82;8,326.62,436.79,217.89,8.82;8,315.00,452.71,243.00,9.53;8,326.62,464.57,231.38,8.64;8,326.62,475.35,231.39,8.82;8,326.62,486.31,231.38,8.82;8,326.62,497.45,47.32,8.64" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Smoothed adaptive weighting for imbalanced semisupervised learning: Improve reliability against unknown distribution data</title>
+		<author>
+			<persName coords=""><surname>Lai</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1610.02242</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF international conference on computer vision</title>
+				<meeting>the IEEE/CVF international conference on computer vision</meeting>
+		<imprint>
+			<publisher>Laine and Aila</publisher>
+			<date type="published" when="2013">2022. 2022. 2016. 2016. 2013. 2021. 2021. 2021</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="9475" to="9484" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Workshop on challenges in representation learning, ICML</note>
+</biblStruct>
+
+<biblStruct coords="8,315.00,513.19,243.00,9.53;8,326.62,525.05,231.38,8.64;8,326.62,536.00,231.38,8.64;8,326.62,546.96,41.22,8.64" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Reading digits in natural images with unsupervised feature learning</title>
+		<author>
+			<persName coords=""><surname>Netzer</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,315.00,562.71,243.00,9.53;8,326.62,574.56,231.38,8.64;8,326.62,585.52,231.38,8.64;8,326.62,596.30,231.38,8.59;8,326.62,607.26,226.67,8.82;8,315.00,623.18,243.00,9.53;8,326.62,634.86,231.38,8.82;8,326.62,645.82,231.38,8.59;8,326.62,656.78,157.82,8.82;8,315.00,672.70,243.00,9.53;8,326.62,684.56,231.38,8.64;8,326.62,695.51,133.92,8.64" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Daso: Distribution-aware semantics-oriented pseudo-label for imbalanced semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Oh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</title>
+				<editor>
+			<persName><forename type="first">Martial</forename><surname>Rosenberg</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Henry</forename><surname>Hebert</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Schneiderman</surname></persName>
+		</editor>
+		<meeting>the IEEE/CVF Conference on Computer Vision and Pattern Recognition</meeting>
+		<imprint>
+			<date type="published" when="2005">2022. 2022. 2021. 2021. 2005. 2005</date>
+			<biblScope unit="page" from="11557" to="11568" />
+		</imprint>
+	</monogr>
+	<note>Semi-supervised self-training of object detection models</note>
+</biblStruct>
+
+<biblStruct coords="9,54.00,56.58,243.00,9.53;9,65.62,68.44,231.38,8.64;9,65.62,79.39,231.38,8.64;9,65.62,90.17,231.39,8.82;9,65.62,101.13,60.60,8.82;9,54.00,115.58,243.00,9.53;9,65.62,127.44,231.38,8.64;9,65.62,138.39,231.38,8.64;9,65.62,149.35,231.38,8.64;9,65.62,160.13,231.39,8.82;9,65.62,171.09,155.62,8.82" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Regularization with stochastic transformations and perturbations for deep semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Sajjadi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+				<editor>
+			<persName><forename type="first">Alexey</forename><surname>Kurakin</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Chun-Liang</forename><surname>Li</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Colin A Raffel, Ekin Dogus Cubuk</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2016">2016. 2016. 2020. 2020</date>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page" from="596" to="608" />
+		</imprint>
+	</monogr>
+	<note>Fixmatch: Simplifying semi-supervised learning with consistency and confidence</note>
+</biblStruct>
+
+<biblStruct coords="9,54.00,185.54,243.00,9.53;9,65.62,197.39,231.38,8.64;9,65.62,208.35,231.38,8.64;9,65.62,219.13,231.38,8.82;9,65.62,230.09,104.60,8.82" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Mean teachers are better role models: Weightaveraged consistency targets improve semi-supervised deep learning results. Advances in neural information processing systems</title>
+		<author>
+			<persName coords=""><forename type="first">Valpola</forename><surname>Tarvainen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Antti</forename><surname>Tarvainen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Harri</forename><surname>Valpola</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+			<biblScope unit="volume">30</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,58.70,244.54,238.29,9.53;9,65.62,256.21,231.38,8.82;9,65.62,267.17,170.52,8.82;9,54.00,281.62,243.00,9.53;9,65.62,293.48,231.38,8.64;9,65.62,304.43,231.38,8.64;9,65.62,315.21,231.38,8.82;9,65.62,326.17,134.95,8.82" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Visualizing data using t-sne</title>
+		<author>
+			<persName coords=""><surname>Van Der Maaten</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Laurens</forename><surname>Hinton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Geoffrey</forename><surname>Van Der Maaten</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Hinton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Wang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2205.07246</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Bhiksha Raj, Zhen Wu, and Jindong Wang. Freematch: Selfadaptive thresholding for semi-supervised learning</title>
+				<imprint>
+			<date type="published" when="2008">2008. 2008. 2022. 2022</date>
+			<biblScope unit="volume">9</biblScope>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="9,58.78,340.62,238.22,9.53;9,65.62,352.48,231.38,8.64;9,65.62,363.43,231.38,8.64;9,65.62,374.21,231.38,8.82;9,65.62,385.17,231.39,8.82;9,65.62,396.31,52.30,8.64" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Crest: A class-rebalancing self-training framework for imbalanced semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Wei</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</title>
+				<meeting>the IEEE/CVF conference on computer vision and pattern recognition</meeting>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+			<biblScope unit="page" from="10857" to="10866" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,58.43,410.58,238.57,9.53;9,65.62,422.43,231.38,8.64;9,65.62,433.21,231.38,8.82;9,65.62,444.17,195.75,8.82" xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Unsupervised data augmentation for consistency training</title>
+		<author>
+			<persName coords=""><surname>Xie</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="6256" to="6268" />
+		</imprint>
+	</monogr>
+	<note>Advances in neural information processing systems</note>
+</biblStruct>
+
+<biblStruct coords="9,54.00,458.62,243.00,9.53;9,65.62,470.47,231.38,8.64;9,65.62,481.25,231.38,8.82;9,65.62,492.21,231.39,8.82;9,65.62,503.35,84.41,8.64;9,54.00,517.62,243.00,9.53;9,65.62,529.30,231.39,8.82;9,65.62,540.25,100.17,8.82;9,54.00,554.70,243.00,9.53;9,65.62,566.56,231.38,8.64;9,65.62,577.52,150.30,8.64;9,235.18,577.34,61.82,8.59;9,65.62,588.29,100.17,8.82;9,54.00,602.74,243.00,9.53;9,65.62,614.60,231.38,8.64;9,65.62,625.56,231.38,8.64;9,65.62,636.51,231.38,8.64;9,65.62,647.29,231.38,8.59;9,65.62,658.43,94.92,8.64" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Flexmatch: Boosting semisupervised learning with curriculum pseudo labeling</title>
+		<author>
+			<persName coords=""><surname>Xu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1605.07146</idno>
+		<idno>arXiv:1710.09412</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Sergey Zagoruyko and Nikos Komodakis. Wide residual networks</title>
+				<imprint>
+			<publisher>PMLR</publisher>
+			<date type="published" when="2016">2021. 2021. 2016. 2016. 2017. 2017. 2021</date>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="page" from="18408" to="18419" />
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Advances in Neural Information Processing Systems</note>
+</biblStruct>
+
+<biblStruct coords="9,58.76,672.70,238.24,9.53;9,65.62,684.56,231.38,8.64;9,65.62,695.51,231.38,8.64;9,326.62,57.30,231.38,8.59;9,326.62,68.26,226.67,8.82;9,315.00,82.48,243.00,9.53;9,326.62,94.34,231.38,8.64;9,326.62,105.30,231.38,8.64;9,326.62,116.08,231.38,8.82;9,326.62,127.04,231.38,8.82;9,326.62,138.17,52.30,8.64" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Dc-ssl: Addressing mismatched class distribution in semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Zhao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</title>
+				<editor>
+			<persName><surname>Zheng</surname></persName>
+		</editor>
+		<meeting>the IEEE/CVF Conference on Computer Vision and Pattern Recognition</meeting>
+		<imprint>
+			<date type="published" when="2022">2022. 2022. 2022</date>
+			<biblScope unit="page" from="14471" to="14481" />
+		</imprint>
+	</monogr>
+	<note>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</note>
+</biblStruct>
+
+<biblStruct coords="9,319.87,152.22,238.13,9.53;9,326.62,164.08,30.72,8.64;9,375.56,164.08,182.43,8.64;9,326.62,174.86,231.39,8.82;9,326.62,185.82,204.91,8.82" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Time-consistent self-supervision for semisupervised learning</title>
+		<author>
+			<persName coords=""><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<publisher>PMLR</publisher>
+			<date type="published" when="2020">2020. 2020</date>
+			<biblScope unit="page" from="11523" to="11533" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,319.37,200.04,238.63,9.53;9,326.62,211.90,84.25,8.64" xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Xiaojin Jerry Zhu. Semi-supervised learning literature survey</title>
+		<author>
+			<persName coords=""><surname>Zhu</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005. 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

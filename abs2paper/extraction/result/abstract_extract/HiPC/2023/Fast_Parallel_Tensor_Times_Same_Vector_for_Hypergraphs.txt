@@ -1,0 +1,5 @@
+论文标题：Fast Parallel Tensor Times Same Vector for Hypergraphs
+
+关键词：hypergraphs，sparse symmetric tensor times same vector，tensor eigenvector，generating function
+
+摘要：Hypergraphs are a popular paradigm to represent complex real-world networks exhibiting multi-way relationships of varying sizes. Mining centrality in hypergraphs via symmetric adjacency tensors has only recently become computationally feasible for large and complex datasets. To enable scalable computation of these and related hypergraph analytics, here we focus on the Sparse Symmetric Tensor Times Same Vector (S 3 TTVC) operation. We introduce the Compound Compressed Sparse Symmetric (CCSS) format, an extension of the compact CSS format for hypergraphs of varying hyperedge sizes and present a shared-memory parallel algorithm to compute S 3 TTVC. We experimentally show S 3 TTVC computation using the CCSS format achieves better performance than the naive baseline, and is subsequently more performant for hypergraph H-eigenvector centrality.

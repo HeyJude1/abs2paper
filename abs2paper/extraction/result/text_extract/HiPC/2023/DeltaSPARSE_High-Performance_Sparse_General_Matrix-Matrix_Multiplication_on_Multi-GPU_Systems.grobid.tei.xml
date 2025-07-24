@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">DeltaSPARSE: High-Performance Sparse General Matrix-Matrix Multiplication on Multi-GPU Systems</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-12-18">2023-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,220.46,181.09,46.65,9.81"><forename type="first">Shuai</forename><surname>Yang</surname></persName>
+							<email>yangshuai2022@iscas.ac.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Software</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,292.18,181.09,70.78,9.81"><forename type="first">Changyou</forename><surname>Zhang</surname></persName>
+							<email>changyou@iscas.ac.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Software</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,397.45,181.09,13.88,9.81"><forename type="first">Ji</forename><surname>Ma</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Software</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">DeltaSPARSE: High-Performance Sparse General Matrix-Matrix Multiplication on Multi-GPU Systems</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 IEEE 30th International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="194" to="202"/>
+							<date type="published" when="2023-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">DC8EC82321AB6C3C1D1ADBBF9DB4089A</idno>
+					<idno type="DOI">10.1109/hipc58850.2023.00037</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>SpGEMM</term>
+					<term>multiple GPUs</term>
+					<term>sparse matrix 194</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sparse General Matrix-Matrix Multiplication (SpGEMM) serves as a fundamental operation in the domains of sparse linear algebra and graph data processing. The majority of existing research predominantly concentrates on optimizing SpGEMM in the context of single GPU scenarios. Nevertheless, the growing prevalence of multi-GPU systems offers opportunities to harness the computational capabilities of multiple GPUs, thereby enhancing the performance of sparse general matrix-matrix multiplication. The efficacy of multi-GPU SpGEMM is chiefly constrained by two factors: (1) the irregular sparse pattern of sparse matrices, and (2) the load imbalance among multiple GPUs.</p><p>To address these challenges, this paper presents DeltaSPARSE, the first algorithm to achieve significant speed-up for large-scale SpGEMM on multiple GPUs, to the best of our knowledge. Our algorithm incorporates hybrid accumulators, which dynamically choose the most suitable accumulator algorithm for rows exhibiting varying levels of sparsity. Moreover, we suggest a hierarchical task scheduling approach to partition and allocate tasks across diverse levels of parallel hardware, such as GPUs, blocks, warps, and threads.</p><p>Experimental outcomes utilizing the SuiteSparse matrix dataset reveal that DeltaSPARSE displays near-linear scalability in multi-GPU configurations. Furthermore, it attains substantial speed enhancements in comparison to the present state-of-the-art single GPU SpGEMM methods, including NSPARSE, spECK, bhSPARSE, and cuSPARSE, across matrices with various sparse characteristics.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Sparse General Matrix Multiplication (SpGEMM) plays a pivotal role as a fundamental sparse operator. For instance, in graph data processing <ref type="bibr" coords="1,166.58,598.33,10.05,8.92" target="#b4">[5]</ref>, various operations such as loop detection <ref type="bibr" coords="1,115.98,609.68,14.51,8.92" target="#b24">[26]</ref>, triangular counting <ref type="bibr" coords="1,214.32,609.68,10.05,8.92" target="#b2">[3]</ref>, and multi-source breadth-first search <ref type="bibr" coords="1,135.57,621.04,15.77,8.92" target="#b16">[17]</ref> can be formulated using SpGEMM. Additionally, when accelerating the resolution of sparse linear algebraic equations through the utilization of Algebraic Multigrid Preconditioners <ref type="bibr" coords="1,164.45,655.11,10.05,8.92" target="#b5">[6]</ref>, sparse matrix multiplication emerges as a significant time-consuming operation. Therefore, the development of an efficient Sparse General Matrix Multiplication algorithm has become essential for enhancing the performance of these applications. Furthermore, with the rapid advancement of the Multi-GPU platform, which offers both high computational power and cost-effectiveness, the implementation of Sparse General Matrix algorithms on multi-GPU systems holds unique and crucial significance.</p><p>Currently, Sparse General Matrix Multiplication can be categorized into row-row-based and tile-based methods. In the former approach, rows of matrix C are computed in parallel by merging the corresponding non-zero elements of matrices A and B. To accommodate different sparsity characteristics of rows, efficient sparse accumulators such as ESC <ref type="bibr" coords="1,534.86,359.52,14.51,8.92" target="#b14">[15]</ref>, Hash <ref type="bibr" coords="1,338.01,370.88,10.05,8.92" target="#b0">[1]</ref>, <ref type="bibr" coords="1,355.49,370.88,14.51,8.92" target="#b9">[10]</ref>, <ref type="bibr" coords="1,377.70,370.88,14.51,8.92" target="#b16">[17]</ref>, <ref type="bibr" coords="1,399.92,370.88,14.51,8.92" target="#b17">[18]</ref>, <ref type="bibr" coords="1,422.13,370.88,14.51,8.92" target="#b21">[23]</ref>, Merge <ref type="bibr" coords="1,472.94,370.88,10.05,8.92" target="#b8">[9]</ref>, <ref type="bibr" coords="1,490.42,370.88,14.51,8.92" target="#b10">[11]</ref>, <ref type="bibr" coords="1,512.64,370.88,14.51,8.92" target="#b11">[12]</ref>, <ref type="bibr" coords="1,534.85,370.88,14.51,8.92" target="#b13">[14]</ref>, <ref type="bibr" coords="1,314.48,382.23,14.51,8.92" target="#b14">[15]</ref>, Dense <ref type="bibr" coords="1,364.39,382.23,14.51,8.92" target="#b12">[13]</ref>, <ref type="bibr" coords="1,386.58,382.23,14.51,8.92" target="#b21">[23]</ref>, and heap <ref type="bibr" coords="1,448.44,382.23,10.05,8.92" target="#b3">[4]</ref>, <ref type="bibr" coords="1,465.90,382.23,15.77,8.92" target="#b14">[15]</ref> are designed. On the other hand, tile-based <ref type="bibr" coords="1,422.64,393.59,15.77,8.92" target="#b18">[19]</ref> methods accumulate results and store non-zero elements using tiles as the basic unit. However, to maintain satisfactory performance across a diverse range of sparse matrix patterns, these methods often incur considerable costs during the pattern analysis or the definition of compressed memory layouts.</p><p>In contrast to Multi-GPU Dense Matrix Multiplication, SpGEMM on a Multi-GPU platform remains an unresolved challenge for several reasons. (1) Irregular sparse patterns. The difference in distribution and amount of non-zero elements in each row of the input and output matrices poses a significant design challenge for efficient GPU data compression storage formats and accumulators. (2) Multi-GPU platform load imbalance. Load balancing of multiple GPUs is pivotal to the efficiency of the algorithm and the effective use of hardware. However, the complex and unpredictable computation, memory access, and communication costs of SpGEMM make it harder to establish scheduling strategies.</p><p>In view of the inherent problems in SpGEMM and the challenges encountered in designing a multi-GPU framework, we propose the first Multi-GPU Sparse General Matrix Multiplication method called DeltaSPARSE. The main contributions of this paper are as follows:</p><p>• A hybrid accumulator is designed, which transitions between hash and dense accumulator strategies through lightweight analysis, facilitating adjustment to irregular sparsity in sparse matrices. • A hierarchical task scheduling strategy is developed, which accomplishes adaptive load balancing on multi-ple GPUs through low-cost partitioning steps, thereby enabling optimal parallelism. • DeltaSPARSE demonstrates near-linear scalability across diverse GPU configurations and shows significant speed enhancements relative to contemporary single-GPU SpGEMM techniques when addressing matrices with a range of sparseness characteristics. The remainder of this paper is structured as follows: Section II enunciates relevant SpGEMM methods and provides an insight into the current state of research. Section III focuses on detailing the design and implementation of DeltaSPARSE for multi-GPU computing. Section IV compares DeltaSPARSE with existing state-of-the-art single-GPU SpGEMM methodologies, scrutinizes the scalability of DeltaSPARSE, and decomposes its runtime. Finally, Section V draws the research to a close through a summary and outlines prospective avenues of exploration.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. RELATED WORK</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Sparse General Matrix Multiplication</head><p>The process of discovering and designing Sparse Matrix Multiplication (SpGEMM) algorithms is significantly complex, with an extensive algorithm space. Establishing a more efficient algorithm from this wide space remains one of the fundamental open problems in computer science. Existing SpGEMM can generally be categorized into five types: ESC, Hash, Merge, Dense, and Tile-based methods.</p><p>The key steps in the ESC category involve storing intermediate results in temporary space (expansion), sorting intermediate results according to column indexes, and finally accumulating values per column index. Originating in CUSP <ref type="bibr" coords="2,266.43,414.44,10.05,8.92" target="#b7">[8]</ref>, this algorithm was subsequently applied further in bhSPARSE <ref type="bibr" coords="2,280.79,425.80,15.77,8.92" target="#b14">[15]</ref> and AC-SpGEMM <ref type="bibr" coords="2,135.63,437.16,14.51,8.92" target="#b22">[24]</ref>. The sorting and accumulation process of this algorithm directly acts upon intermediate results, exhibiting commendable performance when the intermediate results are limited. However, this method requires substantial temporary space to store intermediate results. As the scale of intermediate results increases, sorting them comes with a high cost, leading to a dramatic decline in algorithm performance.</p><p>Hash accumulators can utilize hash features to substantially reduce random data access and effectively enhance hardware resource utilization <ref type="bibr" coords="2,134.87,539.16,14.51,8.92" target="#b17">[18]</ref>. Due to the irregular sparsity characteristics of sparse matrix multiplication, the number of nonzero elements in the output rows often exhibits significant variability. Naively allocating the same storage space inevitably leads to resource wastage. Usually, the two-stage strategy is employed to calculate the number of non-zero elements in output matrix rows and allocate just-enough storage <ref type="bibr" coords="2,260.78,607.30,14.51,8.92" target="#b21">[23]</ref>. The Hash method's primary time-consuming aspects involve the atomic accumulation operation of intermediate results and the subsequent sorting steps. As the number of non-zero elements in the result matrix increases, these operations become performance bottlenecks. Additionally, when the shared storage space of the GPU is insufficient, the hash table has to be stored in slower global storage <ref type="bibr" coords="2,156.27,686.80,14.51,8.92" target="#b9">[10]</ref>, resulting in a more significant performance decrease.</p><p>Merging involves using sorted arrays to store intermediate results and implementing a merge algorithm for sorting the intermediate results. RMerge <ref type="bibr" coords="2,427.22,96.22,15.77,8.92" target="#b10">[11]</ref> divides the input matrix into submatrices and utilizes a highly efficient merge algorithm for sorting results. As merge arrays are usually of equal length, they are unable to effectively address irregular sparsity characteristics, leading to low resource utilization.</p><p>Dense accumulators <ref type="bibr" coords="2,404.58,153.15,14.51,8.92" target="#b12">[13]</ref>, <ref type="bibr" coords="2,425.96,153.15,15.77,8.92" target="#b21">[23]</ref> are introduced for scenarios where matrix size is large, and the output matrix is dense. It applies for an array of the same length as the matrix column number, directly performing linear mapping and result accumulation based on the result column index. This method fundamentally eliminates atomic conflicts and high sorting costs in the Hash method, theoretically exhibiting superior performance for dense scenarios. However, high storage requirements also become the bottleneck of this method.</p><p>Tile-based methods extend from dense scenarios to sparse matrix scenarios. TileSpGEMM <ref type="bibr" coords="2,441.10,266.87,15.77,8.92" target="#b18">[19]</ref> partitions and schedules tasks based on the tile as the basic unit, effectively enhancing hardware utilization. It has superior performance in scenarios with higher sparsity. However, this technique introduces a notable format conversion time cost and performs poorly in extremely sparse scenarios.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Multi-GPU Matirx Multiplication</head><p>Current approaches for multi-GPU matrix multiplication primarily focus on dense matrices. SuperMatrix <ref type="bibr" coords="2,509.30,368.77,11.04,8.92" target="#b6">[7]</ref> decomposes the matrix into tiles and enables general matrix multiplication on SMP multicores. MAGMA <ref type="bibr" coords="2,481.54,391.48,15.77,8.92" target="#b19">[20]</ref> utilizes static scheduling to implement a multi-GPU linear algebra library. However, MAGMA faces limitations when dealing with heterogeneous systems. To overcome these limitations, StarPU <ref type="bibr" coords="2,314.51,436.91,11.04,8.92" target="#b1">[2]</ref> introduces dynamic scheduling algorithms, including work stealing and priority scheduling, resulting in consistent superlinear parallelism. NVIDIA's cuBLAS-XT [21] is a commercial multi-GPU L3 BLAS library that also adopts a tile strategy. However, its performance is hindered by frequent communication. In order to address this issue, BLASX <ref type="bibr" coords="2,537.25,493.70,15.77,8.92" target="#b23">[25]</ref> aims to overcome the insufficient communication and computation overlap in SuperMatrix and StarPU, as well as the frequent communication problem in cuBLAS-XT. BLASX achieves performance optimization through the implementation of optimization strategies such as algorithms-by-tiles, dynamic asynchronous runtime, and peer-to-peer (P2P) communication between GPUs. In the realm of sparse matrix multiplication, X. Liu <ref type="bibr" coords="2,379.61,584.56,15.77,8.92" target="#b15">[16]</ref> et al. have extended cuSpAMM to multi-GPU platforms, creating a multi-GPU sparse approximate matrix multiplication (SpAMM) method. However, their task partitioning scheme naively divides the tasks equally based on the number of rows, resulting in a significant load imbalance for sparse matrices with irregular sparsity characteristics.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. DELTASPARSE</head><p>DeltaSPARSE consists of seven distinct stages, as depicted in Figure1. Firstly, the computation of the upper bounds of non-zero elements per row in a lightweight output matrix C is performed. This serves as the basis for subsequent global task decomposition among GPUs. Following this, each GPU undergoes local task decomposition in the Multi-GPUs symbolic SpGEMM stage, employing a hybrid accumulation approach to determine the non-zero element counts per row in the partial result matrix C. The main GPU collects the individual computation results from each GPU, subsequently calculating the row offset array and the total number of nonzero elements in matrix C. This is followed by the execution of the global task decomposition stage in the numeric phase.</p><p>In the Multi-GPUs symbolic SpGEMM stage, each GPU allocates storage space for the local matrix C based on the partitioning results, performs the computation of the column index array and the values of non-zero elements in C, and finally aggregates the resulting matrix C.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Adaptive Hybrid Accumulator</head><p>Hash Accumulator The hash accumulator has been widely utilized in previous research. One of the key factors in enhancing the efficiency of the hash accumulator is the reduction of collision rates during the hashing process. Sparse rows leverage a hashmap for linear probing and accumulation of results at specific positions, thereby facilitating rapid indexing when the hashmap possesses ample unoccupied space. Moreover, this approach exhibits lower storage requirements in comparison to alternative methods. However, as the hashmap becomes increasingly populated, the likelihood of hash col-lisions escalates substantially, giving rise to elevated linear probing expenses.</p><p>During the symbolic stage, it is solely necessary to document the column indices of non-zero elements within the output matrix, necessitating the allocation of a 32-bit integer array in shared memory. In contrast, throughout the numeric stage, the task of recording the column indices of non-zero elements and reducing intermediate results at corresponding indices demands the allocation of arrays comprising both 32bit integer and 64-bit double types with lengths equivalent to the number of non-zero elements per row. Given the constraint of shared memory space on GPUs and the inherent inefficiency of global memory access, implementing an intermediate solution that allocates space in the global memory of the GPU would precipitate substantial performance degradation. To mitigate the collision rate, we have adopted a twofold approach: the allocation of a hashmap with ample space exceeding the basic requirements, and the detection of hash collisions during the symbolic stage. The pseudo-code for the hash accumulator, inclusive of collision detection, is presented in Algorithm 1. For rows exhibiting excessively high collision rates, we document and subsequently reprocess them utilizing a Dense accumulator.</p><p>During the numeric stage, the accumulation, compression, and sorting steps are primarily time-consuming due to hash linear probing in the accumulation step, and sorting often occupies much of the numeric runtime. Approaches represented by NSPARSE <ref type="bibr" coords="4,146.18,142.35,15.77,8.92" target="#b17">[18]</ref> commonly utilize the count sort algorithm to orderly arrange the non-zero elements of the accumulator immediately following the accumulation step, all within the confines of the same kernel function. Although this algorithm obviates the need for atomic thread operations, its O(NNZ 2 c row ) time complexity causes the execution time to rise exponentially with the increasing number of non-zero elements per row in matrix C. DeltaSPARSE expedites the sorting step by introducing radix sort and selecting between count sort and radix sort based on the number of non-zero elements per row. Specifically, we obtain the threshold for the number of non-zero elements per row through experiments on the SuiteSparse dataset. For rows below the threshold, we continue using the count sort algorithm, i.e., counting the number of column indices smaller than the target element among the row's non-zero elements. For rows exceeding the threshold for non-zero elements, we write the disordered and compressed accumulated results into global memory and then employ radix sort for sorting.</p><p>Dense Accumulator For large and dense rows, the hash strategy suffers from severe performance degradation due to high memory requirements, high collision rates, and timeconsuming sorting processes. We introduce a dense accumulator to handle these rows, with an allocation of a linear array with a length equivalent to the output matrix's column count. This approach fundamentally eliminates the need for hash collisions and sorting operations since the array index directly serves as the element's column index. As storing an element's column index becomes unnecessary, more intermediate results can be stored within hardware limitations. In extreme cases where an array with the size of the column index range cannot be instantiated in shared memory, the intermediate results for different column index ranges must be processed through iterative loops. To minimize the number of iterations, we analyze different platforms and hardware conditions to establish the maximum column index range.</p><p>We employ a bitmap to record the column indices of nonzero elements during the symbolic stage, relying primarily on atomic operations in shared memory. The introduction of a bitmap greatly reduces memory requirements. In the numeric stage, we allocate a linear array to store the intermediate results in addition to declaring a bitmap array to depict nonzero element distribution. After each iteration, we apply the prefix sum algorithm to obtain and write partial results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Adaptive Strategy</head><p>In the context of our study, the hashing strategy proves advantageous for matrices with small and sparse rows, whereas the dense strategy finds its utility in handling larger, denser matrices. The judicious selection of an appropriate accumulator, guided by the sparse characteristics of the rows, plays a pivotal role in optimizing performance, especially when dealing with irregularly sparse matrices. Through experimentation, we observed that among the myriad of influencing factors, the sparsity of matrix C's rows exerts the most significant influence on accumulator performance. Our empirical findings led us to establish a threshold of 7.60% sparsity as the criterion for strategy selection. Specifically, when the sparsity exceeds this threshold, opting for a dense accumulator is warranted, while a hash accumulator is the preferred choice for sparsity falling below this critical value.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Hierarchical Task Scheduling</head><p>In order to extend SpGEMM to a multi-GPU context while ensuring load balancing, maximization of hardware utilization, and minimization of algorithm execution time, it is essential to investigate the critical issue of designating appropriate computational tasks and allocating them across distinct levels of parallel hardware. However, devising task partitioning strategies is a complex endeavor owing to the irregular sparsity witnessed in sparse matrices and the inherent intricacies of the SpGEMM operator.</p><p>To address this challenge, we propose a hierarchical task partitioning strategy comprised of global and local task partitioning. The former manages the distribution of tasks among multiple GPUs, while the latter is responsible for the rescheduling of local tasks within an individual GPU. Global Task Scheduling Model In the context of dense matrix multiplication, the prevailing strategy entails an even distribution of rows among GPUs. This approach ensures optimal load balancing due to the uniform distribution of non-zero elements characteristic of dense matrices. However, sparse matrices exhibit substantial disparities in row lengths and positions, resulting in irregular sparsity. As depicted in Figure <ref type="figure" coords="4,343.54,618.96,3.55,8.92" target="#fig_1">2</ref>, the 'email-Enron' matrix demonstrates significant differences in row lengths-a trait inherent to irregular matrices frequently encountered within the SuiteSparse dataset. Additionally, the product matrix C displays analogous irregular sparsity, with a pronounced disparity between its maximum row length of 16,691 and minimum of a mere 510.</p><p>To establish a rational task partitioning methodology for matrices possessing these attributes, it is imperative to first devise a strategy for evaluating the costs linked to each subtask. Contrary to utilizing the sparsity of matrices A or B as a basis for partitioning, the sparsity of matrix C provides a more direct measure of the computational and memory access expenses. Consequently, the objective during the global task scheduling phase centers on evenly distributing the non-zero elements in matrix C among GPUs, thereby facilitating optimal partitioning and allocation of tasks. </p><formula xml:id="formula_0">1 upper ← 0; 2 foreach nonzero entry a ij in a i * do 3 upper ← upper + rpt B[j + 1] -rpt B[j];</formula><p>In the symbolic phase, an upper limit on the quantity of non-zero elements per row is determined to estimate the row length and distribution of matrix C. This procedure is exemplified in Algorithm 2 and possesses a complexity of O(nnz). Notably, this process eschews the use of atomic operations, thereby yielding low computational expenses. Subsequently, during the numeric phase, the row-wise tallies of non-zero elements acquired from the symbolic phase are employed for the purpose of global task partitioning.</p><p>Algorithm 3 delineates the GPU rendition of the task partitioning algorithm. Although the complexity of this algorithm, O(np*m), is higher than that of algorithms premised on binary search, O(np*log(m)), where m indicates the number of rows in matrix C. However, it capitalizes on the thread resources provided by the GPU platform to yield a markedly superior execution efficiency when juxtaposed with the CPU variant of the binary search algorithm.</p><p>The symbolic and numeric phases receive as input the upper bound array of row non-zero element counts, denoted as upper, and the array of row non-zero element counts, denoted as nnz per row. Employing these inputs, the algorithm calculates the prefix sum in order to obtain the row pointer rpt c of matrix C. The ultimate output consists of the starting row index for each GPU task.</p><p>To efficiently manage multiple GPUs simultaneously, we assign a CPU thread to each GPU. After the partitioning is completed, each GPU in the symbolic phase allocates GPU memory to store the local row non-zero element counts of matrix C based on the assigned number of rows. Similarly, in the numeric phase, each GPU allocates GPU memory to store the local row pointers, column indices, and non-zero element values of matrix C based on the assigned number of rows and non-zero element counts Subsequent to the fulfillment of tasks by the individual GPUs, the results are consolidated onto a singular GPU. As no overlap occurs between the tasks carried out by distinct GPUs, </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Local Task Scheduling Based on Decision Trees</head><p>The greatest challenge faced by the SpGEMM algorithm is irregular sparsity, as illustrated in Figure <ref type="figure" coords="5,463.62,527.20,3.55,8.92" target="#fig_1">2</ref>. When this problem is divided into two subtasks, the first subtask displays a maximum row length of 16,691 and an average row length of 2,235, while the second subtask presents row lengths of 6,125 and 510. Such considerable disparities in row lengths and distributions create challenges for achieving efficient parallelism and memory access on GPUs. In order to address the aforementioned issue, inspired by the binning strategy utilized by NSPARSE <ref type="bibr" coords="5,404.16,618.06,14.51,8.92" target="#b17">[18]</ref>, we have developed a local task scheduling model based on decision trees, which facilitates secondary partitioning of GPU-local tasks within both the symbolic and numeric phases, as well as the allocation of storage and computational hardware resources. The primary objective of this approach is to enhance resource utilization and ensure optimal load balancing.</p><p>During the symbolic phase, rows are reorganized and par- titioned based upon the range of upper bounds for non-zero element counts. For rows with varying upper bounds, a hybrid accumulator is employed, which adaptively selects between a hash accumulator and a dense accumulator. In an effort to decrease collision rates within the hash accumulator, the size of the hash table is set to twice the upper bound of nonzero elements per group. Furthermore, the thread block size is configured to be half the size of the hash table, thereby promoting increased concurrent execution of thread blocks per streaming multiprocessor (SM) and enhancing hardware resource utilization and occupancy. Table <ref type="table" coords="6,232.84,318.06,3.15,8.92" target="#tab_2">I</ref> delineates the partitioning range and parameter settings. It is important to highlight that, despite the fact that Dense accumulator necessitate the allocation of a larger quantity of shared storage space in comparison to hash accumulator, the storage cost during the symbolic phase remains considerably low due to the inherent lack of necessity to store the values of non-zero elements. Furthermore, Dense accumulator efficiently eradicates the significant expense associated with hash conflicts. Consequently, when encountering a scenario where the upper boundary of non-zero elements surpasses 1025, our preferred choice is to utilize Dense accumulator directly. During the numeric phase, we reorganize the partitions according to the range of non-zero elements derived from the symbolic phase, with the partition boundaries and parameter configurations presented in Table <ref type="table" coords="6,189.91,613.54,5.78,8.92" target="#tab_3">II</ref>. Upon surpassing a Hash table size of 4096, the shared storage demands of the Hash accumulator begin to exceed the hardware constraints imposed by specific GPUs, causing the atomic operations and sorting procedures in global memory to result in a considerable decrease in performance. Consequently, we opt to employ Dense accumulator in these situations.</p><p>Local task partitioning does not consistently yield positive results. In two particular scenarios, task partitioning might offer limited advantages or potentially result in diminished performance:</p><p>• Low computational workload: In the case of matrices characterized by a limited number of rows and nonzero elements, the duration dedicated to partitioning may approach or even exceed the required computational time. • Low Degree of Irregularity: Low degree of irregularity signifies that there is a minimal difference in the lengths among various rows, indicating that they have similar resource requirements. To attain optimal performance across diverse tasks, we introduce an innovative lightweight decision tree analysis strategy. This approach is employed to discern the necessity of task partitioning implementation. The employment of a solitary threshold for strategical selection proves insufficient when aiming to identify the ideal strategy for matrices displaying diverse characteristics. Taking into consideration the contributing factors to partitioning performance, as well as the potential computational costs of supplementary analyses, this study ultimately identifies the sparsity of matrix C (sparsity c), the average number of non-zero elements per row in matrix C (row nnz avg), and the maximum number of non-zero elements per row in matrix C (row nnz max) as the pertinent features. It is important to note that, in the context of the symbolic phase, the upper limit of non-zero elements is utilized in lieu of the actual non-zero elements. In order to mitigate overfitting in the decision tree model, we imposed a maximum depth limit of 4 and allocated two-thirds of the dataset for training purposes, while the remaining portion was reserved for validation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. EXPERIMENTAL RESULTS</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Experimental Setup</head><p>The test system uses six NVIDIA Tesla V100-SXM2-16GB with CUDA 11.7, GPU driver version of 530.30.02 and an 80core Intel(R) Xeon(R) Gold 6148 CPU with 572G RAM on Ubuntu 20.04. Direct peer-to-peer inter-GPU communication is enabled between the six GPUs. We are employing GCC version 9.4.0 and leveraging OpenMP to allocate a dedicated thread for each GPU. It is worth noting that our existing implementation is tailored specifically for single-node multi-GPU configurations. However, it is pertinent to highlight that this design can readily be extended to distributed environments through the integration of technologies such as MPI.</p><p>We compare DeltaSPARSE under a dual-GPU setup with state-of-the-art single GPU general sparse matrix algorithms, including cuSPARSE v11.7 <ref type="bibr" coords="6,429.24,617.71,14.51,8.92" target="#b20">[22]</ref>, bhSPARSE <ref type="bibr" coords="6,501.28,617.71,14.51,8.92" target="#b14">[15]</ref>, spECK <ref type="bibr" coords="6,313.54,629.07,14.51,8.92" target="#b21">[23]</ref>, and NSPARSE <ref type="bibr" coords="6,398.92,629.07,14.51,8.92" target="#b17">[18]</ref>. Additionally, we perform experiments to examine the scalability of the algorithm, investigate the balance of multiple GPU loads to illustrate the effectiveness of task scheduling strategies, and ultimately breakdown the running time of the DeltaSPARSE algorithm. For the data set, we selected 16 representative sparse square matrices from the SuiteSpare Matrix Collection for in-depth comparison and  analysis. These matrices have diverse sparse features and are classic datasets in many sparse matrix studies. Table <ref type="table" coords="7,261.14,264.50,9.46,8.92" target="#tab_5">III</ref> shows detailed information. The compression ratio is defined as the ratio between the intermediate product of C = A 2 and the number of non-zero elements in matrix C. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Performance Comparison</head><p>In order to demonstrate the effectiveness of DeltaSPARSE, while considering the lack of comparable multi-GPU sparse general matrix multiplication methods, we performed the computation of C = A 2 using DeltaSPARSE with a 2-GPU configuration, as well as the state-of-the-art single-GPU sparse general matrix multiplication methods NSPARSE <ref type="bibr" coords="7,278.59,612.53,14.51,8.92" target="#b17">[18]</ref>, spECK <ref type="bibr" coords="7,90.66,623.89,14.51,8.92" target="#b21">[23]</ref>, bhSPARSE <ref type="bibr" coords="7,162.31,623.89,14.51,8.92" target="#b14">[15]</ref>, and cuSPARSE v11.7 <ref type="bibr" coords="7,278.59,623.89,14.51,8.92" target="#b20">[22]</ref>. We then plotted their performance bar chart. As shown in Figure <ref type="figure" coords="7,87.79,646.61,3.55,8.92" target="#fig_3">3</ref>, our method DeltaSPARSE outperforms the other four methods in terms of performance on most representative matrices, especially for matrices with high computational workload and memory requirements, such as 'm t1', 'nd3k', 'nd6k', 'pdb1HYS', 'smt' and 'pwtk'. While cuSPARSE v11.7 failed to execute due to memory constraints, DeltaSPARSE achieved acceleration factors of 1.97x, 1.77x, 1.68x, 2.15x, 2.06x and 2.20x compared to the second-best method, spECK, for these matrices. It is noteworthy that certain acceleration factors surpassed 2.0x, owing to the adaptability of the hybrid accumulators to rows with varying sparsity levels and the efficiency and cost-effectiveness of the task scheduling. With regards to the maximum acceleration factor, DeltaSPARSE exhibited speed improvements of up to 7.30x, 2.20x, 4.49x, and 19.46x in relation to NSPARSE, spECK, bhSPARSE, and cuSPARSE v11.7, respectively, while achieve on average 3.57x, 1.86x, 2.39x, and 9.83x speedups. We calculate the geometric mean to determine the average speedup. The subsequent average speedups mentioned in the following sections are calculated using the same method. It should be noted that these performance results are based on the 2-GPU configuration of DeltaSPARSE. As the number of GPUs increases, DeltaSPARSE will be able to effectively leverage the hardware to achieve performance gains. We will analyze the scalability of the method in the next section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Scalability Analysis</head><p>Figure <ref type="figure" coords="7,352.44,498.95,4.73,8.92">4</ref> illustrates the algorithm performance speedup of executing the C = A 2 operation on 16 representative matrices, comparing different GPU configurations to the single GPU setting. The examined matrices typically display near-linear scalability, represented by the average speedup factors of 1.64x, 2.02, 2.42x, 2.71x, and 3.02x for configurations ranging from 2 to 6 GPUs, respectively. Furthermore, peak speedup factors of 1.82x, 2.34x, 3.05x, 3.39x, and 3.91x have been realised. For matrices characterized by a higher computational complexity, embodied by 'm t1', 'nd3k', 'nd6k' and 'pwtk', the computation of results constitutes the majority of the processing time. The proposed methods successfully leverage the performance-enhancing prospects offered by stacked multi-GPU hardware. It is notable that the irregular characteristics inherent to the matrices serve as critical determining factors in the scalability of the algorithm. They can result in an imbalance of GPU load distribution, which further diminishes the degree of algorithmic parallelism.  To assess the efficacy of the algorithm's load balancing, we consider a scenario involving a 4-GPU configuration, meticulously measuring the execution times of both symbolic and numeric phase kernels on each GPU. Since we concurrently launch kernels on all GPUs, minor differences in execution times imply minimal GPU idleness. As illustrated in Figure <ref type="figure" coords="8,288.47,537.91,3.55,8.92">5</ref>, the upper subfigure represents the execution times of symbolic phase kernels on each GPU, while the lower subfigure displays the execution times of numeric phase kernels on each GPU. It is evident that, for the majority of matrices, a commendable load balancing performance is achieved. Furthermore, we employ the coefficient of variation (CV) to precisely quantify the disparities in execution times among GPUs. In terms of the symbolic stage, the maximum coefficient of variation for GPU execution time is 0.096, while the minimum is as low as 0.006. Regarding the numeric stage, the maximum CV for GPU execution time is 0.114, with a minimum of 0.001. Notably, even for matrices with highly irregular sparsity, such as 'smt', the CV for the symbolic stage is a mere 0.014, and for the numeric stage, it is merely 0.064.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Runtime Breakdown of DeltaSPARSE</head><p>Figure <ref type="figure" coords="8,350.24,279.53,4.73,8.92" target="#fig_5">6</ref> depicts the runtime breakdown of DeltaSPARSE in a configuration utilizing two GPUs. The bar chart sequentially presents the proportional runtime of various stages, including, in descending order: numeric phase kernel, numeric phase task scheduling, symbolic phase kernel, symbolic phase task scheduling, memory allocation, and memory copying. It is noted that the symbolic and numeric phase kernels, on average, account for 26.5% and 54.0% of the total runtime, respectively. Enhanced efficiency in memory allocation and copying is achieved through the application of asynchronous cudaStream launches. This enables the concurrent handling of memory allocation, computation, and communication workloads across multiple streams. Notably, the impact of scheduling overhead remains strikingly low. Despite the symbolic phase task scheduling requiring a marginally extended duration attributed to the calculation of the upper bound of nonzero elements per row, it constitutes merely 3.22% of the overall runtime. Similarly, the numeric phase task scheduling contributes a scant 0.46% to the total runtime. V. CONCLUSION This paper introduces DeltaSPARSE, a framework for multi-GPU Sparse Generalized Matrix Multiplication (SpGEMM). Our approach addresses the challenges faced by SpGEMM algorithms on multi-GPU platforms, including irregular sparse patterns in sparse matrices and load imbalance across multiple GPUs. To overcome these challenges, we propose an adaptive hybrid accumulator and a hierarchical scheduling strategy. The effectiveness of our method is demonstrated through near-linear scalability, reduced scheduling, storage allocation, and communication costs on representative matrices from the SuiteSparse Matrix Collection. In comparison to existing state-of-the-art single-GPU SpGEMM methods, DeltaSPARSE achieves significant acceleration. Our future work includes extending the application of SpGEMM to distributed clusters, enabling the method to be utilized in a wider range of scenarios.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,58.28,342.59,238.50,7.26;3,58.28,351.24,238.51,7.13;3,58.28,359.76,213.43,7.13"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Stages involved in DeltaSPARSE. The stages of global and local task decomposition entail the meticulous partitioning of tasks by adopting a row-wise methodology based on the outcomes of statistical analysis.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,314.26,474.86,238.50,7.26;4,314.26,483.50,238.50,7.13;4,314.26,492.02,238.51,7.13;4,314.26,500.54,238.51,7.13;4,314.26,508.93,238.50,7.26;4,314.26,517.45,107.43,7.26;4,314.15,373.03,238.74,84.72"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Perform C=A×A operation of email-Enron matrix. The matrix A in the figure is equivalent to matrix B. The bar graph on the right side of the equation represents the non-zero elements per row in the resulting matrix C, where the x-axis signifies the number of non-zero elements and the y-axis denotes the row indices. In the computation C=A×A, the density of matrix C consistently surpasses that of A.</figDesc><graphic coords="4,314.15,373.03,238.74,84.72" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="5,62.54,174.73,200.65,9.08;5,62.54,186.25,107.71,8.92;5,76.74,197.28,189.52,9.08;5,110.03,208.64,51.95,9.08;5,110.03,220.00,101.61,9.08;5,76.74,231.35,158.79,9.08"><head>Algorithm 2 :</head><label>2</label><figDesc>Calculate the upper bound of the nnz in the i-th row of matrix C. input : Row pointers and column indices of A, rpt A, col A; Row pointers of B, rpt B; output: upper bound of the nnz, upper;</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="7,64.44,215.70,488.37,8.82;7,64.44,225.77,144.17,7.13"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Performance comparison of performing C = A 2 operation of the 16 representative matrices. An empty bar signifies the failure of the corresponding algorithm to execute SpGEMM on the matrix.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="8,88.27,234.15,431.60,7.13"><head>Fig. 4 .Fig. 5 .</head><label>45</label><figDesc>Fig. 4. The performance speedup ratio of multi-GPU SpGEMM compared to the single-GPU configuration on 16 representative matrices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="8,313.52,659.93,238.51,7.26;8,313.52,668.57,238.51,7.13;8,313.52,677.09,238.51,7.13;8,313.52,685.61,30.91,7.13"><head>Fig. 6 .</head><label>6</label><figDesc>Fig.6. The runtime breakdown of DeltaSPARSE. From top to bottom, the running time ratios of the numeric kernel, numeric stage scheduling, symbolic kernel, symbolic stage scheduling, memory allocation, and memory copy are presented.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="6,62.78,73.90,229.00,102.82"><head>TABLE I PARAMETER</head><label>I</label><figDesc>SETTING FOR TASK SCHEDULING IN THE SYMBLIC PHASE</figDesc><table coords="6,83.83,98.66,184.25,78.06"><row><cell cols="4">Range of Upper Bounds Table Size TB Size a Parameter Setting Accumulator</cell></row><row><cell>0-32</cell><cell>64</cell><cell>32</cell><cell>Hybrid</cell></row><row><cell>33-128</cell><cell>256</cell><cell>64</cell><cell>Hybrid</cell></row><row><cell>129-256</cell><cell>512</cell><cell>128</cell><cell>Hybrid</cell></row><row><cell>257-512</cell><cell>1024</cell><cell>256</cell><cell>Hybrid</cell></row><row><cell>513-1024</cell><cell>2048</cell><cell>512</cell><cell>Hybrid</cell></row><row><cell>1025-</cell><cell>/</cell><cell>1024</cell><cell>Dense</cell></row><row><cell>a Thread Block Size.</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="6,62.70,466.92,229.16,93.92"><head>TABLE II PARAMETER</head><label>II</label><figDesc>SETTING FOR TASK SCHEDULING IN THE NUMERIC PHASE</figDesc><table coords="6,85.80,491.69,180.31,69.16"><row><cell>Range of</cell><cell></cell><cell cols="2">Parameter Setting</cell></row><row><cell cols="4">Upper Bounds Table Size TB Size Accumulator</cell></row><row><cell>0-128</cell><cell>256</cell><cell>64</cell><cell>Hybrid</cell></row><row><cell>129-256</cell><cell>512</cell><cell>128</cell><cell>Hybrid</cell></row><row><cell>257-512</cell><cell>1024</cell><cell>256</cell><cell>Hybrid</cell></row><row><cell>513-1024</cell><cell>2048</cell><cell>512</cell><cell>Hybrid</cell></row><row><cell>1025-2048</cell><cell>4096</cell><cell>1024</cell><cell>Hybrid</cell></row><row><cell>2049-</cell><cell>/</cell><cell>1024</cell><cell>Dense</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="7,63.93,321.31,227.10,191.41"><head>TABLE III INFORMATION</head><label>III</label><figDesc>OF THE 16 REPRESENTATIVE MATRICES. THE 'PROD.' IS THE NUMBER OF INTERMEDIATE PRODUCTS OF C = A 2 .</figDesc><table coords="7,70.14,354.01,212.01,158.71"><row><cell>Matrix A</cell><cell>n(A)</cell><cell>nnz(A)</cell><cell>prod.</cell><cell>nnz(C)</cell><cell>compression rate</cell></row><row><cell>bundle1</cell><cell>10K</cell><cell cols="2">770.9K 474.3M</cell><cell>24.0M</cell><cell>19.70</cell></row><row><cell>cant</cell><cell>62K</cell><cell>4.0M</cell><cell>269.5M</cell><cell>17.4M</cell><cell>15.45</cell></row><row><cell>consph</cell><cell>83K</cell><cell>6.0M</cell><cell>463.8M</cell><cell>26.5M</cell><cell>17.48</cell></row><row><cell>ct20stif</cell><cell>52K</cell><cell>2.7M</cell><cell>154.2M</cell><cell>10.0M</cell><cell>15.40</cell></row><row><cell>m t1</cell><cell>97K</cell><cell>9.8M</cell><cell>1.1B</cell><cell>36.5M</cell><cell>28.86</cell></row><row><cell>msc10848</cell><cell>11K</cell><cell>1.1M</cell><cell>164.5M</cell><cell>6.2M</cell><cell>26.59</cell></row><row><cell>nasasrb</cell><cell>55K</cell><cell>2.7M</cell><cell>134.6M</cell><cell>8.3M</cell><cell>16.15</cell></row><row><cell>nd3k</cell><cell>9K</cell><cell>3.3M</cell><cell>1.3B</cell><cell>18.5M</cell><cell>69.00</cell></row><row><cell>nd6k</cell><cell>18K</cell><cell>6.9M</cell><cell>2.8B</cell><cell>42.2M</cell><cell>66.02</cell></row><row><cell>oilpan</cell><cell>74K</cell><cell>3.6M</cell><cell>188.9M</cell><cell>11.6M</cell><cell>16.27</cell></row><row><cell>pdb1HYS</cell><cell>36K</cell><cell>4.3M</cell><cell>555.3M</cell><cell>19.6M</cell><cell>28.34</cell></row><row><cell>s3dkq4m2</cell><cell>90K</cell><cell>4.8M</cell><cell>258.1M</cell><cell>13.3M</cell><cell>19.43</cell></row><row><cell>s3dkt3m2</cell><cell>90K</cell><cell>3.8M</cell><cell>156.4M</cell><cell>10.1M</cell><cell>15.46</cell></row><row><cell>smt</cell><cell>26K</cell><cell>3.8M</cell><cell>605.9M</cell><cell>19.4M</cell><cell>31.16</cell></row><row><cell>cage12</cell><cell>130K</cell><cell>2.0M</cell><cell>34.6M</cell><cell>15.2M</cell><cell>2.27</cell></row><row><cell>pwtk</cell><cell>218K</cell><cell>11.5M</cell><cell>626.1M</cell><cell>32.8M</cell><cell>19.10</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:22:50 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENT</head><p>We express our sincere gratitude for the invaluable feedback provided by all the reviewers. Changyou Zhang is the corresponding author of this paper. This research was supported by the National Key Research and Development Project of China: CAE Cloud Service Platform for Complex Equipment (2020YFB1709500).</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="9,75.38,399.17,221.16,7.13;9,75.38,407.69,221.16,7.13;9,75.38,416.21,204.86,7.13" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Balanced hashing and efficient GPU sparse general matrix-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">N Q</forename><surname>Anh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Wen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Supercomputing (ICS &apos;16)</title>
+				<meeting>the International Conference on Supercomputing (ICS &apos;16)</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,425.02,221.16,7.13;9,75.38,433.54,221.16,7.13;9,75.38,442.06,221.16,7.13;9,75.38,450.58,221.16,7.13;9,75.38,459.10,215.02,7.13" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">StarPU: a unified platform for task scheduling on heterogeneous multicore architectures</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Augonnet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Thibault</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Namyst</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">A</forename><surname>Wacrenier</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Euro-Par 2009 Parallel Processing: 15th International Euro-Par Conference</title>
+				<meeting><address><addrLine>Delft, The Netherlands; Berlin Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2009">August 25-28, 2009. 2009</date>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="863" to="874" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,467.91,221.16,7.13;9,75.38,476.43,221.16,7.13;9,75.38,484.95,221.16,7.13;9,75.38,493.46,58.93,7.13" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Parallel Triangle Counting and Enumeration Using Matrix Algebra</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Gilbert</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 IEEE International Parallel and Distributed Processing Symposium Workshop</title>
+				<meeting><address><addrLine>Hyderabad, India</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="804" to="811" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,502.28,221.16,7.13;9,75.38,510.79,221.16,7.13;9,75.38,519.31,221.16,7.13;9,75.38,527.83,154.28,7.13" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Exploiting multiple levels of parallelism in sparse matrix-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Ballard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Demmel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Grigori</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Schwartz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Toledo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Williams</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="C624" to="C651" />
+			<date type="published" when="2016">2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,536.64,221.16,7.13;9,75.38,545.16,221.16,7.13;9,75.38,553.68,221.16,7.13;9,75.38,562.20,221.16,7.13;9,75.38,570.72,58.93,7.13" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Groute: An Asynchronous Multi-GPU Programming Model for Irregular Computations</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Sutton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Pai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Pingali</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;17)</title>
+				<meeting>the 22nd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;17)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="235" to="248" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,579.53,221.17,7.13;9,75.38,588.05,221.16,7.13;9,75.38,596.57,115.66,7.13" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Exposing fine-grained parallelism in algebraic multigrid methods</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Dalton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">N</forename><surname>Olson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="C123" to="C152" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,605.38,221.16,7.13;9,75.38,613.90,221.16,7.13;9,75.38,622.42,221.15,7.13;9,75.38,630.93,221.16,7.13;9,75.38,639.45,221.16,7.13;9,75.38,647.97,132.51,7.13" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">SuperMatrix: a multithreaded runtime scheduling system for algorithms-by-blocks</title>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Chan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">G</forename><surname>Van Zee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Bientinesi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><forename type="middle">S</forename><surname>Quintana-Orti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Quintana-Orti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Van De Geijn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 13th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;08)</title>
+				<meeting>the 13th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;08)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="123" to="132" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,656.78,221.16,7.13;9,75.38,665.30,186.37,7.13" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Cusp: Generic parallel algorithms for sparse matrix and graph computations</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Dalton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Bell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Olson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Garland</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,75.38,674.11,221.16,7.13;9,75.38,682.63,221.16,7.13;9,75.38,691.15,221.16,7.13;9,75.38,699.67,101.88,7.13" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Optimizing sparse matrix operations on GPUs using merge path</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Dalton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Baxter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Merrill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Olson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Garland</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE International Parallel and Distributed Processing Symposium (IPDPS &apos;15)</title>
+				<meeting>the IEEE International Parallel and Distributed Processing Symposium (IPDPS &apos;15)</meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="407" to="416" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.89,75.01,221.16,7.13;9,330.89,83.53,221.16,7.13;9,330.89,92.05,221.16,7.13;9,330.89,100.57,184.39,7.13" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Performance-portable sparse matrix-matrix multiplication for many-core architectures</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Deveci</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Trott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Rajamanickam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE International Parallel and Distributed Processing Symposium Workshops</title>
+				<meeting>the IEEE International Parallel and Distributed Processing Symposium Workshops</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="693" to="702" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.89,109.08,221.16,7.13;9,330.89,117.60,221.16,7.13;9,330.89,126.12,221.16,7.13;9,330.89,134.64,69.79,7.13" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">GPU-Accelerated Sparse Matrix-Matrix Multiplication by Iterative Row Merging</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Gremse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Höfter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">O</forename><surname>Schwen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Kiessling</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">U</forename><surname>Naumann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="C54" to="C71" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.89,143.16,221.15,7.13;9,330.88,151.67,221.16,7.13;9,330.88,160.19,221.16,7.13;9,330.88,168.71,37.99,7.13" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Memory-efficient sparse matrix-matrix multiplication by row merging on many-core architectures</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Gremse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Küpper</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">U</forename><surname>Naumann</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="C429" to="C449" />
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,177.23,221.16,7.13;9,330.88,185.75,221.16,7.13;9,330.88,194.26,148.80,7.13" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Sparse matrices in MATLAB: Design and implementation</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Gilbert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Moler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Schreiber</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Matrix Analysis and Applications</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="333" to="356" />
+			<date type="published" when="1992">1992</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,202.78,221.16,7.13;9,330.88,211.30,221.16,7.13;9,330.88,219.82,194.67,7.13" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Segmented merge: A new primitive for parallel sparse matrix computations</title>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Hou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of Parallel Programming</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="13" />
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,228.34,221.16,7.13;9,330.88,236.85,221.16,7.13;9,330.88,245.37,221.16,7.13;9,330.88,253.89,13.25,7.13" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">An efficient GPU general sparse matrix-matrix multiplication for irregular data</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Parallel and Distributed Processing Symposium, IPDPS</title>
+				<meeting>the International Parallel and Distributed Processing Symposium, IPDPS</meeting>
+		<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="370" to="381" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,262.41,221.16,7.13;9,330.88,270.93,221.16,7.13;9,330.88,279.44,100.26,7.13" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Accelerating approximate matrix multiplication for near-sparse matrices on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Supercomputing</title>
+		<imprint>
+			<biblScope unit="volume">78</biblScope>
+			<biblScope unit="page" from="11464" to="11491" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,287.96,221.16,7.13;9,330.88,296.48,221.17,7.13;9,330.88,305.00,221.16,7.13;9,330.88,313.52,221.16,7.13;9,330.88,322.04,197.79,7.13" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">High-Performance Sparse Matrix-Matrix Products on Intel KNL and Multicore Architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Nagasaka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Matsuoka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Azad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Buluc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">¸</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Workshop Proceedings of the 47th International Conference on Parallel Processing (ICPP Workshops &apos;18)</title>
+				<meeting><address><addrLine>New York, NY, USA; Art</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page">34</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,330.55,221.16,7.13;9,330.88,339.07,221.16,7.13;9,330.88,347.59,221.16,7.13;9,330.88,356.11,160.60,7.13" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">High-Performance and Memory-Saving Sparse General Matrix-Matrix Multiplication for NVIDIA Pascal GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Nagasaka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Nukada</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Matsuoka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 46th International Conference on Parallel Processing (ICPP)</title>
+				<meeting><address><addrLine>Bristol, UK</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="101" to="110" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,364.63,221.17,7.13;9,330.88,373.14,221.16,7.13;9,330.88,381.66,221.16,7.13;9,330.88,390.18,221.16,7.13;9,330.88,398.70,212.79,7.13" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">TileSpGEMM: a tiled algorithm for parallel sparse general matrix-matrix multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;22)</title>
+				<meeting>the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;22)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="90" to="106" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,407.22,221.16,7.13;9,330.88,415.73,221.17,7.13;9,330.88,424.25,221.16,7.13;9,330.88,432.77,221.16,7.13;9,330.88,441.29,144.12,7.13" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Optimizing symmetric dense matrix-vector multiplication on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Nath</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Tomov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Dongarra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of 2011 International Conference for High Performance Computing, Networking, Storage and Analysis (SC &apos;11)</title>
+				<meeting>2011 International Conference for High Performance Computing, Networking, Storage and Analysis (SC &apos;11)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,466.84,221.16,7.13;9,330.88,475.36,170.21,7.13" xml:id="b20">
+	<monogr>
+		<title level="m" type="main">NVIDIA CUDA Sparse Matrix Library (cuSPARSE)</title>
+		<ptr target="https://developer.nvidia.com/cusparse" />
+		<imprint/>
+		<respStmt>
+			<orgName>NVIDIA</orgName>
+		</respStmt>
+	</monogr>
+	<note>Online</note>
+</biblStruct>
+
+<biblStruct coords="9,330.88,483.88,221.17,7.13;9,330.88,492.40,221.16,7.13;9,330.88,500.91,221.16,7.13;9,330.88,509.43,221.16,7.13;9,330.88,517.95,216.58,7.13" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">SpECK: accelerating GPU sparse matrix-matrix multiplication through lightweight analysis</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Parger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Mlakar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Steinberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;20)</title>
+				<meeting>the 25th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;20)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="362" to="375" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,526.47,221.16,7.13;9,330.88,534.99,221.16,7.13;9,330.88,543.50,221.16,7.13;9,330.88,552.02,221.16,7.13;9,330.88,560.54,124.94,7.13" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Adaptive sparse matrix-matrix multiplication on the GPU</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Winter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Mlakar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Zayer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H.-P</forename><surname>Seidel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Steinberger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;19)</title>
+				<meeting>the 24th Symposium on Principles and Practice of Parallel Programming (PPoPP &apos;19)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="68" to="81" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,569.06,221.16,7.13;9,330.88,577.58,221.16,7.13;9,330.88,586.09,221.16,7.13;9,330.88,594.61,221.16,7.13;9,330.88,603.13,147.90,7.13" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">BLASX: A High Performance Level-3 BLAS Library for Heterogeneous Multi-GPU Computing</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2016 International Conference on Supercomputing (ICS &apos;16)</title>
+				<meeting>the 2016 International Conference on Supercomputing (ICS &apos;16)<address><addrLine>New York, NY, USA; Art</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,330.88,611.65,221.16,7.13;9,330.88,620.17,221.16,7.13;9,330.88,628.68,221.16,7.13;9,330.88,637.20,221.16,7.13;9,330.88,645.72,58.93,7.13" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Detecting short directed cycles using rectangular matrix multiplication and dynamic programming</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Yuster</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">U</forename><surname>Zwick</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the fifteenth annual ACM-SIAM symposium on Discrete algorithms (SODA &apos;04</title>
+				<meeting>the fifteenth annual ACM-SIAM symposium on Discrete algorithms (SODA &apos;04</meeting>
+		<imprint>
+			<publisher>USA, Society for Industrial and Applied Mathematics</publisher>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="254" to="260" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

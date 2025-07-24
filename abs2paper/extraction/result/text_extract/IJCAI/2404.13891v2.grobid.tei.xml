@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Minimizing Weighted Counterfactual Regret with Optimistic Online Mirror Descent</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2024-05-14">14 May 2024</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,164.19,128.72,46.17,10.75"><forename type="first">Hang</forename><surname>Xu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Automation</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">School of Artificial Intelligence</orgName>
+								<orgName type="institution">University of Chinese Academy of Sciences</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,232.64,128.72,32.89,10.75"><forename type="first">Kai</forename><surname>Li</surname></persName>
+							<email>kai.li@ia.ac.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Automation</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">School of Artificial Intelligence</orgName>
+								<orgName type="institution">University of Chinese Academy of Sciences</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,294.89,128.72,64.13,10.75"><forename type="first">Bingyun</forename><surname>Liu</surname></persName>
+							<email>liubingyun2021@ia.ac.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Automation</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="department">School of Artificial Intelligence</orgName>
+								<orgName type="institution">University of Chinese Academy of Sciences</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,381.30,128.72,50.82,10.75"><forename type="first">Haobo</forename><surname>Fu</surname></persName>
+							<email>haobofu@tencent.com</email>
+							<affiliation key="aff4">
+								<orgName type="laboratory">Tencent AI Lab</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,179.58,142.67,48.17,10.75"><forename type="first">Qiang</forename><surname>Fu</surname></persName>
+							<affiliation key="aff4">
+								<orgName type="laboratory">Tencent AI Lab</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,243.44,142.67,71.91,10.75"><forename type="first">Junliang</forename><surname>Xing</surname></persName>
+							<email>jlxing@tsinghua.edu.cn</email>
+							<affiliation key="aff3">
+								<orgName type="institution">Tsinghua University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,356.39,142.67,58.13,10.75"><forename type="first">Jian</forename><surname>Cheng</surname></persName>
+							<email>jian.cheng@ia.ac.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Automation</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+							</affiliation>
+							<affiliation key="aff2">
+								<orgName type="department">School of Future Technology</orgName>
+								<orgName type="institution">University of Chinese Academy of Sciences</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Minimizing Weighted Counterfactual Regret with Optimistic Online Mirror Descent</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2024-05-14">14 May 2024</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">77DDD3232E6904AA782BE007CA054403</idno>
+					<idno type="arXiv">arXiv:2404.13891v2[cs.LG]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Counterfactual regret minimization (CFR) is a family of algorithms for effectively solving imperfectinformation games. It decomposes the total regret into counterfactual regrets, utilizing local regret minimization algorithms, such as Regret Matching (RM) or RM+, to minimize them. Recent research establishes a connection between Online Mirror Descent (OMD) and RM+, paving the way for an optimistic variant PRM+ and its extension PCFR+. However, PCFR+ assigns uniform weights for each iteration when determining regrets, leading to substantial regrets when facing dominated actions. This work explores minimizing weighted counterfactual regret with optimistic OMD, resulting in a novel CFR variant PDCFR+. It integrates PCFR+ and Discounted CFR (DCFR) in a principled manner, swiftly mitigating negative effects of dominated actions and consistently leveraging predictions to accelerate convergence. Theoretical analyses prove that PDCFR+ converges to a Nash equilibrium, particularly under distinct weighting schemes for regrets and average strategies. Experimental results demonstrate PDCFR+'s fast convergence in common imperfect-information games. The code is available at https://github.com/ rpSebastian/PDCFRPlus.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Imperfect-information games (IIGs) model strategic interactions between players with hidden information. Solving such games is challenging since players must reason under uncertainty about opponents' private information. The hidden information plays an essential role in real-world situations such as medical treatment <ref type="bibr" coords="1,140.71,675.64,70.74,9.53" target="#b1">[Sandholm, 2015]</ref>, negotiation <ref type="bibr" coords="1,266.57,675.64,30.43,8.64;1,315.00,282.19,47.11,8.82" target="#b7">[Gratch et al., 2016]</ref>, and security <ref type="bibr" coords="1,420.95,281.47,71.02,9.53">[Lisy et al., 2016]</ref>, making the research on IIGs theoretically and practically crucial.</p><p>In this work, we focus on solving two-player zero-sum (2p0s) IIGs. The typical goal in these games is to find an (approximate) Nash equilibrium (NE) in which no player can benefit from deviating unilaterally from the equilibrium. The common iterative approach minimizes total regrets of both players so that their average strategies over time converge to a NE. The family of counterfactual regret minimization (CFR) algorithms <ref type="bibr" coords="1,390.94,382.66,98.33,9.53" target="#b10">[Zinkevich et al., 2007]</ref> decomposes the total regret into the sum of counterfactual regrets associated with decision nodes. Then it employs a local regret minimization algorithm, such as Regret Matching (RM) <ref type="bibr" coords="1,520.32,415.54,37.68,9.53;1,315.00,427.39,73.98,8.64" target="#b8">[Hart and Mas-Colell, 2000]</ref> or its variant RM+ <ref type="bibr" coords="1,472.28,426.50,70.82,9.53">[Tammelin, 2014]</ref>, at each decision node to effectively minimize counterfactual regret. Due to the sound theoretical guarantee and strong empirical performance, CFR and its variants have enabled several major breakthroughs in this field <ref type="bibr" coords="1,468.67,470.33,89.33,9.53">[Bowling et al., 2015;</ref><ref type="bibr" coords="1,315.00,482.01,91.70,8.82" target="#b9">Moravčík et al., 2017;</ref><ref type="bibr" coords="1,410.22,482.19,117.40,8.64" target="#b2">Brown and Sandholm, 2018;</ref><ref type="bibr" coords="1,531.13,482.19,26.87,8.64;1,315.00,493.15,88.59,8.64" target="#b1">Brown and Sandholm, 2019b]</ref>.</p><p>Besides CFR, Online Mirror Descent (OMD) <ref type="bibr" coords="1,515.98,505.76,42.02,9.53;1,315.00,517.62,63.17,8.64" target="#b1">[Beck and Teboulle, 2003]</ref> stands out as a prominent and general regret minimization algorithm. It has promising theoretical results but remains less competitive than CFRs when directly applied to solving IIGs. Recently, researchers have tried to build connections between CFR and OMD <ref type="bibr" coords="1,473.81,560.56,84.18,9.53" target="#b6">[Farina et al., 2021;</ref><ref type="bibr" coords="1,315.00,572.23,64.54,8.82" target="#b9">Liu et al., 2022]</ref>. The study by <ref type="bibr" coords="1,443.33,571.52,81.13,9.53" target="#b6">[Farina et al., 2021]</ref> demonstrates that RM+ is essentially a specialized form of OMD when employed to minimize counterfactual regret at each decision node. This connection inspires an optimistic variant of RM+, named Predictive RM+ (PRM+), seeking to benefit from the predictability of slowly-changing counterfactual losses over time. Its extension Predictive CFR+ (PCFR+) exhibits extremely fast convergence on non-poker IIGs.</p><p>Despite the notable success of PCFR+, a limitation arises from its practice of assigning uniform weights to each iteration when determining regrets. The algorithm becomes particularly challenging when dealing with dominated ac-tions, leading to high regrets for other actions and requiring a substantial number of iterations to mitigate this negative impact 1 . Assigning more weights to recent iterations has shown to be important for fast convergence <ref type="bibr" coords="2,226.19,89.46,70.80,9.53">[Tammelin, 2014;</ref><ref type="bibr" coords="2,54.00,101.31,126.30,8.64">Brown and Sandholm, 2019a;</ref><ref type="bibr" coords="2,185.30,101.31,111.70,8.64;2,54.00,112.27,21.44,8.64" target="#b7">Grand-Clément and Kroer, 2023]</ref>. Notably, Discounted CFR (DCFR) <ref type="bibr" coords="2,223.86,111.38,68.50,9.53;2,54.00,123.23,49.64,8.64">[Brown and Sandholm, 2019a</ref>] is a family of algorithms that discounts prior iterations when determining both regrets and average strategy. Thus, it is desirable to design a CFR variant that not only allocates more weights to recent iteration, thereby alleviating high regrets from earlier iterations, but also leverages predictions to accelerate convergence.</p><p>To this end, we delve into minimizing weighted counterfactual regret with OMD and optimistic variant:</p><p>• We demonstrate that by directly employing OMD to minimize weighted counterfactual regret, we obtain a CFR variant, DCFR+, which incorporates regret discounting similar to DCFR and clips negative regrets akin to CFR+. Remarkably, the CFR variant previously discovered through evolutionary search <ref type="bibr" coords="2,221.47,269.04,75.53,9.53" target="#b8">[Hang et al., 2022]</ref> is a special case of DCFR+, showcasing faster convergence than DCFR.</p><p>• Furthermore, by applying optimistic OMD, we derive a novel CFR variant, PDCFR+, which leverages predicted regrets to compute new strategy like PCFR+, while updating regrets similar to DCFR+. It swiftly mitigates negative effects of dominated actions and consistently leverages predictions to speed up convergence. j ∈ J , the player selects an action based on a local strategy x j ∈ ∆ nj , where ∆ nj is a simplex over the action set A j ⊆ A of size n j . After taking the action a, the player proceeds to an observation node k = ρ(j, a). At each observation node k ∈ K, the player receives a signal s ∈ S k and then reaches another decision node j ′ = ρ(k, s). The set C j,a = ρ(ρ(j, a), s) : s ∈ S ρ(j,a) denotes all decision nodes that are earliest reachable after taking action a at j. We introduce a dummy root decision node o with one action to ensure a unique root. An illustration is given in Appendix A. For a local strategy set {x j } j∈J , we can construct a sequence-form strategy ẋ represented as a vector indexed over {(j, a) : j ∈ J , a ∈ A j }. Each entry in the vector corresponds to a pair (j, a), with the value representing the product of probabilities of all actions along the path from the root to (j, a). The sequence-form strategy space is denoted by X .</p><p>In a 2p0s IIG, where player 1 and player 2 have sequencefrom strategy space X and Y, and the set of decision nodes are J x and J y , the problem of finding a NE can be formulated as a bilinear saddle point problem</p><formula xml:id="formula_0">min ẋ∈X max ẏ∈Y ẋ⊤ A ẏ = max ẏ∈Y min ẋ∈X ẋ⊤ A ẏ,</formula><p>where A is a sparse payoff matrix encoding the losses for player 1. For a strategy profile ( ẋ, ẏ), let δ 1 ( ẋ, ẏ) denote the incentive for player 1 to unilaterally choose another strategy:</p><formula xml:id="formula_1">δ 1 ( ẋ, ẏ) = ẋ⊤ A ẏ − min ẋ′ ∈X ẋ′⊤ A ẏ. Similarly, δ 2 ( ẋ, ẏ) = max ẏ′ ∈Y ẋ⊤ A ẏ′ − ẋ⊤ A ẏ. An ϵ-NE satisfies δ i ( ẋ, ẏ) ≤ ϵ, ∀i ∈ {1, 2}.</formula><p>The exploitability of ( ẋ, ẏ) measures its distance from equilibrium and is defined by e( ẋ, ẏ) = i∈{1,2} δ i ( ẋ, ẏ)/2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Regret Minimization</head><p>A regret minimization algorithm <ref type="bibr" coords="2,455.17,428.83,72.14,9.53" target="#b10">[Zinkevich, 2003]</ref> repeatedly plays against an unknown environment and starts with a decision x 1 ∈ D ⊆ R n , where D is the decision space. In each iteration t, it observes a loss ℓ t ∈ R n from the environment and computes its next decision x t+1 based on past decisions x 1 , . . . , x t and previous losses ℓ 1 , . . . , ℓ t . The objective of the algorithm is to minimize the total regret</p><formula xml:id="formula_2">R T = max x ′ ∈D T t=1 ℓ t , x t − x ′ .</formula><p>Online Mirror Descent (OMD) <ref type="bibr" coords="2,451.33,553.93,106.67,9.53" target="#b1">[Beck and Teboulle, 2003]</ref> stands out as a famous regret minimization algorithm compatible with arbitrary decision spaces. It updates the decision according to x 1 = argmin x ′ ∈D ψ(x ′ ), and</p><formula xml:id="formula_3">x t+1 = argmin x ′ ∈D ℓ t , x ′ + 1 η B ψ (x ′ || x t ) , where ψ : D → R is a regularizer, B ψ (x ′ || x) = ψ(x ′ ) − ψ(x) − ⟨∇ψ(x),</formula><p>x ′ − x⟩ is the Bregman divergence associated with ψ, and η &gt; 0 is an arbitrary step size. Optimistic OMD <ref type="bibr" coords="2,341.20,672.70,95.03,9.53">[Syrgkanis et al., 2015]</ref> seeks to benefit from the predictability of slowly-changing loss ℓ t . In iteration t, it predicts the next iteration's loss ℓ t+1 as m t+1 and updates the</p><formula xml:id="formula_4">Algorithms Cumulative Regret R t j New Strategy x t+1 j Cumulative Strategy X t CFR R t−1 j + r t j R t j + / R t j + 1 X t−1 + ẋt CFR+ R t−1 j + r t j + R t j / R t j 1 X t−1 + t * ẋt Linear CFR R t−1 j + t * r t j R t j + / R t j + 1 X t−1 + t * ẋt DCFR R t j = R t−1 j ⊙ d t−1 j + r t j , where d t j [a] = t α t α +1 if R t j [a] &gt; 0 t β t β +1 otherwise R t j + / R t j + 1 X t−1 ( t−1 t ) γ + ẋt DCFR+ R t−1 j (t−1) α (t−1) α +1 + r t j + R t j / R t j 1 X t−1 ( t−1 t ) γ + ẋt PCFR+ R t−1 j + r t j + Rt+1 j / Rt+1 j 1</formula><p>, where</p><formula xml:id="formula_5">Rt+1 j = R t j + v t+1 j + X t−1 + t 2 ẋt PDCFR+ R t−1 j (t−1) α (t−1) α +1 + r t j + Rt+1 j / Rt+1 j 1</formula><p>, where decision according to x 1 = z 0 = argmin x ′ ∈D ψ(x ′ ), and</p><formula xml:id="formula_6">Rt+1 j = R t j t α t α + 1 + v t+1 j + X t−1 ( t−1 t ) γ + ẋt</formula><formula xml:id="formula_7">z t = argmin z ′ ∈D ℓ t , z ′ + 1 η B ψ (z ′ || z t−1 ), x t+1 = argmin x ′ ∈D m t+1 , x ′ + 1 η B ψ (x ′ || z t ) .</formula><p>Regret Matching (RM) <ref type="bibr" coords="3,161.82,444.49,112.44,9.53" target="#b8">[Hart and Mas-Colell, 2000</ref>] and Regret Matching+ (RM+) <ref type="bibr" coords="3,168.15,455.44,74.60,9.53">[Tammelin, 2014]</ref> are two regret minimization algorithms operating on the simplex ∆ n . RM typically starts with a uniform random strategy x 1 . On each iteration t, RM calculates the instantaneous regret r t = ⟨x t , ℓ t ⟩ 1 − ℓ t and then accumulates it to obtain the cumulative regret R t = t k=1 r k . The next strategy is proportional to the positive cumulative regret, i.e.,</p><formula xml:id="formula_8">x t+1 = [R t ] + / [R t ] + 1</formula><p>, where</p><formula xml:id="formula_9">[•] + = max {•, 0}.</formula><p>For convenience, we define 0/0 as the uniform distribution. RM+ is a straightforward variant of RM. It sets any action with negative cumulative regret to zero in each iteration so that it promptly reuses an action showing promise of performing well. Formally, R t = [R t−1 + r t ] + and x t+1 = R t / ∥R t ∥ 1 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Counterfactual Regret Minimization</head><p>Counterfactual Regret Minimization (CFR) <ref type="bibr" coords="3,228.88,638.35,68.12,9.31;3,54.00,650.20,23.24,8.64" target="#b10">[Zinkevich et al., 2007]</ref> is one of the most popular equilibrium-finding algorithms for solving IIGs. It operates as a regret minimization algorithm within the sequence-form strategy space. Given a sequence-form strategy ẋt ∈ X and a loss lt = A ẏt , the key concept involves constructing a counterfactual loss ℓ t j ∈ R nj for each decision node j ∈ J :</p><formula xml:id="formula_10">ℓ t j [a] = lt [j, a] + j ′ ∈Cj,a ℓ t j ′ , x t j ′ .</formula><p>CFR then employs RM to minimize the total counterfactual regret R T j = max x ′ j ∈∆ n j T t=1 ℓ t j , x t j − x ′ j at each decision node with respect to counterfactual loss. It is guaranteed that the total regret R T is bounded by the sum of the total counterfactual regrets under each decision node, i.e., R T ≤ j∈J R T j + .</p><p>The computational procedure of CFR on each iteration t is summarized as follows: (1) decomposes the sequence-form strategy ẋt into local strategies x t j for each decision node j ∈ J ; (2) recursively traverses the game tree to calculate the counterfactual loss ℓ t j ;</p><p>(3) accumulates the instantaneous counterfactual regret r t j = x t j , ℓ t j 1 − ℓ t j to obtain the cumulative counterfactual regret R t j = R </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">CFR Variants</head><p>Since the birth of CFR, researchers have proposed many novel CFR variants, greatly improving the convergence rate of the vanilla CFR. CFR+ <ref type="bibr" coords="4,162.24,56.58,71.69,9.53">[Tammelin, 2014;</ref><ref type="bibr" coords="4,236.95,57.30,60.05,8.82;4,54.00,68.44,23.24,8.64">Bowling et al., 2015]</ref> incorporates three small yet effective modifications, resulting in an order of magnitude faster convergence compared to CFR. (1) CFR+ employs RM+ instead of RM, i.e., R t j = R t−1 j + r t j + . (2) CFR+ adopts a linearly weighted average strategy where iteration t is weighted by t, i.e., X t = X t−1 +t ẋt . (3) CFR+ uses the alternating-updates technique. DCFR <ref type="bibr" coords="4,92.89,138.33,119.23,9.53">[Brown and Sandholm, 2019a</ref>] is a family of algorithms which discounts prior iterations' cumulative regrets and dramatically accelerates convergence especially in games where some actions are very costly mistakes. Specifically,</p><formula xml:id="formula_11">R t j = R t−1 j ⊙ d t−1 j + r t j ,where d t j [a] = t α t α +1 if R t j [a] &gt; 0 t β t β +1 otherwise. X t = X t−1 t − 1 t γ + ẋt .</formula><p>Linear CFR <ref type="bibr" coords="4,104.87,242.70,119.58,9.53">[Brown and Sandholm, 2019a</ref>] is a special case of DCFR where iteration t's contribution to cumulative regrets and cumulative strategy is proportional to t.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.5">The Predictive CFR Variant</head><p>Recently, <ref type="bibr" coords="4,93.66,299.43,79.00,9.53" target="#b6">[Farina et al., 2021]</ref> demonstrates that a general regret minimization algorithm can be adapted for constructing a regret minimization algorithm tailored to a simplex. To illustrate, let us focus on the objective of minimizing the total counterfactual regret R T j at a decision node j. Additionally, we have a general regret minimization algorithm A, which we apply to a decision space R nj ≥0 . At each iteration t, upon obtaining the counterfactual loss ℓ t j , we initially compute a modified loss lt j = −r t j = ℓ t j − ℓ t j , x t j 1. It is then fed into A, and we receive its next decision xt+1 j ∈ R nj ≥0 . Finally, we obtain the next strategy as x t+1 j = xt+1 j / xt+1 j 1 . Based on the construction, <ref type="bibr" coords="4,174.33,433.58,80.89,9.53" target="#b6">[Farina et al., 2021]</ref> illustrates that employing OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A yields the same strategy as RM+ in each iteration. Additionally, by using Optimistic OMD with ψ = 1 2 ∥•∥ 2 2 and m t+1 = −v t+1 j , where v t+1 j = m t+1 j , x t j 1 − m t+1 j is the prediction of r t+1 j and m t+1 j = ℓ t j is the prediction of ℓ t+1 j , Predictive RM+ (PRM+) is obtained, i.e.,</p><formula xml:id="formula_12">R t j = [R t−1 j + r t j ] + , Rt+1 j = [R t j + v t+1 j ] + , x t+1 j = Rt+1 j / Rt+1 j 1 .</formula><p>Moreover, <ref type="bibr" coords="4,98.53,552.89,82.15,9.53" target="#b6">[Farina et al., 2021]</ref> introduces Predictive CFR+ (PCFR+), which uses PRM+ as the regret minimization algorithm in each decision node and incorporates a quadratic weighted average strategy, defined as X t = X t−1 + t 2 ẋt . We summarized CFR and typical variants in Table <ref type="table" coords="4,266.88,597.78,3.74,8.64" target="#tab_0">1</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Performance Decline of PCFR+ in the Presence of Dominated Actions</head><p>Although PCFR+ successfully employs prediction to significantly accelerate convergence, we show that its performance deteriorates notably when facing dominated actions. Consider a 2 × 2 zero-sum normal-form game NFG (2), represented by max x∈∆ 2 min y∈∆ 2 x T U y, where U = ((1, 0) , (0, 2)) is</p><formula xml:id="formula_13">0 1 2 3 4 Iterations (×10 3 ) 10 −8 10 −5 10 −2 Exploitability NFG (2) 0 1 2 3 4</formula><p>Iterations (×10 3 ) player 1's utility matrix. As shown in the left plot of Figure <ref type="figure" coords="4,550.53,179.02,3.74,8.64" target="#fig_0">1</ref>, PCFR+ converges extremely faster than other CFR variants, benefiting from prediction during strategy updates. However, when we introduce a dominated action for each player, resulting in NFG (3), where U = ((1, 0, 5) , (0, 2, 0) , (0, 0, 100)), PCFR+'s performance declines greatly as depicted in the right plot. For player 2, action 3 is dominated by action 1, allowing its elimination. Thus, player 1's action 3 can also be eliminated. Consequently, NFG (3) reduces to NFG (2), with the NE x = y = 2 3 , 1 3 , 0 . After the first iteration of PCFR+, player 2 has cumulative regrets R 1 = 100 3 , 100 3 , 0 . The substantial loss of action 3 leads to high cumulative regrets for player 2's actions 1 and 2, making it challenging to distinguish between these two actions. Due to the small instantaneous regrets per iteration, PCFR+ requires about 1500 iterations to achieve a 2:1 cumulative regrets for actions 1 and 2, producing an approximate NE.</p><formula xml:id="formula_14">10 −4 10 −1 NFG (3) CFR+ LinearCFR DCFR PCFR+ CFR+ LinearCFR DCFR PCFR+</formula><p>While LinearCFR and DCFR initially converge faster than PCFR+ in NFG (3) by assigning more weights to recent iterations and alleviating high regrets from earlier iterations, PCFR+ leverages predictions to surpass them after 2000 iterations. It will be a best-of-both-worlds algorithm if we design a CFR variant that not only allocates more weights to recent iterations but also employs predictions to compute a new strategy, therefore greatly speeding up convergence.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Minimizing Weighted Counterfactual</head><p>Regret with OMD and Optimistic Variant</p><p>In various situations, it makes sense to consider recent iterations as more crucial than earlier ones. Take equilibriumfinding algorithms as an example, earlier iterations are prone to selecting incorrect actions, resulting in substantial losses and causing significant regrets <ref type="bibr" coords="4,465.26,539.72,92.74,9.53;4,315.00,551.57,25.85,8.64">[Brown and Sandholm, 2019a]</ref>. Additionally, it is typical for recent iterations to generate strategies that are closer to a NE <ref type="bibr" coords="4,471.91,561.63,81.80,9.53" target="#b10">[Perolat et al., 2021]</ref>. Therefore, assigning more weights to recent iterations is a natural choice, potentially leading to fast convergence <ref type="bibr" coords="4,531.65,583.55,21.96,8.64;4,315.00,595.23,72.18,8.82" target="#b0">[Abernethy et al., 2018;</ref><ref type="bibr" coords="4,389.67,595.41,110.14,8.64">Wang and Abernethy, 2018]</ref>. Moreover, it is a prevalent practice to permit distinct weighting sequences for regrets and average strategies to facilitate fast convergence. For instance, CFR+ adopts a linearly weighted average strategy while employing a uniform weighting sequence for regrets. Besides, DCFR takes this approach a step further by using distinct weighting sequences for both regrets and average strategy.</p><p>In a weighted regret minimization algorithm applied to the sequence-form strategy space, the loss lt incurred at iteration Algorithm 1: Construction of a weighed CFR variant using a general regret minimization algorithm from player 1's perspective.</p><p>Input: game G, total iterations T , general regret minimization algorithm A, weighting sequences w and τ .</p><formula xml:id="formula_15">1 for j ∈ J do 2 A j ← instantiate A with D = R nj ≥0 ; 3 x 1 j ← A j .first decision(); 4 construct ẋ1 by x 1 j | j ∈ J ; 5 for t = 1 → T do 6 decompose ẋt into x t j | j ∈ J ; 7 calculate the counterfactual loss ℓ t j | j ∈ J based on the loss lt = A ẏt ; 8 for j ∈ J do 9 r t j ← ℓ t j , x t j 1 − ℓ t j ; 10 lt j ← −w t r t j ; 11 A j .observe loss( lt j ); 12 xt+1 j ← A j .next decision(); 13 x t+1 j ← xt+1 j / xt+1 j 1 ; 14 construct ẋt+1 by x t+1 j | j ∈ J ; 15 X t ← X t−1 + τ t ẋt ; 16 xt ← X t / ∥X t ∥ 1 ;</formula><p>Output: The final average strategy xT .</p><p>t is scaled by the weight w t , forming a sequence of weights denoted as w. The total weighted regret by the sequence w is</p><formula xml:id="formula_16">R T w = max ẋ′ ∈X T t=1 w t lt , ẋt − ẋ′ .</formula><p>Moreover, define xt τ to be the weighted average strategy scaled by the weighting sequence τ :</p><formula xml:id="formula_17">xt τ = X t τ / X t τ 1 , X t τ = X t−1 τ + τ t ẋt .</formula><p>To minimize the total weighted regret R T w , we first decompose it into the sum of the total weighted counterfactual regrets R T j,w under each decision node by constructing the counterfactual loss ℓ t j at each iteration t, where</p><formula xml:id="formula_18">R T j,w = max x ′ j ∈∆ n j T t=1 w t ℓ t j , x t j − x ′ j ,</formula><p>so that we have the guarantee R T w ≤ j∈J [R T j,w ] + and transform the objective to minimize the total weighted counterfactual regret R T j,w at each decision node. To develop an algorithm for minimizing weighted counterfactual regret by leveraging a general regret minimization algorithm, we propose a construction method similar to the one described in <ref type="bibr" coords="5,125.81,672.70,81.49,9.53" target="#b6">[Farina et al., 2021]</ref>, but with a modified loss lt j = −w t r t j . A concise summary of this approach is presented in Algorithm 1.</p><p>As demonstrated in Theorem 1 (all proofs of the theorems are in Appendix C), when employing OMD with ψ</p><formula xml:id="formula_19">= 1 2 ∥•∥ 2 2</formula><p>as the algorithm A, it simplifies to the WCFR+ algorithm:</p><formula xml:id="formula_20">R t j = R t−1 j + w t r t j + , x t+1 j = R t j / R t j 1 , X t = X t−1 + τ t ẋt .</formula><p>Similarly, when employing optimistic OMD with ψ =</p><formula xml:id="formula_21">1 2 ∥•∥ 2 2</formula><p>, it reduces to the PWCFR+ algorithm:</p><formula xml:id="formula_22">R t j = R t−1 j + w t r t j + , Rt+1 j = R t j + w t+1 v t+1 j + , x t+1 j = Rt+1 j / Rt+1 j 1 , X t = X t−1 + τ t ẋt</formula><p>Theorem 1. For all η &gt; 0, when employing OMD and optimistic OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A, they reduce to WCFR+ and PWCFR+, respectively.</p><p>As illustrated in Theorem 2, when both players employ a weighted regret minimization algorithm in a 2p0s IIG, the weighted average strategy profile converges to a NE. Theorem 2. Assuming both players employ a weighted regret minimization algorithm with the weighting sequence τ for the average strategy in a 2p0s IIG, and given that the two players have total weighted regrets R T τ ,x and R T τ ,y respectively, the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a</p><formula xml:id="formula_23">R T τ,x +R T τ ,y T t=1 τ t -NE.</formula><p>Although WCFR+ and PWCFR+ algorithms aim to minimize the total weight regret R T w , we show that they also minimize the total weighted regret R T τ as long as the weighting sequence w is more aggressive than τ . Theorem 3. Assuming both players employ the WCFR+ algorithm with the weighting sequence w for loss and τ for the average strategy in a 2p0s IIG, and { τt wt } t≤T is a positive non-increasing sequence, the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a</p><formula xml:id="formula_24">j∈Jx∪Jy τ 1 w 1 T t=1 τ t w t r t j 2 2 / T t=1 τ t -NE.</formula><p>Theorem 4. Assuming both players employ the PWCFR+ algorithm with the weighting sequence w for loss and τ for the average strategy in a 2p0s IIG, and { τt wt } t≤T is a positive non-increasing sequence, the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a j∈Jx∪Jy</p><formula xml:id="formula_25">2 τ 1 w 1 T t=1 τ t w t r t j − v t j 2 2 / T t=1 τ t -NE.</formula><p>A question remains regarding the selection of suitable weighting sequences in practical applications. Inspired by DCFR <ref type="bibr" coords="5,343.91,583.76,119.19,9.53">[Brown and Sandholm, 2019a</ref>] and to avoid potential numerical issues, we adopt a similar less-aggressive discounting sequence, resulting in a specific algorithm DCFR+:</p><formula xml:id="formula_26">R t j = R t−1 j (t − 1) α (t − 1) α + 1 + r t j + , x t+1 j = R t j / R t j 1 , X t = X t−1 t − 1 t γ + ẋt .</formula><p>DCFR+ integrates features from both CFR+ and DCFR in a principled manner. It discounts cumulative regrets, assigning more weights to recent instantaneous regrets. Additionally, it clips the negative part of cumulative regrets, allowing for quick reuse of promising actions. Notably, the CFR variant discovered through evolutionary search <ref type="bibr" coords="6,217.91,89.46,79.09,9.53" target="#b8">[Hang et al., 2022]</ref> emerges as a special case of DCFR+ where α = 1.5 and γ = 4, showcasing faster convergence than DCFR. We adopt a similar weighting sequence for PWCFR+, resulting in the PDCFR+ algorithm. PDCFR+ utilizes predicted cumulative regrets to compute new strategy akin to PCFR+, while updating cumulative regrets similar to DCFR+:</p><formula xml:id="formula_27">R t j = R t−1 j (t−1) α (t−1) α +1 + r t j + , Rt+1 j = R t j t α t α +1 + v t+1 j + , x t+1 j = Rt+1 j / Rt+1 j 1 , X t = X t−1 t−1 t γ + ẋt .</formula><p>Interestingly, our connection between OMD and WCFR+ also provides a new perspective to understand the increasing weight w t in DCFR and DCFR+. When employing OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A, it updates the decision xt+1 j , corresponding to the cumulative regrets R t j in WCFR+:</p><formula xml:id="formula_28">xt+1 j = argmin x′ j ∈R n j ≥0 −w t r t j , x′ j + 1 2η x′ j − xt j 2 2 .</formula><p>It can be equivalently written as:</p><formula xml:id="formula_29">xt+1 j = argmin x′ j ∈R n j ≥0 −r t j , x′ j + 1 2ηw t x′ j − xt j 2 2 = argmin x′ j ∈R n j ≥0 −r t j , x′ j + 1 2η 1 w t x′ j − xt j 2 2 .</formula><p>We can interpret the increasing weight w t in two ways: an increasing learning rate η t = ηw t or a decreasing regularization term 1 wt . As a result, during the early iterations, cumulative regrets R t j , i.e., xt+1 j , are learned at a gradual pace or regularized by a substantial strength. This interpretation aligns with our intuition, as we aim to control cumulative regrets from growing excessively large in the initial stages.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Experiments</head><p>In this section, we briefly describe testing games, compare PDCFR+ with other CFR variants, and analyze PDCFR+'s superior performance on normal-form games.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Testing Games</head><p>We use several commonly used IIGs in the research community and provide brief descriptions below. For more details, please refer to the Appendix B. Kuhn Poker <ref type="bibr" coords="6,228.82,606.95,53.06,9.53" target="#b8">[Kuhn, 1950]</ref> is a simplified poker with a three-card deck and one chance to bet for each player. Leduc Poker <ref type="bibr" coords="6,170.67,628.86,85.60,9.53" target="#b10">[Southey et al., 2005]</ref> is a larger game with a 6-card deck and two betting rounds. In Liar's Dice (x) (x=4, 5) <ref type="bibr" coords="6,128.11,650.78,71.62,9.53">[Lisỳ et al., 2015]</ref>, each player gets an xsided dice, which they roll at the start and take turn placing bets on the outcome. Goofspiel (x) (x=4, 5) <ref type="bibr" coords="6,235.80,672.70,51.49,9.53" target="#b10">[Ross, 1971]</ref> is a card game where each player has x cards and aims to score points by bidding simultaneously in x rounds. GoofspielImp (x) (x=4, 5) is a imperfect variant of Goofspiel (x), where bid cards remain unrevealed. In Battleship (x) (x=2, 3) <ref type="bibr" coords="6,520.09,67.54,37.91,9.31;6,315.00,79.22,41.52,8.82">[Farina et al., 2019b]</ref>, players secretly position a 1 × 2 ship on separate 2 × x grids and take turns firing at the opponent's ship three times. HUNL Subgame (x) (x=3, 4) is a heads-up no-limit Texas hold'em (HUNL) subgame generated by the top poker agent Libratus <ref type="bibr" coords="6,374.77,122.33,116.39,9.53" target="#b2">[Brown and Sandholm, 2018]</ref>.</p><p>The testing games selected exhibit diverse structures and considerable game sizes, presenting a nontrivial challenge to solve. However, their complexity remains manageable for an algorithm to complete within two weeks, rendering them highly suitable for evaluating algorithmic performance. When extending to larger games, we can capitalize on a variety of well-established techniques, such as abstraction, decomposition <ref type="bibr" coords="6,333.90,210.02,79.23,9.53" target="#b4">[Burch et al., 2014]</ref>, and subgame-solving <ref type="bibr" coords="6,510.03,210.02,47.97,9.53;6,315.00,221.88,68.74,8.64" target="#b1">[Brown and Sandholm, 2017;</ref><ref type="bibr" coords="6,386.90,221.70,77.69,8.82" target="#b2">Brown et al., 2018]</ref>. These approaches effectively mitigate the increased complexity associated with scaling up the size of the games.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Convergence Results</head><p>We compare PDCFR+ with CFR+, LinearCFR, DCFR, PCFR+ and DCFR+ across twelve games. For DCFR, we adopt the hyperparameters suggested by the authors, specifically α = 1.5, β = 0, and γ = 2. Regarding DCFR+ and PDCFR+, according to Theorems 3 and 4, α and γ must ensure that { τt wt } t≤T forms a positive, non-increasing sequence. However, in practice, we find that the range of values for α and γ can be larger, and they generally yield good convergence results. Based on these observations, for DCFR+, we set α = 1.5 and γ = 4 following <ref type="bibr" coords="6,476.67,376.77,77.04,9.53" target="#b8">[Hang et al., 2022]</ref>, which is automatically set by an evolutionary search algorithm. We perform a coarse grid search to fine-tune the hyperparameters for PDCFR+, and the best one, i.e., α = 2.3 and γ = 5, is then used across all games. All algorithms utilize the alternating-updates technique.</p><p>We run each algorithm for 20,000 iterations in each testing game to observe their long-term behavior, with Figure <ref type="figure" coords="6,553.02,454.40,4.98,8.64">2</ref> displaying exploitability curves. We set a minimum reachable exploitability of 10 −12 , denoting the point where the average strategy profile is considered sufficiently converged to a NE. Across non-poker games (Goofspiel, Battleship, Liar's Dice), PDCFR+ outperforms others by 4-8 orders of magnitude, taking 2,000-12,000 iterations to achieve the minimum reachable exploitability. For poker games, PDCFR+ excels in Kuhn Poker. In Leduc Poker, PDCFR+ initially lags behind DCFR and CFR+ up to 10,000 iterations but exhibits faster convergence thereafter. In the large-scale poker game HUNL Subgame, PDCFR+ performs comparably to CFR+ and PCFR+, while DCFR+ emerges as the fastest algorithm. In summary, PDCFR+ stands as an improved version of PCFR+, with a similar property for excellence in non-poker games.</p><p>PDCFR+ employs γ = 5 in the computation of average strategies, while PCFR+ utilizes quadratic averaging, equivalent to γ = 2 in PDCFR+. In order to assess whether PD-CFR+'s improved performance is solely attributable to its specific averaging of strategies, we present the performance of PCFR+ (5), which employs γ = 5, in Figure <ref type="figure" coords="6,504.26,673.60,3.74,8.64">2</ref>. PCFR+ (5) outperforms PCFR+ with quadratic averaging in nine games. PDCFR+ performs similarly to PCFR+ (5) in six games but exhibits significantly faster convergence in five games. Particularly in GoofSpiel (5) and Liar's Dice (5), PDCFR+ surpasses PCFR+ (5) by 5-7 orders of magnitude. Thus, we conclude that the acceleration observed in PDCFR+ is not solely a result of using a more aggressive weighting scheme for determining average strategies but is also attributed to the weighting scheme employed in determining regrets.</p><p>To further comprehend the enhanced performance of PD-CFR+, consider the normal-form games NFG (2) and NFG</p><p>(3) discussed in section 3. Top plots of Figure <ref type="figure" coords="7,510.01,358.99,4.98,8.64">3</ref> show that PDCFR+ converges extremely fast on both games, not affected by the dominated actions. After the first iteration of PDCFR+ in NFG (3), player 2 has high cumulative regrets R 1 = 100 3 , 100 3 , 0 due to the dominated action 3. As shown in the bottom-right plot of Figure <ref type="figure" coords="7,458.49,413.78,3.74,8.64">3</ref>, PDCFR+ rapidly discounts cumulative regrets, and at around the 200th iteration, it has already learned stable 2:1 cumulative regrets for actions 1 and 2, producing an approximate NE. In contrast, PCFR+ is still struggling with fluctuations and requires much more iterations to approach a NE. This highlights PDCFR+'s ability to swiftly mitigate the negative effects of dominated actions and consistently leverage predictions to accelerate convergence.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Conclusions and Future Research</head><p>This work proposes to minimize weighted counterfactual regret with OMD and optimistic variant. It provides a new perspective to understand DCFR's superior performance and derives a novel CFR variant PDCFR+. PDCFR+ discounts cumulative regrets from early iterations to mitigate the negative effects of dominated actions and consistently leverages predictions to accelerate convergence. Experimental results demonstrate that PDCFR+ achieves competitive results compared with other CFR variants. Recent work <ref type="bibr" coords="7,502.01,617.91,55.99,9.31;7,315.00,629.76,23.24,8.64" target="#b6">[Farina et al., 2023]</ref> proposes two fixes for PRM+, achieving O(1/T ) convergence in normal-form games. It is worthwhile to investigate whether our algorithm can achieve similar convergence by introducing a specific weighting sequence. Besides, combining PDCFR+ with function approximations <ref type="bibr" coords="7,502.93,672.70,55.07,9.30;7,315.00,684.56,23.24,8.64" target="#b3">[Brown et al., 2019]</ref> and integrating it with the dynamic discounting framework <ref type="bibr" coords="7,337.86,694.62,75.54,9.53" target="#b8">[Hang et al., 2024]</ref> are also promising future works.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A An illustration of Sequential Decision Process</head><p>To illustrate the sequential decision process, we use the game of Kuhn Poker as an example. The typical formalism for describing an imperfect information game involves an extensive-form game forming a game tree as depicted in Figure <ref type="figure" coords="10,499.48,84.35,3.74,8.64">4</ref>. The lack of information is represented by information sets for each player.</p><p>The sequential decision process encodes the decision problem confronted by an individual player. Figures <ref type="figure" coords="10,486.24,106.59,31.46,8.64" target="#fig_3">5 and 6</ref> showcase the sequential decision processes from the perspective of player 1 and 2, respectively. A one-to-one correspondence exists between information sets in the extensive-form game and decision nodes in the sequential decision process.</p><p>For player 1's decision process, there are seven decision nodes, i.e., J = {j0, j1, j2, j3, j4, j5, j6}. At decision node j0, the action set is A j0 = {start} with earliest reachable decision nodes C j0,start = {j1, j2, j3} following the action start. Similarly, at decision node j1, the action set is A j1 = {check, bet} with earliest reachable decision nodes C j1,check = {j4} after taking the action bet.</p><p>There is a local strategy x j ∈ ∆ nj for each decision node j. For example, x j1 ∈ ∆ 2 is a vector indexed over {check, bet} for decision node j1, where x j1 [check] and x j2 [bet] represents the probabilities of selecting the actions check and bet, respectively. We can construct a sequence-form strategy ẋ based on local strategies. For example, ẋ is vector indexed over {(j0, start), (j1, check), (j1, bet), (j2, check), (j2, bet), (j3, check), (j3, bet), (j4, f old), (j4, call), (j5, f old), (j5, call), (j6, f old), (j6, call)}. The probabilities in the sequence-form strategy are similar to the reach probabilities in the extensiveform game. For instance, ẋ <ref type="bibr" coords="10,162.30,237.62,36.49,9.96">[(j1, bet)</ref></p><formula xml:id="formula_30">] = x j0 [start]x j1 [bet], and ẋ[(j6, f old)] = x j0 [start]x j3 [check]x j6 [f old].</formula><p>The payoff matrix A of the game Kuhn Poker is presented in the Table <ref type="table" coords="10,365.89,250.03,3.74,8.64">2</ref>. The first column of the matrix is player 1's sequence-form strategy, the first row of the matrix is player 2's sequence-form strategy. The matrix is sparse, and we only display the non-zero payoff for clarity. It is important to note that the payoff matrix A encodes the losses for player 1, while the utility for player 1 is listed in Figure <ref type="figure" coords="10,215.89,282.90,3.74,8.64">4</ref>.</p><formula xml:id="formula_31">(j0, start) (j1, check) (j1, bet) (j2, f old) (j2, call) (j3, check) (j3, bet) (j4, f old) (j4, call) (j5, check) (j5, bet) (j6, f old) (j6, call) (j0, start) (j1, check) +1 +1 (j1, bet) -1 +2 -1 +2 (j2, check) -1 +1 (j2, bet) -1 -2 -1 +2 (j3, check) -1 -1 (j3, bet) -1 -2 -1 -2 (j4, f old) +1 +1 (j4, call) +2 +2 (j5, f old) +1 +1 (j5, call) -2 +2 (j6, f old) +1 +1 (j6, call) -2 -2</formula><p>Table <ref type="table" coords="10,251.80,423.73,3.49,7.77">2</ref>: The payoff matrix of Kuhn Poker.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B Description of the Games</head><p>Kuhn Poker is a simplified form of poker proposed by Harold W. Kuhn <ref type="bibr" coords="10,338.39,476.41,51.51,9.53" target="#b8">[Kuhn, 1950]</ref>. The game employs a deck of three cards, represented by J, Q, K. At the beginning of the game, each player receives a private card drawn from a shuffled deck and places one chip into the pot. The game involves four kinds of actions: 1) fold, giving up the current game, and the other player gets all the pot, 2) call, increasing his/her bet until both players have the same chips, 3) bet, putting more chips to the pot, and 4) check, declining to wager any chips when not facing a bet. In Kuhn Poker, each player has an opportunity to bet one chip. If neither player folds, both players reveal their cards, and the player holding the higher card takes all the chips in the pot. The utility for each player is defined as the difference between the number of chips after playing and the number of chips before playing.</p><p>Leduc Poker is a larger poker game first introduced in <ref type="bibr" coords="10,279.00,553.45,83.79,9.53" target="#b10">[Southey et al., 2005]</ref>. The game uses six cards that include two suites, each comprising three ranks (Js, Qs, Ks, Jh, Qh, Kh). Similar to Kuhn Poker, each player initially bets one chip, receives a single private card, and has the same set of action options. In Leduc Poker, the game unfolds over two betting rounds. During the first round, players have an opportunity to bet two chips, followed by a chance to bet four chips in the second round. After the first round, one public card is revealed. If a player's private card is paired with the public card, that player wins the game; otherwise, the player holding the highest private card wins the game.</p><p>HUNL Subgame (x) (x = 3, 4) introduced in <ref type="bibr" coords="10,249.15,619.52,118.57,9.53">[Brown and Sandholm, 2019a</ref>] is a heads-up no-limit Texas hold'em(HUNL) sub-game generated by and solved in real-time by the state-of-the-art poker agent Libratus <ref type="bibr" coords="10,421.10,630.48,119.27,9.53" target="#b2">[Brown and Sandholm, 2018]</ref> 2 . In HUNL, both players (P1 and P2) start each hand with 20,000 chips, dealt two private cards from a standard 52-card deck. P1 initially places 100 chips to the pot, followed by P2 adding 50 chips. P2 starts the first round of betting. Then players alternate in choosing to fold, call, check or raise. A round ends when a player calls if both players have acted. After the first round, three public cards are dealt face up for all players to observe, and P1 starts a similar round of betting. In the third and fourth rounds, 2 https://github.com/CMU-EM/LibratusEndgames  one additional public card is dealt and betting starts again with P1. Unless a player has folded, the player with the best five-card poker hand, constructed from their two private cards and the five public cards, wins the pot. In the case of a tie, the pot is split evenly. HUNL Subgame (3) begins at the start of the final betting round with 500 chips in the pot. HUNL Subgame (4) begins at the start of the final betting round with 3,750 chips in the pot. In the first betting round, we use bet sizes of 0.5x, 1x the size of the pot, and an all-in bet. In other betting rounds, we use 1x the pot and all-in.</p><formula xml:id="formula_32">fold fold fold fold fold call call call call call fold call P1 J P1 Q P1 K P2 Q P2 K P2 J P2 K P2 J P2 Q check bet check check check check bet bet bet bet bet check bet call fold check bet call fold call fold call fold call check bet fold call check bet check bet -1 -1 -1 -1 -1 -1 -1 -2 -2 +1 +1 +2 +1 +2 -1 +1 +2 +1 +2 +1 -2 +1 -1 +2 +1 +2 -2 +1 -2 -2 chance node player 1's node</formula><p>Liar's Dice (x) (x = 4, 5) [Lisỳ et al., 2015] is a dice game where each player gets an x-sided dice and a concealment cup. At the beginning of the game, each player rolls their dice under their cup, inspecting the outcome privately. The first player then begins bidding of the form p-q, announcing that there are at least p dices with the number of q under all the cups. The highest dice number x can be treated as any number. Then players take turns to take action: 1) bidding of the form p-q, p or q must be greater than the previous player's bidding, 2) calling 'Liar', ending the game immediately and revealing all the dices. If the last bid is not satisfied, the player calling 'Liar' wins the game. The winner's utility is 1 and the loser -1.</p><p>Goofspiel (x) (x = 4, 5) <ref type="bibr" coords="12,166.24,456.22,51.50,9.53" target="#b10">[Ross, 1971]</ref> is a bidding card game. At the beginning of the game, each player receives x cards numbered 1 . . . x, and there is a shuffled point card deck containing cards numbered 1 . . . x. The game proceeds in x rounds. In each round, players select a card from their hand to make a sealed bid for the top revealed point card. When both players have chosen their cards, they show their cards simultaneously. The player who makes the highest bid wins the point card. If the bids are equal, the point card will be discarded. After x rounds, the player with the most point cards wins the game. The winner's utility is 1 and the loser -1. We use a fixed deck of decreasing points.</p><p>GoofspielImp (x) (x = 4, 5) is an imperfect information variant of Goofspiel (x) where players are only told whether they have won or lost the bid, but not what the other player played.</p><p>Battleship (x) (x = 2, 3) <ref type="bibr" coords="12,166.12,578.62,84.93,9.53">[Farina et al., 2019b]</ref> is a classic board game where players secretly place a ship on their separate grids of size 2 × x at the start of the game. Each ship is 1 × 2 in size and has a value of 2. Players take turns shooting at their opponent's ship, and the ship that has been hit at all its cells is considered sunk. The game ends when one player's ship is sunk or when each player has completed three shots. The utility for each player is calculated as the sum of the values of the opponent's sunk ship minus the sum of the values of their own lost ship.</p><p>We measure the sizes of the games in many dimensions and report the results in Table <ref type="table" coords="12,404.16,651.68,3.74,8.64" target="#tab_2">3</ref>. In the table, #Histories measures the number of histories in the game tree. #Infosets measures the number of information sets in the game tree. #Terminal histories measures the number of terminal histories in the game tree. Depth measures the depth of the game tree, i.e., the maximum number of actions in one history. Max size of infosets measures the maximum number of histories that belong to the same information set. is invariant to positive rescaling of xt+1 j . So all choice of η &gt; 0 result in the same strategy. Without loss of generality, we set η = 1 and R t j = xt+1 j , which corresponds to the algorithm WCFR+. Similarly, when employing optimistic OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A, it updates the decision according to</p><formula xml:id="formula_33">zt j = argmin z′ j ∈R n ≥0 −w t r t j , z′ j + 1 2η z′ j − zt−1 j 2 2 = argmin z′ j ∈R n ≥0 −2ηw t r t j , z′ j + z′ j − zt−1 j 2 2 = argmin z′ j ∈R n ≥0 2 −ηw t r t j , z′ j + z′ j 2 2 − 2 z′ j , zt−1 j = argmin z′ j ∈R n ≥0 z′ j − zt−1 j − ηw t r t j 2 2 = [ zt−1 j + ηw t r t j ] + ,<label>and</label></formula><formula xml:id="formula_34">xt+1 j = argmin x′ j ∈R n ≥0 −w t+1 v t+1 j , x′ j + 1 2η x′ j − zt j 2 2 = argmin x′ j ∈R n ≥0 −2ηw t+1 v t+1 j , x′ j + x′ j − zt j 2 2 = argmin z′ j ∈R n ≥0 2 −ηw t+1 v t+1 j , x′ j + x′ j 2 2 − 2 x′ j , zt j = argmin x′ j ∈R n ≥0 x′ j − zt j − ηw t+1 v t+1 j 2 2 = [ zt j + ηw t+1 v t+1 j ] + ,</formula><p>The only effect of the step size η is a rescaling of all decisions xt j by a constant. The output strategy</p><formula xml:id="formula_35">x t+1 j = xt+1 j / xt+1 j 1</formula><p>is invariant to positive rescaling of xt+1 j . So all choice of η &gt; 0 result in the same strategy. Without loss of generality, we set η = 1, R t j = zt j , and Rt+1 j = xt+1 j , which corresponds to the algorithm PWCFR+.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C.2 Proof of Theorem 2</head><p>Proof. In each iteration t, player 1 and player 2 generates a sequence-form strategy ẋt and ẏt , respectively. The expected loss for player 1 is ẋ⊤ A ẏ. Subsequently, player 1 receives a loss vector lt x = A ẏt , while player 2 receives a loss vector lt y = −A ⊤ ẋt .</p><p>For player 1's total weighted regret, we have</p><formula xml:id="formula_36">R T τ ,x = max ẋ′ ∈X T t=1 τ t lt x , ẋt − ẋ′ = max ẋ′ ∈X T t=1 τ t A ẏt , ẋt − ẋ′ = T t=1 τ t ( ẋt ) ⊤ A ẏt − min ẋ′ ∈X T t=1 τ t ẋ′⊤ A ẏt = T t=1 τ t ( ẋt ) ⊤ A ẏt − min ẋ′ ∈X ẋ′⊤ A T t=1 τ t ẏt = T t=1 τ t ( ẋt ) ⊤ A ẏt − T t=1 τ t min ẋ′ ∈X ẋ′⊤ A ȳT τ .</formula><p>Similarly, for player 2's total weighted regret, we have</p><formula xml:id="formula_37">R T w,y = max ẏ′ ∈Y T t=1 τ t ℓ t y , ẏt − ẏ′ = max ẋ′ ∈X T t=1 −τ t A ⊤ ẋt , ẏt − ẏ′ = − T t=1 τ t ( ẋt ) ⊤ A ẏt + max ẏ′ ∈Y T t=1 τ t ( ẋt ) ⊤ A ẏ′ = − T t=1 τ t ( ẋt ) ⊤ A ẏt + T t=1 τ t max ẏ′ ∈Y ( xT τ ) ⊤ A ẏ′ . So, δ 1 ( xT τ , ȳT τ ) + δ 2 ( xT τ , ȳT τ ) = ( xT w ) ⊤ A ȳT w − min ẋ′ ∈X ẋ′⊤ A ȳT w + max ẏ′ ∈Y ( xT w ) ⊤ A ẏ′ − ( xT w ) ⊤ A ȳT w = max ẏ′ ∈Y ( xT w ) ⊤ A ẏ′ − min ẋ′ ∈X ẋ′⊤ A ȳT w = 1 T t=1 τ t R T τ ,x + R T τ ,y</formula><p>Hence, the weighted average strategy profile ( xT τ , ȳT τ ) forms a R T τ ,x +R T τ ,y T t=1 w t -Nash equilibrium.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C.3 Proof of Theorem 3</head><p>The proof is based on <ref type="bibr" coords="15,142.82,239.36,120.57,9.53">[Orabona, 2023, Theorem 6.8]</ref>, with the addition of a weight to each iteration.</p><p>Proof. According to the Theorem 2, we need to know the bound of R T τ . By decomposing the total weighted regret into the sum of the total weighted counterfactual regrets R T j,τ under each decision node, we have</p><formula xml:id="formula_38">R T τ ≤ j∈J R T j,τ + .</formula><p>For the weighted counterfactual regret R T j,τ , we have</p><formula xml:id="formula_39">R T j,τ = max x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j − x ′ j = max x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j − ℓ t j , x ′ j = max x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j 1, x ′ j − ℓ t j , x ′ j = max x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j 1 − ℓ t j , x ′ j = max x ′ j ∈∆ n j T t=1 τ t r t j , x ′ j = max x ′ j ∈∆ n j T t=1 τ t w t w t r t j , x ′ j = max x ′ j ∈∆ n j T t=1 τ t w t − lt j , x ′ j When employing OMD with ψ = 1 2 ∥•∥<label>2</label></formula><p>2 as the algorithm A, it updates the decision according to</p><formula xml:id="formula_40">xt+1 j = argmin x′ j ∈R n ≥0 −w t r t j , x′ j + 1 2η x′ j − xt j 2 2 .</formula><p>∀ x′ j ∈ ∆ nj , according to Lemma 1, we have that</p><formula xml:id="formula_41">−w t r t j , xt j − x′ j ≤ 1 η 1 2 x′ j − xt j 2 2 − 1 2 x′ j − xt+1 j + η 2 2 −w t r t j 2 2 Hence, T t=1 τ t w t −w t r t j , xt j − x′ j ≤ T t=1 1 η τ t w t 1 2 x′ j − xt j 2 2 − 1 2 x′ j − xt+1 j + η 2 2 −w t r t j 2 2 = 1 2η τ 1 w 1 x′ j − x1 j 2 2 − 1 2η τ T w T x′ j − xT +1 j 2 2 + 1 2η T −1 t=1 τ t+1 w t+1 − τ t w t x′ j − xt+1 j 2 2 + T t=1 η 2 τ t w t −w t r t j 2 2 ≤ 1 2η τ 1 w 1 + T t=1 η 2 τ t w t w t r t j 2 2</formula><p>where we use τ t w t a non-increasing sequence and</p><formula xml:id="formula_42">x1 j = argmin x′ ∈R n j ≥0 1 2 ∥ x′ ∥ 2 2 = 0, x′ j ∈ ∆ nj in the last step.</formula><p>Using the fact that the strategies produced by WCFR+ do not depend on the chosen step size η &gt; 0, we can choose the η &gt; 0 that minimizes the right hand side:</p><formula xml:id="formula_43">T t=1 τ t w t −w t r t j , xt j − x′ j ≤ τ 1 w 1 T t=1 τ t w t r t j 2 2</formula><p>Since WCFR+ chooses the next strategy in decision node j as</p><formula xml:id="formula_44">x t j = xt j / xt j 1 , we have xt j , r t j = xt j , ℓ t j , x t j 1 − ℓ t j = ℓ t j , x t j xt j 1 − xt j , ℓ t j = ℓ t j , x t j xt j 1 − xt j 1 x t j , ℓ t j = 0 So, R T j,τ = max x′ j ∈∆ n j T t=1 τ t w t w t r t j , x ′ j = max x′ j ∈∆ n j T t=1 τ t w t −w t r t j , xt j − x′ j ≤ τ 1 w 1 T t=1 τ t w t r t j 2 2 and R T τ ≤ j∈J R T j,τ + ≤ |J | τ 1 w 1 T t=1 w t τ t r t j 2 2</formula><p>Combining the Theorem 2, we have that the weighted average strategy profile ( xT τ , ȳT τ ) after T iterations forms a</p><formula xml:id="formula_45">j∈Jx∪Jy τ 1 w 1 T t=1 τ t w t r t j 2 2 / T t=1 τ t -Nash equilibrium.</formula><p>Lemma 1. <ref type="bibr" coords="16,105.32,617.08,115.05,9.47">[Orabona, 2023, Lemma 6.7</ref>] Let D ∈ R n be closed and convex, let ℓ ∈ R n , x t ∈ D, and let ψ : D → R be a 1-strongly convex differentiable regularizer with respect to some norm ∥•∥, and let ∥•∥ * be the dual norm to ∥•∥. Assume</p><formula xml:id="formula_46">x t+1 := argmin x ′ ∈D ℓ t , x ′ + 1 η B ψ (x ′ || x t )</formula><p>Then ∀x ′ ∈ D, the following inequality holds:</p><formula xml:id="formula_47">η ℓ t , x t − x ′ ≤ B ψ (x ′ ; x t ) − B ψ (x ′ ; x t+1 ) + η 2 2 ℓ t 2 * C.4 Proof of Theorem 4</formula><p>The proof is based on <ref type="bibr" coords="17,142.82,73.39,136.56,9.53">[Farina et al., 2021, Proposition 5]</ref>, with the addition of a weight to each iteration.</p><p>Proof. According to the Theorem 2, we need to know the bound of R T τ . By decomposing the total weighted regret into the sum of the total weighted counterfactual regrets R T j,τ under each decision node, we have R T τ ≤ j∈J R T j,τ + .</p><p>For the weighted counterfactual regret R T j,τ , we have R T j,τ = max</p><p>x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j − x ′ j = max</p><p>x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j − ℓ t j , x ′ j = max</p><p>x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j 1, x ′ j − ℓ t j , x ′ j = max</p><p>x ′ j ∈∆ n j T t=1 τ t ℓ t j , x t j 1 − ℓ t j , x ′ j = max</p><p>x ′ j ∈∆ n j T t=1 τ t r t j , x ′ j = max</p><p>x ′ j ∈∆ n j T t=1 τ t w t w t r t j , x ′ j = max</p><p>x ′ j ∈∆ n j ∀ x′ j ∈ ∆ nj , we have Using the fact that the strategies produced by PWCFR+ do not depend on the chosen step size η &gt; 0, we can choose the η &gt; 0 that minimizes the right hand side: Lemma 2. <ref type="bibr" coords="19,104.08,56.42,123.23,9.70">[Farina et al., 2021, Lemma 3]</ref> For any a, b ∈ R n and ρ &gt; 0, it holds that ⟨a, b⟩ ≤ ρ 2 ∥a∥ 2 * + 1 2ρ ∥b∥ 2 .</p><p>Lemma 3. <ref type="bibr" coords="19,104.36,74.10,123.74,9.69">[Farina et al., 2021, Lemma 4]</ref> Let D ⊆ R n be closed and convex, let ℓ t ∈ R n , x t ∈ D, and let ψ : D → R ≥0 be a 1-strongly convex differentiable regularizer with respect to some norm ∥•∥, and let ∥•∥ * be the dual norm to ∥•∥. Then,</p><formula xml:id="formula_48">x t+1 := argmin x ′ ∈D ℓ t , x ′ + 1 η B ψ (x ′ || x t )</formula><p>is well defined (that is, the minimizer exists and is unique), and for all x ′ ∈ D satisfies the inequality</p><formula xml:id="formula_49">ℓ t , x t+1 − x ′ ≤ 1 η B ψ (x ′ || x t ) − B ψ (x ′ || x t+1 ) − B ψ (x t+1 || x t )</formula></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,317.59,150.85,237.81,7.77"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Convergence results of four CFR variants on two games.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="7,54.00,318.79,504.00,7.77;7,54.00,328.75,470.98,7.77"><head>Figure 2 :Figure 3 :</head><label>23</label><figDesc>Figure2: Convergence results of seven CFR variants on twelve testing games. Each algorithm runs for 20,000 iterations to display a long-time behavior. In all plots, the x-axis is the number of iteration, and the y-axis represents exploitability, displayed on a logarithmic scale.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="11,217.33,323.08,177.34,7.93"><head>Figure 4 :Figure 5 :</head><label>45</label><figDesc>Figure 4: The complete game tree of Kuhn Poker.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="12,159.56,238.70,292.88,7.93"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: The sequential decision process for player 2 in the game of Kuhn Poker.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="3,91.57,330.67,428.87,8.12"><head>Table 1 :</head><label>1</label><figDesc></figDesc><table /><note>Comparison of existing CFR variants with our proposed DCFR+ and PDCFR+ (α, β, γ are hyperparameters).</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="13,54.00,55.14,503.50,458.57"><head>Table 3 :</head><label>3</label><figDesc>Sizes of the games.</figDesc><table coords="13,54.00,79.57,503.50,434.14"><row><cell>Game</cell><cell cols="6">#Histories #Infosets #Terminal histories Depth Max size of infosets</cell></row><row><cell>Kuhn Poker</cell><cell></cell><cell>58</cell><cell>12</cell><cell></cell><cell></cell><cell>30</cell><cell>6</cell><cell>2</cell></row><row><cell>Leduc Poker</cell><cell></cell><cell>9,457</cell><cell>936</cell><cell></cell><cell></cell><cell>5,520</cell><cell>12</cell><cell>5</cell></row><row><cell>Liar's Dice (4)</cell><cell></cell><cell>8,181</cell><cell>1,024</cell><cell></cell><cell></cell><cell>4,080</cell><cell>12</cell><cell>4</cell></row><row><cell>Liar's Dice (5)</cell><cell cols="2">51,181</cell><cell>5,120</cell><cell></cell><cell></cell><cell>25,575</cell><cell>14</cell><cell>5</cell></row><row><cell>Goofspiel (4)</cell><cell></cell><cell>1,077</cell><cell>270</cell><cell></cell><cell></cell><cell>576</cell><cell>7</cell><cell>8</cell></row><row><cell>Goofspiel (5)</cell><cell cols="2">26,931</cell><cell>3,252</cell><cell></cell><cell></cell><cell>14,400</cell><cell>9</cell><cell>48</cell></row><row><cell>GoofspielImp (4)</cell><cell></cell><cell>1,077</cell><cell>162</cell><cell></cell><cell></cell><cell>576</cell><cell>7</cell><cell>14</cell></row><row><cell>GoofspielImp (5)</cell><cell cols="2">26,931</cell><cell>2,124</cell><cell></cell><cell></cell><cell>14,400</cell><cell>9</cell><cell>46</cell></row><row><cell>Battleship (2)</cell><cell cols="2">10,069</cell><cell>3,286</cell><cell></cell><cell></cell><cell>5,568</cell><cell>9</cell><cell>4</cell></row><row><cell>Battleship (3)</cell><cell cols="2">732,607</cell><cell>81,027</cell><cell></cell><cell></cell><cell>552,132</cell><cell>9</cell><cell>7</cell></row><row><cell cols="3">HUNL Subgame (3) 398,112,843</cell><cell>69,184</cell><cell></cell><cell cols="2">261,126,360</cell><cell>10</cell><cell>1,980</cell></row><row><cell cols="3">HUNL Subgame (4) 244,005,483</cell><cell>43,240</cell><cell></cell><cell cols="2">158,388,120</cell><cell>8</cell><cell>1,980</cell></row><row><cell>C Proof of Theorems</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>C.1 Proof of Theorem 1</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell cols="7">Proof. When employing OMD with ψ = 1 2 ∥•∥ 2 2 as the algorithm A, it updates the decision according to</cell></row><row><cell></cell><cell>xt+1 j</cell><cell>= argmin x′ j ∈R n ≥0</cell><cell>−w t r t j , x′ j +</cell><cell cols="2">1 2η</cell><cell>x′ j − xt j</cell><cell>2 2</cell></row><row><cell></cell><cell></cell><cell>= argmin x′ j ∈R n ≥0</cell><cell cols="4">−2ηw t r t j , x′ j + x′ j − xt j</cell><cell>2 2</cell></row><row><cell></cell><cell></cell><cell>= argmin x′ j ∈R n ≥0</cell><cell cols="4">2 −ηw t r t j , x′ j + x′ j</cell><cell>2 2 − 2 x′ j , xt j</cell></row><row><cell></cell><cell></cell><cell>= argmin x′ j ∈R n ≥0</cell><cell cols="2">x′ j − xt j − ηw t r t j</cell><cell>2 2</cell></row><row><cell></cell><cell></cell><cell cols="2">= [ xt j + ηw t r t j ] + .</cell><cell></cell><cell></cell></row><row><cell cols="7">The only effect of the step size η is a rescaling of all decisions xt j by a constant. The output strategy x t+1 j</cell><cell>= xt+1 j / xt+1 j</cell><cell>1</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="18,54.00,346.67,504.00,347.71"><head></head><label></label><figDesc>Combining the Theorem 2, we have that the weighted average strategy profile ( xT</figDesc><table coords="18,54.00,346.67,369.60,347.71"><row><cell></cell><cell></cell><cell>T t=1</cell><cell cols="8">τ t w t −w t r t j , xt j − x′ j ≤ 2</cell><cell>τ 1 w 1</cell><cell>T t=1</cell><cell>τ t w t r t j − v t j</cell><cell>2 2</cell></row><row><cell cols="11">Since PWCFR+ chooses the next strategy in decision node j as x t j = xt j / xt j 1 , we have</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="7">xt j , r t j = xt j , ℓ t j , x t j 1 − ℓ t j = ℓ t j , x t j xt j 1 − xt j , ℓ t j = ℓ t j , x t j xt j 1 x t j , ℓ t j j 1 − xt = 0</cell></row><row><cell>So,</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="4">R T j,τ = max x′ j ∈∆ n j</cell><cell>T t=1</cell><cell cols="2">τ t w t w t r t j , x ′ j</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="3">= max x′ j ∈∆ n j</cell><cell>T t=1</cell><cell cols="2">τ t w t −w t r t j , xt j − x′ j</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">≤ 2</cell><cell>τ 1 w 1</cell><cell>T t=1</cell><cell cols="2">τ t w t r t j − v t j</cell><cell>2 2</cell></row><row><cell>and</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell></cell><cell cols="2">R T τ ≤</cell><cell>j∈J</cell><cell>R T j,τ</cell><cell cols="2">+ ≤</cell><cell>j∈J</cell><cell>2</cell><cell>τ 1 w 1</cell><cell>T t=1</cell><cell>τ t w t r t j − v t j</cell><cell>2 2</cell></row><row><cell>j∈Jx∪Jy</cell><cell>2 τ 1 w 1</cell><cell cols="2">T t=1 τ t w t r t j − v t j</cell><cell cols="2">2 2 /</cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table><note>τ , ȳT τ ) after T iterations forms a T t=1 τ t -Nash equilibrium.</note></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>This work is supported in part by the National Science and Technology Major Project (2022ZD0116401); the Natural Science Foundation of China under Grant 62076238, Grant 62222606, and Grant 61902402; the Jiangsu Key Research and Development Plan (No. BE2023016); and the China Computer Federation (CCF)-Tencent Open Fund.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="8,54.00,171.29,243.00,9.53;8,65.62,183.15,231.38,8.64;8,65.62,193.93,231.39,8.82;8,65.62,205.07,72.23,8.64" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Faster rates for convexconcave games</title>
+		<author>
+			<persName coords=""><surname>Abernethy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Conference On Learning Theory</title>
+				<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+			<biblScope unit="page" from="1595" to="1625" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,220.34,243.00,9.53;8,65.62,232.19,231.38,8.64;8,65.62,242.97,231.38,8.82;8,65.62,254.11,86.61,8.64;8,54.00,269.38,243.00,9.53;8,65.62,281.24,231.38,8.64;8,65.62,292.02,231.38,8.82;8,65.62,303.16,22.42,8.64;8,54.00,318.43,243.00,9.53;8,65.62,330.28,42.90,8.64;8,127.16,330.28,169.84,8.64;8,65.62,341.06,231.39,8.82;8,65.62,352.02,212.07,8.82;8,54.00,367.47,243.00,9.53;8,65.62,379.33,231.38,8.64;8,65.62,390.11,231.39,8.82;8,65.62,401.25,42.34,8.64;8,54.00,416.52,243.00,9.53;8,65.62,428.37,231.38,8.64;8,65.62,439.15,231.39,8.82;8,65.62,450.11,177.27,8.82;8,54.00,465.56,243.00,9.53;8,65.62,477.24,231.38,8.82;8,65.62,488.20,129.77,8.82" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Mirror descent and nonlinear projected subgradient methods for convex optimization</title>
+		<author>
+			<persName coords=""><forename type="first">Teboulle</forename><forename type="middle">;</forename><surname>Beck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Amir</forename><surname>Beck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Teboulle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Bowling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<meeting><address><addrLine>Sandholm</addrLine></address></meeting>
+		<imprint>
+			<publisher>Noam Brown and Tuomas Sandholm</publisher>
+			<date type="published" when="2003">2003. 2003. 2015. 2015. 2017. 2018. 2018. 2019a. 2019. 2019b. 2019</date>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="page" from="885" to="890" />
+		</imprint>
+	</monogr>
+	<note>Operations Research Letters</note>
+</biblStruct>
+
+<biblStruct coords="8,54.00,503.65,243.00,9.53;8,65.62,515.50,231.38,8.64;8,65.62,526.28,231.39,8.82;8,65.62,537.24,180.24,8.82" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Depth-limited solving for imperfectinformation games</title>
+		<author>
+			<persName coords=""><surname>Brown</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+			<biblScope unit="page" from="7674" to="7685" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,59.03,552.69,237.97,9.53;8,65.62,564.55,231.38,8.64;8,65.62,575.33,231.38,8.82;8,65.62,586.29,105.15,8.82" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Deep counterfactual regret minimization</title>
+		<author>
+			<persName coords=""><surname>Brown</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+			<biblScope unit="page" from="793" to="802" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,601.74,243.00,9.53;8,65.62,613.59,231.38,8.64;8,65.62,624.37,231.38,8.82;8,65.62,635.33,131.06,8.82" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Solving imperfect information games using decomposition</title>
+		<author>
+			<persName coords=""><surname>Burch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI Conference on Artificial Intelligence</title>
+				<imprint>
+			<date type="published" when="2014">2014. 2014</date>
+			<biblScope unit="page" from="602" to="608" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,650.78,243.00,9.53;8,65.62,662.64,231.38,8.64;8,65.62,673.42,231.38,8.82;8,65.62,684.38,231.38,8.82;8,65.62,695.51,72.23,8.64;8,315.00,56.58,243.00,9.53;8,326.62,68.44,231.38,8.64;8,326.62,79.39,231.38,8.64;8,326.62,90.17,231.38,8.82;8,326.62,101.31,97.40,8.64" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Correlation in extensiveform games: Saddle-point formulation and benchmarks</title>
+		<author>
+			<persName coords=""><surname>Farina</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<editor>
+			<persName><surname>Farina</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2019">2019a. 2019. 2019</date>
+			<biblScope unit="page" from="9229" to="9239" />
+		</imprint>
+	</monogr>
+	<note>International Conference on Machine Learning</note>
+</biblStruct>
+
+<biblStruct coords="8,315.00,115.23,243.00,9.53;8,326.62,127.09,231.38,8.64;8,326.62,138.04,231.38,8.64;8,326.62,148.82,231.39,8.82;8,326.62,159.78,141.02,8.82;8,315.00,173.88,243.00,9.53;8,326.62,185.73,231.38,8.64;8,326.62,196.69,231.38,8.64;8,326.62,207.47,231.39,8.82;8,326.62,218.43,45.66,8.82" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Faster game solving via predictive blackwell approachability: Connecting regret matching and mirror descent</title>
+		<author>
+			<persName coords=""><surname>Farina</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<editor>
+			<persName><surname>Farina</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2021">2021. 2021. 2023</date>
+			<biblScope unit="page" from="5363" to="5371" />
+		</imprint>
+	</monogr>
+	<note>AAAI Conference on Artificial Intelligence</note>
+</biblStruct>
+
+<biblStruct coords="8,319.66,232.53,159.84,9.53;8,496.02,233.42,61.98,8.64;8,326.62,244.38,231.38,8.64;8,326.62,255.16,231.38,8.82;8,326.62,266.12,63.95,8.82;8,315.00,280.22,243.00,9.53;8,326.62,292.07,231.38,8.64;8,326.62,302.85,231.38,8.82;8,326.62,313.81,231.38,8.59;8,326.62,324.77,148.39,8.82" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">The misrepresentation game: How to win at negotiation while seeming like a nice guy</title>
+		<author>
+			<persName coords=""><forename type="first">Grand-Clément</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kroer ; Julien</forename><surname>Grand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">-</forename><surname>Clément</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Kroer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Gratch</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Autonomous Agents and Multiagent Systems</title>
+				<imprint>
+			<date type="published" when="2016">2023. 2023. 2016. 2016</date>
+			<biblScope unit="page" from="728" to="737" />
+		</imprint>
+	</monogr>
+	<note>Solving optimization problems with blackwell approachability</note>
+</biblStruct>
+
+<biblStruct coords="8,319.98,338.87,238.02,9.53;8,326.62,350.72,231.38,8.64;8,326.62,361.50,231.38,8.82;8,326.62,372.46,220.43,8.82;8,315.00,386.56,243.00,9.53;8,326.62,398.41,231.38,8.64;8,326.62,409.19,231.38,8.82;8,326.62,420.15,213.53,8.82;8,315.00,434.25,243.00,9.53;8,326.62,446.10,231.38,8.64;8,326.62,456.88,210.02,8.82;8,315.00,470.98,243.00,9.53;8,326.62,482.66,231.38,8.82;8,326.62,493.79,22.42,8.64;8,315.00,507.71,243.00,9.53;8,326.62,519.57,231.38,8.64;8,326.62,530.53,231.38,8.64;8,326.62,541.31,231.38,8.82;8,326.62,552.26,206.96,8.82;8,315.00,566.36,243.00,9.53;8,326.62,578.22,231.38,8.64;8,326.62,589.00,231.39,8.82;8,326.62,599.95,115.56,8.82" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Sergiu Hart and Andreu Mas-Colell. A simple adaptive procedure leading to correlated equilibrium</title>
+		<author>
+			<persName coords=""><forename type="first">Hang</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Autonomous Agents and Multiagent Systems</title>
+				<editor>
+			<persName><forename type="first">Viliam</forename><surname>Lisỳ</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Marc</forename><surname>Lanctot</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Michael</forename><forename type="middle">H</forename><surname>Bowling</surname></persName>
+		</editor>
+		<imprint>
+			<publisher>Viliam Lisy, Trevor Davis, and Michael Bowling</publisher>
+			<date type="published" when="1950">2022. 2022. 2024. Hart and Mas-Colell, 2000. 2000. 1950. 2015. 2016</date>
+			<biblScope unit="volume">68</biblScope>
+			<biblScope unit="page" from="544" to="550" />
+		</imprint>
+	</monogr>
+	<note>AAAI Conference on Artificial Intelligence</note>
+</biblStruct>
+
+<biblStruct coords="8,319.29,614.05,238.71,9.53;8,326.62,625.91,231.38,8.64;8,326.62,636.87,231.38,8.64;8,326.62,647.64,231.38,8.82;8,326.62,658.78,82.19,8.64;8,315.00,672.70,243.00,9.53;8,326.62,684.56,231.38,8.64;8,326.62,695.51,231.38,8.64;9,65.62,57.48,75.43,8.64;9,156.56,57.48,140.43,8.64;9,65.62,68.44,177.95,8.64;9,264.08,68.26,32.92,8.59;9,65.62,79.39,106.54,8.64" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Equivalence analysis between counterfactual regret minimization and online mirror descent</title>
+		<author>
+			<persName coords=""><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<editor>
+			<persName><forename type="first">Matej</forename><surname>Moravčík</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Martin</forename><surname>Schmid</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Neil</forename><surname>Burch</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Viliam</forename><surname>Lisỳ</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Dustin</forename><surname>Morrill</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Nolan</forename><surname>Bard</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Trevor</forename><surname>Davis</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Kevin</forename><surname>Waugh</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Michael</forename><surname>Johanson</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Michael</forename><surname>Bowling</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2017">2022. 2022. 2017. 2017</date>
+			<biblScope unit="volume">356</biblScope>
+			<biblScope unit="page" from="508" to="513" />
+		</imprint>
+	</monogr>
+	<note>DeepStack: Expert-level artificial intelligence in heads-up no-limit poker</note>
+</biblStruct>
+
+<biblStruct coords="9,58.46,93.44,238.54,9.53;9,65.62,105.12,231.38,8.82;9,65.62,116.26,22.42,8.64;9,54.00,130.30,243.00,9.53;9,65.62,142.16,231.38,8.64;9,65.62,153.12,231.38,8.64;9,65.62,164.08,231.39,8.64;9,65.62,175.04,231.38,8.64;9,65.62,185.82,231.39,8.82;9,65.62,196.78,209.31,8.82;9,54.00,211.00,243.00,9.53;9,65.62,222.68,231.39,8.82;9,65.62,233.82,22.42,8.64;9,54.00,247.86,243.00,9.53;9,65.62,259.72,231.38,8.64;9,65.62,270.68,231.38,8.64;9,65.62,281.46,231.38,8.82;9,65.62,292.42,125.52,8.82;9,54.00,306.64,243.00,9.53;9,65.62,318.50,231.38,8.64;9,65.62,329.46,231.38,8.64;9,65.62,340.24,231.38,8.82;9,65.62,351.20,139.36,8.82;9,54.00,365.42,243.00,9.53;9,65.62,377.28,231.38,8.64;9,65.62,388.06,231.39,8.82;9,65.62,399.02,230.33,8.82;9,54.00,413.24,243.00,9.53;9,65.62,424.92,231.38,8.82;9,65.62,435.88,95.19,8.82;9,54.00,450.10,243.00,9.53;9,65.62,461.96,231.38,8.64;9,65.62,472.74,231.39,8.82;9,65.62,483.70,133.93,8.82;9,54.00,497.93,243.00,9.53;9,65.62,509.78,231.38,8.64;9,65.62,520.56,231.38,8.82;9,65.62,531.52,231.38,8.82;9,65.62,542.66,72.23,8.64;9,54.00,556.70,243.00,9.53;9,65.62,568.56,231.38,8.64;9,65.62,579.34,231.39,8.82;9,65.62,590.48,62.27,8.64" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Steering evolution strategically: Computational game theory and opponent exploitation for treatment planning, drug design, and synthetic biology</title>
+		<author>
+			<persName coords=""><forename type="first">Francesco</forename><surname>Orabona</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Orabona</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Perolat</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1912.13213</idno>
+		<idno>arXiv:1407.5042</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Conference on Uncertainty in Artificial Intelligence</title>
+				<imprint>
+			<publisher>Michael Johanson</publisher>
+			<date type="published" when="1971">2023. 2023. 2021. 2021. Ross, 1971. 1971. 2015. 2005. 2005. 2015. 2014. 2018. 2018. 2007. 2007. 2003</date>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="928" to="936" />
+		</imprint>
+		<respStmt>
+			<orgName>Michael Bowling, and Carmelo Piccione</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>International Conference on Machine Learning</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

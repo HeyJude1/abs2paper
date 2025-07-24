@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Hybrid CUDA Unified Memory Management in Fully Homomorphic Encryption Workloads</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-12-18">2023-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,143.02,153.65,42.29,9.81"><forename type="first">Jake</forename><surname>Choi</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">Dept. of Computer Science and Engineering</orgName>
+								<orgName type="institution">Seoul National University Seoul</orgName>
+								<address>
+									<country key="KR">South Korea</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,287.61,153.65,41.59,9.81"><forename type="first">Jaejin</forename><surname>Lee</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="institution">CryptoLab Seoul</orgName>
+								<address>
+									<country key="KR">South Korea</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,281.97,165.83,57.44,9.81"><forename type="first">Sunchul</forename><surname>Jung</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="institution">CryptoLab Seoul</orgName>
+								<address>
+									<country key="KR">South Korea</country>
+								</address>
+							</affiliation>
+						</author>
+						<author role="corresp">
+							<persName coords="1,418.96,153.65,76.47,9.81"><forename type="first">Heonyoung</forename><surname>Yeom</surname></persName>
+							<email>yeom@snu.ac.kr</email>
+							<affiliation key="aff2">
+								<orgName type="department">Dept. of Computer Science and Engineering</orgName>
+								<orgName type="institution">Seoul National University Seoul</orgName>
+								<address>
+									<country key="KR">South Korea</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Hybrid CUDA Unified Memory Management in Fully Homomorphic Encryption Workloads</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 IEEE 30th International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="21" to="30"/>
+							<date type="published" when="2023-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">87CC59EFFD959F7743A531C2848E1851</idno>
+					<idno type="DOI">10.1109/hipc58850.2023.00017</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>homomorphic encryption</term>
+					<term>gpu</term>
+					<term>unified memory</term>
+					<term>hybrid</term>
+					<term>memory allocation</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Fully homomorphic encryption (FHE) can utilize GPUs to accelerate arbitrary operations directly on encrypted data without decryption. Functions like bootstrapping which refresh noise accumulated on ciphertexts due to repeated operations require great amounts of GPU memory. Such functions cause out-of-memory (OOM) issues in retail GPUs with less than 8GB of VRAM, causing bootstrap to fail. Utilizing CUDA Unified Memory can alleviate OOM problems by allowing automatic page swapping from host to device memory. However, it usually comes with significant performance overheads. We devise a hybrid memory run-time that distinguishes between objects that are allocated asynchronously, or with managed memory. Our initial implementation was to statically determine in code the type of allocation method each GPU object would use. For a more general solution, we created a run-time scheduler which profiles and automatically determines the method of allocation each GPU object should use, without requiring static changes in library code. We then expanded upon this by creating a dynamic scheduler which forecasts the lifetime of future GPU objects without profiling. Our static method increases bootstrapping performance by ∼31% for large parameter sizes when memory is oversubscribed. Our profiling scheduler improves ResNet performance compared to manual swapping by ∼22%. Finally, our pure dynamic scheduler gives performance that is similar to our static solution, and up to 50% better performance in bootstrapping than the base unified case.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Fully Homomorphic Encryption (FHE) is a cryptographic scheme that enables computations to be performed directly on encrypted data, without the need for decryption. FHE holds immense potential for preserving privacy and security in various domains, such as cloud computing, machine learning, and data analysis. However, the practical deployment of FHE is impeded by its high computational and memory requirements, which can limit its ease of usage.</p><p>Graphics Processing Units (GPUs) have emerged as powerful accelerators for a wide range of computationally intensive tasks, including cryptographic operations. Leveraging This work is supported by CryptoLab. This work was also supported in part by the National Research Foundation of Korea(NRF) grant funded by the Korea government (MSIT) (No. NRF-2021R1A2C2003618). Prof. Yeom is the corresponding author of this paper.</p><p>the parallel processing capabilities of GPUs can potentially overcome the performance bottlenecks associated with FHE computations, particularly with bootstrapping <ref type="bibr" coords="1,506.83,279.38,10.05,8.92" target="#b0">[1]</ref>. However, GPU memory is typically limited in comparison to host DRAM memory, and cannot be expanded easily. This is particularly true for cost-efficient retail GPUs used in most home or workspace environments. Server-based GPUs are quite expensive, and cannot be readily accessed in many environments. Therefore, efficient memory management plays a crucial role in optimizing the execution of FHE algorithms on retail GPUs.</p><p>In this paper, we investigate the use of a hybrid memory allocation strategy, combining cudaMallocAsync and cudaMallocManaged, on the HEaaN library <ref type="bibr" coords="1,526.57,404.31,10.05,8.92" target="#b1">[2]</ref>. The cudaMallocAsync function allocates device memory asynchronously, which results in performance improvements compared to traditional GPU memory allocation. On the other hand, cudaMallocManaged provides a unified memory abstraction that allows for data swapping between the host and the device all managed by the CUDA driver, preventing OOM from occuring. Our research focuses on evaluating the performance characteristics and memory management tradeoffs of utilizing hybrid memory allocation techniques in FHE applications.</p><p>By benchmarking various FHE operations using our scheme, we aim to quantify the benefits of the hybrid cudaMallocAsync and cudaMallocManaged approach in terms of computational speed. Specifically, we assess the performance impacts of increased data movement and synchronization overheads resulting from using managed memory and on improved memory allocation performance by using asynchronous GPU memory allocation.</p><p>In summary, this paper aims to explore the advantages of utilizing hybrid memory allocation techniques for FHE on GPUs. We will present experimental results highlighting the performance gains achieved through the hybrid cudaMallocAsync and cudaMallocManaged approach, without resulting in traditional OOM problems. As far as we know, we have not seen any published work that adopted a method using GPU hybrid memory allocation combining both stream-ordered memory allocation and managed memory.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. BACKGROUND</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. CUDA Unified Memory</head><p>NVIDIA's CUDA Unified Memory <ref type="bibr" coords="2,215.40,104.63,11.04,8.92" target="#b2">[3]</ref> (UM) is a memory management feature introduced in CUDA 6.0 that simplifies memory management for GPU-accelerated applications. It provides a unified memory address space that can be accessed by both the CPU and GPU, enabling seamless automatic data movement between the host (CPU) and the device (GPU). This eliminates the need for explicit memory transfers and also simplifies the programming model, making it easier to develop and optimize GPU-accelerated applications. Developers allocate memory using cudaMallocManaged, which allocates memory regions that can be accessed by both the CPU and GPU using a single pointer. This makes it easier for the programmer to share data between devices.</p><p>Under the UM model, data is dynamically migrated between the CPU and GPU on-demand. When a CPU or GPU operation accesses data that resides in the other device's memory space, CUDA automatically handles the migration behind the scenes. This migration can also be performed asynchronously using functions like cudaMemPrefetchAsync, allowing the CPU and GPU to overlap computation and data transfers, thereby improving overall application performance.</p><p>The advantages of CUDA UM include simplified memory management, reduced code complexity, and improved productivity for GPU programming. While CUDA UM offers convenience and ease of use, it is important to consider its implications for performance. Data movement between the CPU and GPU can incur overhead, especially when frequent migrations are required. Careful consideration of data access patterns, memory usage, and synchronization points is crucial to optimize the performance of applications utilizing CUDA UM.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. CUDA Stream-ordered Memory Allocation</head><p>Released in CUDA 11.2 <ref type="bibr" coords="2,177.11,481.66,10.05,8.92" target="#b3">[4]</ref>, cudaMallocAsync is an extension of the cudaMalloc function, which is used to allocate memory on the GPU. The main difference is that cudaMallocAsync allows for asynchronous streamordered memory allocation, which means that the function call does not block the GPU until the memory allocation is complete. The asynchronous nature of cudaMallocAsync can potentially improve overall performance and resource utilization by allowing memory allocations to be performed in a stream-ordered manned. In this manner the GPU can continue processing using the allocated memory, without GPU device-wide synchronization that a cudaFree operation will invoke. Previously, custom memory allocators were needed to allocate large chunks of memory upfront in order for memory to be reused without lag. This could potentially cause bugs to occur, and increases complexity of the code. However, these new operations provided by CUDA eliminate that need with a programmer-friendly interface to increase productivity.</p><p>The cudaMallocAsync function takes as parameters the device pointer, the size of memory to be allocated and a CUDA stream. A CUDA stream is a sequence of commands that are executed in order on the GPU. By associating the memory allocation with a specific stream, developers can control the ordering and synchronization of GPU operations.</p><p>It's important to note that cudaMallocAsync does not guarantee immediate memory allocation. Instead, it initiates the memory allocation process asynchronously based on stream ordering. Internally, a memory pool is created by the CUDA driver. Memory from the pool is allocated from the OS based on a set threshold that the programmer decides. Synchronization mechanisms such as cudaStreamSynchronize or event-based synchronization calls automatically return unused memory back to the OS unless the specific threshold is set to maintain memory in the memory pool. Reusing memory by using cudaMallocAsync can result in much faster memory allocation performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Memory Usage in FHE</head><p>In FHE schemes, whether it is TFHE <ref type="bibr" coords="2,479.15,295.43,10.05,8.92" target="#b4">[5]</ref>, CKKS <ref type="bibr" coords="2,524.02,295.43,10.05,8.92" target="#b1">[2]</ref>, BGV <ref type="bibr" coords="2,322.00,306.79,10.05,8.92" target="#b5">[6]</ref>, or BFV <ref type="bibr" coords="2,375.24,306.79,10.05,8.92" target="#b6">[7]</ref>, memory usage can vary based on several factors:</p><p>• Security Parameters: The memory requirements can depend on the specific security parameters chosen for the FHE scheme, such as the modulus size, the ciphertext size, and the level of security desired. Larger security parameters generally result in increased memory usage.</p><p>Table <ref type="table" coords="2,365.21,389.57,3.15,8.92">I</ref> shows a brief view of the parameter sizes in the HEaaN library <ref type="bibr" coords="2,403.53,400.92,10.05,8.92" target="#b7">[8]</ref>. N denotes the number of slots in a ciphertext, Q is a set composed of q 1 , . . . , q n prime numbers and log(Q) = logΠq i , where i ∈ <ref type="bibr" coords="2,520.15,423.26,18.69,9.46">[1, n]</ref>. | • | denotes the number of elements in a set. These parameters all have a security level over 128-bits. The larger the value of N , the more memory the given parameter consumes. Bootstrapping is an operation that is particularly memory-intensive, because of large numbers of keys that are generated. Each factor is independently related, and thus increasing all factors can greatly increase the memory footprint. In this paper, we primarily focus on the memory usage of the HEaaN library, which is an approximate arithmetic number implementation based on the CKKS scheme.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. HEaaN Library Operations</head><p>As stated before, the HEaaN library is an approximate implementation of the CKKS scheme. We will not go into the mathematics in this paper as other work <ref type="bibr" coords="3,241.45,368.38,11.04,8.92" target="#b8">[9]</ref> have already covered the details. Basically, CKKS has three types of data: a message, plaintext and ciphertext. Messages are stored as arrays of complex numbers. Plaintexts are messages converted to NTT <ref type="bibr" coords="3,100.29,413.81,15.77,8.92" target="#b9">[10]</ref> polynomials in a process called encoding and decoding to be readily encrypted. Ciphertexts are encrypted plaintexts requiring encryption keys in order to be decrypted with the corresponding secret key. Addition is relatively straightforward in CKKS, where two ciphertexts are pairwisely added, resulting in an approximately correct result because added errors are insignificant. Multiplication between two ciphertexts requires a rescale operation to finalize the result, where the ciphertext modulus is reduced to a lesser number, and a number of least significant bits are truncated <ref type="bibr" coords="3,266.57,516.02,14.51,8.92" target="#b10">[11]</ref>. This bounds the number of multiplications that can be performed without destroying the message. In order to recover the reduced modulus, bootstrapping must be performed. Rotation of ciphertexts involves shifting the location of elements in plaintext slots (a space containing an element in the message vector), which allows computation of different extracted elements <ref type="bibr" coords="3,92.11,595.53,14.51,8.92" target="#b11">[12]</ref>.</p><p>Each parameter set determines the security level of the ciphertext, and number of ciphertext slots, and requires different sets of keys of different types, depending on the operations performed on ciphertexts. Therefore the amount of memory usage will largely vary depending on the parameter used. Additionally, faster variants will also require sets of constant values that are required to be transferred to GPU memory in order to perform faster computations. Such constants may also potentially consume more or less GPU memory, depending on the parameter sets used. The experiments in this paper are performed using different parameter sets on the above outlined operations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. IMPLEMENTATION</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Static Hybrid Implementation</head><p>The HEaaN library in its default GPU implementation performs all GPU memory allocations using the stream-ordered cudaMallocAsync. This causes memory allocations to be limited to the maximum GPU size. We initially implement CUDA UM by replacing all host and GPU memory allocation with cudaMallocManaged. This guarantees that OOM won't occur, as long as memory usage is bounded by host DRAM capacity, or even secondary storage capacity if swap memory is used, albeit with performance degradation. The performance degradation that we found from just replacing asynchronous memory allocation with managed memory was significant. After profiling several homomorphic operations using CUDA nsys <ref type="bibr" coords="3,392.37,287.84,14.51,8.92" target="#b12">[13]</ref>, we noticed that there was a difference in both individual kernel latencies, and that the GPU was actually idle a significant portion of the time during operations.</p><p>The HEaaN library in its default GPU implementation performs all GPU memory allocations using the streamordered cudaMallocAsync. This causes memory allocations to be limited to the maximum GPU memory size. We initially implement CUDA UM by replacing all host and GPU memory allocation with cudaMallocManaged. This guarantees that OOM won't occur, as long as memory usage is bounded by host DRAM capacity, or even secondary storage capacity if swap memory is used, albeit with performance degradation. The performance degradation that we found from just replacing asynchronous memory allocation with managed memory was significant. After profiling several homomorphic operations using CUDA nsys <ref type="bibr" coords="3,442.12,458.75,14.51,8.92" target="#b12">[13]</ref>, we noticed that there was a difference in both individual kernel latencies, and that the GPU was actually idle a significant portion of the time during operations. Figures <ref type="figure" coords="3,398.52,492.82,29.39,8.92">1 and 2</ref> show the multiplication operation profiled on after using only asynchronous memory and managed memory allocation respectively. We notice almost a 5fold increase in operation latency, from 4.8 ms to 24 ms. This overhead occurs even if memory is not oversubscribed. After careful analysis, we realized that certain kernels were running alongside the cudaFree CUDA API. Because this causes a device-wide synchronization after each call, we determined that this was causing performance to degrade. Allocation of temporary variables in the middle of code would cause the destructor to be called when the code goes out of scope. This causes cudaFree to be implicitly called, and led to the significant delays due to the synchronization. We initially approached the situation by reusing the temporary buffers after each operation to avoid the buffers from being freed. However, this was only a temporary solution, as it led to error prone code dealing with double pointers, and was tedious to implement, with buffers still being allocated in the first iteration of each operation causing delays. Even though each operation slightly This led us to think of the hybrid approach, where we would allocate temporary buffers with cudaMallocAsync and every other buffer with cudaMallocManaged. We added the secondary method of allocation to the general buffer allocator in the HEaaN library, and allocate all temporary buffers with an additional flag denoting that asynchronous allocation would be performed. By doing so, and also similarly applying other techniques for unified memory like prefetching and memory advising (cudaMemAdvise) constant values to be read only, or to forcefully reside in GPU memory buffers by setting the SetPreferredLocation flag, we were able to decrease operation latency to values that are close to when every buffer is completely allocated asynchronously. In addition to this, we were able to experience the OOM errors that occurred when only asynchronous memory allocation was performed and GPU memory was insufficient to cover all objects. Experimental results of the static hybrid implementation are shown in Figure <ref type="figure" coords="4,151.84,501.72,3.55,8.92">3</ref>. Parameters in CKKS are organized based on the amount of memory they consume. Refer to Table <ref type="table" coords="4,91.31,524.44,3.15,8.92">I</ref> for details on the parameters. For bootstrapping in all parameter sizes, memory is oversubscribed because all GPU memory objects do not fit within the bounds of 2GB of VRAM. For other operations, GPU memory is oversubscribed in the FVx parameter and not for the other parameter sizes.</p><p>Combining asynchronous allocation with unified memory in a hybrid approach by statically allocating the temporary buffers with cudaMallocAsync leads to lower latencies than the baseline 100% unified memory approach. Techniques like memory advise are also statically applied to buffers with constant values required for calculations in the GPU. Latency for the addition operation is small enough to be negligible in both approaches. For other operations like multiplication, rotation, and conjugation, there is a significant range of fluctuation for the baseline unified case in each iteration, while the asynchronously allocated case has a more stable, yet lower latency. Although it is not shown here, the hybrid allocation of temporary buffers and and other memory objects does not reduce latency to the extent of fully asynchronous memory allocations. However by performing this experiment, we are able to see that it is possible to combine the usage of both memory allocation schemes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Hybrid Memory Allocation Ratios</head><p>We performed an experiment using hybrid allocation on a test CUDA program in order to determine the optimal ratios of performing asynchronous allocation with unified memory allocation. Figure <ref type="figure" coords="4,431.50,411.78,31.92,8.92" target="#fig_1">4 and 5</ref> show the results of the program. Each sub-graph shows a different oversubscription ratio of how much of the total GPU memory available is allocated using managed memory and asynchronous allocation combined. The maximum amount that asynchronous allocation can use is 100% (technically around 95% because OOM occurs at levels above that due to a fixed amount of memory required by the CUDA driver) so we performed the experiment using eight different ratios: 0%, 25%, 50%, 75%, 80%, 85%, 90%, and 95% asynchronous allocation. For oversubscription values over 100%, the remainder memory would be allocated using cudaMallocManaged. We measured, the allocation latency, memory copy latency from host to device, and the kernel latencies doing two different operations: one is simple random addition, and the other is 8-point butterfly <ref type="bibr" coords="4,516.86,570.79,14.51,8.92" target="#b13">[14]</ref>, which is a computation used in FFT (fast Fourier transformation) algorithms. In order to perform the kernel operations, we allocate pages in 4KB chunks and randomly mix the pointers pointing to each chunk in an array. We then execute either the addition or butterfly kernels.</p><p>We noticed that for both Figure <ref type="figure" coords="4,467.87,639.28,3.55,8.92" target="#fig_1">4</ref>, higher asynchronous allocation ratios increased the time for all operations. However, increasing oversubscription rates also significantly decreases performance of all operations. The meaning of 100% oversubscription rate is that data covers total available GPU memory once. Rates above 100% mean that data is insufficient Fig. <ref type="figure" coords="5,80.97,526.43,2.84,7.13">3</ref>. Comparison of allocating all objects with UM to the hybrid method of allocating temporary buffers with cudaMallocAsync statically, and all other objects with UM in a Geforce GTX 1660 Ti with 6GB of VRAM, latency in milliseconds to be contained fully in the GPU. When oversubscription rate is 200%, meaning that data is two times the size of total GPU memory, we can see that operational latencies are almost one magnitude of order slower than when data can be fully subscribed. This is due to page faults caused by using CUDA Unified Memory. Nevertheless, maintaining a higher asynchronous allocation mode, despite oversubscription ratios gives the greatest performance for all operations. Therefore, we apply this knowledge in the dynamic allocation scheme. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Profiling Allocation Scheme</head><p>Manually inserting explicit allocation commands like allocate_async() can be cumbersome to apply to all GPU objects in frequently maintained code bases like the HEaaN library. Due to the HEaaN library design, the majority of allocated objects except temporary buffers are implicitly allocated using the general memory buffer allocator. This requires the programmer to statically create exceptions for every single GPU buffer in the library code, depending on where the object is automatically freed once it goes out of scope. Not only is it cumbersome and bug-prone to alter the code for all of these cases, but statically modifying the allocation method for each and every object can also cause diverse run-time performances depending on the specific GPU hardware used. As a result, this results in modifying the library code base in a very invasive manner. During the lifetime of any large-scale user workload running the HEaaN library, there are also a large number of user-determined objects that can be created like additional ciphertexts. This adds disadvantages in the static method because the user who uses the library must be aware of which allocation method they have to use. Therefore, instead of the static method, we prefer a minimally invasive dynamic method where the programmer or user does not have to directly care about which allocation method to use for every single GPU object.</p><p>Profiling homomorphic workloads in runtime can give us important details about whether or not an object should be allocated asynchronously. Our idea is based on the fact that GPU objects with shorter lifetimes should be allocated asynchronously, because managed memory allocation has the heavy overhead of device synchronization. Figure <ref type="figure" coords="6,265.06,377.92,4.73,8.92">5</ref> shows a step-by-step process of this method. In step 1, we run through the entire HE workload pass once with our profiler enabled. In this stage, we collect data such as GPU object ID, whether it is allocated or freed, the size of data, and the time stamp. Once we collect the data, we store it in a CSV file, and run a Python script to process the raw CSV format. In step 2, The Python script calculates the lifetime of each GPU object based on its timestamp and when it is allocated and freed using its ID as the identifier. We also determines a threshold async peak threshold to determine the maximum amount of data that we choose to allocate asynchronously on the GPU. We organize the GPU data based on the lifetime of all GPU objects in ascending order. Then we choose N, which is the upper limit of the lifetime (in seconds) of GPU objects that we wish to allocate asynchronously. Then, we store the data in order of the GPU id, denoting a 0 for managed memory allocation, and a 1 for asynchronous allocation. Then, in step 3, we use the profiled data to allocate each GPU object accordingly in all future passes. Because the order of the allocation of objects does not change in subsequent passes, we can use this profiling method as an "oracle" to determine the optimal choice of allocations for all future passes. Performing this method is good for workloads where repeated runs are necessary.</p><p>We perform this method using two different workloads. The lighter workload which uses less memory is the bootstrapping operation, which we use in CKKS often to decrease multiplication errors and was described earlier in Section II-D. This workload is called BM-bootstrap <ref type="bibr" coords="6,474.56,204.67,14.51,8.92" target="#b14">[15]</ref>, and is a custommade workload that tests all the different CKKS bootstrapping operations across all parameter sizes. The heavier workload is HE-enabled pre-trained ResNet-20 <ref type="bibr" coords="6,471.62,238.74,14.51,8.92" target="#b15">[16]</ref>, <ref type="bibr" coords="6,493.60,238.74,15.77,8.92" target="#b16">[17]</ref> model using MNIST for inferences. Both workloads are large enough in that they do not fit in NVIDIA A40 GPU, which is equipped with 48 GB of VRAM. We created a scatterplot in Figure <ref type="figure" coords="6,322.73,284.17,4.73,8.92">7</ref> which shows an entire view and a zoomed in view of the lifetime of all GPU objects. We plot the allocated point in green, and the free point in red, with arrows in opposite directions as markers, as shown in the graph legend. For BM-bootstrap, allocation and free continuously occurs as the program is running until the end. Most objects are freed as soon as they are allocated. However, there are a few objects which are not freed until the end of the program, shown as the sparse red dots at the end of the graph. By zooming in the object IDs until range 1,000 in the second sub-plot, we can see that a few objects are never freed until the end of the program. This is also true in the case for ResNet, however the point in which certain objects are more variable than in the case of bootstrapping. This shows that different workloads have different timings for allocation and free, and different objects have different lifetimes.</p><p>Figure <ref type="figure" coords="6,361.96,468.77,4.73,8.92" target="#fig_2">6</ref> shows the lifetime of all objects for the BMbootstrap and ResNet-20 workloads. The first and third graph show number of occurrences of objects with lifetime below 1 second in log scale, because they constitute the majority of all objects. In both workloads, the majority of GPU objects have a lifetime below 1 second, constituting approximately 92% of all GPU objects for BM-bootstrap. The objects in this range and lower would thus be assigned a value of 1, meaning to be allocated asynchronously (0 to be allocated using managed memory), when we set N=1 as the lifetime threshold. Beyond the first second, the number of occurrences of different lifetimes are quite variable. The second and fourth sub-plots show these objects and their lifetimes. In the case of BM-bootstrap, changing the parameters as the workload is continuously running causes the lifetime of longer objects to change, explaining the intermittent spikes in the first sub-plot.</p><p>Figure <ref type="figure" coords="6,360.27,653.38,4.73,8.92">8</ref> shows the memory usage of asynchronously allocated and managed memory objects. The threshold value is the N value for the lifetime of objects that we set to be asynchronously allocated. The blue line shows the peak memory usage of asynchronously allocated objects at that point in time during the execution of the workload. The orange line shows the peak memory usage of managed memory. The red line shows the maximum available GPU memory of the device, which is an A40 GPU having 48GB of total memory available. This shows that until N=256, asynchronous allocations do not consume more memory than physically available, and once lifetime threshold becomes 512, we can see some potential for OOM errors to arise due to memory consuming more than physically available device GPU memory. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>D. Dynamic Allocation Scheme</head><p>Profiling requires the workload to be run to completion initially in a single pass to know the lifetime of all the GPU objects. It is not truly dynamic in the sense that optimizations can only occur after the initial pass. If the workload takes a long time, and is not repeated more than once, using the profiling scheme may not provide any benefit at all. We introduce a dynamic scheme in this section, which does not require any prior knowledge of the allocated GPU objects, and Fig. <ref type="figure" coords="7,337.15,482.01,2.84,7.13">7</ref>. Allocation and free scatter plot of all GPU objects created during the lifetime of workload adjusts the allocation methods on-the-fly. We take advantage of the fact that objects with short lifetimes are repeatedly re-allocated as the program progresses. When the objects are re-allocated, we use our decision process to determine whether the object should be allocated asynchronously or under managed memory. Therefore we do not have to perform any modifications of existing pointer allocations by performing pointer switching or memory transfers. Figure <ref type="figure" coords="7,361.47,617.73,4.73,8.92" target="#fig_3">9</ref> shows an example of how we perform our decision making. Because there is no "oracle" to give us the deterministic outcome of the lifetime of every single object, we have to use heuristics in this approach. The information given to us during every memory allocation is only the size of the object to be allocated. Therefore we maintain a map where the key is the size of the buffer to be allocated and the value is the number of active allocations that have not been freed Fig. <ref type="figure" coords="8,81.12,449.32,2.84,7.13">8</ref>. Peak memory usage of GPU objects depending on time on an A40 GPU equipped with 48 GB VRAM yet, along with a ten-element active list. Every time an object has been freed, the total number of allocations is reduced by one. Every time an allocation is made, the total number of allocations increases by one. We also maintain an active list, that records the number of active allocations of that particular size currently residing on the GPU. Currently the size of the list is 10. Every time an allocation is made, the total number of allocations is pushed to the end of the list. Once the list is filled up, the first element is then replaced. When the list has not been filled up to ten elements yet, we allocate all objects using managed memory. Once the list is filled up, we measure the range of the queue by getting the maximum value and subtracting it with the minimum value. Then we compare the range with a preset value that we decide, and use it to determine whether or not the object should be asynchronously allocated, as shown in steps 3-5 of Figure <ref type="figure" coords="8,233.14,659.39,3.55,8.92" target="#fig_3">9</ref>.</p><p>We noticed a trend in that if objects have a short lifetime, there tends to be a repetitive tendency of allocation and frees happening within a short time span. In this case, the range of the list would be small, because active objects would continuously increase and decrease in a similar pattern. Objects that have longer lifetimes would actually increase the number of active objects, and thus increase the range of the active list. Therefore, we use a conditional branch to decide if the range is below a certain X value, to allocate all objects with that size in that manner, until the range of the active list changes again as more objects are added. This heuristic doesn't guarantee that all objects with short life times are asynchronously allocated, like in the previous section, but it does not require a profiling step, and also does not require static modifications to any of the HEaaN library code, in that only the allocator module is changed in an isolated manner.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. EVALUATION</head><p>We evaluated the performance of our three schemes on three different GPUs: One is a server-equipped A40 GPU with 48 GB of RAM, the second is a retail GeForce GTX 1660 Ti with 6GB of RAM, and lastly is the retail GeForce GTX 1050 with 2GB of RAM. We ran different workloads depending on the type of GPU used, and resorted to larger workloads for the more powerful GPU because it had more available VRAM. We run CUDA 12 to ensure that we are compatible with all the outlined features. All workloads are custom workloads built in C++ and interact with the HEaaN library. Our schemes make direct modifications to the HEaaN library, and depending on the scheme used the amount of invasiveness to library code varies. The dynamic scheme is the least invasive in that only modifications to the memory allocator are made, and the static is the most invasive in that actual library code is manually modified in the way that certain temporary objects should be allocated. The profiling allocator uses external resources like files and storage to store the raw CSV data, and Python scripts to process the data into a format that can be used by the allocator in the actual execution phase.</p><p>For the A40 GPU, we ran larger workloads which take up more memory like BM-bootstrap and ResNet, utilizing approximately 80GB and 200GB of memory respectively. We tested only the profiling allocation scheme of Section III-C on the A40 GPU because it has the best performance out of the three schemes. BM-bootstrap is a bootstrapping benchmark with different bootstrapping operations ordered after each other. After each operation, the parameters and corresponding keys required are switched to go to to the next operation. ResNet is a pre-trained homomorphic version of the DL ResNet model, and we test the inference operation in the homomorphic state. Figure <ref type="figure" coords="8,457.78,595.74,9.46,8.92" target="#fig_4">10</ref> shows the performance of each bootstrapping operation, and the peak asynchronous memory threshold (ratio of asynchronous allocations) that we set in the load run to allocate GPU objects. We noticed that for most of the bootstrapping operations, setting a threshold value in the mid-range of around 40-60% leads to the fastest results in bootstrapping time. In the case of ResNet, using a peak asynchronous memory threshold of 65% gives the best performance. The red line denotes manual swap performance, where the programmer is responsible for swapping out GPU Figure <ref type="figure" coords="9,105.55,245.57,9.46,8.92">11</ref> and 12 show the latency results for multiple HE functions for the FGa, and FGb, and FVb parameters on the GeForce 1660Ti and 1050 GPU cards. For the larger parameters, static seems to have the best performance. For the smaller parameters, the optimal approach is not so clear. Dynamic is highly advantageous because it does not require any modifications of inner library source code. Profiling was performed and applied with a 68% asynchronous allocation rate. Fully managed memory had the slowest performance with the greatest variance in all tests. For the 1050 in Figure <ref type="figure" coords="9,279.31,347.79,7.89,8.92">11</ref>, we compared static and dynamic performance. Both had similar performance, with static being slightly faster. This is due to being able to exactly pinpoint which objects in code we had to allocate asynchronously, with a straightforward benchmark tool testing only the homomorphic functions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. CONCLUSION AND FUTURE WORK</head><p>In conclusion, we designed three schemes that utilize a hybrid allocation strategy combining cudaMallocAsync and cudaMallocManaged to outperform the purely managed memory scheme in all HE workloads. We have provided a static allocation scheme that improves unified memory performance by 31%. We have also discovered that using the profiling allocation scheme gives is 22% better than manual swapping of objects in and out of GPU memory by an experienced programmer who extensively knows the HEaaN library code base. Finally, we implement a dynamic allocation scheme that gives up to 50% better performance in bootstrapping operations than the baseline fully unified memory case in without having the disadvantage of having to profile or alter the code-base, by dynamically adjusting the allocation of objects on-the-fly.</p><p>In our future work, we will improve upon the dynamic allocation scheme, so that it can give better performance, hopefully being closer to the "oracle" profiling allocation version which knows the lifetime of all objects in advance, but without having the overhead of having to profile the entire workload before hand. </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,65.90,139.38,488.37,7.26;4,65.91,148.02,67.24,7.13"><head>4. 8 msFig. 1 .Fig. 2 .</head><label>812</label><figDesc>Fig. 1. Multiplication operation profiled on CUDA Nsight with memory allocated exclusively with cudaMallocAsync resulting in kernels with almost no idle space in between</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="5,322.72,481.97,238.51,7.13;5,322.72,490.49,238.51,7.13;5,322.72,499.00,15.14,7.13"><head>Fig. 4 .</head><label>4</label><figDesc>Fig.<ref type="bibr" coords="5,339.34,481.97,2.84,7.13" target="#b3">4</ref>. Sample operational latencies depending on the asynchronously allocated ratio respective of available GPU memory. Tested on RTX 4090 GPU</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="7,65.38,566.76,238.50,7.13;7,65.38,575.28,140.82,7.13"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Mode graph showing the number of occurrences (log scale) of each object depending on their lifetime in seconds</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="9,246.44,180.88,144.19,7.13"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Dynamic Allocation Scheme Example</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="9,324.21,646.14,238.51,7.13;9,324.21,654.66,166.02,7.13"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Performance of BM-Bootstrap Depending on Peak Asynchronous Allocation Rate on A40 GPU with 48 GB of VRAM</figDesc></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:21:25 UTC from IEEE Xplore. Restrictions apply.</note>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="10,82.80,373.67,221.17,7.13;10,82.80,382.19,221.16,7.13;10,82.80,390.71,221.16,7.13;10,82.80,399.23,221.16,7.13;10,82.80,407.74,94.08,7.13" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Over 100x faster bootstrapping in fully homomorphic encryption through memorycentric optimization with gpus</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Jung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Ahn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Cheon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Lee</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/2021/508" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2021">2021/508, 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.80,416.30,221.16,7.13;10,82.80,424.69,221.16,7.26;10,82.80,433.21,221.17,7.26;10,82.80,441.85,138.48,7.13" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Homomorphic encryption for arithmetic of approximate numbers</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Cheon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Song</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Cryptology -ASIACRYPT 2017</title>
+				<editor>
+			<persName><forename type="first">T</forename><surname>Takagi</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">T</forename><surname>Peyrin</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Cham</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer International Publishing</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="409" to="437" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.80,450.41,221.16,7.13;10,82.80,458.93,21.03,7.13;10,120.53,458.93,25.24,7.13;10,162.45,458.93,7.57,7.13;10,186.72,458.93,23.65,7.13;10,227.05,458.93,12.19,7.13;10,255.94,458.93,17.04,7.13;10,289.66,458.93,14.30,7.13;10,82.80,467.45,221.16,7.13;10,82.80,475.96,92.12,7.13" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Beyond gpu memory limits with unified memory on pascal</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Sakharnykh</surname></persName>
+		</author>
+		<ptr target="https://developer.nvidia.com/blog/beyond-gpu-memory-limits-unified-memory-pascal/" />
+		<imprint>
+			<date type="published" when="2016-12">Dec 2016</date>
+		</imprint>
+	</monogr>
+	<note>Online</note>
+</biblStruct>
+
+<biblStruct coords="10,82.80,484.52,221.16,7.13;10,82.80,493.04,221.16,7.13" xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Using the nvidia cuda streamordered memory allocator, part 1</title>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Kini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Hemstad</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022-08">Aug 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.80,518.63,221.16,7.13;10,82.79,527.02,221.16,7.26;10,82.79,535.54,221.16,7.26;10,82.79,544.18,161.52,7.13" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Tfhe: Fast fully homomorphic encryption over the torus</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Chillotti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Gama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Georgieva</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Izabachène</surname></persName>
+		</author>
+		<ptr target="http://dblp.uni-trier.de/db/journals/iacr/iacr2018.htmlChillottiGGI18" />
+	</analytic>
+	<monogr>
+		<title level="j">IACR Cryptology ePrint Archive</title>
+		<imprint>
+			<biblScope unit="volume">2018</biblScope>
+			<biblScope unit="page">421</biblScope>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.79,552.74,221.16,7.13;10,82.79,561.13,221.16,7.26;10,82.79,569.65,221.16,7.26;10,82.79,578.29,221.16,7.13;10,82.79,586.81,221.16,7.13;10,82.79,595.33,126.28,7.13" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">(leveled) fully homomorphic encryption without bootstrapping</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Brakerski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Gentry</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Vaikuntanathan</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2090236.2090262</idno>
+		<ptr target="https://doi.org/10.1145/2090236.2090262" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 3rd Innovations in Theoretical Computer Science Conference, ser. ITCS &apos;12</title>
+				<meeting>the 3rd Innovations in Theoretical Computer Science Conference, ser. ITCS &apos;12<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="309" to="325" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.79,603.89,221.16,7.13;10,82.79,612.40,221.16,7.13;10,82.79,620.92,221.16,7.13;10,82.79,629.44,94.08,7.13" xml:id="b6">
+	<monogr>
+		<title level="m" type="main">Somewhat practical fully homomorphic encryption</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Vercauteren</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/2012/144" />
+		<imprint>
+			<date type="published" when="2012">2012/144, 2012</date>
+		</imprint>
+	</monogr>
+	<note>Cryptology ePrint Archive, Paper</note>
+</biblStruct>
+
+<biblStruct coords="10,84.51,638.14,219.28,6.87" xml:id="b7">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Online</surname></persName>
+		</author>
+		<ptr target="https://heaan.it/docs/heaan/ParameterPreset8hpp.html" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.79,646.57,221.16,7.13;10,82.79,655.09,221.16,7.13;10,82.79,663.48,221.16,7.26;10,82.79,672.12,131.33,7.13" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Heaan.mlir: An optimizing compiler for fast ring-based homomorphic encryption</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Nam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Shin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Lee</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3591228</idno>
+		<ptr target="https://doi.org/10.1145/3591228" />
+	</analytic>
+	<monogr>
+		<title level="j">Proc. ACM Program. Lang</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<date type="published" when="2023-06">jun 2023</date>
+			<publisher>PLDI</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,82.79,680.68,221.16,7.13;10,82.79,689.20,221.16,7.13;10,82.79,697.59,221.16,7.26;10,322.85,437.82,238.51,7.13;10,340.19,468.29,221.17,7.26;10,340.19,476.94,144.16,7.13" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Accelerating number theoretic transformations for bootstrappable homomorphic encryption on gpus</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Jung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Ahn</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/iiswc50251.2020.00033</idno>
+		<ptr target="https://doi.org/10.1109/iiswc50251.2020.00033" />
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on Workload Fig. 12</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020-10">oct 2020</date>
+		</imprint>
+	</monogr>
+	<note>Performance of Different HE Functions On 1660 Ti with 6GB VRAM Characterization (IISWC)</note>
+</biblStruct>
+
+<biblStruct coords="10,340.19,485.45,221.17,7.13;10,340.19,493.97,221.16,7.13;10,340.19,502.49,221.16,7.13;10,340.19,511.01,161.52,7.13" xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Approximate homomorphic encryption with reduced approximation error</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Papadimitriou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Polyakov</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/2020/1118" />
+		<imprint>
+			<date type="published" when="1118">2020/1118, 2020</date>
+		</imprint>
+	</monogr>
+	<note>Cryptology ePrint Archive, Paper</note>
+</biblStruct>
+
+<biblStruct coords="10,340.19,519.53,221.16,7.13;10,340.19,528.04,85.10,7.13" xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Fhebench: Benchmarking fully homomorphic encryption schemes</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Ju</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.19,536.56,221.16,7.13;10,340.19,545.08,220.43,7.13" xml:id="b12">
+	<monogr>
+		<title level="m" type="main">Nvidia nsight systems user guide</title>
+		<ptr target="https://docs.nvidia.com/nsight-systems/UserGuide/index.html" />
+		<imprint>
+			<date type="published" when="2023-03">Mar 2023</date>
+		</imprint>
+		<respStmt>
+			<orgName>NVIDIA</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.19,553.60,221.16,7.13;10,340.19,561.99,221.16,7.26;10,340.19,570.51,221.16,7.26;10,340.19,579.15,55.65,7.13" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Automatic generation of high-performance fft kernels on arm and x86 cpus</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Yuan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Vuduc</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="1925" to="1941" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.19,587.67,146.29,7.13" xml:id="b14">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Online</surname></persName>
+		</author>
+		<ptr target="https://heaan.it/docs/heaan/" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.19,596.19,221.16,7.13;10,340.19,604.71,221.16,7.13;10,340.19,613.23,221.17,7.13;10,340.19,621.61,148.24,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Privacy-preserving machine learning with fully homomorphic encryption for deep neural network</title>
+		<author>
+			<persName coords=""><forename type="first">J.-W</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Eom</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Deryabin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Yoo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y.-S</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J.-S</forename><surname>No</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="page" from="30" to="039" />
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,340.19,630.26,221.16,7.13;10,340.19,638.78,221.16,7.13;10,340.19,647.30,221.15,7.13;10,340.19,655.82,221.16,7.13;10,340.19,664.33,94.08,7.13" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">High-throughput deep convolutional neural networks on fully homomorphic encryption using channel-by-channel packing</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">H</forename><surname>Cheon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Jung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yeo</surname></persName>
+		</author>
+		<ptr target="https://eprint.iacr.org/2023/632" />
+	</analytic>
+	<monogr>
+		<title level="j">Cryptology ePrint Archive</title>
+		<imprint>
+			<date type="published" when="2023">2023/632, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

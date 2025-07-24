@@ -1,0 +1,6 @@
+VII. CONCLUSION
+Memory capacity is a critical point of HPC architecture. To cope with most applications, HPC systems classically oversupply this resource with high financial cost. Disaggregated memory has been proposed as a solution to provide shared memory to multiple nodes.
+We present in this work a model of HPC with disaggregated memory and different strategies for memory allocation. Each proposed strategy is validated by theoretical results.
+Priority strategy is designed for memory profiles constant by part, with a reconfiguration time at least one order of magnitude lower than the length of a phase. It outperforms Aggregated as soon as the memory starts to be constrained. It allows reducing by 50% the memory usage while only losing 0.7% performance.
+The second proposed strategy Stochastic is designed for dynamic memory patterns. It allocates memory based on statistical data of applications. It outperforms Priority for these applications with dynamic memory and allows reducing memory usage by 40%, while only losing 2% of performance.
+In future work, it may be interesting to study the co-design of Batch-Scheduling strategies with memory partitioning algorithms, this co-design could use better runtime estimates. If still using EASY-BF, it would also be interesting to study what happens when using runtimes estimates better than the worst-case scenario.

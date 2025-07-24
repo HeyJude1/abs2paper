@@ -1,0 +1,2269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Mentor: A Memory-Efficient Sparse-dense Matrix Multiplication Accelerator Based on Column-Wise Product</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2024-11-20">2024-11-20</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.63,123.70,52.83,9.82"><forename type="first">Xiaobo</forename><surname>Lu</surname></persName>
+							<idno type="ORCID">0009-0005-2673-8673</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Jianbin</forename><surname>Fang</surname></persName>
+							<idno type="ORCID">0000-0003-3542-4869</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,175.51,44.99,9.82"><forename type="first">Lin</forename><surname>Peng</surname></persName>
+							<email>penglin@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0002-6828-3364</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,201.41,66.16,9.82"><forename type="first">Chun</forename><surname>Huang</surname></persName>
+							<email>chunhuang@nudt.edu.cn</email>
+							<idno type="ORCID">0000-0002-0317-8192</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Zidong</forename><surname>Du</surname></persName>
+							<idno type="ORCID">0000-0002-7603-4210</idno>
+						</author>
+						<author>
+							<persName coords="1,45.63,240.26,77.21,9.82"><forename type="first">Yongwei</forename><surname>Zhao</surname></persName>
+							<email>zhaoyongwei@ict.ac.cn</email>
+							<idno type="ORCID">0000-0002-5503-4457</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,253.21,66.21,9.82"><forename type="first">Zheng</forename><surname>Wang</surname></persName>
+							<email>zwang@nwu.edu.cn.</email>
+							<idno type="ORCID">0009-0001-7858-6238</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department" key="dep1">JIANBIN FANG</orgName>
+								<orgName type="department" key="dep2">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="department" key="dep1">ZIDONG DU</orgName>
+								<orgName type="department" key="dep2">Institute Of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="institution">Northwest University</orgName>
+								<address>
+									<settlement>Xi&apos;an</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha, Hunan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff8">
+								<orgName type="department">School of Computer Science and Tech-nology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha, Hunan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff9">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Chang-sha, Hunan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff10">
+								<orgName type="department">School of Computer Science and Technology</orgName>
+								<orgName type="institution">National University of Defense Technology</orgName>
+								<address>
+									<settlement>Changsha, Hunan</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff11">
+								<orgName type="department" key="dep1">Zidong Du</orgName>
+								<orgName type="department" key="dep2">Institute Of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing, Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff12">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing, Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff13">
+								<orgName type="institution">Northwest University</orgName>
+								<address>
+									<settlement>Zheng Wang, Xi&apos;an, Shaanxi</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Mentor: A Memory-Efficient Sparse-dense Matrix Multiplication Accelerator Based on Column-Wise Product</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">21</biblScope>
+							<biblScope unit="issue">4</biblScope>
+							<biblScope unit="page" from="1" to="25"/>
+							<date type="published" when="2024-11-20" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">AF74F6A1AEE18E680D1816CE5FFAB5EA</idno>
+					<idno type="DOI">10.1145/3688612</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>CCS Concepts:</term>
+					<term>Hardware → Hardware accelerators;</term>
+					<term>Computer systems organization → Architectures;</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sparse-dense matrix multiplication (SpMM) is the performance bottleneck of many high-performance and deep-learning applications, making it attractive to design specialized SpMM hardware accelerators. Unfortunately, existing hardware solutions do not take full advantage of data reuse opportunities of the input and output matrices or suffer from irregular memory access patterns. Their strategies increase the off-chip memory traffic and bandwidth pressure, leaving much room for improvement. We present Mentor, a new approach to designing SpMM accelerators. Our key insight is that column-wise dataflow, while rarely exploited in prior works, can address these issues in SpMM computations. Mentor is a software-hardware co-design approach for leveraging column-wise dataflow to improve data reuse and regular memory accesses of SpMM. On the software level, Mentor incorporates a novel streaming construction scheme to preprocess the input matrix for enabling a streaming access pattern. On the hardware level, it employs a fully pipelined design to unlock the potential of column-wise dataflow further. The design of Mentor is underpinned by a carefully designed analytical model to find the tradeoff between performance and hardware resources. We have implemented an FPGA prototype of Mentor. Experimental results show that Mentor achieves speedup by geomean 2.05× (up to 3.98×), reduces the memory traffic by geomean 2.92× (up to 4.93×), and improves bandwidth utilization by geomean 1.38× (up to 2.89×), compared with the state-of-the-art hardware solutions.</p><p>X. Lu and J. Fang contributed equally to the paper.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="25" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Sparse-dense matrix multiplication (SpMM) involves the multiplication of a sparse matrix, A, with a dense matrix, B. This operation is commonly seen in traditional scientific applications <ref type="bibr" coords="2,426.39,220.33,15.00,9.03;2,45.77,232.28,82.40,9.03">[23, 31, 38, 44-46, 49, 52]</ref> and emerging machine learning workloads <ref type="bibr" coords="2,306.00,232.28,15.01,9.03" target="#b16">[17,</ref><ref type="bibr" coords="2,323.27,232.28,11.45,9.03" target="#b23">24,</ref><ref type="bibr" coords="2,336.99,232.28,11.45,9.03" target="#b38">39,</ref><ref type="bibr" coords="2,350.71,232.28,11.45,9.03" target="#b49">50,</ref><ref type="bibr" coords="2,364.42,232.28,11.45,9.03" target="#b56">56,</ref><ref type="bibr" coords="2,378.14,232.28,11.25,9.03" target="#b61">61]</ref>. There is an extensive body of research for accelerating the SpMM kernel on CPUs <ref type="bibr" coords="2,333.27,244.24,15.01,9.03" target="#b10">[11,</ref><ref type="bibr" coords="2,350.75,244.24,11.26,9.03" target="#b39">40]</ref>, GPUs <ref type="bibr" coords="2,393.87,244.24,10.37,9.03" target="#b0">[1,</ref><ref type="bibr" coords="2,406.71,244.24,6.83,9.03" target="#b4">5,</ref><ref type="bibr" coords="2,416.01,244.24,11.45,9.03" target="#b11">12,</ref><ref type="bibr" coords="2,429.93,244.24,11.46,9.03" target="#b19">20,</ref><ref type="bibr" coords="2,45.78,256.19,11.45,9.03" target="#b36">37,</ref><ref type="bibr" coords="2,60.21,256.19,12.82,9.03" target="#b53">54]</ref> and purposed-built hardware accelerators <ref type="bibr" coords="2,250.11,256.19,15.01,9.03" target="#b12">[13,</ref><ref type="bibr" coords="2,268.10,256.19,11.45,9.03" target="#b13">14,</ref><ref type="bibr" coords="2,282.53,256.19,11.45,9.03" target="#b24">25,</ref><ref type="bibr" coords="2,296.96,256.19,11.46,9.03" target="#b42">43,</ref><ref type="bibr" coords="2,311.39,256.19,11.26,9.03" target="#b52">53]</ref>. Since the input matrices of real-life SpMM kernels are often too large to be kept in on-chip buffers on hardware accelerators with MBs of static RAM (SRAM), memory optimization is vital for SpMM performance.</p><p>Prior work for optimizing SpMM typically follows three types of dataflows for matrix computations: inner, outer, and row-wise products <ref type="bibr" coords="2,227.68,304.01,10.37,9.03" target="#b1">[2,</ref><ref type="bibr" coords="2,241.47,304.01,6.83,9.03" target="#b2">3,</ref><ref type="bibr" coords="2,251.72,304.01,11.45,9.03" target="#b17">18,</ref><ref type="bibr" coords="2,266.60,304.01,11.45,9.03" target="#b32">33,</ref><ref type="bibr" coords="2,281.48,304.01,11.46,9.03" target="#b34">35,</ref><ref type="bibr" coords="2,296.37,304.01,11.45,9.03" target="#b41">42,</ref><ref type="bibr" coords="2,311.24,304.01,11.45,9.03" target="#b59">59,</ref><ref type="bibr" coords="2,326.12,304.01,11.26,9.03" target="#b62">62]</ref>, as depicted in Figure <ref type="figure" coords="2,435.00,304.01,3.41,9.03" target="#fig_0">1</ref>. However, these approaches are inefficient at optimizing off-chip memory access. Specifically, the inner product computes an element of C by performing a dot product, summing a row of A with a column of B. In contrast, the outer product dataflow computes an outer product between a column of A and a row of B to generate a partial matrix, which is then merged to form C. Unfortunately, neither approach effectively exploits the data reuse of both input and output matrices. When processing large matrices, the inner product method results in excessive memory traffic by iterating over the dense matrix B multiple passes. In contrast, the outer product method generates a large number of partial matrices, leading to suboptimal performance.</p><p>More recent work exploits the row-wise product for matrix multiplications <ref type="bibr" coords="2,370.99,411.60,15.01,9.03" target="#b25">[26,</ref><ref type="bibr" coords="2,389.30,411.60,11.46,9.03" target="#b41">42,</ref><ref type="bibr" coords="2,404.07,411.60,7.50,9.03" target="#b59">59</ref>]. This approach multiplies each non-zero in a row of A with the corresponding row of B to form a final row of C, where the row in B is determined by the column index of the non-zero in A. While representing a step forward over inner and outer products, row-wise based SpMM accelerators can suffer from poor data locality since the non-zeros used to locate rows in B are irregularly distributed in the sparse matrix A. This often leads to poor memory bandwidth utilization.</p><p>We present Mentor, a software-hardware co-design approach to accelerate SpMM, built upon the column-wise dataflow. As shown in Figure <ref type="figure" coords="2,231.56,495.30,14.11,9.03" target="#fig_7">1(d)</ref>, this approach multiplies each element in B with the corresponding column of A to generate a partial column of the output matrix. Our systematic analysis of the memory access pattern of different dataflows for SpMM suggests that the columnwise approach can effectively overcome the drawbacks of inefficient off-chip memory accesses. While some prior works <ref type="bibr" coords="2,147.05,543.11,14.99,9.03" target="#b12">[13,</ref><ref type="bibr" coords="2,164.67,543.11,12.81,9.03" target="#b57">57]</ref> have leveraged this approach for consecutive SpMM operations, they fail to take full advantage of the column-wise approach on individual SpMM computation.</p><p>Mentor is designed to take advantage of the column-wise approach by providing a streaming design at the software and the hardware layers. At the software level, we identify optimization opportunities in conventional memory access patterns and propose a pre-processing technique to reconstruct the input matrices. This enables streaming memory accesses for Mentor to improve memory access efficiency when accessing the matrices. Specifically, for dense matrices, this scheme adopts row-major storage rather than column-major used in other column-wise-related works to harvest the data locality and permits the hardware to overlap the computation with memory SpMM Accelerator Based on Column-Wise Product 79:3 accesses by an aggressive optimization. For the sparse matrices, the scheme incorporates a novel compressed format, enabling streaming access to sparse matrices and addressing the read-afterwrite (RAW) conflict by introducing control elements to the conventional compressed format. At the hardware level, Mentor employs a fully pipelined design to process data in a streaming fashion for enhancing throughput and bandwidth utilization. This includes an efficient memory interface with low hardware complexity and a double-buffered on-chip structure to avoid pipeline stall. The hardware design of Mentor is supported by a performance model to derive hardware parameters (e.g., #PEs) for given off-chip memory bandwidths and sparse matrices.</p><p>We have implemented a hardware prototype of Mentor on an Xilinx FPGA. We evaluate Mentor across a wide range of input matrices from real-world applications with various sparse patterns and structures. We compare Mentor against four SpMM accelerator baselines based on inner <ref type="bibr" coords="3,71.27,353.11,14.84,9.03" target="#b34">[35]</ref>, outer <ref type="bibr" coords="3,118.75,353.11,14.84,9.03" target="#b17">[18]</ref>, row-wise <ref type="bibr" coords="3,182.50,353.11,15.00,9.03" target="#b40">[41,</ref><ref type="bibr" coords="3,201.16,353.11,11.26,9.03" target="#b59">59]</ref>, and column-wise <ref type="bibr" coords="3,294.46,353.11,16.36,9.03" target="#b12">[13]</ref> dataflows. Compared with the baselines, Mentor achieves a 1.18×-3.98× speedup, with 1.23×-4.93× reduction in the off-chip memory traffic.</p><p>This article makes the following contributions:</p><p>-It provides a quantitative analysis to demonstrate the advantages of the column-wise approach on SpMM acceleration (Section 2); -It demonstrates how the column-wise dataflow can be employed at the software level (Section 3) and at the hardware level (Section 4.1) to accelerate SpMM; -It presents a performance model to help explore the hardware design space for leveraging the column-wise dataflow design for SpMM (Section 4.2).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background and Motivation 2.1 Sparse-Dense Matrix Multiplication</head><p>Given a sparse matrix A of M ×K, a dense matrix B of K × N and a dense matrix C of M × N , SpMM performs the following computation,</p><formula xml:id="formula_0">C = α ⋅ A ⋅ B + β ⋅ C,<label>(1)</label></formula><p>where A ⋅ B is typically the performance bottleneck and thus is the main focus of this work. Since matrix A is often sparse with many zero elements, it is typically stored in a sparse matrix storage format such as the compressed sparse row (CSR) <ref type="bibr" coords="3,294.42,590.66,15.00,9.03" target="#b40">[41,</ref><ref type="bibr" coords="3,312.44,590.66,12.82,9.03" target="#b59">59]</ref> or the compressed sparse column (CSC) <ref type="bibr" coords="3,111.55,602.61,16.36,9.03" target="#b15">[16]</ref> formats. In contrast, B is a dense matrix where the non-zeros are stored in row-major or column-major order. As in previous works <ref type="bibr" coords="3,284.73,614.56,14.99,9.03" target="#b29">[30,</ref><ref type="bibr" coords="3,303.07,614.56,11.25,9.03" target="#b59">59]</ref>, we refer to each compressed row/column of the sparse matrix A as a fiber and use row/column exclusively when referring to the dense matrix B.  </p><formula xml:id="formula_1">Inner (M) M-N-K nnz + M ⋅ K ⋅ N nnz+ M ⋅K ⋅N P − &lt; nnz⋅P M ⋅K Moderate Low Inner (N) N-M-K (nnz + K) ⋅ N nnz⋅ N P + K ⋅ N − = 1 1 P + K nnz Moderate Low Outer (M) K-M-N nnz + K ⋅ N n n z+ K ⋅ N ≥ 2 ⋅ nnz ⋅ N &lt; nnz 2⋅nnz+K Good High Outer (N) K-N-M nnz + K ⋅ N n n z+ K ⋅ N ≥ 2 ⋅ nnz ⋅ N &lt; nnz 2⋅nnz+K Good High Row M-K-N nnz + nnz ⋅ N [nnz(1 + N P ), nnz(1 + N )] − [ 1 1 N + 1 P , N 1+N ] Moderate Low Column N-K-M ≤ (nnz + K) ⋅ N nnz ⋅ N P + K ⋅ N − = 1 1 P + K nnz Good Low</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Memory Access Analysis</head><p>Our work is motivated by the observation that existing SpMM optimizations built upon the inner, outer, and row-wise products have drawbacks of inefficient off-chip memory accesses. According to Reference <ref type="bibr" coords="4,101.08,271.55,14.84,9.03" target="#b29">[30]</ref>, we categorize the dataflows into 6 variants, where (M) and (N ) denotes the stationary dimension<ref type="foot" coords="4,131.68,281.48,3.38,6.59" target="#foot_1">1</ref> in the dataflow. We follow the memory modeling approach for the General Sparse Matrix-Matrix Multiplication (SpGEMM) <ref type="bibr" coords="4,267.46,295.46,15.00,9.03" target="#b41">[42,</ref><ref type="bibr" coords="4,286.08,295.46,12.82,9.03" target="#b47">48]</ref> to analyze the memory access of these implementations. Table <ref type="table" coords="4,170.83,307.41,4.63,9.03" target="#tab_0">1</ref> quantifies the amount of memory traffic<ref type="foot" coords="4,348.26,305.39,3.38,6.59" target="#foot_2">2</ref> required for moving input data and storing partial results, the data reuse,<ref type="foot" coords="4,255.98,317.34,3.38,6.59" target="#foot_3">3</ref> spatial locality and bandwidth requirements for six computation dataflows with parallelization, in terms of the number of non-zeros (nnz) in A and the matrix sizes (M, K, and N ) of matrices A and B. The number of MAC operations for each SpMM approach is nnz ⋅ N . We also discuss the data locality and bandwidth requirements of the parallelized dataflows in Table <ref type="table" coords="4,171.61,367.19,3.41,9.03" target="#tab_0">1</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.1">Inner</head><p>Product. This dataflow iterates the fibers (i.e., rows/columns) of sparse matrix A (which is typically stored in the CSR format) and the columns of B to perform vector dot product to obtain a final element:</p><formula xml:id="formula_2">C[i, j] = K ∑ k=0 A[i, k] ⋅ B[k, j]<label>(2)</label></formula><p>As shown in Table <ref type="table" coords="4,134.68,456.85,3.41,9.03" target="#tab_0">1</ref>, this dataflow has two variants: Inner (M) for M-stationary and Inner (N) for N -stationary. To calculate the entire final matrix C, both require negligible off-chip memory accesses to partial sums produced by dot products, which are often small enough to be stored on-chip. But they require a large amount of off-chip memory traffic to access entire B M times or entire A N times, and thus the memory traffic is M ⋅ K ⋅ N for Inner (M) and nnz ⋅ N for Inner (N). As a result, the data reuse of Inner (M) is nnz⋅N nnz+M ⋅K ⋅N ≈ nnz M ⋅K . This approximation holds because nnz ≪ M ⋅ K ⋅ N . And the data reuse of Inner (N) is nnz⋅N (nnz+K )⋅N = nnz nnz+K .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.2">Outer</head><p>Product. This dataflow traverses fibers of A (which is typically stored in the CSC format) and rows of B, performs the outer product (⊗) to produce a partial matrix (multiply stage), SpMM Accelerator Based on Column-Wise Product 79:5 C ′ , which will then be merged to form the output matrix C during a merging phase:</p><formula xml:id="formula_3">C ′ k = A[∶, k] ⊗ B[k, ∶].<label>(3)</label></formula><p>This dataflow has two variants: Outer(M) and Outer(N). Both dataflow variants traverse A and B once but suffer from large memory traffic requirements for partial matrices and poor output reuse. Thus, the data reuse is less than nnz⋅N nnz+K ⋅N +2⋅nnz⋅N for both Outer(M) and Outer(N). For the typical SpMM computations in deep neural networks (DNNs), matrix B often works as a weight matrix, where N is the hidden layer dimension ranging from 10 to 1000. Under such settings, we can estimate that nnz ≪ nnz ⋅ N , and the data reuse is less than nnz 2⋅nnz+K (Table <ref type="table" coords="5,365.27,172.36,3.27,9.03" target="#tab_0">1</ref>).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.3">Row-Wise</head><p>Product. This dataflow is a variant of Gustavson's algorithm, which performs intersections, i.e., scalar-vector multiplication between the scalars from fibers of A in CSR and corresponding rows from B determined by the non-zero coordinates in the fibers, and produces a partial row of the final row of C,</p><formula xml:id="formula_4">C ′ cid [i, ∶] = A[i, cid] ⋅ B[cid, ∶] C[i, ∶] = k ∑ j=0 C ′ j [i, ∶] . (<label>4</label></formula><formula xml:id="formula_5">)</formula><p>Each intersection takes a scalar and a vector of N elements, i.e., an input traffic of nnz + nnz ⋅ N . Since the partial results sizing N can be held on-chip, the data reuse of SpMM is nnz⋅N nnz+K N ≈ N 1+N ≈ 1.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.4">Column-Wise</head><p>Product. This dataflow is also a variant of the Gustavson algorithms, which performs intersections between scalars from B columns and fibers of A in the CSC format, and obtains a partial column of C,</p><formula xml:id="formula_6">C ′ r id [∶, i] = A[∶, rid] ⋅ B[rid, i] C[∶, i] = k ∑ j=0 C ′ j [∶, i] . (<label>5</label></formula><formula xml:id="formula_7">)</formula><p>Each intersection consumes a scalar from B and a fiber from A, leading to an input traffic of nnz ⋅ N +K ⋅ N . Note that the non-zeros in B is smaller than N ⋅K. The partial results sizing K can also be held on-chip; thus, the data reuse for column-wise is larger than nnz⋅N (K +nnz)⋅N = nnz nnz+K . Considering that nnz K ranges from 10 to 100 <ref type="bibr" coords="5,172.71,452.97,14.83,9.03" target="#b41">[42]</ref>, the data reuse will also approach 1 (Table <ref type="table" coords="5,364.45,452.97,3.27,9.03" target="#tab_0">1</ref>).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Advantages of Column-Wise</head><p>Given the dense nature of matrix B in SpMM, we find that the column-wise dataflow can significantly enhance memory efficiency, which is crucial for the memory-bound SpMM. We now consider parallelization to discuss the drawbacks of other methods regarding memory access. We use M or N in Table <ref type="table" coords="5,133.84,524.89,4.63,9.03" target="#tab_0">1</ref> to indicate that the dataflow is parallelized along the M or N dimension with a parallelism degree P. Figure <ref type="figure" coords="5,191.44,536.84,4.63,9.03" target="#fig_3">2</ref> compares the two variants of the Gustavson algorithm, i.e., the row-wise vs. column-wise approach.</p><p>❶ The column-wise approach demonstrates better data reuse. With parallelization, the column-wise approach reduces iterations for accessing A from N to N P and improves data reuse to 1 1 P + K nnz , and Inner(M) can improve reuse to nnz⋅N ⋅P nnz⋅P +M ⋅K ⋅N ≈ nnz M ⋅K ⋅ P. Thus, the reuse ratio of the Inner(M) to column-wise approach is nnz M ⋅K ⋅P ⋅( 1</p><formula xml:id="formula_8">P + K nnz ) = nnz M ⋅K + 1 M ≪ 1.</formula><p>In other words, the columnwise approach exhibits better data reuse compared with Inner(M). The memory access of the outer dataflow does not benefit from parallelization, making the column-wise approach more suitable. The parallelized row-wise approach still suffers from irregular data reuse. Figure <ref type="figure" coords="5,378.24,639.10,3.75,9.03" target="#fig_3">2</ref>  . Such irregular and challenging-to-capture reuses significantly increase memory traffic. In the worst case, when there are no identical elements in the parallel fibers, the data reuse of this approach is only 1 1+N . Figure <ref type="figure" coords="6,328.18,398.18,3.90,9.03" target="#fig_3">2</ref>(b) shows that the columnwise approach can benefit from a regular memory access pattern, where A[∶, 0] is read once and subsequently broadcasted to multiple B scalars (B[0, 0], B[0, 1], B[0, 2] and B[0, 3]), which maximizes reuse of A, thereby reducing input traffic from (nnz + K) ⋅ N to ( nnz P + K) ⋅ N and increasing data reuse to 1</p><formula xml:id="formula_9">1 P + K nnz .</formula><p>❷ The column-wise approach has better spatial locality. The Inner(M) and Inner(N) dataflows can sequentially traverse A and B, but its spatial data locality is limited by the index matching between A fibers and B columns. The outer-product dataflow can avoid this problem and achieve good spatial locality. The row-wise dataflow performs intersections between scalars of A and vectors of B (B[0, ∶] and B[2, ∶] determined by A[0, 0] and A[0, 2] in Figure <ref type="figure" coords="6,401.76,511.12,13.45,9.03" target="#fig_3">2(a)</ref>), and the irregular distribution of non-zeros leads to poor locality of B. In contrast, the column-wise dataflow guarantees sequential access to the entire A by exploiting the continuity of row-ids of non-zeros in columns of B. The sequential access begins with A[∶, 0], followed by A[∶, 1] and so forth for subsequent columns as shown in Figure <ref type="figure" coords="6,244.42,558.93,10.68,9.03" target="#fig_3">2(b</ref>). This access pattern can significantly benefit memory access. Taking the DDR4 on the UltraScale FPGA as an example, the simple address increment pattern can reach an efficiency of up to 94% <ref type="bibr" coords="6,260.02,582.85,14.82,9.03" target="#b20">[21]</ref>. These findings highlight the significant performance impact of the column-wise approach with better spatial locality.</p><p>❸ The column-wise approach requires low off-chip bandwidth. Although the outer-product dataflow has good spatial locality, it is still limited by the non-parallelizable multiply and merge stages. The merge stage reduces a large number of partial elements and requires high bandwidth SpMM Accelerator Based on Column-Wise Product 79:7  support to minimize overall computational latency. The inner products and Gustavson variants can hold partial results on-chip to reduce the bandwidth requirement.</p><p>We also identify that it is easier for the column-wise dataflow to achieve load balancing than the row-wise dataflow. Figure <ref type="figure" coords="7,170.84,392.27,15.01,9.03" target="#fig_3">2(a)</ref> shows that the computation load assigned to each processing engine (PE) depends on the distribution of non-zeros in A for the row-wise dataflow. In contrast, broadcasting ensures even loads among PEs for the column-wise dataflow. This advantage will simplify software or hardware design to balance computational efficiency.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">Prior Accelerators</head><p>Table <ref type="table" coords="7,70.37,465.23,4.63,9.03" target="#tab_1">2</ref> presents a comparison of related accelerators, including specialized works for SpGEMMs (SIGMA, Spaghetti, GAMMA) and GCNs (HyGCN, AWB-GCN, and GCNAX). We consider GCNs because the two stages of a single GCN layer can be organized as two consecutive SpMMs. We discuss the inefficiencies in their dataflows and specific designs.</p><p>On the one hand, prior accelerators make critical tradeoffs to overcome the inefficiencies of their dataflows. SIGMA <ref type="bibr" coords="7,186.85,525.00,16.36,9.03" target="#b34">[35]</ref> utilizes a bitmap format (using binary to mark non-zero positions) to map sparse matrices to the MAC array and avoid index matching. Still, this format is space-inefficient on highly sparse matrices, leading to decreased input reuse. Spaghetti <ref type="bibr" coords="7,414.60,548.92,16.38,9.03" target="#b17">[18]</ref> is the state-of-the-art outer-product-based accelerator, which supports a streaming access pattern to improve output reuse and reduce bandwidth requirement. Unfortunately, it introduces significant overhead of sort-mergers, sacrificing input reuse. To address the issues of irregular reuse and poor data locality, GAMMA <ref type="bibr" coords="7,138.18,596.73,16.36,9.03" target="#b59">[59]</ref> employs cache-based on-chip structures to capture irregular reuse of B, reducing memory traffic and enhancing the data locality. However, the performance of the cachebased design heavily depends on the non-zero distribution of the sparse A. Figure <ref type="figure" coords="7,393.37,620.65,4.63,9.03" target="#fig_4">3</ref> shows an emulation of cache behaviors using the same configuration as the FiberCache <ref type="bibr" coords="7,365.28,632.60,16.35,9.03" target="#b59">[59]</ref> (3MB, 16-way 79:8 X. Lu et al.</p><p>set-associative) on 100 sparse matrices. We see significant variations in cache performance, with a maximum miss rate exceeding 41% and a minimum of 0.08%. Therefore, this approach requires high bandwidth support to mitigate the impact of cache misses. Sextans <ref type="bibr" coords="8,334.58,101.20,16.35,9.03" target="#b40">[41]</ref> uses multi-level memory optimizations to buffer partitioned blocks of B on-chip. But it ruins input reuse of A and fails to overlap the memory access by computation. Thus, Sextans suffers from significant memory traffic and high bandwidth requirement. AWB-GCN <ref type="bibr" coords="8,229.06,137.07,16.36,9.03" target="#b12">[13]</ref> is designed for consecutive SpMMs, which leverages the column-wise approach and maps the computation of a final column to multiple parallel PEs. This strategy sacrifices the data reuse of matrix A.</p><p>On the other hand, the previous non-streaming accelerators suffer from not fully utilizing off-chip bandwidth and PEs. Streaming is a design that can receive, process, and emit data elements at a consistent rate in continuous clock cycles, ensuring efficient data flow <ref type="bibr" coords="8,423.28,196.85,14.83,9.03" target="#b63">[63]</ref>. This means that a streaming design has two main features: ❶ A streaming access pattern, which requires continuous transfer of off-chip data with low access latency <ref type="bibr" coords="8,320.16,220.76,15.00,9.03" target="#b26">[27,</ref><ref type="bibr" coords="8,336.99,220.76,10.88,9.03" target="#b40">41]</ref>); ❷ An optimized data path, which needs to achieve a consistent processing rate between the components in the architecture to ensure high processing element (PE) utilization <ref type="bibr" coords="8,275.67,244.66,15.01,9.03" target="#b17">[18,</ref><ref type="bibr" coords="8,292.62,244.66,11.25,9.03" target="#b18">19]</ref>. As a streaming example, Sextans adopts non-zero scheduling and multi-level memory optimization for efficient memory access. Despite being limited by the inherent disadvantages of the row-wise dataflow, Sextans provides an effective solution by streaming design to accelerate SpMM. However, previous non-streaming designs either do not support streaming access patterns or experience reduced PE utilization due to potential pipeline stalls. Specifically, GAMMA is constrained by the irregular access pattern determined by the distribution of non-zero elements within fibers, and cache misses can cause pipeline stalls in the PEs. HyGCN <ref type="bibr" coords="8,146.46,328.36,16.36,9.03" target="#b52">[53]</ref> uses fine-grained parallel execution but does not support a streaming access pattern due to graph partitioning and sparse elimination. Additionally, the tandem engine results in the underutilization of PEs due to workload imbalance between the two execution stages. AWB-GCN <ref type="bibr" coords="8,92.86,364.22,16.35,9.03" target="#b12">[13]</ref> maps the partitioned matrix A to multiple parallel PEs, preventing A from being streamed. Furthermore, its auto-tuning unit needs to rebalance the workload after the completion of each column, leading to pipeline stalls and limited parallelism. GCNAX <ref type="bibr" coords="8,342.85,388.13,16.36,9.03" target="#b24">[25]</ref> focuses on dataflow optimization about loop order and loop fusion but does not offer a streaming design.</p><p>In a nutshell, our Mentor utilizes a column-wise approach without compromising memory accesses. This is achieved by implementing streaming at the software level to enable streaming memory accesses (Section 4) and designing a fully-pipelined hardware architecture at the hardware level (Section 3) to adapt to the created data streams for near-optimal performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Streaming Construction</head><p>To achieve streaming memory accesses, we propose a novel preprocessing scheme to reconstruct the input dense and sparse matrices.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Streaming Construction for the Dense Matrix</head><p>Figure <ref type="figure" coords="8,74.79,531.59,3.75,9.03" target="#fig_1">4</ref>(a) shows the limitations of the conventional access pattern. We assume that each fiber of A contains two non-zeros, meaning that each scalar-vector intersection takes two clock cycles with pipelined float point units (FPUs). The matrix B is shown in transposed form and accessed by two 128-bit (4 floating-point elements) memory channels. During cycle 1, four elements are transferred to the PE-0 and PE-4 using channel-1 and channel-2, respectively. In the next cycle, the 2nd and 6th columns of B are traversed, presenting a poor spatial locality. Moreover, this pattern limits PE utilization because half of the PEs remain idle while the other half is overloaded during cycle 2. Increasing bandwidth can alleviate this issue but may lead to lower bandwidth utilization.</p><p>To this end, we propose two optimization strategies to reconstruct dense matrices to achieve more efficient memory accesses. Strategy 1: Row-major traversal and matrix partitioning: We first adopt the row-major storage for B, allowing the architecture to traverse and distribute elements to the PEs. We then partition each B row into segments with a length of #PE (the number of PEs) and store each block with a dimension of K × #PE in consecutive address spaces. Doing so can ensure a better spatial locality when performing computations on the blocks of B. In Figure <ref type="figure" coords="9,337.78,315.56,3.56,9.03" target="#fig_1">4</ref>(b), during cycles 1 and 2, the elements in the first row are evenly distributed to all PEs with a single memory channel. This access pattern enables streaming access to blocks of B as all rows are sequentially traversed and alleviates the idle PE issue by feeding each PE with at most one element in one clock cycle. In implementation, we also adopt this strategy when writing the matrix C, which means C will be stored in the same form as B. This improves the spatial locality in the writing phase, and C can be directly applied as an operand in consecutive SpMMs. More details will be introduced in Section 4.1.4. Strategy 2: c-cycle delayed feeding: In the column-wise approach, each element of B participates in a scalar-vector product A[∶, rid] ⋅ B[rid, i]. Thus, the minimum required cycle is equal to the number of non-zeros in A[∶, rid] (assuming each PE employs one multiplier). Figure <ref type="figure" coords="9,407.54,435.11,4.63,9.03" target="#fig_1">4</ref> shows that each scalar-vector product takes two cycles, enabling feeding one B element to each PE every two cycles while maintaining high PE utilization. Therefore, we introduce a delay parameter, c, and propose a c-cycle delayed feeding strategy to allow for feeding each PE with one B[rid, i] every c + 1 cycles. Figure <ref type="figure" coords="9,148.15,482.94,15.60,9.03" target="#fig_1">4(b)</ref> presents the 1-cycle delayed strategy, where each PE is fed with one element per two cycles. This strategy significantly reduces the bandwidth budget for accessing B and achieves high bandwidth utilization. Note that it is an aggressive optimization method because a larger c value enables a smaller bandwidth requirement but increases the risk of performance degradation. Further analysis will be detailed in Section 4.2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Streaming Construction for the Sparse Matrix</head><p>CSC and CSR are commonly adopted for storing sparse matrices. Figure <ref type="figure" coords="9,354.02,567.18,3.75,9.03" target="#fig_6">5</ref>(a) shows that both formats use idx and val arrays to hold the positions and values of non-zeros, respectively, and use a pointer array, ptr, to indicate the start address of each column/row. We argue that the traditional processing dataflow has three issues. (1) It adopts burst transfer to access A fibers without delay, but this method is less efficient than streaming access. (2) It requires additional control logic to separate the A fibers and complete the computation of a C row; (3) It can incur RAW conflicts. Figure <ref type="figure" coords="9,75.26,638.91,3.75,9.03" target="#fig_6">5</ref>(a) presents a sparse A as an example. The first fiber will be multiplied with B[0, i] to 79:10 X. Lu et al. produce a partial column containing two non-zeros of a ⋅ B[0, i] and b ⋅ B[0, i]. The two partial results will be accumulated according to their row-ids, i.e., 0 and 3, which are determined by a and b. Similarly, multiplying B[2, i] with A[∶, 2] produces partial elements with row-ids of 0, 1, and 3. Since FPUs require multiple clock cycles for floating-point additions, two accumulation operations with the same row-id may incur an RAW conflict. Assuming a RAW dependence distance of d, the distance between two A non-zeros with the same row-id must not be less than d.</p><p>The streaming construction scheme tackles these challenges by incorporating a novel storage format, which introduces three control elements. control element 1 -Rest: The proposed format discards the ptr array and instead inserts a Rest element with row-id −1 into the idx array (correspondingly insert 0 into the val array) at the end of a fiber. In Figure <ref type="figure" coords="10,127.49,360.33,3.56,9.03" target="#fig_6">5</ref>(b), we insert four Rest elements after the element-b, -e and -g. Continuous occurrences of two Rest indicate a fiber without non-zeros. In this case, the accelerator can access idx and val in a streaming fashion, and identify the end of each fiber from the streaming data without additional control logic. control element 2 -Padding: The RAW conflicts occur when the distance between two nonzeros with the same row-id is less than d. We insert Padding elements between the conflicting non-zeros to increase the distance. Assuming d = 5, streaming construction traverses the idx array and checks whether each element conflicts with its following five elements, then inserts several Padding elements (row-id −2 and value 0) before the conflicting element once a conflict is detected (lines 21 to 23 in Algorithm 1). Figure <ref type="figure" coords="10,205.70,467.93,3.90,9.03" target="#fig_6">5</ref>(b) shows streaming construction first detects a conflict between element-a and element-c and then inserts a Padding before element-c. Similarly, we insert a Padding before element-f to avoid RAW conflicts with element-c. control element 3 -Blocking: As discussed in Section 2.2.4, the column-wise approach needs to hold the partial sums with size of K on-chip. However, practical applications may involve largescale sparse matrices, leading to a large on-chip memory requirement. Therefore, we introduce Block with row-id −3 and value 0 to partitioned multiplicand A into several sub-matrices, tightening the on-chip memory budget.</p><p>Algorithm 1 provides a detailed implementation of streaming construction for sparse matrices. We prioritize the insertion of Rest (line 3) and Block (line 8) elements, as both can increase the distance between non-zeros, reducing the number of Padding elements inserted in line 16.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Mentor Architecture</head><p>This section introduces the Mentor architecture and our analytical model for design space exploration to provide an optimized data path and achieve near-optimal performance.  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Column-Wise Pipeline Design</head><p>Our Mentor architecture design has four stages: read, multiplication, accumulation, and write.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.1">Phase I-Read.</head><p>The Read B module streams the constructed matrix B into the architecture. Following the delayed feeding strategy discussed in Section 3.1, the number of traversed B elements in each cycle is less than #PE. Thus, the Read B module will distribute the B elements to each PE in a round-robin manner. Simultaneously, the Read A module streams both the idx and val arrays, and broadcasts the non-zeros of A to all PEs, as explained in the second advantage of the column-wise approach in Section 2.3. Thanks to the column-wise approach, each PE will independently access several columns of B rather than the entire matrix. And we avoid expensive bus control and memory interface by streaming access pattern. Thus, the Read B module employs two dependent crossbars for transferring data to four PEs with two channels, reducing the hardware overhead (Figure <ref type="figure" coords="11,117.17,593.31,3.27,9.03" target="#fig_9">6</ref>).  A[m, rid] ⋅ B[rid, i] and row-id of m. The row-ids will be sent to the FIFO in the accumulation unit and a comparator, which triggers a completion signal when the consumed element is either Rest or Blockinд, indicating the completion of the scalar-vector product. This signal is connected to the FIFO storing B elements and the multiplier to control the starting of the following scalar-vector product and the output of the multiplier. Whenever the multiplier receives the completion signal, it produces a result with a value of 0 and a row-id of -1, indicating an invalid output. In addition, the Paddinд element triggers a skipping signal for the multiplier to produce a result with a value of 0, avoiding RAW conflicts.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.3">Phase III-Accumulation. The accumulation phase consumes a row-id and a value computed in Phase II. The row-id m is used to fetch the C[m, i] from the scratchpad memory, and the fully-pipelined accumulator then performs C[m, i]+ = A[m, rid] ⋅ B[rid, i]. After the completion of an entire column B[∶, i], the C[∶, i]</head><p>stored in the scratchpad memory will be streamed out to the Write C module. This process will stall the following accumulation operations. Inspired by the double-buffer technique, we avoid the pipeline stall by employing a double-scratchpad structure to alternately store the partial columns and stream out a final column of C to DRAM. This onchip structure is controlled by an arbitration signal, which flips (XOR with the comparator output) when the arbitration unit detects a Rest or Blockinд element. The accumulation unit employs two multiplexers to determine the destination scratchpad for fetching and writing back and the source scratchpad for streaming out final rows. the Write C module is equipped with the same bandwidth as the Read B module and also follows the streaming fashion. Thus, we also adopt a c-cycle delayed strategy for writing the final C. Specifically, the Write C module concurrently collects #PE/(c + 1) elements from #PE FIFOs in a round-robin manner and streams the elements to the off-chip memory. In every c + 1 clock cycles, the Write C module can stream #PE elements, which forms a segment of a row of C. Therefore, the final C is also stored in blocks with row-major storage, and the dimension of each block is M ×#PE. By adopting this strategy, we ensure a synchronization between the consumption of B and the production of C. Figure <ref type="figure" coords="13,144.46,160.98,4.63,9.03" target="#fig_9">6</ref> shows a design resembling Phase I, where two crossbars are employed to write the results of four FIFOs back to DRAM.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Analytical Model</head><p>Our analytical model is motivated by the delayed feeding strategy adopted in streaming construction. First, given the definition of the delay parameter c,</p><formula xml:id="formula_10">c = P E b − 1,<label>(6)</label></formula><p>where P represents #PE, and E b is the number of transferred B elements per cycle. A larger c indicates a longer interval between two consecutive feeds for each PE, reducing the required bandwidth but lowering PE utilization. Thus, c presents a tradeoff between resource consumption and performance in Mentor. To explore the design space and determine the optimal value of c, we introduce an analytical model before configuring Mentor. Section 3.1 has introduced that the execution time of A[∶, rid] ⋅ B[rid, i] varies with the number of non-zeros in A[∶, rid]. Thus, it is necessary to obtain a reliable estimate of the execution time, denoted as T , based on features of the input matrix. The most conservative estimate considers the minimum number of non-zeros in rows of A, maximizing the PE utilization in Mentor but significantly limiting throughput. As a compromise, we calculate the average number of non-zeros per row, denoted as npr , and utilize the function f to make a more conservative estimate:</p><formula xml:id="formula_11">T = f (npr ) = 2 ⌊log 2 npr ⌋ , npr = nnz m ,<label>(7)</label></formula><p>f (x) is defined with the consideration that the preferred #PE is a power of 2, which can reduce the sensitivity of #PE to data features, enabling excellent performance across input data with varying features. The optimal value of the delay parameter c can be determined as T − 1. By referring to Equation ( <ref type="formula" coords="13,88.31,465.89,3.19,9.03" target="#formula_10">6</ref>), we can draw the following two conclusions:</p><formula xml:id="formula_12">P = f (npr ) ⋅ E b , E b = P f (npr ) .<label>(8)</label></formula><p>Finally, we employ the following two equations to estimate #PE configured on Mentor and the off-chip bandwidth of the entire system:</p><formula xml:id="formula_13">P = f ( nnz m ) ⋅ E b bandwidth = (E a + E b + E c ) ⋅W = (2 + 2 ⋅ P f ( nnz m ) ) ⋅W , (<label>9</label></formula><formula xml:id="formula_14">)</formula><p>where W is the memory width. The entire system allocates bandwidth for the following three modules: Read A module, which only reads one non-zero of A per cycle, consisting of an index and a value, Read B, and Write C modules, which transfer E b and E c elements per cycle. The balanced 79:14 X. Lu et al. throughput makes E b = E c . Overall, the analytical model utilizes npr to determine an optimal value for c, thereby achieving a good tradeoff between hardware resources and throughput.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Evaluation Setup 5.1 Mentor Implementation</head><p>Mentor is implemented on the xczu15eg-ffvb-2-i board through Xilinx Vitis v2022.2 with the High-Level Synthesis tool. Its maximum off-chip bandwidth is 9600MB/s. The achieved postimplementation frequency is 214 MHz according to the post-implementation timing report from Xilinx Vivado v2022.2. We configure the capacity of each scratchpad and FIFO as 16KB and 128B, respectively. The number of PE is set to 32. Table <ref type="table" coords="14,275.36,396.32,4.63,9.03" target="#tab_3">3</ref> shows the resource utilization. For the Read A, Read B, and Write C modules, we have assigned AXI slave interfaces with data widths of 64-bit, 128-bit, and 128-bit, respectively. Note that Mentor adopts a 7-cycle delayed feeding.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Benchmarks</head><p>Table <ref type="table" coords="14,70.98,457.31,4.63,9.03" target="#tab_4">4</ref> summarizes that we randomly selected 125 sparse matrices with varying size, sparsity, and structures from the SuiteSparse Matrix Collection <ref type="bibr" coords="14,267.64,469.26,10.45,9.03" target="#b6">[7]</ref>. We construct ten corresponding dense matrices for each sparse matrix by setting N from 32 to 1024 and perform ten iterations of singleprecision floating-point SpMM operations. Note that α = 1.0 and β = 0.0.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Baselines</head><p>We use two state-of-the-art SpMM-dedicated accelerators, i.e., Sextans <ref type="bibr" coords="14,333.73,530.24,16.37,9.03" target="#b40">[41]</ref> and AWB-GCN <ref type="bibr" coords="14,417.30,530.24,14.84,9.03" target="#b12">[13]</ref>.</p><p>Sextans (row-wise) <ref type="bibr" coords="14,133.48,542.19,14.97,9.03" target="#b40">[41]</ref>: This is a software-hardware co-design system based on the row-wise approach. We leverage the non-zero scheduling algorithm on the host and then implement Sextans on the same FPGA, where the number of multipliers is scaled to 32. AWB-GCN (column-wise) <ref type="bibr" coords="14,164.16,578.06,14.97,9.03" target="#b12">[13]</ref>: This accelerator is designed for consecutive SpMMs based on the column-wise approach. We model its performance on a single SpMM operation with the same hardware resources (i.e., 32 multipliers, 0.5MB on-chip memory for accumulation buffer array, and 0.5MB for scratchpad memory) as other baselines and matrix blocking optimization, where t is set to 4. Since the density of benchmarks is less than 25%, we use TDQ-2 (task-distribution-queue) to distribute tasks to PEs and 1-hop distribution smoothing.</p><p>Given that there are very few SpMM-dedicated accelerators, we modify and fine-tune three SpGEMM accelerators (i.e., SIGMA, Spaghetti, and GAMMA) to support SpMM. To compare these architectures regardless of their underlying platforms, we build cycle-accurate simulators to evaluate their performance. SIGMA (inner) <ref type="bibr" coords="15,113.53,125.12,14.97,9.03" target="#b34">[35]</ref>: This accelerator uses MAC arrays with distribution networks and reduction networks to process bitmap-compressed sparse matrices. SIGMA is a variant of the inner-product approach, which uses the B-stationary, A-streaming dataflow (referred to as inner(N) in Table <ref type="table" coords="15,432.20,149.03,3.27,9.03" target="#tab_0">1</ref>). Due to B's dense nature, generating source-destination pairs in SIGMA can be simplified to store non-zeros' positions in the fibers of A. For the hardware configuration, we use a 4×8 MAC array with an accumulator buffer of 1MB and the same off-chip bandwidth as that of Mentor. Following the original work, the total latency is obtained by Loading+Streaming+Add. Spaghetti (outer) <ref type="bibr" coords="15,123.66,208.80,14.96,9.03" target="#b17">[18]</ref>: We reproduce the pattern-aware scheduling to tile and segment the multiplicand A. Due to the Pareto-optimal configuration of N m (the number of multipliers) being 16 in Spaghetti, we use 32 multipliers and double the bandwidth of the original work to maintain a fair comparison while leveraging the advantages of outer products. We configure the sort-merger depth to be 8K to ensure the same on-chip SRAM budget. GAMMA (row-wise) <ref type="bibr" coords="15,139.30,268.58,14.96,9.03" target="#b59">[59]</ref>: This design features a FiberCache to capture irregular data reuse in a row-wise approach. We simplify its merge component since the elements in the rows of B are inherently ordered. We implement the affinity-based row reordering to preprocess A. The Fiber-Cache is scaled to 1MB for hardware, and the size of the cache line is fixed to 32. We use the original 128GB/s bandwidth to support 32 64-radix PEs in our model.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Experimental Results</head><p>This section compares Mentor to state-of-the-art SpMM approaches and shows the efficacy of our analytical model. It also discusses how Mentor performs in GCN and its overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Comparing to State-of-the-Art</head><p>6.1.1 Overall Performance. We partition the 1250 SpMMs into 6 groups according to problem size (i.e., the number of floating-point operations, defined as 2 ⋅ nnz ⋅ N ). Figure <ref type="figure" coords="15,366.69,416.82,30.51,9.03" target="#fig_12">7(a)-(c)</ref> shows the results normalized to SIGMA regarding speedup, traffic reduction, and bandwidth utilization. We see that Mentor achieves a geomean of 2.05× speedup, 2.92× memory traffic reduction, and 1.38× bandwidth utilization improvement against the state-of-the-art. This is because of three factors.</p><p>Firstly, the fully-pipelined design of Mentor avoids the potential pipeline stalls and achieves a near-optimal performance. Mentor performs 3.06× and 1.94×, 1.31×, 3.98× and 1.18× better than SIGMA, Spaghetti, GAMMA, Sextans and AWB-GCN. Mentor achieves an impressive measured peak throughput of 13.63 GFlops/s, close to its theoretical peak of 13.65 GFlops/s. SIGMA employs the bitmap storage for index matching, which has a non-negligible impact when processing sparse matrices. On 125 matrices, this operation accounts for 33% of the total latency. Spaghetti is limited by the merge phase for partial sums. Although it attempts to pipeline the computation and merge phase by matrix tiling, the sort-merger latency averages 3× that of the computation phase. GAMMA and Sextans use on-chip storage structures to overcome the irregular data reuse of the row-wise approach. GAMMA suffers from the increasing cache miss rate on large-scale problems. Sextans fails to hide the latency of memory accessing with computation, and the FPGA board's low bandwidth significantly limits its performance. AWB-GCN demonstrates the benefits of columnwise by hardware auto-tuning and employs a scratchpad to cache A as much as possible. These strategies deliver good performance on small-scale computations. However, the workload needs to be re-balanced after each tile is calculated, limiting the PE utilization on large-scale computations.  Secondly, column-wise's inherent advantages result in a substantial reduction in memory traffic. Mentor exhibits geomean reductions of 4.76×, 4.93×, 1.23×, 3.68× and 1.99× over state-of-the-art. On problems larger than 10 8 , the baselines suffer heavy memory traffic, but Mentor achieves reductions ranging from 1.84× to 9.98×. SIGMA uses the Inner(N) dataflow, but the bitmap is spaceinefficient on sparse matrices and accounts for an average of 66% of the total traffic. Spaghetti limits the merge of partial sums on-chip, which sacrifices good input reuse of multiplicand A. GAMMA can hold the entire small matrix with the FiberCache and perform well on problems smaller than 10 8 . But it struggles with large matrices, and exhibits 2.82× more memory traffic over Mentor on problems larger than 10 10 . Sextans sacrifices the reuse of A, resulting in 5.34× more traffic over Mentor on large problems. AWB-GCN can cache the entire A on problems smaller than 10 7 and achieves 1.27× reduction against our method. But this advantage diminishes as the problem scale increases, leading to 0.2× traffic reduction against Mentor on large problems.</p><p>Thirdly, the streaming access pattern reduces the average memory access latency and improves bandwidth utilization of 1.0×, 1.33×, 2.89×, 1.08×, and 1.21×. SIGMA shows comparable utilization because 33% of the total latency is spent searching for source-destination pairs by accessing bitmaps sequentially. The critical path of Spaghetti is sort-mergers, which leads to low utilization on small-scale problems. For GAMMA, most memory accesses occur when there are cache misses, and it can exhibit better utilization on small-scale computations. Sextans can exploit an enhanced data locality and demonstrate improved bandwidth utilization when the problem size exceeds 10 8 . Unfortunately, it cannot overlap memory access and computation, resulting in minimal efficiency SpMM Accelerator Based on Column-Wise Product 79:17 when dealing with small-scale problems. The AWB-GCN trend resembles that of Sextans, with access to A dominating memory traffic in large-scale problems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>6.1.2</head><p>The Impact of Matrix Structure. We further discuss the impact of special structure on the overall performance in Figure <ref type="figure" coords="17,172.81,121.52,25.57,9.03" target="#fig_12">7(d)-(f</ref>). We include five types of matrices, where large matrices (M &gt; 10K) and hyper-sparse matrices (density &lt; 0.01 <ref type="bibr" coords="17,260.10,133.49,15.47,9.03" target="#b17">[18]</ref>) represent the matrix scales, and powerlaw, block-sparse, and band matrices represent the distribution of non-zeros in A. For power-law matrices, the non-zeros are usually clustered in some fibers. For block-sparse matrices, the nonzeros are usually clustered in some matrix blocks and form many dense blocks. For band matrices, the non-zeros are primarily distributed along the diagonals, and adjacency fibers exhibit similar access patterns.</p><p>Firstly, Mentor achieves a 2.06×-2.31× geomean speedup across the five structures, with a 2.31× on block-sparse matrices and a 2.28× on large matrices. Mentor can benefit from the dense blocks on block-sparse matrices, and introduce fewer control elements in streaming construction. As the baselines are all dedicated to sparse computation, they struggle to leverage the hardware performance on dense blocks. In particular, AWB-GCN performs worst on this structure due to the dense blocks alleviating the workload imbalance. Only GAMMA performs well because the similar access pattern exhibited by the dense blocks can avoid cache misses. For large matrices, as previously discussed, all baselines suffer from significant memory access overhead. In contrast, our method mitigates this issue by optimizing the access pattern.</p><p>Secondly, Mentor reduces memory traffic by 3.11×-4.77×. The better performance can be observed on block and large matrices. On hyper-sparse and band matrices, Mentor's traffic reduction is comparable to GAMMA, which is 1.13× and 1.12×, respectively. On the two structures, the streaming construction scheme introduces more padding elements to avoid RAW conflicts, leading to more redundant computations. The FiberCache in GAMMA can benefit from these features, resulting in a low miss rate.</p><p>Thirdly, Mentor improves bandwidth utilization by 0.94×-1.45×. On hyper-sparse and powerlaw matrices, Mentor improves utilization by 1.45× and 1.39× compared with the baselines. This is because both matrices exhibit poor spatial locality of non-zero, and Mentor can effectively mitigate this issue by streaming construction. Only on block-sparse matrices, Mentor exhibits poor bandwidth utilization, which can be attributed to the good locality of dense matrix blocks. Spaghetti performs well because the adopted matrix tiling enhances locality when accessing dense matrix blocks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Comparing to CPU and GPU</head><p>We then compare Mentor with state-of-the-art SpMM implementations on CPUs and GPUs. Specifically, we compare Mentor against MKL on CPUs and cuSPARSE on GPUs regarding energy efficiency, defined as the throughput divided by the total power consumption. We utilize an Intel Core-i5 12600K CPU with 10 cores and 16 threads to execute mkl_sparse_s_mm for SpMM, measuring power using the RAPL interface <ref type="bibr" coords="17,221.79,542.35,10.44,9.03" target="#b5">[6]</ref>. We use an NVIDIA RTX 3060 GPU with a 360GB/s bandwidth of GDDR6 and measure the execution time of cusparseSpMM in cuSPARSE. Additionally, we monitor power consumption using nvidia-smi. Note that we measure the real-time power consumption of CPU and GPU for comparison rather than thermal design power (TDP), with geomean values of 61.7W and 134.8W, respectively. In contrast, we follow the common practice of reporting the total power of Mentor in the power analysis from the implemented netlist, with a value of 6.4W, including static and dynamic power consumption. Figure <ref type="figure" coords="17,335.94,614.08,4.63,9.03" target="#fig_13">8</ref> shows that the geomean energy efficiency of MKL, cuSPARSE, and Mentor are 5.68 × 10 8 , 9.38 × 10 8 and 1.53 × 10 9 FLOP/J, respectively. When dealing with large-scale problems, general-purpose processors are limited by 79:18 X. Lu et al.  substantial memory access overhead. By optimizing memory access, Mentor demonstrates 2.49× and 1.86× better energy efficiency than MKL and cuSPARSE for problems larger than 10 7 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">Efficiency of Analytical Model</head><p>We perform SpMM operations on 20 sparse matrices with varying features to observe the performance variations with different values of c and demonstrate the efficiency of the analytical model. Note that the off-chip bandwidth remains constant at 9600MB/s and the interface width of Read B is set to 128-bit. Thus, we calculate that</p><formula xml:id="formula_15">E b = E c = 4.</formula><p>Each subfigure of Figure <ref type="figure" coords="18,163.42,432.87,4.63,9.03" target="#fig_14">9</ref> shows the throughput (lines) of five matrices and the geomean speedup (bars) after doubling #PE with an upper limit of 2. The x-axis denotes c ′ (=#PE/E b ). Taking Figure <ref type="figure" coords="18,89.27,456.78,3.75,9.03" target="#fig_14">9</ref>(a) as an example, for the five matrices with f (npr ) larger than 16, our model predicts that c ′ = 64. We see that Mentor exhibits promising speedups, ranging from 1.85× to 1.98× when doubling c ′ , and it is smaller than 64. We observe the same trend in Figure <ref type="figure" coords="18,360.51,480.70,13.49,9.03" target="#fig_14">9(c)</ref>, where the predicted estimate of c ′ is 16. Here, the speedups are 1.96× and 1.87× when c ′ does not exceed 16. But when c ′ increases from 16 to 32, the speedup declines from 1.87× to 1.58×, indicating that using more hardware resources leads to diminishing performance improvements. Similarly, Figure <ref type="figure" coords="18,425.45,516.56,15.44,9.03" target="#fig_14">9(d)</ref> shows that the speedup decreases to 1.01× when c ′ ranges from 8 to 16. But the accelerator can still achieve 1.98× speedup with c ′ = 2. To summarize, when c ′ is smaller than our estimate, doubling #PE can yield an average speedup of 1.92×. When using excessive PEs and if c ′ is larger than our estimate, the speedup will decrease to 1.3×. This demonstrates that our analytical model can provide significant guidance for optimizing the architecture to better balance hardware resources and performance across different problems.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4">Case Study: GCN Layer</head><p>Since SpMM is a fundamental kernel, Mentor is equally applicable in SpMM-based applications such as graph convolutional networks (GCN). Thus, we evaluate Mentor with the GCN workloads  with a chain of SpMM, i.e., X (l +1) = σ (A(X (l ) W (l ) )), where A denotes the sparse adjacency matrix, X (l ) and W (l ) represent the sparse feature map and the dense weight matrix of the lth layer. Table <ref type="table" coords="19,69.62,361.48,4.63,9.03" target="#tab_4">4</ref> shows the structure and sparsity of the three benchmarks. In the SpMM chain, the dense result calculated by X (l ) W (l ) can be directly streamed into the Read A module without being written back to the off-chip memory. We reconfigure the architecture as Mentor-GCN with 16 parallel PEs, and compare Mentor-GCN against three state-of-the-art GCN accelerators: HyGCN <ref type="bibr" coords="19,423.04,398.03,14.82,9.03" target="#b52">[53]</ref>, AWB-GCN <ref type="bibr" coords="19,92.54,409.99,14.84,9.03" target="#b12">[13]</ref>, and GCNAX <ref type="bibr" coords="19,166.42,409.99,14.85,9.03" target="#b24">[25]</ref>. Following the configuration in Reference <ref type="bibr" coords="19,354.99,409.99,14.83,9.03" target="#b24">[25]</ref>, all baselines use a 1×16 MAC array with a data width of 64-bit and a memory bandwidth of 128GB/s.</p><p>We first present speedup with normalized execution cycles in Figure <ref type="figure" coords="19,342.20,433.91,7.28,9.03" target="#fig_15">10</ref>(a). On three datasets, Mentor achieves 5-14.7×, 1.28-1.8×, and 0.96-1.15× speedup over HyGCN, AWB-GCN, and GC-NAX, respectively. On Citeseer, Mentor only achieves 0.96× speedup over GCNAX. In Mentor-GCN, #PE=16 and E b = 4, thus Mentor-GCN runs with a 3-cycle delayed feeding according to Equation <ref type="bibr" coords="19,84.87,481.72,9.57,9.03" target="#b8">(9)</ref>. But the estimate of c is 1 because npr = 2.74 in the adjacency matrix A of Citeseer. In other words, the 3-cycle delayed feeding is slightly aggressive, leading to decreased PE utilization and slight performance degradation on Citeseer.</p><p>In Figure <ref type="figure" coords="19,94.05,517.59,8.10,9.03" target="#fig_15">10</ref>(b) and (c), Mentor exhibits 9.75-15.28×, 1.76-5.36×, and 1.05-1.93× traffic reduction, and 2.38-2.88×, 0.76-1.81×, and 1.35-2.20× higher bandwidth utilization. HyGCN and AWB-GCN employ inefficient execution orders and involve redundant computations and DRAM traffic. GC-NAX utilizes an optimized outer product dataflow similar to Spaghetti, which also suffers from a large overhead of partial matrices and exhibits poor performance on Pubmed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.5">Overhead Analysis</head><p>6.5.1 Power and Hardware Resource. We present the dynamic power and LUT breakdown of Mentor in Figure <ref type="figure" coords="19,138.51,614.59,7.64,9.03" target="#fig_16">11</ref>, extracted from the place-and-route results of Vivado 2022.2. The dynamic power consumption is 5.56W, which accounts for 87% of the total power consumption, with a majority (57%) attributed to the Processing System (PS) side, particularly the DDR.  For a fully-pipelined architecture, the accumulation phase involves a tailored on-chip structure, resulting in 31% dynamic power and 78% LUT count requirement. Both phases I and IV exhibit minimal power and resource overhead, indicating that the crossbar does not impose a heavy burden. 6.5.2 Hardware Resource. We further conduct experiments to evaluate Mentor with different on-chip resource support. Figure <ref type="figure" coords="20,183.07,260.59,9.27,9.03" target="#fig_8">12</ref> shows the speedups as FIFO and scratchpad capacities vary. Each line represents the benchmark with various levels of sparsity. We observe that the FIFO capacity has minimal impact on performance, with a maximum speedup of 1.018×, demonstrating that each phase's throughput is approximately equal, thus proving the efficiency of our full-pipelined design on the hardware level. In contrast, we can observe a significant impact of scratchpad capacity on performance from Figure <ref type="figure" coords="20,175.18,320.37,3.41,9.03" target="#fig_14">9</ref>. For matrices with a density below 0.2%, configuring the scratchpad capacity to 32KB yields a speedup of 4.48×. This is because the stream construction scheme partitions the matrix A into smaller blocks to fit the decreased scratchpad capacity, introducing more Block elements. But for matrices with a density exceeding 1.6%, the impact of Block elements is minimal, and increasing the scratchpad capacity can not yield considerable performance gains.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.5.3">Overhead of Streaming Construction.</head><p>The streaming construction introduces three control elements, increasing the memory footprint of A. Our experiments on 125 matrices show that stream construction incurs an average increase of 11% (with a minimum of 0.2%) compared with CSC/CSR. We implement this algorithm in Python and compare its running time with the non-zero scheduling algorithm in Sextans and the affinity-based row reordering in GAMMA. Our approach is 2.47× and 11.51× faster than Sextans and GAMMA, respectively. The construction accounts for 35% of the end-to-end time taken for 10 SpMM iterations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.6">Limitations</head><p>Mentor has demonstrated the advantages of column-wise-based SpMM accelerators through software-hardware co-design. Here, we discuss two limitations of our approach. (1) Significant on-chip memory requirements. Both Mentor and AWB-GCN require substantial on-chip memory to buffer the partial results. On large sparse matrices, the size of the partial results can even exceed 1M, making it challenging to implement an accelerator with tight-budgeted on-chip memories. Matrix partitioning can help alleviate this issue, but this approach involves a tradeoff between hardware resources and data reuse. (2) Limited scalability on skinny matrices. Mentor utilizes parallelism in the N -dimension to take advantage of column-wise benefits. In real-world scenarios, N may be smaller than #PE of Mentor, especially for skinny matrices. In this situation, additional hardware resources do not significantly improve Mentor's performance. Therefore, we recommend deploying Mentor with several tens of PEs as a lightweight SpMM core. By utilizing multiple on-chip cores, we can support parallel processing on multiple workloads without incurring significant on-chip communication overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Related Work</head><p>Hardware accelerators for Sparse Matrix Multiplication. In addition to the sparse accelerators listed in Table <ref type="table" coords="21,131.19,104.19,3.41,9.03" target="#tab_1">2</ref>, there are also sparse algebra accelerators focused on accelerating sparse matrix multiplication with ASIC or FPGA implementations. For example, ALRESCHA <ref type="bibr" coords="21,395.53,116.15,11.75,9.03" target="#b2">[3]</ref> and AS-CELLA <ref type="bibr" coords="21,77.32,128.10,11.73,9.03" target="#b1">[2]</ref> are accelerators based on inner-product, both of which propose custom storage formats to address index-matching and support input streaming. OuterSPACE <ref type="bibr" coords="21,330.01,140.06,16.34,9.03" target="#b32">[33]</ref> is the first architecture based on outer-product, which serializes the multiply and merge phases and uses single-programmultiple-data processing units for SpGEMM and SpMV. Following OuterSPACE, SpArch <ref type="bibr" coords="21,406.08,163.97,16.36,9.03" target="#b62">[62]</ref> provides a more efficient design with condensed matrix representation and a Huffman tree scheduler to improve output reuse. Apart from these, MatRaptor <ref type="bibr" coords="21,268.42,187.88,16.36,9.03" target="#b41">[42]</ref> and InnerSP <ref type="bibr" coords="21,339.33,187.88,11.73,9.03" target="#b3">[4]</ref> also recognize the advantages of row-wise dataflow and provide feasible solutions through either custom storage format for enabling streaming fashion (MatRaptor) or on-chip hash table for addressing memory bloating (InnerSP). However, these designs do not exploit the advantages of the column-wise product.</p><p>Additionally, some works attempt to accelerate various computation problems using a single dataflow. For example, Tensaurus <ref type="bibr" coords="21,186.00,247.66,16.36,9.03" target="#b42">[43]</ref> is a versatile architecture for various sparse-dense tensor computations, proposing the SF 3 pattern based on the inner product and performing well in several computation problems. Recent work has emerged that integrates inner, outer, and row-wise dataflows within a framework <ref type="bibr" coords="21,173.43,283.52,15.00,9.03" target="#b27">[28,</ref><ref type="bibr" coords="21,191.54,283.52,12.82,9.03" target="#b29">30]</ref> to accelerate a single computation problem, dynamically matching the most suitable dataflow according to input data features and demonstrating the suitability of each dataflow varies across different problems. However, these works do not focus on the drastically different sparsity levels of the two operands and fail to deliver better performance on SpMMs.</p><p>Furthermore, designs from many other domains have also contributed to the problem of sparse matrix computation. In addition to the mentioned GCN accelerators, there are also many designs specifically tailored towards neural networks <ref type="bibr" coords="21,231.68,367.21,122.34,9.03">[8-10, 15, 22, 34, 35, 47, 55, 60]</ref>, where the computations can be permuted as matrix operations. GoSPA <ref type="bibr" coords="21,255.41,379.16,16.36,9.03" target="#b9">[10]</ref> globally optimizes sparse convolutional neural networks (CNNs), especially the convolutional computation. SpAtten <ref type="bibr" coords="21,368.06,391.12,16.35,9.03" target="#b46">[47]</ref> leverages the sparsity opportunities for improving the performance of the attention mechanism, which involves both sparse and dense computations. Software techniques for acceleration. Introducing pre-processing at the software level to further enhance the performance of accelerators is a critical technique widely adopted in the domainspecific architecture field. The affinity-based reordering algorithm in GAMMA <ref type="bibr" coords="21,368.43,450.89,16.35,9.03" target="#b59">[59]</ref> improves the data locality and has been proven to boost the performance by 18%. The pre-processing algorithm in Sextans <ref type="bibr" coords="21,89.90,474.80,14.84,9.03" target="#b40">[41]</ref>, a significant reference for our work, avoids RAW conflict and balances loads with the help of non-zero scheduling. Additionally, many works utilize matrix partitioning and customized storage formats, including ALRESCHA, ASECLLA, and MatRaptor. Refs. <ref type="bibr" coords="21,373.41,498.72,15.01,9.03" target="#b31">[32,</ref><ref type="bibr" coords="21,390.34,498.72,12.81,9.03" target="#b50">51]</ref> carefully study the limitations of traditional tiling approaches in sparse tensor algebra and propose new tiling strategies and apply them to existing accelerators for improving the performance. Software algorithms are also widely applied in other workloads involving SpMM, such as sparse attention. Sanger <ref type="bibr" coords="21,77.36,546.53,16.36,9.03" target="#b28">[29]</ref> utilizes software pruning to predict the attention mask and rearrange the unstructured sparse patterns and proposes a custom architecture supporting SpMMs. DOTA <ref type="bibr" coords="21,399.38,558.49,16.35,9.03" target="#b35">[36]</ref> introduces low-rank linear transformations to learn a mask that detects weak connections in attention maps. ViTCoD <ref type="bibr" coords="21,108.24,582.40,16.36,9.03" target="#b58">[58]</ref> separates sparse and dense computation patterns from sparse attention maps through pruning and polarization, enhancing hardware performance. The success of these designs demonstrates that hardware performance can be further enhanced through software innovation.</p><p>To summarize, Mentor stands out as a software-hardware co-design approach based on columnwise to accelerate SpMM. Mentor implements streaming at the software level to enable streaming 79:22 X. Lu et al.</p><p>memory accesses and designs a fully-pipelined hardware architecture at the hardware level to adapt to the created data streams for near-optimal performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Conclusion</head><p>We propose a novel SpMM accelerator named Mentor. Built upon the column-wise product, Mentor eliminates random accesses and reduces memory traffic. Mentor further enhances memory and computation efficiency with a pre-processing technique at the software level and a fullypipelined on-chip design at the hardware level. We also provide an analytical model to explore the design space. Our results with an FPGA prototype Mentor on 1250 SpMM operations show the efficacy of our approach.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,167.98,201.66,150.46,8.07"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Four different SpMM approaches.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,45.55,55.82,16.10,8.97;4,396.96,55.82,43.32,8.97"><head>79: 4 X</head><label>4</label><figDesc>. Lu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="5,381.99,639.10,58.48,9.03;6,45.55,55.82,16.10,8.97;6,396.96,55.82,43.32,8.97"><head></head><label></label><figDesc>(a)  shows that 79:6 X. Lu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,116.17,350.66,253.73,8.07;6,45.77,373.62,394.54,9.75;6,45.77,386.23,394.52,9.03;6,45.77,398.18,229.94,9.03;6,285.00,395.92,3.38,6.59;6,279.31,403.58,13.56,6.59;6,295.26,398.18,146.71,9.03;6,45.41,410.20,394.89,9.23;6,45.77,422.16,396.20,9.23;6,45.77,433.66,284.35,9.75;6,331.20,432.17,12.37,6.41;6,335.34,439.83,3.93,6.41;6,346.74,433.66,93.56,9.75;6,45.77,447.46,52.16,9.03;6,112.43,445.19,3.38,6.59;6,157.17,97.60,216.64,241.36"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Comparing parallelized row-wise and column-wise dataflows. B[2, ∶] is accessed twice by A[2, 2] and A[0, 2]. Such irregular and challenging-to-capture reuses significantly increase memory traffic. In the worst case, when there are no identical elements in the parallel fibers, the data reuse of this approach is only 1 1+N . Figure2(b) shows that the columnwise approach can benefit from a regular memory access pattern, where A[∶, 0] is read once and subsequently broadcasted to multiple B scalars (B[0, 0], B[0, 1], B[0, 2] and B[0, 3]), which maximizes reuse of A, thereby reducing input traffic from (nnz + K) ⋅ N to ( nnz P + K) ⋅ N and increasing data reuse to1   </figDesc><graphic coords="6,157.17,97.60,216.64,241.36" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="7,140.78,334.68,204.86,8.07;7,117.03,246.13,274.36,59.08"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. FiberCache performance on 100 sparse matrices.</figDesc><graphic coords="7,117.03,246.13,274.36,59.08" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="9,82.76,248.66,320.90,8.07;9,93.57,76.45,336.88,160.48"><head>9 Fig. 4 .</head><label>94</label><figDesc>Fig. 4. Comparison of conventional and streaming access pattern in consecutive cycles.</figDesc><graphic coords="9,93.57,76.45,336.88,160.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="10,104.28,219.66,277.50,8.07"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. CSC storage format and streaming construction for sparse matrices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="11,48.85,149.46,83.57,8.78;11,48.85,162.99,3.07,5.42;11,71.89,160.42,142.53,8.78;11,48.85,172.95,22.99,8.12;11,48.85,184.32,89.12,8.78;11,48.85,196.87,108.99,8.12;11,48.85,208.24,27.74,8.78;11,45.78,220.19,93.26,8.78;11,45.78,233.72,6.14,5.42;11,72.25,231.15,218.43,8.78;11,45.78,244.68,6.14,5.42;11,87.23,241.92,212.18,8.97;11,45.78,256.63,6.14,5.42;11,72.25,254.65,14.94,8.12;11,45.78,268.58,6.14,5.42;11,71.89,266.02,21.00,8.78;11,45.78,278.56,26.06,8.12;11,45.78,290.51,121.20,8.12;11,45.78,301.89,30.81,8.78;11,45.78,313.84,97.65,8.78;11,45.78,327.37,6.14,5.42;11,72.25,324.80,132.70,8.78;11,45.78,338.32,6.14,5.42;11,87.59,335.76,101.56,8.78;11,45.78,349.29,6.14,5.42;11,102.93,346.72,98.42,8.78;11,45.78,360.25,6.14,5.42;11,117.92,357.68,148.41,8.78;11,45.78,372.20,6.14,5.42;11,102.93,370.22,14.94,8.12;11,45.78,384.15,6.14,5.42;11,87.59,382.17,14.94,8.12;11,45.78,396.11,6.14,5.42;11,72.25,394.13,14.94,8.12;11,45.78,408.07,6.14,5.42;11,71.89,405.50,21.00,8.78;11,45.78,418.03,26.06,8.12"><head>4 for i = 1</head><label>1</label><figDesc>to K + 1 do 5 insertRest(pidx, pval, ptr [i] + i − 1, 1); 6 end 7 pidx[N NZ + K] = −4; 8 // Insert the Block elements 9 r = 0; 10 while idx[r ]! = −4 do 11 if !isControlElement(r ) &amp;&amp; !isControlElement(r + 1) then 12 insertBlock(pidx, pval, r , (pval[r + 1]/B) − (pval[r ]/B)); Insert the Padding elements 17 r = 0; 18 while pidx[r ]! = −4 do 19 if !isControlElement(pidx[r ]) then 20 for i = r + 1 to r + D + 1 do 21 if pval[r ] == pval[i] then 22 insertPaddinд(pidx, pval, i, D − (r − i));</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="11,55.90,613.93,384.57,9.03;11,45.94,625.24,394.52,9.75;11,45.94,637.65,394.53,9.23;12,45.55,55.82,20.73,8.97;12,396.96,55.82,43.32,8.97"><head>4. 1 . 2</head><label>12</label><figDesc>Phase II-Multiplication. Each PE employs two FIFOs for the streamed elements from Phase I and a fully-pipelined multiplier, performing scalar-vector product, A[∶, rid] ⋅ B[rid, i]. In each cycle, one non-zero A[m, rid] is consumed for producing a partial product with a value of 79:12 X. Lu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="12,165.60,359.66,154.86,8.07;12,128.49,87.31,226.36,260.44"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. The micro-architecture of Mentor.</figDesc><graphic coords="12,128.49,87.31,226.36,260.44" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="12,55.73,625.61,386.25,9.23;12,45.77,637.57,395.62,9.23;13,45.95,55.82,210.64,8.97;13,419.75,55.82,20.72,8.97"><head>4. 1 . 4</head><label>14</label><figDesc>Phase IV-Write. During the accumulation phase, a column of B is consumed, and a corresponding column of C is produced. To ensure a balanced throughput in a fully-pipelined design, SpMM Accelerator Based on Column-Wise Product 79:13</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="16,45.77,350.66,395.48,8.07;16,45.50,361.62,395.79,8.07;16,45.77,372.58,394.83,8.07;16,45.77,383.54,260.05,8.07"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Performance of Mentor over SIGMA, Spaghetti, GAMMA, Sextans, and AWB-GCN. The results in (a)-(c) are grouped by the problem size, and (d)-(f) shows the performance on matrices with special structures, namely Large (large matrices), Hyper (hyper-sparse matrices), Power-Law (matrices following power-law distribution), Block (block-sparse matrices), and Band (band matrices).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="18,80.48,165.66,325.09,8.07"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Energy efficiency of Mentor over software implementations on CPUs and GPUs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="18,67.61,314.61,350.82,8.07"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Scalability with varying delay parameters derived from the analytical model of Mentor.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="19,123.35,174.66,239.72,8.07"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Performance of Mentor-GCN over three GCN baselines.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16" coords="19,135.18,316.92,216.05,8.07"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Dynamic power (a) and LUT (b) usage breakdown.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18" coords="20,75.83,186.66,334.38,8.07"><head>Fig. 12 .</head><label>12</label><figDesc>Fig. 12. Performance of Mentor w.r.t the variation of (a) FIFO and (b) scratchpad capacity.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="4,51.15,75.71,387.52,48.91"><head>Table 1 .</head><label>1</label><figDesc>Memory Access Analysis of Dataflows and their Parallelization Versions, where (M) and (N) Denote the Stationary Dimension. M and N are the Parallelized Dimensions. Here, We Only Discuss the Parallelized Dimensions, Which are Beneficial to Optimize Memory Access</figDesc><table /><note>Dataflow Order Input (w/o. P) Input (with P) PartialReuse (with P) Locality Band. Req.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="7,54.56,75.71,382.27,150.96"><head>Table 2 .</head><label>2</label><figDesc>The Summary of Related Accelerators and Comparison in Terms of Dataflow, Data Reuse, Locality, Bandwidth Requirement, Load Balancing, and Streaming</figDesc><table coords="7,54.56,104.10,382.27,122.57"><row><cell>Accelerator</cell><cell>Kernel</cell><cell>Dataflow</cell><cell>Reuse</cell><cell>Locality</cell><cell>Band. Req.</cell><cell>Load Balance</cell><cell>Streaming</cell></row><row><cell>SIGMA [35]</cell><cell>SpGEMM</cell><cell>Inner(M&amp;N)</cell><cell>Poor</cell><cell>Good</cell><cell>Low</cell><cell>✗</cell><cell>✓</cell></row><row><cell>Spaghetti [18]</cell><cell>SpGEMM</cell><cell>Outer(M)</cell><cell cols="2">Moderate Good</cell><cell>Low</cell><cell>✓</cell><cell>✓</cell></row><row><cell>GAMMA [59]</cell><cell>SpGEMM</cell><cell>Row-wise</cell><cell>Good</cell><cell cols="2">Enhanced High</cell><cell>✗</cell><cell>✗</cell></row><row><cell>Sextans [41]</cell><cell>SpMM</cell><cell>Row-wise</cell><cell>Poor</cell><cell cols="2">Enhanced High</cell><cell>✓</cell><cell>✓</cell></row><row><cell>HyGCN [53]</cell><cell cols="3">SpMM&amp;GEMM Row-wise&amp;Inner(M) Poor</cell><cell cols="2">Moderate Low</cell><cell>✓</cell><cell>✗</cell></row><row><cell cols="2">AWB-GCN [13] SpMM</cell><cell>Column-wise</cell><cell cols="2">Moderate Good</cell><cell>Low</cell><cell>✓</cell><cell>✗</cell></row><row><cell>GCNAX [25]</cell><cell>SpMM</cell><cell>Outer(M)</cell><cell cols="2">Moderate Good</cell><cell>High</cell><cell>✗</cell><cell>✗</cell></row><row><cell>Mentor</cell><cell>SpMM</cell><cell>Column-wise</cell><cell>Good</cell><cell>Good</cell><cell>Low</cell><cell>✓</cell><cell>✓</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="11,45.61,55.82,394.86,90.39"><head>ALGORITHM 1 :</head><label>1</label><figDesc>Streaming Construction for Sparse Matrices Input : (sparse matrix A in CSC): ptr , idx, val, K, N NZ, D, B</figDesc><table coords="11,45.95,55.82,394.53,90.39"><row><cell>SpMM Accelerator Based on Column-Wise Product</cell><cell>79:11</cell></row><row><cell>Output : (processed martrix A): pidx, pval</cell><cell></cell></row><row><cell>1 init(pidx, idx);</cell><cell></cell></row><row><cell>2 init(pval,val);</cell><cell></cell></row><row><cell>3 //Insert the Rest elements</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="14,141.26,75.71,208.52,93.60"><head>Table 3 .</head><label>3</label><figDesc>Resource Utilization on xczu15eg-ffvb-2-i</figDesc><table coords="14,141.26,94.37,208.52,74.93"><row><cell></cell><cell cols="4">Resource Used Available Util.</cell></row><row><cell></cell><cell>LUT</cell><cell>119,631</cell><cell>341,280</cell><cell>35.05%</cell></row><row><cell></cell><cell>LUTRAM</cell><cell>16,871</cell><cell>184,320</cell><cell>9.15%</cell></row><row><cell>Mentor</cell><cell>FF</cell><cell>159,093</cell><cell>682,560</cell><cell>23.31%</cell></row><row><cell></cell><cell>BRAM</cell><cell>485</cell><cell>744</cell><cell>65.19%</cell></row><row><cell></cell><cell>DSP</cell><cell>476</cell><cell>3528</cell><cell>13.49%</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="14,75.89,187.89,339.26,80.45"><head>Table 4 .</head><label>4</label><figDesc>Properties of 125 Sparse Matrices and the GCN Benchmarks</figDesc><table coords="14,75.89,207.22,339.26,61.12"><row><cell></cell><cell>min</cell><cell>max</cell><cell></cell><cell cols="2">Dimension</cell><cell></cell><cell>Density</cell></row><row><cell>Row / Column</cell><cell>72</cell><cell>84,414</cell><cell></cell><cell cols="2">Node Feature</cell><cell>A</cell><cell>X</cell><cell>W</cell></row><row><cell>NNZ</cell><cell cols="2">1,012 28,715,634</cell><cell>Cora</cell><cell>2708</cell><cell>1433</cell><cell cols="2">0.18% 1.27% 100%</cell></row><row><cell>Density</cell><cell>0.098%</cell><cell>19.52%</cell><cell cols="2">Citeseer 3327</cell><cell>3703</cell><cell cols="2">0.11% 0.85% 100%</cell></row><row><cell>Memory (KB)</cell><cell>8.2</cell><cell>224411.2</cell><cell cols="2">Pubmed 19717</cell><cell>500</cell><cell cols="2">0.028% 10% 100%</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 79. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_1">A stationary dimension is a matrix dimension that remains in place or "stationary" in the processing element's local memory while other dimensions are moved or streamed through the processing elements.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_2">In this article, the memory traffic is defined as the number of matrix elements loaded/stored from/into memory<ref type="bibr" coords="4,411.13,609.92,11.86,7.22" target="#b41">[42]</ref>.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_3">The data reuse of matrices is defined as the number of multiply-accumulate (MAC) operations divided by the number of matrix elements moved from/into memory (i.e., memory traffic), indicating the number of operations performed per element accessed. ACM Trans. Arch. Code Optim., Vol. 21, No.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_4">, Article 79. Publication date: November 2024.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>We appreciate all the anonymous reviewers for their careful evaluations.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This work is supported by the National Key Research and Development Program of China under Grant No. 2023YFB3001503.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="22,62.85,261.08,377.43,7.22;22,62.85,271.00,219.72,7.26" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Accelerating the LOBPCG method on GPUs using a blocked sparse matrix vector product</title>
+		<author>
+			<persName coords=""><forename type="first">Hartwig</forename><surname>Anzt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stanimire</forename><surname>Tomov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jack</forename><forename type="middle">J</forename><surname>Dongarra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SpringSim (HPS&apos;15)</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="75" to="82" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,281.00,377.47,7.22;22,62.85,290.93,378.31,7.26;22,62.85,300.93,28.36,7.22" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Ascella: Accelerating sparse computation by enabling stream accesses to memory</title>
+		<author>
+			<persName coords=""><forename type="first">Bahar</forename><surname>Asgari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramyad</forename><surname>Hadidi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hyesoon</forename><surname>Kim</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 Design, Automation &amp; Test in Europe Conference &amp; Exhibition (DATE&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="318" to="321" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,310.88,378.79,7.22;22,62.55,320.81,377.73,7.26;22,62.85,330.77,158.41,7.26" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Alrescha: A lightweight reconfigurable sparse-computation accelerator</title>
+		<author>
+			<persName coords=""><forename type="first">Bahar</forename><surname>Asgari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramyad</forename><surname>Hadidi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Krishna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hyesoon</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sudhakar</forename><surname>Yalamanchili</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="249" to="260" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,340.77,377.41,7.22;22,62.85,350.69,378.25,7.26;22,62.85,360.66,278.44,7.26" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">InnerSP: A memory efficient sparse matrix multiplication accelerator with locality-aware inner product processing</title>
+		<author>
+			<persName coords=""><forename type="first">Daehyeon</forename><surname>Baek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Soojin</forename><surname>Hwang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Taekyung</forename><surname>Heo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daehoon</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jaehyuk</forename><surname>Huh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 30th International Conference on Parallel Architectures and Compilation Techniques (PACT&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="116" to="128" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,370.66,377.47,7.22;22,62.85,380.58,377.44,7.26;22,62.85,390.54,165.17,7.26" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Probing the efficacy of hardware-aware weight pruning to optimize the SpMM routine on Ampere GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Roberto</forename><forename type="middle">L</forename><surname>Castro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Diego</forename><surname>Andrade</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Basilio</forename><forename type="middle">B</forename><surname>Fraguela</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Parallel Architectures and Compilation Techniques</title>
+				<meeting>the International Conference on Parallel Architectures and Compilation Techniques</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="135" to="147" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,400.55,377.58,7.22;22,62.85,410.47,377.45,7.26;22,62.85,420.43,53.56,7.26" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">RAPL: Memory power estimation and capping</title>
+		<author>
+			<persName coords=""><forename type="first">Howard</forename><surname>David</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eugene</forename><surname>Gorbatov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Ulf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rahul</forename><surname>Hanebutte</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Khanna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Le</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 16th ACM/IEEE International Symposium on Low Power Electronics and Design</title>
+				<meeting>the 16th ACM/IEEE International Symposium on Low Power Electronics and Design</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="189" to="194" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,430.39,378.25,7.26;22,62.85,440.36,142.66,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">The University of Florida sparse matrix collection</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page" from="1" to="25" />
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,450.36,377.46,7.22;22,62.85,460.32,377.42,7.22;22,62.85,470.25,377.45,7.26;22,62.85,480.21,197.01,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Bit-tactical: A software/hardware approach to exploiting value and bit sparsity in neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Alberto</forename><surname>Delmas Lascorz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Patrick</forename><surname>Judd</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dylan</forename><forename type="middle">Malone</forename><surname>Stuart</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zissis</forename><surname>Poulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mostafa</forename><surname>Mahmoud</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sayeh</forename><surname>Sharify</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Milos</forename><surname>Nikolic</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kevin</forename><surname>Siu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andreas</forename><surname>Moshovos</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="749" to="763" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.85,490.21,377.45,7.22;22,62.85,500.13,378.23,7.26;22,62.85,510.10,137.89,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">PermDNN: Efficient compressed DNN architecture with permuted diagonal matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Chunhua</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siyu</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Keshab</forename><forename type="middle">K</forename><surname>Parhi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xuehai</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Yuan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 51st Annual IEEE/ACM International Symposium on Microarchitecture (MICRO&apos;18)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="189" to="202" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,520.10,377.45,7.22;22,62.85,530.02,378.22,7.26;22,62.85,539.98,196.94,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Gospa: An energy-efficient high-performance globally optimized sparse convolutional neural network accelerator</title>
+		<author>
+			<persName coords=""><forename type="first">Chunhua</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Sui</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siyu</forename><surname>Liao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xuehai</forename><surname>Qian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Yuan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 ACM/IEEE 48th Annual International Symposium on Computer Architecture (ISCA&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1110" to="1123" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,549.95,377.45,7.26;22,62.85,559.90,256.26,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Fast sparse convnets</title>
+		<author>
+			<persName coords=""><forename type="first">Erich</forename><surname>Elsen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marat</forename><surname>Dukhan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Gale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karen</forename><surname>Simonyan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</title>
+				<meeting>the IEEE/CVF Conference on Computer Vision and Pattern Recognition</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="14629" to="14638" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,569.86,378.24,7.26;22,62.85,579.83,312.99,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Sparse gpu kernels for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Gale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matei</forename><surname>Zaharia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cliff</forename><surname>Young</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Erich</forename><surname>Elsen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC20: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,589.83,378.32,7.22;22,62.85,599.79,378.79,7.22;22,62.85,609.71,353.72,7.26" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">AWB-GCN: A graph convolutional network accelerator with runtime workload rebalancing</title>
+		<author>
+			<persName coords=""><forename type="first">Tong</forename><surname>Geng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Runbin</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chunshu</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yanfei</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pouya</forename><surname>Haghi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Antonino</forename><surname>Tumeo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuai</forename><surname>Che</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Steve</forename><surname>Reinhardt</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 53rd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="922" to="936" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,62.84,619.72,378.68,7.22;22,62.85,629.64,377.45,7.26;22,62.85,639.60,141.21,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">SPADE: A flexible and scalable accelerator for SpMM and SDDMM</title>
+		<author>
+			<persName coords=""><forename type="first">Gerasimos</forename><surname>Gerogiannis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Serif</forename><surname>Yesil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Damitha</forename><surname>Lenadora</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dingyuan</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Charith</forename><surname>Mendis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Josep</forename><surname>Torrellas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 50th Annual International Symposium on Computer Architecture</title>
+				<meeting>the 50th Annual International Symposium on Computer Architecture</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,78.61,378.70,7.22;23,63.02,88.54,378.23,7.26;23,63.02,98.50,276.41,7.26" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Sparsep: Towards efficient sparse matrix vector multiplication on real processing-in-memory architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Christina</forename><surname>Giannoula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ivan</forename><surname>Fernandez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Juan</forename><forename type="middle">Gómez</forename><surname>Luna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nectarios</forename><surname>Koziris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Georgios</forename><surname>Goumas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Onur</forename><surname>Mutlu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the ACM on Measurement and Analysis of Computing Systems</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="1" to="49" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,108.50,378.39,7.22;23,63.02,118.46,60.10,7.22;23,150.64,118.42,289.83,7.26;23,62.78,128.43,51.69,7.22" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">EIE: Efficient inference on compressed deep neural network</title>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xingyu</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huizi</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jing</forename><surname>Pu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ardavan</forename><surname>Pedram</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><forename type="middle">A</forename><surname>Horowitz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGARCH Computer Architecture News</title>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="page" from="243" to="254" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,138.39,378.69,7.22;23,63.02,148.35,212.85,7.22" xml:id="b16">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Mikael</forename><surname>Henaff</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joan</forename><surname>Bruna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yann</forename><surname>Lecun</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1506.05163</idno>
+		<ptr target="https://arxiv.org/abs/1506.05163" />
+		<title level="m">Deep convolutional networks on graph-structured data</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,158.31,377.45,7.22;23,63.02,168.24,377.45,7.26;23,63.02,178.20,117.76,7.26" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Spaghetti: Streaming accelerators for highly sparse gemm on fpgas</title>
+		<author>
+			<persName coords=""><forename type="first">Reza</forename><surname>Hojabr</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Sedaghati</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Amirali</forename><surname>Sharifian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ahmad</forename><surname>Khonsari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Arrvindh</forename><surname>Shriraman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Symposium on High-Performance Computer Architecture (HPCA&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="84" to="96" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,188.20,377.58,7.22;23,63.02,198.13,378.26,7.26;23,63.02,208.09,92.84,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">A streaming dataflow engine for sparse matrix-vector multiplication using high-level synthesis</title>
+		<author>
+			<persName coords=""><forename type="first">Mohammad</forename><surname>Hosseinabady</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jose</forename><surname>Luis Nunez-Yanez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="volume">39</biblScope>
+			<biblScope unit="page" from="1272" to="1285" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,218.09,377.64,7.22;23,63.02,228.01,378.31,7.26;23,63.02,237.98,147.05,7.26" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Ge-spmm: General-purpose sparse matrix-matrix multiplication on gpus for graph neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Guyue</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guohao</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huazhong</forename><surname>Yang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC20: International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,247.98,378.79,7.22;23,63.02,257.94,244.26,7.22" xml:id="b20">
+	<monogr>
+		<title level="m" type="main">UltraScale Architecture-Based FPGAs Memory IP Product Guide (PG150)</title>
+		<ptr target="https://docs.amd.com/v/u/en-US/pg150-ultrascale-memory-ip" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<publisher>Advanced Micro Devices Inc</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,267.90,378.81,7.22;23,63.02,277.87,377.46,7.22;23,63.02,287.79,377.46,7.26;23,63.02,297.75,179.28,7.26" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Smash: Co-designing software compression and hardware-accelerated indexing for efficient sparse matrix operations</title>
+		<author>
+			<persName coords=""><forename type="first">Konstantinos</forename><surname>Kanellopoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nandita</forename><surname>Vijaykumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christina</forename><surname>Giannoula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roknoddin</forename><surname>Azizi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Skanda</forename><surname>Koppula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nika</forename><surname>Mansouri Ghiasi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Taha</forename><surname>Shahroodi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Juan</forename><forename type="middle">Gomez</forename><surname>Luna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Onur</forename><surname>Mutlu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 52nd Annual IEEE/ACM International Symposium on Microarchitecture</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="600" to="614" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,307.75,377.44,7.22;23,63.02,317.68,200.91,7.26" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">A high-performance parallel algorithm for nonnegative matrix factorization</title>
+		<author>
+			<persName coords=""><forename type="first">Ramakrishnan</forename><surname>Kannan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Grey</forename><surname>Ballard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haesun</forename><surname>Park</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGPLAN Notices</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<biblScope unit="page" from="1" to="11" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,327.63,378.25,7.26;23,63.02,337.59,155.87,7.26" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Semi-supervised classification with graph convolutional networks</title>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><forename type="middle">N</forename><surname>Kipf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Max</forename><surname>Welling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,347.60,378.80,7.22;23,63.02,357.52,377.45,7.26;23,63.02,367.48,125.18,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">GCNAX: A flexible and energy-efficient accelerator for graph convolutional neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Jiajun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ahmed</forename><surname>Louri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Avinash</forename><surname>Karanth</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Razvan</forename><surname>Bunescu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Symposium on High-Performance Computer Architecture (HPCA&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="775" to="788" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,377.48,377.46,7.22;23,63.02,387.41,378.33,7.26;23,62.84,397.41,68.51,7.22" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">An efficient gustavson-based sparse matrix-matrix multiplication accelerator on embedded FPGAs</title>
+		<author>
+			<persName coords=""><forename type="first">Shiqing</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuo</forename><surname>Huai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weichen</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</title>
+		<imprint>
+			<biblScope unit="volume">42</biblScope>
+			<biblScope unit="page" from="4671" to="4680" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,407.37,377.44,7.22;23,63.02,417.29,377.43,7.26;23,62.53,427.26,69.29,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Accelerating Gustavson-based SpMM on embedded FPGAs with element-wise parallelism and access pattern-aware caches</title>
+		<author>
+			<persName coords=""><forename type="first">Shiqing</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weichen</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 Design, Automation &amp; Test in Europe Conference &amp; Exhibition (DATE&apos;23)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1" to="6" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,437.26,378.77,7.22;23,63.02,447.18,377.45,7.26;23,63.02,457.14,299.60,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Spada: Accelerating sparse matrix multiplication with adaptive dataflow</title>
+		<author>
+			<persName coords=""><forename type="first">Zhiyao</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaxiang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Taijie</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dimin</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongzhong</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Xie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mingyu</forename><surname>Gao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="747" to="761" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,467.15,377.44,7.22;23,63.02,477.07,378.24,7.26;23,63.02,487.03,172.91,7.26" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Sanger: A co-design framework for enabling sparse attention using reconfigurable architecture</title>
+		<author>
+			<persName coords=""><forename type="first">Liqiang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yicheng</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hangrui</forename><surname>Bi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zizhang</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yun</forename><surname>Liang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">MICRO-54: 54th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="977" to="991" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,497.03,378.68,7.22;23,63.02,506.96,378.25,7.26;23,63.02,516.92,377.45,7.26;23,63.02,526.88,89.99,7.26" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Flexagon: A multi-dataflow sparse-sparse matrix multiplication accelerator for efficient DNN processing</title>
+		<author>
+			<persName coords=""><forename type="first">Francisco</forename><surname>Muñoz-Martínez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Raveesh</forename><surname>Garg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manuel</forename><forename type="middle">E</forename><surname>José L Abellán</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Acacio</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Krishna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="252" to="265" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,536.89,377.46,7.22;23,62.64,546.85,379.14,7.22;23,63.02,556.81,377.41,7.22;23,63.02,566.77,377.63,7.22;23,63.02,576.73,107.00,7.22" xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Deep learning recommendation model for personalization and recommendation systems</title>
+		<author>
+			<persName coords=""><forename type="first">Maxim</forename><surname>Naumov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dheevatsa</forename><surname>Mudigere</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Hao-Jun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianyu</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Narayanan</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jongsoo</forename><surname>Sundaraman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaodong</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Udit</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carole-Jean</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alisson</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dmytro</forename><surname>Azzolini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrey</forename><surname>Dzhulgakov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ilia</forename><surname>Mallevich</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yinghai</forename><surname>Cherniavskii</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Raghuraman</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ansha</forename><surname>Krishnamoorthi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Volodymyr</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stephanie</forename><surname>Kondratenko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xianjie</forename><surname>Pereira</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Misha</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Smelyanskiy</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1906.00091</idno>
+		<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="23,63.02,586.69,378.31,7.22;23,62.74,596.65,377.72,7.22;23,63.02,606.58,377.44,7.26;23,63.02,616.54,237.96,7.26" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Accelerating sparse data orchestration via dynamic reflexive tiling</title>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Toluwanimi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Odemuyiwa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Hadi Asghari-Moghaddam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kartik</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Po-An</forename><surname>Hegde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Neal</forename><forename type="middle">C</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aamer</forename><surname>Crago</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Jaleel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edgar</forename><surname>Owens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">S</forename><surname>Solomonik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fletcher</forename><forename type="middle">W</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Christopher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="18" to="32" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.01,626.54,378.76,7.22;23,63.02,636.50,377.45,7.22;24,45.55,55.82,20.73,8.97;24,396.96,55.82,43.32,8.97;24,62.85,78.57,377.44,7.26;24,62.36,88.54,84.67,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Outerspace: An outer product based sparse 79:24 X. Lu et al. matrix multiplication accelerator</title>
+		<author>
+			<persName coords=""><forename type="first">Subhankar</forename><surname>Pal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Beaumont</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dong-Hyeon</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aporva</forename><surname>Amarnath</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siying</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chaitali</forename><surname>Chakrabarti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hun-Seok</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Blaauw</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Trevor</forename><surname>Mudge</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ronald</forename><surname>Dreslinski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE International Symposium on High Performance Computer Architecture (HPCA&apos;18)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="724" to="736" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,98.54,378.34,7.22;24,62.71,108.50,377.57,7.22;24,62.85,118.42,262.32,7.26" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">SCNN: An accelerator for compressed-sparse convolutional neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Angshuman</forename><surname>Parashar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Minsoo</forename><surname>Rhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anurag</forename><surname>Mukkara</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Antonio</forename><surname>Puglielli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rangharajan</forename><surname>Venkatesan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brucek</forename><surname>Khailany</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stephen</forename><forename type="middle">W</forename><surname>Keckler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGARCH Computer Architecture News</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="page" from="27" to="40" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,128.43,377.44,7.22;24,62.60,138.39,378.90,7.22;24,62.85,148.31,343.22,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Sigma: A sparse and irregular gemm accelerator with flexible interconnects for dnn training</title>
+		<author>
+			<persName coords=""><forename type="first">Eric</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ananda</forename><surname>Samajdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hyoukjun</forename><surname>Kwon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vineet</forename><surname>Nadella</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sudarshan</forename><surname>Srinivasan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dipankar</forename><surname>Das</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bharat</forename><surname>Kaul</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Krishna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="58" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,158.31,378.80,7.22;24,62.85,168.24,377.43,7.26;24,62.85,178.20,216.07,7.26" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Dota: Detect and omit weak attentions for scalable transformer acceleration</title>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Qu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liu</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fengbin</forename><surname>Tu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhaodong</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yufei</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Xie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="14" to="26" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,188.20,377.61,7.22;24,62.85,198.13,377.44,7.26;24,62.36,208.09,84.80,7.26" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Fusedmm: A unified sddmm-spmm kernel for graph embedding and graph neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Majedul</forename><surname>Md Khaledur Rahman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ariful</forename><surname>Haque Sujon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Azad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Parallel and Distributed Processing Symposium (IPDPS&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="256" to="266" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,218.09,378.77,7.22;24,62.85,228.01,245.07,7.26" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Regularizing graph centrality computations</title>
+		<author>
+			<persName coords=""><forename type="first">Ahmet</forename><surname>Erdem Sarıyüce</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Erik</forename><surname>Saule</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kamer</forename><surname>Kaya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Umit</forename><forename type="middle">V</forename><surname>Çatalyürek</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Parallel and Distributed Computing</title>
+		<imprint>
+			<biblScope unit="volume">76</biblScope>
+			<biblScope unit="page" from="106" to="119" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+	<note>C</note>
+</biblStruct>
+
+<biblStruct coords="24,62.85,238.02,378.79,7.22;24,62.85,247.94,377.42,7.26;24,62.85,257.90,256.48,7.26" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Modeling relational data with graph convolutional networks</title>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Schlichtkrull</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><forename type="middle">N</forename><surname>Kipf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Bloem</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rianne</forename><surname>Van Den</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ivan</forename><surname>Berg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Max</forename><surname>Titov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Welling</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">The Semantic Web: 15th International Conference</title>
+				<meeting><address><addrLine>Heraklion, Crete, Greece</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018-06-03">2018. 2018. June 3-7, 2018</date>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="593" to="607" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,267.90,377.43,7.22;24,62.46,277.87,379.18,7.22;24,62.85,287.83,236.22,7.22" xml:id="b39">
+	<monogr>
+		<title level="m" type="main">An efficient sparse inference software accelerator for transformerbased language models on CPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Haihao</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hengyu</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bo</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhe</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ofir</forename><surname>Zafrir</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yi</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yu</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanwen</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qun</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guy</forename><surname>Boudoukh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Moshe</forename><surname>Wasserblat</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2306.16601</idno>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="24,62.84,297.79,377.41,7.22;24,62.85,307.71,377.46,7.26;24,62.85,317.68,220.46,7.26" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Sextans: A streaming accelerator for general-purpose sparse-matrix dense-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Linghao</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuze</forename><surname>Chi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atefeh</forename><surname>Sohrabizadeh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Young-Kyu</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Lau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Cong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2022 ACM/SIGDA International Symposium on Field-Programmable Gate Arrays</title>
+				<meeting>the 2022 ACM/SIGDA International Symposium on Field-Programmable Gate Arrays</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="65" to="77" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,327.67,377.65,7.22;24,62.85,337.59,377.44,7.26;24,62.85,347.56,146.49,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Matraptor: A sparse-sparse matrix multiplication accelerator based on row-wise product</title>
+		<author>
+			<persName coords=""><forename type="first">Nitish</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanchen</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Albonesi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiru</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 53rd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="766" to="780" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,357.56,378.35,7.22;24,62.57,367.48,377.72,7.26;24,62.85,377.44,199.88,7.26" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Tensaurus: A versatile accelerator for mixed sparse-dense tensor computations</title>
+		<author>
+			<persName coords=""><forename type="first">Nitish</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanchen</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaden</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongbo</forename><surname>Rong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Albonesi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiru</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="689" to="702" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,387.41,377.43,7.26;24,62.85,397.37,226.72,7.26" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">clSpMV: A cross-platform OpenCL SpMV framework on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Bor-Yiing</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kurt</forename><surname>Keutzer</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM International Conference on Supercomputing</title>
+				<meeting>the 26th ACM International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="353" to="364" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,407.37,377.43,7.22;24,62.85,417.29,378.31,7.26;24,62.85,427.30,20.95,7.22" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Bin Ren, and Gokcen Kestor. 2021. A high performance sparse tensor algebra compiler in MLIR</title>
+		<author>
+			<persName coords=""><forename type="first">Ruiqin</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luanzheng</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE/ACM 7th Workshop on the LLVM Compiler Infrastructure in HPC (LLVM-HPC)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<biblScope unit="page" from="27" to="38" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,437.26,377.59,7.22;24,62.85,447.18,378.68,7.26;24,62.85,457.18,32.97,7.22" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">dCSR: A memory-efficient sparse matrix representation for parallel neural network inference</title>
+		<author>
+			<persName coords=""><forename type="first">Elias</forename><surname>Trommer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bernd</forename><surname>Waschneck</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Akash</forename><surname>Kumar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE/ACM International Conference On Computer Aided Design (ICCAD&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1" to="9" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,467.15,377.44,7.22;24,62.85,477.07,378.31,7.26;24,62.85,487.07,24.66,7.22" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Spatten: Efficient sparse attention architecture with cascade token and head pruning</title>
+		<author>
+			<persName coords=""><forename type="first">Hanrui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhekai</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE International Symposium on High-Performance Computer Architecture (HPCA&apos;21)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="97" to="110" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,497.03,377.43,7.22;24,62.85,506.96,321.63,7.26" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">A systematic survey of general sparse matrix-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Jianhua</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weixing</forename><surname>Ji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fangli</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shiyu</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bingxin</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zeming</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yizhuo</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Computing Surveys</title>
+		<imprint>
+			<biblScope unit="volume">55</biblScope>
+			<biblScope unit="page" from="1" to="36" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,516.96,377.45,7.22;24,62.85,526.88,267.96,7.26" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Learning structured sparsity in deep neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chunpeng</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yandan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiran</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hai</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in Neural Information Processing Systems</title>
+		<imprint>
+			<biblScope unit="volume">29</biblScope>
+			<biblScope unit="page" from="2074" to="2082" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,536.89,377.42,7.22;24,62.84,546.81,364.61,7.26" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">A comprehensive survey on graph neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Zonghan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shirui</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fengwen</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guodong</forename><surname>Long</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengqi</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">Yu</forename><surname>Philip</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Neural Networks and Learning Systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="4" to="24" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,556.81,378.79,7.22;24,62.84,566.73,378.65,7.26;24,62.66,576.73,35.78,7.22" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Tailors: Accelerating sparse tensor algebra by overbooking buffer capacity</title>
+		<author>
+			<persName coords=""><forename type="first">Zi</forename><surname>Yu Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yannan</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nellie</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">S</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivienne</forename><surname>Sze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 56th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<meeting>the 56th Annual IEEE/ACM International Symposium on Microarchitecture</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="1347" to="1363" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,586.69,377.43,7.22;24,62.84,596.61,280.24,7.26" xml:id="b51">
+	<analytic>
+		<title level="a" type="main">Modeling and discovering vulnerabilities with code property graphs</title>
+		<author>
+			<persName coords=""><forename type="first">Fabian</forename><surname>Yamaguchi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nico</forename><surname>Golde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Arp</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Konrad</forename><surname>Rieck</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2014 IEEE Symposium on Security and Privacy</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="590" to="604" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,606.61,378.65,7.22;24,62.84,616.54,377.44,7.26;24,62.84,626.50,151.00,7.26" xml:id="b52">
+	<analytic>
+		<title level="a" type="main">Hygcn: A gcn accelerator with hybrid architecture</title>
+		<author>
+			<persName coords=""><forename type="first">Mingyu</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ling</forename><surname>Liang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yujing</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaochun</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhimin</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dongrui</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Xie</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="15" to="29" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,636.50,377.43,7.22;24,62.84,646.43,200.10,7.26" xml:id="b53">
+	<analytic>
+		<title level="a" type="main">Design principles for sparse matrix multiplication on the gpu</title>
+		<author>
+			<persName coords=""><forename type="first">Carl</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aydın</forename><surname>Buluç</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">D</forename><surname>Owens</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European Conference on Parallel Processing</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="672" to="687" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,45.95,55.82,210.64,8.97;25,419.75,55.82,20.72,8.97" xml:id="b54">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">SpMM Accelerator Based on Column-Wise Product</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page">25</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,78.61,378.82,7.22;25,63.02,88.58,378.68,7.22;25,63.02,98.50,278.48,7.26" xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Sparse reram engine: Joint exploration of activation and weight sparsity in compressed neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Tzu-Hsien</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hsiang-Yun</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chia-Lin</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I.-Ching</forename><surname>Tseng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Han-Wen</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hung-Sheng</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hsiang-Pang</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 46th International Symposium on Computer Architecture</title>
+				<meeting>the 46th International Symposium on Computer Architecture</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="236" to="249" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,108.46,377.44,7.26;25,63.02,118.42,217.54,7.26" xml:id="b56">
+	<analytic>
+		<title level="a" type="main">Graph convolutional networks for text classification</title>
+		<author>
+			<persName coords=""><forename type="first">Liang</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengsheng</forename><surname>Mao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Luo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="7370" to="7377" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,128.43,378.79,7.22;25,63.02,138.35,377.43,7.26;25,63.02,148.31,158.42,7.26" xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Gcod: Graph convolutional network acceleration via dedicated algorithm and accelerator co-design</title>
+		<author>
+			<persName coords=""><forename type="first">Haoran</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tong</forename><surname>Geng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yingyan</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2022 IEEE International Symposium on High-Performance Computer Architecture (HPCA&apos;22)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="460" to="474" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,158.31,377.47,7.22;25,63.02,168.24,377.46,7.26;25,63.02,178.20,309.68,7.26" xml:id="b58">
+	<analytic>
+		<title level="a" type="main">Vitcod: Vision transformer acceleration via dedicated algorithm and accelerator co-design</title>
+		<author>
+			<persName coords=""><forename type="first">Haoran</forename><surname>You</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhanyi</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huihong</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhongzhi</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yongan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chaojian</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Baopu</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yingyan</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2023 IEEE International Symposium on High-Performance Computer Architecture (HPCA&apos;23)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="273" to="286" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,188.20,377.42,7.22;25,63.02,198.13,377.44,7.26;25,63.02,208.09,223.49,7.26" xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Gamma: Leveraging Gustavson&apos;s algorithm to accelerate sparse matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Guowei</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nithya</forename><surname>Attaluri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">S</forename><surname>Emer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Sanchez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="687" to="701" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,218.09,378.69,7.22;25,63.02,228.01,377.44,7.26;25,63.02,237.98,135.37,7.26" xml:id="b60">
+	<analytic>
+		<title level="a" type="main">Cambricon-X: An accelerator for sparse neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Shijin</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zidong</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huiying</forename><surname>Lan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaoli</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ling</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qi</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tianshi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunji</forename><surname>Chen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 49th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO&apos;16)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="12" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,247.98,377.45,7.22;25,63.02,257.90,180.55,7.26" xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Graph convolutional networks: A comprehensive review</title>
+		<author>
+			<persName coords=""><forename type="first">Si</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanghang</forename><surname>Tong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiejun</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ross</forename><surname>Maciejewski</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computational Social Networks</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="1" to="23" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,267.90,377.64,7.22;25,63.02,277.83,378.32,7.26;25,63.02,287.83,28.36,7.22" xml:id="b62">
+	<analytic>
+		<title level="a" type="main">Sparch: Efficient architecture for sparse matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Zhekai</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanrui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><forename type="middle">J</forename><surname>Dally</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Symposium on High Performance Computer Architecture (HPCA&apos;20)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="261" to="274" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,297.75,377.45,7.26;25,63.02,307.71,200.05,7.26" xml:id="b63">
+	<analytic>
+		<title level="a" type="main">Streaming sorting networks</title>
+		<author>
+			<persName coords=""><forename type="first">Marcela</forename><surname>Zuluaga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Milder</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Markus</forename><surname>Püschel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Design Automation of Electronic Systems (TODAES)</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page" from="1" to="30" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

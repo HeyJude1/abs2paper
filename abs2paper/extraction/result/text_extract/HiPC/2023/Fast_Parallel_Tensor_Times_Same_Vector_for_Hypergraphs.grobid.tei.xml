@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Fast Parallel Tensor Times Same Vector for Hypergraphs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>IEEE</publisher>
+				<availability status="unknown"><p>Copyright IEEE</p>
+				</availability>
+				<date type="published" when="2023-12-18">2023-12-18</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,120.57,176.64,84.58,10.51"><forename type="first">Shruti</forename><surname>Shivakumar</surname></persName>
+							<email>sshivakumar9@gatech.edu</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computational Science and Engineering</orgName>
+								<orgName type="institution">Georgia Institute of Technology Atlanta</orgName>
+								<address>
+									<region>GA</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,278.99,176.64,58.04,10.51"><forename type="first">Ilya</forename><surname>Amburg</surname></persName>
+							<email>ilya.amburg@pnnl.gov</email>
+							<affiliation key="aff2">
+								<orgName type="institution">Pacific Northwest National Laboratory Richland</orgName>
+								<address>
+									<region>WA</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,416.59,176.64,73.12,10.51"><forename type="first">Sinan</forename><forename type="middle">G</forename><surname>Aksoy</surname></persName>
+							<email>sinan.aksoy@pnnl.gov</email>
+							<affiliation key="aff4">
+								<orgName type="institution">Pacific Northwest National Laboratory Seattle</orgName>
+								<address>
+									<region>WA</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,144.17,265.04,37.39,10.51"><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+							<email>jiajia.li@ncsu.edu</email>
+							<affiliation key="aff1">
+								<orgName type="department">School of Computer Science</orgName>
+								<orgName type="institution">North Carolina State University</orgName>
+								<address>
+									<settlement>Raleigh</settlement>
+									<region>NC</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,267.97,264.03,80.07,10.51"><forename type="first">Stephen</forename><forename type="middle">J</forename><surname>Young</surname></persName>
+							<email>stephen.young@pnnl.gov</email>
+							<affiliation key="aff3">
+								<orgName type="institution">Pacific Northwest National Laboratory Richland</orgName>
+								<address>
+									<region>WA</region>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,420.16,264.03,65.98,10.51"><forename type="first">Srinivas</forename><surname>Aluru</surname></persName>
+							<email>aluru@cc.gatech.edu</email>
+							<affiliation key="aff5">
+								<orgName type="department">School of Computational Science and Engineering</orgName>
+								<orgName type="institution">Georgia Institute of Technology Atlanta</orgName>
+								<address>
+									<region>GA</region>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Fast Parallel Tensor Times Same Vector for Hypergraphs</title>
+					</analytic>
+					<monogr>
+						<title level="m">2023 IEEE 30th International Conference on High Performance Computing, Data, and Analytics (HiPC)</title>
+						<imprint>
+							<publisher>IEEE</publisher>
+							<biblScope unit="page" from="324" to="334"/>
+							<date type="published" when="2023-12-18" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">CD0A6DA20F89F80FFF225B22B1843D7B</idno>
+					<idno type="DOI">10.1109/hipc58850.2023.00049</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:41+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>hypergraphs</term>
+					<term>sparse symmetric tensor times same vector</term>
+					<term>tensor eigenvector</term>
+					<term>generating function</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Hypergraphs are a popular paradigm to represent complex real-world networks exhibiting multi-way relationships of varying sizes. Mining centrality in hypergraphs via symmetric adjacency tensors has only recently become computationally feasible for large and complex datasets. To enable scalable computation of these and related hypergraph analytics, here we focus on the Sparse Symmetric Tensor Times Same Vector (S 3 TTVC) operation. We introduce the Compound Compressed Sparse Symmetric (CCSS) format, an extension of the compact CSS format for hypergraphs of varying hyperedge sizes and present a shared-memory parallel algorithm to compute S 3 TTVC. We experimentally show S 3 TTVC computation using the CCSS format achieves better performance than the naive baseline, and is subsequently more performant for hypergraph H-eigenvector centrality.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>I. INTRODUCTION</head><p>Hypergraphs are generalizations of graphs that represent multi-entity relationships in a broad range of domains, such as cybersecurity <ref type="bibr" coords="1,185.26,598.68,10.78,9.56" target="#b0">[1]</ref>, <ref type="bibr" coords="1,202.83,598.68,10.78,9.56" target="#b1">[2]</ref>, biological systems <ref type="bibr" coords="1,64.09,610.85,10.78,9.56" target="#b2">[3]</ref>, social networks <ref type="bibr" coords="1,155.22,610.85,10.78,9.56" target="#b4">[4]</ref>, and telecommunications <ref type="bibr" coords="1,281.97,610.85,10.78,9.56" target="#b5">[5]</ref>. While graph edges connect exactly two nodes, hyperedges may connect any number of nodes. Most real-world hypergraphs are non-uniform, meaning they have differently sized hyperedges, which poses challenges for their compact representation and analysis.</p><p>For uniform hypergraphs, symmetric tensors are popularly used to represent the higher-order adjacency information <ref type="bibr" coords="1,347.11,426.02,10.78,9.56" target="#b6">[6]</ref>, <ref type="bibr" coords="1,366.31,426.02,10.78,9.56" target="#b7">[7]</ref>. Several strategies have been explored to extend the tensor representation approach to nonuniform hypergraphs, including adding dummy nodes <ref type="bibr" coords="1,314.09,462.55,10.78,9.56" target="#b8">[8]</ref>, <ref type="bibr" coords="1,334.29,462.55,10.78,9.56" target="#b9">[9]</ref>, considering the set of symmetric adjacency tensors, with each tensor arising from the component uniform hypergraph of a particular hyperedge size <ref type="bibr" coords="1,526.92,486.90,15.55,9.56" target="#b10">[10]</ref>, <ref type="bibr" coords="1,314.09,499.08,15.55,9.56" target="#b11">[11]</ref>, and combinatorially inflating the lower-cardinality hyperedges until all hyperedges are equisized <ref type="bibr" coords="1,506.69,511.26,15.55,9.56" target="#b12">[12]</ref>. Following Aksoy, Amburg, and Young <ref type="bibr" coords="1,467.51,523.43,15.55,9.56" target="#b13">[13]</ref>, we call these inflated hyperedges blowups and focus on the adjacency tensor as defined by Banerjee et al. <ref type="bibr" coords="1,465.14,547.79,15.55,9.56" target="#b12">[12]</ref>, which we call the blowup tensor. S 3 TTVC is a key operation on symmetric tensors, and is the computational bottleneck in fundamental algorithms such as the shifted-power method for computing tensor eigenpairs and symmetric CP-decomposition <ref type="bibr" coords="1,314.10,625.85,16.57,9.56" target="#b14">[14]</ref>- <ref type="bibr" coords="1,334.81,625.85,16.57,9.56" target="#b16">[16]</ref>. These algorithms, in turn, are utilized to perform a variety of hypergraph analyses. For instance, eigenpairs of the adjacency tensor of uniform hypergraphs are used to define H-eigenvector centrality (HEC) <ref type="bibr" coords="1,314.10,674.55,15.55,9.56" target="#b17">[17]</ref>, a nonlinear hypergraph centrality measure which was further extended to non-uniform hypergraphs using the blowup tensor representation <ref type="bibr" coords="1,452.58,698.91,15.55,9.56" target="#b13">[13]</ref>. Thus, developing performant algorithms for S 3 TTVC on the blowup tensor enables efficient computation of hypergraph centrality.</p><p>However, working with the blowup tensor requires we overcome several computational challenges. First, since enumerating all its nonzeros is prohibitively costly, following Aksoy, Amburg, and Young, we will adapt the "generating function approach" <ref type="bibr" coords="2,213.67,135.48,15.55,9.56" target="#b13">[13]</ref>, to perform the computation indirectly. Second, we introduce a new, compressed format for tensors that is tailored to reduce the memory footprint of storing nonuniform hypergraphs, called Compound Compressed Sparse Symmetric (CCSS). This extends past work on the CSS format for uniform hypergraphs <ref type="bibr" coords="2,174.50,208.53,15.55,9.56" target="#b18">[18]</ref>, <ref type="bibr" coords="2,199.15,208.53,16.90,9.56" target="#b19">[19]</ref> and, as explained further in Section IV, achieves S 3 TTVC performance gains via memoization of intermediate results.</p><p>Our main contributions are summarized as follows:</p><p>• We introduce the Compound Compressed Sparse Symmetric (CCSS), an extension of the CSS format for non-uniform hypergraphs, and demonstrate up to 26.4× compression compared to coordinate storage format for real-world hypergraphs. • We implement an efficient multi-core parallel S 3 TTVC algorithm, called CCSS-MEMO which adapts the generating function approach to the CCSS format, and identifies opportunities for memoization of intermediate results.</p><p>• We present two baseline approaches which use the CCSS without memoization and adopt two state-ofthe-art approaches to highlight the performance of CCSS-MEMO. We realize up to 53.98× speedup compared to CCSS-DIRECT, and up to 12.45× speedup compared to CCSS-FFT. • We apply our algorithm to the calculation of Heigenvector centrality for hypergraphs, obtaining speedups of many orders of magnitude over stateof-the-art approaches.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>II. PRELIMINARIES</head><p>Following Kolda and Bader <ref type="bibr" coords="2,196.30,546.11,15.55,9.56" target="#b20">[20]</ref>, we denote vectors using bold lowercase letter (e.g., a, b), and tensors using bold calligraphic letters (e.g., X). For a tensor X and a vector b we will also denote by X × j b the product of X and b along the j th -mode of X resulting in a order (N −1) tensor. Using this notation, we can define Tensor-Time-Same-Vector in all modes but 1 (TTSV1)</p><formula xml:id="formula_0">s = Xb N −1 = X = X × 2 b × 3 b . . . × N b (1)</formula><p>which plays an important role in calculating generalized eigenvalues and eigenvectors associated with X. Alterna-tively, by expanding along indicies this may be rewritten as</p><formula xml:id="formula_1">s i 1 = Xb N −1 i 1 = n i 2 =1 • • • n i N =1 X i 1 ,...,i N N k=2 b i k .</formula><p>(2) Formally, a hypergraph is a pair H = (V, E), where V is the set of vertices, and H is the set of hyperedges on those vertices; that is, E is some subset of the power set of V . We say H is uniform if all hyperedges have the same size; otherwise, it is nonuniform. The rank of H is the size of the largest hyperedge.</p><p>An order-N symmetric tensor X has N modes or dimensions, with the special property that the values, X (i 1 ,i 2 ,...i N ) remains unchanged under any permutation of its indices. Symmetric tensors arise naturally in many context including the representation of hypergraphs. For example, if H is an N -uniform hypergraph on n vertices, there is natural symmetric representation as an order-N tensor</p><formula xml:id="formula_2">X ∈ R n×n×•••×n . That is, for every hyperedge e = {v i 1 , v i 2 , . . . , v i N } ∈ E with weight w(e), X σ(i) = w(e)</formula><p>N ! , where σ(i) denotes any of the N ! permutations of the index tuple i = (i 1 , . . . , i N ). In order to extend this representation to non-uniform hypergraphs, we follow the approach of Banerjee et al. <ref type="bibr" coords="2,454.59,366.98,16.91,9.56" target="#b12">[12]</ref> and define for a rank-N edge-weighted hypergraph H = (V, E, w) the order-N blowup tensor, B, associated with H. To this end, for each edge e ∈ H define the set of ordered blowups of e as β(e) = {i 1 , i 2 , . . . i N : for each v ∈ e, ∃j i j = v}. <ref type="foot" coords="2,537.19,434.52,3.55,6.69" target="#foot_0">1</ref>Then for each i ∈ β(e), B i has value w (e)  |β(e)| . As we be working primarily with the blowup tensor, it will be convenient to define E(B) as the collection of edges which generated the blowup tensor B. In this paper, we take w(e) = |e| to ensure that B1 N −1 = d, the vector of node degrees. It is worth noting that for uniform hypergraphs, B is precisely the uniform adjacency tensor of the hypergraph discussed above.</p><p>The H-eigenvector centrality vector of H is a positive vector x satisfying Bx N −1 = λx [N −1] , where λ is the largest H-eigenvalue of B and the vector operation x [N −1] represents componentwise N − 1 power of x. By the Perron-Frobenius theorem for the hypergraph adjacency tensor <ref type="bibr" coords="2,367.41,615.98,15.55,9.56" target="#b13">[13]</ref>, if H is connected, then x is guaranteed to exist, and is unique up to scaling. Intuitively, here a node's importance (to the power of N − 1, which guarantees dimensionality preservation) is proportional to a product of centralities over all blowups of hyperedges that contain it. A popular approach is to compute the eigenpair (λ, x) using the NQZ algorithm <ref type="bibr" coords="3,247.94,121.53,16.91,9.56" target="#b21">[21]</ref> (Algorithm 1, where denotes componentwise division), an iterative power-like method that utilizes TTSV1 as its workhorse subroutine, which we employ here.</p><p>Algorithm 1 NQZ algorithm for computing HEC 1: Input: n-vertex, rank N hypergraph H, tolerance τ 2: Output: H-eigenvector centrality, x 3:</p><formula xml:id="formula_3">y = 1 n • 1 4: z = TTSV1(H, y) 5: repeat 6: x = z 1 N −1 /||z 1 N −1 || 1 7: z = TTSV1(H, x) 8: λ min = min (z x [N −1] ) 9: λ max = max (z x [N −1] ) 10: until (λ max − λ min )/λ min &lt; τ 11: return x</formula><p>Motivated by questions in hypergraph node ranking, we investigate the TTSV1 operation for the blowup tensor of a non-uniform hypergraph. To distinguish from the more general case, and emphasize the applicability to sparse symmetric tensors, we will refer to this problem as he Sparse Symmetric Tensor Times Same Vector (S 3 TTVC) operation on the blowup tensor. In many ways, the current work can be thought of as synthesis of the implicit S 3 TTVC algorithm on the blowup tensor proposed by Aksoy, Amburg and Young <ref type="bibr" coords="3,252.53,424.76,15.55,9.56" target="#b13">[13]</ref>, with the CSS format for storing sparse symmetric adjacency tensors of uniform hypergraphs <ref type="bibr" coords="3,198.15,449.11,15.55,9.56" target="#b18">[18]</ref>.</p><p>To that end, we summarize some of the key features of these two approaches in the next two subsections.</p><p>A. Generating Functions for S 3 TTV C Aksoy, Amburg and Young proposed the implicit AAY algorithm <ref type="bibr" coords="3,106.83,523.21,16.91,9.56" target="#b13">[13]</ref> (Algorithm 2) to evaluate TTSV1 for the blowup tensor that relies on generating functions. The fundamental observation which drives their algorithm is that, in the blowup tensor, all entries corresponding to a single edge have the same coefficient. Thus, by using generating functions to aggregate over the contributions of all elements of β(e), the computational requirements can be significantly reduced. More concretely, they observed that for any edge e ∈ E and vertex v ∈ e, the contribution of e to [Bb N −1 ] v can be captured as a rescaling of the last entry in</p><formula xml:id="formula_4">E N (b v ) * * u∈e\v E r (b u ) , where E N (c) = 1, c, c 2 2! , . . . , c N −1 (N − 1)! and E N (c) = 0, c, c 2 2! , . . . , c N −1 (N − 1)! and (a * b) is a vector of length N + 1 representing the convolution operation with (a * b)[k] = k i=0 a i b k−i .</formula><p>Alternatively, their approach can be viewed as extracting a specific coefficient of t N −1 from a particular exponential generating function <ref type="bibr" coords="3,433.41,196.82,15.55,9.56" target="#b22">[22]</ref>. This approach yields Algorithm 2.</p><p>Algorithm 2 AAY algorithm for implicit TTSV1 using Banerjee adjacency tensor.</p><formula xml:id="formula_5">1: Input: rank N weighted hypergraph (V, E, w), vector b 2: Output: S 3 TTVC output, s = Bb N −1 3: for v ∈ V do 4: c ← 0 5: for e ∈ E(v) do 6: c += w(e) |β(e)| (N − 1)! E N (b v ) * ( * u∈e\v E N (b u ))[N − 1]</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>7:</head><p>end for 8:</p><p>s v ← c 9: end for 10: return s While the aggregation over vertex-edge pairs given by the AAY approach results in significant computational speedups, the lack of structure imposed on the computation results in frequent repetition of the convolution calculations. For example, in the AAY approach the convolution E(b v ) * E(b u ) is computed |e|−2 times for every edge containing both v and u.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Compressed Sparse Symmetric Format</head><p>The CSS structure <ref type="bibr" coords="3,409.64,497.44,15.55,9.56" target="#b18">[18]</ref>, <ref type="bibr" coords="3,434.27,497.44,16.91,9.56" target="#b19">[19]</ref> is a compact storage format that enables efficient S 3 TTMC computation for sparse symmetric adjacency tensors X arising from uniform hypergraphs. In order to take advantage of the symmetry of X, CSS stores all information based on the collection of sorted edges of the associated hypergraph, E(X) <ref type="foot" coords="3,336.98,568.97,3.55,6.69" target="#foot_2">2</ref>If X has order N , then the CSS is a forest with N − 1 levels where every length k subsequence of an element of E(X) corresponds to a unique root to level k path in the CSS. Further, the leaves at level N − 1 are equipped with the "dropped" index in the subsequence and the value of X for the corresponding element of E(X). A key advantage of using the CSS format is its computation-aware nature -by storing all ordered subsequences of E(X), intermediate results in the S 3 TTMC computation can be easily memoized with minimal additional index information. In Shivakumar et al. <ref type="bibr" coords="4,79.47,146.24,15.55,9.56" target="#b18">[18]</ref>, <ref type="bibr" coords="4,104.16,146.24,16.91,9.56" target="#b19">[19]</ref> the S 3 TTMC-CSS algorithm is used to find the tensor decomposition of an adjacency tensor of a uniform hypergraph. The convergence of this method requires that the original hypergraph be connected. For a non-uniform hypergraph, it is likely that there exists an edge size such that the collection of hyperedges of that size is not connected. Thus, it is theoretically necessary to work with a single tensor representation of the hypergraph, such as the blowup tensor, in order to preserve the necessary convergence properties. This presents two primary challenges in applying S 3 TTMC-CSS that the current work addresses: the blowup tensor can have super-exponentially many non-zeros corresponding to a single edge and any data structure must explicitly account for the repetitions of the vertices induced by the blow-up. Naively, extending the index-ordered non-zeros approach of S 3 TTMC-CSS to incorporate repeated vertices will result in a significant increase in the memory footprint of the CSS structure to account for the repeated vertices, as well as the computational cost of computing S 3 TTVC itself. On the other hand, adopting the implicit construction approach and storing the adjacency tensor of each constituent uniform hypergraph using the CSS format is a suboptimal approach in terms of memory requirement compared to CCSS (described in the next section) and results in greater computation cost as we lose out on memoizing intermediate ĒN across IOU nonzeros i.e. hyperedges. Moreover, directly applying the S 3 TTMC-CSS algorithm to such a storage construction will not lead to correct results for the tensor-times-samevector operation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>III. COMPOUND CSS STRUCTURE</head><p>In this paper, we present an extension of CSS, called Compound Compressed Sparse Symmetric (CCSS) which facilitates fast S 3 TTVC computation on the blowup tensor representing non-uniform hypergraphs. One natural way to extend CSS to non-uniform hypergraphs would be to build an instance of CSS for each constituent uniform hypergraph and work independently on the corresponding adjacency tensors. However, as the associated tenors would all be of different orders, additional work would be needed to lift the methods of Shivakumar et al. <ref type="bibr" coords="4,163.33,679.83,16.91,9.56" target="#b18">[18]</ref> to the non-uniform case. Furthermore, similar to the AAY approach, decomposing the non-uniform hypergraph into multiple uniform hypergraphs leads to significant extra computation and storage. For instance, if u and v are in multiple edges of different sizes then memoized work for the subsequence u, v occurs in the CSS for each of these edge sizes.</p><formula xml:id="formula_6">i 1 2 1 1 4 1 5 i 2 3 3 2 5 4 7 i 3 4 4 3 6 6 i 4 7 6 8 7 vals v 1 v 2 v 3 v 4 v 5 v 6</formula><p>Instead, we introduce CCSS which extends the CSS to non-uniform hypergraphs by building a forest of N − 1 levels containing all proper subsequences E(B), that is, the ordered proper subsets of the edges. In particular, if f is a size proper subset of an edge e, f is represented by a unique root to level path in the forest, and further, this path is given by an in-order listing of the elements of f . In contrast to CSS, in CCSS the edges of B are "owned" by vertices in the forest at all levels and a vertex at a given level may own multiple edges. We note that the edges owned by a given vertex can be thought of as special leaves of the data structure (at level corresponding the the edge size) which store the "dropped" vertex and the value of the tensor at all blowups of the edge. These special leaves of the CCSS can be easily enumerated as the ordered pairs L = {(e, v) : e ∈ E, v ∈ e}. We will denote by L k ⊆ L those special leaves corresponding to an edge of size k. We will also denote by S(v) the set of special leaves "owned" by a vertex in the CCSS structure and note that L = ∪S(v) where the union is taken over all vertices at level − 1 in the CCSS structure.</p><p>In the example shown in Fig. <ref type="figure" coords="4,458.07,543.81,3.81,9.56">2</ref>, the CCSS is constructed from a 8-node weighted non-uniform hypergraph with edges (shown in index-ordered format) in Fig. <ref type="figure" coords="4,335.55,580.34,3.81,9.56" target="#fig_0">1</ref>. We can easily see the reduction in space (as compared to the multiple CSS approach) in this example -the sequence <ref type="bibr" coords="4,381.91,604.29,11.83,10.15" target="#b0">(1,</ref><ref type="bibr" coords="4,395.43,604.29,9.01,10.15" target="#b4">4)</ref> is shared between the sequences <ref type="bibr" coords="4,314.33,616.47,11.83,10.15" target="#b0">(1,</ref><ref type="bibr" coords="4,327.85,616.47,9.01,10.15" target="#b4">4)</ref> and <ref type="bibr" coords="4,358.53,616.47,11.83,10.15" target="#b0">(1,</ref><ref type="bibr" coords="4,372.06,616.47,7.88,10.15" target="#b4">4,</ref><ref type="bibr" coords="4,381.64,616.47,7.71,10.15" target="#b6">6)</ref>, corresponding to the edges {1, 4, 6} and {1, 3, 4, 6}, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Space complexity</head><p>The total number of nodes in the CCSS depends not only on the number of edges in E(B), but also the relative sizes and intersection structure. Thus, although a single edge e requires at |e| vertices at level in the forest and 2 |e| − 1 vertices in the forest overall, because of the intersections across edges the size of CCSS is typically much smaller than the worst case</p><formula xml:id="formula_7">e∈E 2 |e| − 1.</formula><p>In the next section, we outline how CCSS can be used to compute S 3 TTVC on the blowup tensor.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>IV. S 3 TTVC COMPUTATION</head><p>This work adopts the generating function approach outlined in the AAY algorithm <ref type="bibr" coords="5,210.58,409.08,16.91,9.56" target="#b13">[13]</ref> for computing S 3 TTVC in parallel using the CCSS data structure. We present two algorithms -a baseline approach given in Algorithm 3 which directly parallelizes the AAY approach given in Algorithm 2 and uses the CCSS to store the hypergraph and an optimized version in Algorithm 4 which rearranges the computations of the AAY approach in order to leverage the CCSS to reduce the overall computation by memoization of intermediate results.</p><p>For both of these approaches the focus is on calculating, for every pair e ∈ E and v ∈ e, the last entry of the convolution in the convolution of lists E N (v) and {E N (b u )} u∈e\v . For the baseline algorithms, we consider two different methods of computing this convolution; an in-place shift-and-multiply approach and a more efficient approach (but with a larger memory footprint) based on the Fast Fourier Transform (FFT) <ref type="bibr" coords="5,276.48,618.08,15.55,9.56" target="#b23">[23]</ref>. In Algorithm 4, we only consider a variant of the shiftand-multiply convolution because of the memoization approach used.</p><p>Algorithm 3 S 3 TTVC using CCSS via generating function.</p><formula xml:id="formula_8">Input: Non-uniform hypergraph stored in CCSS, b Output: S 3 TTVC output, s = Bb N −1 1: for = N, . . . , 1 do 2:</formula><p>parfor (e, v) ∈ L do //CCSS 3:</p><formula xml:id="formula_9">coefs = E N (b v ) 4: u = v 5: for = − 1, . . . , 1 do 6: u = parent(u) / / CCSS 7: coefs = E N (b u ) * coefs 8:</formula><p>end for</p><formula xml:id="formula_10">9: AtomicAdd s v , (N −1)! |β(e)| coefs[N − 1] 10:</formula><p>end parfor 11: end for</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Baseline algorithm</head><p>Note that Algorithm 3 iterates over the "special" leaves in the CCSS structure by level and for each of these leaves moves up through the CCSS forest to a root of one of the subtrees. This leaf-to-root traversal would make any memoization approach inefficient and challenging to implement as the repeated calculations occur at different locations in the CCSS. For example, in Fig. <ref type="figure" coords="5,346.26,557.20,5.07,9.56">2</ref> there are several repeated paths (for example, 4, 6 with a special leaf for vertex 1 appears in the trees rooted at 3 and at 4, or 7 with a special leaf for vertex 5 appears in trees rooted at 4 and at 7), however as these calculations occur at different nodes and different levels in the CCSS forest it is challenging to realize the benefits of memoization. This observation inspires our development of a root-to-leaf traversal of the CCSS structure, detailed in the next subsection.</p><p>Algorithm 4 Memoized S 3 TTVC using CCSS and generating function.</p><p>Input: Non-uniform hypergraph stored in CCSS, b Output: S 3 TTVC output, s = Bb N −1 1: For each processor allocate sub-coefficient memoization workspace W of size R (N −1)×(N −1) . 2: parfor v = 1, 2, . . . n do for i = 1, 2, . . . , j do 5: </p><formula xml:id="formula_11">W ij ← 1 (j−i+1)! b j−i+1</formula><formula xml:id="formula_12">for u ∈ S(v) do 12: coefs = 1, b u , b 2 u 2! , . . . , b N −1− u (N −1− )! 13: AtomicAdd s u , (N −1)! β( ) coefs T W N −1− 14:</formula><p>end for 15:</p><p>for u ∈ children of v do for q = 1, 2, . . . , p do 18:</p><formula xml:id="formula_13">Z pq ← q−p c=0 1 c! b c+1 u W p,q−c 19:</formula><p>end for 20:</p><p>end for 21:</p><p>DFS(u, Z, + 1)</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>22:</head><p>end for 23: end function</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Optimization: Convolution Memoization</head><p>In this approach, we optimize the traversal of the CCSS forest by using a depth-first search to traverse each tree independently with a separate memoization space, W . After the algorithm has processed a node v on level which has path to the root</p><formula xml:id="formula_14">v 1 , v 2 , . . . , v = v, the k th column of W , denoted W k , stores the portion of the convolution of {E N (b v i )} k</formula><p>i=1 with degree at most + k − 1. Furthermore, if S(v) is non-empty for a vertex v at level , for any u ∈ S(v) the contribution of to s u can be found by taking the dot product of column W N −1− with the terms from E N (b u ) of degree at most N − 1 − . The pseudocode for this approach is given in Algorithm 4.</p><p>To illustrate the memoization approach, consider the traversal of the subtree rooted at 1 in Figure <ref type="figure" coords="6,248.90,660.73,3.81,9.56">2</ref>. This tree will have 3 workspaces associated with it W 1 , W 2 , W 3 associated with each level of the tree. Workspace 1 will always contain the information necessary to construct the generating function ĒN (1), while W 2 and W 3 will contain the information necessary to construct the generating function for the convolutions of ĒN for v 1 , v 2 and v 1 , v 2 , v 3 , where v 1 , v 2 , v 3 is the path to the current node in the depth-first traversal of the tree. After the unique child of the path (1,2,8) has been computed, the next node in the depth-first traversal is vertex 3 as a child of the root (vertex 1). The updated W 2 can be computed directly from the information in W 1 while updated W 3 is delayed. Now, when traversing the children of vertex 2 (namely 4, 6, and 8) the appropriate W 3 can be computed directly from W 2 without recomputing the convolutions ĒN (1) * ĒN (2). This convolution has been effectively memoized for future computations in W 2 .</p><p>We note that for readability of Algorithm 4 we have suppressed the use of several easy optimizations. For instance, if all the edges associated with special leaves in a tree have size at least k, then the number of rows W can be reduced to N − k + 1 as the higher order terms in E N are irrelevant to the final output. Similarly, if the maximum size of an edge associated with a tree is m, then the number of columns of W can be reduced to m − 1 as the longest path to be tracked has size m. The memoization workspace is allocated per processor, which stores the W matrix of convolution operations. Moreover, note that W is a square uppertriangular Toeplitz matrix, which brings down memory costs to O(N ) 2 , since each vertex needs to update only a vector of length N . Finally, the CCSS forest can be trimmed to eliminate trees, or subtrees, which have no special vertices attached.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Computational complexity</head><p>We compare the computational complexity of Algorithm 3 and Algorithm 4. For Algorithm 3, every special leaf corresponding to (e, v) requires one traversal from the special leaf to the root, and thus total number of convolutions computed is e∈E |e| 2 −|e|. However, in Algorithm 4 every edge of the CCSS forest corresponds to a convolution which is computed exactly once. In particular, the number of convolutions is one less than the number of nodes in the CCSS forest. While the precise speedup resulting from avoiding the extra convolutions is heavily dependent on the structure of the hypergraph, as we will show in Sec. V, in most real-world cases this results in an order of magnitude saving in runtime.</p><p>In spite of the difficulty in determining the exact number of convolutions saved by using the CCSS structure, we can still identify key substructures that lead to significant performance benefits; namely nested families Fig. <ref type="figure" coords="7,82.58,172.43,3.04,7.65" target="#fig_2">3</ref>. Hypergraph sub-structures in which the memoization of Algorithm 4 significantly improves the performance over that of Algorithm 3. On the left is the sunflower hypergraph where many edges share a common intersection, and on the right is the nested hypergraph where edges satisfy a containment relationship. of edges and "sunflowers" (collections of edges with a shared intersection), see Fig. <ref type="figure" coords="7,199.30,253.14,3.81,9.56" target="#fig_2">3</ref>. For example, with a nested series of edges e 1 ⊂ e 2 ⊂ • • • ⊂ e k , Algorithm 3 will require the computation of k i=1 |e i | 2 −|e i | convolutions without memoization. In contrast, the optimal CCSS tree will yield require only</p><formula xml:id="formula_15">|e k | 2 −|e k |−2 2 + k i=1 |e i | convolutions.</formula><p>Similarly, if we consider a sunflower consisting of m edges of size k with a common intersection of size t, we can see that the non-memoized computation will require m(k 2 −k) convolution calculations while the memoized version requires</p><formula xml:id="formula_16">(k − t − 1) 2 + (k − t − 1) 2 + (t − 2)t + (k − t)m + km convolutions.</formula><p>In fact, even for a single edge of size k, the non-memoized computation requires at k 2 − k convolutions while the memoized version will require</p><formula xml:id="formula_17">k 2 −k 2 .</formula><p>Thus the memoization decreases by a factor of at least 2 times the number of convolution operations necessary to evaluate S<ref type="foot" coords="7,161.78,470.51,4.04,7.10" target="#foot_3">3</ref> TTVC.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>V. EXPERIMENTS</head><p>We compare the runtime performance and thread scalability of our shared-memory parallel S 3 TTVC algorithm CCSS-MEMO against our two baseline approaches -CCSS-DIRECT and CCSS-FFT -for a collection of real-world and synthetic datasets.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A. Platform and experimental configurations</head><p>Our experiments were conducted on a shared-memory machine with two 64-core AMD Epyc 7713 CPUs at 2.0 GHz and 512GB DDR4 DRAM. This work is implemented using C++ and multi-threading parallelized using OpenMP; all numerical operations are performed using double-precision floating point arithmetic and 64-bit unsigned integers. It is compiled using GCC 10.3.0 and Netlib LAPACK 3.8.0 <ref type="bibr" coords="7,162.79,681.41,16.91,9.56" target="#b24">[24]</ref> for linear algebra routines.</p><p>The polynomial multiplication optimization is performed via full one-dimensional discrete convolution using Fast Fourier Transform (FFT) implementation from FFTW library <ref type="bibr" coords="7,345.52,110.35,15.55,9.56" target="#b25">[25]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B. Datasets</head><p>We tested with eight real-world datasets and four synthetic datasets for more analysis, shown in Table <ref type="table" coords="7,536.44,156.89,2.96,9.56">I</ref>.</p><p>Real-world data. The real-world data come from diverse applications with different amount of nodes |V | (ranging from 10 3 to 10 6 ), hyperedges |E| (ranging from 10 4 to 10 6 ), and component adjacency tensors N k (ranging from 22-100). A brief introductory description and reference of the real-world datasets are given in the last two columns. Note that datasets which contain "filtered" in their description are filtered versions of the originals, using the less than or equal to filtering from Landry et al. <ref type="bibr" coords="7,369.45,278.64,16.90,9.56" target="#b31">[31]</ref> to remove all hyperedges of size larger than N k .</p><p>Synthetic data. The synthetic datasets are random hypergraphs on the same set of nodes with the same total amount of hyperedges. But the hyperedges are of varying sizes, uniformly chosen at random over the vertex set. For each of S1, S2, S3 and S4, the component symmetric adjacency tensor orders were taken to be multiples of five until the hypergraph rank i.e. maximum component adjacency tensor order, with each component tensor containing approximately the same number of hyperedges.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>C. Overall performance</head><p>We evaluate the performance of both implementations of Algorithm 3, i.e., CCSS-DIRECT that directly computes the polynomial multiplication and CCSS-FFT that substitutes the polynomial multiplication kernel with a FFT convolution approach, and Algorithm 4 (CCSS-MEMO), which memoizes the coefficients to compute S 3 TTVC using a single traversal of the CCSS representation on both categories of datasets.</p><p>Comparisons to SOTA methods. In Table <ref type="table" coords="7,520.73,544.34,6.20,9.56" target="#tab_1">II</ref>, we summarize the speedups of CCSS-DIRECT, CCSS-FFT, and CCSS-MEMO on a single core as compared to the state-of-the-art single-core Python implementation of Algorithm 2 <ref type="bibr" coords="7,367.48,593.05,15.55,9.56" target="#b13">[13]</ref>. 3 Our CCSS-MEMO outperforms considerably, providing speedups of 1.3 -18.6 times on the eight real-world datasets, while CCSS-FFT provides considerable improvements as well. CCSS-DIRECT largely underperforms, due to using direct convolution instead  of FFT, with the exception being walmart-trips, where it obtains a speedup of 1.4. Although the timing results in Aksoy et al. <ref type="bibr" coords="8,172.36,385.58,16.91,9.56" target="#b13">[13]</ref> were obtained using a different language and system, the speedup observed is almost two orders of magnitude for the largest dataset, amazon-reviews, which suggests that the speedup is due to improvements in the algorithm as opposed to system and implementation differences. Further, as the dominate subroutine (the convolution operation) is implemented using optimized and compiled code (via a Python-wrapper in <ref type="bibr" coords="8,152.25,482.99,16.23,9.56" target="#b13">[13]</ref>) one would expect that much of the performance differences resulting from language choice are mitigated. Furthermore, the strong scaling results seen in Fig. <ref type="figure" coords="8,147.51,519.52,5.07,9.56" target="#fig_6">6</ref> suggest even greater speedups as we increase the number of cores.</p><p>Real-world datasets. Fig. <ref type="figure" coords="8,194.52,544.02,5.07,9.56">4</ref> presents the runtime performance on 128 cores of these three approaches for the real-world datasets. CCSS-MEMO performs the best on almost all the eight datasets, achieves 1.97 − 53.98× speedup over CCSS-DIRECT and 0.65−12.45× speedup over CCSS-FFT. The variation in speedups across different datasets for CCSS-MEMO is inherent to the hypergraph structure, and is due to the degree of overlap in the hyperedges present in the hypergraph. For the R3 dataset, we can see from Fig. <ref type="figure" coords="8,242.36,653.61,5.07,9.56" target="#fig_7">7</ref> that CCSS achieves very low compression compared to the coordinate format. Thus, there is no significant advantage in Fig. <ref type="figure" coords="8,332.48,411.35,3.04,7.65">4</ref>. Overall runtime performance of CCSS-MEMO, CCSS-DIRECT and CCSS-FFT for real-world datasets in Table <ref type="table" coords="8,507.52,420.49,2.70,7.65">I</ref> using the memoization approach to compute S 3 TTVC, which is why we see that CCSS-FFT slightly outperforms CCSS-MEMO for higher thread configurations for this dataset.</p><p>Synthetic datasets. Since the synthetic datasets maintain the same number of IOU non-zeros across component uniform hypergraphs, the number of leaf nodes per level of the CCSS that contribute the S 3 TTVC computation is the same. This allows us to inspect the effect of the rank of the non-uniform hypergraph on the performance of all three algorithms. We see from Fig. <ref type="figure" coords="8,541.34,580.55,5.07,9.56" target="#fig_5">5</ref> that sub-coefficient memoization has a significant impact on performance for hypergraphs of increasing ranks. This is to be expected since with increasing tensor order, the reduction in the number of traversals of the CCSS, as well as sharing of sub-coefficients between overlapping hyperedges for a uniform hyperedge distribution, would result in improved performance compared to CCSS-DIRECT and CCSS-FFT.  <ref type="table" coords="9,204.20,315.39,2.96,9.56">I</ref>. Across all datasets, we see that the CCSS-MEMO approach is faster than both the baseline approaches. The dashed lines indicate the ideal speedup lines for each of the three algorithms. CCSS-DIRECT and CCSS-FFT do not use memoization for the intermediate ĒN (v) computations. The CCSS-DIRECT algorithm shows the best scalability of the three approaches, while both CCSS-FFT and CCSS-MEMO show decreasing scalability with increasing number of threads. For both of these approaches, as the work done per thread reduces (in terms of optimized FFT subroutines in FFTW for CCSS-FFT and in terms of coefficient W memoization for CCSS-MEMO), the overhead in the atomic operation becomes more significant, especially for the hypergraphs with smaller number of nodes, and this manifests as suboptimal scaling. Moreover, the scalability of CCSS-MEMO is also affected by the load imbalance between threads due to the varying number of IOU non-zeros across trees within the CCSS structure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>E. CCSS Construction</head><p>CCSS construction. While the CSS compressed only in terms of overlapping IOU non-zeros within a symmetric adjacency tensor, the CCSS adds another layer of compactness in terms of shared indices between IOU non-zeros across multiple symmetric tensors. Moreover, for computing S 3 TTVC on the blowup tensor using the CCSS, we can further prune paths if the leaf node of the path does not own any IOU non-zeros. Fig. <ref type="figure" coords="9,250.77,654.43,16.34,9.56" target="#fig_7">7(a)</ref> shows the size of the constructed CCSS for representative synthetic and real-world datasets, while Fig. <ref type="figure" coords="9,237.36,678.78,4.23,9.56" target="#fig_7">7</ref>(b) examines the ratio of the amount of time spent in the construction of CCSS to the runtime of CCSS-MEMO for S 3 TTVC computation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>F. H-eigenvector centrality computation speedups</head><p>CCSS-MEMO provides a practical framework to compute centrality in large hypergraphs. We compute tensor H-eigenvector centrality using Algorithm 1 on the largest real-world dataset in Table <ref type="table" coords="9,426.97,181.15,3.38,9.56">I</ref> -the amazon-reviews -on 128 cores. CCSS-MEMO obtains speedups of 6.49× and 3.53× over CCSS-DIRECT and CCSS-FFT respectively, which shows the applicability of this work in the analysis of real-world hypergraphs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>VI. CONCLUSION</head><p>This work introduces the CCSS, an extension of the CSS for uniform hypergraphs, to compactly nonuniform hypergraphs. A novel memoization-based algorithm CCSS-MEMO adapted from the generating function approach is proposed to compute S 3 TTVC on the blowup adjacency tensor of non-uniform hypergraphs. We demonstrate the performance of our shared-memory parallel CCSS-MEMO by comparing it to two naive baseline algorithms using the CCSS -CCSS-DIRECT and CCSS-FFT -for multiple synthetic and real-world datasets. In the future, we plan to explore distributedmemory construction of CCSS and distributed-memory parallel S 3 TTVC computation using CCSS-MEMO. Furthermore, we plan to utilize CCSS-MEMO as the computational kernel in extending multilinear PageRank to nonuniform hypergraphs, where we anticipate its advanced data structures and parallelization will allow analysis of datasets previously considered prohibitively large for tensor analysis. Our fast algorithm would also help facilitate the multilinear hypergraph clustering <ref type="bibr" coords="9,314.70,522.11,15.55,9.56" target="#b13">[13]</ref>. Moreover, we believe it opens the door for development of tensor-based methods for semi-supervised and supervised hypergraph learning tasks such as node classification and link prediction.  <ref type="table" coords="10,481.20,506.12,2.37,7.65">I</ref>. We set the time limit of our jobs at 50 minutes for all thread configurations. The stackoverflow dataset does not complete within the allotted time for 1, 2 and 4 thread configurations for CCSS-DIRECT.  <ref type="table" coords="11,122.06,263.52,2.37,7.65">I</ref>. We see that CCSS achieves more compact storage than the coordinate format i.e. storing the adjacency tensor non-zeros as lists of index tuples along with their non-zero value.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,314.33,160.00,232.24,7.65;4,314.33,168.81,132.80,8.12"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Non-uniform hypergraph generating three sparse symmetric tensors having 6 IOU nonzeros in total.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="5,70.22,187.13,476.62,7.65;5,70.22,195.94,476.66,8.12;5,70.22,205.07,476.67,8.74;5,70.22,214.20,182.48,8.74"><head>8 Fig. 2 .</head><label>82</label><figDesc>Fig.2. CCSS for rank-4 non-uniform hypergraph in Fig.1. The special leaves are represented by rectangular nodes with the dropped vertex over the value of the corresponding entry in B. Note that these special leaves are depicted on different layers of the forest corresponding to the edge size, for instance, the edge {1, 4, 6} corresponds to 3 special leaves all at level 3 (those with value v 5 , while the edge {5,7} correspond to 2 special leaves all at level 3 (those with value v 6 ).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,69.54,165.57,6.32,7.65;6,96.15,163.72,108.26,10.15;6,69.54,177.75,6.32,7.65"><head>3 :</head><label>3</label><figDesc>for j = 1, 2, . . . N − 1 do 4:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,199.92,193.15,4.06,6.82;6,69.54,202.19,6.32,7.65;6,111.37,200.58,32.04,9.73;6,69.54,214.37,6.32,7.65;6,96.15,212.75,32.04,9.73;6,69.54,226.54,6.32,7.65;6,96.15,225.10,56.55,9.56;6,69.54,237.11,58.91,9.73;6,65.48,261.46,112.31,9.73;6,65.48,275.25,10.37,7.65"><head>10 :</head><label>10</label><figDesc>function DFS(v, W, ) 11:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,65.48,351.75,10.37,7.65;6,111.37,349.90,108.59,10.15;6,65.48,363.92,10.37,7.65"><head>16 :</head><label>16</label><figDesc>for p = 1, 2, . . . N − 2 do 17:</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="9,63.68,225.91,232.25,7.65;9,63.68,235.04,232.25,7.65;9,63.68,242.51,196.04,9.31;9,71.25,70.27,217.09,143.76"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Comparison of runtime of CCSS-MEMO with CCSS-DIRECT and CCSS-FFT for synthetic datasets in Table I to highlight effect of rank of non-uniform hypergraph on S 3 TTVC computation.</figDesc><graphic coords="9,71.25,70.27,217.09,143.76" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="10,64.63,506.12,476.67,7.65;10,64.63,514.93,476.67,8.12;10,64.63,524.38,160.09,7.65;10,75.99,69.37,453.96,424.87"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Thread scalability of CCSS-DIRECT, CCSS-FFT, and CCSS-MEMO for synthetic and real-world datasets in TableI. We set the time limit of our jobs at 50 minutes for all thread configurations. The stackoverflow dataset does not complete within the allotted time for 1, 2 and 4 thread configurations for CCSS-DIRECT.</figDesc><graphic coords="10,75.99,69.37,453.96,424.87" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="11,64.20,254.39,232.25,7.65;11,64.20,263.52,232.25,7.65;11,64.20,272.65,232.25,7.65;11,64.20,281.78,185.10,7.65;11,64.31,70.38,232.00,171.99"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Summary statistics for CCSS construction for representative datasets in TableI. We see that CCSS achieves more compact storage than the coordinate format i.e. storing the adjacency tensor non-zeros as lists of index tuples along with their non-zero value.</figDesc><graphic coords="11,64.31,70.38,232.00,171.99" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="8,63.59,259.02,224.18,77.17"><head>TABLE II SINGLE</head><label>II</label><figDesc>-CORE SPEEDUPS OF CCSS-DIRECT, CCSS-FFT, AND CCSS-MEMO VERSUS THE PYTHON IMPLEMENTED ALGORITHM 2 IN [13].</figDesc><table coords="8,63.59,304.74,224.18,31.45"><row><cell>speedup</cell><cell>R1</cell><cell>R2</cell><cell>R3</cell><cell>R4</cell><cell>R5</cell><cell>R6</cell><cell>R7</cell><cell>R8</cell></row><row><cell>CCSS-DIRECT</cell><cell>0.7</cell><cell>1.0</cell><cell>0.2</cell><cell>1.4</cell><cell>0.1</cell><cell>-</cell><cell>0.1</cell><cell>-</cell></row><row><cell>CCSS-FFT</cell><cell>2.4</cell><cell>3.5</cell><cell>2.8</cell><cell>4.2</cell><cell>0.4</cell><cell>4.7</cell><cell>2.1</cell><cell>2.6</cell></row><row><cell>CCSS-MEMO</cell><cell>2.4</cell><cell>5.2</cell><cell>3.0</cell><cell>17.0</cell><cell>1.3</cell><cell>18.6</cell><cell>4.5</cell><cell>4.6</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">Note that |β(e)| depends only on N and the size of e and is given by |e|! N |e| , where N |e| , is the Stirling number of the second kind. Thus β(e) can be trivially precomputed and stored in a lookup table to accelerate future computations.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_1">Authorized licensed use limited to: HUNAN UNIVERSITY. Downloaded on June 03,2025 at 15:24:09 UTC from IEEE Xplore. Restrictions apply.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_2">Vertex-sorted hyperedges are also referred to as index-ordered unique (IOU) non-zeros<ref type="bibr" coords="3,398.95,662.64,12.44,7.65" target="#b18">[18]</ref>,<ref type="bibr" coords="3,418.09,662.64,12.44,7.65" target="#b19">[19]</ref>, and denoted by unz(X), where a non-zero entry of a order N tensorX i 1 ,...,i N is IOU if i 1 &lt; i 2 &lt; • • • &lt; i N .</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_3">In personal conversations with the authors of<ref type="bibr" coords="7,485.58,663.63,12.44,7.65" target="#b13">[13]</ref>, it was noted that a highly-optimized low-level FFT implementation with a Python front-end was used to obtain their results.</note>
+		</body>
+		<back>
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>support from the Applied Mathematics Program within the U.S. Department of Energy's Office of Advanced Scientific Computing Research as part of Scalable Hypergraph Analytics via Random Walk Kernels (SHARWK). Pacific Northwest National Laboratory is operated by Battelle for the DOE under Contract DE-AC05-76RL0 1830. PNNL Information Release PNNL-SA-187496</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="9,328.58,608.49,213.63,7.65;9,328.59,617.63,213.65,7.65;9,328.59,626.62,213.65,7.78;9,328.59,635.75,211.20,7.78" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Cyber security analysis of power networks by hypergraph cut algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Yamaguchi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Ogawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Takeda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Iwata</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2014 IEEE International Conference on Smart Grid Communications</title>
+				<meeting><address><addrLine>SmartGridComm</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2014">2014. 2015</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="824" to="829" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,328.59,645.58,213.65,7.65;9,328.59,654.71,213.65,7.65;9,328.59,663.70,213.64,7.78;9,328.59,672.84,213.65,7.78;9,328.59,682.11,191.58,7.65" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Hypergraph Analytics of Domain Name System Relationships,&quot; in Algorithms and Models for the Web Graph</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><forename type="middle">A</forename><surname>Joslyn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Aksoy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Arendt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Firoz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Jenkins</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Praggastis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Purvine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Zalewski</surname></persName>
+		</author>
+		<editor>B. Kamiński, P. Prałat, and P. Szufel</editor>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<publisher>Springer International Publishing</publisher>
+			<biblScope unit="page" from="1" to="15" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,83.23,557.19,213.65,7.65;10,83.23,566.32,213.65,7.65;10,83.23,575.45,213.65,7.65;10,83.23,584.58,213.65,7.65;10,83.23,593.72,213.65,7.65;10,83.23,602.85,213.65,7.65;10,83.23,611.98,213.65,7.65;10,83.23,621.11,213.66,7.65;10,83.23,630.11,213.65,7.78" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Hypergraph models of biological networks to identify genes critical to pathogenic viral response</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Feng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Heath</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Jefferson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Joslyn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Kvinge</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">D</forename><surname>Mitchell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Praggastis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">J</forename><surname>Eisfeld</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">C</forename><surname>Sims</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">B</forename><surname>Thackray</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">B</forename><surname>Walters</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">J</forename><surname>Halfmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Westhoff-Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Q</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">D</forename><surname>Menachery</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">P</forename><surname>Sheahan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">S</forename><surname>Cockrell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">F</forename><surname>Kocher</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">G</forename><surname>Stratton</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">C</forename><surname>Heller</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">M</forename><surname>Bramer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">S</forename><surname>Diamond</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">S</forename><surname>Baric</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">M</forename><surname>Waters</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Kawaoka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">E</forename><surname>Mcdermott</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Purvine</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">BMC Bioinformatics</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="21" />
+			<date type="published" when="2021">12 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,83.23,639.38,213.65,7.65;10,83.23,648.51,98.26,7.65" xml:id="b3">
+	<monogr>
+		<title/>
+		<idno type="DOI">10.1186/s12859-021-04197-2</idno>
+		<ptr target="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04197-2" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,83.23,661.05,213.65,7.65;10,83.23,670.05,213.65,7.78;10,83.23,679.18,213.64,7.78;10,328.59,557.19,62.51,7.65" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Social Influence Maximization in Hypergraph in Social Networks</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Ghosh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Yuan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Network Science and Engineering</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page">2019</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,328.59,567.17,213.65,7.65;10,328.59,576.17,213.65,7.78;10,328.59,585.30,213.65,7.78;10,328.59,594.57,159.51,7.65" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Structured Hypergraphs in Cellular Mobile Communication Systems</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Ganesan</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3571306.3571335</idno>
+		<ptr target="https://dl.acm.org/doi/10.1145/3571306.3571335" />
+	</analytic>
+	<monogr>
+		<title level="m">ACM International Conference Proceeding Series</title>
+				<imprint>
+			<date type="published" when="2023">1 2023</date>
+			<biblScope unit="page" from="188" to="196" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,328.59,604.55,213.66,7.65;10,328.59,613.69,213.65,7.65;10,328.59,622.68,213.65,7.78;10,328.59,631.81,213.65,7.78;10,328.59,641.08,204.15,7.65" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Tensor Spectral Clustering for Partitioning Higher-order Network Structures</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">R</forename><surname>Benson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">F</forename><surname>Gleich</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Leskovec</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/1.9781611974010.14</idno>
+		<ptr target="http://arxiv.org/abs/1502.05058http://dx.doi.org/10.1137/1.9781611974010.14" />
+	</analytic>
+	<monogr>
+		<title level="m">SIAM International Conference on Data Mining 2015, SDM 2015</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="118" to="126" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,328.59,651.07,213.65,7.65;10,328.59,660.20,212.22,7.65" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Community Detection for Hypergraph Networks via Regularized Tensor Power Iteration</title>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><forename type="middle">T</forename><surname>Ke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Xia</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="10,328.59,670.19,213.65,7.65;10,328.59,679.32,213.65,7.65;11,82.80,317.36,213.65,7.78;11,82.80,326.63,95.45,7.65" xml:id="b8">
+	<analytic>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Ouvrard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">M</forename><surname>Le Goff</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Marchand-Maillet</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">On Adjacency and e-Adjacency in General Hypergraphs: Towards a New e-Adjacency Tensor</title>
+		<title level="s">Electronic Notes in Discrete Mathematics</title>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="page" from="71" to="76" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,336.37,213.65,7.65;11,82.80,345.37,213.65,7.78;11,82.80,354.50,213.65,7.78;11,82.80,363.77,95.18,7.65" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Community Detection in General Hypergraph via Graph Embedding</title>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Wang</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2103.15035v2" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of the American Statistical Association</title>
+		<imprint>
+			<date type="published" when="2021">3 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,373.51,213.65,7.65;11,82.80,382.65,213.65,7.65;11,82.80,391.78,213.65,7.65;11,82.80,400.91,28.41,7.65" xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Partial recovery and weak consistency in the non-uniform hypergraph Stochastic Block Model</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Dumitriu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Zhu</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2112.11671v2" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,410.65,213.65,7.65;11,82.80,419.78,213.65,7.65;11,82.80,428.92,149.08,7.65" xml:id="b11">
+	<monogr>
+		<title level="m" type="main">Exact recovery for the nonuniform Hypergraph Stochastic Block Model</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Dumitriu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Wang</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/2304.13139v1" />
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,438.66,213.66,7.65;11,82.80,447.65,213.65,7.78;11,82.80,456.92,213.65,7.65;11,82.80,466.06,145.21,7.65" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Spectra of general hypergraphs</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Banerjee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Char</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Mondal</surname></persName>
+		</author>
+		<ptr target="https://www.sciencedirect.com/science/article/pii/S0024379516306115" />
+	</analytic>
+	<monogr>
+		<title level="j">Linear Algebra and its Applications</title>
+		<imprint>
+			<biblScope unit="volume">518</biblScope>
+			<biblScope unit="page" from="14" to="30" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,475.80,213.65,7.65;11,82.80,484.93,149.95,7.65" xml:id="b13">
+	<monogr>
+		<title level="m" type="main">Scalable tensor methods for nonuniform hypergraphs</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">G</forename><surname>Aksoy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Amburg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">J</forename><surname>Young</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,494.67,213.65,7.65;11,82.80,503.66,213.65,7.78;11,82.80,512.93,58.45,7.65" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Numerical optimization for symmetric tensor decomposition</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">G</forename><surname>Kolda</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Mathematical Programming</title>
+		<imprint>
+			<biblScope unit="volume">151</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="225" to="248" />
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,522.68,213.65,7.65;11,82.80,531.67,213.65,7.78;11,82.80,540.94,213.65,7.65;11,82.80,550.07,151.61,7.65" xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Shifted Power Method for Computing Tensor Eigenpairs</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">G</forename><surname>Kolda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Mayo</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/100801482</idno>
+		<ptr target="https://epubs.siam.org/doi/10.1137/100801482" />
+		<imprint>
+			<date type="published" when="2011">10 2011</date>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="1095" to="1124" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,559.81,213.65,7.65;11,82.80,568.95,213.65,7.65;11,82.80,578.08,28.41,7.65" xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Symmetric Orthogonal Tensor Decomposition is Trivial</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">G</forename><surname>Kolda</surname></persName>
+		</author>
+		<ptr target="https://arxiv.org/abs/1503.01375v1" />
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,587.82,213.65,7.65;11,82.80,596.82,213.65,7.78;11,82.80,606.09,213.65,7.65;11,82.80,615.22,43.75,7.65" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Three Hypergraph Eigenvector Centralities</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">R</forename><surname>Benson</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/18M1203031</idno>
+		<ptr target="https://doi.org/10.1137/18M1203031" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Mathematics of Data Science</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="293" to="312" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,624.96,213.65,7.65;11,82.80,634.09,213.66,7.65;11,82.80,643.09,213.65,7.78;11,82.80,652.22,213.65,7.78;11,82.80,661.49,213.65,7.65;11,82.80,670.62,123.35,7.65" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Efficient Parallel Sparse Symmetric Tucker Decomposition for High-Order Tensors</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Shivakumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Kannan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Aluru</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/1.9781611976830.18</idno>
+		<ptr target="https://epubs.siam.org/doi/abs/10.1137/1.9781611976830.18" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 SIAM Conference on Applied and Computational Discrete Algorithms (ACDA21)</title>
+				<meeting>the 2021 SIAM Conference on Applied and Computational Discrete Algorithms (ACDA21)</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="193" to="204" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,82.80,680.36,213.65,7.65;11,332.87,73.58,213.65,7.78;11,332.87,82.85,94.57,7.65" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Sparse Symmetric Format for Tucker Decomposition</title>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page" from="1743" to="1756" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,91.98,213.65,7.65;11,332.87,100.98,213.64,7.78;11,332.86,110.25,183.09,7.65" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Tensor Decompositions and Applications</title>
+		<author>
+			<persName coords=""><forename type="first">T</forename><forename type="middle">G</forename><surname>Kolda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">W</forename><surname>Bader</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/07070111X</idno>
+		<ptr target="https://doi.org/10.1137/07070111X" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Review</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="455" to="500" />
+			<date type="published" when="2009">2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.86,119.38,213.65,7.65;11,332.86,128.37,213.65,7.78;11,332.86,137.51,213.65,7.78;11,332.86,146.78,150.72,7.65" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Finding the Largest Eigenvalue of a Nonnegative Tensor</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Qi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Zhou</surname></persName>
+		</author>
+		<idno type="DOI">10.1137/09074838X</idno>
+		<ptr target="https://doi.org/10.1137/09074838X" />
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Matrix Analysis and Applications</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="1090" to="1099" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.86,155.77,213.65,7.78;11,332.86,165.04,213.65,7.65;11,332.86,174.17,82.84,7.65" xml:id="b22">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">S</forename><surname>Wilf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Generatingfunctionology</forename></persName>
+		</author>
+		<idno type="DOI">10.1201/b10576</idno>
+		<ptr target="https://doi.org/10.1201/b10576" />
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<publisher>Peters/CRC Press</publisher>
+		</imprint>
+	</monogr>
+	<note>third edition ed. USA: A. K.</note>
+</biblStruct>
+
+<biblStruct coords="11,332.86,183.31,213.65,7.65;11,332.86,192.30,213.65,7.78;11,332.86,201.43,164.04,7.78" xml:id="b23">
+	<monogr>
+		<title level="m" type="main">An algorithm for the machine calculation of complex Fourier series</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>James</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">W</forename><surname>Cooley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Tukey</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1965">1965</date>
+			<biblScope unit="volume">19</biblScope>
+			<biblScope unit="page" from="297" to="301" />
+		</imprint>
+	</monogr>
+	<note>Mathematics of computation</note>
+</biblStruct>
+
+<biblStruct coords="11,332.86,210.70,213.65,7.65;11,332.86,219.84,213.65,7.65;11,332.86,228.83,213.65,7.78" xml:id="b24">
+	<analytic>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Bischof</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">S</forename><surname>Blackford</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Demmel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Dongarra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Du Croz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Greenbaum</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Hammarling</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Mckenney</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Others</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="s">LAPACK users&apos; guide. SIAM</title>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,238.10,213.65,7.65;11,332.87,247.10,213.65,7.78;11,332.87,256.37,18.26,7.65" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">The Design and Implementation of FFTW3</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Frigo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">G</forename><surname>Johnson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the IEEE</title>
+				<meeting>the IEEE</meeting>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="volume">93</biblScope>
+			<biblScope unit="page" from="216" to="231" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,265.50,213.65,7.65;11,332.87,274.49,213.64,7.78;11,332.87,283.63,213.65,7.78;11,332.87,292.90,213.65,7.65;11,332.87,302.03,203.62,7.65" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Clustering in Graphs and Hypergraphs with Categorical Edge Labels</title>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Amburg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Veldt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Benson</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3366423.3380152</idno>
+		<ptr target="https://doi.org/10.1145/3366423.3380152" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of The Web Conference 2020, ser. WWW &apos;20</title>
+				<meeting>The Web Conference 2020, ser. WWW &apos;20<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="706" to="717" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,311.16,213.65,7.65;11,332.87,320.29,213.65,7.65;11,332.87,329.29,213.65,7.78;11,332.87,338.42,213.65,7.78;11,332.87,347.69,213.65,7.65;11,332.87,356.81,213.65,7.65;11,332.87,365.94,135.38,7.65" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">An Overview of Microsoft Academic Service (MAS) and Applications</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Sinha</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Z</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><surname>Eide</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B.-J</forename><forename type="middle">P</forename><surname>Hsu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2740908.2742839</idno>
+		<ptr target="https://doi.org/10.1145/2740908.2742839" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 24th International Conference on World Wide Web, ser. WWW &apos;15 Companion</title>
+				<meeting>the 24th International Conference on World Wide Web, ser. WWW &apos;15 Companion<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="243" to="246" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,375.06,213.65,7.65;11,332.87,384.05,212.46,7.78" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Hypergraph clustering: from blockmodels to modularity</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><forename type="middle">S</forename><surname>Chodrow</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Veldt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">R</forename><surname>Benson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Science Advances</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,393.32,213.65,7.65;11,332.87,402.45,213.64,7.65;11,332.87,411.45,213.65,7.78;11,332.87,420.58,213.65,7.78;11,332.87,429.71,213.65,7.78;11,332.87,438.85,213.65,7.78;11,332.87,448.12,129.29,7.65" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Justifying Recommendations using Distantly-Labeled Reviews and Fine-Grained Aspects</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ni</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Mcauley</surname></persName>
+		</author>
+		<ptr target="https://www.aclweb.org/anthology/D19-1018" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing</title>
+				<meeting>the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing</meeting>
+		<imprint>
+			<publisher>EMNLP-IJCNLP</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="188" to="197" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,457.25,213.66,7.65;11,332.87,466.24,213.65,7.78;11,332.87,475.38,213.65,7.78;11,332.87,484.51,213.65,7.78;11,332.87,493.78,213.65,7.65;11,332.87,502.91,203.62,7.65" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Minimizing Localized Ratio Cut Objectives in Hypergraphs</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Veldt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">R</forename><surname>Benson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Kleinberg</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3394486.3403222</idno>
+		<ptr target="https://doi.org/10.1145/3394486.3403222" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining, ser. KDD &apos;20</title>
+				<meeting>the 26th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining, ser. KDD &apos;20<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1708" to="1718" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,332.87,512.04,213.65,7.65;11,332.87,521.04,209.32,7.78" xml:id="b31">
+	<monogr>
+		<title level="m" type="main">Filtering higher-order datasets</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">W</forename><surname>Landry</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">I</forename><surname>Amburg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">G</forename><surname>Aksoy</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2305.06910</idno>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

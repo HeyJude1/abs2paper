@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">AG-SpTRSV: An Automatic Framework to Optimize Sparse Triangular Solve on GPUs</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2024-11-19">2024-11-19</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,45.95,123.75,78.04,9.82"><forename type="first">Zhengding</forename><surname>Hu</surname></persName>
+							<idno type="ORCID">0009-0005-8500-6173</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Jingwei</forename><surname>Sun</surname></persName>
+							<idno type="ORCID">0000-0001-5098-1503</idno>
+						</author>
+						<author>
+							<persName coords="1,45.95,175.55,77.53,9.82"><forename type="first">Zhongyang</forename><surname>Li</surname></persName>
+							<idno type="ORCID">0009-0005-5436-2319</idno>
+						</author>
+						<author role="corresp">
+							<persName coords="1,45.95,201.45,97.08,9.82"><forename type="first">Guangzhong</forename><surname>Sun</surname></persName>
+							<email>gzsun@ustc.edu.cn.</email>
+							<idno type="ORCID">0000-0002-0794-7681</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">JINGWEI SUN, Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">Computer Sci-ence and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="department">Computer Science and Technology</orgName>
+								<orgName type="institution">University of Science and Technology of China</orgName>
+								<address>
+									<settlement>Hefei</settlement>
+									<region>Anhui</region>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">AG-SpTRSV: An Automatic Framework to Optimize Sparse Triangular Solve on GPUs</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">21</biblScope>
+							<biblScope unit="issue">4</biblScope>
+							<biblScope unit="page" from="1" to="25"/>
+							<date type="published" when="2024-11-19" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">88A0849A6A741410C895B95B7A74DB9F</idno>
+					<idno type="DOI">10.1145/3674911</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>CCS Concepts:</term>
+					<term>Computing methodologies → Parallel algorithms</term>
+					<term>Linear algebra algorithms</term>
+					<term>• Mathematics of computing → Solvers</term>
+					<term>Sparse matrix, triangular solve, automatic optimization, GPU</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sparse Triangular Solve (SpTRSV) has long been an essential kernel in the field of scientific computing. Due to its low computational intensity and internal data dependencies, SpTRSV is hard to implement and optimize on graphics processing units (GPUs). Based on our experimental observations, existing implementations on GPUs fail to achieve the optimal performance due to their suboptimal parallelism setups and code implementations plus lack of consideration of the irregular data distribution. Moreover, their algorithm design lacks the adaptability to different input matrices, which may involve substantial manual efforts of algorithm redesigning and parameter tuning for performance consistency. In this work, we propose AG-SpTRSV, an automatic framework to optimize SpTRSV on GPUs, which provides high performance on various matrices while eliminating the costs of manual design. AG-SpTRSV abstracts the procedures of optimizing an SpTRSV kernel as a scheme and constructs a comprehensive optimization space based on it. By defining a unified code template and preparing code variants, AG-SpTRSV enables fine-grained dynamic parallelism and adaptive code optimizations to handle various tasks. Through computation graph transformation and multi-hierarchy heuristic scheduling, AG-SpTRSV generates schemes for task partitioning and mapping, which effectively address the issues of irregular data distribution and internal data dependencies. AG-SpTRSV searches for the best scheme to optimize the target kernel for the specific matrix. A learned lightweight performance model is also introduced to reduce search costs and provide an efficient end-to-end solution. Experimental results with SuiteSparse Matrix Collection on NVIDIA Tesla A100 and RTX 3080 Ti show that AG-SpTRSV outperforms state-of-the-art implementations with geometric average speedups of 2.12x ∼ 3.99x. With the performance model enabled, AG-SpTRSV can provide an efficient end-to-end solution, with preprocessing times ranging from 3.4 to 245 times of the execution time.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="25" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>The sparse triangular solve (SpTRSV) is one of the most important kernels in the field of sparse matrix computation and plays an indispensable role in many numerical algorithms, e.g., the preconditioners of sparse iterative solvers <ref type="bibr" coords="2,201.62,221.23,14.84,9.03" target="#b25">[26]</ref>. It is widely used in various scientific applications, such as computational fluid dynamics (CFD) <ref type="bibr" coords="2,221.07,233.18,14.83,9.03" target="#b21">[22]</ref>, machine learning <ref type="bibr" coords="2,314.06,233.18,14.85,9.03" target="#b17">[18]</ref>, and graph algorithms <ref type="bibr" coords="2,423.27,233.18,14.84,9.03" target="#b10">[11]</ref>. SpTRSV solves a linear system Ax = b, where A is a sparse lower/upper triangular matrix, b is the right-hand side vector, and x is the solution. Compared with other well-known linear algebra routines, such as sparse matrix-vector multiplication (SpMV) <ref type="bibr" coords="2,297.71,269.04,15.00,9.03" target="#b11">[12,</ref><ref type="bibr" coords="2,314.71,269.04,11.45,9.03" target="#b14">15,</ref><ref type="bibr" coords="2,328.16,269.04,11.26,9.03" target="#b16">17]</ref>, sparse matrix-matrix multiplication (SpMM) <ref type="bibr" coords="2,151.46,281.00,15.00,9.03" target="#b15">[16,</ref><ref type="bibr" coords="2,169.21,281.00,11.25,9.03" target="#b20">21]</ref>, and sparse matrix transposition <ref type="bibr" coords="2,319.23,281.00,14.84,9.03" target="#b32">[33]</ref>, SpTRSV faces more difficulties in parallelization due to its internal data dependencies.</p><p>Graphics processing units (GPUs) are capable of processing floating point operations at extreme rates and have become one of the most widely used accelerators in the field of scientific computing. However, it is challenging to implement an efficient SpTRSV kernel on GPUs. Difficulties can be summarized as follows:</p><p>-Low parallelism and high synchronization overhead. SpTRSV has a sequential nature due to dependencies, making it difficult to exploit the parallelism. Synchronizations are involved with such data dependencies. Due to the complex synchronization mechanisms of GPUs, a meticulous design is required. -Complex task partitioning and scheduling. The irregular and sparse data distribution significantly impacts performance, which is similar to many other sparse matrix kernels. Any task partitioning or scheduling potentially changes the data dependencies in the solution. Thus, determining the appropriate strategies is extremely challenging. -Input sensitivity. The sparse patterns of input matrices vary significantly across different application scenarios. There is no "one-for-all"solution, which requires heavy and tedious manual efforts of algorithm redesigning and parameter fine-tuning. To exploit the parallelism of SpTRSV, the level-set method <ref type="bibr" coords="2,294.86,489.10,10.37,9.03" target="#b2">[3,</ref><ref type="bibr" coords="2,307.82,489.10,11.45,9.03" target="#b27">28,</ref><ref type="bibr" coords="2,321.87,489.10,12.81,9.03" target="#b31">32]</ref> (also known as wavefront parallelization) proposes to partition the solution into multiple levels with no internal dependencies. Synchronization is only involved for inter-level dependencies. However, it cannot be directly applied on GPUs as the global synchronization involves excessive overhead. Considering the hardware characteristics of GPUs, the "synchronization-free" methods <ref type="bibr" coords="2,318.54,536.91,10.38,9.03" target="#b7">[8,</ref><ref type="bibr" coords="2,331.93,536.91,12.81,9.03" target="#b13">14]</ref> use fine-grained pointto-point communication to resolve data dependencies, specifically with in-memory data exchange and atomic operations. Simultaneously, different levels of parallelism can be exploited, including warp-level <ref type="bibr" coords="2,90.42,572.78,10.37,9.03" target="#b7">[8,</ref><ref type="bibr" coords="2,102.60,572.78,11.25,9.03" target="#b13">14]</ref>, thread-level <ref type="bibr" coords="2,169.75,572.78,14.84,9.03" target="#b29">[30]</ref>, and adaptive heuristics <ref type="bibr" coords="2,284.41,572.78,14.84,9.03" target="#b37">[38]</ref>. Furthermore, the parallel libraries by vendors such as cuSPARSE <ref type="bibr" coords="2,170.22,584.73,16.36,9.03" target="#b22">[23]</ref> provide well-optimized implementations of SpTRSV on GPUs.</p><p>Despite the fact that existing implementations perform well on certain matrices, they fail to consistently achieve good performance on matrices with various sparsity patterns due to the dedicated algorithm design and the lack of adaptability. Here, we test and compare the performance of the state-of-the-art implementations on GPUs, including the Compressed Sparse Column (CSC)-based synchronization-free method <ref type="bibr" coords="2,226.85,644.51,16.35,9.03" target="#b13">[14]</ref> (Sync-free for short), YuenyeungSpTRSV <ref type="bibr" coords="2,423.94,644.51,16.35,9.03" target="#b37">[38]</ref> AG-SpTRSV: An Automatic Framework to Optimize Sparse Triangular Solve on GPUs 70:3 (YYSpTRSV for short), and SpTRSV solve in the NVIDIA cuSPARSE library <ref type="bibr" coords="3,360.65,233.99,16.38,9.03" target="#b22">[23]</ref> (cuSPARSE for short). Test matrices are derived from applications in various fields (detailed information is listed in Table <ref type="table" coords="3,82.01,257.89,3.27,9.03" target="#tab_7">5</ref>). As is shown in Figure <ref type="figure" coords="3,187.96,257.89,3.41,9.03" target="#fig_0">1</ref>, the three implementations exhibit performance advantages on matrices with different sparsity patterns. For example, YYSpTRSV performs well on matrices with high parallelism, whereas Sync-free is more suitable for matrices with low parallelism. However, none of them can consistently achieve high performance across all the test cases. Moreover, significant performance gaps can be observed in a single test case. To fully optimize the performance of SpTRSV on GPUs, we argue that a more comprehensive design is expected, which addresses the performance bottlenecks introduced by irregular data distribution and data dependencies while adaptively dealing with diverse sparsity patterns of different matrices.</p><p>In this article, we first measure and characterize the performance of SpTRSV. We derive several observations that provide guidance for the design of the optimization space. Based on these observations, we propose AG-SpTRSV, an automatic framework to optimize SpTRSV on GPUs. AG-SpTRSV consists of four stages. In the Prepare stage, AG-SpTRSV prepares a series of code variants based on a unified template that support dynamic fine-grained parallelism and enable code optimizations under specific conditions. In the Transform stage, the original computation graph is transformed into candidate graphs with merging and reordering operations. In the Schedule stage, the tasks in candidate graphs are mapped to the hardware through multi-hierarchy heuristic strategies. We refer to the entire process of code variant preparation, graph transformation, and scheduling as a scheme. In the Select stage, AG-SpTRSV finds the scheme with the best expected performance, with either exhaustive search or a learned lightweight model. AG-SpTRSV outperforms state-of-the-art SpTRSV implementations on GPUs and achieves good performance across matrices with various sparsity paterns.</p><p>The contributions of this article can be summarized as follows.</p><p>-We characterize the performance of GPU-based SpTRSV through experimental measurements and derive several observations that help with performance optimization. -We represent the optimization space of SpTRSV as the scheme, which considers dynamic parallelism, adaptive code optimization, computation graph transformation, and scheduling. We design a series of strategies to construct a comprehensive space that accommodates inputs with various sparsity patterns. -We propose AG-SpTRSV, an automatic framework to optimize GPU-based SpTRSV, which generates a series of schemes for execution and searches for the best. We also adopt a lightweight model based on historical results to reduce search costs. -Experimental results on NVIDIA Tesla A100 and RTX 3080Ti show that AG-SpTRSV is able to outperform the state-of-the-art SpTRSV implementations, including Sync-free,  YYSpTRSV and cuSPARSE, with geometric average speedups of 2.12x ∼ 3.99x. With the proposed performance model, the preprocessing time of AG-SpTRSV ranges from 3.4 to 245 times of the execution time. -The source code of AG-SpTRSV is available at https://github.com/USTC-ADA/AG-SpTRSV.git.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">SpTRSV and Level-Set Method</head><p>The SpTRSV solves a linear system Ax = b, where A is the lower triangular matrix of size m × m, b is the dense right-hand-side (rhs) vector, and x is the dense solution vector. Without loss of generality, we assume that the matrix is stored in Compressed Sparse Row (CSR) format in our illustration. The CSR format stores the sparse matrix by three arrays, where ColIdx and V al store the column index and the value of each non-zero, respectively, and RowPtr stores the start point of each row in the above two arrays. An example of a sparse lower triangular matrix is shown on the left-hand side of Figure <ref type="figure" coords="4,203.18,441.39,3.41,9.03" target="#fig_2">2</ref>. In this example, RowPtr = {0, 1, 2, 3, 5, 8, 12, 13, 16} and ColIdx = {0, 1, 2, 0, 3, 1, 2, 4, 0, 3, 4, 5, 6, 1, 6, 7, 4, 7, 8}. The serial SpTRSV algorithm with the CSR format is illustrated in Algorithm 1. Here, we assume that the diagonal elements of each row are present by default. In serial SpTRSV, components of x are calculated in the order of row number. The component x[j] are guaranteed to be finished when calculating x[i], where 0 &lt; j &lt; i &lt; m, the data dependency is thus satisfied.</p><p>However, the sequential computing order of serial SpTRSV poses challenges to efficient parallelization. To exploit the parallelism of the problem, the level-set method <ref type="bibr" coords="4,337.86,525.08,10.35,9.03" target="#b2">[3,</ref><ref type="bibr" coords="4,350.19,525.08,12.81,9.03" target="#b27">28]</ref> has been proposed. The level-set method partitions the solution into several levels. A level is composed of components independent of each other. Dependencies may exist among different levels. The right part of Figure <ref type="figure" coords="4,74.32,560.94,4.63,9.03" target="#fig_2">2</ref> shows the level-set partition as a directed computation graph. Each directed edge in the computation graph represents a non-zero element in A, indicating a data dependency relationship. The level-set method solves independent components inside every single level in parallel while processing levels in a sequential order to ensure dependencies.</p><p>The level-set method can efficiently exploit parallelism in SpTRSV. However, it requires synchronization at the end of each level to avoid violation of data dependencies. This may introduce extra costs on GPUs with huge amounts of parallel units, especially when the number of levels is large. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">SpTRSV on GPUs</head><p>Directly applying level-set methods on GPUs cannot achieve satisfactory performance due to excessive costs for global synchronization. Liu <ref type="bibr" coords="5,235.48,260.61,16.35,9.03" target="#b13">[14]</ref> proposed the synchronization-free method using the CSC format. The concept of the synchronization-free method does not imply the complete elimination of synchronization, but rather the replacement of global synchronization in level-set methods with fine-grained point-to-point synchronization. Dufrechou and Ezzatti <ref type="bibr" coords="5,395.14,296.48,11.70,9.03" target="#b7">[8]</ref> and Su et al. <ref type="bibr" coords="5,70.82,308.44,16.36,9.03" target="#b29">[30]</ref> proposed synchronization-free methods using the CSR format with warp-level and thread-level parallelism, respectively. The two algorithms are designed for matrices with different sparsity patterns. YYSpTRSV <ref type="bibr" coords="5,168.45,332.34,16.35,9.03" target="#b37">[38]</ref> dynamically switches between the two algorithms according to the average number of non-zeros per row. Dufrechou and Ezzatti <ref type="bibr" coords="5,325.75,344.30,11.71,9.03" target="#b7">[8]</ref> also proposed to process multiple rows with a single warp. The pseudocode of the warp-level and thread-level methods with the CSR format is shown in Algorithm 2, where an auxiliary array named f laд is used to mark the completion of each component. In both methods, memory fences (Line 13 &amp; Line 30) are used to strictly ensure that the flags are updated after the results of the components are written back. In the warp-level method, the non-zeros of each row are partitioned and assigned to different threads (Line 5). A warp-level reduce routine is introduced (Line 11) to sum up the results of each thread. Thread-level method assigns every t rows to a warp and each thread corresponds to one or more rows. t is set as the size of the warp in <ref type="bibr" coords="5,200.82,439.94,14.85,9.03" target="#b29">[30]</ref>. As all threads in a single warp follow the same control flow in GPU programming, a while loop is used to avoid deadlock. A more detailed description of the two algorithms can be found in <ref type="bibr" coords="5,193.23,463.85,14.85,9.03" target="#b37">[38]</ref>. In this work, we introduce a unified and parameterized template for parallelism (discussed in Section 4.2). As a superset of existing methods, the template extends the design space with finer granularity and exhibits adaptability to different tasks in the solution.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Motivation</head><p>To better characterize the performance of existing SpTRSV implementations, we conduct a series of experiments with a set of commonly used sparse matrices with different sparsity patterns on NVIDIA RTX 3080Ti. Detailed matrix characteristics are listed in Table <ref type="table" coords="5,343.51,560.09,3.41,9.03" target="#tab_7">5</ref>. The interpretation of those characteristics can be found in Table <ref type="table" coords="5,226.70,572.04,3.41,9.03" target="#tab_5">3</ref>. Based on the experimental results, we can derive several observations that help with performance optimization.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Dilemma of Parallelism Granularity</head><p>Based on the different parallel levels of GPUs, existing work mainly adopts two parallelism granularities, including warp level <ref type="bibr" coords="5,173.10,632.41,10.37,9.03" target="#b7">[8,</ref><ref type="bibr" coords="5,186.87,632.41,12.81,9.03" target="#b13">14]</ref> and thread level <ref type="bibr" coords="5,273.46,632.41,14.84,9.03" target="#b29">[30]</ref>. Many employ the fixed parallelism granularity setup, which cannot achieve good performance across various matrices. YYSpTRSV    <ref type="bibr" coords="6,45.77,547.99,16.35,9.03" target="#b37">[38]</ref> determines the parallelism granularity based on the number of non-zeros per row. However, such approaches can be suboptimal. We evaluate four structured matrices with similar average non-zeros per row as an example. As is shown in Figure <ref type="figure" coords="6,275.06,571.90,3.44,9.03">3</ref>(a), atmosmodd and cbiд performs better with the warp-level algorithm, whereas delaunay_n23 and FullChip are better suited for the thread-level algorithm.</p><p>We also find that some cases cannot be fully optimized with either warp-level or thread-level parallelism. Taking atmosmodd as an example, though the warp-level algorithm performs better than the thread-level algorithm, the average non-zero per row of the matrix is only 3.97. This results in nearly 75% of threads in the warp remaining idle, leading to very low utilization.  Moreover, the parallelism of the matrix affects the optimal concurrency. Figure <ref type="figure" coords="7,377.23,424.36,15.61,9.03">3(b)</ref> shows how the performance varies when different sizes of thread-block are used. atmosmodd has very high parallelism in each level (though limited among consecutive rows); thus, the performance improves as the concurrency increases. By contrast, chipcool0 and cant are band matrices with low parallelism. When the concurrency is high, most threads are idle waiting for data dependencies to be resolved, which leads to unnecessary resource contention and thus brings performance degradation. We argue that a more flexible and comprehensive parallelism setup is required.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Challenges of Irregularity</head><p>Real-world matrices in real-world applications often exhibit irregular distribution of non-zeros. This introduces more challenges to performance optimization due to the mismatch between irregular computation patterns and the GPU hardware design. Our experiments show that the issues of load balancing and data locality brought by irregularity need to be carefully handled.</p><p>Figure <ref type="figure" coords="7,85.09,583.19,3.75,9.03" target="#fig_1">4</ref>(a) illustrates the impact of load balancing on performance. wiki -Talk, arabic -2005 and lp1 are matrices with uneven distribution of non-zero elements among the rows, which easily leads to runtime load imbalance. Here, we compare the performance between scheduling with and without the load-balancing strategy (discussed in Section 4.4), which brings speedups of up to 20%.</p><p>We also evaluate the impact of data locality by comparing the performance with and without matrix reordering (discussed in Section 4.3). Matrix reordering can efficiently improve data locality 70:8 Z. Hu et al.</p><p>by placing tasks with a similar computational order together. Figure <ref type="figure" coords="8,330.60,82.77,3.90,9.03" target="#fig_1">4</ref>(b) shows that reordering can bring significant speedups for matrices with high parallelism.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Suboptimal Code Implementation</head><p>The code implementation of the existing algorithms (shown in Algorithm 2) can be further refined. We observe at least the following three performance bottlenecks through profiling.</p><p>-Memory access to sparse matrix and components, especially in the thread-level algorithm, exhibit non-aligned and non-coalesced patterns. This leads to extra memory transactions, which greatly impacts memory access efficiency. -Fine-grained synchronizations, such as reading/writing flags and performing memory fences, introduce non-negligible costs. In fact, some of them are unnecessary. -Division operations are performed to calculate the value of the components. On GPUs, division instruction has high latency, which easily impacts the instruction pipeline.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Non-orthogonal Optimization Space</head><p>In the previous observations, we identify several factors that affect the performance of SpTRSV and summarize their intuitive relationships with the sparsity patterns of matrices. We also find that their effects on performance are not independent. For example, when the granularity of the task changes, the optimal parallelism setup and scheduling strategy may vary. According to our experiments, simply combining the respectively optimal choices of each factor cannot achieve a globally optimal performance and, if anything, falls far short of being satisfactory. All those factors collectively form a vast space, which makes manual optimization extremely tedious and challenging.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">AG-SpTRSV: An Automatic Framework to Optimize SpTRSV on GPUs 4.1 Overview</head><p>To fully consider the aforementioned factors and bridge the performance gaps, we propose AG-SpTRSV, an automatic framework to optimize SpTRSV on GPUs. Compared with existing work <ref type="bibr" coords="8,45.77,427.61,10.36,9.03" target="#b7">[8,</ref><ref type="bibr" coords="8,59.86,427.61,11.46,9.03" target="#b13">14,</ref><ref type="bibr" coords="8,75.04,427.61,11.45,9.03" target="#b29">30,</ref><ref type="bibr" coords="8,90.21,427.61,11.26,9.03" target="#b37">38]</ref>, we consider a much larger optimization space, which carefully handles the observed performance issues and consistently achieves good performance on matrices with various sparse patterns. By automatic scheme searching and selecting, AG-SpTRSV is able to provide an efficient target kernel for a specific matrix, with eliminated costs of manual algorithmic design and parameter tuning. AG-SpTRSV consists of four stages. In the Prepare stage, a series of code variants with different parallelism setups and optimization methods are prepared. These code variants are used for different sparsity patterns. In the Transform stage, the sparse matrix is represented as a computation graph. Through graph operations, including node merging and reordering, the original computation graph is transformed into a series of candidate graphs for subsequent optimization and evaluation. In the Schedule stage, the nodes of the candidate graphs are mapped to GPU warps and hardware through multi-hierarchy heuristic scheduling. In the Select stage, AG-SpTRSV exhaustively tests and evaluates the combination of strategies (referred to as schemes). The scheme with the optimal performance is selected for target solving kernel. In this stage, a lightweight learning model is proposed to reduce preprocessing time.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Code Variant Preparation</head><p>As discussed in Section 3, the code implementations in existing work <ref type="bibr" coords="8,333.77,632.10,10.36,9.03" target="#b7">[8,</ref><ref type="bibr" coords="8,347.11,632.10,11.46,9.03" target="#b13">14,</ref><ref type="bibr" coords="8,361.54,632.10,11.45,9.03" target="#b29">30,</ref><ref type="bibr" coords="8,375.98,632.10,12.81,9.03" target="#b37">38]</ref> are not consistently optimal in all cases. In the Prepare stage, we abstract the implementation of SpTRSV as Fig. <ref type="figure" coords="9,61.36,308.14,3.07,8.07">5</ref>. An example of the fine-grained dynamic parallelism when nд = 4 and nw = 2. Each warp processes 4 independent row groups and each stream multiprocessor is exclusively assigned a GPU block of 2 executing warps.</p><p>a unified code template to better represent the solving behavior. Based on the template, we design and implement a series of solution codes with various parallelism and optimization details, referred to as Code Variants, to enhance performance for different sparsity patterns.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1">Fine-Grained Dynamic Parallelism.</head><p>Through the experiments in Section 3.1, we have demonstrated that exclusively utilizing warp-level or thread-level parallelism cannot achieve optimal performance. Although YYSpTRSV <ref type="bibr" coords="9,212.82,416.25,16.37,9.03" target="#b37">[38]</ref> proposes to switch between the two algorithms, the parallel granularity still faces a dilemma (discussed in Section 3.1). To fill the gap between the previous two algorithms, we adopt fine-grained dynamic parallelism to better utilize the GPU resources.</p><p>As is shown in Figure <ref type="figure" coords="9,146.01,452.11,3.41,9.03">5</ref>, a GPU warp is divided into nд smaller units for parallelism, referred to as subwarps. Each subwarp is assigned a row group, which contains several consecutive rows for solution. The nд groups have no inter-group data dependencies so that each subwarp can process an independent task in parallel in a deadlock-free manner. nд is a configurable parameter and remains fixed for each code variant. Generally, 1 ≤ nд ≤ 32, and nд is set as a power of 2 to achieve better performance of reduction.</p><p>Within each row group, the subwarps can choose to either collaboratively process each row one by one or individually process separate rows. The choice is based on the average number of nonzeros per row. We use a configurable parameter sw_rnnz as the threshold, which is also fixed for each code variant. When the average non-zero number of the rows in a row group is larger than sw_rnnz, the threads in the subwarp collaboratively process one row to enhance memory access efficiency with more coalesced memory access. Otherwise, the threads in the subwarp individually process separate rows to improve warp utilization and eliminate reduction overheads. We set the value of sw_rnnz from {0, ∞} ∪ {2 i , i ∈ N &amp; 2 i ≤ 32 nд }. The upper bound 32  nд indicates that each thread in the subwarp processes at least one non-zero on average.</p><p>It is worth noting that when nд = 1, the method becomes the warp-level <ref type="bibr" coords="9,347.49,632.48,10.36,9.03" target="#b7">[8,</ref><ref type="bibr" coords="9,359.95,632.48,12.82,9.03" target="#b13">14]</ref> and thread-level <ref type="bibr" coords="9,45.95,644.43,16.36,9.03" target="#b29">[30]</ref> implementations. When nд &gt; 1 and each row group consists of only one row, the method 70:10 Z. Hu et al. becomes the multiple-row-per-warp implementation mentioned in <ref type="bibr" coords="10,328.84,250.43,10.42,9.03" target="#b7">[8]</ref>. Our method follows a more comprehensive design with fine-grained parallelism, which also encompasses existing algorithms.</p><p>Section 3.1 also demonstrates that the best performance is not necessarily achieved under the maximum concurrency. Considering that, AG-SpTRSV dynamically adjusts the hardware-level concurrency. Specifically, we set the block size to the maximum possible number (1024 on Ampere). Each thread block contains nw warps that perform the solution, whereas the remaining warps are empty and do nothing. Then, we enforce a thread block to execute exclusively on a stream processor, thus explicitly controlling the number of executing warps.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2">Adaptive Code Optimization.</head><p>When processing a specific row (assumed to be the i-th row), the code implementation can be represented as follows. Firstly, data of the i-th row of the sparse matrix is read in, including the start and end row pointers as well as the column indices of the nonzeros. Next, the warp waits for dependent components to finish processing. After finishing, the values of those components are read in. Then, the computation phase begins. The warp calculates and writes back the value of component x <ref type="bibr" coords="10,217.17,427.53,10.50,9.08">[i]</ref>. Lastly, the necessary synchronization information, such as f laд[i] mentioned in Section 2.2, is written back.</p><p>We have shown in Section 3.3 that the existing code implementations suffer from non-coalesced memory access, excessive synchronizations, and long-latency division operations. To eliminate these performance bottlenecks, we designed several optimization methods that can be applied under specific circumstances, as is shown in Figure <ref type="figure" coords="10,255.88,487.36,3.41,9.03" target="#fig_4">6</ref>.</p><p>Collaborative read. Since SpTRSV is a memory-bound kernel, its memory access efficiency has a predominant impact on its performance. In the existing implementations, each thread within a single warp independently reads the required sparse matrix data on demand, which may lead to inefficient non-coalesced memory access. We use collaborative reading to address the issue. Specifically, each GPU warp allocates a buffer (specifically a piece of shared memory on GPUs) to store data of the sparse matrix. All threads in the warp first cooperatively read data of each row group in sequence. This enables coalesced memory access and improves the utilization of memory bandwidth. When reading finishes, each subwarp begins processing its own row group. The optimization method is applied when the sparse matrix data required by the rows does not exceed the maximum available buffer size, and each row group has sufficient non-zeros to enable coarse-grained coalesced memory access.</p><p>Elimination of synchronization. Fine-grained synchronizations for data dependencies (including waiting for dependent rows and writing synchronization information) also incur non-negligible overheads. We introduce the following rules to eliminate synchronization. When all the rows solved by the current kernel are located within the same level, we can eliminate the logic of waiting as all the dependent rows have been processed beforehand. When no rows depend on the current row or the waiting of the rows that depend on the current row has already been eliminated, we can eliminate the logic of writing back synchronization information. This optimization method can be applied when rows of different levels are independently scheduled, which will be further discussed in Section 4.4. AG-SpTRSV adaptively adjusts the synchronization behavior based on the sparse pattern of the matrix, which balances between the fine-grained synchronization methods <ref type="bibr" coords="11,45.95,388.42,10.37,9.03" target="#b7">[8,</ref><ref type="bibr" coords="11,58.81,388.42,11.46,9.03" target="#b13">14,</ref><ref type="bibr" coords="11,72.76,388.42,11.46,9.03" target="#b29">30,</ref><ref type="bibr" coords="11,86.71,388.42,12.81,9.03" target="#b37">38]</ref> and the level-set methods <ref type="bibr" coords="11,208.59,388.42,10.37,9.03" target="#b2">[3,</ref><ref type="bibr" coords="11,221.46,388.42,11.25,9.03" target="#b27">28]</ref>.</p><p>Early division. When computing component results, the long latency of division operations potentially impacts performance. Therefore, we adopt the optimization to perform divisions earlier. Before waiting for dependent data, the warp/thread calculates the reciprocal of the diagonal nonzero element of the current row. This allows us to use multiplication with the reciprocal instead of division when calculating the final result. This enables warps/threads that need to wait for dependent data (which cannot start their computation immediately) to perform expensive division operations in advance, thereby enhancing computational parallelism. We find that this modification can bring performance improvement of over 20% on certain matrices.</p><p>In Table <ref type="table" coords="11,89.78,496.02,3.41,9.03" target="#tab_3">1</ref>, we compared the code variant of AG-SpTRSV with existing GPU SpTRSV implementations. While all existing implementations focus on some specific sparsity patterns, AG-SpTRSV enables dynamic parallelism and adaptive optimizations to prepare code variants, which can achieve adaptability to matrices with various sparsity patterns.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Computation Graph Transformation</head><p>With fine-grained dynamic parallelism (discussed in Section 4.2.1), a GPU warp is assigned one or multiple row groups to process. How to partition rows of a sparse matrix into row groups crucially impacts performance, as it is not only related to parallelism and task granularity but also affects the data dependencies in the overall solution.</p><p>AG-SpTRSV uses computation graphs to represent task partitioning and data dependencies. In a computation graph, a node (noted as N i ) represents a row group, and two types of edges are used to represent the relationships between nodes. A dependency edge connects N i to N j when there is a 70:12 Z. Hu et al.</p><p>non-zero element at the position (r 1 , r 2 ) of the matrix, where r 1 ∈ N j and r 2 ∈ N i . The dependency edge indicates that the computation of N i can only begin after the computation of N j finishes. A data edge connects N i to N j when the last row in N i and the first row in N j are contiguous. The data edge indicates that the two row groups are stored continuously in memory and can be further merged into a larger one. The level of node is defined as the topological order of the node in the computation graph. The computation graph also records the level of each node, as we must assign nodes within the same level to one GPU warp to avoid deadlocks.</p><p>Directly parallelizing the original computation graph may lead to unsatisfactory performance, as is shown in Section 3 (as well as existing work <ref type="bibr" coords="12,245.30,178.41,15.01,9.03" target="#b19">[20,</ref><ref type="bibr" coords="12,262.57,178.41,11.45,9.03" target="#b29">30,</ref><ref type="bibr" coords="12,276.27,178.41,10.79,9.03" target="#b37">38]</ref>). In the Transform stage, AG-SpTRSV performs two types of transformation operations on the original computation graph: node merging and reordering. A set of new graphs with different topological structures are generated, which we refer to as candidate graphs. Those graphs will be further scheduled and measured to achieve better potential performance.</p><p>The merging operation traverses the graph along data edges and merges several nodes into a larger one. AG-SpTRSV leverages the following merging strategies for matrices with different sparsity patterns.</p><p>-Merge by fixed block size. The merдe_f ixed strategy merges every rb node along the data edge path starting from the first one. After this, each row group contains rb rows. This strategy is suitable for matrices with irregular distribution of non-zeros as each row group contains a similar number of non-zeros and load balancing is achieved. When rb = 1 and 32, the strategy is equivalent to those in <ref type="bibr" coords="12,220.97,327.11,11.72,9.03" target="#b7">[8]</ref> and <ref type="bibr" coords="12,252.67,327.11,14.84,9.03" target="#b29">[30]</ref>, respectively. -Merge by average non-zeros per row. The merдe_avд strategy calculates the average number of non-zeros of every rb node along the data edge path. If the average number is no more than thresh, the nodes are merged into a larger one. It is based on the intuition that when the numbers of non-zeros in multiple contiguous rows are small, we should group them to avoid idle threads in subwarps. Otherwise, we keep each row as a row group because one single row can be processed by all the threads in a subwarp collaboratively. When rb = 32, this strategy is equivalent to that in <ref type="bibr" coords="12,217.44,410.80,14.84,9.03" target="#b37">[38]</ref>. -Merge by the threshold of the number of non-zeros. Sparse matrices usually form irregular distributions of non-zeros, especially for those associated with power-law graphs <ref type="bibr" coords="12,403.42,434.71,14.83,9.03" target="#b26">[27]</ref>. The merдe_thresh strategy is designed for rows with a vast number of non-zeros, which have great impact on load balancing. Specifically, the strategy continually merges nodes along the data edge path, as long as the encountered node has no more than thresh non-zeros and the number of merged nodes does not exceed rb. Each long row with more than thresh non-zeros is then kept as a single row group.</p><p>After merging operations, levels of nodes should be recalculated as multiple rows from different levels can be merged into the same node.</p><p>The reorder operation renumbers the nodes according to the topological order of the graph. After reordering, rows with the close computation order are put together so that parallelism and locality are ensured simultaneously. Node-merging operations are further performed to enhance the performance. Noting that reordering changes the storage data of the original matrix and brings extra costs for preprocessing, we consider it as an optional choice and evaluate its performance gain separately.</p><p>Figure <ref type="figure" coords="12,84.41,607.31,4.63,9.03" target="#fig_9">7</ref> shows the resulting candidate graphs with different graph transformation operations. The original computation graph is shown in Figure <ref type="figure" coords="12,273.22,619.26,3.41,9.03" target="#fig_2">2</ref>. After applying the graph operations described above, AG-SpTRSV generates a set of candidate graphs varying in sizes of nodes and connections of dependency and data edges. Each candidate graph (including the original one) represents one specific way of parallelization and has the potential to achieve high performance. AG-SpTRSV then schedules the graphs onto GPU parallelization units to generate schemes (this will be discussed in Section 4.4).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Multi-hierarchy Heuristic Scheduling</head><p>Existing work <ref type="bibr" coords="13,104.89,341.33,15.00,9.03" target="#b13">[14,</ref><ref type="bibr" coords="13,122.14,341.33,11.45,9.03" target="#b29">30,</ref><ref type="bibr" coords="13,135.84,341.33,12.82,9.03" target="#b37">38]</ref> adopts a simple scheduling strategy, which launches blocks/threads corresponding to the number of computation tasks. In this way, task scheduling is entirely handled by the hardware. However, the hardware scheduler may not always bring the best performance. There are possibilities that blocks with smaller indices but later computation order (i.e., a lower topological order in the computation graph with dependency edges) need to wait for dependency data, whereas blocks with larger indices but earlier computation order (i.e., a higher topological order) are not given enough priority in scheduling. Moreover, the hardware scheduler has no information about data exchange requirements or computation task workloads, thus cannot achieve deep performance optimization.</p><p>In the Schedule stage, AG-SpTRSV dives deeper into scheduling from bottom to top, addressing the following issues across three hierarchies: how nodes in the computation graph are grouped, how grouped nodes are scheduled onto warps, and how grouped nodes are partitioned into different kernels. Based on the three hierarchies, we propose a series of heuristic strategies to enhance the performance.</p><p>In the first hierarchy, nodes in the computation graph are grouped into node groups. Each node group contains up to nд nodes, where nд is the number of subwarps. A node group is regarded as a computation task of a warp, and each node in the group corresponds to one subwarp. To avoid deadlocks, nodes in one group must be independent of each other. Therefore, AG-SpTRSV group nodes in the same level based on the topological order of the computation graph. We consider two heuristic strategies for grouping:</p><p>-The rд_sequential strategy groups nodes sequentially in the order of their starting row indices. Spatially close nodes are more likely to be grouped together, thus resulting in better data locality. -The rд_balance strategy further sorts the nodes within the same level based on the number of non-zeros and assigns them in decreasing order. Nodes with a similar number of non-zeros are more likely to be assigned to the same warp, thus load balancing can be enhanced. In the second hierarchy, node groups are scheduled onto different warps. Scheduling is done in the topological order of the node groups (based on the levels of computation graph). The scheduling decisions have a significant impact on performance, as the distribution of tasks across different stream multiprocessors (SMs) determines load balancing. Moreover, threads on the same SM share the on-chip L1 cache, which is closely associated with data locality. AG-SpTRSV implements scheduling with an explicit approach. Specifically, it launches a fixed number of thread blocks (no more than the capacity of the whole GPU). Each thread block corresponds to one specific SM. Warps in the thread block are statically assigned a set of node groups. In this way, AG-SpTRSV is able to determine rigidly on which thread block and in what order the computation tasks are scheduled and executed. For better load balancing, parallelism, and data locality, we design and adopt the following three heuristic scheduling strategies:</p><p>-The ws_rr strategy schedules node groups onto warps in a round-robin way. It is the simplest way to schedule yet sufficient for matrices with a regular distribution of non-zeros. -The ws_balance strategy aims to improve load balancing. For each node group, the strategy chooses the warp currently with minimum workload. The workload of each node group is approximated as its total number of non-zeros. -The ws_locality strategy aims to improve data locality. The strategy schedules the current node group onto the adjacent warp of its parent. An adjacent warp refers to a warp within the same thread block. The intuition of this strategy is that adjacent warps share an L1 cache, which enables cache-level data sharing. When a node group has more than one parent, the warp with the minimum workload is selected for scheduling. In the third hierarchy, node groups of different levels are partitioned and scheduled in one or more kernels. AG-SpTRSV analyzes the number of node groups of each level in the computation graph. For adjacent levels with a small number of node groups, we merge them into one kernel for execution. For levels with a large number of node groups, we execute each of them in a single kernel so that costs of synchronization can be eliminated, as is discussed in Section 4.2.2. We use a threshold thresh_level to determine that thresh_level = α_level × maximum # of warps, where α_level is a variable parameter. The maximum number of warps is a hardware-dependent parameter, calculated by the maximum number of resident threads on the GPU. If the total number of node groups within the current level is more than thresh_level, it is independently processed in a single kernel so that part of the synchronization overhead can be eliminated. When α_level = 0, each level is processed independently, which is equivalent to the level-set methods <ref type="bibr" coords="14,385.08,482.24,10.37,9.03" target="#b2">[3,</ref><ref type="bibr" coords="14,398.02,482.24,11.25,9.03" target="#b27">28]</ref>. When α_level = ∞, all levels are processed by one kernel, which is equivalent to the fine-grained synchronization methods <ref type="bibr" coords="14,137.01,506.15,10.37,9.03" target="#b7">[8,</ref><ref type="bibr" coords="14,149.87,506.15,11.46,9.03" target="#b13">14,</ref><ref type="bibr" coords="14,163.82,506.15,11.46,9.03" target="#b29">30,</ref><ref type="bibr" coords="14,177.77,506.15,11.25,9.03" target="#b37">38]</ref>.</p><p>Figure <ref type="figure" coords="14,85.15,518.10,4.63,9.03" target="#fig_11">8</ref> shows examples of how candidate graphs are scheduled. With heuristic scheduling strategies, AG-SpTRSV maps computation tasks to the hardware in a multi-hierarchy manner. By now, AG-SpTRSV generates a series of schemes, evaluates the performance, and searches for the best one.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">Automatic Scheme Selection</head><p>Compared with the existing work <ref type="bibr" coords="14,183.01,590.53,10.37,9.03" target="#b7">[8,</ref><ref type="bibr" coords="14,195.40,590.53,11.46,9.03" target="#b13">14,</ref><ref type="bibr" coords="14,208.88,590.53,11.45,9.03" target="#b29">30,</ref><ref type="bibr" coords="14,222.36,590.53,11.25,9.03" target="#b37">38]</ref>, AG-SpTRSV considers a much larger optimization space. As is shown in Table <ref type="table" coords="14,159.13,602.48,3.41,9.03" target="#tab_4">2</ref>, the optimization space consists of parallelism setups (including nw, nд, and sw_rnnz), transformation operations with their parameters, and multi-hierarchy scheduling strategies. We refer to the combination of strategies and parameters as a scheme. Within this optimization space, AG-SpTRSV can generate a series of schemes with the potential to achieve  </p><formula xml:id="formula_0">∈ {2 i , 0 ≤ i ≤ 5}), merдe_avд (thresh ∈ {2 i , 0 ≤ i ≤ 5}, rb = 32), merдe_thresh (thresh ∈ {2 i , 0 ≤ i ≤ 5}, rb = 32) } sched</formula><p>The heuristic scheduling strategy {rд_sequential, rд_balance}× {ws_rr, ws_balance, ws_locality}× α_level ∈ {0, 2, 4, 8, ∞} high performance. In the last Select stage, AG-SpTRSV executes solving kernels and measures the performance of all the generated schemes. The scheme with the best performance is selected and used for the final target kernel. Given the extremely large optimization space, the exhaustive search brings excessive preprocessing overhead. According to Table <ref type="table" coords="15,200.50,602.68,3.41,9.03" target="#tab_4">2</ref>, there are over 3.2e5 schemes to be evaluated. In practice, we reduce the search space by empirically eliminating schemes that perform poorly on most matrices. The reduced number of schemes to be evaluated is around 1.6e3. However, the number is still too large to provide an efficient end-to-end solution. The introduced overhead may significantly  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>dep dist</head><p>The average distance between each row and its nearest dependency row.</p><p>impact the end-to-end executing time, making AG-SpTRSV impractical for real-world applications. Thus, we further introduce a lightweight performance model based on historical performance results, which enables quick scheme selection.</p><p>The performance model takes matrix information as input. We empirically use 10 features to represent the input matrix, as described in Table <ref type="table" coords="16,250.38,293.80,3.41,9.03" target="#tab_5">3</ref>. These features can effectively represent the matrix size, parallelism, and data dependencies, which can be closely related to the performance of SpTRSV.</p><p>m and nnz indicate the size of the matrix. rnnz, rnnz max, and rnnz cov indicate the distribution of non-zeros among rows. lnnz, lnnz max, lnnz cov, and layer num indicate the distribution of nonzeros among levels. dep dist is a customized metric to describe dependency relationships between different rows, calculated as</p><formula xml:id="formula_1">0≤k &lt;m dep(k) m , dep(k) = 1 k−Col I dx [Row P tr [i+1]−2]] , if RowPtr [i + 1] − RowPtr [i] &gt; 1, 0, otherwise.<label>(1)</label></formula><p>When dep dist is large (close to 1), the parallelism among adjacent rows is limited. For such matrices, using larger block sizes (e.g., larger rb for merдe_f ixed strategy) may increase the number of levels in the computation graph, which leads to reduced parallelism. Thus, using smaller block sizes (smaller rb) typically achieves better performance. When dep dist is small (close to 0), sufficient parallelism can be exploited among adjacent rows. For such matrices, using larger block sizes enables coalesced memory access and exploits better parallelism. We use a three-layer multilayer perception (MLP) as the performance model. The dimension of each hidden layer is 32. The input features are first transformed into degree-2 polynomial features and then normalized with standard deviation. The output data is a 0-1 vector with a dimension equal to the total number of schemes (corresponding to the size of the optimization space). If the performance of a scheme achieves 85% of the best, we consider it a "satisfactory" performance and set the value of the corresponding position in the vector to 1. Otherwise, the value is set to 0. The hidden layers use the ReLU activation, while the output layer uses the sigmoid activation. To find out the best scheme for a specific matrix, we input the matrix information and obtain the prediction result. The scheme corresponding to the position with the highest value in the output vector is selected for the target solving kernel. With the proposed performance model, the preprocessing stage only involves extraction of matrix features, performance model prediction, and selected scheme generation. The costs of exhaustive search can be significantly reduced, whereas the selected scheme can still achieve good performance.</p><p>AG-SpTRSV: An Automatic Framework to Optimize Sparse Triangular Solve on GPUs 70:17 </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Experimental Setup</head><p>We evaluate AG-SpTRSV on two NVIDIA GPUs: Tesla A100 and RTX 3080Ti. The platform configurations are listed in Table <ref type="table" coords="17,171.11,193.18,3.41,9.03" target="#tab_6">4</ref>. The nvcc compiler version is 11.4+. The host program and the preprocessing stages are both performed on Intel Core i9-12900KF (Alder Lake architecture, 76.8 GB/s DDR4 memory) with Ubuntu 18.04 and gcc 7.5. The optimization flag is set as -O3.</p><p>We compare the performance of AG-SpTRSV with three state-of-the-art implementations: the Sync-free method <ref type="bibr" coords="17,120.60,241.00,14.84,9.03" target="#b13">[14]</ref>, YYSpTRSV <ref type="bibr" coords="17,188.50,241.00,14.84,9.03" target="#b37">[38]</ref>, and SpTRSV Solve in the NVIDIA cuSPARSE library <ref type="bibr" coords="17,423.44,241.00,14.85,9.03" target="#b22">[23]</ref>. To achieve the best performance of YYSpTRSV, we search for its best parameter to switch algorithms from {0, 1, 2, 4, 8, 16, 32} and use the best one for evaluation. We employ cusparseSb-srsv2_solve in cuSPARSE as the baseline routine and utilize two built-in algorithms: using the level information (USE_LEVEL) and not using the level information (NO_LEVEL).</p><p>We first evaluate 20 matrices, which are representative of a wide range of scientific fields. Information regarding the matrices is listed in Table <ref type="table" coords="17,274.38,312.73,3.41,9.03" target="#tab_7">5</ref>, sorted by lnnz (an approximation of the overall parallelism). We divide the matrix into the following three types. TYPE 1 comprises structured matrices with multiple diagonal-like patterns or banded matrices. This type of matrix has a regular distribution of non-zeros but typically exhibits low parallelism. TYPE 2 comprises matrices derived from graph problems, with very high sparsity and high parallelism. TYPE 3 consists of matrices derived from various problems, with uneven and special sparsity patterns, such as locally dense blocks of non-zeros or rows with an excessively high number of non-zeros. We illustrate in Section 5.2 that the performance of AG-SpTRSV is improved with different optimization spaces. We also evaluate the overall performance with 2,219 large matrices (with more than 10 3 non-zeros) in the SuiteSparse Matrix Collection <ref type="bibr" coords="17,303.97,420.32,11.73,9.03" target="#b4">[5]</ref> (also known as the University of Florida Sparse Matrix Collection) and show the overall performance comparison in Section 5.3. We also evaluate the ability of the performance model to reduce the search costs while achieving satisfactory performance in Section 5.4.</p><p>Without loss of generality, we reserve the lower-triangular-part non-zero elements of all the matrix and add diagonal elements if necessary. All the components in the right-hand-side vector are randomly generated. All experiments are conducted in double precision.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Performance Gains with Different Optimization Spaces</head><p>This subsection analyzes the performance of AG-SpTRSV with the set of matrices listed in Table <ref type="table" coords="17,71.50,542.00,3.41,9.03" target="#tab_7">5</ref>. All presented times in this subsection are for execution only and do not account for preprocessing time. We compare several versions of AG-SpTRSV with different optimization spaces, constructed by adjusting the searching range of parameters. We evaluate four optimization spaces as follows: MF indicates using only the merдe_f ixed strategy and scheduling by hardware. This is equivalent to the tiling strategy in existing implementations <ref type="bibr" coords="17,332.42,589.81,14.98,9.03" target="#b13">[14,</ref><ref type="bibr" coords="17,350.93,589.81,11.46,9.03" target="#b29">30,</ref><ref type="bibr" coords="17,365.92,589.81,11.25,9.03" target="#b37">38]</ref>. NM indicates using other node-merging operations of computation graphs in the Transform stage. Scheduling is still handled by hardware. MHS indicates using multi-hierarchy heuristic scheduling strategies in the Schedule stage. RL indicates using the reorder operation to reorder the computation graph by level. We separately evaluate the performance gain of the reorder operation as it introduces 70:18 Z. Hu et al. The performance comparison across the different optimization spaces on NVIDIA Tesla A100 is shown in Figure <ref type="figure" coords="18,126.28,404.07,3.44,9.03" target="#fig_13">9</ref>(a). For TYPE 1 matrices, using only the merдe_f ixed strategy can achieve sufficiently good performance. This is because matrices of this type have a regular distribution of non-zeros, which is suitable for the fixed tiling size. Reordering brings some performance gains for matrices with higher parallelism. For TYPE 2 matrices, reordering can bring significant performance gains. This is due to the great importance of data locality in matrices derived from graphs. For TYPE 3 matrices, using other merge operations and multi-hierarchy heuristic scheduling can bring good performance gains. This indicates that the designed strategies can effectively handle the irregularity of sparse matrices. Moreover, reordering can still yield significant improvements. Compared with the state-of-the-art YYSpTRSV, enabling the optimization spaces of MF, NM, WHS, and RL can achieve speedups of 1.66x, 2.02x, 2.08x, and 2.38x, respectively.</p><p>The performance comparison across the different optimization spaces on NVIDIA RTX 3080 Ti is shown in Figure <ref type="figure" coords="18,137.51,535.58,3.56,9.03" target="#fig_13">9</ref>(b). The performance results exhibit similar trends as those observed on A100. Enabling the four optimization spaces achieves speedups of 1.37x, 1.85x, 1.95x and 2.37x over YYSpTRSV respectively. It is worth noting that in many cases, the different optimization spaces may achieve varying levels of performance gains on the two hardware platforms. The best schemes differ across hardware platforms, which indicates the importance of strategy searching and auto-tuning to achieve performance scalability.</p><p>Based on experimental data, AG-SpTRSV can achieve promising performance on almost all matrices. However, Figure <ref type="figure" coords="18,141.95,619.26,4.63,9.03" target="#fig_13">9</ref> also shows slight performance degradation on a few matrices compared with YYSpTRSV, such as matrices 12 and 19. Based on our observation, AG-SpTRSV may not perform that well on some matrices with small dep_dist. We speculate that such matrices have simpler data dependencies and unrestricted parallelism. The graph transformation and heuristic scheduling strategies of AG-SpTRSV may introduce unnecessary overhead.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Overall Performance Comparison</head><p>This subsection evaluates the performance of AG-SpTRSV with matrices in the SuiteSparse Matrix Collection. All presented times here are for execution only and do not account for preprocessing time. To avoid interference from extremely small matrices during the evaluation, we filter out matrices with less than 10 3 non-zeros. Except for a small number of matrices that cannot be evaluated due to insufficient GPU memory, we use 2,219 matrices in total and sort them based on their number of non-zeros.</p><p>Performance results with SuiteSparse on NVIDIA Tesla A100 are shown in Figure <ref type="figure" coords="19,399.55,512.75,18.20,9.03" target="#fig_0">10(a)</ref>. The geometric average speedups of AG-SpTRSV over Sync-free, cuSPARSE and YYSpTRSV are 3.81x, 3.99x, and 2.14x, respectively. The arithmetic average speedups over the three baselines are 10.56x, 7.35x, and 2.59x. Out of 2,219 test cases, AG-SpTRSV achieves better performance than the three baselines in 96.8% of the cases. The figure also shows that when the number of non-zeros of the matrix increases, the speedups of AG-SpTRSV become more evident and stable, which indicates the advantages of AG-SpTRSV on larger matrices. For large matrices (with more than 10 6 non-zeros), AG-SpTRSV can achieve the geometric speedups of 7.97x over Sync-free, 4.47x over cuSPARSE, and 2.77x over YYSpTRSV.</p><p>Performance results with SuiteSparse on NVIDIA RTX 3080 Ti are shown in Figure <ref type="figure" coords="19,399.51,620.35,7.48,9.03" target="#fig_0">10</ref>(b). The geometric average speedups of AG-SpTRSV over Sync-free, cuSPARSE, and YYSpTRSV are 2.98x, 3.57x, and 2.12x, and the arithmetic average speedups are 8.25x, 5.36x, and 2.59x, respectively. that of cuSPARSE and YYSpTRSV (by 2.44x and 43.28x on average), but the execution performance of AG-SpTRSV is higher (with speedups of 10.69x and 2.09x on average). The REC achieves better performance in execution time (1.39x over AG-SpTRSV on average). However, its preprocessing overhead is too high for real-world applications. On average, the preprocessing time of REC is over 10 5 x of the execution time. The number of iterations of solvers in practice rarely achieves this order of magnitude.</p><p>Our experimental results also provide suggestions for the selection of SpTRSV implementations: For direct solvers or iterative solvers with few iterations, YYSpTRSV performs better due to its lightweight preprocessing stage. For cases with a significant number of iterations and unchanged distribution of non-zeros, the REC may achieve better execution performance. For typical iterative solvers (with the number of iterations ranging 10 2 ∼ 10 5 ), AG-SpTRSV is a better choice as it offers input-adaptive optimization at a relatively low preprocessing cost.</p><p>Furthermore, we find that for TYPE 1 and TYPE 2 matrices, performance models can predict the schemes with performance close to the optimal one (within a margin of error of 5.5%). For TYPE 3 matrices, the margin of error becomes larger (up to 32.8%), as the irregular distribution of non-zeros affects the accuracy of prediction results.</p><p>We also evaluate the time consumed by each preprocessing stage of AG-SpTRSV using PMs. The results are shown in Figure <ref type="figure" coords="21,185.00,471.83,7.64,9.03" target="#fig_15">11</ref>. The time consumed by the Select stage remains basically unchanged, as the overhead of the performance model prediction is fixed. On most large matrices (e.g., with more than 10 7 non-zeros), the Transform stage and Schedule stage consume the majority of the time. The time consumption of the above two stages is closely related to the matrix sizes (the number of nodes and the number of non-zeros). The relationship is not strictly linear, as different non-zero distributions and different strategy selections lead to variation in time consumption.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Related Work</head><p>How to implement efficient SpTRSV on modern processors has long been a topic in the field of sparse matrix computation. Existing methods are generally based on level-set <ref type="bibr" coords="21,370.31,583.07,10.36,9.03" target="#b2">[3,</ref><ref type="bibr" coords="21,383.88,583.07,12.82,9.03" target="#b27">28]</ref> and colorset <ref type="bibr" coords="21,60.56,595.02,16.36,9.03" target="#b28">[29]</ref> methods. Level-set methods divide the problem into several levels, which represent the order of computation. No intra-level data dependencies exist so that computation tasks inside one single level can be fully parallelized. Different levels have to be solved in a sequential order to ensure inter-level dependencies. Color-set methods view the solution of a linear system as a graph coloring problem and reorder the original matrix to enhance parallelism <ref type="bibr" coords="21,380.60,642.85,14.83,9.03" target="#b30">[31]</ref>. Color-set  methods are mostly used in iterative solvers instead of triangular solve kernels; thus, we focus on the implementation and optimization of level-set methods.</p><p>Level-set methods require synchronizations at the end of each level, which introduces high extra costs. Park et al. <ref type="bibr" coords="22,131.65,414.51,16.37,9.03" target="#b23">[24]</ref> proposed to replace barrier synchronization with peer-to-peer (P2P) communication on a central processing unit (CPU) and further reduce the cost with heuristic sparsification. On GPUs, Liu et al. <ref type="bibr" coords="22,164.05,438.42,16.37,9.03" target="#b13">[14]</ref> proposed a warp-level synchronization-free method to eliminate unnecessary cost between level-sets based on the CSC format. The method parallelizes the solution of the component of each row inside one CUDA warp, using shared memory and global memory for intra-block and inter-block communication, respectively. Dufrechou and Ezzatti <ref type="bibr" coords="22,382.01,474.29,11.79,9.03" target="#b7">[8]</ref> proposed a similar sync-free method for the CSR format, with row-wise flags to indicate dependencies. Li and Zhang <ref type="bibr" coords="22,75.28,498.19,16.35,9.03" target="#b12">[13]</ref> compared the performance between the sync-free method and the level-set method when using the CSR and CSC formats, in real-world numerical scenarios such as Gauss-Seidel iterations. Su et al. <ref type="bibr" coords="22,126.27,522.11,16.36,9.03" target="#b29">[30]</ref> further proposed a fine-grained thread-level method, which solves multiple rows within one single thread for matrices with high sparsity or many extra levels. Zhang et al. <ref type="bibr" coords="22,67.09,546.02,16.35,9.03" target="#b37">[38]</ref> proposed YuenyeungSpTRSV, which combines warp-level and thread-level methods and chooses between them based on the average number of non-zeros per row. However, optimization space in existing work is not enough to reach the best performance. AG-SpTRSV considers adaptive parallelization, graph transformation and multi-hierarchy scheduling, and outperforms the state-of-the-art SpTRSV implementations.</p><p>Considering the performance differences between various SpTRSV implementations on different matrices, dynamic selection strategies have been proposed. Ahmad et al. <ref type="bibr" coords="22,347.16,617.75,11.73,9.03" target="#b0">[1]</ref> proposed to switch between CPU and GPU routines based on a trained machine learning model (Random Forest). Dufrechou et al. <ref type="bibr" coords="22,113.77,641.66,10.38,9.03" target="#b8">[9,</ref><ref type="bibr" coords="22,126.68,641.66,12.81,9.03" target="#b9">10]</ref> employed and evaluated several machine learning models for the optimal selection of GPU implementations. Due to the lack of real matrix datasets, artificial matrix data was generated to improve prediction accuracy. The Split Model <ref type="bibr" coords="23,298.38,94.73,11.73,9.03" target="#b1">[2]</ref> proposed to decompose SpTRSV into multiple executions based on the data dependency graph. Heuristic strategies are introduced to select the optimal CPU/GPU implementation for each execution.</p><p>Implementations of SpTRSV with various data formats have also been studied well in recent years. Lu et al. <ref type="bibr" coords="23,108.01,142.55,16.36,9.03" target="#b19">[20]</ref> proposed an efficient recursive block algorithm to reduce memory footprints and enhance data locality. Yamazaki et al. <ref type="bibr" coords="23,222.63,154.50,16.36,9.03" target="#b34">[35]</ref> developed the sparse triangular solver based on supernode structures, which can improve computational intensity and provide performance portability. Wang et al. <ref type="bibr" coords="23,118.66,178.41,16.36,9.03" target="#b33">[34]</ref> designed the Sparse Level Tile Layout to enable data reuse and reduce communication costs on Sunway manycore processors. tileSpTRSV <ref type="bibr" coords="23,305.62,190.37,16.35,9.03" target="#b18">[19]</ref> stores the sparse matrix in a 2D block and uses heuristic strategies to specify the optimal format for each block. Yilmaz <ref type="bibr" coords="23,410.45,202.33,14.99,9.03" target="#b35">[36,</ref><ref type="bibr" coords="23,427.65,202.33,12.82,9.03" target="#b36">37]</ref> aimed to reduce the synchronization overhead of the level-set method through dependency graph transformation and equation rewriting. It should be noted that costs of accessing sparse matrix data can be significantly reduced through specialized code generation. However, using a specific format limits the generality of the implementation and introduces extra costs in format transformation. Our work focuses on the most commonly used CSR format and provides an efficient solution for general purposes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion</head><p>SpTRSV plays an important role in scientific applications. However, implementing efficient Sp-TRSV on GPUs faces challenges. In this article, We attempt to characterize the performance of SpTRSV through experiments and identify several key factors, including parallelism setup, data distribution and code implementation. We propose AG-SpTRSV, an automatic framework to optimize SpTRSV on GPUs, which takes those factors into consideration. Through the four stages -code variant preparation, computation graph transformation, multi-hierarchy heuristic scheduling, and scheme selection -AG-SpTRSV is able to generate a highly optimized solution kernel for the specific matrix with input adaptability. The tedious manual tuning efforts can be fully eliminated. Experimental results with SuiteSparse Matrix Collection on two NVIDIA GPUs show speedups over the state-of-the-art implementations and capability of providing efficient end-toend solution.</p><p>The underlying idea behind our work is not limited to the scope of SpTRSV and GPU. In future work, we will attempt to extend the proposed framework to various platforms and other matrix computation kernels in scientific applications, such as sparse LU or QR factorization.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="3,45.95,202.14,396.03,8.07;3,45.95,213.10,270.32,8.07"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. Performance comparison across Sync-free, YYSpTRSV and cuSPARSE with typical matrices in scientific applications. The experiments are conducted on NVIDIA RTX 3080Ti.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,45.55,55.82,16.10,8.97;4,394.45,55.82,45.83,8.97"><head>70: 4 Z</head><label>4</label><figDesc>. Hu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,119.10,253.14,247.87,8.07"><head>Fig. 2 .</head><label>2</label><figDesc>Fig.2. A sparse lower triangular matrix and its computation graph.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="5,45.64,55.82,348.66,8.97;5,424.40,55.82,16.09,8.97;5,45.61,84.51,216.61,8.12;5,48.85,99.04,138.28,8.17;5,48.85,112.03,3.07,5.42;5,72.25,110.00,64.41,8.17;5,48.85,122.98,3.07,5.42;5,87.23,120.75,35.64,8.45;5,48.85,134.94,3.07,5.42;5,87.59,132.91,181.15,8.17;5,48.85,145.90,3.07,5.42;5,102.57,143.14,165.81,8.97;5,48.85,157.86,3.07,5.42;5,87.59,155.87,14.94,8.12;5,48.85,169.81,3.07,5.42;5,87.14,167.05,143.97,8.97;5,48.85,181.76,3.07,5.42;5,87.32,179.53,116.62,8.45;5,48.85,193.72,3.07,5.42;5,72.25,191.74,14.94,8.12;5,45.78,203.69,65.80,8.12"><head>5 ALGORITHM 1 : 2 for row = 0, m do 3 sum ← 0; 4 for 6 end 7 diaд</head><label>5123467</label><figDesc>AG-SpTRSV: An Automatic Framework to Optimize Sparse Triangular Solve on GPUs 70:Serial Triangular Solve with CSR Format 1 Function serial_SpTRSV(A, b, x): idx = A.RowPtr[row], A.RowPtr[row + 1] -1 do 5 sum ← sum + A.V al[idx] * x[A.ColIdx[idx]]; ← A.V al[A.RowPtr [row + 1] − 1]; 8 x[row] ← (b[row] − sum)/diaд;</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,45.55,55.82,16.10,8.97;6,394.45,55.82,45.83,8.97"><head>70: 6 Z</head><label>6</label><figDesc>. Hu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,45.44,84.51,379.90,8.12;6,45.77,95.47,29.82,8.12;6,48.67,107.98,176.86,8.17;6,48.67,120.97,3.07,5.42;6,72.07,119.26,152.43,7.24;6,48.67,132.93,3.07,5.42;6,72.07,130.90,132.33,8.17;6,48.67,143.89,3.07,5.42;6,87.00,141.65,57.61,8.45;6,48.67,155.84,3.07,5.42;6,87.42,153.81,254.98,8.17;6,48.67,166.80,3.07,5.42;6,102.75,164.77,122.98,8.17;6,48.67,177.76,3.07,5.42;6,118.10,175.77,38.57,8.12;6,48.67,189.72,3.07,5.42;6,102.75,187.73,14.94,8.12;6,48.67,201.67,3.07,5.42;6,102.34,198.91,187.79,8.97;6,45.60,213.62,6.14,5.42;6,87.42,211.64,14.94,8.12;6,45.60,225.58,6.14,5.42;6,87.42,223.87,114.23,7.24;6,45.60,237.53,6.14,5.42;6,87.15,234.78,211.95,8.97"><head>ALGORITHM 2 : 2 / 4 local_sum ← 0; 5 for 9 local_sum 12 x</head><label>2245912</label><figDesc>Warp-Level and Thread-Level Triangular Solve on GPUs with Fine-Grained Synchronization 1 Function warp_level_SpTRSV(A, b, x, f laд): / Processing each row in one warp 3 for row = 0, m in warp-parallel do idx = A.RowPtr[row], A.RowPtr[row + 1] -1 in thread-parallel do 6 while flag[A.ColIdx[idx]] == 0 ← sum + A.V al[idx] * x[A.ColIdx[idx]]; [row] ← (b[row] − sum)/A.V al[A.RowPtr [row + 1] − 1];</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,119.28,237.14,247.87,8.07"><head>7 Fig. 3 .</head><label>73</label><figDesc>Fig. 3. Performance comparison across different parallelism setups.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="7,134.14,402.44,218.15,8.07"><head>Fig. 4 .</head><label>4</label><figDesc>Fig. 4. Performance gains brought by handling irregularity.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,128.93,222.14,228.22,8.07"><head>Fig. 6 .</head><label>6</label><figDesc>Fig.6. Applying adaptive optimizations on the code template.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="13,45.95,216.15,394.54,8.07;13,45.95,226.28,395.05,8.97;13,45.95,237.24,394.75,8.97;13,45.95,249.02,394.53,8.07;13,45.95,259.98,103.38,8.07"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Examples of computation graph transformation. The candidate graphs are generated by (a) merging by fixed block size where rb = 3, (b) merging by average non-zeros per row where rb = 3 and thresh = 1, (c) merging by the threshold of the number of non-zeros where rb = 5 and thresh = 3, and (d) reordering by topological order. The nodes are renumbered. The gray subscripts indicate the numbering of the node in the original computation graph.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="14,45.55,55.82,20.73,8.97;14,394.45,55.82,45.83,8.97"><head>70: 14 Z</head><label>14</label><figDesc>. Hu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="15,45.95,274.14,394.54,8.07;15,45.95,285.10,394.53,8.07;15,45.95,295.24,394.51,8.97;15,45.95,307.02,395.91,8.07;15,45.70,317.17,394.77,8.97;15,45.95,328.85,394.52,8.17;15,45.95,339.90,219.20,8.07;15,279.33,88.03,129.76,174.40"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Examples of multi-hierarchy scheduling. The gray rounded rectangles indicate the node groups, and the dashed rectangles indicate the CUDA kernels. The upper part shows the scheduling of the candidate graph in Figure 7(b) with nд = 2, α_level = 1 and 2 warps in total. The ws_rr strategy schedules node groups onto warps in sequence, and the first layer is processed independently because it exhibits enough parallelism. The lower part shows the scheduling of the candidate graph in Figure 7(d) with nд = 1, α_level = 1 and 3 warps in total. The ws_balance schedules node groups onto the warp with the fewest non-zero elements each time, and all node groups are processed by one kernel.</figDesc><graphic coords="15,279.33,88.03,129.76,174.40" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="16,45.55,55.82,20.73,8.97;16,394.45,55.82,45.83,8.97"><head>70: 16 Z</head><label>16</label><figDesc>. Hu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="19,45.95,345.14,394.53,8.07;19,45.95,356.10,394.52,8.07;19,45.95,367.06,105.96,8.07"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Performance comparison across different configurations of the optimization space. All performance data are normalized by that of the MF version. The experiments are conducted on (a) NVIDIA Tesla A100 and (b) NVIDIA RTX 3080 Ti.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="22,45.55,55.82,20.73,8.97;22,394.45,55.82,45.83,8.97"><head>70: 22 Z</head><label>22</label><figDesc>. Hu et al.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="22,45.77,344.14,395.07,8.07;22,45.77,355.11,77.56,8.07"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Breakdown of preprocessing time. The experiments are conducted on (a) NVIDIA Tesla A100 and (b) NVIDIA RTX 3080 Ti.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="6,45.60,247.77,195.64,78.59"><head>15 end 16 End Function 17 Function thread_level_SpTRSV</head><label></label><figDesc>(A, b, x, f laд):</figDesc><table coords="6,45.60,247.77,195.64,78.59"><row><cell>13</cell><cell>mem_fence();</cell></row><row><cell>14</cell><cell>f laд[row] ← 1;</cell></row><row><cell>18</cell><cell>// Processing every t rows in one warp</cell></row><row><cell>19</cell><cell>for row_block = 0, m</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="6,45.60,318.20,253.88,87.94"><head>step t in warp-parallel do 20 for row = row_block, row_block + t in thread-parallel do 21</head><label></label><figDesc></figDesc><table coords="6,45.60,339.91,253.29,66.24"><row><cell></cell><cell>idx ← A.RowPtr [row];</cell></row><row><cell>22</cell><cell>sum ← 0;</cell></row><row><cell>23</cell><cell>while idx &lt; A.RowPtr[row+1] do</cell></row><row><cell>24</cell><cell>if flag[A.ColIdx[idx]] then</cell></row><row><cell>25</cell><cell>sum ← sum + A.V al[idx]  *  x[A.ColIdx[idx]];</cell></row><row><cell>26</cell><cell>pos ← pos + 1;</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="6,45.60,409.90,227.77,114.72"><head>27 end 28 if pos == A.RowPtr[row+1]-1 then 29 x[row] ← (b[row] − sum)/A.V al[idx]; 30 mem_fence(); 31 f laд[row] ← 1; 32 end 33 end 34 end 35 end 36 End Function</head><label></label><figDesc></figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="11,57.61,81.19,375.86,189.91"><head>Table 1 .</head><label>1</label><figDesc>Comparison Across Code Variant of AG-SpTRSV and Other GPU SpTRSV Implementations</figDesc><table coords="11,57.61,102.35,375.86,168.75"><row><cell>SpTRSV implementation</cell><cell>Target sparsity pattern</cell><cell cols="2">Dynamic parallelism Adaptive optimization</cell></row><row><cell cols="2">Warp-level algorithm [8, 14] Rows with large # of</cell><cell>✗</cell><cell>✗</cell></row><row><cell></cell><cell>non-zeros</cell><cell></cell><cell></cell></row><row><cell cols="2">Thread-level algorithm [30] Blocks of rows with low #</cell><cell>✗</cell><cell>✗</cell></row><row><cell></cell><cell>of non-zeros and balanced</cell><cell></cell><cell></cell></row><row><cell></cell><cell>distributions</cell><cell></cell><cell></cell></row><row><cell>YYSpTRSV [38]</cell><cell>Blocks of rows suitable to</cell><cell>✓</cell><cell>✗</cell></row><row><cell></cell><cell>process with warp-level or</cell><cell></cell><cell></cell></row><row><cell></cell><cell>thread-level algorithm</cell><cell></cell><cell></cell></row><row><cell cols="2">Multiple-row-per-warp [8] Distributed rows with the</cell><cell>✓</cell><cell>✗</cell></row><row><cell></cell><cell>same level and small # of</cell><cell></cell><cell></cell></row><row><cell></cell><cell>rows</cell><cell></cell><cell></cell></row><row><cell>AG-SpTRSV</cell><cell>Various non-zero</cell><cell>✓</cell><cell>✓</cell></row><row><cell></cell><cell>distributions</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="15,55.21,363.09,359.92,132.32"><head>Table 2 .</head><label>2</label><figDesc>The Optimization Space of AG-SpTRSV</figDesc><table coords="15,55.21,380.68,300.90,72.11"><row><cell>Setting</cell><cell>Description</cell><cell>Values</cell></row><row><cell>nw</cell><cell>The number of active warps per block</cell><cell>nw ∈{2, 4, 8, 16, 32}</cell></row><row><cell>nд</cell><cell>The number of subwarps per warp</cell><cell>nд ∈ {2 i , 0 ≤ i ≤ 5}</cell></row><row><cell cols="2">sw_rnnz The threshold to determine whether the</cell><cell>sw_rnnz ∈ {0, ∞} ∪ {2</cell></row><row><cell></cell><cell>threads in a subwarp collaboratively</cell><cell></cell></row><row><cell></cell><cell>process the rows</cell><cell></cell></row></table><note>i , i ∈ N &amp; 2 i ≤ 32 nд } transThe computation graph transformation strategy { reorder , merдe_f ixed (rb</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="16,69.11,81.19,279.83,134.84"><head>Table 3 .</head><label>3</label><figDesc>Input Matrix Features in the Performance Model Number of levels in the original computation graph.</figDesc><table coords="16,69.11,99.01,241.94,117.02"><row><cell>Feature</cell><cell>Description</cell></row><row><cell>m</cell><cell>Number of rows.</cell></row><row><cell>nnz</cell><cell>Number of non-zeros.</cell></row><row><cell>rnnz</cell><cell>Average number of non-zeros per row.</cell></row><row><cell cols="2">rnnz max Maximum number of non-zeros per row.</cell></row><row><cell>rnnz cov</cell><cell>Coefficient of variation of non-zeros per row.</cell></row><row><cell>lnnz</cell><cell>Average number of non-zeros per level.</cell></row><row><cell cols="2">lnnz max Maximum number of non-zeros per level.</cell></row><row><cell>lnnz cov</cell><cell>Coefficient of variation of non-zeros per level.</cell></row><row><cell>level num</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="17,45.95,81.19,363.55,79.17"><head>Table 4 .</head><label>4</label><figDesc>Configurations of Experimental Platforms</figDesc><table coords="17,45.95,99.01,363.55,61.34"><row><cell>GPU</cell><cell>Architecture</cell><cell>Memory</cell><cell>FP64 Peak</cell><cell>Bandwidth Peak</cell></row><row><cell>Tesla A100 RTX 3080Ti</cell><cell>Ampere</cell><cell cols="2">SXM4, 80 GB GDDR6X, 12 GB 532.8 GFLOPS 9.746 TFLOPS</cell><cell>1.935 TB/s 912.4 GB/s</cell></row><row><cell>5 Evaluation</cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="18,45.77,81.19,394.54,307.99"><head>Table 5 .</head><label>5</label><figDesc>Matrix Information of Test Cases</figDesc><table coords="18,45.77,99.01,394.54,290.17"><row><cell>Type</cell><cell>ID Matrix name</cell><cell>m</cell><cell cols="2">mnz rnnz</cell><cell cols="2">lnnz dep dist</cell></row><row><cell></cell><cell>1 tmt_sym</cell><cell>726,713</cell><cell>2,903,837</cell><cell>4.0</cell><cell>1.0</cell><cell>1.00</cell></row><row><cell></cell><cell>2 cant</cell><cell>62,451</cell><cell cols="2">2,034,917 32.6</cell><cell>26.1</cell><cell>0.79</cell></row><row><cell></cell><cell>3 chipcool0</cell><cell>20,082</cell><cell>150,616</cell><cell>7.5</cell><cell>37.6</cell><cell>0.11</cell></row><row><cell>TYPE 1</cell><cell>4 delaunay_n23</cell><cell cols="2">8,388,608 33,554,392</cell><cell>4.0</cell><cell>2,858.1</cell><cell>0.61</cell></row><row><cell></cell><cell>5 atmosmodd</cell><cell>1,270,432</cell><cell>5,042,656</cell><cell>4.0</cell><cell>3,609.2</cell><cell>0.99</cell></row><row><cell></cell><cell>6 nlpkkt80</cell><cell cols="4">1,062,400 14,883,536 14.0 531,200.0</cell><cell>0.00</cell></row><row><cell></cell><cell>7 europe_osm</cell><cell cols="2">50,912,018 104,966,678</cell><cell cols="2">2.1 14,710.2</cell><cell>0.33</cell></row><row><cell></cell><cell>8 huдetrace -00000</cell><cell cols="2">4,588,484 11,467,617</cell><cell cols="2">2.5 26,677.2</cell><cell>0.62</cell></row><row><cell>TYPE 2</cell><cell cols="3">9 huдebubbles -00000 18,318,143 45,788,224</cell><cell cols="2">2.5 35,227.2</cell><cell>0.62</cell></row><row><cell></cell><cell>10 road_central</cell><cell cols="2">14,081,816 31,015,229</cell><cell cols="2">2.2 238,674.8</cell><cell>0.09</cell></row><row><cell></cell><cell>11 road_usa</cell><cell cols="2">23,947,347 52,801,659</cell><cell cols="2">2.2 311,004.5</cell><cell>0.21</cell></row><row><cell></cell><cell>12 kron_д500 -loдn21</cell><cell cols="3">2097,152 93,138,084 44.4</cell><cell>483.21</cell><cell>0.00</cell></row><row><cell></cell><cell>13 wiki -Talk</cell><cell>2,394,385</cell><cell>3,072,221</cell><cell>1.3</cell><cell>4,649.3</cell><cell>0.01</cell></row><row><cell></cell><cell>14 arabic -2005</cell><cell cols="3">22,744,080 330,977,515 14.6</cell><cell>7,070.0</cell><cell>0.33</cell></row><row><cell>TYPE 3</cell><cell>15 FullChip</cell><cell cols="2">2,987,012 14,804,570</cell><cell>5.0</cell><cell>9,219.2</cell><cell>0.42</cell></row><row><cell></cell><cell>16 ASIC_680ks</cell><cell>682,712</cell><cell>1,505,944</cell><cell cols="2">2.2 13,932.9</cell><cell>0.10</cell></row><row><cell></cell><cell>17 bundle_adj</cell><cell cols="4">513,351 10,360,701 20.2 57,039.0</cell><cell>0.67</cell></row><row><cell></cell><cell>18 lp1</cell><cell>534,388</cell><cell>1,088,904</cell><cell cols="2">2.0 59,376.5</cell><cell>0.49</cell></row><row><cell></cell><cell>19 c -biд</cell><cell>345,241</cell><cell>1,343,126</cell><cell cols="2">3.9 172,620.5</cell><cell>0.00</cell></row><row><cell></cell><cell>20 circuit5M</cell><cell cols="4">5,558,326 32,542,244 5.85 308,795.9</cell><cell>0.00</cell></row><row><cell cols="7">additional preprocessing overhead. To avoid the effect of extreme values, all averages presented</cell></row><row><cell cols="3">in this subsection are geometric averages.</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="21,52.62,81.19,380.36,168.56"><head>Table 6 .</head><label>6</label><figDesc>Average Preprocessing and Execution Time Across Different SpTRSV Implementations</figDesc><table coords="21,52.62,98.35,380.36,151.40"><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>(a)</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Matrix type</cell><cell></cell><cell cols="3">Preprocessing time(s)</cell><cell></cell><cell></cell><cell cols="3">Execution time(s)</cell></row><row><cell></cell><cell>CUSP</cell><cell>YY</cell><cell>REC</cell><cell>ES</cell><cell>PM</cell><cell>CUSP</cell><cell>YY</cell><cell>REC</cell><cell>ES</cell><cell>PM</cell></row><row><cell>TYPE 1</cell><cell cols="3">7.98e-1 9.98e-3 39.9</cell><cell cols="7">158.62 4.04e-1 3.98e-1 2.44e-1 1.58e-1 1.14e-1 1.21e-1</cell></row><row><cell>TYPE 2</cell><cell cols="4">4.81e-1 9.72e-2 306.2 1,227.32</cell><cell>2.41</cell><cell cols="5">2.79e-2 1.82e-2 8.72e-3 0.98e-3 1.07e-2</cell></row><row><cell>TYPE 3</cell><cell cols="2">3.30e-1 2.16e-2</cell><cell>-</cell><cell cols="4">376.47 8.87e-1 9.06e-1 6.49e-2</cell><cell>-</cell><cell cols="2">1.98e-2 2.94e-2</cell></row><row><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>(b)</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>Matrix type</cell><cell></cell><cell cols="3">Preprocessing time(s)</cell><cell></cell><cell></cell><cell cols="3">Execution time(s)</cell></row><row><cell></cell><cell>CUSP</cell><cell>YY</cell><cell>REC</cell><cell>ES</cell><cell>PM</cell><cell>CUSP</cell><cell>YY</cell><cell>REC</cell><cell>ES</cell><cell>PM</cell></row><row><cell>TYPE 1</cell><cell cols="3">7.31e-1 7.36e-3 18.98</cell><cell cols="7">158.62 3.71e-1 2.92e-1 2.94e-1 9.57e-2 1.39e-1 1.55e-1</cell></row><row><cell>TYPE 2</cell><cell cols="4">5.90e-1 7.22e-2 141.34 1,227.32</cell><cell>2.36</cell><cell cols="5">5.17e-2 2.52e-2 6.52e-3 1.25e-2 1.27e-2</cell></row><row><cell>TYPE 3</cell><cell cols="2">2.43e-1 1.63e-2</cell><cell>-</cell><cell>376.47</cell><cell>1.48</cell><cell cols="2">5.93e-1 7.54e-2</cell><cell>-</cell><cell cols="2">2.25e-2 2.76e-2</cell></row><row><cell cols="11">The experiments are conducted on (a) NVIDIA Tesla A100 and (b) NVIDIA RTX 3080 Ti. Missing data points indicate</cell></row><row><cell cols="3">crashes caused by runtime errors.</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 70. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_1">Received 18 January 2024; revised 6 May 2024; accepted 5 June 2024 ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 70. Publication date: November 2024.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENT</head><p>We would like to thank the editor and the anonymous reviewers for their valuable feedback that improved the article.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This study is supported by the Strategic Priority Research Program of Chinese Academy of Sciences, Grant No.XDB0500102.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>AG-SpTRSV achieves better performance than the two baselines in 94.8% test cases. The figure also indicates the performance advantages of AG-SpTRSV on larger matrices. For matrices with more than 10 6 non-zeros, the geometric average speedups over the three baselines are 8.26x, 3.74x, and 2.95x, respectively.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Evaluation of Performance Model</head><p>This subsection evaluates the performance model described in Section 4.5. For each matrix, we compare the best performance of all schemes (noted as Best Perf ) with the performance of the scheme selected by the performance model (noted as Selected Perf ). The dataset contains all performance measurement results in Section 5.3. Specifically, we use performance data of all SuiteSparse matrices. For each matrix, the execution times with all possible schemes are evaluated and collected. We divide 70% of the dataset into the training set and 30% into the test set. The Mean Absolute Percentage Error (MAPE) between Selected Perf and Best Perf is 8.19%. Moreover, Selected Perf achieves at least 85% of Best Perf in 87.1% of the test cases. The results indicate that the performance model is able to generate the scheme with performance competitive to the best one.</p><p>We compare the preprocessing and solving time of AG-SpTRSV using exhaustive search (ES) and using the performance model (PM) with existing GPU implementations including cuS-PARSE (CUSP) <ref type="bibr" coords="20,113.52,499.13,14.84,9.03" target="#b22">[23]</ref>, YYSpTRSV (YY) <ref type="bibr" coords="20,209.59,499.13,14.84,9.03" target="#b37">[38]</ref>, and the Recursive Block Algorithm (REC) <ref type="bibr" coords="20,417.89,499.13,14.83,9.03" target="#b19">[20]</ref>.</p><p>The results on NVIDIA RTX 3080 Ti are shown in Table <ref type="table" coords="20,286.06,511.08,3.44,9.03">6</ref>(a). By using the performance model, the average preprocessing time of AG-SpTRSV is reduced by a factor of more than 392x, while the average execution time increases by 17.3%. The results on NVIDIA Tesla A100 are shown in Table <ref type="table" coords="20,70.00,546.95,3.56,9.03">6</ref>(b). The average preprocessing time is reduced by a factor of more than 428x, whereas the average execution time increases by 13.9%.</p><p>The preprocessing time ranges from 2.7 to 245 times of the execution time. Compared with autotuning frameworks for other matrix computation kernels <ref type="bibr" coords="20,285.80,582.81,37.47,9.03">([4, 7, 25]</ref>), which take hours to days, AG-SpTRSV provides a more efficient end-to-end solution. Many real-world applications <ref type="bibr" coords="20,414.02,594.77,10.35,9.03" target="#b5">[6,</ref><ref type="bibr" coords="20,427.48,594.77,12.81,9.03" target="#b21">22]</ref> involve multiple iterations of SpTRSV on the same sparse matrix, which can amortize the costs of preprocessing.</p><p>Compared with other GPU implementations, AG-SpTRSV achieves a balance between the execution performance and preprocessing costs. The preprocessing time of AG-SpTRSV is longer than</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="23,63.02,550.06,377.45,7.22;23,63.02,559.98,200.10,7.26" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">A prediction framework for fast sparse triangular solves</title>
+		<author>
+			<persName coords=""><forename type="first">Najeeb</forename><surname>Ahmad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Buse</forename><surname>Yilmaz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Didem</forename><surname>Unat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European Conference on Parallel Processing</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="529" to="545" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,569.94,377.45,7.26;23,63.02,579.91,158.25,7.26" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">A split execution model for SpTRSV</title>
+		<author>
+			<persName coords=""><forename type="first">Najeeb</forename><surname>Ahmad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Buse</forename><surname>Yilmaz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Didem</forename><surname>Unat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="2809" to="2822" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,589.87,377.45,7.26;23,63.02,599.83,170.27,7.26" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Solving sparse triangular linear systems on parallel computers</title>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Youcef</forename><surname>Saad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal of High Speed Computing</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="73" to="95" />
+			<date type="published" when="1989">1989. 1989</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,609.84,378.32,7.22;23,62.79,619.57,377.67,7.51;23,63.02,629.72,288.53,7.26" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">{TVM}: An automated {End-to-End} optimizing compiler for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thierry</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haichen</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meghan</forename><surname>Cowan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuwei</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">13th USENIX Symposium on Operating Systems Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="578" to="594" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,639.68,378.26,7.26;23,63.02,649.65,142.65,7.26;24,45.55,55.82,20.73,8.97;24,394.45,55.82,45.83,8.97" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">The University of Florida sparse matrix collection</title>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><forename type="middle">A</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page">24</biblScope>
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,84.05,377.44,7.26;24,62.85,94.06,18.57,7.22" xml:id="b5">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><forename type="middle">C</forename><surname>Dorf</surname></persName>
+		</author>
+		<title level="m">Electronics, Power Electronics, Optoelectronics, Microwaves, Electromagnetics, and Radar</title>
+				<imprint>
+			<publisher>CRC press</publisher>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,104.02,377.43,7.22;24,62.85,113.94,307.65,7.26" xml:id="b6">
+	<monogr>
+		<title level="m" type="main">AlphaSparse: Generating high performance SpMV codes directly from sparse matrices</title>
+		<author>
+			<persName coords=""><forename type="first">Zhen</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yinshan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xueqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Guangming</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ninghui</forename><surname>Sun</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2212.10432</idno>
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="24,62.85,123.94,377.45,7.22;24,62.85,133.87,378.22,7.26;24,62.85,143.83,123.80,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Solving sparse triangular linear systems in modern GPUs: a synchronization-free algorithm</title>
+		<author>
+			<persName coords=""><forename type="first">Ernesto</forename><surname>Dufrechou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Ezzatti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">26th Euromicro International Conference on Parallel, Distributed and Networkbased Processing (PDP)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018. 2018</date>
+			<biblScope unit="page" from="196" to="203" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,153.83,377.43,7.22;24,62.85,163.75,336.98,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Machine learning for optimal selection of sparse triangular system solvers on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Ernesto</forename><surname>Dufrechou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Ezzatti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manuel</forename><surname>Freire</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Enrique</forename><forename type="middle">S</forename><surname>Quintana-Ortí</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Parallel and Distrib. Comput</title>
+		<imprint>
+			<biblScope unit="volume">158</biblScope>
+			<biblScope unit="page" from="47" to="55" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,173.76,377.59,7.22;24,62.85,183.68,377.44,7.26;24,62.85,193.64,234.46,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Automatic selection of sparse triangular linear system solvers on GPUs through machine learning techniques</title>
+		<author>
+			<persName coords=""><forename type="first">Ernesto</forename><surname>Dufrechou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pablo</forename><surname>Ezzatti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Enrique</forename><forename type="middle">S</forename><surname>Quintana-Ortí</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 31st International Symposium on Computer Architecture and High Performance Computing (SBAC-PAD)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="41" to="47" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,203.61,318.61,7.26" xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Graph Algorithms in the Language of Linear Algebra</title>
+		<author>
+			<persName coords=""><forename type="first">Jeremy</forename><surname>Kepner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Gilbert</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<publisher>SIAM</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,213.61,377.45,7.22;24,62.85,223.57,377.43,7.22;24,62.85,233.49,375.06,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Exploring and analyzing the real impact of modern on-package memory on HPC scientific kernels</title>
+		<author>
+			<persName coords=""><forename type="first">Ang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">B</forename><surname>Mads</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Kristensen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hao</forename><surname>Vinter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaixi</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andres</forename><surname>Hou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shuaiwen</forename><surname>Marquez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Song</forename><surname>Leon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,243.50,378.75,7.22;24,62.85,253.42,361.06,7.26" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Efficient parallel implementations of sparse triangular solves for GPU architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Ruipeng</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chaoyu</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 SIAM Conference on Parallel Processing for Scientific Computing. SIAM</title>
+				<meeting>the 2020 SIAM Conference on Parallel Processing for Scientific Computing. SIAM</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="106" to="117" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,263.42,377.44,7.22;24,62.85,273.34,377.45,7.26;24,62.85,283.31,267.34,7.26" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">A synchronization-free algorithm for parallel sparse triangular solves</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Hogg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Iain</forename><forename type="middle">S</forename><surname>Duff</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Euro-Par 2016: Parallel Processing: 22nd International Conference on Parallel and Distributed Computing</title>
+				<meeting><address><addrLine>Grenoble, France</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2016-08-24">2016. August 24-26, 2016</date>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="617" to="630" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,293.30,378.80,7.22;24,62.85,303.22,316.12,7.26" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">CSR5: An efficient storage format for cross-platform sparse matrix-vector multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM on International Conference on Supercomputing</title>
+				<meeting>the 29th ACM on International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="339" to="350" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,313.23,377.41,7.22;24,62.85,323.15,242.70,7.26" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">A framework for general sparse matrix-matrix multiplication on GPUs and heterogeneous processors</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Parallel and Distrib. Comput</title>
+		<imprint>
+			<biblScope unit="volume">85</biblScope>
+			<biblScope unit="page" from="47" to="61" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,333.15,378.76,7.22;24,62.85,343.07,175.58,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Speculative segmented sum for sparse matrix-vector multiplication on heterogeneous processors</title>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><surname>Vinter</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Comput</title>
+		<imprint>
+			<biblScope unit="volume">49</biblScope>
+			<biblScope unit="page" from="179" to="193" />
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,353.08,378.69,7.22;24,62.85,363.00,377.44,7.26;24,62.36,372.96,44.49,7.26" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">GraphLab: A new parallel framework for machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">Yucheng</forename><surname>Low</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><surname>Gonzalez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aapo</forename><surname>Kyrola</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Danny</forename><surname>Bickson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><forename type="middle">M</forename><surname>Hellerstein</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Conference on Uncertainty in Artificial Intelligence (UAI)</title>
+				<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="volume">20</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,382.96,378.66,7.22;24,62.85,392.89,228.53,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">TileSpTRSV: A tiled algorithm for parallel sparse triangular solve on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Zhengyang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">CCF Transactions on High Performance Computing</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="129" to="143" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,402.89,377.42,7.22;24,62.85,412.81,243.39,7.26" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Efficient block algorithms for parallel sparse triangular solve</title>
+		<author>
+			<persName coords=""><forename type="first">Zhengyang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuyao</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 49th International Conference on Parallel Processing</title>
+				<meeting>the 49th International Conference on Parallel Processing</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,422.81,378.77,7.22;24,62.85,432.74,370.39,7.26" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Sparse matrix-matrix multiplication on modern architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Kiran</forename><surname>Matam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Siva</forename><surname>Rama</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Krishna</forename><forename type="middle">Bharadwaj</forename><surname>Indarapu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kishore</forename><surname>Kothapalli</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2012 19th International Conference on High Performance Computing. IEEE</title>
+				<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,442.74,377.43,7.22;24,62.85,452.66,378.31,7.26;24,62.58,462.67,57.66,7.22" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Adaptive sparse linear solvers for implicit CFD using Newton-Krylov algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Mcinnes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Norris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sanjukta</forename><surname>Bhowmick</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Raghavan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2nd MIT Conference on Computational Fluid and Solid Mechanics</title>
+				<meeting>the 2nd MIT Conference on Computational Fluid and Solid Mechanics</meeting>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="1024" to="1028" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,472.59,378.25,7.26;24,62.84,482.55,23.85,7.26" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Cusparse library</title>
+		<author>
+			<persName coords=""><forename type="first">Maxim</forename><surname>Naumov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Chien</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Philippe</forename><surname>Vandermersch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ujval</forename><surname>Kapasi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">GPU Technology Conference</title>
+				<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,492.55,377.39,7.22;24,62.84,502.48,378.32,7.26;24,62.65,512.48,28.36,7.22" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Sparsifying synchronization for high-performance shared-memory sparse triangular solver</title>
+		<author>
+			<persName coords=""><forename type="first">Jongsoo</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mikhail</forename><surname>Smelyanskiy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Narayanan</forename><surname>Sundaram</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pradeep</forename><surname>Dubey</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Supercomputing Conference</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="124" to="140" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,522.44,378.66,7.22;24,62.84,532.40,377.42,7.22;24,62.84,542.32,176.62,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Halide: A language and compiler for optimizing parallelism, locality, and recomputation in image processing pipelines</title>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Ragan-Kelley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Connelly</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sylvain</forename><surname>Paris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frédo</forename><surname>Durand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGPLAN Notices</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="page" from="519" to="530" />
+			<date type="published" when="2013">2013. 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,552.28,222.13,7.26" xml:id="b25">
+	<monogr>
+		<title level="m" type="main">Iterative Methods for Sparse Linear Systems</title>
+		<author>
+			<persName coords=""><forename type="first">Yousef</forename><surname>Saad</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<publisher>SIAM</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,562.28,378.77,7.22;24,62.64,572.21,377.67,7.26;24,62.84,582.17,193.81,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Brief announcement: Revisiting the power-law degree distribution for social graph analysis</title>
+		<author>
+			<persName coords=""><forename type="first">Alessandra</forename><surname>Sala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haitao</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ben</forename><forename type="middle">Y</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sabrina</forename><surname>Gaito</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gian</forename><forename type="middle">Paolo</forename><surname>Rossi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 29th ACM SIGACT-SIGOPS Symposium on Principles of Distributed Computing</title>
+				<meeting>the 29th ACM SIGACT-SIGOPS Symposium on Principles of Distributed Computing</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+			<biblScope unit="page" from="400" to="401" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,592.13,377.46,7.26;24,62.84,602.09,183.69,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Aggregation methods for solving sparse triangular systems on multiprocessors</title>
+		<author>
+			<persName coords=""><forename type="first">Joel</forename><forename type="middle">H</forename><surname>Saltz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific and Statistical Computing</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="123" to="144" />
+			<date type="published" when="1990">1990. 1990</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,612.06,377.44,7.26;24,62.60,622.06,21.34,7.22" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Vectorizing the conjugate gradient method</title>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Schreiber</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Tang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Symposium on CYBER 205 Applications</title>
+				<imprint>
+			<date type="published" when="1982">1982. 1982</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,632.02,377.71,7.22;24,62.84,641.94,377.45,7.26;24,62.85,651.93,89.22,7.26" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">CapelliniSpTRSV: A thread-level synchronization-free sparse triangular solve on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jiya</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bingsheng</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruofan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoyong</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rujia</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 49th International Conference on Parallel Processing</title>
+				<meeting>the 49th International Conference on Parallel Processing</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,84.09,377.45,7.22;25,63.02,94.02,297.27,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Adapting sparse triangular solution to GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Brad</forename><surname>Suchoski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Caleb</forename><surname>Severn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manu</forename><surname>Shantharam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Padma</forename><surname>Raghavan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2012 41st International Conference on Parallel Processing Workshops</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="140" to="148" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,104.02,377.47,7.22;25,63.02,113.94,377.45,7.26;25,63.02,123.90,346.97,7.26" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Automating wavefront parallelization for sparse matrix computations</title>
+		<author>
+			<persName coords=""><forename type="first">Anand</forename><surname>Venkat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Soltan</forename><surname>Mahdi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jongsoo</forename><surname>Mohammadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongbo</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajkishore</forename><surname>Rong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><forename type="middle">Mills</forename><surname>Barik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Strout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Hall</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">SC&apos;16: Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="480" to="491" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,133.91,377.42,7.22;25,63.02,143.83,236.56,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Parallel transposition of sparse data structures</title>
+		<author>
+			<persName coords=""><forename type="first">Hao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaixi</forename><surname>Hou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wu-Chun</forename><surname>Feng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2016 International Conference on Supercomputing</title>
+				<meeting>the 2016 International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="1" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,153.83,377.44,7.22;25,63.02,163.75,377.47,7.26;25,63.02,173.72,101.69,7.26" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">swSpTRSV: A fast sparse triangular solve with sparse level tile layout on sunway architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Xinliang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Xue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Li</forename><surname>Wu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="338" to="353" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,183.72,378.81,7.22;25,63.02,193.64,377.45,7.26;25,63.02,203.61,53.42,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Performance portable supernodebased sparse triangular solver for manycore architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Ichitaro</forename><surname>Yamazaki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sivasankaran</forename><surname>Rajamanickam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nathan</forename><surname>Ellingwood</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 49th International Conference on Parallel Processing</title>
+				<meeting>the 49th International Conference on Parallel Processing</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,213.57,377.44,7.26;25,63.02,223.53,104.14,7.26" xml:id="b35">
+	<monogr>
+		<title level="m" type="main">Graph transformation and specialized code generation for sparse triangular solve (SpTRSV)</title>
+		<author>
+			<persName coords=""><forename type="first">Buse</forename><surname>Yilmaz</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2103.11445</idno>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="25,63.01,233.49,378.25,7.26;25,63.02,243.46,163.02,7.26" xml:id="b36">
+	<monogr>
+		<title level="m" type="main">A novel graph transformation strategy for optimizing SpTRSV on CPUs. Concurrency and Computation: Practice and Experience</title>
+		<author>
+			<persName coords=""><forename type="first">Buse</forename><surname>Yılmaz</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="page">e7761</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,253.46,378.38,7.22;25,62.74,263.38,377.74,7.26;25,63.02,273.34,140.65,7.26" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">YuenyeungSpTRSV: A thread-level and warp-level fusion synchronization-free sparse triangular solve</title>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiya</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weifeng</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bingsheng</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruofan</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoyong</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rujia</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Parallel and Distributed Systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="2321" to="2337" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

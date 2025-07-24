@@ -1,0 +1,6 @@
+论文标题：PipeGen: Automated Transformation of a Single-Core Pipeline into a Multicore Pipeline for a Given Memory Consistency Model
+
+关键词：Memory Consistency Model，Computer Architecture，Microarchitecture，Programming Language，Compiler
+
+摘要：Designing a pipeline for a multicore processor is difficult. One major challenge is designing it such that the pipeline correctly enforces the intended memory consistency model (MCM). We have developed the PipeGen design automation tool to allow architects to start with a single core pipeline that only enforces single-threaded correctness and automatically transform it to enforce a given MCM. Our key innovation is a set of compiler-like transformations that codify three different ways of enforcing memory ordering at the pipeline. We have validated that PipeGen correctly enforces the ARMv8 and x86TSO MCMs on three distinct pipeline implementations, using litmus tests with the Murphi model checker.
+• Computer systems organization → Multicore architectures.

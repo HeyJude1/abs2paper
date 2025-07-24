@@ -1,0 +1,5 @@
+UWOmppro_UWOmp_with_Point-to-Point_Synchronization_Reduction_and_Schedules.txt:
+2.英文关键词keywords: Parallel Programming  
+4.英文关键词keywords: Compiler Optimization  
+
+故该论文的主题关键词总结为[2,4]。

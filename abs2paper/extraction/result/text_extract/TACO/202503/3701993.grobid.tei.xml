@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Iterating Pointers: Enabling Static Analysis for Loop-based Pointers</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2025-03-19">2025-03-19</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,45.60,120.44,76.86,9.82"><forename type="first">Andrea</forename><surname>Lepori</surname></persName>
+							<email>drea.lepori@inf.ethz.ch</email>
+							<idno type="ORCID">0000-0002-5087-8124</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Alexandru</forename><surname>Calotoiu</surname></persName>
+							<idno type="ORCID">0000-0001-9095-9108</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+							<idno type="ORCID">0000-0002-1333-9797</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">Dept. of Computer Science</orgName>
+								<orgName type="institution">ETH Zurich</orgName>
+								<address>
+									<settlement>Zurich</settlement>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">Dept. of Computer Science</orgName>
+								<orgName type="institution">ETH Zurich</orgName>
+								<address>
+									<settlement>Zurich</settlement>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">Dept. of Computer Science</orgName>
+								<orgName type="institution" key="instit1">TORSTEN HOEFLER</orgName>
+								<orgName type="institution" key="instit2">ETH Zurich</orgName>
+								<address>
+									<settlement>Zurich</settlement>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Dept. of Computer Science</orgName>
+								<orgName type="institution">ETH Zurich</orgName>
+								<address>
+									<settlement>Zurich</settlement>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="department">Dept. of Computer Science</orgName>
+								<orgName type="institution">ETH Zurich</orgName>
+								<address>
+									<settlement>Alexandru Calotoiu, Zurich</settlement>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">Dept. of Computer Science</orgName>
+								<orgName type="institution">ETH Zurich</orgName>
+								<address>
+									<settlement>Torsten Hoefler, Zurich</settlement>
+									<country key="CH">Switzerland</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Iterating Pointers: Enabling Static Analysis for Loop-based Pointers</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">22</biblScope>
+							<biblScope unit="issue">1</biblScope>
+							<biblScope unit="page" from="1" to="25"/>
+							<date type="published" when="2025-03-19" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">7B9273A7A13E6059267487BA78756983</idno>
+					<idno type="DOI">10.1145/3701993</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>Pointer analysis, automatic parallelization</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Pointers are an integral part of C and other programming languages. They enable substantial flexibility from the programmer's standpoint, allowing the user fine, unmediated control over data access patterns. However, accesses done through pointers are often hard to track and challenging to understand for optimizers, compilers, and sometimes, even for the developers themselves because of the direct memory access they provide. We alleviate this problem by exposing additional information to analyzers and compilers. By separating the concept of a pointer into a data container and an offset, we can optimize C programs beyond what other state-of-the-art approaches are capable of, in some cases even enabling auto-parallelization. Using this process, we are able to successfully analyze and optimize code from OpenSSL, the Mantevo benchmark suite, and the Lempel-Ziv-Oberhumer compression algorithm. We provide the only automatic approach able to find all parallelization opportunities in the HPCCG benchmark from the Mantevo suite the developers identified, and we even outperform the reference implementation by up to 18% as well as speed up the PBKDF2 algorithm implementation from OpenSSL by up to 11×. CCS Concepts: • Software and its engineering → Source code generation; • Computing methodologies → Parallel computing methodologies;</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="25" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>C is a widely used programming language, one that is heavily relied upon in many codebases. In 2022, on GitHub, C and C++ accounted together for 4.6M repositories <ref type="bibr" coords="1,346.11,450.34,14.85,9.03" target="#b25">[29]</ref>, this being a 23.5% growth compared to the previous year <ref type="bibr" coords="1,207.02,462.29,14.84,9.03" target="#b26">[30]</ref>. According to the TIOBE index <ref type="bibr" coords="1,356.09,462.29,14.84,9.03">[53]</ref>, C is the second most popular programming language.</p><p>4:2 A. Lepori et al. The C language was developed in the 1970s at about the same time as the first microprocessor <ref type="bibr" coords="2,74.25,233.85,15.00,9.03" target="#b17">[21,</ref><ref type="bibr" coords="2,92.51,233.85,11.25,9.03" target="#b45">49]</ref>. Parallel computing only became widespread decades later, driven by the end of Dennard scaling <ref type="bibr" coords="2,116.11,245.81,14.99,9.03" target="#b9">[13,</ref><ref type="bibr" coords="2,134.34,245.81,11.25,9.03" target="#b41">45]</ref>. Hardware efforts to continue growth following Moore's Law past the power wall lead to a renewed focus on parallel computing as a way to continue improving performance <ref type="bibr" coords="2,74.49,269.72,15.01,9.03" target="#b8">[12,</ref><ref type="bibr" coords="2,91.67,269.72,11.26,9.03" target="#b24">28]</ref>. C was not designed with parallel programming in mind, as its inception was much earlier than the explosion of parallel computing. Libraries provide support for parallel paradigmssuch as OpenMP <ref type="bibr" coords="2,114.40,293.62,16.37,9.03" target="#b19">[23]</ref> or MPI <ref type="bibr" coords="2,161.76,293.62,18.55,9.03" target="#b40">[44]</ref>-but add a difficult-to-manage layer of complexity. The flexibility and low-level nature of C code make debugging challenging, even more so when the code is executed in parallel <ref type="bibr" coords="2,113.93,317.54,15.01,9.03" target="#b12">[16,</ref><ref type="bibr" coords="2,131.43,317.54,11.26,9.03" target="#b18">22]</ref>. This makes parallelizing code a long and complex process.</p><p>Frameworks such as Polly <ref type="bibr" coords="2,166.16,329.49,16.36,9.03" target="#b27">[31]</ref> and Pluto <ref type="bibr" coords="2,228.07,329.49,16.36,9.03" target="#b14">[18]</ref> promise automatic parallelism-these are, however, limited to static control parts (SCoPs). The Intel compiler offers the icc parallel mode that can identify and auto-parallelize several predefined programming patterns. Data-centric methods <ref type="bibr" coords="2,84.35,365.36,16.35,9.03" target="#b16">[20]</ref> try to push the boundary even further by leveraging complex dataflow analysis techniques to better understand data movement and dependencies. On modern systems, data movement is the most expensive operation in most programs, concerning both time and energy consumption <ref type="bibr" coords="2,101.20,401.23,14.84,9.03" target="#b32">[36]</ref>, and tends to be the biggest bottleneck in computations <ref type="bibr" coords="2,345.12,401.23,14.83,9.03" target="#b43">[47]</ref>. Many frameworks and compilers such as HPVM <ref type="bibr" coords="2,166.89,413.18,14.83,9.03" target="#b36">[40]</ref>, Halide <ref type="bibr" coords="2,216.65,413.18,14.84,9.03" target="#b44">[48]</ref>, Jax <ref type="bibr" coords="2,252.42,413.18,14.84,9.03" target="#b23">[27]</ref>, and DaCe <ref type="bibr" coords="2,315.24,413.18,16.35,9.03" target="#b11">[15]</ref> leverage dataflow analysis extensively in their pipeline.</p><p>The major obstacle in the static analysis of data accesses is, unfortunately, the use of pointers. Though they are an integral part of the C language, they often become a barrier on the road to performance. The Intel C/C++ programming guidelines [2] also suggest to use array notation rather than pointers. This issue can be seen in the two examples in Figure <ref type="figure" coords="2,339.75,472.96,3.41,9.03" target="#fig_0">1</ref>. On the right side of the figure, we can see that the inner loop only has independent data accesses, and modern compilers are able to detect that. But no compiler we tested was able to detect that the outer loop has no data dependency. Every access done with p[k] is different because of the pointer movement in the outer loop. Current analysis methods do not consider this type of access, as it would require complex and expensive pointer tracking, and even then it would require a correlation between the pointer movement and loop iterations.</p><p>Our solution aims to address this challenge by tracking data containers (as opposed to pointers) across the entire program. We then split pointers into the data container and an integer index to it. This effectively makes data accesses explicit while preserving execution semantics, enabling better analyzability of the code. A state-of-the-art data-centric compiler can then attempt to parallelize and improve the performance of the code. The implementation of our methods is explained in Section 2. Afterwards, in Section 3, we discuss the limitations and motivation behind them. In Section 4, we will discuss possible solutions to mitigate the limitations, showing some specific transformations handling special cases.</p><p>Iterating Pointers: Enabling Static Analysis for Loop-based Pointers 4:3 Fig. <ref type="figure" coords="3,61.37,270.67,3.07,8.07">2</ref>. Representation of data access patterns with pointer movement (left) and static accesses with adjunct (right). Annotated with the accessed memory locations and pointer values. In the case of pointer movements, the pointer is both the container and the offset, while with the adjunct the pointer is only the container.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Contributions</head><p>-We introduce a novel method to statically split pointers into a data container and an index to it, creating explicit data accesses to aid further analysis. -We generate a parallel version of the Mantevo HPCCG benchmark, automatically finding all parallelization opportunities the benchmark developers envisioned manually. Our automatic workflow outperforms the manually tuned version by up to 6%. -We automatically parallelize the previously serial PBKDF2 algorithm implemented in OpenSSL and obtain up to an 11× speedup.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Pointer Disaggregation</head><p>We propose a static method to improve the analyzability of pointers that are used as iterators over data containers. We first provide a high-level overview explaining our method. We follow with some notes toward a proof and the description of the technical implementation. Then, we compare our method with previous work. We also provide some examples and results to show the value of our transformation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">High-level Overview</head><p>Pointers are used both as handles for data containers and to iterate over them. By splitting these two semantically different use cases, we intend to improve element-sensitive analysis of pointer accesses. For each pointer, we create an adjunct int variable that represents the offset from the start of the data container. Note that the type of the adjunct should be big enough to address every element plus one in the connected data-container. The goal of the adjunct is to allow iteration over the data container without modifying the handle used to access said data container. We need the adjunct type to be plus one larger than the size of the data container, as with loops containing *p++, we could have the need to get the address after the last element.</p><p>Figure <ref type="figure" coords="3,84.01,617.03,4.63,9.03">2</ref> shows a high-level example of how the adjunct is used. We can see from the figure that the value of x after both executions is the same. For general code, it is important to note that p[i] is semantically equivalent to *(p + i), as per C99 standard <ref type="bibr" coords="3,286.22,640.93,14.83,9.03" target="#b31">[35]</ref>. In Figure <ref type="figure" coords="3,345.18,640.93,3.41,9.03">3</ref>, we present a minimal Fig. <ref type="figure" coords="4,61.89,244.67,3.07,8.07">3</ref>. Difference in the assembly representation (compiled with gcc 12.2 and -O2) between a code using pointer movement and one with static access after the adjunct is introduced.</p><p>example to show the value of introducing the adjunct variable. We provide the resulting assembly to show that when using the adjunct, the compiler is able to correctly identify that p ad j is only used as an iterator similar to i and merges the two, resulting in more compact, efficient code.</p><p>The adjunct transformation enhances code analyzability and exposes additional parallelization opportunities. Such transformed pointers are equivalent to arrays, in that the symbol represents a data container that is statically known. The adjunct variable dictates how the pointer is accessed. Because it is an int variable, there are more compiler analysis methods available to track the value. Inside loops a compiler could apply Loop Strength-Reduction (LSR) to simplify addressing computations. Note that this can only be done after the adjunct transformation is applied, as LSR only acts on integer values and not addresses (pointers). If instead the adjunct variable is never used-if a pointer is never moved, for example-then the compiler will be able to optimize away the adjunct with constant propagation, resulting in no performance losses. A summary of the transformation is described in Figure <ref type="figure" coords="4,134.41,420.16,3.41,9.03">4</ref>. To note is that the expression p = q x is a combination of p = q; q = q x. Because of this fact, we do not detail this case in the following sections, as it follows from the other statements.</p><p>The adjunct type is deliberately a signed integer to replicate the behavior of actual pointer movement. This is because of the non-wrapping behavior when the adjunct becomes negative. It is worth noting that accessing a pointer with a negative offset might be considered valid behavior under certain circumstances. For instance, if a programmer is confident that the memory is initialized within the same program, such as when an opaque library provides a pointer within an array, and the programmer is aware of the underlying structure.</p><p>Function arguments and calls undergo minimal modifications. When a function is called, it is treated as a dereference, and we pass the pointer with the adjunct offset applied. The function argument declarations remain unchanged, meaning that the adjunct information is lost after the function call. This is generally not an issue, as subroutines often do not require the additional information. Moreover, this problem is mitigated by the compiler's automatic inlining or by manually annotating functions to force inlining, thereby eliminating the function call.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Notes toward a Proof</head><p>We provide a proof sketch that the transformation showed in Figure <ref type="figure" coords="4,318.55,625.96,4.63,9.03">4</ref> does not modify the accesses done with pointers. First, for initialization of a pointer, let p be a pointer to some data. Then, let p ad j Iterating Pointers: Enabling Static Analysis for Loop-based Pointers 4:5 Fig. <ref type="figure" coords="5,61.88,264.66,3.07,8.07">4</ref>. Transformation summary to improve pointer analyzability. Both p and q are int pointers (int* p, q), x is an int expression, and is any integer binary operator. Note that the data-type int is only for explanation purposes and can be substituted with any other type. The adjunct-type int can be interchanged with any integer type that fits the size of the data-container.</p><p>be a new unique integer variable not already present in the program and initialized to zero when the memory of the pointer is first initialized, i.e., we have p = malloc(...); p ad j = 0, where p ad j was not previously present in the variable definitions. This is a new variable definition without any name conflict, hence it will not influence other parts of the program.</p><p>Let S be an arbitrary n length sequence of statements s.t.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>S = (p</head><formula xml:id="formula_0">:= p + x i |x i ∈ Z, 0 ≤ i &lt; n) .</formula><p>Then, we define the syntax S; p by using the sequential operator ; with a variable name at the end as the value of p after execution of S. By our definition, we have that:</p><formula xml:id="formula_1">(S; p) = p + n i=0 x i .</formula><p>Let S be an n length sequence of statements (note that x i are the same values as in S and in the same order).</p><formula xml:id="formula_2">S = p ad j := p ad j + x i |x i ∈ Z, 0 ≤ i &lt; n</formula><p>As before, by definition, we have that</p><formula xml:id="formula_3">(S ; p ad j ) = p ad j + n i=0 x i .</formula><p>We can see that</p><formula xml:id="formula_4">(S; p) = p + n i=0 x i = p + p ad j + n i=0</formula><p>x i − p ad j = p + (S ; p ad j ) − p ad j .</p><p>By using the sequential operator ; we define a program sequence that defines the pointer p, integer p ad j , and executes all statements in S. This represents an arbitrary program from the definition to the access of a pointer p with arbitrary pointer movements in between. We note that (S ; p) = p and (S; p ad j ) = p ad j , as the statements do not affect the evaluated variable. Then, we have that if we substitute any execution p = p + x i with p ad j = p ad j + x i i.e., executing S instead of S, then This means that by substituting S with S and accessing every pointer using p + p ad j as their address, we access the same memory location. Hence, the program will be semantically equivalent. S and S only contain statements referring to p or p ad j for simplicity of the proof. Any other statement could be interleaved including control flow statements. By getting all possible execution paths and removing all statements that do not act directly on p, then we have the same case as S that can be transformed in S .</p><p>The proof sketch for the correctness of the pointer assignment transformation can be found in Appendix A.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Technical Implementation</head><p>We will now discuss the algorithm that governs our approach. The algorithms are applied to the AST (abstract syntax tree) to produce the modified code including the adjunct transformation. It is important to note that the whole transformation is source-to-source. The implementation leverages libclang to parse the source code. We keep an adjunctMappinд map that maps pointers to its adjunct. As previously mentioned, the type of the adjunct variable should be an integer type big enough to address each element of the data-container. We mostly use int as it is big enough for most practical purposes, but it could be easily interchanged with bigger or smaller integer types.</p><p>For every variable declaration, we check if it is a pointer type. In that case, we append an additional variable declaration for the adjunct variable with type int and initialize it to 0. We keep a mapping between the pointer variables and their adjunct. We analyze every array subscript expression (a[i], where a is the array expression and i is the index expression) and verify if the array expression is in the mapping. In case we have a match, we modify the index expression to sum the additional adjunct variable. Note that we can handle unary expressions of the type *p easily by transforming them to p[0] with a simple transformation (which does not change the semantics as per C standard E1[E2] is equivalent to *(E1 + E2)).</p><p>Iterating Pointers: Enabling Static Analysis for Loop-based Pointers 4:7 for all array subscript expression of the form 𝑎𝑟𝑟𝑎𝑦</p><formula xml:id="formula_5">[𝑖𝑛𝑑𝑒𝑥] do if 𝑎𝑟𝑟𝑎𝑦 ∈ 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔 then 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡 ← 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔[𝑎𝑟𝑟𝑎𝑦] 𝑖𝑛𝑑𝑒𝑥 = 𝑖𝑛𝑑𝑒𝑥 + 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡</formula><p>Finally, we examine every assignment. Here, we have two cases: p = p x or p = q. For both, the left expression must be in the mapping. In the first case (p = p x) the right side must be a binary operation for which the first operator is the same as the left side of the assignment (p = q</p><p>x, p and q must be the same pointer). We then substitute the pointer p with its adjunct (p_adj = p_adj x). In the second case (p = q), we check that the right side is also a pointer in the mapping. Then, we append an additional statement that overwrites the adjunct of the left side with the adjunct of the right (p_adj = q_adj).</p><p>for all assignment of the form 𝑙ℎ𝑠</p><formula xml:id="formula_6">= 𝑟ℎ𝑠 do if 𝑙ℎ𝑠 ∈ 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔 then if 𝑟ℎ𝑠 is a pointer ∧ 𝑟ℎ𝑠 ∈ 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔 then 𝑙ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 ← 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔[𝑙ℎ𝑠] 𝑟ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 ← 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔[𝑟ℎ𝑠] 𝑙ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 = 𝑟ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 else if 𝑟ℎ𝑠 == 𝑝𝑡𝑟 𝑒𝑥𝑝𝑟 then if 𝑙ℎ𝑠 == 𝑝𝑡𝑟 then 𝑙ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 ← 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔[𝑙ℎ𝑠] 𝑙ℎ𝑠 = 𝑙ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 𝑟ℎ𝑠 = 𝑙ℎ𝑠𝐴𝑑 𝑗𝑢𝑛𝑐𝑡 𝑒𝑥𝑝𝑟</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">Previous Approaches</head><p>A similar approach was already done specifically for digital signal processing (DSP) applications <ref type="bibr" coords="7,69.32,418.86,14.84,9.03" target="#b30">[34]</ref>. Their approach could also be extended to general programs and modifies the source code to remove pointer movement. Our biggest innovation is the use of the adjunct that enables runtime-determined pointer movements. Previous methods only handled static or compile-timedecidable pointer increments. For example, the expression:</p><p>if (exp) { x = ptr++; } else { y = ptr + 2; } cannot be handled by previous approaches, as it cannot decide at compile time if the pointer must be incremented by 1 or 2. With our adjunct approach, it can be handled as the same branch just by modifying the adjunct instead of the pointer.</p><p>While points-to analysis represents a cutting-edge method widely integrated into modern compilers, its effectiveness in element-sensitive analysis, particularly concerning pointer movements, remains limited. This constraint poses challenges for loop optimization strategies such as vectorization or parallelization, as points-to analysis struggles to grasp element-sensitive aliasing patterns. Left side: example code using pointer movements where the points-to analysis inside GCC is unable to ensure non-aliasing accesses. Right side: code after adjunct transformation, where GCC is able to statically decide non-aliasing using points-to analysis and integer analysis. Note the difference in the CFG of the resulting assembly code.</p><p>As illustrated in Figure <ref type="figure" coords="8,139.96,318.28,3.41,9.03" target="#fig_3">5</ref>, conventional points-to analysis, as implemented in GCC 13, fails to statically discern element-sensitive aliasing in code involving pointer movements. However, following our transformation, GCC successfully identifies the absence of access collisions. It is worth noting that even after the adjunct transformation, GCC continues to leverage points-to analysis to recognize the independence between accessed elements. The shown example in Figure <ref type="figure" coords="8,378.86,366.10,4.63,9.03" target="#fig_3">5</ref> includes only a 5-iteration loop to more obviously present the missing vectorization check branch.</p><p>Figure <ref type="figure" coords="8,84.84,390.01,4.63,9.03" target="#fig_3">5</ref> illustrates that the transformation is also beneficial for dynamic allocations. In such cases, the base pointer must be stored somewhere to ensure proper memory deallocation. However, even with the base pointer known, the compiler often struggles to fully resolve all aliasing information.</p><p>Sui et al. <ref type="bibr" coords="8,99.51,437.83,16.36,9.03" target="#b48">[52]</ref> proposed additional analysis techniques for pointer loops, enhancing fieldsensitive and element-sensitive methods. However, their work does not address pointer movements, which remain a challenge for compilers, even advanced ones. Our transformation effectively eliminates pointer movements, allowing existing points-to analysis techniques, including advanced element-sensitive approaches, to be applied with greater efficacy. By incorporating pointsto analysis with our approach, we enhance the depth of insights and enable advanced code optimization. Our methodology involves modifying the source code, rendering it compatible with various analyzers and optimizers. While our primary focus lies in data-centric frameworks, which often struggle with handling pointers, it is essential to note that our approach is not limited to this domain. The modified source code generated through our method seamlessly integrates with any existing or future frameworks, offering versatility and long-term applicability.</p><p>Scalar Evolution (SCEV) <ref type="bibr" coords="8,165.99,569.34,16.36,9.03" target="#b6">[10]</ref> and other loop analysis methods aim to scrutinize loops for potential optimizations and performance enhancements, including vectorization. However, as demonstrated in numerous examples, current implementations often struggle to identify such opportunities, particularly concerning pointers. Although there have been proposals for improving analysis techniques <ref type="bibr" coords="8,92.10,617.17,15.01,9.03" target="#b10">[14,</ref><ref type="bibr" coords="8,109.39,617.17,11.46,9.03" target="#b29">33,</ref><ref type="bibr" coords="8,123.15,617.17,11.46,9.03" target="#b35">39,</ref><ref type="bibr" coords="8,136.90,617.17,11.26,9.03" target="#b48">52]</ref>, finding techniques that are both safe and general enough remains challenging. Our transformation addresses this challenge by providing additional information to the compiler, enabling it to leverage existing SCEV techniques for performance improvements. With Iterating Pointers: Enabling Static Analysis for Loop-based Pointers 4:9 better analysis techniques, more patterns can be matched. Importantly, our transformation does not hinder the adoption of new techniques, as the array access pattern is well-established and commonly utilized, making it compatible with existing analyzers. While advanced analyzers may eventually incorporate pointer movements into their analyses, currently, this remains a significant challenge, and most analyzers do not account for it. Hence, we contend that pointer movement continues to pose a problem, and our transformation provides a valuable solution in the current landscape.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.5">Practical Results</head><p>PBKDF2. To showcase the transformation in practice, we test it on the code snippet from PBKDF2 first presented in Section 1. We expect the inner loop to be vectorized by every compiler. What we want to test is whether compilers are able to discover the independence between the iterations of the outer loop and the effects that the adjunct transformation has on it. The code was run both with normal pointer movements ("no adjunct") and with the transformation ("with adjunct" variables). It was compiled with different compilers: GCC 12.2.2, Clang 15.0.6, and Polly (same Clang version). We also used the DaCe 0.14.1 data-centric framework to analyze and optimize the code with the resulting file being compiled with GCC. The code was instrumented with PAPI <ref type="bibr" coords="9,88.03,425.19,16.35,9.03" target="#b20">[24]</ref> to measure the execution time and the number of instructions. For each test, 10 runs were executed and the median is reported, with the 95% confidence interval being reported. For the number of instructions, the error range is negligible (±1, 000 instructions) and not reported. Runs were done with n = 100 and cplen = 100 • 10 6 . As DaCe and Polly produce OpenMP code, we report different values for different thread counts. We compare results with Polly, as it is another compiler that offers automatic parallelization. Note that after the adjunct transformation the code only has array accesses, which is a pattern supported by polyhedral compilers.</p><p>Figure <ref type="figure" coords="9,84.06,508.88,4.63,9.03" target="#fig_4">6</ref> shows that the adjunct transformation gets a minimal improvement in single-threaded performance.While with multiple threads the data-centric compiler DaCe was able to identify the parallelization opportunity on loop . Polly, however, is not able to identify the parallel loop either with or without the adjunct transformation. This is the case, because the array-style access of p is non-affine, as it uses the p_adj variable, which is non-affine w.r.t. loop iterators, which is a requirement for the loop to be a SCoP. Polly only acts on SCoPs of programs. Note that as DaCe uses a data-centric IR that utilizes static and scope-defined data containers (for arrays), pointer movements are not supported directly. The adjunct transformation is a way to support pointer movements in the data-centric IR without the need to change its inner workings.</p><p>The number of instructions (Table <ref type="table" coords="9,199.94,616.48,3.80,9.03" target="#tab_2">1</ref>) neither increase nor decrease with the adjunct. As Polly is a collection of transformations on the LLVM-IR that is compiled using Clang, the number of instructions is identical (Polly was not able to find any SCoPs, hence no transformations were  applied). Surprisingly, DaCe has the same number of instructions as GCC. Even if it uses GCC to compile to machine instructions, this is unexpected, as DaCe applies multiple transformations to the code. This can be explained, as even after the transformations, the computation is mostly the same only with additional annotations for parallel execution. This proves the value of the transformation, but also that the transformation benefits compilers with data-centric IR the most: They can leverage the improved analyzability of pointer movements. Data centric-paradigms otherwise represent pointers as indirection that is challenging-or even impossible-to handle. All compilers see a minimal improvement, but they are less able to capitalize on the improved analyzability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>LZO (compression algorithms).</head><p>Another instance where pointer movements within loops are prevalent is in compression algorithms. As an illustration, we applied our transformation to the compression function of the Lempel-Ziv-Oberhumer (LZO) algorithm <ref type="bibr" coords="10,348.80,554.56,14.83,9.03" target="#b42">[46]</ref>. This algorithm is commonly utilized within the Linux Kernel for file-systems and memory, supporting live compression/decompression operations. Notably, it finds applications in BTRFS <ref type="bibr" coords="10,366.69,578.47,10.45,9.03" target="#b0">[1]</ref>, SquashFS <ref type="bibr" coords="10,427.47,578.47,10.44,9.03" target="#b5">[6]</ref>, initramfs <ref type="bibr" coords="10,85.31,590.43,10.44,9.03" target="#b2">[3]</ref>, zram [8], and zswap <ref type="bibr" coords="10,186.23,590.43,10.43,9.03">[9]</ref>.</p><p>Following a similar approach to previous benchmark studies of the LZO algorithm <ref type="bibr" coords="10,406.35,602.39,14.83,9.03" target="#b33">[37]</ref>, we executed multiple iterations of the algorithm, ensuring each run involved significant computation without increasing memory usage. The compression was performed on a 1 MB file with 2,000 iterations and a block size of 256 KB. As before, we report the median with a 95% confidence interval using the same compiler versions. We compared the original implementation compiled with GCC against DaCe with the adjunct transformation. It is noteworthy that the DaCe code was executed with a single thread, as no significant parallelization opportunities were identified.</p><p>Our results (Figure <ref type="figure" coords="11,139.25,266.74,3.80,9.03">7</ref>) indicate a slight improvement, thanks to the additional vectorization opportunities provided by the transformation. However, achieving more substantial improvements, along with potential parallelization opportunities, proves challenging due to loop-carried dependencies, which would require an algorithm redesign. Nevertheless, in compression algorithms, the adjunct transformation can facilitate modest yet discernible enhancements in runtime performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Limitations</head><p>The method we propose can provide compilers with better insights into pointer behavior, but only in certain scenarios. In this section, we go into detail as to the limitations of our approach. The main limitation is about the static decidability of which data container a pointer is pointing to. But, we argue that in those cases an algorithm redesign would be needed for any performance improvement.</p><p>The necessity of static decidability arises from the utilization of DaCe as the compiler/framework for optimizations. Although DaCe achieves significant performance improvements, particularly in automatic parallelization, it relies on the ability to statically determine data containers. However, the adjunct transformation itself encounters limitations primarily associated with higher-order pointers, as elaborated on in Section 3.2.</p><p>Another important aspect to highlight is the utility of our adjunct transformation. Simply exposing additional information to the compiler does not guarantee a runtime performance improvement. In earlier examples, we demonstrated how the compiler generates fewer instructions or eliminates branches entirely. Additionally, using DaCe, it created further parallelization opportunities. We discovered that these improvements are predominantly seen in codes where pointers are used as iterators. While this pattern is common in many codebases, as we will discuss in Table <ref type="table" coords="11,420.14,530.50,3.41,9.03" target="#tab_3">2</ref>, no immediate improvements will be offered to codes that do not exhibit this pattern.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Static Decidability</head><p>A first assumption is that a pointer has to always point to a statically decidable data container in any given section of the code. This is required to be able to deterministically identify data accesses. Conditional reassignment introduces uncertainty as to which data container a pointer is pointing to. In such cases, our analysis backs off and does not generate an adjunct. However, unconditional or static pointer re-assignments are supported, as they are not introducing uncertainty as to which data container they point to. We can see two code snippets that show this difference in Figure <ref type="figure" coords="11,429.60,638.82,3.41,9.03" target="#fig_6">8</ref>.  With this assumption, we achieve flawless aliasing detection, as the compiler possesses static knowledge of the data container associated with each pointer. Detecting accesses to the same data simply involves verifying if the data container and indices are identical. Leveraging the adjunct transformation streamlines index comparison to a straightforward integer check, often allowing for static analysis if the abstract model is sufficiently precise.</p><p>It would be possible to expand the transformation to also support conditional pointers reassignment by creating adjunct versions for each container and replicating the branch decision for each subsequent access. However, this would create unsustainable code and memory replication requirements.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Pointing to Pointers</head><p>Double pointers-or higher-order pointers-are supported by applying the transformation recursively, as can be seen in Figure <ref type="figure" coords="12,170.38,482.45,3.41,9.03" target="#fig_7">9</ref>. Note that the data container to which p is pointing to is statically known. As with simple pointers, we can trace the accesses and to container a ( ) and get the correct adjunct in this case. But the decidability issue remains, as we can see in Figure <ref type="figure" coords="12,390.39,506.36,9.27,9.03" target="#fig_0">10</ref> (left side), where the data container that is accessed is determined by the higher-order pointer location.</p><p>The general case could be handled with arrays of adjunct, as shown in Figure <ref type="figure" coords="12,381.98,530.27,9.27,9.03" target="#fig_0">10</ref> (right side). However, trying to leverage this approach on general codes would substantially increase the complexity of the code and consume a significant amount of memory. Note that this approach was not implemented because of the unsustainability of the transformation. Therefore, if additional assumptions can be made about the shape of the individual data containers pointed at, then more targeted, efficient approaches can be used, as explained in Section 4.</p><p>Although a multidimensional array shares the same memory representation as higher-order pointers, the analysis differs. Our aim is to eliminate pointer movements and replace them with more predictable array accesses. With multidimensional arrays, this pattern is inherent, and our transformation results in code similar to what is typically observed, as pointers are generally not relocated from multidimensional arrays. Prior proposals have suggested transformations to flatten multidimensional arrays into a single dimension <ref type="bibr" coords="13,275.11,322.83,14.85,9.03" target="#b28">[32]</ref>. This approach was also included in GCC between version 4.3 and 4.8. The method is orthogonal to ours and can be applied before or after our transformation, as it will not introduce additional pointer movements.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Evaluating Applicability</head><p>In our investigation, we have identified the primary constraint of the adjunct transformation: higher-order pointers. The requirement for statically decidable data containers is only a prerequisite of the DaCe framework and not of the adjunct transformation itself. To gauge the broader viability of the transformation, we conducted an assessment of its utilization in extensive codebases, specifically focusing on the handling of higher-order pointers.</p><p>It is important to clarify our criteria for identifying non-applicable instances. We categorize higher-order pointer usage as constraining only when it potentially involves pointer iteration. Notably, we exempt instances where double pointers are employed to delegate memory allocation responsibilities to another function (refer to Figure <ref type="figure" coords="13,259.41,481.93,7.22,9.03" target="#fig_9">11</ref>). Moreover, we exclude considerations of the argv parameter in main functions due to its typically diminutive size and minimal involvement in computationally intensive tasks. Our analysis considers application source code, omitting unit tests and examples. Furthermore, our scope is confined to C and C++ files. In the same way, we count single pointers as possible candidates for the adjunct transformation.</p><p>The outcomes of our investigation are presented in Table <ref type="table" coords="13,301.76,541.71,3.41,9.03" target="#tab_3">2</ref>. Our examination encompassed OpenSSL <ref type="bibr" coords="13,86.46,553.66,10.44,9.03" target="#b4">[5]</ref>, notable for its cryptographic algorithm implementations, TurboBench [7], which hosts a plethora of compression algorithm implementations, and the Linux kernel [4].</p><p>Higher-order pointers are indeed common in these codebases, as expected. However, their frequency is generally several orders of magnitude lower than the total code volume and notably even lower than single order pointer instances. It is essential to note that the provided statistics encompass pointers not exclusively used as iterators. This assessment offers a preliminary insight into the method's broader applicability, highlighting the prevalence of single pointers compared to their higher-order counterparts in programs.  4 From Generic to Specific-Refinements for Practical C Codes We will show how our approach towards improving the analyzability of pointers used as iterators benefits real codes. However, we discovered that for such codes, further refinements are needed such as additional transformations and support for pointers to external calls. All transformations in the following subsections were implemented and are done automatically by the compiler.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Improving Analyzability by Restructuring Data</head><p>As discussed in Section 3, pointing to pointers is a more difficult to analyze scenario, as conditional pointer movements can lead to static undecidability regarding which data container is accessed. However, if additional information is known, then the data structures themselves can be changed to make analysis easier. As this kind of transformation targets a general structure, they do not only target a specific program but the entire set of programs that use that structure. An example of a structure transformation that we implemented is inside the Mantevo HPCCG benchmark. It uses sparse matrix storage, specifically the List of Lists (LIL) format. The matrix is stored using two lists for each row containing the column indices and the non-zero values. The row lists are stored as continuous data, and pointers to them are used to access the correct location based on the current row. In Figure <ref type="figure" coords="14,193.63,531.30,7.64,9.03" target="#fig_11">13</ref>, we show the initialization code for a data structure from the HPCCG benchmark (modified for simplicity).</p><p>The matrix is accessed using those two lists, as it can be seen in Figure <ref type="figure" coords="14,350.59,555.21,9.27,9.03" target="#fig_0">12</ref> for a matrix-vector multiplication from the same benchmark. With the knowledge that there exists a statically known maximum number of non-zeroes per row, we can transform the list of lists into a matrix, as when the data is accessed (like in , we see that the access resembles a 2D array. We transform the initialization of the sparse matrix to utilize a 2D-like structure instead of a contiguous list. The transformation is shown in Figure <ref type="figure" coords="14,187.70,614.98,7.64,9.03" target="#fig_11">13</ref>. Thanks to this change, we now have data stored in a more regular pattern (2D array). This enables compilers to apply standard transformations and optimizations on 2D containers.  The transformation is done first by finding two pointer assignments working on the same struct inside the same scope ( and ). We use a map to relate the right side of the assignment with the left (curvalptr to A-&gt;ptr_to_vals[currow]). We then create an adjunct and transform the code in a similar way to the general pointer transformation. Using the previously created map, we find all pointer accesses that must be transformed and substitute them with array access using the adjunct. In the same way, we find pointer arithmetic operations and substitute the pointer with the adjunct.</p><p>The benefit of using such specific pattern-based transformations is that they can be used in conjunction with our general algorithm and therefore be integrated into the same workflow. This creates the possibility to efficiently handle a wide range of other access patterns without the need for separate workflows or manual code modification.</p><p>It is important to note that for multidimensional arrays, allocating a continuous buffer and then splitting it by storing pointers introduces uncertainty for static analysis, as explained in Section 3.2. Such patterns are unsupported by our current method. However, our LIL transformation automatically converts this pattern into a 2D array. In other scenarios, implementing additional transformations may be necessary to align with the limitations of our method.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Handling External Calls with Pointer Arguments</head><p>Some parts of a program, such as external library calls, are outside the scope of static compiler analysis. These must therefore be considered black boxes. A common pattern in C when calling external functions is to use pointers as arguments for inputs and outputs. One such example is the memcpy function from the C standard library. The function with the following signature: void* memcpy(void* destination, const void* source, size_t num); takes two pointers and an integer num and copies num bytes from the source pointer to the destination.</p><p>In the previous section, we discussed the possible modifications and movement of pointers and their impact on decidability. In the example of memcpy, pointers are not modified. In C, arguments are passed by copy and not by reference, therefore callee modifications of arguments are not propagated to the caller. The same argument applies to pointers. What is modified in those cases is the content of the pointer, hence the elements of the data container that the pointer is pointing to. A function taking a pointer as an argument can modify its contents. This poses a challenge, as data dependencies can no longer be tracked. In Figure <ref type="figure" coords="16,283.71,199.18,7.64,9.03" target="#fig_0">14</ref>, we use memcpy instead of a simple assignment.</p><p>On the left side of the figure, the data in p depends on the value previously written to it by memcpy (dependency shown by the dashed arrow). This enforces that the loop must be executed in order. If we remove this dependency (dashed arrow), then loop iterations would be independent. This would permit the compiler to vectorize the loop producing the incorrect result.</p><p>We previously assumed that the second argument of memcpy is only read, but this is an insight gained by looking at the implementation of memcpy and not black-box analysis. Without outside information, no compiler framework can overcome this issue. In the right side of Figure <ref type="figure" coords="16,394.17,294.82,7.64,9.03" target="#fig_0">14</ref>, q is only read from, but the compiler cannot infer this. This creates a spurious data dependency between iterations and prevents the loop from being parallelized.</p><p>While it is good practice to make pointer arguments that are read-only const, not every function or library does so. Our solution is to use whitelists for often-used library calls-manually annotating library functions to specify if a pointer is write-only, read-write, or read-only. This whitelist could become a database of known functions that could even be automatically populated through compiler analysis, as it only needs to be performed once for any given library implementation. Annotations only provide information about which data container was read or written. We, therefore, assume conservatively that the entire data container could be read or written.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Stateful External Calls</head><p>Some libraries store an internal state that is opaque to the program calling functions provided by the library-great examples being MPI or OpenGL. One such library is a part of OpenSSL, namely, HMAC (Hash Message Authentication Code)-it uses an internal state to store hashes and keys between calls. This data is saved in an internal data structure and a pointer to it is provided to calling functions. This pointer (called context in this implementation) is never modified by the user code, but only by library calls.</p><p>HMAC_CTX *hctx = HMAC_CTX_new(); 1 for (...) { HMAC_CTX_copy(hctx, base_hctx); 2 // do operations with hctx } HMAC_CTX_free(hctx);</p><p>In the example above, without any additional information, it appears that the hctx pointer is initialized outside the loop ( ) and that the call to HMAC_CTX_copy within the loop ( ) could read and write to hctx. This creates a data dependency between loop iterations. In reality, HMAC_CTX_copy does not read the data of the first argument (hctx)-that value is only written to and effectively used as a local variable within the scope of the loop. Therefore, by marking the dependency on (hctx) in HMAC_CTX_copy as write-only and noticing that it is never used afterwards, the loop can be parallelized. This approach essentially performs an escape analysis <ref type="bibr" coords="17,59.44,347.33,14.84,9.03" target="#b37">[41]</ref>, identifying that the variable within the loop does not escape the thread executing each iteration.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Evaluation</head><p>To evaluate our transformation, we extended the DaCe <ref type="bibr" coords="17,279.03,398.45,15.00,9.03" target="#b11">[15,</ref><ref type="bibr" coords="17,297.47,398.45,12.82,9.03" target="#b16">20]</ref> pipeline by adding the pointer disaggregation transformation explained in Section 2 and the specific transformations explained in Section 4. The approach described in Section 4.2 and Section 4.3 is implemented by adding a whitelist of additional dependencies in the data-centric IR (intermediate representation) used by DaCe.</p><p>As detailed and demonstrated in Section 2.5, while incremental performance enhancements are attainable across various compilers, the constrained scope of vectorization inhibits substantial performance gains. Consequently, we prioritize automatic parallelization compilers such as Polly and DaCe, which hold promise in uncovering novel opportunities facilitated by the transformations implemented. Specifically, we direct our attention to DaCe due to its inherent data-centric approach, which offers superior analysis of data dependencies.</p><p>We measured performance on a dual-socket 2×6 core (2×12 threads) Intel Xeon X5670 @ 2.93 GHz with 48 GB of RAM. We compare the DaCe data-centric framework (using GCC 12.1.1 as a backend compiler) against GCC and Polly (using Clang 15.0.6). We report the median of 10 runs with a confidence interval of 95%. OpenMP is used for parallel execution. Integrating the adjunct transformation into Polly did not reveal any additional SCoPs, and consequently, no further parallelization opportunities were identified. Hence, we provide the runtime results of Polly without the adjunct transformation. We specifically chose to compare with Polly due to its widespread availability as part of the LLVM/Clang suite, offering some level of automatic parallelization capabilities. Our evaluation was conducted on the Mantevo HPCCG benchmark and the OpenSSL PBKDF2 implementation, with the results presented below. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">OpenSSL PBKDF2</head><p>The Password Based Key Derivation Function 2 (PBKDF2) is a derivation function that derives a cryptographically secure key from a password. PBKDF2 applies a Hash-based Message Authentication Code (HMAC) function multiple times to a provided password and salt. Based on the required length of the key, this process is repeated multiple times. A summary of the process is provided in Figure <ref type="figure" coords="18,131.86,481.15,7.64,9.03" target="#fig_14">16</ref>. We can notice that each single B i blocks can be computed independently of any other.</p><p>The implementation inside OpenSSL does not include parallel options. We applied our pipeline to the OpenSSL code to auto-parallelize the code. We compare the runtime against Polly and a manually parallel version that was written using the OpenSSL implementation as a starting point. Only the PBKDF2 algorithm was analyzed, all HMAC calls are treated as external calls and use the standard OpenSSL implementation. For completeness, we compare it with FastPBKDF2 <ref type="bibr" coords="18,408.63,552.88,14.83,9.03" target="#b13">[17]</ref>, an implementation of the same algorithm that has been developed for parallelism from the ground up. We used SHA1 as the HMAC function, 5 • 10 6 iterations, and an output key size of 480 bytes (or 24 blocks), and we summarize our results in Figure <ref type="figure" coords="18,268.50,588.74,7.64,9.03" target="#fig_0">17</ref>.</p><p>We then varied the problem size, represented by the number of blocks. The results (Figure <ref type="figure" coords="18,428.65,600.70,8.16,9.03" target="#fig_0">17</ref>) show a consistent trend across all experiments. Our approach was able to obtain comparable results to the manually parallelized version, providing at most a 10.7× improvement with 24 threads. Polly was not able to identify any parallel opportunities due to the challenges of analyzing  pointers. The FastPBKDF2 implementation is considerably faster than any OpenSSL equivalent, mainly due to the serial runtime of FastPBKDF2 version being three times faster: 27.7 s versus 84.5 s for OpenSSL. This reinforces the idea that tools can provide significant performance increases and find opportunities for parallelism, but nothing surpasses finding a better algorithm altogether.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Mantevo HPCCG</head><p>The Mantevo HPCCG benchmark computes the conjugate gradient on a sparse matrix. The sparse matrix is stored using the LIL format. We leverage the specific transformation explained in Section 4.1 to improve analyzability. The LIL transformation is applied once only to the input file for DaCe. We compare our pipeline against Polly with the same preprocessed input. The baseline is obtained using the original benchmark with OpenMP enabled.</p><p>We can see that Polly was not able to find parallel opportunities, as pointers are used to access the sparse matrix. Our approach was able to parallelize all five loops. The performance of our automatically parallelized code matches the hand-tuned version developers created across all experiments. At larger problem sizes, our approach even outperforms the reference implementation by up to 18%.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Lempel-Ziv-Oberhumer Compression Algorithm</head><p>In Section 2.5, we presented results from a benchmark on the LZO compression algorithm. Although automatic parallelization was not achieved, there was still a modest enhancement in singlethreaded performance. Achieving effective automatic parallelization would necessitate an algorithm redesign due to the presence of loop-carried dependencies. However, our method managed to achieve a 4% runtime enhancement without requiring any algorithm rewriting. Given the analogous pointer movement patterns observed in most compression algorithms, we anticipate similar, if not superior, outcomes by extending our pipeline to encompass them as well.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Related Work</head><p>Pointer analysis in C. Pointer analysis has been a topic of research for decades. One of the most impactful approaches, the "points-to" analysis, was proposed by Andersen et al. <ref type="bibr" coords="20,379.49,564.75,16.37,9.03" target="#b7">[11]</ref> and developed and improved over the years <ref type="bibr" coords="20,190.82,576.71,15.00,9.03" target="#b15">[19,</ref><ref type="bibr" coords="20,208.96,576.71,11.46,9.03" target="#b21">25,</ref><ref type="bibr" coords="20,223.57,576.71,11.25,9.03" target="#b34">38]</ref>. Our approach is orthogonal to this method, and while more constrained in the patterns it detects, it provides a powerful benefit towards automatic parallelism detection.</p><p>Parallelization of C programs. Numerous approaches are emerging to identify parallelism in C code, with varying levels of automation. Tools like DiscoPoP <ref type="bibr" coords="20,298.12,626.66,16.37,9.03" target="#b50">[55]</ref> detect loops that can be parallelized with OpenMP, while frameworks such as Polly <ref type="bibr" coords="20,262.99,638.62,16.37,9.03" target="#b27">[31]</ref> and Pluto <ref type="bibr" coords="20,321.69,638.62,16.35,9.03" target="#b14">[18]</ref> use polyhedral models to generate parallel code automatically. However, these methods struggle with codes that use pointers as iterators. Our approach, as demonstrated with DaCe, could be integrated into these workflows to extend their capabilities.</p><p>Parallelization of programs with pointers. Utilizing the Distributed Dynamic Pascal (DDP) language <ref type="bibr" coords="21,72.35,126.65,16.36,9.03" target="#b30">[34]</ref> facilitates the development of parallel programs involving pointers. The DDP language introduces explicit pointer access mechanisms to enable the parallelization of pointer-related operations. In contrast, our approach seamlessly integrates with existing C programs, obviating the necessity for transpilation processes.</p><p>Intermediate representations. The LLVM IR <ref type="bibr" coords="21,230.18,175.99,16.36,9.03" target="#b38">[42]</ref> allows for many transformations and code optimizations. However, tracking pointer dependencies across scopes remains difficult. A new opportunity has appeared with the recent rise of MLIR <ref type="bibr" coords="21,242.47,199.90,14.85,9.03" target="#b39">[43]</ref>, a framework that allows multiple IR dialects to co-exist and their different strengths to all contribute to overall code analyzability and performance. The MemRefType built-in dialect already enables to specify the shape of the underlying data. This includes the option to save the start of a data container even if the pointer is moved. MLIR would permit our approach to be implemented as a dialect, bringing it to the wider LLVM ecosystem.</p><p>Source code modification. The alteration of source code within DSP programs facilitates the elimination of pointer references as outlined in the work by Franke et al. <ref type="bibr" coords="21,317.69,285.12,14.83,9.03" target="#b22">[26]</ref>. While the approach bears some resemblance to our proposed method, it exhibits comparatively reduced flexibility. It exclusively encompasses static code modifications, devoid of the incorporation of the adjunct concept, which enables the utilization of compile-time-determined values exclusively. The primary aim remains the enhancement of computational efficiency, albeit without resorting to parallel processing techniques.</p><p>Pointers metadata. Incorporating metadata into pointers is not a novel concept, as evidenced by previous studies <ref type="bibr" coords="21,115.15,370.33,15.00,9.03" target="#b47">[51,</ref><ref type="bibr" coords="21,133.03,370.33,11.26,9.03" target="#b49">54]</ref>. In other scenarios, where the emphasis is on safety rather than performance, statically known mappings to pointers have been established. This facilitates the addition of runtime bounds checking, analogous to how we introduce runtime pointer movements through source code modifications.</p><p>Stream Semantic Registers. Stream Semantic Registers (SSR) <ref type="bibr" coords="21,315.25,419.68,16.36,9.03" target="#b46">[50]</ref> is a RISC-V ISA extension that offloads memory access management to hardware and automatically advances addresses in loops. However, SSR relies on known and regularly strided memory locations, which is not always true for pointers. Our transformation overcomes this limitation by converting pointers into arraystyle accesses, making SSR applicable.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion</head><p>In this work, we introduce a static transformation that separates the use of pointers as handles to data containers from their use as iterators. This improves code analyzability and data-centric compilers are shown to benefit from this transformation as eliminating indirection exposes additional parallelization opportunities. Using our approach on the Mantevo HPCCG benchmark, we were able to match the developer-optimized version and even surpass it by up to 6%. On the OpenSSL PBKDF2 implementation, we were able to automatically parallelize it and obtain up to an 11× speedup.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Appendix</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Proof Sketch of Pointer Assignment</head><p>We want to show that the assignment of pointers gives equivalent results after the application of the adjunct transformation described in Figure <ref type="figure" coords="21,238.34,638.93,3.41,9.03">4</ref>. To do so, we introduce a new pointer q with its q ad j . Let n, m be arbitrary integers, then we define X , Y and X , Y as</p><formula xml:id="formula_7">X = (p := p + x i |x i ∈ Z, 0 ≤ i &lt; n) Y = v i := v i + x i |x i ∈ Z &amp; v i ∈</formula><p>{p, q}, n ≤ i &lt; m X = p ad j := p ad j + x i |x i ∈ Z, 0 ≤ i &lt; n Y = v i ad j := v i ad j + x i |x i ∈ Z &amp; v i ad j ∈ {p ad j , q ad j }, n ≤ i &lt; m . Using ; to concatenate commands, we define S with S = (X ; (q := p; Y )), where it represents the execution of an arbitrary number of pointer movement statements followed by a pointer assignment and another arbitrary number of pointer movement statements. In the same way, we define S as the adjunct transformation of S. S = (X ; (q := p; (q ad j := p ad j ; Y )))</p><p>Note that the ; operator is right associative. Then, we define Y q as Y q = m i=n |v i ad j =q ad j</p><p>x i , i.e., the difference of value after executing Y on q ad j . Then, (Y ; q ad j ) = q ad j +Y q . Note that X and X only act on p and p ad j , respectively. This is to have a simpler proof, but it can be easily shown that by defining X and X in a similar way as Y and Y , the same result will be obtained.</p><p>For the sake of a shorter syntax and more readable proof, we omit the declaration of the pointers and adjunct integer variables. i.e., (p := malloc(...); (p ad j := 0; (q := malloc(...); (q ad j := 0; (S; q))))), as it will be carried without modifications through all the proof steps. Then, we can derive S; q = X ; (q := p; (Y ; q)) (adjunct transformation) = X ; (q := p; (q + (Y ; q ad j )))</p><p>(distributive) = X ; ((q := p; q) + (q := p; (Y ; q ad j ))) (no effect statement) = X ; ((q := p; q) + (Y ; q ad j )) (assignment) = X ; (p + (Y ; q ad j )) (distributive) = (X ; p) + (X ; (Y ; q ad j )) (adjunct transformation) = ((X ; p) + (X ; p ad j )) + (X ; (Y ; q ad j )) (no effect statement) = p + (X ; p ad j ) + (X ; (Y ; q ad j )) (no effect statement) = p + (X ; p ad j ) + (Y ; q ad j ) (sum expantion of adjunct) = p + (X ; p ad j ) + q ad j + Y q (adjunct value of 0) = p + (X ; p ad j ) + Y q (no effect statement) = p + (X ; p ad j ) + (X ; Y q ) (distributive) = p + (X ; (p ad j + Y q )) (no effect statement) = p + (X ; (q := p; (p ad j + Y q )))</p><p>(assignment) = p + (X ; (q := p; (q ad j := p ad j ; q ad j + Y q ))))</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,63.29,201.66,359.51,8.07"><head>Fig. 1 .</head><label>1</label><figDesc>Fig.1. Two example codes where we can have false positives and negatives with pointer accesses.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="6,65.90,92.76,354.27,10.84;6,207.39,108.26,185.17,10.84"><head></head><label></label><figDesc>(p := malloc(...); (p ad j := 0; (S; p))) = (p := malloc(...); (p ad j := 0; (p + (S ; p ad j ) − p ad j ))) = (p := malloc(...); (p ad j := 0; (p + (S ; p ad j ))))</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="6,73.65,164.99,326.65,10.84;6,215.13,180.48,197.30,10.84;6,215.13,195.97,181.19,10.84"><head></head><label></label><figDesc>(p := malloc(...); (p ad j := 0; (S; p))) = (p := malloc(...); (p ad j := 0; (p + (S ; p ad j )))) = (p := malloc(...); (p ad j := 0; (S ; p) + (S ; p ad j ))) = (p := malloc(...); (p ad j := 0; (S ; p + p ad j ))).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="8,45.77,266.66,394.53,8.07;8,45.77,277.62,394.74,8.08;8,45.77,288.58,394.51,8.07;8,45.77,299.54,90.07,8.07"><head>Fig. 5 .</head><label>5</label><figDesc>Fig.5. Left side: example code using pointer movements where the points-to analysis inside GCC is unable to ensure non-aliasing accesses. Right side: code after adjunct transformation, where GCC is able to statically decide non-aliasing using points-to analysis and integer analysis. Note the difference in the CFG of the resulting assembly code.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="10,45.77,274.66,394.53,8.07;10,45.77,285.63,349.34,8.08"><head>Fig. 6 .</head><label>6</label><figDesc>Fig.6. Serial and parallel runtimes for a simplified code snippet extracted from the PBKDF2 implementation of OpenSSL. Note that DaCe can only analyze the code after using the adjunct transformation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="11,45.95,200.67,394.52,8.07;11,45.95,211.62,343.56,8.08"><head>11 Fig. 7 .</head><label>117</label><figDesc>Fig. 7. Serial runtime (single thread) of LZO compression algorithm. Comparison of original implementation compiled with GCC 12.2.2 and DaCe transformed version (including adjunct transformation).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="12,150.44,188.66,185.19,8.07"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Undecidable vs. decidable pointer accesses.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="12,125.06,315.19,235.96,8.07"><head>Fig. 9 .</head><label>9</label><figDesc>Fig. 9. Example of adjunct transformation with double pointers.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="13,119.28,288.67,247.86,8.07"><head>13 Fig. 10 .</head><label>1310</label><figDesc>Fig. 10. Example of adjunct transformation with arrays of pointers.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="14,45.77,199.67,394.76,8.07;14,45.77,210.62,152.30,8.08"><head>Fig. 11 .</head><label>11</label><figDesc>Fig. 11. Example usage of double pointers to delegate memory allocation responsibility. This usage is fully supported by the adjunct transformation.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="15,45.95,181.67,394.53,8.07"><head>15 Fig. 12 .</head><label>1512</label><figDesc>Fig.12. Matrix-vector multiplication with a sparse matrix in LIL format taken from the HPCCG benchmark.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="15,45.95,369.85,394.54,8.07;15,45.95,380.81,257.75,8.07"><head>Fig. 13 .</head><label>13</label><figDesc>Fig.<ref type="bibr" coords="15,61.39,369.85,6.87,8.07" target="#b9">13</ref>. Initialization of a sparse matrix in LIL format extracted from the Mantevo HPCCG benchmark. The original code is on the left, while the transformed code is on the right.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="17,45.95,290.67,394.51,8.07;17,45.95,301.62,150.48,8.07"><head>17 Fig. 14 .</head><label>1714</label><figDesc>Fig. 14. Left side: memcpy creates a dependency between loop iterations. Right side: p is a loop local variable and memcpy is used to assign values to it.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="18,45.77,383.66,394.50,8.08;18,45.77,394.62,88.89,8.07"><head>Fig. 15 .</head><label>15</label><figDesc>Fig. 15. Workflow for C program optimization including adjunct transformation and leveraging the DaCe data-centric framework.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14" coords="19,45.95,217.85,394.52,8.97;19,45.54,229.53,178.73,8.17"><head>Fig. 16 .</head><label>16</label><figDesc>Fig.<ref type="bibr" coords="19,61.91,218.67,6.87,8.07" target="#b12">16</ref>. PBKDF2 scheme. In this representation, ++ is the string concatenation, ⊕ is the XOR operator, and hlen is the output length of the HMAC function.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15" coords="19,45.95,484.27,13.29,8.07;19,76.17,484.27,364.27,8.07;19,45.95,495.24,394.54,8.07;19,45.95,506.19,374.89,8.07"><head>Fig.</head><label></label><figDesc>Fig. Runtime of various parallelized PBKDF2 implementations using different block counts (block countdetermines the problem size) and using multiple thread counts. Increasing the thread count beyond the number of blocks would be ineffective, as the work could not be meaningfully divided among threads.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16" coords="20,105.42,315.67,275.23,8.07"><head>Fig. 18 .</head><label>18</label><figDesc>Fig. 18. Runtime of Mantevo HPCCG benchmark with different compilers.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="6,45.52,452.35,394.78,91.25"><head>To avoid name collisions for the adjunct variable name, a simple counter and checks are used.</head><label></label><figDesc></figDesc><table coords="6,56.57,485.81,246.43,57.79"><row><cell>for all variable declaration of the form 𝑡𝑦𝑝𝑒 𝑛𝑎𝑚𝑒 = 𝑖𝑛𝑖𝑡 do</cell></row><row><cell>if 𝑡𝑦𝑝𝑒 is a pointer type then</cell></row><row><cell>𝑎𝑑 𝑗𝑢𝑛𝑐𝑡 𝑁 𝑎𝑚𝑒 ← 𝑔𝑒𝑡𝑈 𝑛𝑖𝑞𝑢𝑒𝑁 𝑎𝑚𝑒 (𝑛𝑎𝑚𝑒 + " 𝑎𝑑 𝑗")</cell></row><row><cell>𝑎𝑑 𝑗𝑢𝑛𝑐𝑡𝑀𝑎𝑝𝑝𝑖𝑛𝑔[𝑛𝑎𝑚𝑒] ← 𝑎𝑑 𝑗𝑢𝑛𝑐𝑡 𝑁 𝑎𝑚𝑒</cell></row><row><cell>𝑎𝑑 𝑗𝑢𝑛𝑐𝑡 𝑁 𝑎𝑚𝑒 init to 0</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="10,139.71,310.41,208.47,86.04"><head>Table 1 .</head><label>1</label><figDesc>Number of Instructions Generated by Different Compilers of the Code Snippet Taken from PBKDF2</figDesc><table coords="10,139.82,337.37,208.35,59.08"><row><cell>Instructions [10 6 ]</cell><cell>No adjunct</cell><cell>With adjunct</cell></row><row><cell>GCC</cell><cell>4, 380</cell><cell>4, 380</cell></row><row><cell>Clang</cell><cell>2, 974</cell><cell>2, 974</cell></row><row><cell>Polly</cell><cell>2, 974</cell><cell>2, 974</cell></row><row><cell>DaCe</cell><cell>not supported</cell><cell>4, 380</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="14,119.48,228.15,248.31,96.79"><head>Table 2 .</head><label>2</label><figDesc>Number of Lines of Code (LoC), Number of Applicable Instances of the adjunct Transformation (#applicable), and Number of Non-applicable Instances (#Non-applicable) in Different Code-bases (Only C and C++)</figDesc><table coords="14,120.79,278.85,246.99,46.09"><row><cell>Code-base</cell><cell cols="3">LoC #applicable #non-applicable</cell></row><row><cell>OpenSSL</cell><cell>704,308</cell><cell>26,925</cell><cell>1,362</cell></row><row><cell>TurboBench</cell><cell>854,548</cell><cell>32,680</cell><cell>756</cell></row><row><cell cols="2">Linux kernel 24,940,479</cell><cell>1,656,065</cell><cell>4,972</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_0">ACM Trans. Arch. Code Optim., Vol. 22, No. 1, Article 4. Publication date: March 2025.</note>
+		</body>
+		<back>
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This project has received funding from EuroHPC-JU under grant agreement DEEP-SEA No. 95560 and by the European Research Council (ERC) under the European Union's Horizon 2020 program (grant agreement PSAP, No. 101002047). This work was partially supported by the ETH Future Computing Laboratory (EFCL), financed by a donation from Huawei Technologies.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>(Y q definition) = p + (X ; (q := p; (q ad j := p ad j ; (Y ; q ad j )))) (S' definition) = p + (S ; q ad j ) (no effect statement) = (X ; p) + (S ; q ad j ) (assignment) = (X ; (q := p; q)) + (S ; q ad j ) (no effect statement) = (X ; (q := p; (q ad j := p ad j ; q))) + (S ; q ad j ) (no effect statement) = (X ; (q := p; (q ad j := p ad j ; (Y ; q)))) + (S ; q ad j ) (S' definition) = (S ; q) + (S ; q ad j ) = q + (S ; q ad j ). Now, we have proven the equivalence of the pointer assignment transformation stated in Figure <ref type="figure" coords="23,74.32,203.33,3.41,9.03">4</ref>.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="23,63.02,240.85,373.20,7.22;23,49.65,250.81,33.98,7.22" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">BTRFS compression documentation</title>
+		<ptr target="https://btrfs.readthedocs.io/en/latest/Compression.html" />
+		<imprint/>
+	</monogr>
+	<note>n. d.</note>
+</biblStruct>
+
+<biblStruct coords="23,85.62,250.81,355.39,7.22;23,62.72,260.76,361.54,7.22" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Classic Developer Guide and Reference</title>
+		<author>
+			<persName coords=""><forename type="first">C++</forename><surname>Intel®</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Compiler</surname></persName>
+		</author>
+		<ptr target="https://www.intel.com/content/www/us/en/docs/cpp-compiler/developer-guide-reference/2021-8/vectorization-programming-guidelines.html" />
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,270.73,378.31,7.22;23,63.02,280.69,120.49,7.22" xml:id="b2">
+	<monogr>
+		<ptr target="https://lore.kernel.org/all/1238593252-3435-1-git-send-email-andr345@gmail.com/" />
+		<title level="m">lib, initramfs: Add initramfs LZO compression</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,85.63,290.65,239.32,7.22" xml:id="b3">
+	<monogr>
+		<ptr target="https://github.com/torvalds/linux" />
+		<title level="m">Linux kernel repository</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,300.61,255.75,7.22" xml:id="b4">
+	<monogr>
+		<ptr target="https://github.com/openssl/openssl" />
+		<title level="m">OpenSSL repository</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,310.58,321.36,7.22;23,49.65,320.54,302.43,7.22" xml:id="b5">
+	<monogr>
+		<ptr target="https://github.com/powturbo/TurboBench" />
+		<title level="m">Squashfs documentation</title>
+				<imprint/>
+	</monogr>
+	<note>TurboBench repository</note>
+</biblStruct>
+
+<biblStruct coords="23,63.02,360.35,282.47,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Scalar evolution-demystified</title>
+		<author>
+			<persName coords=""><forename type="first">Javed</forename><surname>Absar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European LLVM Developers Meeting</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,370.31,377.47,7.26;23,63.02,380.27,377.76,7.26;23,63.02,390.28,68.34,7.22" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">Program Analysis and Specialization for the C Programming Language. Datalogisk Institut, Københavns Universitet</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><forename type="middle">O</forename><surname>Andersen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Københavns</forename><surname>Universitet</surname></persName>
+		</author>
+		<ptr target="https://books.google.ch/books?id=3pD1GwAACAAJ" />
+		<imprint>
+			<date type="published" when="1994">1994</date>
+		</imprint>
+	</monogr>
+	<note>Datalogisk Institut</note>
+</biblStruct>
+
+<biblStruct coords="23,63.02,400.24,378.70,7.22;23,63.02,410.20,377.45,7.22;23,63.02,420.16,377.99,7.22;23,63.02,430.13,84.57,7.22" xml:id="b8">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Krste</forename><surname>Asanović</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ras</forename><surname>Bodik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bryan</forename><surname>Christopher Catanzaro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><surname>James Gebis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Parry</forename><surname>Husbands</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kurt</forename><surname>Keutzer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">A</forename><surname>Patterson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><surname>Lester Plishker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Shalf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Samuel</forename><forename type="middle">Webb</forename><surname>Williams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katherine</forename><forename type="middle">A</forename><surname>Yelick</surname></persName>
+		</author>
+		<ptr target="http://www2.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-183.html" />
+		<title level="m">The landscape of parallel computing research: A view from berkeley</title>
+				<imprint>
+			<date type="published" when="2006">2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,440.05,377.63,7.26;23,62.78,450.05,40.56,7.22" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Scalable, parallel computers: Alternatives, issues, and challenges</title>
+		<author>
+			<persName coords=""><forename type="first">Gordon</forename><surname>Bell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Int. J. Parallel Program</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="3" to="46" />
+			<date type="published" when="1994">1994. 1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,460.01,378.67,7.22;23,63.02,469.94,105.26,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Improving static analysis by loop unrolling on an arbitrary iteration</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">A</forename><surname>Belyaev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Akhin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">M</forename><surname>Itsykson</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Univ. Scient. J</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="154" to="168" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,479.94,377.46,7.22;23,63.02,489.86,378.24,7.26;23,63.02,499.83,299.19,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Stateful dataflow multigraphs: A data-centric model for performance portability on heterogeneous architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Johannes</forename><surname>De Fine</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandros</forename><surname>Licht</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Timo</forename><surname>Nikolaos Ziogas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Schneider</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Hoefler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference for High Performance Computing, Networking, Storage and Analysis (SC&apos;19)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,509.82,377.45,7.22;23,63.02,519.74,378.69,7.26;23,62.84,529.74,25.95,7.22" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Low-cost non-intrusive debugging strategies for distributed parallel programs</title>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">D</forename><surname>Beynon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Andrade</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Saltz</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/CLUSTR.2002.1137778</idno>
+		<ptr target="https://doi.org/10.1109/CLUSTR.2002.1137778" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE International Conference on Cluster Computing</title>
+				<imprint>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="439" to="442" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,539.71,378.33,7.22;23,63.02,549.67,86.18,7.22" xml:id="b13">
+	<monogr>
+		<title level="m" type="main">PBKDF2: performance matters</title>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><surname>Birr-Pixton</surname></persName>
+		</author>
+		<ptr target="https://jbp.io/2015/08/11/pbkdf2-performance-matters.html" />
+		<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,559.63,378.67,7.22;23,62.74,569.59,377.69,7.22;23,63.02,579.52,261.35,7.26" xml:id="b14">
+	<monogr>
+		<title level="m" type="main">Automatic transformations for communication-minimized parallelization and locality optimization in the polyhedral model</title>
+		<author>
+			<persName coords=""><forename type="first">Uday</forename><surname>Bondhugula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Muthu</forename><surname>Baskaran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sriram</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ramanujam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atanas</forename><surname>Rountev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<editor>Compiler Construction, Laurie Hendren</editor>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="132" to="146" />
+			<pubPlace>Berlin</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,589.52,378.68,7.22;23,63.02,599.44,378.68,7.26;23,62.74,609.45,372.39,7.22" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Strictly declarative specification of sophisticated points-to analyses</title>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Bravenboer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yannis</forename><surname>Smaragdakis</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1640089.1640108</idno>
+		<ptr target="https://doi.org/10.1145/1640089.1640108" />
+	</analytic>
+	<monogr>
+		<title level="m">24th ACM SIGPLAN Conference on Object Oriented Programming Systems Languages and Applications (OOPSLA&apos;09)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="243" to="262" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,63.02,619.41,378.34,7.22;23,63.02,629.33,377.45,7.26;24,62.85,78.57,378.39,7.26;24,62.59,88.58,110.88,7.22" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Philipp Schaad, and Torsten Hoefler. 2022. Lifting C semantics for dataflow optimization</title>
+		<author>
+			<persName coords=""><forename type="first">Alexandru</forename><surname>Calotoiu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Grzegorz</forename><surname>Kwasniewski</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3524059.3532389</idno>
+		<ptr target="https://doi.org/10.1145/3524059.3532389" />
+	</analytic>
+	<monogr>
+		<title level="m">36th ACM International Conference on Supercomputing (ICS&apos;22)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<biblScope unit="volume">17</biblScope>
+		</imprint>
+		<respStmt>
+			<orgName>Johannes de Fine Licht, Timo Schneider</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,98.54,378.28,7.22;24,62.85,108.50,114.77,7.22" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">Chip Hall of Fame: Intel 4004 Microprocessor</title>
+		<author>
+			<persName coords=""><forename type="first">Stephen</forename><surname>Cass</surname></persName>
+		</author>
+		<ptr target="https://spectrum.ieee.org/chip-hall-of-fame-intel-4004-microprocessor" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,118.46,377.43,7.22;24,62.85,128.39,378.70,7.26;24,62.66,138.39,22.24,7.22" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Techniques for debugging parallel programs with flowback analysis</title>
+		<author>
+			<persName coords=""><forename type="first">Jong-Deok</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Barton</forename><forename type="middle">P</forename><surname>Miller</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><forename type="middle">H B</forename><surname>Netzer</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/115372.115324</idno>
+		<ptr target="https://doi.org/10.1145/115372.115324" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Program. Lang. Syst</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page" from="491" to="530" />
+			<date type="published" when="1991-10">1991. Oct. 1991</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,148.31,378.32,7.26;24,62.85,158.27,210.96,7.26" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">OpenMP: An industry standard API for shared-memory programming</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>Dagum</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Menon</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/99.660313</idno>
+		<ptr target="https://doi.org/10.1109/99.660313" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Comput. Sci. Eng</title>
+		<imprint>
+			<biblScope unit="volume">5</biblScope>
+			<biblScope unit="page" from="46" to="55" />
+			<date type="published" when="1998">1998. 1998</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,168.28,378.33,7.22;24,62.85,178.24,55.90,7.22" xml:id="b20">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Anthony</forename><surname>Danalis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Heike</forename><surname>Jagode</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jack</forename><surname>Dongarra</surname></persName>
+		</author>
+		<title level="m">PAPI: Counting outside the Box. 8th JLESC Meeting</title>
+				<meeting><address><addrLine>Barcelona, Spain</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,188.20,377.43,7.22;24,62.85,198.13,377.43,7.26;24,62.36,208.09,379.19,7.26;24,62.66,218.09,22.24,7.22" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Context-sensitive interprocedural points-to analysis in the presence of function pointers</title>
+		<author>
+			<persName coords=""><forename type="first">Maryam</forename><surname>Emami</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rakesh</forename><surname>Ghiya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Laurie</forename><forename type="middle">J</forename><surname>Hendren</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/178243.178264</idno>
+		<ptr target="https://doi.org/10.1145/178243.178264" />
+	</analytic>
+	<monogr>
+		<title level="m">ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI&apos;94)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="1994">1994</date>
+			<biblScope unit="page" from="242" to="256" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,228.05,378.79,7.22;24,62.85,237.98,265.43,7.26" xml:id="b22">
+	<monogr>
+		<title level="m" type="main">Compiler transformation of pointers to explicit array accesses in DSP applications</title>
+		<author>
+			<persName coords=""><forename type="first">Björn</forename><surname>Franke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O'</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Boyle</surname></persName>
+		</author>
+		<editor>Compiler Construction, Reinhard Wilhelm</editor>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+			<publisher>Springer</publisher>
+			<biblScope unit="page" from="69" to="85" />
+			<pubPlace>Berlin</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,247.98,378.67,7.22;24,62.85,257.94,206.23,7.22" xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Compiling machine learning programs via high-level tracing</title>
+		<author>
+			<persName coords=""><forename type="first">Roy</forename><surname>Frostig</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><surname>Johnson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Leary</surname></persName>
+		</author>
+		<ptr target="https://mlsys.org/Conferences/doc/2018/146.pdf" />
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,267.90,377.47,7.22;24,62.85,277.83,201.57,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">The international race towards exascale in Europe</title>
+		<author>
+			<persName coords=""><forename type="first">Fabrizio</forename><surname>Gagliardi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Miquel</forename><surname>Moreto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mauro</forename><surname>Olivieri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mateo</forename><surname>Valero</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">CCF Trans. High Perform. Comput</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="3" to="13" />
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,287.83,378.39,7.22;24,62.85,297.79,76.01,7.22" xml:id="b25">
+	<monogr>
+		<title level="m" type="main">GitHub API, repository count</title>
+		<author>
+			<persName coords=""><surname>Github</surname></persName>
+		</author>
+		<ptr target="https://api.github.com/search/repositories?q=language" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<publisher>Ccreated</publisher>
+			<biblScope unit="page" from="2022" to="2034" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,307.75,378.29,7.22;24,62.85,317.72,80.48,7.22" xml:id="b26">
+	<monogr>
+		<title level="m" type="main">GitHub Top Programming Languages</title>
+		<author>
+			<persName coords=""><surname>Github</surname></persName>
+		</author>
+		<ptr target="https://octoverse.github.com/2022/top-programming-languages" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,327.67,377.44,7.22;24,62.85,337.59,377.97,7.26;24,62.85,347.60,63.19,7.22" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Polly -Performing polyhedral optimizations on a low-level intermediate representation</title>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Grosser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Armin</forename><surname>Groesslinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Lengauer</surname></persName>
+		</author>
+		<idno type="DOI">10.1142/S0129626412500107</idno>
+		<ptr target="https://doi.org/10.1142/S0129626412500107" />
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Process. Lett</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page">1250010</biblScope>
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,357.56,377.46,7.22;24,62.85,367.48,377.59,7.26;24,62.85,377.48,320.98,7.22" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Optimistic delinearization of parametrically sized arrays</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Tobias Grosser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Louis-Noel</forename><surname>Ramanujam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Pouchet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sebastian</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Pop</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2751205.2751248</idno>
+		<ptr target="https://doi.org/10.1145/2751205.2751248" />
+	</analytic>
+	<monogr>
+		<title level="m">29th ACM on International Conference on Supercomputing (ICS&apos;15)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="351" to="360" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,387.41,326.21,7.26" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">Profile driven loop transformations</title>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Günther</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">GCC Developers&apos; Summit. Citeseer</title>
+				<imprint>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="page">49</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,397.41,377.43,7.22;24,62.85,407.33,339.75,7.26" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">SPMD execution of programs with dynamic data structures on distributed memory machines</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gupta</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICCL.1992.185487</idno>
+		<ptr target="https://doi.org/10.1109/ICCL.1992.185487" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Computer Languages</title>
+				<imprint>
+			<date type="published" when="1992">1992</date>
+			<biblScope unit="page" from="232" to="241" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.85,417.29,377.97,7.26;24,62.85,427.30,162.29,7.22" xml:id="b31">
+	<monogr>
+		<ptr target="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdfSubsection6.5.2Postfixoperators" />
+		<title level="m">ISO C Standard</title>
+				<imprint>
+			<date type="published" when="1999">1999. 1999</date>
+		</imprint>
+		<respStmt>
+			<orgName>ISO</orgName>
+		</respStmt>
+	</monogr>
+	<note type="report_type">Technical Report</note>
+</biblStruct>
+
+<biblStruct coords="24,62.84,437.26,378.39,7.22;24,62.57,447.22,297.23,7.22" xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Data Movement Is All You Need: A Case Study on Optimizing Transformers</title>
+		<author>
+			<persName coords=""><forename type="first">Andrei</forename><surname>Ivanov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikoli</forename><surname>Dryden</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Ben-Nun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shigang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<idno type="DOI">10.48550/ARXIV.2007.00072</idno>
+		<ptr target="https://doi.org/10.48550/ARXIV.2007.00072" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,457.14,377.44,7.26;24,62.85,467.11,378.68,7.26;24,62.66,477.11,80.04,7.22" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Compression speed enhancements to LZO for multi-core systems</title>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Kane</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Qing</forename><surname>Yang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SBAC-PAD.2012.29</idno>
+		<ptr target="https://doi.org/10.1109/SBAC-PAD.2012.29" />
+	</analytic>
+	<monogr>
+		<title level="m">IEEE 24th International Symposium on Computer Architecture and High Performance Computing</title>
+				<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="108" to="115" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,487.03,378.25,7.26;24,62.85,497.00,378.79,7.26;24,62.85,507.00,271.84,7.22" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Hybrid context-sensitivity for points-to analysis</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Kastrinis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yannis</forename><surname>Smaragdakis</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2491956.2462191</idno>
+		<ptr target="https://doi.org/10.1145/2491956.2462191" />
+	</analytic>
+	<monogr>
+		<title level="m">34th ACM SIG-PLAN Conference on Programming Language Design and Implementation (PLDI&apos;13)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="423" to="434" />
+		</imprint>
+	</monogr>
+	<note>Association for Computing Machinery</note>
+</biblStruct>
+
+<biblStruct coords="24,62.84,516.96,378.79,7.22;24,62.85,526.88,378.32,7.26;24,62.85,536.89,73.96,7.22" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Code optimizations for in-network processing: The state of scalar evolution in LLVM: The state of scalar evolution in LLVM</title>
+		<author>
+			<persName coords=""><forename type="first">Yeonsoo</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shinhyung</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shin-Dug</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bernd</forename><surname>Burgstaller</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proc. Korea Telecommun. Societ</title>
+		<imprint>
+			<biblScope unit="page" from="434" to="437" />
+			<date type="published" when="2019-01">2019. 2019.1 (2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,546.85,378.68,7.22;24,62.85,556.77,377.44,7.26;24,62.85,566.75,378.68,7.26;24,62.66,576.74,71.07,7.22" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">HPVM: Heterogeneous parallel virtual machine</title>
+		<author>
+			<persName coords=""><forename type="first">Maria</forename><surname>Kotsifakou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Prakalp</forename><surname>Srivastava</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><forename type="middle">D</forename><surname>Sinclair</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rakesh</forename><surname>Komuravelli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sarita</forename><surname>Vikram Adve</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Adve</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3178487.3178493</idno>
+		<ptr target="https://doi.org/10.1145/3178487.3178493" />
+	</analytic>
+	<monogr>
+		<title level="m">23rd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;18)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="68" to="80" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,586.71,377.42,7.22;24,62.85,596.63,377.42,7.26;24,62.85,606.63,332.43,7.22" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Escape analysis in the context of dynamic compilation and deoptimization</title>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Kotzmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hanspeter</forename><surname>Mössenböck</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/1064979.1064996</idno>
+		<ptr target="https://doi.org/10.1145/1064979.1064996" />
+	</analytic>
+	<monogr>
+		<title level="m">1st ACM/USENIX International Conference on Virtual Execution Environments (VEE&apos;05)</title>
+				<meeting><address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="111" to="120" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,62.84,616.55,378.24,7.26;24,62.85,626.52,378.70,7.26;24,62.66,636.52,25.95,7.22" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">LLVM: A compilation framework for lifelong program analysis &amp; transformation</title>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lattner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Adve</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/CGO.2004.1281665</idno>
+		<ptr target="https://doi.org/10.1109/CGO.2004.1281665" />
+	</analytic>
+	<monogr>
+		<title level="m">International Symposium on Code Generation and Optimization (CGO&apos;04)</title>
+				<imprint>
+			<date type="published" when="2004">2004</date>
+			<biblScope unit="page" from="75" to="86" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,78.61,377.47,7.22;25,63.02,88.58,377.44,7.22;25,63.02,98.54,96.38,7.22" xml:id="b39">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Lattner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mehdi</forename><surname>Amini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Uday</forename><surname>Bondhugula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jacques</forename><surname>Pienaar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">River</forename><surname>Riddle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tatiana</forename><surname>Shpeisman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicolas</forename><surname>Vasilache</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oleksandr</forename><surname>Zinenko</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2002.11054[cs.PL]</idno>
+		<title level="m">MLIR: A Compiler Infrastructure for the End of Moore&apos;s Law</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,108.46,378.38,7.26;25,62.77,118.46,176.13,7.22" xml:id="b40">
+	<monogr>
+		<title level="m" type="main">MPI: A Message-Passing Interface Standard Version</title>
+		<ptr target="https://www.mpi-forum.org/docs/mpi-4.0/mpi40-report.pdf" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note>Message Passing Interface Forum</note>
+</biblStruct>
+
+<biblStruct coords="25,63.02,128.43,378.31,7.22;25,63.02,138.35,378.69,7.26;25,62.84,148.35,83.33,7.22" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Cramming more components onto integrated circuits</title>
+		<author>
+			<persName coords=""><forename type="first">Gordon</forename><forename type="middle">E</forename><surname>Moore</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/N-SSC.2006.4785860</idno>
+		<ptr target="https://doi.org/10.1109/N-SSC.2006.4785860" />
+	</analytic>
+	<monogr>
+		<title level="j">Societ. Newslett</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="33" to="35" />
+			<date type="published" when="1965">2006. april 19, 1965. 2006</date>
+		</imprint>
+	</monogr>
+	<note>ff. IEEE Solid-State Circ</note>
+</biblStruct>
+
+<biblStruct coords="25,63.02,158.31,377.96,7.22;25,63.02,168.28,12.07,7.22" xml:id="b42">
+	<monogr>
+		<title level="m" type="main">Lempel-Ziv-Oberhumer</title>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">X J</forename><surname>Markus</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Oberhumer</surname></persName>
+		</author>
+		<ptr target="https://www.oberhumer.com/opensource/lzo/" />
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,178.24,377.44,7.22;25,63.02,188.20,377.45,7.22;25,63.02,198.13,325.47,7.26" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">DAMOV: A new methodology and benchmark suite for evaluating data movement bottlenecks</title>
+		<author>
+			<persName coords=""><forename type="first">Geraldo</forename><forename type="middle">F</forename><surname>Oliveira</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Juan</forename><surname>Gómez-Luna</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lois</forename><surname>Orosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saugata</forename><surname>Ghose</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nandita</forename><surname>Vijaykumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ivan</forename><surname>Fernandez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohammad</forename><surname>Sadrosadati</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Onur</forename><surname>Mutlu</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ACCESS.2021.3110993</idno>
+		<ptr target="https://doi.org/10.1109/ACCESS.2021.3110993" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="134457" to="134502" />
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,208.13,378.78,7.22;25,63.02,218.09,378.68,7.22;25,63.02,228.01,256.36,7.26" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Halide: Decoupling algorithms from schedules for high-performance image processing</title>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Ragan-Kelley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Adams</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dillon</forename><surname>Sharlet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Connelly</forename><surname>Barnes</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sylvain</forename><surname>Paris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Levoy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frédo</forename><surname>Durand</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3150211</idno>
+		<ptr target="https://doi.org/10.1145/3150211" />
+	</analytic>
+	<monogr>
+		<title level="j">Commun. ACM</title>
+		<imprint>
+			<biblScope unit="volume">61</biblScope>
+			<biblScope unit="page" from="106" to="115" />
+			<date type="published" when="2017-12">2017. Dec. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,237.98,378.32,7.26;25,63.02,247.98,239.94,7.22" xml:id="b45">
+	<monogr>
+		<title level="m" type="main">The Development of the C Programming Language</title>
+		<author>
+			<persName coords=""><forename type="first">Dennis</forename><forename type="middle">M</forename><surname>Ritchie</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/234286.1057834</idno>
+		<ptr target="https://doi.org/10.1145/234286.1057834" />
+		<imprint>
+			<date type="published" when="1996">1996</date>
+			<publisher>Association for Computing Machinery</publisher>
+			<biblScope unit="page" from="671" to="698" />
+			<pubPlace>New York, NY, USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,257.94,377.46,7.22;25,63.02,267.86,378.33,7.26;25,63.02,277.87,176.14,7.22" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Stream semantic registers: A lightweight RISC-V ISA extension achieving full compute utilization in single-issue cores</title>
+		<author>
+			<persName coords=""><forename type="first">Fabian</forename><surname>Schuiki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Florian</forename><surname>Zaruba</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Torsten</forename><surname>Hoefler</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luca</forename><surname>Benini</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TC.2020.2987314</idno>
+		<ptr target="https://doi.org/10.1109/TC.2020.2987314" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Comput</title>
+		<imprint>
+			<biblScope unit="volume">70</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="212" to="227" />
+			<date type="published" when="2021-02">2021. Feb. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,287.83,377.42,7.22;25,63.02,297.75,378.69,7.26;25,62.84,307.75,64.40,7.22" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">MemSafe: Ensuring the spatial and temporal memory safety of C at runtime</title>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><forename type="middle">S</forename><surname>Simpson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajeev</forename><forename type="middle">K</forename><surname>Barua</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/SCAM.2010.15</idno>
+		<ptr target="https://doi.org/10.1109/SCAM.2010.15" />
+	</analytic>
+	<monogr>
+		<title level="m">10th IEEE Working Conference on Source Code Analysis and Manipulation. 199-208</title>
+				<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.02,317.72,378.80,7.22;25,63.02,327.63,375.68,7.26" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Loop-oriented pointer analysis for automatic SIMD vectorization</title>
+		<author>
+			<persName coords=""><forename type="first">Yulei</forename><surname>Sui</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaokang</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hao</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jingling</forename><surname>Xue</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3168364</idno>
+		<ptr target="https://doi.org/10.1145/3168364" />
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Embed. Comput. Syst</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page">31</biblScope>
+			<date type="published" when="2018-01">2018. Jan. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="25,63.01,347.56,378.31,7.26;25,63.02,357.52,285.76,7.26" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Fat pointers for temporal memory safety of C</title>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Criswell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Hicks</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3586038</idno>
+		<ptr target="https://doi.org/10.1145/3586038" />
+	</analytic>
+	<monogr>
+		<title level="j">Proc. ACM Program. Lang</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">32</biblScope>
+			<date type="published" when="2023-04">2023. Apr. 2023</date>
+		</imprint>
+	</monogr>
+	<note>OOPSLA1, Article 86</note>
+</biblStruct>
+
+<biblStruct coords="25,63.02,367.52,378.80,7.22;25,63.02,377.44,377.47,7.26;25,63.02,387.41,345.54,7.26" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">DiscoPoP: A profiling tool to identify parallelization opportunities</title>
+		<author>
+			<persName coords=""><forename type="first">Zhen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rohit</forename><surname>Atre</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zia</forename><surname>Ul-Huda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ali</forename><surname>Jannesari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Felix</forename><surname>Wolf</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Tools for High Performance Computing 2014: Proceedings of the 8th International Workshop on Parallel Tools for High Performance Computing</title>
+				<meeting><address><addrLine>Stuttgart, Germany</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2014">2015. October 2014</date>
+			<biblScope unit="page" from="37" to="54" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

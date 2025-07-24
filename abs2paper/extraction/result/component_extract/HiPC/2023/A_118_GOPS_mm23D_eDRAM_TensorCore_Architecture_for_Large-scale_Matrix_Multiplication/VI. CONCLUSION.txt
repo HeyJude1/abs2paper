@@ -1,0 +1,2 @@
+VI. CONCLUSION
+We explored architecture design with recent advancements in Back-End-Of-Line (BEOL) transistors and monolithic 3D integration techniques. A high-performance matrix multiplication unit based on ultra-high density monolithic 3D eDRAM is proposed and co-designed with analog CIM circuits. By optimizing with outer-product style bit-stationary dataflow, the simulation results show that the proposed architecture achieves significant energy efficiency, performance, and area efficiency.

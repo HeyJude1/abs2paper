@@ -1,0 +1,1839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">CoNST: Code Generator for Sparse Tensor Networks</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>Association for Computing Machinery (ACM)</publisher>
+				<availability status="unknown"><p>Copyright Association for Computing Machinery (ACM)</p>
+				</availability>
+				<date type="published" when="2024-11-20">2024-11-20</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,45.68,114.37,73.85,9.86"><forename type="first">Saurabh</forename><surname>Raje</surname></persName>
+							<email>saurabh.raje@utah.edu</email>
+							<idno type="ORCID">0000-0003-3294-1481</idno>
+							<affiliation key="aff0">
+								<orgName type="department">Kahlert School of Computing</orgName>
+								<orgName type="institution">University of Utah</orgName>
+								<address>
+									<settlement>Salt Lake City</settlement>
+									<country key="US">United States</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution" key="instit1">UFAN X U</orgName>
+								<orgName type="institution" key="instit2">Kahlert School of Computing</orgName>
+								<orgName type="institution" key="instit3">University of Utah</orgName>
+								<address>
+									<settlement>Salt Lake City</settlement>
+									<country key="US">United States</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,173.33,544.89,28.75,7.22"><forename type="first">Yufan</forename><surname>Xu</surname></persName>
+							<idno type="ORCID">0000-0002-7787-6460</idno>
+							<affiliation key="aff3">
+								<orgName type="institution">Virginia Tech</orgName>
+								<address>
+									<settlement>Blacksburg</settlement>
+									<country key="US">United States</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Atanas</forename><surname>Rountev</surname></persName>
+							<idno type="ORCID">0000-0003-4556-4937</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Edward</forename><forename type="middle">F</forename><surname>Valeev</surname></persName>
+							<idno type="ORCID">0000-0001-9923-6256</idno>
+						</author>
+						<author>
+							<persName><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+							<idno type="ORCID">0000-0002-4737-2034</idno>
+						</author>
+						<title level="a" type="main">CoNST: Code Generator for Sparse Tensor Networks</title>
+					</analytic>
+					<monogr>
+						<title level="j" type="main">ACM Transactions on Architecture and Code Optimization</title>
+						<title level="j" type="abbrev">ACM Trans. Archit. Code Optim.</title>
+						<idno type="ISSN">1544-3566</idno>
+						<idno type="eISSN">1544-3973</idno>
+						<imprint>
+							<publisher>Association for Computing Machinery (ACM)</publisher>
+							<biblScope unit="volume">21</biblScope>
+							<biblScope unit="issue">4</biblScope>
+							<biblScope unit="page" from="1" to="24"/>
+							<date type="published" when="2024-11-20" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">AE4A02C9C6178E7241791B763A9BDD00</idno>
+					<idno type="DOI">10.1145/3689342</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Sparse tensors</term>
+					<term>tensor networks</term>
+					<term>tensor layout</term>
+					<term>loop fusion</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Sparse tensor networks represent contractions over multiple sparse tensors. Tensor contractions are higherorder analogs of matrix multiplication. Tensor networks arise commonly in many domains of scientific computing and data science. Such networks are typically computed using a tree of binary contractions. Several critical inter-dependent aspects must be considered in the generation of efficient code for a contraction tree, including sparse tensor layout mode order, loop fusion to reduce intermediate tensors, and the mutual dependence of loop order, mode order, and contraction order. We propose CoNST, a novel approach that considers these factors in an integrated manner using a single formulation. Our approach creates a constraint system that encodes these decisions and their interdependence, while aiming to produce reduced-order intermediate tensors via fusion. The constraint system is solved by the Z3 SMT solver and the result is used to create the desired fused loop structure and tensor mode layouts for the entire contraction tree. This structure is lowered to the IR of the TACO compiler, which is then used to generate executable code. Our experimental evaluation demonstrates significant performance improvements over current state-of-the-art sparse tensor compiler/library alternatives.</p><p>CCS Concepts: • Software and its engineering → Source code generation ; Domain specific languages ;</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="14" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="15" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="16" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="17" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="18" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="19" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="20" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="21" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="22" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="23" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+		<surface n="24" ulx="0.0" uly="0.0" lrx="486.0" lry="720.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>This article describes CoNST, a Co de generator for N etworks of S parse T ensors. A tensor network expresses a collection of tensor contractions over a set of tensors. Tensor contractions 82:2 S. Raje et al.</p><p>are higher-order analogs of matrix-matrix multiplication. For example, the binary contraction Y i jlm = U i jk × W klm represents the computation ∀ i, j, l, m : Y i jlm = k U i jk × W klm . Multi-tensor product expressions, e.g., Z im = U i jk × V jl × W klm , arise commonly in many domains of scientific computing and data science (e.g., high-order models in quantum chemistry <ref type="bibr" coords="2,377.20,118.64,15.73,9.03" target="#b34">[ 35 ]</ref>, tensor decomposition schemes <ref type="bibr" coords="2,136.05,130.60,15.77,9.03" target="#b19">[ 20 ]</ref>). They involve multiple tensors and multiple summation indices, e.g., ∀ i, m : Z im = j, k, l U i jk × V jl × W klm .</p><p>These multi-tensor products are also referred to as tensor networks , represented with a node for every tensor instance and edges representing variables that index the various tensors. The figure on the right illustrates this representation. As explained later in Section 2 , such a network is typically computed efficiently using a tree of binary contractions.</p><p>Considerable prior research has been directed at the optimization of dense tensor contractions <ref type="bibr" coords="2,127.06,226.24,125.37,9.03">[ 1 , 17 , 22 , 26 , 29 , 30 , 36 , 37 , 43 ]</ref> and the optimization of tensor networks where the component tensors are dense <ref type="bibr" coords="2,280.77,238.19,44.23,9.03">[ 10 , 15 , 32 ]</ref>. A few efforts have also addressed the optimization of tensor networks with sparse tensors under some restrictions <ref type="bibr" coords="2,398.88,250.14,41.63,9.03;2,45.50,262.10,26.05,9.03">[ 12 , 16 , 19 , 27 , 51 ]</ref>. However, optimization and effective code generation for arbitrary sparse tensor networks remain an unsolved challenge.</p><p>A fundamental difficulty in developing efficient sparse versions of tensor computations in comparison to the corresponding dense versions is the fact that some compact representation such as Compressed Sparse Fiber (CSF , <ref type="bibr" coords="2,202.41,309.92,30.78,9.03">[ 40 , 41 ]</ref>, detailed in Section 2 ) must be used to represent the non-zero elements, with the implication that arbitrary slices of a multi-dimensional tensor cannot be efficiently extracted. In contrast, with dense tensors, arbitrary elements or contiguous slices along any combination of tensor modes can be easily and efficiently accessed. <ref type="foot" coords="2,391.44,343.95,3.38,6.59" target="#foot_0">1</ref> Therefore, while code generation for the application of an arbitrary combination of loop transformations like tiling, permutation, and fusion is quite straightforward for the dense case, the same is not true for optimization and code generation for a collection of sparse tensor contractions.</p><p>Loop fusion transforms a sequence of perfectly nested loops into an imperfectly nested loop, where a set of one or more outermost loops with exactly matching loop bounds from each of the loop nests is pulled out and made common surrounding loops for a sequence of lower-dimensional loop nests containing the non-common loops. Consider the simplest case of loop fusion across a sequence of two perfectly nested loops, where the first loop nest produces an array that is consumed by the second loop nest. The cache reuse distance (defined as the number of distinct data elements accessed between two successive accesses to a given data element) for the fused version of the code can be significantly lower than the unfused version. This is because lower-dimensional slices of the produced/consumed array (corresponding to fixed values of the fused loop iterators) are produced/consumed in temporal proximity with the fused version, whereas all accesses to the entire array happen for the first loop-nest before any accesses from the second loop-nest for the unfused code, resulting in much larger reuse distances.</p><p>The above benefit of improved data locality and reuse in cache for fused producer/consumer loops applies to both dense and sparse tensor contractions. However, for the sparse context, an additional benefit accrues from loop fusion. When a set of common surrounding loops between a producer loop-nest and a consumer loop-nest is fused, it is not necessary to allocate the full space for the temporary array that is produced/consumed, but only as much as needed for lowerdimensional slices corresponding to fixed values for the fused loop iterators. This is because space used for a previous slice (corresponding to some fixed values of the fused loop iterators) can be CoNST: Code Generator for Sparse Tensor Networks 82:3 reused for the next slice. Further, if a sufficient number of loops are fused and the size of the full product data space for the lower-dimensional slice is small, a dense representation can be used instead of an explicit sparse representation for the slices of the intermediate temporary tensor between the producer and consumer statement, thereby lowering data access overheads <ref type="bibr" coords="3,405.62,118.64,15.73,9.03" target="#b17">[ 18 ]</ref>.</p><p>Although a few efforts have been directed toward compiler optimization of sparse matrix and tensor computations <ref type="bibr" coords="3,130.72,142.55,118.76,9.03">[ 7 , 12 , 18 , 19 , 24 , 25 , 44 , 45 , 50 ]</ref>, the current state of the art does not adequately address a number of critical inter-dependent aspects in the generation of efficient fused code for a given tree of sparse binary contractions.</p><p>Sparse tensor layout mode order. We focus on the widely used CSF format, which is commonly used for efficient sparse tensor computations. Since CSF uses a nested representation with n levels for a tensor of order n, efficient access is only feasible for some groupings of non-zero elements by traversing the hierarchical nesting structure. Selecting the nesting of the n modes of a tensor is a key factor for achieving high performance. Prior efforts in compiler optimization and code generation for sparse computations have not explored the impact of the choice of CSF nested layout mode order on the performance of contraction tree evaluation.</p><p>Loop fusion to reduce intermediate tensors. The temporary intermediate tensors that correspond to inner nodes of the contraction tree could be much larger than the input and output tensors of the network. By fusing common loops of the nested loops that produce and consume an intermediate tensor, the size of that tensor can be reduced significantly (as illustrated by an example in Section 2 ). A reduction of the size of an intermediate tensor can enable significant reduction in the number of cache misses if the reduced intermediate can fit in cache but the intermediate without loop fusion does not. Further, a dense representation of the intermediate becomes feasible, which further improves performance due to the reduced cost of tensor element accesses <ref type="bibr" coords="3,378.26,351.76,15.73,9.03" target="#b17">[ 18 ]</ref>.</p><p>Inter-dependence between loop order, mode order, and contraction order. In addition to selecting the layout mode order for each tensor in the contraction tree, code generation needs to select a legal loop fusion structure to implement the contractions from the tree. Such a fused structure depends on the order of surrounding loops for each contraction, on the order in which the contractions are executed, and on the choice of layout mode order. No existing work considers the space of these inter-related choices in a systematic and general manner.</p><p>Our solution. We propose CoNST, a novel approach that considers the above factors in an integrated manner using a single formulation. This formulation encodes several inter-related goals. First, for each contraction, we ensure that the order of loops that surround it (in the fused loop nest) is compatible with the layout mode order of all tensors that participate in the contraction. This allows for efficient traversal of non-zero elements of these tensors. Second, we produce a valid topological sort of the contraction tree (i.e., each producer contraction appears before the corresponding consumer contraction). Third, the surrounding loops for each producer-consumer pair allow for valid fusion-and not only for this pair, but also for all other contractions that appear between the pair in the topological sort. Finally, the resulting fusion allows for significant reduction of intermediates: specifically, all intermediate tensors are guaranteed to be of order at most l, where l is a small constant limit (e.g., l = 1 ) given as a parameter to our tool.</p><p>To find a solution that satisfies these goals, we formulate a constraint system in which constraint variables are used to encode all relevant choices: order of surrounding loops, order of tensor layout modes, and topological order of contractions. The system is then solved by the Z3 SMT solver <ref type="bibr" coords="3,424.28,596.85,16.41,9.03" target="#b10">[ 11 ]</ref> and the result is used to create the desired fused loop structure and tensor mode layouts for the entire contraction tree. This structure is lowered to the IR of the Tensor Algebra Compiler (TACO) <ref type="bibr" coords="3,81.65,632.71,15.74,9.03" target="#b18">[ 19 ]</ref>, which is then used to generate the final executable code. The main contributions of CoNST are:</p><p>-We design a novel constraint-based approach for encoding the space of possible fused loop structures and tensor CSF layouts, with the goal of reducing the order of intermediate tensors. This is the first work that proposes such a general integrated view of code generation for sparse tensor contraction trees. -We develop an approach to translate the constraint solution to the concrete index notation IR <ref type="bibr" coords="4,86.62,142.55,16.42,9.03" target="#b17">[ 18 ]</ref> of the TACO compiler. -We perform extensive experimental comparison with the three most closely related systems: TACO <ref type="bibr" coords="4,129.02,166.46,15.74,9.03" target="#b18">[ 19 ]</ref>, SparseLNR <ref type="bibr" coords="4,198.85,166.46,15.74,9.03" target="#b11">[ 12 ]</ref>, and Sparta <ref type="bibr" coords="4,268.23,166.46,15.74,9.03" target="#b24">[ 25 ]</ref>. Using a variety of benchmarks from quantum chemistry and tensor decomposition, we demonstrate significant performance improvements over this state of the art.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background and Overview 2.1 Tensor Networks</head><p>We first describe the abstract specification of a tensor network. Such a specification can be lowered to many possible code implementations. Examples of such implementations are also given below. Sparse tensors. A tensor T of order n is defined by a sequence d 0 , . . . , d n−1 of modes . Each mode d k denotes a set of index values:</p><formula xml:id="formula_0">d k = {x ∈ N : 0 ≤ x &lt; N k },</formula><p>where N k is the mode extent . Note that the numbering of modes from 0 to n − 1 is purely for notational purposes and does not imply any particular concrete data layout representation; deciding on such a layout is one of the goals of our work, as described later. For a sparse tensor T , its non-zero structure is defined by some subset nz (T ) of the Cartesian product</p><formula xml:id="formula_1">d 0 × d 2 × • • • × d n−1 .</formula><p>All and only non-zero elements of T have coordinates that are in nz (T ). Each (x 0 , x 1 , . . . ) ∈ nz (T ) is associated with a non-zero value T (x 0 , x 1 , . . . ) ∈ R .</p><p>The tensor expressions described below use tensor references . A reference to an order-n tensor T is defined by a sequence i 0 , . . . , i n−1 of distinct iteration indices ("indices" for short). Such a reference will be denoted by T i 0 i 1 . . . . Each index i k is mapped to the corresponding mode d k of T and denotes the values defined by that mode: i k = {x ∈ N : 0 ≤ x &lt; N k }. The same index may appear in several tensor references, for the same tensor or for different ones. In all such occurrences, the index denotes the same set of index values. For example, an expression discussed shortly contains tensor references X i jqr , A ipq , and B jpr . As an illustration, index j appears in two of these references and is mapped to mode 1 of X and mode 0 of B (and thus both modes have the same extent).</p><p>CSF representation. Our work focuses on sparse tensors represented in the widely used CSF format <ref type="bibr" coords="4,76.00,483.74,30.32,9.03">[ 40 , 41 ]</ref>. CSF organizes a sparse tensor as a tree, defined by some permutation of modes d 0 , . . . , d n−1 . This order of modes defines the CSF layout and must be decided when creating a concrete implementation of the computation. The internal nodes of the tree store the indices of non-zero elements in the corresponding mode. The leaves of the tree store the non-zero values. An auxiliary root node connects the entire structure. Using the sparse format abstractions introduced by Chou et al. <ref type="bibr" coords="4,106.27,543.51,11.10,9.03" target="#b8">[ 9 ]</ref>, the outermost mode is dense (i.e., all index values are represented), while the remaining ones are compressed (i.e., only index values with corresponding non-zero elements are represented). <ref type="foot" coords="4,98.50,565.59,3.38,6.59" target="#foot_3">2</ref>Figure <ref type="figure" coords="4,83.55,579.38,4.63,9.03" target="#fig_0">1</ref> illustrates the CSF representation for an order-4 sparse tensor. When the abstract specification of a tensor expression (or equivalently, of a tensor network) is lowered to a concrete implementation, both tensors and tensor references are instantiated to specific representations. For example, suppose we have a tensor A with modes d 0 , d 1 , and d 2 , and a reference A ipq appears CoNST: Code Generator for Sparse Tensor Networks 82:5  in the tensor network. One (of many) possible implementation is to order the modes as d 1 , d 2 , d 0 in outer-to-inner CSF order. The code references to the tensor would be consistent with this order; i.e., reference A ipq becomes A[p,q,i] in the code implementation.</p><p>Tensor contractions and tensor networks. Consider tensors T , S, and R and a binary contraction R i 0 i 1 . . . = T j 0 j 1 . . . × S k 0 k 1 . . . . Let In T , In S , and In R denote the sets of indices appearing in each tensor reference, respectively. Any index i ∈ In R is an external index for this contraction. Any index i ∈ (In T ∪ In S ) \ In R is a contraction index for the contraction.</p><p>The non-zero structure of R is defined by the non-zero structure of T and S as follows: (z 0 , z 1 , . . . ) ∈ nz (R) if and only if there exists at least one pair of tuples (x 0 , x 1 , . . . ) ∈ nz (T ) and (y 0 , y 1 , . . . ) ∈ nz (S) such that for each index i ∈ In T ∪ In S ∪ In R , the values corresponding to i in the three tuples (if present) are the same. For any (z 0 , z 1 , . . . ) ∈ nz (R), the associated value R(z 0 , z 1 , . . . ) ∈ R is the sum of T (x 0 , x 1 , . . . ) × S(y 0 , y 1 , . . . ) for all such "matching" pairs of tuples (x 0 , x 1 , . . . ) ∈ nz (T ) and (y 0 , y 1 , . . . ) ∈ nz (S). As a simple example, R i j = T ik × S k j represents a standard matrix multiplication: for any</p><formula xml:id="formula_2">(a, b) ∈ nz (R) we have R(a, b) = { c: (a , c)∈ nz (T )∧(c, b)∈ nz (S )} T (a, c) × S(</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>c, b).</head><p>A general (non-binary) contraction expression of the form R . . . = T1 . . . × • • • × Tn . . . is defined similarly. Such an expression can be equivalently represented as a tensor network , with one vertex for each tensor reference in the expression, and a hyper-edge for every index. An example of a tensor network representing the tensor expression R i jk = A ipq × B jpr × C kqr × D jkr is shown in Figure <ref type="figure" coords="5,74.42,597.27,4.63,9.03" target="#fig_1">2</ref> (a). Here dashed hyperedges are used to distinguish the contraction indices in the tensor expression (i.e., i, j, and k) from the external indices.</p><p>The direct computation of any tensor network (multi-tensor product expression) can be performed via a nested loop, with one loop corresponding to each index, and a single statement that mirrors the tensor expression.  N is the number of operand tensors. Here and for later examples that apply in both the dense and sparse context, we often do not explicitly indicate loop bounds because the form will differ for the dense and sparse case. Note that the figure shows a specific code version with a concrete loop order (e.g., i in the outermost position) and tensor data layouts (e.g., j is the outermost CSF level of D). There are many possible choices for the loop order and the tensor layout. While the loops are straightforward in the dense case, for sparse CSF tensors the code is much more complex, and general techniques for such iteration have been developed <ref type="bibr" coords="6,285.13,298.36,15.74,9.03" target="#b18">[ 19 ]</ref>.</p><p>For the dense case, the complexity of such an implementation is</p><formula xml:id="formula_3">O(M i M j M k M p M q M r )</formula><p>, where M x are the corresponding extents. By exploiting associativity and distributivity, the multi-term product can be rewritten as a sequence of binary contractions, with temporary intermediate tensors X and Y as shown in Figure <ref type="figure" coords="6,175.72,346.19,13.83,9.03" target="#fig_3">3 (c)</ref>. By using a sequence of binary contractions instead of an N -ary contraction, the complexity is reduced to There exist many different sequences of binary tensor contractions to compute a tensor network, with varying computational complexity. The problem of identifying an operation-optimal sequence of binary contractions for a multi-term product expression is NP-complete <ref type="bibr" coords="6,387.56,406.31,11.10,9.03" target="#b7">[ 8 ]</ref>, but practically effective solutions have been developed for this problem <ref type="bibr" coords="6,301.62,418.26,43.02,9.03">[ 15 , 32 , 38 ]</ref>. We assume that one of these solutions has been applied to produce a binary contraction tree and consider the orthogonal problem of generating efficient code to implement that contraction tree.</p><formula xml:id="formula_4">O(M i M j M p M q M r + M i M j M k M q M r + M i M j M k M r ).</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Challenges and Overview of Solution</head><p>The problem we address in this article is the following: Given a binary tensor contraction tree for a sparse tensor network, generate efficient code for its evaluation. In contrast to the dense case, with sparse tensor contractions a fundamental challenge is that of insertion of each additive contribution from the product of a pair of elements of the input tensors to the appropriate element of a sparse output tensor. The TACO compiler <ref type="bibr" coords="6,340.37,627.16,16.41,9.03" target="#b18">[ 19 ]</ref> defines a workspaces optimization <ref type="bibr" coords="6,100.22,639.12,16.42,9.03" target="#b17">[ 18 ]</ref> to address this challenge, where a dense multidimensional temporary array is used to assemble multidimensional slices of the output tensor during the contraction of sparse input tensors. By using a dense "workspace," very efficient O(1 ) cost access to arbitrary elements in the slice is achieved for assembling the irregularly scattered contributions generated during the contraction. A significant consideration with the use of the dense workspaces is the space required: the extents of the workspace array must equal the extents of the corresponding modes of the sparse output tensor and thus can become excessive. By use of loop fusion between producer and consumer contractions to reduce the number of explicitly represented modes in intermediate tensors, we represent all intermediates as dense workspaces and thus make efficient use of TACO's workspaces optimization.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Loop fusion and dimension reduction of intermediates.</head><p>In addition to fusion, a critical factor for high performance is the compatibility between loop order and layout order. For sparse CSF tensors, efficient access to the non-zero elements is only feasible if the outer-to-inner order of nested loop indices in the code implementation is consistent with the layout order of tensor modes, in relation to the loop indices that index them. For example, the elements referenced by A[i,p,q] can be accessed efficiently only if i appears earlier than p (which itself appears earlier than q) in the loops surrounding this reference.</p><p>To summarize, given a binary contraction tree to implement a general sparse tensor contraction expression, three critical inter-related decisions affect the performance of the generated code:</p><p>-Linear execution order of contractions: The fusibility of loops between a producer contraction of an intermediate tensor and a subsequent consumer contraction is affected by the linear execution order of the contractions. -Loop permutation order for each contraction: All surrounding loops of a contraction are fully permutable. The chosen permutation affects both the fusibility of loops across tensor contractions and the efficiency of access of non-zero elements of sparse tensors. -Mode layout order for each tensor: The compatibility of the layout order of each tensor with the loop order of the surrounding loops is essential for efficient access.</p><p>These three decisions are inter-dependent. The linear execution order (i.e., the topological sort of the contraction tree) affects which loop fusion structures are possible. The order of loops for each contraction determines what fusion can be achieved, while also imposing constraints on the data layouts of tensors that appear in the contraction tree. In this article, we propose a novel integrated solution that considers these three decisions in a single formulation. Our approach creates a constraint system that encodes the space of possible decisions and their interdependence. This system is then solved using the Z3 SMT solver <ref type="bibr" coords="7,265.24,627.16,15.74,9.03" target="#b10">[ 11 ]</ref>. The solution is used to create a legal fused loop structure that reduces the size of intermediate tensors while ensuring the compatibility constraints described above. </p><formula xml:id="formula_5">✓ ✗ ✓ Data layout selection ✗ ✗ ✗ ✓ Schedule for contraction trees ✗ ✗ ✗ ✓</formula><p>To the best of our knowledge, this is the first work that takes such an integrated view and provides a general approach for code generation for arbitrary tensor contraction trees. Table <ref type="table" coords="8,435.74,178.46,4.63,9.03" target="#tab_0">1</ref> contrasts our work with the three most closely related state-of-the-art systems for sparse tensor computations described below. Our experimental evaluation presents comparisons with all three existing systems. Section 6 provides further details on these and other related efforts.</p><p>The CoNST system leverages, as its last stage, the code generator for sparse tensor computations in TACO <ref type="bibr" coords="8,118.87,238.24,15.74,9.03" target="#b18">[ 19 ]</ref>. The main focus of TACO is the generation of efficient code for N -ary contractions with arbitrarily complex tensor expressions. While TACO can be used to generate code for a sequence of binary sparse tensor contractions, it does not address optimizations like loop fusion across tensor contractions, tensor mode layout choice, or the choice of sequence of tensor contractions for a given contraction tree. In our experimental evaluation (Section 5 ), we show that code generated by CoNST achieves significant speedup over code directly generated by TACO.</p><p>SparseLNR <ref type="bibr" coords="8,103.10,321.92,16.42,9.03" target="#b11">[ 12 ]</ref> builds on TACO to implement loop fusion optimization. It takes a multi-term tensor product expression as input and generates fused loop code for a sequence of binary tensor contractions corresponding to the input tensor product expression. In our experimental evaluation, we compare the performance of code generated by SparseLNR with code generated by CoNST and demonstrate significant speedups.</p><p>Sparta <ref type="bibr" coords="8,85.13,381.70,16.42,9.03" target="#b24">[ 25 ]</ref> implements a library for efficient tensor contraction of arbitrary pairs of sparse tensors. Since a library is being created, this work does not address any optimizations like loop fusion across contractions, data layout choice for tensors, or the schedule of contractions for a contraction tree. We performed extensive experimentation to compare the performance of code generated by CoNST with the best performance among all valid tensor layout permutations for unfused sequences of contractions executed using Sparta. These experiments demonstrate very significant performance gains for CoNST.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Constraint-based Integrated Fusion and Data Layout Selection</head><p>Our approach aims to generate a concrete implementation of a given contraction tree by automatically determining (1) the order of modes in the data layout of each tensor and (2) a structure of fused loops that minimizes the order of intermediate tensors. We formulate a constraint system that answers the following question: For the given contraction tree, does there exist an implementation for which all intermediate tensors are of order at most l, for some given integer l? We first ask this question for l = 1 . If the answer is positive, the constraint system solution is used to construct a code implementation for the contraction tree. If the answer is negative, we formulate and solve a constraint system for l = 2 , seeking a solution in which all intermediates are at most 2-D matrices. This process continues until we find a solution. Note that a trivial solution without any fusion is guaranteed to exist for a sufficiently large value of l.</p><p>In each of these steps, we employ the Z3 SMT solver <ref type="bibr" coords="8,267.34,609.23,16.41,9.03" target="#b10">[ 11 ]</ref> to provide either (1) a negative answer ("the constraint system is unsatisfiable") or ( <ref type="formula" coords="8,221.58,621.19,3.52,9.03">2</ref>) a positive answer with a concrete constraint solution that defines the desired tensor layouts and loop structure. The generated constraints are based on quantifier-free integer difference logic. While in general the search space is exponential in CoNST: Code Generator for Sparse Tensor Networks 82:9 the number of contractions and the number of indices, our experience shows that Z3 solves the generated constraint systems with very practical running times (as detailed in Section 5 ).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Input and Output</head><p>The input to our approach is a set of contractions {C 0 , C 1 , . . . , C m−1 } organized in a contraction tree. Each leaf node corresponds to an input tensor reference, the root node corresponds to a result tensor reference, and every other node corresponds to an intermediate tensor reference. As an example, the contraction tree for A naive implementation of a given tree would contain a sequence of perfectly nested loops (one loop nest per contraction), based on some valid topological sort order of tree nodes. For each contraction, the loop nest would be some permutation of the set of indices that appear in the tensor references, and the loop body would be a single assignment. For example, the loop nest for X i jqr = A ipq × B jpr would contain loops for r , q, i, j, and p in some order.</p><formula xml:id="formula_6">X i jqr = A ipq × B jpr ; Y i jkr = X i jqr × C kqr ; R i jk = Y i</formula><p>As discussed earlier in Section 2 , for any (unfused or fused) implementation, a fundamental constraint is that the order of surrounding loops must match the data layout order of modes in the CSF tensor representation. This is needed to allow for efficient iteration over the sparse representation. For example, consider reference A ipq . Recall from the earlier discussion that each index is mapped to the corresponding mode of A: i is mapped to d 0 , p is mapped to d 1 , and q is mapped to d 2 . A concrete implementation would select a particular order of d 0 , d 1 , and d 2 as the outer, middle, and inner level in the CSF representation, respectively. For example, suppose that this order is, from outer to inner, d 1 , d 2 , d 0 . In the code implementation, the tensor reference would be A[p,q,i] . Efficient iteration over elements of A would require that the loop structure surrounding the reference matches this order: the p loop must appear before the q loop, which must appear before the i loop. The constraint-based approach described below incorporates such constraints for the loops that surround (in a fused code structure) each tensor reference from the contraction tree.</p><p>Each of the fused loop structures we would like to explore can be uniquely defined by (1) a topological sort order of the non-leaf nodes in the contraction tree and (2) for each such node, an ordering of the indices that appear in it. The index order for a node defines the order of loops that would surround the corresponding assignment in the fused loop nest. This order also defines the CSF layout order for the corresponding tensors.</p><p>For example, consider the code structure in Figure <ref type="figure" coords="9,275.93,489.46,4.63,9.03" target="#fig_8">5</ref> , which is derived from the solution of our constraint system for the running example. Here there is a single valid topological sort for the assignments. The ordering of surrounding loops for the assignments is r , j, p, q, i , r , j, q, k, i , and r , j, k, i , respectively. The fusion of the common r and j loops allows X and Y to be reduced to 2-D tensors. The order of indices in all tensor references is consistent with the order of surrounding loops.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Constraint Formulation</head><p>The space of targeted code structures is encoded via constraints over integer-typed constraint variables, as described below.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.1">Ordering of Assignments.</head><p>For each contraction C i , the position of the corresponding assignment relative to the other assignments in the code is encoded by a constraint variable ap i (short for "assignment position for C i ") such that 0 ≤ ap i &lt; m, ap i ap k for all k i, and ap i &lt; ap j if C i is a child of C j in the contraction tree. Here m is the number of contractions. The first two constraints guarantee uniqueness and appropriate range for all ap i . The last constraint ensures a valid topological sort order.</p><p>Example. For the running example, we have ap 0 for X i jqr = A ipq × B jpr , ap 1 for Y i jkr = X i jqr × C kqr , and ap 2 for R i jk = Y i jkr × D jkr . For this contraction tree (Figure <ref type="figure" coords="10,327.95,169.57,4.63,9.03" target="#fig_3">3</ref> ) the only valid topological sort is C 0 , C 1 , C 2 and thus the only possible solution is ap i = i. In a more general tree, there may be multiple valid assignments of values to ap i , each corresponding to one topological sort order.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.2">Ordering of Tensor Modes.</head><p>For each order-n tensor T that has references in the contraction tree, and each mode d j of T ( 0 ≤ j &lt; n), we use a constraint variable dp T , j to encode the position of d j in the CSF layout of the tensor. The following constraints are used: 0 ≤ dp T , j &lt; n and dp T , j dp T , j for all j j. Any constraint variable values that satisfy these constraints define a particular permutation of the modes of tensor T and thus a concrete CSF data layout.</p><p>Example. In the running example, A has three modes and thus three constraint variables dp A,0 , dp A,1 , and dp A,2 . In the code structure shown in Figure <ref type="figure" coords="10,267.53,288.55,4.63,9.03" target="#fig_8">5</ref> , abstract tensor reference A ipq is mapped to concrete reference A[p,q,i] . This corresponds to the following assignment of values to the constraint variables: dp A,0 = 2 , dp A,1 = 0 , and dp A,2 = 1 . Thus, the outermost level in the CSF representation corresponds to mode d 1 (indexed by p), the next CSF level corresponds to d 2 (indexed by q), and the inner CSF level corresponds to d 0 (indexed by i).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.3">Ordering of Loops.</head><p>Next, we consider constraints that encode the fused loop structure. For any contraction C i , we need to encode the loop order of the loops surrounding the corresponding assignment. Let In i be the set of indices that appear in C i . For each k ∈ In i , we define an integer constraint variable lp i,k (short for "loop position of index k for C i "). These variables will encode a permutation of the elements of In i , that is, a loop order for the loops surrounding the assignment for C i . If lp i,k has a value of 0, index k will be the outermost loop surrounding the assignment. If the value is 1, the index will be the second-outermost loop, and so forth. To encode a permutation, for each k ∈ In i we have constraints 0</p><formula xml:id="formula_7">≤ lp i,k &lt; | In i | and lp i,k lp i,k for all k ∈ In i \ { k } .</formula><p>Example. In the running example, for contraction C 0 : X i jqr = A ipq × B jpr we have In 0 = {i, j, p, q, r }. For this contraction we will use constraint variables lp 0 ,i , lp 0 , j , lp 0 ,p , lp 0 ,q , lp 0 ,r . In the code structure shown in Figure <ref type="figure" coords="10,190.74,479.46,4.63,9.03" target="#fig_8">5</ref> , the loop order for C 0 is r , j, p, q, i . This order corresponds to a constraint solution in which lp 0 ,i = 4 , lp 0 , j = 1 , lp 0 ,p = 2 , lp 0 ,q = 3 , and lp 0 ,r = 0 .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.4">Consistency between Mode Order and Loop</head><p>Order. Next, we need to ensure that the order of loops defined by lp i,k is consistent with the order of modes for each tensor appearing in contraction C i , as encoded by dp T , j . Consider a reference to T appearing in contraction C i . For each pair of modes d j and d j of T , let k and k be the indices that correspond to these modes in the reference. The following constraint enforces the consistency between mode order and loop order:</p><formula xml:id="formula_8">(dp T , j &lt; dp T , j ) ⇒ (lp i,k &lt; lp i,k ).</formula><p>Here dp T , j &lt; dp T , j is true if and only if mode d j appears earlier than mode d j in the concrete CSF data layout of tensor T . If this is the case, we want to enforce that the index corresponding to d j (i.e., k) appears earlier than the index corresponding to d j (i.e., k ) in the loop order of loops surrounding the assignment for C i . As discussed earlier, this constraint ensures that the order of iteration defined by the loop order allows an efficient traversal of the CSF data structure for T . Such constraints are introduced for all input tensors. For intermediates that are represented through dense workspaces, such constraints are not necessary. In our implementation, we use dense workspaces for all intermediates.</p><p>Example. Consider reference A ipq from the running example and the pair of modes d 0 and d 2 , with corresponding indices i and q. The relationship between variables dp A,0 (for d 0 ), dp A,2 (for d 2 ), lp 0 ,i (for i), and lp 0 ,q (for q) is captured by the following two constraints:</p><formula xml:id="formula_9">(dp A,0 &lt; dp A,2 ) ⇒ (lp 0 ,i &lt; lp 0 ,q ) (dp A,2 &lt; dp A,0 ) ⇒ (lp 0 ,q &lt; lp 0 ,i ).</formula><p>As described earlier, in the constraint solution we have dp A,0 = 2 , dp A,2 = 1 , lp 0 ,i = 4 , and lp 0 ,q = 3 . Of course, these values satisfy both constraints.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.2.5</head><p>Producer-consumer Pairs. Finally, we consider every pair of contractions C i , C j such that C i is a child of C j in the contraction tree. In this case C i produces a reference to a tensor T that is then consumed by C j . Let n be the order of T . Our goal is to identify a loop fusion structure that reduces the order of this intermediate tensor T to be some n ≤ l for a given parameter l. Recall that in our overall scheme, we first define a constraint system with l = 1 . If this system cannot be satisfied, we define a new system with l = 2 , and so forth.</p><p>Let In T be the set of indices that appear in the reference to T . We define constraints that include lp i,k (for the producer C i ) and lp j,k (for the consumer C j ), for all k ∈ In T . The constraints ensure that a valid fusion structure exists to achieve the desired reduced order n of T .</p><p>Producer constraints. First, we consider the outermost n − l indices in the loop order associated with the producer C i and ensure that they are all indices of the result reference. Specifically, for each s such that 0 ≤ s &lt; n − l and for each k ∈ In T , we create terms of the form lp i,k = s and introduce an OR constraint for these terms (illustrated by an example below). This guarantees that the loop at position s in the loop structure surrounding the producer statement is iterating over one of the indices that appear in the result reference. The combination of these constraints for all pairs of s and k ensures that the outermost n − l loops for C i are all indices of its result tensor reference.</p><p>Example. Consider reference X i jqr from the running example. This reference is produced by C 0 : X i jqr = A ipq × B jpr and consumed by C 1 : Y i jkr = X i jqr × C kqr . We have In X = {i, j, q, r }. The producer constraints will involve variables lp 0 ,i , lp 0 , j , lp 0 ,q , and lp 0 ,r . Suppose l = 2 . We would like the outermost n − l = 4 − 2 indices in the loop order for C 0 to be indices that access this reference. Together with the remaining constraints described shortly, this would allow those two indices to be removed from the reference after fusion. As a result, the order of X can be reduced from 4 to 2. Two constraints are formulated. First, lp 0 ,i = 0 ∨ lp 0 , j = 0 ∨ lp 0 ,q = 0 ∨ lp 0 ,r = 0 ensures that the outermost loop surrounding the producer is indexed by one of i, j, q, or r . Similarly, lp 0 ,i = 1 ∨ lp 0 , j = 1 ∨ lp 0 ,q = 1 ∨ lp 0 ,r = 1 guarantees that the second-outermost loop is also indexed by one of the indices of X i jqr . For the fused code shown in Figure <ref type="figure" coords="11,160.86,594.05,4.63,9.03" target="#fig_8">5</ref> , we have lp 0 ,r = 0 (i.e., the outermost loop for C 0 is r ) and lp 0 , j = 1 (i.e., the second-outermost loop is j). Thus, in the fused code, the reference to X will only contain the remaining indices i and q, as shown by X[q,i] in Figure <ref type="figure" coords="11,293.40,618.20,4.63,9.03" target="#fig_8">5</ref> .</p><p>Consumer constraints. Next, we create constraints for the consumer contraction C j : the sequence of its outermost n − l loops must match the sequence of the outermost n − l loops for the producer C i . This ensures that the same sequence of n − l loops surrounds both the producer and the consumer, which is required for fusion that reduces the order of the intermediate from n to n such that n ≤ n − (n − l) = l. (In case the constraint solver produces a solution for which more than n − l outermost loops can be fused, we can have n &lt; l.) The constraints for C j include, for each s such that 0 ≤ s &lt; n − l and for each k ∈ In T , a constraint of the form (lp i,k = s) ⇒ (lp j,k = s).</p><p>Example. For X i jqr and its consumer C 1 , we include constraints connecting lp 0 ,k and lp 1 ,k for each k ∈ {i, j, q, r } for s = 0 (i.e., the outermost loop) and s = 1 (i.e., the second-outermost loop).</p><p>Statements between producer and consumer. Finally, we have to consider all assignments that appear between the producer C i and the consumer C j in the topological sort order defined by constraint variables ap i described earlier. For any such assignment, the sequence of the outermost n − l loops that surround it must match the ones for C i and C j . This is needed in order to have a valid fusion structure. The corresponding constraints are of the following form, for each contraction C r with r i and r j, each s with 0 ≤ s &lt; n − l, and each k ∈ In T :</p><formula xml:id="formula_10">(ap i &lt; ap r &lt; ap j ) ⇒ ((lp i,k = s) ⇒ (lp r,k = s)).</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Code Generation</head><p>This section details the process of code generation from the constraint system solution. We describe how to use this solution to generate concrete index notation , an IR used by the TACO compiler. This IR is then used by TACO to generate the final C code implementation for the contraction tree.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Concrete Index Notation</head><p>As discussed in Section 2 , TACO <ref type="bibr" coords="12,182.75,363.40,16.42,9.03" target="#b18">[ 19 ]</ref> is a state-of-the-art code generator for sparse tensor computations. While TACO does not address the questions that our work investigates (choice of linear ordering of tensor contractions from a binary contraction tree, selection of fusion structures, and tensor layouts), it does provide code generation functionality for efficient implementations of CSF tensor representations and iteration space traversals. We use concrete index notation <ref type="bibr" coords="12,406.81,411.22,15.73,9.03" target="#b17">[ 18 ]</ref>, the TACO IR that captures a computation over sparse tensors through a set of computation constructs. The two constructs relevant to our work are forall and where . A forall construct denotes an iteration over some index. A where(C,P) construct denotes a producer-consumer relationship. Here C represents a computation that consumes a tensor being produced by computation P . This construct allows the use of dense workspaces <ref type="bibr" coords="12,239.29,470.99,15.82,9.03" target="#b17">[ 18 ]</ref>; as discussed in Section 2 , this is an important optimization in TACO. As an illustration, the concrete index notation we generate from the constraint solution for the running example has the following form: <ref type="figure" coords="12,52.30,510.98,94.64,8.05;12,52.30,522.94,174.46,8.05">forall(r, forall(j,  where(forall(k, forall(i, R(j, k, i</ref></p><formula xml:id="formula_11">) = Y(k, i) * D(r, j, k))),</formula><p>where(forall(q, forall(k, forall(i, Y(k, i) = X(q, i) * C(r, q, k)))), forall(p, forall(q, forall(i, X(q, i) = A(p, q, i) * B(r, j, p))))))))</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Generating Concrete Index Notation</head><p>The constraint solver's output can be abstracted as a sequence of pairs A, π , where A is an assignment for a binary contraction and π is a permutation of the indices appearing in the assignment. The permutation is defined by the values of constraint variables lp i,k described earlier and denotes the order of surrounding loops for A. The indices in a reference to a tensor T in A are ordered based on the values of variables dp T , j ; thus, they are consistent with the order of indices in π . The order in the sequence of pairs is defined by the values of variables ap i and represents a topological sort order of the contraction tree. For the example discussed in the previous section, the sequence is</p><p>CoNST: Code Generator for Sparse Tensor Networks 82:13</p><formula xml:id="formula_12">&lt; X[r,j,q,i] = A[p,q,i] * B[r,j,p], [r,j,p,q,i] &gt; &lt; Y[r,j,k,i] = X[r,j,q,i] * C[r,q,k], [r,j,q,k,i] &gt; &lt; R[j,k,i] = Y[r,j,k,i] * D[r,j,k],</formula><p>[r,j,k,i] &gt; Algorithm 1 describes the creation of the TACO IR from such an input. Function generate is initially invoked with the entire sequence of pairs A, π based on the constraint system's solution. At each level of recursion, the function processes a sequence S of such pairs. There are two stages of processing. In the first stage (lines 3-12), a sequence L of assignments and indices is constructed. One can think of the elements of L as representing eventual assignments and loops that will be introduced in the TACO IR. For example, an index i in L will eventually lead to the creation of forall(i,...) . Similarly, an assignment in L will produce an equivalent assignment in the TACO IR. During this first stage, for each element A, π of S, in order, we need to decide whether the loop structure encoded by π can be fused with the loop structure of the previous element of S, at this level of loop nesting. For example, the sequence shown above contains permutation [r,j,p,q,i] in the first pair of S, followed by [r,j,q,k,i] in the second pair. The processing of the first pair will add index r to L. In the processing of the second pair, the outermost index r matches the current last element of L, and thus r is a common loop for both assignments. The processing of the third pair considers permutation [r,j,k,i] , whose outermost index again matches the last element of L. Thus, at the end of the stage, L contains one element: the index r . In a more general case, a combination of indices and assignments could be added to L. For example, if the input sequence is &lt; A0,[i] &gt; , &lt; A1,[] &gt; , L contains two elements-i followed by A1 -which eventually leads to the creation of where(A1,forall(i,A0)) , as described shortly.</p><p>As part of this process, for each index in L the algorithm records the sub-sequence of relevant pairs from S. This information is stored in map M, with keys being the indices that are recorded in L. For the running example, r is mapped in M to the sequence of all three input pairs. This list of pairs is then used in the second stage of processing to generate a construct of the form forall(r,...) .</p><p>The second stage (lines 13-18) considers three cases. If L contains a single assignment, this assignment simply becomes the result of IR generation (line 14). If L contains a single index i, this index can be used to create a forall(i,...) construct that surrounds all pairs recorded in M. get (i). This creation is shown at line 16. The pairs in M. get (i) are first processed by a helper function remove and then used to recursively generate the body of the forall . The helper function, which is not shown in the algorithm, plays two roles. Both are illustrated by the modified pairs below, which are obtained by calling remove(r, M. get (r )) :</p><formula xml:id="formula_13">&lt; X[j,q,i] = A[p,q,i] * B[r,j,p], [j,p,q,i] &gt; &lt; Y[j,k,i] = X[j,q,i] * C[r,q,k], [j,q,k,i] &gt; &lt; R[j,k,i] = Y[j,k,i] * D[r,j,k], [j,k,i] &gt;</formula><p>First, remove eliminates r from the start of all permutations π . This reflects the fact that a forall(r,...) is created at line 16. Second, the function removes r from all intermediate tensor references for which both the producer and the consumer are in M. get (r ). For example, X[r,j,q,i] appears in the first pair (the producer) and in the second pair (the consumer). Both are surrounded by the common loop r , which means that X can be reduced from order-4 to order-3, and thus the reference is rewritten as</p><formula xml:id="formula_14">X[j,q,i] . A similar change is applied to Y[r,j,k,i] .</formula><p>At the next level of recursion, this sequence becomes the input to generate . During that processing, L contains only index j and remove(j, M. get (j )) is called to obtain the modified sequence:</p><formula xml:id="formula_15">&lt; X[q,i] = A[p,q,i] * B[r,j,p], [p,q,i] &gt; &lt; Y[k,i] = X[q,i] * C[r,q,k], [q,k,i] &gt; &lt; R[j,k,i] = Y[k,i] * D[r,j,k], [k,i] &gt;</formula><p>Then generate is called on this sequence. At that level of recursion, L contains three indices: p , q , and k . This illustrates the third case in the processing of L. Line 18 shows the creation of a where construct for this case. Since k is the last element of L, the first operand of where is the IR generated for the sub-sequence corresponding to k , which here contains a single pair</p><formula xml:id="formula_16">&lt; R[j,k,i] = Y[k,i] * D[r,j,k], [k,i] &gt; .</formula><p>Recall that this first operand of where corresponds to a consumer of a tensor-in this case, tensor Y . The producer of Y appears in the second operand of where , which is generated from the first two pairs from the original sequence:</p><formula xml:id="formula_17">&lt; X[q,i] = A[p,q,i] * B[r,j,p], [p,q,i] &gt; &lt; Y[k,i] = X[q,i] * C[r,q,k], [q,k,i] &gt;</formula><p>At line 18, S. truncate denotes an operation to produce this desired prefix of S by excluding the sub-sequence defined by M. get (L. last ()). The IR generated from this prefix itself contains a nested where construct, which captures a producer-consumer computation for X . At the end of processing, the resulting overall structure has the form forall(r, forall(j, where(forall(k, forall(i, A2)), where(forall(q, forall(k, forall(i, A1))), forall(p, forall(q, forall(i, A0))))))) Benchmarks. We evaluate the performance of CoNST-generated code on several sparse tensor networks. Section 5.1 presents a case study of sparse tensor computations arising from recent developments with linear-scaling methods in quantum chemistry <ref type="bibr" coords="15,289.83,242.01,15.74,9.03" target="#b32">[ 33 ]</ref>. Three tensor networks are used: 3-index integral unrestricted, 3-index integral restricted, and 4-index integral; details on these networks are provided in Section 5.1 . Section 5.2 evaluates performance on the Matricized Tensor Times Khatri-Rao Product (MTTKRP) computation <ref type="bibr" coords="15,272.59,277.87,15.74,9.03" target="#b19">[ 20 ]</ref>. Section 5.3 presents performance on the Tensor Times Matrix chain (TTMc) expression that is the performance bottleneck for the Tucker decomposition algorithm <ref type="bibr" coords="15,181.41,301.78,15.74,9.03" target="#b19">[ 20 ]</ref>. Constraint systems. For each of these benchmarks, Table <ref type="table" coords="15,284.86,316.72,4.63,9.03" target="#tab_2">2</ref> provides details on the Z3 constraint system that was solved to generate the code for our performance evaluations. Column "DimBound" shows the upper bound l on the dimensionality of intermediate tensors; recall from Section 3 that this parameter l is used when generating the constraints. <ref type="foot" coords="15,276.01,350.76,3.38,6.59" target="#foot_4">3</ref> Column "ConsVars" shows the number of constraint variables, while column "Constraints" shows the number of constraints. The last column "SolverTime" shows the execution time of Z3. As can be seen from these measurements, the systems are relatively small and their solutions can be computed very quickly. The follow-up steps of generating the TACO IR and then generating executable code with TACO are also quick, and together take about 0.1 second.</p><p>Recall that fusion allows for reduction in the dimensionality (and thus memory usage) of intermediate tensors. As shown in column "DimBound" in Table <ref type="table" coords="15,293.74,436.27,4.63,9.03" target="#tab_2">2</ref> , the solver can be used to identify fusion structures with low-dimensional intermediates. Comparing with the memory usage in an unfused version (configuration TACO-Unfused, described shortly), we observed that without fusion the memory usage for intermediates in our benchmarks is typically a few megabytes, while the CoNST-generated fusion reduces this memory usage to a few kilobytes.</p><p>Performance evaluation. All experiments were conducted on an AMD Ryzen Threadripper 3990X 64-core processor with 128 GB RAM. Optimization flags -O3 -fast-math were used to compile the C code, with the GCC 9.4 compiler. Reported performance results are for single-thread execution. Effective parallelization of the code is a topic for future work. A key challenge is that of achieving effective load balancing across threads because of the significant variance in the work for different iterations of outer-most parallel loops, due to highly variable index-dependent sparsity of inner nested loops. In all experiments and for all evaluated tools, the input tensors are in COO format on disk. The time to read the tensors from disk and to represent them in the CSF formats required by the tools is not included in the measurements.</p><p>We compare CoNST against three state-of-the-art sparse tensor compilers and libraries:</p><p>82:16 S. Raje et al.</p><p>TACO: <ref type="foot" coords="16,81.69,80.95,3.38,6.59" target="#foot_6">4</ref> As discussed in detail earlier, CoNST uses TACO for generation of C code after cooptimization for tensor layout choice, schedule for the contractions, loop fusion, and mode reduction of intermediate tensors. We compare the performance of CoNST-generated code with that achieved by direct use of TACO. This was done in two ways: (1) direct N -ary contraction code was generated by TACO, where a single multi-term tensor product expression was provided as input with the same mode order for tensors produced by CoNST's constraint solver (described in Section 3 ), and (2) TACO was used to generate code for an unfused sequence of binary contractions, in which case results are reported for the best-performing mode order for tensors.</p><p>SparseLNR: <ref type="foot" coords="16,100.31,176.59,3.38,6.59" target="#foot_7">5</ref> SparseLNR takes a multi-term tensor product expression and generates fused code for it by transforming it internally to a sequence of binary contractions. We evaluated its performance by providing the same multi-term tensor expression used for comparison with TACO.</p><p>Sparta: <ref type="foot" coords="16,83.37,212.45,3.38,6.59" target="#foot_8">6</ref> We used Sparta to compute the sequence of binary tensor contractions produced by CoNST. However, Sparta's kernel implementation internally requires that the contraction index be at the inner-most mode for one input tensor and at the outer-most mode for the other input tensor. If the provided input tensors do not satisfy this condition, explicit tensor transposition is performed by Sparta before performing the sparse tensor contraction. Since the tensor layout generated by CoNST might not conform to Sparta's constraints, we instead performed an exhaustive study that evaluated all combinations of distinct tensor layout orders that would not need additional transpositions for Sparta. We report the lowest execution time among all evaluated configurations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Computing Sparse Integral Tensors for DLPNO Methods in Quantum Chemistry</head><p>Recent developments in predictive-quality quantum chemistry have sought to reduce their computational complexity from a high-order polynomial in the number of electrons N (e.g., O(N 7 ) and higher for predictive-quality methods like coupled-cluster <ref type="bibr" coords="16,280.59,371.06,11.49,9.03" target="#b3">[ 4 ]</ref>) to linear in N , by exploiting various types of sparsity of electronic wave functions and the relevant quantum mechanical operators <ref type="bibr" coords="16,421.84,383.02,15.73,9.03" target="#b34">[ 35 ]</ref>.</p><p>The few efficient practical realizations of Domain-based Local Pair Natural Orbital (DLPNO) and other similar methods, e.g., the Orca package <ref type="bibr" coords="16,294.31,406.92,15.74,9.03" target="#b27">[ 28 ]</ref>, have developed custom implementations of sparse tensor algebra, without any utilization of generic infrastructure for sparse tensor computations. Below we present a case study that demonstrates the potential for using CoNST to automatically generate code that can address the kinds of sparsity constraints that arise in the implementation of DLPNO and similar sparse formulations in quantum chemistry.</p><p>A key step in the DLPNO methods is the evaluation of matrix elements (integrals) of the electron repulsion operator that was first formulated in a linear-scaling fashion by Pinski et al. <ref type="bibr" coords="16,421.89,478.65,15.73,9.03" target="#b32">[ 33 ]</ref>. The first stage of the DLPNO integral evaluation involves a multi-term tensor product of three sparse tensors; Figure <ref type="figure" coords="16,142.57,502.57,4.63,9.03" target="#fig_9">6</ref> (b) shows a sparse tensor network corresponding to the expression:</p><formula xml:id="formula_18">E Ki ˜ μ = I K μν × C μi × ˜ P ν ˜ μ .</formula><p>The indices of the tensors correspond to four pertinent spaces, ordered from least to most numerous: (1) localized molecular orbitals (indexed in the code by i), (2) atomic orbitals (indexed by μ and ν ), (3) projected atomic orbitals <ref type="bibr" coords="16,273.69,538.84,16.42,9.03" target="#b33">[ 34 ]</ref> (indexed by ˜ μ), and (4) density fitting atomic orbitals (indexed by K).</p><p>The sparse structure of tensors as well as the ranges of loops in the code are governed by various sparsity relationships or sparse maps between pairs of index spaces, as illustrated in Figure <ref type="figure" coords="16,425.40,574.71,4.63,9.03" target="#fig_9">6</ref> (a) (reproduced from Pinski et al. <ref type="bibr" coords="16,165.87,586.66,15.77,9.03" target="#b32">[ 33 ]</ref>). This enables a reduction of the number of executed operations, and only a subset of all elements of this tensor network are evaluated. Figure <ref type="figure" coords="16,350.75,598.61,4.63,9.03" target="#fig_9">6</ref> (c) shows a four-term  sparse tensor network where an additional 0/1 sparse matrix L Ki has been added to the base tensor network in Figure <ref type="figure" coords="17,119.37,453.41,4.63,9.03" target="#fig_9">6</ref> (b), corresponding to the known sparse map L(K → i). This can equivalently be expressed as a multi-term tensor product expression:</p><formula xml:id="formula_19">E Ki ˜ μ = I K μν × C μi × ˜ P ν ˜ μ × L Ki .</formula><p>The inclusion of such sparse maps as additional nodes in the base tensor network has the same beneficial effect of reducing computations as the manually implemented restriction in Orca <ref type="bibr" coords="17,339.46,489.68,15.73,9.03" target="#b27">[ 28 ]</ref>. In our experimental evaluation, we evaluate both forms of the sparse tensor networks in Figure <ref type="figure" coords="17,362.83,501.63,4.63,9.03" target="#fig_9">6</ref> , representing the unrestricted form (Figure <ref type="figure" coords="17,148.35,513.59,15.12,9.03" target="#fig_9">6 (b)</ref>) and the restricted form (Figure <ref type="figure" coords="17,294.77,513.59,13.78,9.03" target="#fig_9">6 (c)</ref>).</p><p>We computed the DLPNO integrals for 2-D solid helium lattices with the geometry described in <ref type="bibr" coords="17,45.68,537.50,15.74,9.03" target="#b22">[ 23 ]</ref>. The "small" input used a 5 × 5 lattice (25 atoms) and "medium"/"large" inputs used a 10 × 10 lattice (100 atoms). The following orbital and density-fitting basis sets were used: 6-311G <ref type="bibr" coords="17,424.20,549.46,16.41,9.03" target="#b12">[ 13 ]</ref> and the spherical subset of def2-QZVPPD-RIFIT <ref type="bibr" coords="17,245.03,561.41,15.74,9.03" target="#b13">[ 14 ]</ref>, respectively, for the "small" and "medium" inputs, and cc-pVDZ <ref type="bibr" coords="17,133.76,573.37,16.42,9.03" target="#b46">[ 47 ]</ref> and cc-pVDZ-RIFIT <ref type="bibr" coords="17,236.74,573.37,16.42,9.03" target="#b45">[ 46 ]</ref> for the "large" input. All quantum chemistry data was prepared using the Massively Parallel Quantum Chemistry package <ref type="bibr" coords="17,360.90,585.32,15.73,9.03" target="#b30">[ 31 ]</ref>.</p><p>Figure <ref type="figure" coords="17,84.98,597.27,4.63,9.03" target="#fig_10">7</ref> (a) presents measurements for the transformed 3-index integral E Ki ˜ μ in unrestricted form (Figure <ref type="figure" coords="17,98.91,609.23,4.63,9.03" target="#fig_9">6</ref> (b)). CoNST-generated code is about two orders of magnitude faster than the N -ary code generated by TACO as well as SparseLNR (for this case SparseLNR was unable to perform loop fusion and simply lowered the input to TACO). TACO-Unfused is much faster than N -ary but is still about five to six times slower than the code generated by CoNST. The best of the comprehensively evaluated versions for Sparta is about an order of magnitude slower than CoNST's code. We note that a direct comparison with the domain-specific implementation in Orca <ref type="bibr" coords="18,345.65,94.73,16.41,9.03" target="#b27">[ 28 ]</ref> is very challenging because its implementation of DLPNO-CC fuses tensor contraction with other computation. For example, the 3-index MO integral evaluation fuses contraction with the evaluation of AO integrals, and the 4-index integral evaluation in ORCA uses pre-computed 3-index integrals stored on disk.</p><p>The performance data for evaluation of E Ki ˜ μ using the restricted form (Figure <ref type="figure" coords="18,413.15,166.46,4.63,9.03" target="#fig_9">6</ref> (c)) is presented in Figure <ref type="figure" coords="18,336.11,178.41,4.63,9.03" target="#fig_10">7</ref> (b). Significant speedups can be seen between the execution times in Figure <ref type="figure" coords="18,283.48,202.33,4.63,9.03" target="#fig_10">7</ref> (a) and 7 (b) (the Y-axis scales are different) by use of the additional tensor L Ki for CoNST, SparseLNR, and TACO N -ary, with the speedup with use of CoNST being roughly the same. However, TACO-Unfused does not improve as much, causing its slowdown with respect to CoNST to get worse. No data for Sparta is presented in Figure <ref type="figure" coords="18,372.86,286.02,4.63,9.03" target="#fig_10">7</ref> (b) because of a constraint of Sparta that a tensor product must have a contraction index, which is not the case for the tensor product with L Ki . A subsequent step after formation of the 3-centered integrals is to use them to construct 4-index integrals (Equation ( <ref type="formula" coords="18,131.10,345.79,7.60,9.03">16</ref>) in Reference 33 ):</p><formula xml:id="formula_20">V i j ˜ μ ˜ ν = E Ki ˜ μ × E K j ˜</formula><p>ν , using the 3-index input tensor E obtained via the unrestricted form.</p><p>Performance results are reported in Figure <ref type="figure" coords="18,234.53,369.70,4.63,9.03" target="#fig_11">8</ref> . CoNST again achieves significant speedup over the alternatives. For this experiment, we could not use the large dataset because of insufficient physical memory on our platform.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Sparse Tensor Network for CP Decomposition</head><p>Canonical Polyadic (CP) decomposition factorizes a sparse tensor T with n modes into a product of n 2-D matrices. For example, a 3-D tensor T i jk is decomposed into three dense rank-r matrices A ir , B jr , and C kr . The CP decomposition of a sparse tensor is generally performed using an iterative algorithm that requires n Matricized Tensor Times Khatri-Rao Product (MTTKRP) operations <ref type="bibr" coords="18,91.15,477.68,15.74,9.03" target="#b19">[ 20 ]</ref>. For a 3-D tensor, the three MTTKRP operations are as follows:</p><formula xml:id="formula_21">A ir = T i jk × B jr × C kr B jr = T i jk × A ir × C kr C kr = T i jk × A ir × B jr .</formula><p>Figure <ref type="figure" coords="18,83.65,513.59,4.63,9.03">9</ref> shows the performance for MTTKRP operations for each of the three modes for sparse tensors from the FROSTT benchmark suite <ref type="bibr" coords="18,224.05,525.54,15.74,9.03" target="#b38">[ 39 ]</ref>. We used the same four sparse tensors (Flickr3d, Nell1, Nell2, and Vast3d) used in the experimental evaluation of SparseLNR <ref type="bibr" coords="18,353.92,537.50,15.73,9.03" target="#b11">[ 12 ]</ref>. The rank of factor matrices was set to 50. The time to perform the MTTKRP operation for the three modes varies quite significantly; this is in part due to the the highly non-uniform extents of the three modes for the tensors (as seen in Table <ref type="table" coords="18,162.86,573.37,4.63,9.03" target="#tab_3">3</ref> ). For the MTTKRP expression, SparseLNR was not able to perform its loopFusionOverFission transformation, so the code and performance are essentially identical to TACO N -ary. Considering CoNST, unlike with the DLPNO benchmark (Section 5.1 ), CoNSTgenerated code is not always fastest. For the first two operations, CoNST achieves a speedup between 2.0 × and 4.8 × over other schemes, but relative performance is lower for the third one, ranging between 0.9 × and 1.0 × over the best alternative. For this case, the size of the intermediate tensor is small and the binary tensor contractions are efficient without fusion, whereas the mode  order that enables fusion results in code with slightly lower performance than the unfused code. However, when considering the total time for all three operations, as needed in each iteration in CP decomposition, CoNST achieves a minimum speedup of 2 × over the alternatives, across the four benchmarks. Sparta times are not reported because it could not be used: it does not handle contractions with "batch" indices that occur in both input tensors and output tensors, as occurs with the second tensor contraction in the binarized sequence for each MTTKRP.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Sparse Tensor Network for Tucker Decomposition</head><p>Tucker decomposition factorizes a sparse tensor T with n modes into a product of n 2-D matrices and a dense core n-mode tensor. For example, a 3-D tensor T i jk is decomposed into three rank-r matrices A ix , B jy , C kz , and core tensor G xyz . The computation is generally performed using the High Order Orthogonal Iteration (HOOI) iterative algorithm that requires n Tensor Times Matrix chain (TTMc) operations <ref type="bibr" coords="20,187.74,328.77,15.74,9.03" target="#b19">[ 20 ]</ref>. For a 3-D tensor, the TTMc operations are as follows:</p><formula xml:id="formula_22">A iyz = T i jk × B jy × C kz B jxz = T i jk × A ix × C kz C kxy = T i jk × A ir xr × B jryr .</formula><p>Figure <ref type="figure" coords="20,84.76,368.76,9.27,9.03" target="#fig_13">10</ref> presents execution times for the alternative schemes on the four FROSTT tensors. The mode-2 contraction for Flickr3d and mode-3 contraction for Nell-1 tensor ran out of memory for all methods on 128GB RAM. TACO-Unfused and Sparta ran out of memory for a larger set of runs because they form high-dimensional sparse intermediates in memory. The rank of decomposition was 16 for Nell-1 and Flickr-3d tensors, and 50 for Vast-3d and Nell-2 tensors. For the TTMc operation, SparseLNR is not able to perform its loopFusionOverFission transformation, so that performance is identical to TACO N -ary. Sparta runs a flattened matrix-times-matrix operation for a general tensor contraction and uses a hashmap to accumulate rows of the result. Since the matrix being multiplied is dense, the hashmap simply adds an overhead. Overall, CoNST generates code that achieves significant speedups over the compared alternatives.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Related Work</head><p>A comparison between CoNST and the three most related prior efforts was presented in Section 2 and summarized in Table <ref type="table" coords="20,191.71,525.54,4.63,9.03" target="#tab_0">1</ref> . As shown in the previous section, significant performance improvements can be achieved by the code generated through CoNST's integrated treatment of contraction/loop/mode order for fused execution of general contraction trees, compared to (1) code directly generated by TACO <ref type="bibr" coords="20,190.12,561.41,15.74,9.03" target="#b18">[ 19 ]</ref>, (2) fused loop code generated by SparseLNR <ref type="bibr" coords="20,403.13,561.41,15.74,9.03" target="#b11">[ 12 ]</ref>, and (3) calls to the Sparta library <ref type="bibr" coords="20,172.24,573.37,16.42,9.03" target="#b24">[ 25 ]</ref> for sparse tensor contractions. A variety of sparse formats are possible in TACO through format abstractions <ref type="bibr" coords="20,261.93,585.32,11.18,9.03" target="#b8">[ 9 ]</ref>; our work focuses on the popular CSF representation. We note that very recent developments <ref type="bibr" coords="20,270.25,597.27,16.41,9.03" target="#b48">[ 49 ]</ref> have advanced the TACO compiler to allow some forms of sparse workspaces for intermediate tensors; our work was completed before this feature was available and only uses dense workspaces <ref type="bibr" coords="20,285.02,621.19,16.41,9.03" target="#b17">[ 18 ]</ref> previously supported by TACO.</p><p>A number of efforts have addressed loop-level optimization of dense tensor contractions for CP Us and GP Us <ref type="bibr" coords="20,114.97,645.10,111.23,9.03">[ 1 , 17 , 22 , 26 , 29 , 36 , 37 , 43 ]</ref>. However, none of them can be directly adapted for optimizing sparse tensor contractions because of the need to use a compact data representation for sparse tensors. Cociorva et al. <ref type="bibr" coords="21,186.95,94.73,16.42,9.03" target="#b9">[ 10 ]</ref> addressed loop fusion in the context of optimizing dense tensor networks. Similar to CoNST, the reduction of the order of intermediate tensors is addressed. However, the main focus of that work was to identify more aggressively fused configurations that further reduced the space for intermediate tensors at the price of redundant computation. CoNST does not introduce redundant operations in its optimization and does not incorporate any such space-time tradeoff considerations.</p><p>Sparse fusion <ref type="bibr" coords="21,113.60,166.46,11.78,9.03" target="#b6">[ 7 ]</ref> is an inspector-executor strategy for iteration composition for fused execution of two sparse kernels. This approach optimizes kernels with loop-carried dependencies using runtime techniques. Tensor mode layout and its interactions with iteration order and mode reduction of intermediate sparse tensors are not considered by this existing work. In contrast, our work considers these factors in compile-time code generation for a general contraction tree.</p><p>The sparse polyhedral framework <ref type="bibr" coords="21,196.14,226.24,16.42,9.03" target="#b43">[ 44 ]</ref> defines inspector-executor techniques for optimization of sparse computations, e.g., through runtime iteration/data reordering. It has been applied to individual tensor contractions <ref type="bibr" coords="21,168.48,250.14,16.42,9.03" target="#b49">[ 50 ]</ref> where iteration code is derived using polyhedral scanning. This approach does not consider fusion or reordering of loops/modes. In contrast to inspector-executor approaches, which often involve non-trivial "inspector" overhead in analyzing the sparsity pattern for each execution instance, CoNST uses a purely static compile-time approach. It thus avoids such overhead and the generated code can be used for different input tensors without any instancespecific runtime analysis.</p><p>SparseTIR <ref type="bibr" coords="21,99.02,321.88,16.42,9.03" target="#b47">[ 48 ]</ref> is an approach to represent sparse tensors in composable formats and to enable program transformations in a composable manner. The sparse compilation support in the MLIR infrastructure <ref type="bibr" coords="21,104.68,345.79,11.78,9.03" target="#b4">[ 5 ]</ref> enables integration of sparse tensors and computations with other elements of MLIR, as well as TACO-like code generation. SpTTN-Cyclops <ref type="bibr" coords="21,296.98,357.75,16.41,9.03" target="#b15">[ 16 ]</ref> is an extension of the Cyclops Tensor Framework (CTF) <ref type="bibr" coords="21,161.60,369.70,16.42,9.03" target="#b41">[ 42 ]</ref> to optimize a sub-class of sparse tensor networks. In contrast to CoNST, which can handle arbitrary sparse tensor networks, SpTTN-Cyclops only targets a product of a single sparse tensor with a network of several dense tensors. Indexed Streams <ref type="bibr" coords="21,379.63,393.61,16.41,9.03" target="#b20">[ 21 ]</ref> develops a formal operational model and intermediate representation for fused execution of tensor contractions, using both sparse tensor algebra and relational algebra, along with a compiler to generate code. Tian et al. <ref type="bibr" coords="21,113.12,429.48,16.42,9.03" target="#b44">[ 45 ]</ref> introduce a DSL to support dense and sparse tensor algebra algorithms and sparse tensor storage formats in the COMET compiler <ref type="bibr" coords="21,262.28,441.43,15.74,9.03" target="#b26">[ 27 ]</ref>, which generates code for a given tensor expression. Zhou et al. <ref type="bibr" coords="21,139.15,453.38,16.42,9.03" target="#b50">[ 51 ]</ref> propose a set of techniques to optimize tensor networks including use of loop fusion. Using manual implementation of the proposed techniques, performance improvement is demonstrated over code generated by TACO <ref type="bibr" coords="21,261.17,477.29,16.41,9.03" target="#b18">[ 19 ]</ref> on a set of benchmarks. Finch <ref type="bibr" coords="21,403.69,477.29,21.09,9.03">[ 2 , 3 ]</ref> is a recently developed framework that supports efficient code generation for computations on sparse matrices/tensors that exhibit structured sparsity. None of these efforts address the coupled automated optimization of tensor layout, contraction schedule, and mode reduction for intermediates in fused code being performed by CoNST.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusions</head><p>Effective fused code generation for sparse tensor networks depends on inter-related factors: schedule of binary contractions, permutation of nested loops, and layout order of tensor modes. We demonstrate that an integrated constraint-based formulation can capture these factors and can produce fused loop structures for efficient execution. Our experimental evaluation confirms that this approach advances the state of the art in achieving high performance for sparse tensor networks. An important next step is to apply these techniques for sparse tensor algebras needed by computational scientists (e.g., in quantum chemistry <ref type="bibr" coords="21,261.07,636.23,11.14,9.03" target="#b5">[ 6 ]</ref>).</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="5,45.68,179.75,395.00,8.07;5,45.68,190.70,393.45,8.07;5,119.94,83.10,246.24,87.24"><head>Fig. 1 .</head><label>1</label><figDesc>Fig. 1. The CSF format for representing an order-4 sparse tensor in memory. The table on the left shows the indices of non-zero elements. The tree on the right shows the CSF representation (root node is not shown).</figDesc><graphic coords="5,119.94,83.10,246.24,87.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="5,50.47,342.22,385.40,10.45;5,68.43,230.23,94.72,67.60"><head>Fig. 2 .</head><label>2</label><figDesc>Fig. 2. Tensor network and code for N -ary contraction for expression R i jk = A ipq × B jpr × C kqr × D jkr .</figDesc><graphic coords="5,68.43,230.23,94.72,67.60" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="5,167.27,645.05,273.35,9.08"><head></head><label></label><figDesc>Figure 2 (b) shows pseudo-code for such an N -ary contraction, where</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="6,159.20,203.74,167.32,8.07;6,58.74,83.47,183.76,93.64"><head>Fig. 3 .</head><label>3</label><figDesc>Fig. 3. Contraction tree for a tensor network.</figDesc><graphic coords="6,58.74,83.47,183.76,93.64" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="6,423.00,358.14,17.61,9.03;6,45.50,370.17,296.77,9.38;6,343.11,368.61,3.38,6.59;6,346.98,370.17,35.49,9.38;6,383.29,368.61,3.38,6.59;6,387.16,370.17,5.51,9.38"><head></head><label></label><figDesc>If all tensor modes have the same extent M, the complexity reduces from O(M 6 ) to O(M 5 ).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,268.76,507.61,171.65,9.03;6,45.50,519.52,394.93,9.08;6,45.50,531.52,395.00,9.03;6,45.50,543.48,395.02,9.03;6,45.50,555.15,395.12,9.38;6,45.50,567.10,394.91,9.38;6,45.50,579.34,394.93,9.03;6,45.50,591.30,361.89,9.03"><head>Figure 4 (</head><label>4</label><figDesc>a) shows one possible code implementation for the contraction tree from Figure3(b). Since identical loops over indices i and j exist in the loop code for all three binary contractions, we can fuse those loops to create the imperfectly nested loop structure in Figure4 (b). We note that the unfused code version in Figure4(a) requires 4-D intermediate arrays X [i, j, q, r ] and Y [i, j, k, r ], but the fused code in Figure4(b) can use 2-D intermediate arrays X [q, r ] and Y [k, r ]. This is because i and j are common surrounding loops, thus producing and consuming 2-D slices of the 4-D intermediate arrays. The same space can be reused for a later slice since all values produced for a previous slice have been fully used.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,104.29,223.75,277.58,8.07"><head>7 Fig. 4 .</head><label>74</label><figDesc>Fig. 4. Reduction of dimensionality of intermediate tensors via loop fusion.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="9,400.02,166.40,39.24,10.27;9,45.68,178.58,394.99,9.08;9,45.68,190.54,137.51,9.08"><head></head><label></label><figDesc>jkr × D jkr was shown earlier in Figure 3 (b). Here A, B, and C are input tensors; X and Y are intermediate tensors; and R is the result tensor.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="9,82.61,587.27,105.59,8.07"><head>Fig. 5 .</head><label>5</label><figDesc>Fig. 5. Fused code structure.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9" coords="17,168.17,214.75,149.71,8.07;17,47.43,83.62,368.44,84.76"><head>Fig. 6 .</head><label>6</label><figDesc>Fig. 6. Sparse integral tensor case study.</figDesc><graphic coords="17,47.43,83.62,368.44,84.76" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="17,45.68,400.27,394.97,8.07;17,45.68,411.22,394.86,8.07;17,45.68,422.18,171.50,8.07;17,50.94,238.66,374.26,129.31"><head>Fig. 7 .</head><label>7</label><figDesc>Fig. 7. Execution time (ms) for evaluation of 3-index integrals (lower is better; Y-axis is in logarithmic scale) using (a) unrestricted and (b) restricted tensor networks, respectively. Numbers above the bars represent slowdown of other schemes relative to CoNST.</figDesc><graphic coords="17,50.94,238.66,374.26,129.31" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="18,45.50,294.53,189.48,8.07;18,45.50,305.49,189.44,8.07;18,45.50,316.44,53.35,8.07;18,50.22,164.89,181.63,115.24"><head>Fig. 8 .</head><label>8</label><figDesc>Fig. 8. Execution time (ms) for 4-index integral. Numbers above the bars represent slowdown relative to CoNST.</figDesc><graphic coords="18,50.22,164.89,181.63,115.24" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12" coords="19,45.68,373.96,394.89,8.07;19,45.68,384.92,375.26,8.07;19,48.69,85.51,388.24,273.58"><head>19 Fig. 9 .</head><label>199</label><figDesc>Fig. 9. Execution time (ms) for MTTKRP operations on the FROSTT tensors. Relative slowdown compared to CoNST is indicated above each bar. Missing bars mean out-of-memory failure (for TACO-Unfused).</figDesc><graphic coords="19,48.69,85.51,388.24,273.58" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13" coords="20,45.50,295.96,394.93,8.07;20,45.50,306.92,282.27,8.07;20,55.77,84.76,382.12,197.92"><head>Fig. 10 .</head><label>10</label><figDesc>Fig. 10. Execution time (ms) for TTMc operations on the FROSTT tensors. Relative slowdown compared to CoNST is shown above the bar. Missing bars indicate out-of-memory failure.</figDesc><graphic coords="20,55.77,84.76,382.12,197.92" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="8,82.15,82.78,321.26,39.88"><head>Table 1 .</head><label>1</label><figDesc>Comparison with State-of-the-art Systems for Sparse Tensor Computations</figDesc><table coords="8,82.15,101.51,321.26,21.16"><row><cell></cell><cell>TACO SparseLNR Sparta CoNST (ours)</cell></row><row><cell>Loop fusion</cell><cell>✗</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="15,45.68,82.78,356.63,129.39"><head>Table 2 .</head><label>2</label><figDesc>Z3 Constraints: Dimensionality of Intermediates, Number of Constraint Variables, Number of Constraints, Solver Time</figDesc><table coords="15,45.68,112.47,356.63,99.70"><row><cell>Tensor network</cell><cell cols="4">DimBound ConsVars Constraints SolverTime (s)</cell></row><row><cell>3-Index unrestricted</cell><cell>1</cell><cell>19</cell><cell>38</cell><cell>0.013</cell></row><row><cell>3-Index restricted</cell><cell>1</cell><cell>27</cell><cell>57</cell><cell>0.015</cell></row><row><cell>4-Index</cell><cell>1</cell><cell>22</cell><cell>46</cell><cell>0.011</cell></row><row><cell>MTTKRP</cell><cell>1</cell><cell>17</cell><cell>40</cell><cell>0.01</cell></row><row><cell>TTMc</cell><cell>1</cell><cell>19</cell><cell>38</cell><cell>0.01</cell></row><row><cell>5 Experimental Evaluation</cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="19,131.81,409.52,222.29,75.66"><head>Table 3 .</head><label>3</label><figDesc>FROSTT Tensors and Their Shapes</figDesc><table coords="19,131.81,428.24,222.29,56.93"><row><cell>Tensor</cell><cell></cell><cell cols="2">Dimensions</cell><cell>NNZs</cell></row><row><cell>flickr-3d</cell><cell cols="3">320K 2.82M 1.6M</cell><cell>112.89M</cell></row><row><cell>nell-2</cell><cell>12K</cell><cell>9K</cell><cell>288K</cell><cell>76.88M</cell></row><row><cell>nell-1</cell><cell cols="4">2.9M 2.14M 25.5M 143.6M</cell></row><row><cell cols="3">vast-2015-mc1-3d 165K 11K</cell><cell>2</cell><cell>26.02M</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">We use "mode" to refer to a tensor dimension; an order-n tensor has n modes. Terminology details are presented in Section</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_1">. ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 82. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" xml:id="foot_2">ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 82. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_3">Our approach also trivially applies to a CSF variation in which the outermost mode is compressed. ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 82. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_4">We have also tested the approach with synthetic examples where l &gt; 1 is needed to achieve a feasible constraint solution.ACM Trans. Arch. Code Optim., Vol. 21, No.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_5">, Article 82. Publication date: November 2024.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_6">TACO code: https://github.com/tensor-compiler/taco</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_7">SparseLNR code: https://github.com/adhithadias/SparseLNR</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_8">Sparta code: https://github.com/pnnl/HiParTI/tree/sparta ACM Trans. Arch. Code Optim., Vol. 21, No. 4, Article 82. Publication date: November 2024.</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>We thank the ACM TACO reviewers for their valuable feedback.</p></div>
+			</div>
+
+
+			<div type="funding">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This work was supported in part by the U.S. National Science Foundation through awards 2009007, 2216903, 2217081, and 2217154.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="22,64.27,138.33,376.11,7.22;22,64.27,148.29,376.13,7.22;22,64.27,158.21,147.69,7.26" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">High-performance tensor contractions for GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Ahmad</forename><surname>Abdelfattah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marc</forename><surname>Baboulin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Veselin</forename><surname>Dobrev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jack</forename><surname>Dongarra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><surname>Earl</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joël</forename><surname>Falcou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Azzam</forename><surname>Haidar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ian</forename><surname>Karlin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tzanio</forename><surname>Kolev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ian</forename><surname>Masliah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stanimire</forename><surname>Tomov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Procedia Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">80</biblScope>
+			<biblScope unit="page" from="108" to="118" />
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,168.22,376.14,7.22;22,64.27,178.14,344.62,7.26" xml:id="b1">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Willow</forename><surname>Ahrens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Teodoro</forename><surname>Fields Collin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Radha</forename><surname>Patel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kyle</forename><surname>Deeds</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Changwan</forename><surname>Hong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2404.16730</idno>
+		<title level="m">Finch: Sparse and structured array programming with control flow</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="22,64.27,188.14,376.12,7.22;22,64.27,198.06,376.15,7.26;22,64.27,208.06,20.95,7.22" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Looplets: A language for structured coiteration</title>
+		<author>
+			<persName coords=""><forename type="first">Willow</forename><surname>Ahrens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Donenfeld</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 21st ACM/IEEE International Symposium on Code Generation and Optimization</title>
+				<meeting>the 21st ACM/IEEE International Symposium on Code Generation and Optimization</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="page" from="41" to="54" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,217.98,376.16,7.26;22,64.27,227.98,53.13,7.22" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Coupled-cluster theory in quantum chemistry</title>
+		<author>
+			<persName coords=""><forename type="first">Rodney</forename><forename type="middle">J</forename><surname>Bartlett</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Monika</forename><surname>Musiał</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Reviews of Modern Physics</title>
+		<imprint>
+			<biblScope unit="volume">79</biblScope>
+			<biblScope unit="page">291</biblScope>
+			<date type="published" when="2007">2007. 2007</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,237.95,376.12,7.22;22,64.27,247.87,376.13,7.26;22,64.27,257.87,105.35,7.22" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Compiler support for sparse tensor computations in MLIR</title>
+		<author>
+			<persName coords=""><forename type="first">Aart</forename><surname>Bik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Penporn</forename><surname>Koanantakool</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tatiana</forename><surname>Shpeisman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicolas</forename><surname>Vasilache</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bixia</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">19</biblScope>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+	<note>Article. 25 pages</note>
+</biblStruct>
+
+<biblStruct coords="22,64.27,267.84,376.16,7.22;22,64.27,277.76,376.11,7.26;22,64.27,287.76,84.19,7.22" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Many-body quantum chemistry on massively parallel computers</title>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Justus</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chong</forename><surname>Calvin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Varun</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ashutosh</forename><surname>Rishi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><forename type="middle">F</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Valeev</surname></persName>
+		</author>
+		<idno type="DOI">10.1021/acs.chemrev.0c00006</idno>
+		<ptr target="https://doi.org/10.1021/acs.chemrev.0c00006" />
+	</analytic>
+	<monogr>
+		<title level="j">Chemical Reviews</title>
+		<imprint>
+			<biblScope unit="volume">121</biblScope>
+			<biblScope unit="page" from="1203" to="1231" />
+			<date type="published" when="2021-02">2021. Feb. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,297.73,376.13,7.22;22,64.27,307.65,376.10,7.26;22,64.27,317.61,175.60,7.26" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Runtime composition of iterations for fusing loop-carried sparse dependence</title>
+		<author>
+			<persName coords=""><forename type="first">Kazem</forename><surname>Cheshmi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><forename type="middle">Mills</forename><surname>Strout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maryam</forename><forename type="middle">Mehri</forename><surname>Dehnavi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">89</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,327.61,376.17,7.22;22,64.27,337.54,255.06,7.26" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">On optimizing a class of multi-dimensional loops with reduction for parallel execution</title>
+		<author>
+			<persName coords=""><forename type="first">Lam</forename><surname>Chi-Chung</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rephael</forename><surname>Wenger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Processing Letters</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="157" to="168" />
+			<date type="published" when="1997">1997. 1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,347.54,376.14,7.22;22,64.27,357.46,335.95,7.26" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Format abstraction for sparse tensor algebra compilers</title>
+		<author>
+			<persName coords=""><forename type="first">Stephen</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the ACM on Programming Languages</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page">30</biblScope>
+			<date type="published" when="2018-10">2018. Oct. 2018</date>
+		</imprint>
+	</monogr>
+	<note>OOPSLA, Article</note>
+</biblStruct>
+
+<biblStruct coords="22,64.27,367.47,376.13,7.22;22,64.27,377.43,376.14,7.22;22,64.27,387.35,326.46,7.26" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Space-time trade-off optimization for a class of electronic structure calculations</title>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Cociorva</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gerald</forename><surname>Baumgartner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chi-Chung</forename><surname>Lam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ramanujam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marcel</forename><surname>Nooijen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">E</forename><surname>Bernholdt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Harrison</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM SIGPLAN Conference on Programming Language Design and Implementation</title>
+				<imprint>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="177" to="186" />
+		</imprint>
+	</monogr>
+	<note>PLDI&apos;02</note>
+</biblStruct>
+
+<biblStruct coords="22,64.27,397.32,376.24,7.26;22,64.27,407.28,108.20,7.26" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Z3: An efficient SMT solver</title>
+		<author>
+			<persName coords=""><forename type="first">Leonardo</forename><surname>De</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Moura</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikolaj</forename><surname>Bjørner</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Tools and Algorithms for the Construction and Analysis of Systems</title>
+				<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="337" to="340" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,417.28,376.06,7.22;22,64.27,427.21,376.16,7.26;22,64.27,437.17,72.28,7.26" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">SparseLNR: Accelerating sparse tensor computations using loop nest restructuring</title>
+		<author>
+			<persName coords=""><forename type="first">Adhitha</forename><surname>Dias</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kirshanthan</forename><surname>Sundararajah</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Charitha</forename><surname>Saumya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Milind</forename><surname>Kulkarni</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 36th ACM International Conference on Supercomputing</title>
+				<meeting>the 36th ACM International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="14" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,447.16,376.35,7.22;22,64.27,457.12,376.33,7.22;22,64.27,467.09,376.26,7.22;22,64.27,477.05,376.38,7.22;22,64.27,487.01,376.27,7.22;22,64.27,496.98,376.35,7.22;22,64.27,506.94,376.32,7.22;22,64.27,516.90,376.33,7.22;22,64.27,526.87,244.32,7.22" xml:id="b12">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">J</forename><surname>Frisch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">W</forename><surname>Trucks</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">B</forename><surname>Schlegel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">E</forename><surname>Scuseria</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><forename type="middle">A</forename><surname>Robb</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">R</forename><surname>Cheeseman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Scalmani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Barone</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Mennucci</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">A</forename><surname>Petersson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Nakatsuji</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Caricato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><forename type="middle">P</forename><surname>Hratchian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">F</forename><surname>Izmaylov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Bloino</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">L</forename><surname>Sonnenberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Hada</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Ehara</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Toyota</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Fukuda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Hasegawa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Ishida</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Nakajima</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Y</forename><surname>Honda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Kitao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Nakai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">T</forename><surname>Vreven</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">A</forename><surname>Montgomery</surname><genName>Jr</genName></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">E</forename><surname>Peralta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><surname>Ogliaro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Bearpark</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">J</forename><surname>Heyd</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">E</forename><surname>Brothers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><forename type="middle">N</forename><surname>Kudin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">N</forename><surname>Staroverov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Kobayashi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Normand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Raghavachari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Rendell</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">C</forename><surname>Burant</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><forename type="middle">S</forename><surname>Iyengar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Tomasi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Cossi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Rega</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">M</forename><surname>Millam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Klene</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">E</forename><surname>Knox</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">B</forename><surname>Cross</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Bakken</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Adamo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Jaramillo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Gomperts</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">E</forename><surname>Stratmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">O</forename><surname>Yazyev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">J</forename><surname>Austin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Cammi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Pomelli</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">W</forename><surname>Ochterski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">L</forename><surname>Martin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Morokuma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><forename type="middle">G</forename><surname>Zakrzewski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">A</forename><surname>Voth</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Salvador</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">J</forename><surname>Dannenberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Dapprich</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><forename type="middle">D</forename><surname>Daniels</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ö</forename><surname>Farkas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">B</forename><surname>Foresman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><forename type="middle">V</forename><surname>Ortiz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Cioslowski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">D</forename><forename type="middle">J</forename><surname>Fox</surname></persName>
+		</author>
+		<imprint>
+			<publisher>Gaussian Inc</publisher>
+			<pubPlace>Wallingford, CT</pubPlace>
+		</imprint>
+	</monogr>
+	<note>n. d.]. Gaussian 09 Revision E.01.</note>
+</biblStruct>
+
+<biblStruct coords="22,64.27,536.83,376.14,7.22;22,64.27,546.75,376.30,7.26;22,64.27,556.75,183.65,7.22" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Optimization of auxiliary basis sets for RI-MP2 and RI-CC2 calculations: Core-valence and quintuple-ζ basis sets for H to Ar and QZVPP basis sets for Li to Kr</title>
+		<author>
+			<persName coords=""><forename type="first">Christof</forename><surname>Haettig</surname></persName>
+		</author>
+		<idno type="DOI">10.1039/B415208E</idno>
+		<ptr target="https://doi.org/10.1039/B415208E" />
+	</analytic>
+	<monogr>
+		<title level="j">Physical Chemistry Chemical Physics: PCCP</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="59" to="66" />
+			<date type="published" when="2005-01">2005. Jan. 2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,566.72,376.10,7.22;22,64.27,576.68,376.16,7.22;22,64.27,586.60,376.13,7.26;22,64.27,596.57,179.24,7.26" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Automated operation minimization of tensor contraction expressions in electronic structure calculations</title>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Hartono</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Sibiryakov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marcel</forename><surname>Nooijen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gerald</forename><surname>Baumgartner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">E</forename><surname>Bernholdt</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">So</forename><surname>Hirata</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chi-Chung</forename><surname>Lam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Russell</forename><forename type="middle">M</forename><surname>Pitzer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Ramanujam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 5th International Conference on Computational Science (ICCS&apos;05), Part I 5</title>
+				<meeting>the 5th International Conference on Computational Science (ICCS&apos;05), Part I 5</meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="155" to="164" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="22,64.27,606.57,376.16,7.22;22,64.27,616.49,199.74,7.26" xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Minimum cost loop nests for contraction of a sparse tensor with a tensor network</title>
+		<author>
+			<persName coords=""><forename type="first">Raghavendra</forename><surname>Kanakagiri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edgar</forename><surname>Solomonik</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2307.05740</idno>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="22,64.27,626.50,376.02,7.22;22,64.27,636.46,376.13,7.22;22,64.27,646.38,289.55,7.26" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">A code generator for high-performance tensor contractions on GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Jinsung</forename><surname>Kim</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aravind</forename><surname>Sukumaran-Rajam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vineeth</forename><surname>Thumma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sriram</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ajay</forename><surname>Panyala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Louis-Noël</forename><surname>Pouchet</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atanas</forename><surname>Rountev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Symposium on Code Generation and Optimization</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="85" to="95" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,83.43,376.11,7.22;23,64.45,93.35,368.02,7.26" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Tensor algebra compilation with workspaces</title>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Willow</forename><surname>Ahrens</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shoaib</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE/ACM International Symposium on Code Generation and Optimization (CGO&apos;19)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="180" to="192" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,103.35,376.14,7.22;23,64.45,113.28,279.71,7.26" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">The tensor algebra compiler</title>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shoaib</forename><surname>Kamil</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Stephen</forename><surname>Chou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Lugato</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the ACM on Programming Languages</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="1" to="29" />
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+	<note>OOPSLA</note>
+</biblStruct>
+
+<biblStruct coords="23,64.45,123.24,376.22,7.26;23,64.45,133.24,12.88,7.22" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Tensor decompositions and applications</title>
+		<author>
+			<persName coords=""><forename type="first">Tamara</forename><forename type="middle">G</forename><surname>Kolda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brett</forename><forename type="middle">W</forename><surname>Bader</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Review</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<biblScope unit="page" from="455" to="500" />
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,143.20,376.14,7.22;23,64.45,153.13,376.15,7.26;23,64.45,163.13,35.78,7.22" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Indexed Streams: A formal intermediate representation for fused contraction programs</title>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Kovach</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Praneeth</forename><surname>Kolichala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tiancheng</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the ACM on Programming Languages</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="1169" to="1193" />
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note>PLDI</note>
+</biblStruct>
+
+<biblStruct coords="23,64.45,173.09,376.13,7.22;23,64.45,183.02,376.11,7.26;23,64.45,192.98,365.06,7.26" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Analytical cache modeling and tilesize optimization for tensor contractions</title>
+		<author>
+			<persName coords=""><forename type="first">Rui</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aravind</forename><surname>Sukumaran-Rajam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Veras</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meng</forename><surname>Tze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabrice</forename><surname>Low</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Atanas</forename><surname>Rastello</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ponnuswamy</forename><surname>Rountev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,202.98,376.26,7.22;23,64.45,212.95,376.22,7.22;23,64.45,222.87,375.56,7.26;23,64.45,232.87,25.43,7.22" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Creating two-dimensional solid helium via diamond lattice confinement</title>
+		<author>
+			<persName coords=""><forename type="first">Weitong</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiran</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sytze</forename><surname>Graaf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junhao</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hui</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shijun</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Da</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shaofei</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><forename type="middle">J</forename><surname>Kooi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chin-Hua</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chain</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ji-Jung</forename><surname>Kai</surname></persName>
+		</author>
+		<idno type="DOI">10.1038/s41467-022-33601-5</idno>
+		<ptr target="https://doi.org/10.1038/s41467-022-33601-5" />
+	</analytic>
+	<monogr>
+		<title level="j">Nature Communications</title>
+		<imprint>
+			<biblScope unit="volume">13</biblScope>
+			<biblScope unit="page">5990</biblScope>
+			<date type="published" when="2022-10">2022. Oct. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,242.83,376.16,7.22;23,64.45,252.76,374.68,7.26" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Athena: High-performance sparse tensor contraction sequence on heterogeneous memory</title>
+		<author>
+			<persName coords=""><forename type="first">Jiawen</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roberto</forename><surname>Gioiosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM International Conference on Supercomputing</title>
+				<meeting>the ACM International Conference on Supercomputing</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="190" to="202" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,262.76,376.15,7.22;23,64.45,272.68,376.16,7.26;23,64.45,282.65,136.60,7.26" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Sparta: High-performance, element-wise sparse tensor contraction on heterogeneous memory</title>
+		<author>
+			<persName coords=""><forename type="first">Jiawen</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jie</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roberto</forename><surname>Gioiosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</title>
+				<meeting>the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="318" to="333" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,292.61,376.06,7.26;23,64.45,302.56,105.15,7.26" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">High-performance tensor contraction without transposition</title>
+		<author>
+			<persName coords=""><forename type="first">Devin</forename><forename type="middle">A</forename><surname>Matthews</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Scientific Computing</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="page" from="C1" to="C24" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,312.57,376.12,7.22;23,64.45,322.49,376.05,7.26;23,64.45,332.45,241.79,7.26" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">COMET: A domain-specific compilation of high-performance computational chemistry</title>
+		<author>
+			<persName coords=""><forename type="first">Erdal</forename><surname>Mutlu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruiqin</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bin</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sriram</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roberto</forename><surname>Gioiosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jacques</forename><surname>Pienaar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gokcen</forename><surname>Kestor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Workshop on Languages and Compilers for Parallel Computing</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="87" to="103" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,342.46,376.14,7.22;23,64.45,352.38,192.95,7.26" xml:id="b27">
+	<analytic>
+		<title level="a" type="main">The ORCA quantum chemistry program package</title>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Neese</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Wennmohs</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ute</forename><surname>Becker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christoph</forename><surname>Riplinger</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">152</biblScope>
+			<biblScope unit="page">224108</biblScope>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,362.38,376.15,7.22;23,64.45,372.31,376.15,7.26;23,64.45,382.31,47.82,7.22" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Generating efficient tensor contractions for GPUs</title>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Nelson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Axel</forename><surname>Rivera</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Prasanna</forename><surname>Balaprakash</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><forename type="middle">D</forename><surname>Hovland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Elizabeth</forename><surname>Jessup</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Boyana</forename><surname>Norris</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 44th International Conference on Parallel Processing</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="969" to="978" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,392.27,376.02,7.22;23,64.45,402.23,65.59,7.22" xml:id="b29">
+	<monogr>
+		<author>
+			<persName coords=""><surname>Nvidia</surname></persName>
+		</author>
+		<ptr target="https://docs.nvidia.com/cuda/cutensor/index.html" />
+		<title level="m">cuTENSOR: A High-performance CUDA Library for Tensor Primitives</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,412.20,376.19,7.22;23,64.45,422.16,376.14,7.22;23,64.45,432.12,376.10,7.22;23,64.45,442.05,376.10,7.26;23,64.45,452.05,281.24,7.22" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Massively parallel quantum chemistry: A high-performance research platform for electronic structure</title>
+		<author>
+			<persName coords=""><forename type="first">Chong</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cannada</forename><forename type="middle">A</forename><surname>Lewis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marjory</forename><forename type="middle">C</forename><surname>Clement</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karl</forename><surname>Pierce</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Varun</forename><surname>Rishi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabijan</forename><surname>Pavošević</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Samuel</forename><surname>Slattery</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jinmei</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nakul</forename><surname>Teke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ashutosh</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Conner</forename><surname>Masteran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrey</forename><surname>Asadchev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">A</forename><surname>Justus</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><forename type="middle">F</forename><surname>Calvin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Valeev</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/5.0005889/16709494/044120_1_online.pdf</idno>
+		<ptr target="https://pubs.aip.org/aip/jcp/article-pdf/doi/10.1063/5.0005889/16709494/044120_1_online.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">153</biblScope>
+			<biblScope unit="page">44120</biblScope>
+			<date type="published" when="2020-07">2020. Jul. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,462.01,376.16,7.22;23,64.45,471.94,219.42,7.26" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Faster identification of optimal contraction sequences for tensor networks</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><forename type="middle">C</forename><surname>Robert</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jutho</forename><surname>Pfeifer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Haegeman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Verstraete</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physical Review E</title>
+		<imprint>
+			<biblScope unit="volume">90</biblScope>
+			<biblScope unit="page">33315</biblScope>
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,481.94,376.12,7.22;23,64.45,491.90,376.19,7.22;23,64.45,501.82,307.42,7.26" xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Sparse maps-A systematic infrastructure for reduced-scaling electronic structure methods. I. An efficient and simple linear scaling local MP2 method that uses an intermediate basis of pair natural orbitals</title>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Pinski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christoph</forename><surname>Riplinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><forename type="middle">F</forename><surname>Valeev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Neese</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">143</biblScope>
+			<biblScope unit="page">34108</biblScope>
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,511.79,364.06,7.26" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">Localizability of dynamic electron correlation</title>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Pulay</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Chemical Physics Letters</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page" from="151" to="154" />
+			<date type="published" when="1983">1983. 1983</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,521.79,376.17,7.22;23,64.45,531.75,376.11,7.22;23,64.45,541.68,235.90,7.26" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Sparse maps-A systematic infrastructure for reduced-scaling electronic structure methods. II. Linear scaling domain based pair natural orbital coupled cluster theory</title>
+		<author>
+			<persName coords=""><forename type="first">Christoph</forename><surname>Riplinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Pinski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ute</forename><surname>Becker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Edward</forename><forename type="middle">F</forename><surname>Valeev</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Frank</forename><surname>Neese</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">144</biblScope>
+			<biblScope unit="page">24109</biblScope>
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,551.67,376.10,7.22;23,64.45,561.59,376.15,7.26;23,64.45,571.56,166.56,7.26" xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Integrated loop optimizations for data locality enhancement of tensor contraction expressions</title>
+		<author>
+			<persName coords=""><forename type="first">Swarup</forename><surname>Kumar Sahoo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sriram</forename><surname>Krishnamoorthy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajkiran</forename><surname>Panuganti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Sadayappan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2005 ACM/IEEE Conference on Supercomputing (SC&apos;05)</title>
+				<meeting>the 2005 ACM/IEEE Conference on Supercomputing (SC&apos;05)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="13" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,581.56,376.14,7.22;23,64.45,591.48,376.21,7.26;23,64.45,601.48,47.82,7.22" xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Tensor contractions with extended BLAS kernels on CPU and GPU</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Uma</forename><surname>Naresh Niranjan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Animashree</forename><surname>Anandkumar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cris</forename><surname>Cecka</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE 23rd International Conference on High Performance Computing (HiPC&apos;16)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="193" to="202" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,611.45,376.16,7.22;23,64.45,621.37,239.66,7.26" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">opt_einsum-A Python package for optimizing contraction order for einsum-like expressions</title>
+		<author>
+			<persName coords=""><forename type="first">G</forename><forename type="middle">A</forename><surname>Daniel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Johnnie</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Gray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Open Source Software</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page">753</biblScope>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="23,64.45,631.33,376.25,7.26;23,64.45,641.30,228.93,7.26" xml:id="b38">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Shaden</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jee</forename><forename type="middle">W</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Vuduc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jongsoo</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xing</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+		<ptr target="http://frostt.io/" />
+		<title level="m">FROSTT: The Formidable Repository of Open Sparse Tensors and Tools</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,83.39,376.17,7.26;24,64.27,93.35,294.06,7.26" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Tensor-matrix products with a compressed sparse tensor</title>
+		<author>
+			<persName coords=""><forename type="first">Shaden</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 5th Workshop on Irregular Applications: Architectures and Algorithms</title>
+				<meeting>the 5th Workshop on Irregular Applications: Architectures and Algorithms</meeting>
+		<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="volume">5</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,103.35,376.14,7.22;24,64.27,113.28,376.09,7.26;24,64.27,123.28,20.95,7.22" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">SPLATT: Efficient and parallel sparse tensor-matrix multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Shaden</forename><surname>Smith</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Niranjay</forename><surname>Ravindran</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicholas</forename><forename type="middle">D</forename><surname>Sidiropoulos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Karypis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2015 IEEE International Parallel and Distributed Processing Symposium</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+			<biblScope unit="page" from="61" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,133.24,375.97,7.22;24,64.27,143.16,376.11,7.26;24,64.27,153.13,190.58,7.26" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Cyclops tensor framework: Reducing communication and eliminating load imbalance in massively parallel contractions</title>
+		<author>
+			<persName coords=""><forename type="first">Edgar</forename><surname>Solomonik</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Devin</forename><surname>Matthews</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeff</forename><surname>Hammond</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Demmel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2013 IEEE 27th International Symposium on Parallel and Distributed Processing</title>
+				<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="813" to="824" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,163.13,376.09,7.22;24,64.27,173.05,229.59,7.26" xml:id="b42">
+	<analytic>
+		<title level="a" type="main">Design of a high-performance GEMM-like tensor-tensor multiplication</title>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><surname>Springer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paolo</forename><surname>Bientinesi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Mathematical Software (TOMS)</title>
+		<imprint>
+			<biblScope unit="volume">44</biblScope>
+			<biblScope unit="page" from="1" to="29" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,183.06,376.11,7.22;24,64.27,192.98,306.63,7.26" xml:id="b43">
+	<analytic>
+		<title level="a" type="main">The sparse polyhedral framework: Composing compiler-generated inspector-executor code</title>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><surname>Mills Strout</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Catherine</forename><surname>Olschanowsky</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the IEEE</title>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<biblScope unit="page" from="1921" to="1934" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,202.98,376.20,7.22;24,64.27,212.91,210.69,7.26" xml:id="b44">
+	<monogr>
+		<title level="m" type="main">Bin Ren, and Gokcen Kestor. 2021. A high-performance sparse tensor algebra compiler in multi-level IR</title>
+		<author>
+			<persName coords=""><forename type="first">Ruiqin</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luanzheng</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiajia</forename><surname>Li</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2102.05187</idno>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="24,64.27,222.91,376.19,7.22;24,64.27,232.83,376.19,7.26;24,64.27,242.83,368.64,7.22" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Efficient use of the correlation consistent basis sets in resolution of the identity MP2 calculations</title>
+		<author>
+			<persName coords=""><forename type="first">Florian</forename><surname>Weigend</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andreas</forename><surname>Köhn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christof</forename><surname>Hättig</surname></persName>
+		</author>
+		<idno type="DOI">10.1063/1.1445115</idno>
+		<ptr target="https://doi.org/10.1063/1.1445115.arXiv:https://pubs.aip.org/aip/jcp/article-pdf/116/8/3175/10841034/3175_1_online.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">116</biblScope>
+			<biblScope unit="page" from="3175" to="3183" />
+			<date type="published" when="2002-02">2002. Feb. 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,252.80,376.28,7.22;24,64.27,262.72,376.19,7.26;24,64.27,272.72,364.93,7.22" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Gaussian basis sets for use in correlated molecular calculations. IV. Calculation of static electrical response properties</title>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">E</forename><surname>Woon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thom</forename><forename type="middle">H</forename><surname>Dunning</surname><genName>Jr</genName></persName>
+		</author>
+		<idno type="DOI">10.1063/1.466439</idno>
+		<ptr target="https://pubs.aip.org/aip/jcp/article-pdf/100/4/2975/10771441/2975_1_online.pdf" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Chemical Physics</title>
+		<imprint>
+			<biblScope unit="volume">100</biblScope>
+			<biblScope unit="page" from="2975" to="2988" />
+			<date type="published" when="1994-02">1994. Feb. 1994</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,282.69,376.18,7.22;24,64.27,292.61,376.17,7.26;24,64.27,302.56,219.07,7.26" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">SparseTIR: Composable abstractions for sparse compilation in deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Zihao</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruihang</forename><surname>Lai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Junru</forename><surname>Shao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</title>
+				<meeting>the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems</meeting>
+		<imprint>
+			<date type="published" when="2023">2023</date>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="660" to="678" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,312.57,376.13,7.22;24,64.27,322.49,253.19,7.26" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Compilation of modular and general sparse workspaces</title>
+		<author>
+			<persName coords=""><forename type="first">Genghan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Olivia</forename><surname>Hsu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fredrik</forename><surname>Kjolstad</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Proceedings of the ACM on Programming Languages</title>
+		<imprint>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="1213" to="1238" />
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note>PLDI</note>
+</biblStruct>
+
+<biblStruct coords="24,64.27,332.49,376.11,7.22;24,64.27,342.42,376.17,7.26;24,64.27,352.38,101.51,7.26" xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Polyhedral specification and code generation of sparse tensor contraction with co-iteration</title>
+		<author>
+			<persName coords=""><forename type="first">Tuowen</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tobi</forename><surname>Popoola</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mary</forename><surname>Hall</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Catherine</forename><surname>Olschanowsky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michelle</forename><surname>Strout</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Architecture and Code Optimization</title>
+		<imprint>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="1" to="26" />
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="24,64.27,362.38,376.17,7.22;24,64.27,372.31,376.11,7.26;24,64.27,382.27,154.20,7.26" xml:id="b50">
+	<analytic>
+		<title level="a" type="main">ReACT: Redundancy-aware code generation for tensor expressions</title>
+		<author>
+			<persName coords=""><forename type="first">Tong</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ruiqin</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rizwan</forename><forename type="middle">A</forename><surname>Ashraf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roberto</forename><surname>Gioiosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gokcen</forename><surname>Kestor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vivek</forename><surname>Sarkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference on Parallel Architectures and Compilation Techniques</title>
+				<meeting>the International Conference on Parallel Architectures and Compilation Techniques</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="1" to="13" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

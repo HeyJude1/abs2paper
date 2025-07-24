@@ -1,0 +1,1832 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">CMLCompiler: A Unified Compiler for Classical Machine Learning</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2023-06-21">2023-06-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,122.42,131.56,39.46,10.59"><forename type="first">Xu</forename><surname>Wen</surname></persName>
+							<email>wenxu@ict.ac.cn</email>
+							<idno type="ORCID">0000-0002-0658-0208</idno>
+						</author>
+						<author>
+							<persName coords="1,274.15,131.56,64.11,10.59"><forename type="first">Wanling</forename><surname>Gao</surname></persName>
+							<email>gaowanling@ict.ac.cn</email>
+							<idno type="ORCID">0000-0002-3911-9389</idno>
+						</author>
+						<author>
+							<persName coords="1,442.12,131.56,56.63,10.59"><forename type="first">Anzheng</forename><surname>Li</surname></persName>
+							<email>lianzheng20g@ict.ac.cn</email>
+							<idno type="ORCID">0009-0008-1892-9420</idno>
+						</author>
+						<author>
+							<persName coords="1,118.62,225.81,46.46,10.59"><forename type="first">Lei</forename><surname>Wang</surname></persName>
+							<idno type="ORCID">0000-0001-6909-9561</idno>
+						</author>
+						<author>
+							<persName coords="1,277.58,225.81,56.83,10.59"><forename type="first">Zihan</forename><surname>Jiang</surname></persName>
+							<email>jiangzihan0512@gmail.com</email>
+							<idno type="ORCID">0000-0003-0632-7402</idno>
+						</author>
+						<author>
+							<persName coords="1,433.75,225.81,69.12,10.59;1,502.87,223.55,1.00,7.77"><forename type="first">Jianfeng</forename><surname>Zhan</surname></persName>
+							<email>zhanjianfeng@ict.ac.cn</email>
+							<idno type="ORCID">0000-0002-3728-6837</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution">Huawei Technologies Co., Ltd</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="department">Institute of Computing Technology</orgName>
+								<orgName type="institution">Chinese Academy of Sciences University of Chinese Academy of Sciences</orgName>
+								<address>
+									<settlement>Beijing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="department">ICS &apos;23</orgName>
+								<address>
+									<addrLine>June 21-23</addrLine>
+									<postCode>2023</postCode>
+									<settlement>Orlando</settlement>
+									<region>FL</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="department">ICS &apos;23</orgName>
+								<address>
+									<addrLine>June 21-23</addrLine>
+									<postCode>2023</postCode>
+									<settlement>Orlando</settlement>
+									<region>FL</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">CMLCompiler: A Unified Compiler for Classical Machine Learning</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 37th International Conference on Supercomputing</title>
+						<meeting>the 37th International Conference on Supercomputing						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="63" to="74"/>
+							<date type="published" when="2023-06-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">740A5107939D4CFEC9943388CDFA82BC</idno>
+					<idno type="DOI">10.1145/3577193.3593710</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Classical Machine Learning</term>
+					<term>Deep Learning</term>
+					<term>Compiler</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Classical machine learning (CML) occupies nearly half of machine learning pipelines in production applications. Unfortunately, it fails to utilize the state-of-the-practice devices fully and performs poorly. Without a unified framework, the hybrid deployments of deep learning (DL) and CML also suffer from severe performance and portability issues. This paper presents the design of a unified compiler, called CMLCompiler, for CML inference. We propose two unified abstractions: operator representations and extended computational graphs. The CMLCompiler framework performs the conversion and graph optimization based on two unified abstractions, then outputs an optimized computational graph to DL compilers or frameworks. We implement CMLCompiler on TVM. The evaluation shows CMLCompiler's portability and superior performance. It achieves up to 4.38× speedup on CPU, 3.31× speedup on GPU, and 5.09× speedup on IoT devices, compared to the stateof-the-art solutions -scikit-learn, intel sklearn, and hummingbird. Our performance of CML and DL mixed pipelines achieves up to 3.04x speedup compared with cross-framework implementations. The project documents and source code are available at https://www.computercouncil.org/cmlcompiler.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CCS CONCEPTS</head><p>• Computing methodologies → Machine learning; • Computer systems organization → Real-time systems.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">INTRODUCTION</head><p>Deep learning (DL) and classical machine learning (CML), collectively called machine learning (ML), have played an increasingly critical role in recent years. DL refers to those neural network models, such as convolutional neural networks (CNNs) <ref type="bibr" coords="1,505.05,471.36,13.36,7.94" target="#b23">[24]</ref>, recurrent neural networks (RNNs) <ref type="bibr" coords="1,407.91,482.31,13.27,7.94" target="#b27">[28]</ref>, and generative adversarial networks (GANs) <ref type="bibr" coords="1,346.42,493.27,13.22,7.94" target="#b15">[16]</ref>. Different from DL, CML represents a set of non-neural network models in ML, e.g., linear models <ref type="bibr" coords="1,471.94,504.23,13.28,7.94" target="#b36">[37]</ref>, decision trees <ref type="bibr" coords="1,542.58,504.23,13.29,7.94" target="#b25">[26]</ref>, random forests <ref type="bibr" coords="1,376.37,515.19,9.52,7.94" target="#b3">[4]</ref>, and support vector machines <ref type="bibr" coords="1,501.79,515.19,13.49,7.94" target="#b41">[42]</ref>. DL stands out because of its accuracy, while CML is still widely used for lower time and energy costs. Doris Xin et al. <ref type="bibr" coords="1,463.14,537.11,14.86,7.94" target="#b46">[47]</ref> analyze 3000 production ML pipelines at Google and find that 40% of them use CML models. Besides, many real-world applications adopt hybrid deployments of CML and DL <ref type="bibr" coords="1,416.25,569.99,10.48,7.94" target="#b1">[2]</ref> to guarantee high accuracy and low latency <ref type="bibr" coords="1,346.75,580.95,13.48,7.94" target="#b24">[25,</ref><ref type="bibr" coords="1,362.48,580.95,10.31,7.94" target="#b26">27,</ref><ref type="bibr" coords="1,375.04,580.95,10.31,7.94" target="#b35">36,</ref><ref type="bibr" coords="1,387.59,580.95,10.12,7.94" target="#b37">38]</ref>, e.g., DL models for feature embedding and CML models for classification or regression.</p><p>DL compilers, like TVM <ref type="bibr" coords="1,414.74,602.86,9.24,7.94" target="#b6">[7,</ref><ref type="bibr" coords="1,425.82,602.86,10.27,7.94" target="#b9">10,</ref><ref type="bibr" coords="1,437.94,602.86,10.05,7.94" target="#b22">23]</ref>, provide a structural approach to tackle the portability issue and facilitates wide deployment of DL models on a broad spectrum of devices like GPUs, FPGAs, and IoT devices and guarantees an appreciable performance. DL compilers use computational graphs as high-level abstractions, supporting a large variety of DL models. Meanwhile, DL compilers propose low-level abstractions such as tensor representation to generate executable code. For newborn hardware, the vendor just needs to provide hardware primitives, instead of a sophisticated highperformance library that is prohibitively costly. Based on the tensor representation and computational graphs abstractions, many optimizations <ref type="bibr" coords="2,91.56,306.97,9.33,7.94" target="#b7">[8,</ref><ref type="bibr" coords="2,103.15,306.97,10.31,7.94" target="#b21">22,</ref><ref type="bibr" coords="2,115.71,306.97,11.53,7.94" target="#b48">49]</ref> are proposed to boost performance, e.g., they provide sophisticated support for CPU processor architectures as the latter has different architectures, diverse core numbers, extended instructions, and cache sizes. However, despite its popularity and importance, CML suffers from severe portability and performance issues. State-of-the-practice and state-of-the-art CML frameworks <ref type="bibr" coords="2,195.94,372.73,13.60,7.94" target="#b16">[17,</ref><ref type="bibr" coords="2,211.78,372.73,10.35,7.94" target="#b28">29,</ref><ref type="bibr" coords="2,224.36,372.73,11.58,7.94" target="#b31">32]</ref> provide ad-hoc solutions, implementing each CML model on every hardware device case by case due to the lack of unified abstractions. These ad-hoc solutions raise considerable difficulties in developing a generalpurpose framework and optimization techniques to achieve optimal performance for every model. They either lack the support or only partially support various hardware devices, such as GPUs, FPGAs, and IoT devices. In addition, adding support for a model on a new hardware device needs great effort, more than several thousands of lines of codes <ref type="bibr" coords="2,116.23,471.36,13.49,7.94" target="#b12">[13]</ref>, let alone hundreds or thousands of models and devices. Moreover, they also face performance issues. Even on the CPUs -the most popular CML platform, the performance is unsatisfactory due to the lack of specific optimizations for advanced characteristics like multi-cores and SIMD. The hybrid deployment of CML and DL models faces more severe problems.</p><p>Our intuition is to enable CML to leverage DL's well-defined unified abstractions and highly mature compilers, optimization technologies, and frameworks. Unfortunately, it is not a trivial task. There are significant distinctions in operators and models between CML and DL. DL operators focus on tensors, while CML handles arrays, matrices, scalars, and tables. DL models are all neural network models, while CML models, such as decision trees, can hardly be represented as neural networks. Most DL models are expressible as flat sequences of operations without if-statements <ref type="bibr" coords="2,263.19,624.78,13.33,7.94" target="#b34">[35]</ref>, but if-statements frequently occur in CML models. Existing DL abstractions, such as tensor representation and computational graphs, can not directly represent CML operators and models. Those distinctions determine CML can hardly leverage the DL ecosystems directly. Several efforts attempt to support CML models on DL frameworks, e.g., TensorFlow <ref type="bibr" coords="2,165.83,690.53,10.69,7.94" target="#b0">[1]</ref> provides a CPU-based decision forest library TF-DF <ref type="bibr" coords="2,132.40,701.49,13.49,7.94" target="#b42">[43]</ref>. However, these attempts do not solve the generality and portability issue. They only support a narrower range of models, lacking support for GPUs and IoT devices.</p><p>This paper focuses on CML inference for the first step, considering its great significance that occupies nearly half of the total cost <ref type="bibr" coords="2,335.99,131.63,10.68,7.94" target="#b1">[2]</ref> and its wide applications in online serving, Internet of things (IoT), etc <ref type="bibr" coords="2,376.80,142.59,13.42,7.94" target="#b17">[18,</ref><ref type="bibr" coords="2,392.47,142.59,10.06,7.94" target="#b45">46]</ref>. We will extend our work to CML training in the near future. As illustrated in Fig. <ref type="figure" coords="2,469.74,153.55,3.13,7.94" target="#fig_0">1</ref>, we propose a unified compiler, CMLCompiler, for CML inference, which enables CML to leverage the mature DL ecosystems. At the core of CMLCompiler are two unified abstractions: operator representations and extended computational graphs (ECGs) and a compiler framework. Operator representations convert CML operators into tensor formats, while an ECG organizes these converted operators in an optimizationfriendly way. The two unified abstractions define how to convert and translate CML models into DL computational graphs, which can be recognized and executed by DL frameworks and compilers. The CMLCompiler framework consists of four modules -operator converter, model parser, graph optimizer, and graph translator. The CMLCompiler framework performs the conversion and graph optimization based on two unified abstractions, then outputs an optimized DL computational graph to DL compilers or frameworks. CMLCompiler can also optimize the mixed pipelines of CML and DL. As TVM provides portability and sophisticated optimizations, we choose to implement CMLCompiler on TVM. Currently, it supports up to 35 CML models.</p><p>This paper makes the following contributions:</p><p>• We propose two unified abstractions -operator representations and extended computational graphs-to represent CML operators and models. The remainder of the paper is organized as follows. Section 2 introduces the motivation. Section 3 introduces unified abstractions. Section 4 shows design and implementation. Section 5 presents our evaluation. Section 6 illustrates the related work. Finally, we draw a conclusion in Section 7.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">MOTIVATION</head><p>CML faces severe portability and performance issues. Fig. <ref type="figure" coords="2,534.41,657.66,4.24,7.94" target="#fig_1">2</ref> compares the performance of sklearn, the most widely used CML framework on GitHub <ref type="bibr" coords="2,380.12,679.58,17.14,7.94" target="#b32">[33]</ref>-against CMLCompiler leveraging DL compilers. We find that sklearn can not support GPUs and only supports IoT devices partially. Adding support for a new hardware device needs great effort due to the ad-hoc implementations. For example, adding support for random forest on GPU needs 2.7k lines of code <ref type="bibr" coords="3,83.13,279.11,13.49,7.94" target="#b12">[13]</ref>. Many models and hardware devices need to be supported, requiring hundreds or thousands of more effort. Moreover, due to the lack of compilation support for CPU features, sklearn has poor performance. As shown in Fig. <ref type="figure" coords="3,200.88,311.99,3.05,7.94" target="#fig_1">2</ref>, CMLCompiler achieves 2.3x speedup by utilizing AVX2 through compilation compared with sklearn. Other CML frameworks such as Spark MLlib <ref type="bibr" coords="3,264.12,333.91,14.60,7.94" target="#b28">[29]</ref> and H2O <ref type="bibr" coords="3,73.28,344.87,14.81,7.94" target="#b16">[17]</ref> face the same problems. Our solution is to propose unified abstractions to utilize DL compilers and frameworks, achieving portability and high performance.</p><p>CML and DL models are often deployed hybrid in NLP <ref type="bibr" coords="3,278.15,377.74,13.50,7.94" target="#b35">[36]</ref>, intelligent healthcare <ref type="bibr" coords="3,134.22,388.70,13.39,7.94" target="#b37">[38]</ref>, recommendation systems <ref type="bibr" coords="3,249.08,388.70,13.39,7.94" target="#b24">[25]</ref>, etc., especially in scenarios with limited computational power and small datasets. Many of them are deployed on heterogeneous hardware devices for online serving. As there is no unified system, different frameworks are deployed with three disadvantages. First, this limits the portability. If one framework fails on the target device, the whole pipeline corrupts. Second, there are extra costs due to data conversions across frameworks. Third, it is hard to make optimizations across different frameworks. Using a unified framework can overcome these disadvantages, so we add the support for hybrid deployment of CML and DL in CMLCompiler.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">THE UNIFIED ABSTRACTIONS</head><p>CMLCompiler takes CML models as input and returns DL computational graphs as output, utilizing DL frameworks or compilers to compile and deploy them. At the core of CMLCompiler are two unified abstractions. Operator representations are used to represent CML operators in tensor format, as shown in Section 3.1. Extend computational graph (ECG) organizes operator representations in an optimization-friendly way and can be used to represent CML models, as shown in Section 3.2. Section 3.3 shows the supported algorithms and extensions for other algorithms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Operator Representation</head><p>An operator representation uses a combination of one or more DL operators with tensors as input and output to represent a CML operator. We convert CML operators into DL operators and wrap them in the format of operator representations. Data in CML has mainly four formats: arrays, matrices, scalars, and tables <ref type="bibr" coords="3,242.14,701.49,13.49,7.94" target="#b43">[44]</ref>. Matrices and arrays are regarded as two types of tensors whose operators can naturally be converted into DL operators. When CML models deal with tables, they take numeric data from tables and operate it, which can also be regarded as scalars. Hereby, we focus on the operators on scalars.</p><p>3.1.1 Operator categories and corresponding representations. As shown in Table <ref type="table" coords="3,378.16,159.03,3.13,7.94">1</ref>, we classify CML operators into six categories and provide operator representations, respectively.</p><p>(1) Assignment operators assign values to variables. If we assign n values 𝑣 1 , 𝑣 2 , ..., 𝑣 𝑛 to n variables 𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 , we organize these variables and values in two tensors 𝑋 = [𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 ] and 𝑉 = [𝑣 1 , 𝑣 2 , ..., 𝑣 𝑛 ]. Then we assign tensor V to tensor X to replace n scalar assignments. Tensor assignments benefit memory copy which stores data in block.</p><p>(2) Swap operators swap two or more variables. These variables can be represented in a tensor format and use reorganization operators such as 𝑟𝑒𝑠ℎ𝑎𝑝𝑒 to swap the elements.</p><p>(3) Basic arithmetic operators refer to those arithmetic calculations based on scalars, such as 𝑎𝑑𝑑, 𝑠𝑢𝑏, 𝑚𝑢𝑙, and 𝑑𝑖𝑣. We use element-wise arithmetic operators based on tensors to replace them, which can utilize SIMD instructions better.</p><p>(4) Aggregation operators refer to operators that calculate aggregates among many scalars, such as 𝑚𝑖𝑛, 𝑚𝑎𝑥, 𝑠𝑢𝑚, and 𝑎𝑣𝑔. Reduction operators can be used to accomplish that.</p><p>(5) Comparison operators make a comparison between scalars and return True or False, such as 𝑙𝑒𝑠𝑠, 𝑒𝑞𝑢𝑎𝑙, and 𝑔𝑟𝑒𝑎𝑡𝑒𝑟 . Comparisons with the same operator can be represented in a tensor format and use an element-wise comparison to replace. <ref type="bibr" coords="3,327.92,400.12,9.32,7.94" target="#b5">(6)</ref> Conditional operators are used to represent if-else statements, in the form of 𝑖 𝑓 (𝑒𝑥𝑝𝑟 1) 𝑒𝑥𝑝𝑟 2 𝑒𝑙𝑠𝑒 𝑒𝑥𝑝𝑟 3, where 𝑒𝑥𝑝𝑟 1 is a comparison operator. If 𝑒𝑥𝑝𝑟 2 and 𝑒𝑥𝑝𝑟 3 are all assignment or arithmetic operators, we convert all three expressions into tensors. However, the situation gets tricky if one of 𝑒𝑥𝑝𝑟 2 or 𝑒𝑥𝑝𝑟 3 is still a conditional operator. We call those operators sequential conditional operators. Sequential conditional operators may contain many conditions, where each element in a tensor may have quite different decision paths. The complexity of decision paths makes it difficult to convert those operators into tensor operators. Those frequent if-else statements perform poorly on hardware devices such as GPUs and ASICs. Sequential conditional operators are the most delicate, and we defer their discussion later.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.2">Conditional operators representation.</head><p>We analyze those widely used CML models and find that sequential conditional operators mainly occur in tree-based models. So we use decision tree as an example to introduce the representation of conditional operators in detail, as shown in Fig. <ref type="figure" coords="3,403.06,591.90,3.04,7.94" target="#fig_4">3</ref>. We use the combination of DL operators to represent those sequential conditional operators.</p><p>The top-right shows the original decision tree. The input data is a list of samples; each has many features. 𝐼 refers to internal nodes, numbered in the order of Level Order Traversal. 𝐿 refers to leaf nodes, numbered in the order of In-Order Traversal. Each leaf node is an assignment operator, reaching which node determines the final result. The left shows the corresponding CML operator graph. Scalar-based assignments assign features 𝐹 𝑗 to temporary variables 𝑥 𝑖 , scalar-based comparisons compare 𝑥 𝑖 with thresholds 𝑇 𝑖 , and conditional operators determine the next nodes to be reached. These Table <ref type="table" coords="4,77.39,85.73,3.38,7.70">1</ref>: The summary of operator representation. Each operator representation represents a CML operator. Scalars are marked as lower-case letters, while tensors are marked as upper-case letters. EW is short for element-wise.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CML operators in scalar format</head><p>Operator Representation in tensor format Operator Type Expressions Operator Type Expressions Assignment</p><formula xml:id="formula_0">𝑥 1 ← 𝑣 1 ; 𝑥 2 ← 𝑣 2 ; ...; 𝑥 𝑛 ← 𝑣 𝑛 Assignment 𝑋 = [𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 ]; 𝑉 = [𝑣 1 , 𝑣 2 , ..., 𝑣 𝑛 ]; 𝑋 ← 𝑉 Swap 𝑥 1 ← 𝑥 2 ; 𝑥 2 ← 𝑥 1 ; Reorganization 𝑋 = [𝑥 1 , 𝑥 2 ]; 𝑟𝑒𝑠ℎ𝑎𝑝𝑒 (𝑋 ); Basic Arithmetic 𝑥 1 + 𝑦 1 ; 𝑥 2 + 𝑦 2 ; ...; 𝑥 𝑛 + 𝑦 𝑛 EW Arithmetic 𝑋 = [𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 ]; 𝑌 = [𝑦 1 , 𝑦 2 , ..., 𝑦 𝑛 ]; 𝑋 + 𝑌 Aggregation 𝑠𝑢𝑚(𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 ) Reduction 𝑋 = [𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 ]; 𝑠𝑢𝑚(𝑋 ) Comparison 𝑥 1 &lt; 𝑦 1 ; 𝑥 2 &lt; 𝑦 2 ; ...; 𝑥 𝑛 &lt; 𝑦 𝑛 EW Comparison 𝑋 = [𝑥 1 , 𝑥 2 , ..., 𝑥 𝑛 ]; 𝑌 = [𝑦 1 , 𝑦 2 , ..., 𝑦 𝑛 ]; 𝑋 &lt; 𝑌 Conditional 𝑖 𝑓 (𝑒𝑥𝑝𝑟 1) 𝑒𝑥𝑝𝑟 2 𝑒𝑙𝑠𝑒 𝑒𝑥𝑝𝑟 3 Described in Section 3.1.2 F 5 &lt; T 1 F 1 &lt; T 2 F 4 &lt; T 3 L 2 F 2 &lt; T 4 L 1 L 3 L 4 L 5 True False I 1 I 2 I 3 I 4 F 5 &lt; T 1 F 1 &lt; T 2 F 4 &lt; T 3 L 2 F 2 &lt; T 4 L 1 L 3 L 4 L 5</formula><p>True False  </p><p>Operator Representation  <ref type="table" coords="4,551.40,470.46,3.39,7.70">2</ref>.</p><p>Table <ref type="table" coords="4,78.31,496.36,3.52,7.70">2</ref>: The properties of weights in Fig. <ref type="figure" coords="4,223.97,496.36,3.47,7.70" target="#fig_4">3</ref>. 𝑁 𝑆 , 𝑁 𝐹 , 𝑁 𝐼 , and 𝑁 𝐿 refer to the number of samples, features, internal nodes, and leaf nodes, respectively. 𝐼𝑛𝑝𝑢𝑡 ∈ R 𝑁 𝑆 ×𝑁 𝐹 means 𝑁 𝑆 samples, each has 𝑁 𝐹 features. 𝑊 1 ∈ {0, 1} 𝑁 𝐹 ×𝑁 𝐼 captures the relationship between features and internal nodes. 𝑊 2 ∈ R 𝑁 𝐼 is the thresholds used in internal nodes. 𝑊 3 ∈ {0, 1} 𝑁 𝐼 ×𝑁 𝐿 represents the structure between internal nodes and leaf nodes. 𝑂𝑢𝑡𝑝𝑢𝑡 ∈ N 𝑁 𝑆 returns the leaf node index each sample reaches. Dtype is the data type of weights. Sparsity is the ratio of non-zero data to all data in weights.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Definition</head><p>Dtype Sparsity</p><formula xml:id="formula_3">𝑊 1 [𝑖] [ 𝑗] = 1, 𝐹 𝑖 ∈ 𝐶𝑜𝑛𝑑𝑖𝑡𝑖𝑜𝑛(𝐼 𝑗 ) 0, otherwise bool 1 𝑁 𝐹 𝑊 2 [𝑖] = 𝑇ℎ𝑟𝑒𝑠ℎ𝑜𝑙𝑑 (𝐼 𝑖 ) float32 1 𝑊 3 [𝑖] [ 𝑗] = 0, 𝐿 𝑗 ∈ 𝐿𝑒 𝑓 𝑡𝑆𝑢𝑏𝑇 𝑟𝑒𝑒 (𝐼 𝑖 ) 1, otherwise bool [ 1 2 , 1 − 1 𝑁 𝐿 ]</formula><p>scalar-based CML operators are converted to operator representations, as shown in the bottom-right in Fig. <ref type="figure" coords="4,479.12,509.38,3.13,7.94" target="#fig_4">3</ref>, and the definitions and properties of weights are shown in Table <ref type="table" coords="4,483.06,520.34,3.02,7.94">2</ref>. Multi Scalar-based assignments are converted to one Tensor-based assignment. ((1) in Fig. <ref type="figure" coords="4,332.68,542.26,3.35,7.94" target="#fig_4">3</ref>) The data processing order differs from its layout in the tensor, we use the 𝑟𝑒𝑜𝑟𝑔𝑎𝑛𝑖𝑧𝑎𝑡𝑖𝑜𝑛 operator to change the tensor layout, which is replaced by 𝑚𝑎𝑡𝑚𝑢𝑙 with 0-1 matrix 𝑊 1 . ((1) in Fig. <ref type="figure" coords="4,551.76,564.18,3.49,7.94" target="#fig_4">3</ref>) Multi Scalar-based comparisons are converted to one Tensor-based element-wise comparison. ((2) in Fig. <ref type="figure" coords="4,454.86,586.10,3.40,7.94" target="#fig_4">3</ref>) Sequential conditional operators are represented by the combination of 𝑚𝑎𝑡𝑚𝑢𝑙 and 𝑎𝑟𝑔𝑚𝑎𝑥. ((3) in Fig. <ref type="figure" coords="4,357.56,608.01,3.47,7.94" target="#fig_4">3</ref>) Output returns the leaf nodes every sample reaches. Finally, a decision tree is converted to the combination of three operator representations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>3.1.3</head><p>The features of CML operator representations. As described above, we represent CML operators in the format of operator representations. These operator representations have unique features different from operators in DL models. First, the weights of DL operators and CML operator representations have different meanings. The weights in DL models are all learnable parameters. Without approximate optimizations such as pruning and quantization, those weights are dense, and the data type (dtype) should be float32 to ensure accuracy. Many weights of CML operator representations have other meanings, such as representing the structure of conditional operators. Those weights are sparse and can naturally be expressed as low-precision dtypes such as bool. The natural sparse features bring optimizations described in Section 4.3.2.</p><p>Second, the frequent operators in DL and CML are not the same. Almost all operators in DL take float32 as input and return float32 as output. CML uses many comparison operators, such as 𝑙𝑒𝑠𝑠, 𝑒𝑞𝑢𝑎𝑙, and 𝑔𝑟𝑒𝑎𝑡𝑒𝑟 , which rarely occur in DL models. Those comparison operators take float or integer as input and return bool, bringing remarkable changes in the dtype of input and output, which can be used to make optimizations as described in Section 4.3.1. Both DL and CML models use indices operators, which compare input and returns indices, such as 𝑎𝑟𝑔𝑠𝑜𝑟𝑡 and 𝑎𝑟𝑔𝑚𝑎𝑥. Those indices operators have mathematical properties that can be used to make graph-level optimizations, as described in Section 4.3.3. These optimizations can be ignored in DL models with dozens or hundreds of layers but are helpful for those CML models with fewer layers.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Extended Computational Graph</head><p>This section introduces extended computational graph (ECG), which organizes operator representations in an optimization-friendly way and can be used to represent CML models. ECG is an extension based on DL computational graph. In general, a DL computational graph is represented as a directed graph where nodes represent operations on tensors or program inputs and edges represent data dependencies between operations <ref type="bibr" coords="5,179.06,407.86,9.37,7.94" target="#b6">[7]</ref>. From the perspective of the DL frameworks and compilers, computational graphs are dense and float32 by default, such as neural network models. Using approximate optimizations like pruning and quantization brings sparse and low-precision data to all operators and weights. These optimizations cause a decrease in accuracy and bring extra computation, such as calibration. When we convert CML operators to operator representations, part of those converted operators and weights are sparse and low-precision naturally. Using DL computational graphs to represent CML models directly is not precise enough and ignores many optimization opportunities due to the data type and sparse features. So we extend the computational graph in the DL systems into extended computational graph (ECG) as the unified abstraction for CML models.</p><p>Before introducing ECG, first, we present more details about data type (dtype) and sparsity. We define the partial order relation for dtypes used in our work:</p><formula xml:id="formula_4">𝑓 𝑙𝑜𝑎𝑡32 &gt; 𝑖𝑛𝑡32/𝑓 𝑙𝑜𝑎𝑡16 &gt; 𝑖𝑛𝑡16 &gt; 𝑖𝑛𝑡8 &gt; 𝑖𝑛𝑡4 &gt; 𝑏𝑜𝑜𝑙</formula><p>The lower dtype can be converted into a higher dtype without accuracy loss, while a backward conversion with accuracy loss is forbidden. Using lower dtype computation, such as int8 matmul, can speed up and reduce memory usage. However, there are many limitations to dtype optimization. For example, the inputs of the same operator should have the same dtype; thus, the dtype of operators depends on the largest dtype of inputs. Besides, many hardware devices have extended instructions based on specific dtypes. For example, an Intel processor speeds up int8 computation using AVX Sparsity is defined as the ratio of non-zero data to all data. If data sparsity is relatively small, we take it as sparse data and store it in a compressed sparse row (CSR) format. Using sparse operators to handle those sparse data can perform better than dense operators. Taking advantage of sparsity influences optimization greatly, so we add sparsity as another property for ECG.</p><p>We classify the inputs of an operator into two categories: intermediate results and weights. Intermediate results are other operators' outputs and can only be handled during runtime. Input data is the first intermediate result in ECG, while output data is the last. Intermediate results are represented as {𝑠𝑝𝑎𝑟𝑠𝑖𝑡𝑦, 𝑑𝑡𝑦𝑝𝑒, 𝑡𝑒𝑛𝑠𝑜𝑟 }. If we want to change the dtype of intermediate results, we should add dtype converting operator in the ECG.</p><p>Weights are model parameters that can be loaded from trained models. Weights can be handled both during compilation and runtime, while a proper transformation during compilation can reduce runtime costs. Weights are represented as {𝑠𝑝𝑎𝑟𝑠𝑖𝑡𝑦, 𝑠𝑚𝑎𝑙𝑙𝑒𝑠𝑡_𝑑𝑡𝑦− 𝑝𝑒, 𝑎𝑐𝑡𝑢𝑎𝑙_𝑑𝑡𝑦𝑝𝑒, 𝑡𝑒𝑛𝑠𝑜𝑟 }. Smallest_dtype is the smallest dtype for weights without accuracy loss, actual_dtype is the dtype actually used. Smallest_dtype depends on the property of weights, while actual_dtype is fixed based on smallest_dtype and operators. As shown in Fig. <ref type="figure" coords="5,369.51,460.40,3.07,7.94" target="#fig_4">3</ref>, 𝑊 1 represents the relationship between input features and internal nodes for decision trees, which is a 0-1 matrix. The smallest_dtype of 𝑊 1 is bool. However, W1 is multiplied by input data with a dtype of float32. If we choose bool as the ac-tual_dtype, 𝑊 1 will be converted to float32 during runtime. To reduce the execution time in runtime, we should convert 𝑊 1 to float32 during compilation, so we set actual_dtype as float32 rather than bool.</p><p>Operators are represented in the form of {𝑤𝑒𝑖𝑔ℎ𝑡𝑠, 𝑖𝑛𝑡𝑒𝑟𝑚𝑒𝑑𝑖𝑎𝑡𝑒_ 𝑟𝑒𝑠𝑢𝑙𝑡𝑠, 𝑢𝑠𝑒_𝑠𝑝𝑎𝑟𝑠𝑒, 𝑡𝑦𝑝𝑒, 𝑑𝑡𝑦𝑝𝑒, 𝐷𝐿_𝑜𝑝𝑒𝑟𝑎𝑡𝑜𝑟 }. Weights and in-termediate_results are inputs of operators. Use_sparse is a flag of whether using the sparse operator or not, which is closely related to sparse operator replacing optimization described in Section 4.3.2. Operator type is the type of operator. As shown in Table <ref type="table" coords="5,538.15,602.86,3.13,7.94" target="#tab_1">3</ref>, we divide operators used in ECG into five categories. Comparison operators refer to those operators that compare two tensors and return bool tensors. Indices operators refer to those operators that return tensors' indices based on specific conditions. Those two kinds of operators are dtype-lowering operators, the output dtype of which is smaller than the input. Models without those operators, such as most DL models, use the same dtype through the whole graphs, where dtype optimizations cannot be used without approximate optimization. CML models make much use of those operators, which </p><formula xml:id="formula_5">∀𝑥 1 ≤ 𝑥 2 =⇒ 𝑓 (𝑥 1 ) ≤ 𝑓 (𝑥 2 )</formula><p>A series of monotonic operators followed by an indices operator is mathematically equivalent to the indices operators alone. Those properties provide more optimizations, as described in Section 4.3.3. Reduction operators calculate aggregates over input. Arithmetic operators refer to other arithmetic calculations. Operator dtype is the operators' data type, such as int8 matmul or float32 matmul. Operator dtype depends on the dtype of weights and intermedi-ate_results. DL_operator is the native definition of operators in DL computational graphs, which we use to translate ECG to DL computational graphs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Supported Algorithms and Extension for Other Algorithms</head><p>CMLCompiler supports 35 CML algorithms nowadays, as shown in Table <ref type="table" coords="6,84.96,580.95,3.02,7.94" target="#tab_2">4</ref>, covering most of the popular CML algorithms <ref type="bibr" coords="6,261.22,580.95,13.26,7.94" target="#b33">[34]</ref>. Our work can also be extended to other algorithms, such as clustering and matrix decomposition. Most CML algorithms use operators categorized in Section 3.1.1, each of which can be converted to corresponding Operator Representations-our low-level abstractions, guaranteeing our extensibility. We take Kmeans as an example. Kmeans use basic arithmetic operators to calculate the distance between nodes, which can be converted to element-wise arithmetic operators and use aggregation operators to make clustering, which can be converted to reduction operators. When all operators of a CML algorithm are converted to Operator Representations, it can utilize our work to compile and make optimizations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CMLCompiler CMLCompiler</head><p>Operator  </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">DESIGN AND IMPLEMENTATION</head><p>This section illustrates the design and implementation of CMLCompiler, as shown in Fig. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Model Parser</head><p>Model Parser converts operator representations into an ECG. Operators in an operator representation are initialized as nodes in an ECG, the data structure of which is defined in Section 3.2. Operator.weights and operator.intermediate_results are set according to data dependencies, and edges are built between nodes. Operator.use_sparse and operator.dtype are set as False and Unknown, respectively. Operator.type is set according to operator type, which is defined in Table <ref type="table" coords="7,119.75,243.71,3.01,7.94" target="#tab_1">3</ref>. Weights and intermediate_result are initialized after that. Weight.sparsity is set as the ratio of non-zero data and all data, known during compilation. Weight.smallest_dtype is set as the smallest dtype without accuracy loss, and weight.actual_dtype is initialized the same. Intermediate_result.sparsity and intermedi-ate_result.dtype are set according to operator. When all operators are visited, the ECG is established.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Graph Optimizer</head><p>Graph Optimizer performs graph-level optimizations, using a functionally equivalent transformation for ECGs. These optimizations are based on the features of CML models and do not influence accuracy. There are three specific graph rewriting optimizations: dtype rewriting, sparse operator replacing, and redundant elimination. As shown in Fig. <ref type="figure" coords="7,127.20,515.19,6.83,7.94" target="#fig_7">5a</ref>, the top is the ECG of decision trees before optimization; many details are hidden. Weight 𝑊 3 represents the relationship between leaf nodes and internal nodes for decision trees, which is a matrix only containing 0 and 1. The smallest_dtype of 𝑊 3 is bool. The output of 𝑔𝑟𝑒𝑎𝑡𝑒𝑟 operator has a dtype of bool as well. So the following matrix multiplication (matmul) operator can use a dtype of bool rather than float32. Intel processors speed up int8 computation using AVX instruction, while bool cannot benefit from that feature. So we convert the dtype of matmul to int8 according to hardware specification. In Fig. <ref type="figure" coords="7,235.68,613.82,6.96,7.94" target="#fig_7">5a</ref>, below is the ECG after graph rewriting. Those white weights and operators use float32, while gray weights and operators use int8. Now we introduce the dtype rewriting principle in detail. Algorithm 1 shows the procedure of dtype rewriting:</p><p>(1) Visit all operators in ECG. For each operator, dtype is set as the largest dtype of all inputs. After that, operator dtype is converted to the dtype which can utilize hardware's SIMD instructions best. We keep a list of hardware specifications to modulate operator dtype.</p><p>In order to guarantee accuracy, dtype cannot get smaller. Then we modulate operator implementation based on operator dtype.</p><p>(2) When operator dtype is fixed, we set the input dtype. The dtype of weights is set the same as the operator, reducing dtype conversion in runtime. The dtype of intermediate results cannot be converted during compilation. So we add dtype converting operator, .i.e, cast, before the operator.</p><p>We explain the differences between dtype rewriting for CML models and model quantization for DL models. Quantization is an approximate algorithm for DL models that causes a decrease in accuracy and brings extra computation, such as calibration. Dtype rewriting for CML models is based on the properties of CML, converting dtype of operators and weights with no accuracy decrease and extra computation. Replacing dense operators with sparse operations can speed up as well. The sparsity of input data can be known until runtime, while the sparsity of weights can be known during compilation. So we convert the data format of weights rather than input data. Different hardware devices have different support for sparse operators. For example, CPUs can benefit from sparse computation while GPUs have little effect. So we set a threshold based on hardware specification. If weight.sparsity is smaller than the threshold, we store it in a compressed sparse row (CSR) format. Then we convert the corresponding operator into a sparse implementation. An example is shown in Fig. <ref type="figure" coords="7,534.74,584.69,7.04,7.94" target="#fig_7">5b</ref>, we convert 𝑊 1 and the corresponding matmul to sparse.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.3">Redundant elimination.</head><p>Redundant elimination eliminates those operators who do not influence final results due to their mathematical properties. For example, a series of monotonic operators followed by an indices operator is mathematically equivalent to the indices operators alone. For each operator in ECGs, we check its operator type. If another monotonic operator follows a monotonic operator, we fuse them. We eliminate the monotonic operator if an indices operator follows it. An example is shown in Fig. <ref type="figure" coords="7,534.36,690.53,6.63,7.94" target="#fig_7">5c</ref>, the softmax before argmax is eliminated.   </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Graph Translator</head><p>Graph Translator converts the optimized ECG into DL computational graph based on ECG topology and chooses the proper operator implementation. DL frameworks or compilers provide different implementations for the same operator. Graph Translator utilizes four properties: 𝑢𝑠𝑒_𝑠𝑝𝑎𝑟𝑠𝑒, 𝑡𝑦𝑝𝑒, 𝑑𝑡𝑦𝑝𝑒, and 𝐷𝐿_𝑜𝑝𝑒𝑟𝑎𝑡𝑜𝑟 in ECG to choose the most proper implementation. Operator implementation can also be modulated based on hardware information. We can utilize hardware features to optimize operators. If the hardware supports extended instructions like AVX, we use them to speed up operators. If the backend is TVM, we just pass the precise 𝑚𝑐𝑝𝑢 and 𝑚𝑎𝑡𝑡𝑟 information and utilize TVM to make operator-level optimizations. DL frameworks or compilers take DL computational graphs as input and make more optimizations, finally compiling them into executable modules.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.5">Hybrid Deployment of CML and DL with a Unified Framework</head><p>We convert those CML and DL hybrid applications under a unified framework to reduce the cost of switching frameworks and provide an opportunity for end-to-end optimizations, as shown in Fig. <ref type="figure" coords="8,274.60,577.25,3.01,7.94" target="#fig_8">6</ref>. We load models from PyTorch and sklearn and convert them into ECG subgraphs. We build edges according to data dependency and merge those subgraphs in a single ECG. Then we can use optimizations both in our work and DL compilers. Finally, we compile and deploy it on various hardware devices.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.6">Implementation</head><p>Due to the benefits in portability and performance, we implement CMLCompiler on the basis of TVM. The intermediate representations and transforms are all written in python. We read trained models from CML frameworks such as sklearn and convert them into operator representations, implementing them in the format of TVM relay functions and storing their weights in TVM arrays. We wrap those relay functions in the format of ECGs. After optimizations in Section 4.3, we convert ECGs into TVM's IRModules.</p><p>Then we utilize TVM to make more optimizations and compile to executable modules based on specific hardware targets. We use cross-compilation to support a broad spectrum of hardware devices. We deploy them on lightweight runtime based on TVM runtime and make inferences on various hardware devices.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">EVALUATION</head><p>This section summarizes the evaluation. Section 5.1 shows the experimental setup. Section 5.2 evaluates the performance of graph rewriting optimizations based on ECGs. Section 5.3 compares our work with the state-of-the-art frameworks. Section 5.4 evaluates the hybrid deployment of CML and DL.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Experimental Setup</head><p>We deploy a server node equipped with two Xeon E5-2620 V3 (Haswell) CPUs, an Nvidia Titan RTX GPU, and 64 GB memory to conduct the experiments on CPU and GPU. Each CPU contains six physical cores. The GPU contains 4608 Cuda cores and 24 GB memory. The operating system is Ubuntu 16.04, and the other software includes TVM 0.8, PyTorch 1.8.1, hummingbird 0.3.1, scikit-learn 1.0.1, and CUDA 10.2. For the IoT experiments, we use Raspber-rypi4b with Raspbian 10 operating system and deploy the above software with the same version. We use YearPrediction <ref type="bibr" coords="8,519.93,524.34,14.68,7.94" target="#b11">[12]</ref> as the dataset, with 515345 samples and 90 features. We use 80% data to train models and 20% data to make inferences. We run all the experiments five times and use the average as the final results. We test hummingbird <ref type="bibr" coords="8,371.51,568.18,14.85,7.94" target="#b29">[30]</ref> using both two backends (PyTorch and TVM) and select their best results.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Optimizations</head><p>This section evaluates graph rewriting optimizations based on ECGs, as described in Section 4.3. These optimizations: dtype rewriting, sparse operator replacing, and redundant elimination, can work together and produce cumulative optimization effects. They can also coexist with the optimizations in TVM. We choose four typical tree models: DecisionTreeClassifier, RandomForestClassifier, ExtraTreeClassifier, and ExtraTreesClassifier, as well as two typical linear models: LogisticRegression and SGDClassifier. We evaluate the dtype rewriting and sparse operator replacing for tree models, Figure <ref type="figure" coords="9,82.33,234.12,3.50,7.70">7</ref>: Graph Rewriting Optimizations. Take sklearn as the baseline. "base" means our work without optimizations. "DR" means using dtype rewriting. "SOR" means using sparse operator replacing. "RE" means using redundant elimination. "×" means unsupported. For those models not supported by sklearn on IoT devices, take our result without optimzations as the baseline.</p><p>and redundant elimination for linear models according to their unique patterns.</p><p>Fig. <ref type="figure" coords="9,78.70,316.88,8.10,7.94">7a</ref> shows the result on CPU. For tree models, using our work without optimizations has a 1.31x-2.54x speedup compared with sklearn; this is due to our abstractions which utilize optimizations of TVM, including better utilization of SIMD instructions and multi cores. Using dtype rewriting and sparse operator replacing bring 1x-1.21x and 1.26x-1.75x speedup, respectively, achieving 1.27x-2.11x speedup together, 1.84x-4.44x faster than sklearn. linear models, our work without optimizations runs slower than sklearn. However, using redundant elimination brings 1.22x-1.51x speedup; the result after our optimizations is 1.06x-1.14x faster than sklearn.</p><p>Fig. <ref type="figure" coords="9,79.43,426.47,8.72,7.94">7b</ref> shows the result of IoT devices. Note that sklearn lacks enough support for IoT devices. For example, 64-bit tree models trained on servers cannot be executed on Raspberrypi4b with a 32-bit operating system. Retraining those models in 32-bit format on Raspberrypi4b from scratch takes more time, so we regard those models as unsupported, marked as cross. So we take our work without optimizations as the baseline. Using dtype rewriting and sparse operator replacing bring 1.01x-1.33x and 1.23x-2.3x speedup, respectively, achieving 1.49x-2.53x speedup together. For linear models, our work without optimizations achieves a 1.71x-1.84x speedup. Using redundant elimination brings 1.08x-1.14x more speedup, 1.95x-1.98x faster than sklearn. The computation part of GPU is less than 20%, so those optimizations play a limited role on GPU. In conclusion, CML models can benefit from both TVM's optimizations and our optimizations and achieve obvious speedup.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Overall Results</head><p>This section evaluates 14 typical CML algorithms covering preprocessing algorithms, linear models, tree-based models, and SVMs, on CPU, GPU, and IoT devices, compared with state-of-the-art frameworks including sklearn, intel extension for sklearn <ref type="bibr" coords="9,262.03,657.66,13.24,7.94" target="#b19">[20]</ref>, and hummingbird. It contains two parts: batch experiments for all data and query experiments for a single record.</p><p>The differences between the results of CMLCompiler and sklearn are all less than 1×10 −5 , which means that our work does not affect the accuracy. The outputs on different hardware are all the same, so we focus on performance hereinafter. Table <ref type="table" coords="9,488.73,305.92,4.15,7.94" target="#tab_7">5</ref> shows the performance of batch experiments. On CPU, our work reflects the best performance on 12 algorithms out of 14, achieving 1.02x-10.57x speedup compared with sklearn, 1.14x-4.38x speedup compared with hummingbird, and 1.44x-8.47x speedup compared with intel sklearn. On GPU, our work achieves competitive performance compared with hummingbird. Our work performs better on 11 algorithms out of 14, with a 1.11x-3.31x speedup. On an IoT device Raspberrypi4b, our work performs better on 13 algorithms out of 14, with a 1.28x-5.09x speedup.</p><p>Table <ref type="table" coords="9,349.24,415.51,4.09,7.94" target="#tab_8">6</ref> shows the performance of query experiments for a single record. On CPU, our work achieves the best performance on 11 algorithms out of 14, with a 1.36x-170.68x speedup compared with sklearn, a 1.56x-4.47x speedup compared with hummingbird, and a 1.31x-169.43x speedup compared with intel sklearn. Our work has better performance on GPU on 10 algorithms out of 14 compared with hummingbird, with a 1.41x-4.64x speedup. Our latency on Raspberrypi4b does not differ much compared with sklearn. However, we perform better in model support.</p><p>In conclusion, we have advantages in both batch and query experiments for all three hardware devices. Many models in sklearn only support a single core and cannot fully utilize the SIMD instructions. We perform better than sklearn and intel sklearn due to better utilization of multi-cores and SIMD instructions through compilation. Hummingbird uses both PyTorch and TVM as backends, where TVM performs better in most cases of our evaluations. It implements models in PyTorch and converts them into TVM using 𝑓 𝑟𝑜𝑚_𝑝𝑦𝑡𝑜𝑟𝑐ℎ API. This conversion is not direct and efficient enough, causing a performance decrease. Besides, hardware information is missed during conversion, which limits the optimizations of TVM for hummingbird. We map ECGs into relay operators directly and select the most efficient implementation based on ECGs and hardware specification information. Additionally, our abstractions bring more optimizations, as described in Section 4.3, bringing up to 2.53x speedup, working together to achieve better performance. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Hybrid Deployment of CML and DL</head><p>This section shows three hybrid deployment cases of CML and DL. As the baselines, without a unified framework, a DL framework is used to implement DL algorithms, while a CML framework is used to implement CML algorithms. Our work converts CML and DL models into a single ECG, making optimizations and compiling them to various hardware devices. We test the latency of a single query, which is essential in real-world applications.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.1">Sentence Sentiment Classification.</head><p>The first is a sentence sentiment classification case, which uses Bert to embed English sentences and logistic regression to make a classification <ref type="bibr" coords="10,263.29,701.49,13.36,7.94" target="#b35">[36]</ref>. We use BERT-tiny <ref type="bibr" coords="10,375.48,576.66,10.68,7.94" target="#b2">[3]</ref> as the pre-trained Bert model and SST2 <ref type="bibr" coords="10,543.34,576.66,14.86,7.94" target="#b39">[40]</ref> as the dataset. The baseline implements BERT-tiny in pytorchtransformers <ref type="bibr" coords="10,368.18,598.58,14.84,7.94" target="#b44">[45]</ref> and logistic regression in sklearn. The result is shown in Fig . <ref type="figure" coords="10,373.37,609.54,6.23,7.94" target="#fig_11">8a</ref>. Our work achieves a 1.67x speedup on server CPUs. Pytorch-transformers cannot be installed on IoT devices, so the baseline cannot run on Raspberrypi4b. The latency of our work on Raspberrypi4b is 18 milliseconds, which is acceptable in most use cases.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4.2">Radiographic Image Analysis. The second case uses Deep</head><p>Hybrid Learning <ref type="bibr" coords="10,381.45,690.53,14.76,7.94" target="#b37">[38]</ref> to analyze radiographic images, which uses simple DNN to make feature engineering and CML models such as  random forests to make a classification. We use CheXpert <ref type="bibr" coords="11,269.30,236.13,14.82,7.94" target="#b20">[21]</ref> as the dataset. The baseline implements DNN in PyTorch and random forest in sklearn. The result is shown in Fig . <ref type="figure" coords="11,214.90,258.05,6.14,7.94" target="#fig_11">8b</ref>. Our work achieves a 2.3x speedup on server CPUs. The pre-trained random forest cannot run on IoT devices by sklearn, while our work can support those devices through cross-compilation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>5.4.3</head><p>Click Through Rate Prediction. The third case is click-through rate prediction used in recommendation systems of our anonymous industry partners, using GBDT <ref type="bibr" coords="11,174.94,330.14,14.86,7.94" target="#b14">[15]</ref> to extract features and the Wide and Deep <ref type="bibr" coords="11,110.98,341.10,10.43,7.94" target="#b8">[9]</ref> models to make a prediction. We use avazu 1 as the dataset. The baseline implements GBDT in sklearn and Wide and Deep in PyTorch. The result is shown in Fig . <ref type="figure" coords="11,239.93,363.01,6.10,7.94" target="#fig_11">8c</ref>. We achieve 3.04x speedup on the server CPUs. The GBDT model in the baseline cannot be executed on IoT devices, while our latency on IoT devices is only 5.06 ms.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">RELATED WORK</head><p>CML frameworks and libraries can be divided into three categories.</p><p>(1) General-purpose solution uses one framework to support various models. Scikit-learn <ref type="bibr" coords="11,128.48,453.54,14.72,7.94" target="#b31">[32]</ref> is the most widely used CML framework on GitHub <ref type="bibr" coords="11,96.91,464.50,13.49,7.94" target="#b32">[33]</ref>. Spark MLlib <ref type="bibr" coords="11,165.93,464.50,14.85,7.94" target="#b28">[29]</ref> is an extension to Spark <ref type="bibr" coords="11,278.56,464.50,13.49,7.94" target="#b47">[48]</ref>. H2O <ref type="bibr" coords="11,72.38,475.45,14.60,7.94" target="#b16">[17]</ref> uses MapReduce <ref type="bibr" coords="11,150.07,475.45,14.60,7.94" target="#b10">[11]</ref> to support both CML and DL. There are many other works, such as Shogun <ref type="bibr" coords="11,199.65,486.41,14.82,7.94" target="#b40">[41]</ref> and RapidMiner <ref type="bibr" coords="11,278.61,486.41,13.46,7.94" target="#b18">[19]</ref>. These frameworks only support CPU, suffering from severe performance and portability issues. (2) Specific-purpose solution focuses on one type of model. LibLinear <ref type="bibr" coords="11,174.84,519.29,14.83,7.94" target="#b13">[14]</ref> supports logistic regression and linear SVM. LibSVM <ref type="bibr" coords="11,149.79,530.25,10.69,7.94" target="#b4">[5]</ref> focuses on SVMs. These works are limited to CPUs. Some other works attempt to support various hardware devices. XGBoost <ref type="bibr" coords="11,136.69,552.17,10.43,7.94" target="#b5">[6]</ref> implements a gradient-boosting decision tree algorithm on CPUs and GPUs. Muhsen Owaida et al. <ref type="bibr" coords="11,258.40,563.13,14.61,7.94" target="#b30">[31]</ref> bring XGBoost to FPGAs. Toby Sharp <ref type="bibr" coords="11,168.66,574.08,14.60,7.94" target="#b38">[39]</ref> implements decision trees and forests on GPUs. These frameworks only support a narrowed variety of models and solve the problem of portability to a certain extent.</p><p>(3) Extension based on DL attempts to utilize DL frameworks to support CML models. TF-DF <ref type="bibr" coords="11,160.01,617.92,14.70,7.94" target="#b42">[43]</ref> is a decision forest library based on TensorFlow but is limited to CPUs. It's implemented ad-hoc, losing the portability of DL frameworks. Hummingbird <ref type="bibr" coords="11,263.86,639.84,14.86,7.94" target="#b29">[30]</ref> is a general-purpose solution based on PyTorch, adding support for GPUs. They utilize those abstractions in DL frameworks directly without digging into the features of CML, missing many optimization chances.</p><p>1 https://www.kaggle.com/c/avazu-ctr-prediction</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">CONCLUSION</head><p>This paper presented the design and implementation of CMLCompiler, an open-source unified compiler for classical Machine Learning (CML) inference. CMLCompiler proposed two unified abstractions: operator representations and extended computational graphs (ECGs). Operator representations convert CML operators into tensor formats, while an ECG organizes these converted operators in an optimization-friendly way. The CMLCompiler framework performs the conversion and graph optimization based on two unified abstractions, then outputs an optimized computational graph to deep learning compilers or frameworks. CMLCompiler also enables the hybrid deployment of CML and DL with a unified framework. Our implementations of CMLCompiler on top of TVM show the effectiveness and achieve up to 4.38x speedup on CPU, 3.31x speedup on GPU, and 5.09x speedup on IoT devices, compared to the stateof-the-art solutions -scikit-learn, Intel sklearn, and hummingbird. Our support for CML and DL mixed pipelines achieves up to 3.04x speedup compared with cross-framework implementations.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="2,53.80,246.64,240.24,7.70;2,53.80,257.60,107.67,7.70"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: The CMLCompiler design. Our contributions are highlighted in green color.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="3,53.80,181.47,241.33,7.70;3,53.80,192.43,241.24,7.70;3,53.80,203.39,240.24,7.70;3,53.80,214.35,240.23,7.70;3,53.80,225.31,212.44,7.70"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: This figure compares the performance of sklearn, the most widely used CML framework on GitHub [33]against CMLCompiler. Our evaluation shows that sklearn suffers from both performance and portability issues for a lack of unified abstractions. "×" means unsupported.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,372.96,226.29,5.26,9.39;4,334.16,248.26,5.26,9.39;4,412.82,248.26,5.26,9.39;4,307.93,270.23,5.26,9.39;4,111.49,420.84,109.14,13.32;4,163.50,265.07,60.73,8.90;4,183.06,245.69,21.60,8.88;4,181.82,226.29,24.09,8.88;4,163.50,265.07,60.73,8.90;4,183.06,245.69,21.60,8.88;4,181.82,226.29,24.09,8.88;4,123.39,325.94,57.04,8.17;4,141.09,306.21,21.64,8.90;4,139.87,286.83,24.07,8.88;4,123.39,325.94,57.04,8.17;4,141.09,306.21,21.64,8.90;4,139.87,286.83,24.07,8.88;4,206.62,325.94,58.36,8.17;4,225.00,306.21,21.70,8.90;4,223.78,286.83,24.07,8.88;4,206.62,325.94,58.36,8.17;4,225.00,306.21,21.70,8.90;4,223.78,286.83,24.07,8.88;4,70.28,386.47,58.36,8.17;4,88.66,366.78,21.60,8.88;4,87.43,347.35,24.08,8.90;4,70.28,386.47,58.36,8.17;4,88.66,366.78,21.60,8.88;4,87.43,347.35,24.08,8.90;4,168.77,347.35,8.24,8.90;4,210.70,347.35,8.26,8.90;4,252.67,347.35,8.24,8.90;4,74.36,407.92,8.23,8.88;4,116.32,407.92,8.23,8.88;4,163.50,265.07,60.73,8.90;4,183.06,245.69,21.60,8.88;4,181.82,226.29,24.09,8.88;4,123.39,325.94,57.04,8.17;4,141.09,306.21,21.64,8.90;4,139.87,286.83,24.07,8.88;4,206.62,325.94,58.36,8.17;4,225.00,306.21,21.70,8.90;4,223.78,286.83,24.07,8.88;4,70.28,386.47,58.36,8.17;4,88.66,366.78,21.60,8.88;4,87.43,347.35,24.08,8.90;4,168.77,347.35,8.24,8.90;4,210.70,347.35,8.26,8.90;4,252.67,347.35,8.24,8.90;4,74.36,407.92,8.23,8.88;4,116.32,407.92,8.23,8.88;4,152.14,247.37,5.26,9.39;4,194.10,307.13,5.26,9.42;4,110.20,307.13,5.25,9.42;4,57.76,365.93,5.26,9.41;4,183.38,374.54,88.87,8.88;4,183.38,391.37,90.00,8.88;4,183.38,408.19,78.71,8.88;4,163.50,265.07,60.73,8.90;4,183.06,245.69,21.60,8.88;4,181.82,226.29,24.09,8.88;4,123.39,325.94,57.04,8.17;4,141.09,306.21,21.64,8.90;4,139.87,286.83,24.07,8.88;4,206.62,325.94,58.36,8.17;4,225.00,306.21,21.70,8.90;4,223.78,286.83,24.07,8.88;4,70.28,386.47,58.36,8.17;4,88.66,366.78,21.60,8.88;4,87.43,347.35,24.08,8.90;4,168.77,347.35,8.24,8.90;4,210.70,347.35,8.26,8.90;4,252.67,347.35,8.24,8.90;4,74.36,407.92,8.23,8.88;4,116.32,407.92,8.23,8.88;4,152.14,247.37,5.26,9.39;4,194.10,307.13,5.26,9.42;4,110.20,307.13,5.25,9.42;4,57.76,365.93,5.26,9.41;4,183.38,374.54,88.87,8.88;4,183.38,391.37,90.00,8.88;4,183.38,408.19,78.71,8.88;4,353.14,308.81,73.18,13.32;4,347.08,371.09,23.43,7.37;4,396.04,371.09,22.00,7.37;4,443.58,371.09,23.43,7.37;4,492.42,371.09,22.24,7.37;4,354.26,335.40,9.11,7.83;4,402.51,335.40,9.11,7.83;4,450.76,335.40,9.11,7.83;4,308.85,371.09,15.95,7.37;4,534.73,371.09,21.52,7.37;4,347.08,371.09,23.43,7.37;4,396.04,371.09,22.00,7.37;4,443.58,371.09,23.43,7.37;4,492.42,371.09,22.24,7.37;4,354.26,335.40,9.11,7.83;4,402.51,335.40,9.11,7.83;4,450.76,335.40,9.11,7.83;4,308.85,371.09,15.95,7.37;4,534.73,371.09,21.52,7.37;4,305.74,389.22,166.54,8.88;4,305.74,399.86,156.18,8.90;4,305.74,410.55,226.45,8.88"><head>1 )</head><label>1</label><figDesc>Tensor-based assignment &amp; reorganization (2) Tensor-based element-wise comparison (3) Use matmul and argmax to represent conditional operators</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="4,347.08,371.09,23.43,7.37;4,396.04,371.09,22.00,7.37;4,443.58,371.09,23.43,7.37;4,492.42,371.09,22.24,7.37;4,354.26,335.40,9.11,7.83;4,402.51,335.40,9.11,7.83;4,450.76,335.40,9.11,7.83;4,308.85,371.09,15.95,7.37;4,534.73,371.09,21.52,7.37;4,305.74,389.22,166.54,8.88;4,305.74,399.86,156.18,8.90;4,305.74,410.55,226.45,8.88"><head>1 )</head><label>1</label><figDesc>Tensor-based assignment &amp; reorganization (2) Tensor-based element-wise comparison (3) Use matmul and argmax to represent conditional operators</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="4,53.80,448.54,504.38,7.70;4,53.80,459.50,504.39,7.70;4,53.80,470.46,504.39,8.67"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Converting Decision Tree to operator representations. Sequential conditional operators are represented by the combination of 𝑚𝑎𝑡𝑚𝑢𝑙 and 𝑎𝑟𝑔𝑚𝑎𝑥, 𝑚𝑎𝑡𝑚𝑢𝑙 is short for matrix multiplication. 𝐹 , 𝑇 , 𝐼 , and 𝐿 refer to features, thresholds, internal nodes, and leaf nodes. 𝑊 1 , 𝑊 2 , and 𝑊 3 are the weights of DL operators, whose definitions and properties are shown in Table2.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5" coords="6,354.49,366.87,167.18,7.70"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: The CMLCompiler architecture.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="7,53.80,405.54,241.76,8.04;7,53.80,416.56,240.23,7.94;7,53.80,427.52,240.23,7.94;7,53.80,438.48,241.62,7.94;7,53.80,449.44,240.24,7.94;7,53.80,460.40,240.24,7.94;7,53.80,471.36,240.24,7.94;7,53.80,482.31,241.23,7.94;7,53.80,493.27,240.23,7.94;7,53.80,504.23,75.84,7.94"><head>4. 3 . 1</head><label>31</label><figDesc>Dtype rewriting. Dtype rewriting uses low-precision computation with faster speed and less memory to replace high-precision computation. As analyzed in Section 3.1.3, many weights used in CML can be represented as low-precision dtype such as bool or int8. Besides, comparison operators and indices operators widely used in CML are dtype-lowering operators. The intermediate results after those operators are also low-precision. When intermediate data and weights can both be expressed as low-precision dtype, the corresponding operators can be converted into low-precision computation as well.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="8,53.80,196.86,504.38,7.70;8,53.80,207.82,496.49,7.70"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Graph rewriting optimizations. Dtype rewriting converts float32 operators and weights into low-precision. Sparse operator replacing converts dense operators and weights into sparse. Redundant elimination reduces redundant operators.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="8,53.80,303.91,34.90,7.70;8,150.99,303.91,143.30,7.70;8,53.80,314.86,94.64,7.70"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: uses a single ECG to represent CML and DL mixed pipeline.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10" coords="11,110.45,158.30,14.25,6.68;11,164.93,158.30,43.34,6.68;11,77.28,152.90,3.67,6.67;11,73.61,117.38,7.34,6.67;11,77.28,135.49,3.67,6.67;11,73.61,99.61,7.34,6.68;11,64.39,118.53,7.43,23.54;11,64.39,101.96,7.43,14.92;11,110.97,93.38,24.08,6.67;11,110.97,103.79,26.32,6.68;11,61.39,176.21,152.72,6.85;11,61.64,186.17,85.62,6.85;11,274.10,158.30,14.05,6.68;11,328.58,158.30,42.74,6.68;11,240.94,152.90,3.67,6.67;11,237.27,113.69,7.24,6.67;11,237.27,133.76,7.24,6.67;11,237.27,94.09,7.24,6.67;11,228.05,118.53,7.43,23.54;11,228.05,101.89,7.43,14.64;11,274.62,93.38,23.74,6.67;11,286.21,103.79,14.78,6.68;11,225.05,176.21,132.11,6.85;11,225.29,186.17,101.47,6.85;11,437.76,158.26,14.25,6.67;11,492.23,158.26,43.31,6.67;11,404.59,152.86,3.67,6.67;11,404.59,130.71,3.67,6.67;11,400.92,108.55,7.34,6.67;11,400.92,86.38,7.34,6.68;11,391.70,118.49,7.43,23.54;11,391.70,101.92,7.43,14.91;11,514.32,93.35,24.08,6.67;11,514.32,103.76,26.32,6.68;11,388.70,176.21,151.67,6.85;11,388.95,186.17,37.32,6.85"><head></head><label></label><figDesc>GBDT + Wide&amp;Deep for click through prediction</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11" coords="11,66.40,208.16,479.18,7.70"><head>Figure 8 :</head><label>8</label><figDesc>Figure 8: The latency of a single query for CML and DL mixed pipelines. All three baselines cannot run on IoT devices.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="5,317.96,85.73,240.41,141.52"><head>Table 3 :</head><label>3</label><figDesc>Operators used in ECGs</figDesc><table coords="5,317.96,110.73,240.41,116.51"><row><cell>Operator Type</cell><cell>Examples</cell></row><row><cell>Comparison</cell><cell>less, equal, greater, less_equal</cell></row><row><cell>Indices</cell><cell>argmax, argmin, argsort, argwhere</cell></row><row><cell>Monotonic</cell><cell>sigmoid, softmax, relu, tanh, exp</cell></row><row><cell>Reduction</cell><cell>sum, max, min, avg, all, any</cell></row><row><cell>Arithmetic</cell><cell>gemm, conv, pool</cell></row><row><cell cols="2">instruction, while bool cannot benefit from that. Considering the</cell></row><row><cell cols="2">complexity of dtype optimization, we add dtype as a property for</cell></row><row><cell>ECG.</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="6,53.80,85.73,241.75,292.70"><head>Table 4 :</head><label>4</label><figDesc>Supported Algorithms</figDesc><table coords="6,53.80,110.96,241.75,267.47"><row><cell>Preprocessing Algorithms</cell></row><row><cell>Binarizer, LabelBinarizer, Normalizer, MaxAbsScaler,</cell></row><row><cell>MinMaxScaler, StandardScaler, RobustScaler,</cell></row><row><cell>PolynomialFeatures, LabelEncoder</cell></row><row><cell>Feature Selectors</cell></row><row><cell>SelectKBest, VarianceThreshold</cell></row><row><cell>Linear Models</cell></row><row><cell>LogisticRegression, LogisticRegressionCV, Perception,</cell></row><row><cell>RidgeClassifier, RidgeClassifierCV, SGDClassifier,</cell></row><row><cell>LinearRegression, Ridge, RidgeCV, SGDRegressor</cell></row><row><cell>Tree-based Models</cell></row><row><cell>DecisionTreeClassifier, DecisionTreeRegressor,</cell></row><row><cell>ExtraTreeClassifier, ExtraTreeRegressor,</cell></row><row><cell>RandomForestClassifier, RandomForestRegressor,</cell></row><row><cell>ExtraTreesClassifier, ExtraTreesRegressor,</cell></row><row><cell>GradientBoostingClassifier, GradientBoostingRegressor</cell></row><row><cell>Support Vector Machines</cell></row><row><cell>LinearSVC, LinearSVR, NuSVR, SVR</cell></row><row><cell>have wide usage of dtype rewriting optimization described in Sec-</cell></row><row><cell>tion 4.3.1. Monotonic operators refer to those operators who meet</cell></row><row><cell>the following conditions:</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="6,317.60,441.86,242.11,267.58"><head></head><label></label><figDesc>Aggregation operators are converted to reduction operators. Comparison operators are converted to element-wise comparison. Sequential conditional operators are represented as the combination of 𝑚𝑎𝑡𝑚𝑢𝑙 and 𝑎𝑟𝑔𝑚𝑎𝑥. These converted DL operators are wrapped into operator representations with data dependencies.</figDesc><table coords="6,317.96,441.86,241.75,223.75"><row><cell>4. We build our framework based on the</cell></row><row><cell>two unified abstractions, including four parts. Operator Converter</cell></row><row><cell>converts CML operators into operator representations, as shown in</cell></row><row><cell>Section 4.1. Model Parser organizes those operator representations</cell></row><row><cell>in an optimization-friendly way and uses ECGs to represent CML</cell></row><row><cell>models, as shown in Section 4.2. Graph Optimizer makes graph</cell></row><row><cell>level optimizations, as described in Section 4.3. An optimized ECG</cell></row><row><cell>is converted into a DL computational graph by Graph Translator</cell></row><row><cell>in Section 4.4. DL frameworks or compilers take DL computational</cell></row><row><cell>graphs as input and make more optimizations, compiling them into</cell></row><row><cell>executable modules to deploy. Section 4.5 shows the mixture usage</cell></row><row><cell>of CML and DL. Section 4.6 shows the implementation details.</cell></row><row><cell>4.1 Operator Converter</cell></row><row><cell>Operator Converter traverses the operators in CML models and</cell></row><row><cell>converts them into operator representations, respectively. If CML</cell></row><row><cell>operators handle matrices or arrays, they can be converted to DL</cell></row><row><cell>operators directly. If CML operators handle scalars or a single ele-</cell></row><row><cell>ment from data tables, they are converted to DL operators based</cell></row><row><cell>on their categories. Several assignment operators without data de-</cell></row></table><note>pendencies are converted to one tensor assignment. If the data processing order differs from its layout in the tensor, we use the 𝑟𝑒𝑜𝑟𝑔𝑎𝑛𝑖𝑧𝑎𝑡𝑖𝑜𝑛 operator to change the tensor layout. Basic arithmetic operators are converted to element-wise arithmetic operators.</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="7,317.62,258.72,242.09,224.36"><head></head><label></label><figDesc>Algorithm 1 Dtype Rewriting Input: ECG 𝐺, hardware configuration 𝐻 Output: Optimized ECG 𝐺 ′ for operator in 𝐺 do operator.dtype ← largest dtype in operator.weights and operator.intermediate_results Modulate operator.dtype based on 𝐻 Modulate operator.DL_operator based on operator.dtype for weight in operator.weights do weight.actual_dtype ← operator.dtype end for for data in operator.intermediate_results do if data.dtype &lt; operator.dtype then</figDesc><table coords="7,317.96,404.70,204.99,78.38"><row><cell>Add cast(data, operator.dtype) before operator</cell></row><row><cell>end if</cell></row><row><cell>end for</cell></row><row><cell>end for</cell></row><row><cell>4.3.2 Sparse operator replacing.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="10,53.50,85.73,506.21,230.94"><head>Table 5 :</head><label>5</label><figDesc>Execution time for batch experiments over all data on CPU (12 cores), GPU, and IoT devices (take Raspberrypi4b as an example) in milliseconds. SK, HB, and Intel is short for scikit-learn, hummingbird, and Intel extension for sklearn, respectively. "-" means unsupported.</figDesc><table coords="10,107.51,135.50,408.26,181.17"><row><cell></cell><cell></cell><cell>CPU</cell><cell></cell><cell></cell><cell>GPU</cell><cell></cell><cell>IOT</cell><cell></cell></row><row><cell>Algorithm</cell><cell>SK</cell><cell>HB</cell><cell>Intel</cell><cell>Our</cell><cell>HB</cell><cell>Our</cell><cell>SK</cell><cell>Our</cell></row><row><cell>Binarizer</cell><cell>97</cell><cell>31</cell><cell>77</cell><cell>9</cell><cell>19</cell><cell>6</cell><cell>634</cell><cell>126</cell></row><row><cell>Normalizer</cell><cell>25</cell><cell>33</cell><cell>15</cell><cell>15</cell><cell>7</cell><cell>5</cell><cell>241</cell><cell>168</cell></row><row><cell>MinMaxScaler</cell><cell>19</cell><cell>31</cell><cell>13</cell><cell>8</cell><cell>21</cell><cell>6</cell><cell>199</cell><cell>148</cell></row><row><cell>RobustScaler</cell><cell>28</cell><cell>32</cell><cell>25</cell><cell>12</cell><cell>19</cell><cell>5</cell><cell>343</cell><cell>156</cell></row><row><cell>LinearRegression</cell><cell>12</cell><cell>18</cell><cell>4</cell><cell>6</cell><cell>6</cell><cell>7</cell><cell>61</cell><cell>116</cell></row><row><cell>LogisticRegression</cell><cell>98</cell><cell>104</cell><cell>137</cell><cell>86</cell><cell>7</cell><cell>7</cell><cell>1889</cell><cell>952</cell></row><row><cell>SGDClassifier</cell><cell>94</cell><cell>98</cell><cell>139</cell><cell>88</cell><cell>9</cell><cell>7</cell><cell>1886</cell><cell>969</cell></row><row><cell>DecisionTreeClassifier</cell><cell>33</cell><cell>48</cell><cell>23</cell><cell>16</cell><cell>7</cell><cell>5</cell><cell>-</cell><cell>99</cell></row><row><cell>DecisionTreeRegressor</cell><cell>7</cell><cell>19</cell><cell>3</cell><cell>15</cell><cell>7</cell><cell>6</cell><cell>-</cell><cell>211</cell></row><row><cell>RandomForestClassifier</cell><cell>2130</cell><cell>885</cell><cell>2003</cell><cell>601</cell><cell>20</cell><cell>-</cell><cell>-</cell><cell>5820</cell></row><row><cell>ExtraTreeClassifier</cell><cell>29</cell><cell>-</cell><cell>26</cell><cell>16</cell><cell>-</cell><cell>6</cell><cell>-</cell><cell>206</cell></row><row><cell>ExtraTreesClassifier</cell><cell>10022</cell><cell>2522</cell><cell>9421</cell><cell>2256</cell><cell>99</cell><cell>-</cell><cell>-</cell><cell>47959</cell></row><row><cell>LinearSVC</cell><cell>92</cell><cell>122</cell><cell>152</cell><cell>77</cell><cell>9</cell><cell>6</cell><cell>1896</cell><cell>930</cell></row><row><cell>LinearSVR</cell><cell>39</cell><cell>26</cell><cell>34</cell><cell>5</cell><cell></cell><cell>5</cell><cell>323</cell><cell>112</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="10,53.50,334.15,504.68,219.98"><head>Table 6 :</head><label>6</label><figDesc>Latency for query experiments over one single record on CPU (12 cores), GPU, and IoT devices (take Raspberrypi4b as an example) in milliseconds. The symbols are the same as Table5.</figDesc><table coords="10,107.51,372.96,404.74,181.17"><row><cell></cell><cell></cell><cell></cell><cell>CPU</cell><cell></cell><cell>GPU</cell><cell></cell><cell>IOT</cell><cell></cell></row><row><cell>Algorithm</cell><cell>SK</cell><cell>HB</cell><cell>Intel</cell><cell>Our</cell><cell>HB</cell><cell>Our</cell><cell>SK</cell><cell>Our</cell></row><row><cell>Binarizer</cell><cell>0.2</cell><cell>0.26</cell><cell>0.34</cell><cell>0.09</cell><cell>0.93</cell><cell>0.64</cell><cell>0.44</cell><cell>0.59</cell></row><row><cell>Normalizer</cell><cell>0.32</cell><cell>0.26</cell><cell>0.28</cell><cell>0.11</cell><cell>0.25</cell><cell>0.68</cell><cell>0.59</cell><cell>0.41</cell></row><row><cell>MinMaxScaler</cell><cell>0.15</cell><cell>0.31</cell><cell>0.14</cell><cell>0.09</cell><cell>0.91</cell><cell>0.63</cell><cell>0.33</cell><cell>0.37</cell></row><row><cell>RobustScaler</cell><cell>0.14</cell><cell>0.22</cell><cell>0.14</cell><cell>0.11</cell><cell>1.02</cell><cell>0.72</cell><cell>0.37</cell><cell>0.37</cell></row><row><cell>LinearRegression</cell><cell>0.24</cell><cell>0.35</cell><cell>0.32</cell><cell>0.1</cell><cell>0.91</cell><cell>0.55</cell><cell>0.52</cell><cell>0.69</cell></row><row><cell>LogisticRegression</cell><cell>0.35</cell><cell>0.36</cell><cell>0.29</cell><cell>0.19</cell><cell>3.29</cell><cell>0.71</cell><cell>0.67</cell><cell>2.59</cell></row><row><cell>SGDClassifier</cell><cell>0.4</cell><cell>0.35</cell><cell>0.29</cell><cell>0.23</cell><cell>2.93</cell><cell>0.67</cell><cell>0.68</cell><cell>0.65</cell></row><row><cell>DecisionTreeClassifier</cell><cell>0.24</cell><cell>1.62</cell><cell>0.27</cell><cell>0.36</cell><cell>3.01</cell><cell>0.8</cell><cell>-</cell><cell>0.9</cell></row><row><cell>DecisionTreeRegressor</cell><cell>0.22</cell><cell>0.22</cell><cell>0.25</cell><cell>0.38</cell><cell>1.03</cell><cell>0.72</cell><cell>-</cell><cell>0.88</cell></row><row><cell>RandomForestClassifier</cell><cell>103.96</cell><cell>1.6</cell><cell>103.2</cell><cell>0.61</cell><cell>2.56</cell><cell>-</cell><cell>-</cell><cell>1.05</cell></row><row><cell>ExtraTreeClassifier</cell><cell>0.23</cell><cell>-</cell><cell>0.4</cell><cell>0.47</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>1.81</cell></row><row><cell>ExtraTreesClassifier</cell><cell>205.27</cell><cell>12.74</cell><cell>204.25</cell><cell>1.73</cell><cell>2.41</cell><cell>-</cell><cell>-</cell><cell>3.11</cell></row><row><cell>LinearSVC</cell><cell>0.4</cell><cell>0.37</cell><cell>0.45</cell><cell>0.19</cell><cell>2.71</cell><cell>0.61</cell><cell>0.65</cell><cell>1.07</cell></row><row><cell>LinearSVR</cell><cell>0.31</cell><cell>0.34</cell><cell>0.37</cell><cell>0.09</cell><cell>0.91</cell><cell>0.62</cell><cell>0.54</cell><cell>0.91</cell></row></table></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="11,333.39,463.69,225.00,6.18;11,333.39,471.66,225.99,6.18;11,333.39,479.63,225.58,6.18;11,333.39,487.60,224.82,6.18;11,333.19,495.57,226.09,6.18;11,333.39,503.49,224.82,6.25;11,333.39,511.46,207.82,6.25" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Tensorflow: A system for large-scale machine learning</title>
+		<author>
+			<persName coords=""><forename type="first">Martín</forename><surname>Abadi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><surname>Barham</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jianmin</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhifeng</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><surname>Dean</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthieu</forename><surname>Devin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sanjay</forename><surname>Ghemawat</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Geoffrey</forename><surname>Irving</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Isard</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manjunath</forename><surname>Kudlur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Josh</forename><surname>Levenberg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rajat</forename><surname>Monga</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sherry</forename><surname>Moore</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Derek</forename><forename type="middle">G</forename><surname>Murray</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Benoit</forename><surname>Steiner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Paul</forename><surname>Tucker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Vasudevan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pete</forename><surname>Warden</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Martin</forename><surname>Wicke</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuan</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoqiang</forename><surname>Zheng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 12th USENIX Conference on Operating Systems Design and Implementation, OSDI&apos;16</title>
+				<meeting>the 12th USENIX Conference on Operating Systems Design and Implementation, OSDI&apos;16<address><addrLine>USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>USENIX Association</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="265" to="283" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,519.48,225.89,6.18;11,333.39,527.45,225.89,6.18" xml:id="b1">
+	<monogr>
+		<title level="m" type="main">The total cost of ownership (tco) of amazon sagemaker</title>
+		<author>
+			<persName coords=""><surname>Amazon</surname></persName>
+		</author>
+		<ptr target="https://pages.awscloud.com/rs/112-TZM-766/images/Amazon_SageMaker_TCO_uf.pdf" />
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,535.42,225.64,6.18;11,333.06,543.39,137.54,6.18" xml:id="b2">
+	<monogr>
+		<title level="m" type="main">Generalization in nli: Ways (not) to go beyond simple heuristics</title>
+		<author>
+			<persName coords=""><forename type="first">Prajjwal</forename><surname>Bhargava</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aleksandr</forename><surname>Drozd</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anna</forename><surname>Rogers</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,551.31,187.21,6.25" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Random forests</title>
+		<author>
+			<persName coords=""><forename type="first">Leo</forename><surname>Breiman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Machine learning</title>
+		<imprint>
+			<biblScope unit="volume">45</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="5" to="32" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,559.33,224.95,6.18;11,333.39,567.25,225.59,6.25;11,333.39,575.27,24.27,6.18" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Libsvm: a library for support vector machines</title>
+		<author>
+			<persName coords=""><forename type="first">Chih-Chung</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chih-Jen</forename><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM transactions on intelligent systems and technology (TIST)</title>
+				<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="1" to="27" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,583.24,224.82,6.18;11,333.39,591.16,224.81,6.25;11,333.39,599.13,108.31,6.25" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Xgboost: A scalable tree boosting system</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd acm sigkdd international conference on knowledge discovery and data mining</title>
+				<meeting>the 22nd acm sigkdd international conference on knowledge discovery and data mining</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="785" to="794" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,607.15,224.81,6.18;11,333.39,615.12,224.81,6.18;11,333.15,623.09,225.19,6.18;11,333.39,631.01,224.82,6.25;11,333.39,638.98,225.04,6.25;11,333.15,647.00,34.75,6.18" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Tvm: An automated end-to-end optimizing compiler for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thierry</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meghan</forename><surname>Cowan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Haichen</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yuwei</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Arvind</forename><surname>Krishnamurthy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 13th USENIX Conference on Operating Systems Design and Implementation, OSDI&apos;18</title>
+				<meeting>the 13th USENIX Conference on Operating Systems Design and Implementation, OSDI&apos;18<address><addrLine>USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>USENIX Association</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="579" to="594" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,654.97,224.81,6.18;11,333.39,662.94,224.95,6.18;11,333.39,670.86,201.45,6.25" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Learning to optimize tensor programs</title>
+		<author>
+			<persName coords=""><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eddie</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ziheng</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Thierry</forename><surname>Moreau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luis</forename><surname>Ceze</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Arvind</forename><surname>Krishnamurthy</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page">31</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="11,333.39,678.88,225.59,6.18;11,333.39,686.85,225.89,6.18;11,333.06,694.77,225.15,6.25;11,333.39,702.74,169.63,6.25" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Wide &amp; deep learning for recommender systems</title>
+		<author>
+			<persName coords=""><forename type="first">Heng-Tze</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Levent</forename><surname>Koc</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeremiah</forename><surname>Harmsen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tal</forename><surname>Shaked</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tushar</forename><surname>Chandra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hrishi</forename><surname>Aradhye</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Glen</forename><surname>Anderson</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Greg</forename><surname>Corrado</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wei</forename><surname>Chai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mustafa</forename><surname>Ispir</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 1st workshop on deep learning for recommender systems</title>
+				<meeting>the 1st workshop on deep learning for recommender systems</meeting>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="7" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,89.10,225.07,6.18;12,69.23,97.07,225.59,6.18;12,69.23,105.04,224.95,6.18;12,69.00,113.01,225.82,6.18;12,69.23,120.98,225.64,6.18;12,68.99,128.89,225.82,6.25;12,69.23,136.92,60.10,6.18" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Intel ngraph: An intermediate representation, compiler, and executor for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Cyphers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Arjun</forename><forename type="middle">K</forename><surname>Bansal</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anahita</forename><surname>Bhiwandiwalla</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jayaram</forename><surname>Bobba</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthew</forename><surname>Brookhart</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Avijit</forename><surname>Chakraborty</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">William</forename><surname>Constable</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Convey</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Leona</forename><surname>Cook</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Omar</forename><surname>Kanawi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robert</forename><surname>Kimball</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Knight</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikolay</forename><surname>Korovaiko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Varun</forename><forename type="middle">Kumar</forename><surname>Vijay</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yixing</forename><surname>Lao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><forename type="middle">R</forename><surname>Lishka</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jaikrishnan</forename><surname>Menon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jennifer</forename><surname>Myers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aswath</forename><surname>Sandeep</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Adam</forename><surname>Narayana</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tristan</forename><forename type="middle">J</forename><surname>Procter</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Webb</surname></persName>
+		</author>
+		<idno>CoRR, abs/1801.08058</idno>
+		<imprint>
+			<date type="published" when="2018">2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,144.89,224.81,6.18;12,69.23,152.80,182.05,6.25" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Mapreduce: simplified data processing on large clusters</title>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><surname>Dean</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sanjay</forename><surname>Ghemawat</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Communications of the ACM</title>
+		<imprint>
+			<biblScope unit="volume">51</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="107" to="113" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,160.83,197.36,6.18" xml:id="b11">
+	<monogr>
+		<title level="m" type="main">UCI machine learning repository</title>
+		<author>
+			<persName coords=""><forename type="first">Dheeru</forename><surname>Dua</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Casey</forename><surname>Graff</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,168.80,195.28,6.18" xml:id="b12">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><surname>Easonliao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Cudatree</surname></persName>
+		</author>
+		<ptr target="https://github.com/EasonLiao/CudaTree" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,176.77,224.81,6.18;12,69.23,184.68,224.81,6.25;12,69.23,192.65,104.87,6.25" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Liblinear: A library for large linear classification</title>
+		<author>
+			<persName coords=""><forename type="first">Kai-Wei</forename><surname>Rong-En Fan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cho-Jui</forename><surname>Chang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiang-Rui</forename><surname>Hsieh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chih-Jen</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Lin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of machine Learning research</title>
+		<imprint>
+			<biblScope unit="volume">9</biblScope>
+			<biblScope unit="page" from="1871" to="1874" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,200.68,225.89,6.18;12,69.23,208.59,120.49,6.25" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Greedy function approximation: a gradient boosting machine</title>
+		<author>
+			<persName coords=""><surname>Jerome H Friedman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Annals of statistics</title>
+		<imprint>
+			<biblScope unit="page" from="1189" to="1232" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,216.62,225.59,6.18;12,69.23,224.59,225.89,6.18;12,69.23,232.50,168.40,6.25" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Generative adversarial nets</title>
+		<author>
+			<persName coords=""><forename type="first">Ian</forename><surname>Goodfellow</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jean</forename><surname>Pouget-Abadie</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mehdi</forename><surname>Mirza</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bing</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Warde-Farley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sherjil</forename><surname>Ozair</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aaron</forename><surname>Courville</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+				<imprint>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="volume">27</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,240.53,225.59,6.18;12,69.23,248.50,14.51,6.18" xml:id="b16">
+	<monogr>
+		<ptr target="https://github.com/h2oai/h2o-3" />
+		<title level="m">H2o: Scalable machine learning platform</title>
+				<editor>
+			<persName><surname>H2o</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,256.47,224.81,6.18;12,69.23,264.44,225.58,6.18;12,69.23,272.41,224.81,6.18;12,69.00,280.38,226.22,6.18;12,69.23,288.29,224.81,6.25;12,69.23,296.26,148.10,6.25" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Applied machine learning at facebook: A datacenter infrastructure perspective</title>
+		<author>
+			<persName coords=""><forename type="first">Kim</forename><surname>Hazelwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sarah</forename><surname>Bird</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Brooks</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Soumith</forename><surname>Chintala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Utku</forename><surname>Diril</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dmytro</forename><surname>Dzhulgakov</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mohamed</forename><surname>Fawzy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bill</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yangqing</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aditya</forename><surname>Kalro</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Law</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kevin</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pieter</forename><surname>Noordhuis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Misha</forename><surname>Smelyanskiy</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Liang</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaodong</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2018 IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="620" to="629" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,304.23,224.81,6.25;12,69.23,312.20,136.06,6.25" xml:id="b18">
+	<monogr>
+		<title level="m" type="main">RapidMiner: Data mining use cases and business analytics applications</title>
+		<author>
+			<persName coords=""><forename type="first">Markus</forename><surname>Hofmann</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ralf</forename><surname>Klinkenberg</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<publisher>CRC Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,320.23,225.50,6.18;12,69.23,328.20,39.35,6.18" xml:id="b19">
+	<monogr>
+		<title level="m" type="main">Intel® extension for scikit-learn</title>
+		<author>
+			<persName coords=""><surname>Intel</surname></persName>
+		</author>
+		<ptr target="https://intel.github.io/scikit-learn-intelex/" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,336.17,225.58,6.18;12,69.23,344.14,225.58,6.18;12,69.23,352.11,224.81,6.18;12,69.23,360.02,225.58,6.25;12,69.06,368.05,91.54,6.18" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Chexpert: A large chest radiograph dataset with uncertainty labels and expert comparison</title>
+		<author>
+			<persName coords=""><forename type="first">Jeremy</forename><surname>Irvin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pranav</forename><surname>Rajpurkar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Ko</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yifan</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Silviana</forename><surname>Ciurea-Ilcus</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Chute</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Henrik</forename><surname>Marklund</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Behzad</forename><surname>Haghgoo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Robyn</forename><surname>Ball</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Katie</forename><surname>Shpanskaya</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI conference on artificial intelligence</title>
+				<meeting>the AAAI conference on artificial intelligence</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="volume">33</biblScope>
+			<biblScope unit="page" from="590" to="597" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,376.02,224.82,6.18;12,68.99,383.99,226.24,6.18;12,69.23,391.90,224.81,6.25;12,69.23,399.87,135.68,6.25" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Taso: optimizing deep learning computation with automatic generation of graph substitutions</title>
+		<author>
+			<persName coords=""><forename type="first">Zhihao</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oded</forename><surname>Padon</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Thomas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Todd</forename><surname>Warszawski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matei</forename><surname>Zaharia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alex</forename><surname>Aiken</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 27th ACM Symposium on Operating Systems Principles</title>
+				<meeting>the 27th ACM Symposium on Operating Systems Principles</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="47" to="62" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,407.90,225.58,6.18;12,69.12,415.87,226.11,6.18;12,69.23,423.78,224.81,6.25;12,69.23,431.75,88.14,6.25" xml:id="b22">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Chris</forename><surname>Lattner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mehdi</forename><surname>Amini</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Uday</forename><surname>Bondhugula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Albert</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><surname>Davis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jacques</forename><surname>Pienaar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">River</forename><surname>Riddle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tatiana</forename><surname>Shpeisman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nicolas</forename><surname>Vasilache</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Oleksandr</forename><surname>Zinenko</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2002.11054</idno>
+		<title level="m">Mlir: A compiler infrastructure for the end of moore&apos;s law</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,439.78,225.00,6.18;12,69.23,447.69,224.81,6.25;12,69.23,455.66,171.71,6.25" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">A survey of convolutional neural networks: analysis, applications, and prospects</title>
+		<author>
+			<persName coords=""><forename type="first">Zewen</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wenjie</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shouheng</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Neural Networks and Learning Systems</title>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,463.69,225.89,6.18;12,69.23,471.60,224.81,6.25;12,69.23,479.57,213.97,6.25" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Model ensemble for click prediction in bing search ads</title>
+		<author>
+			<persName coords=""><forename type="first">Xiaoliang</forename><surname>Ling</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Weiwei</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hucheng</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cui</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Feng</forename><surname>Sun</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 26th international conference on world wide web companion</title>
+				<meeting>the 26th international conference on world wide web companion</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="689" to="698" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,487.54,225.27,6.25;12,69.23,495.52,154.54,6.25" xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Classification and regression trees</title>
+		<author>
+			<persName coords=""><forename type="first">Wei-Yin</forename><surname>Loh</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Wiley interdisciplinary reviews: data mining and knowledge discovery</title>
+				<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="14" to="23" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,503.54,225.89,6.18;12,69.23,511.46,224.81,6.25;12,69.23,519.43,64.18,6.25" xml:id="b26">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Xiaofei</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhiguo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Patrick</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ramesh</forename><surname>Nallapati</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bing</forename><surname>Xiang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1910.07973</idno>
+		<title level="m">Universal text representation from bert: An empirical study</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,527.40,225.51,6.25;12,69.23,535.37,64.65,6.25" xml:id="b27">
+	<monogr>
+		<title level="m" type="main">Recurrent neural networks: design and applications</title>
+		<author>
+			<persName coords=""><forename type="first">Larry</forename><surname>Medsker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">C</forename><surname>Lakhmi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Jain</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1999">1999</date>
+			<publisher>CRC press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,543.39,226.00,6.18;12,69.23,551.36,224.81,6.18;12,69.00,559.33,225.05,6.18;12,69.03,567.25,225.79,6.25;12,69.07,575.27,73.69,6.18" xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Mllib: Machine learning in apache spark</title>
+		<author>
+			<persName coords=""><forename type="first">Xiangrui</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joseph</forename><surname>Bradley</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Burak</forename><surname>Yavuz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Evan</forename><surname>Sparks</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shivaram</forename><surname>Venkataraman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Davies</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeremy</forename><surname>Freeman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Manish</forename><surname>Tsai</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sean</forename><surname>Amde</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Doris</forename><surname>Owen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Reynold</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><forename type="middle">J</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Reza</forename><surname>Franklin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matei</forename><surname>Zadeh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ameet</forename><surname>Zaharia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Talwalkar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Mach. Learn. Res</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1235" to="1241" />
+			<date type="published" when="2016-01">jan 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,583.24,224.81,6.18;12,69.23,591.21,224.81,6.18;12,69.23,598.59,224.81,6.78;12,69.23,607.10,198.44,6.25" xml:id="b29">
+	<analytic>
+		<title level="a" type="main">A tensor compiler for unified machine learning prediction serving</title>
+		<author>
+			<persName coords=""><forename type="first">Supun</forename><surname>Nakandala</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Karla</forename><surname>Saur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gyeong-In</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Konstantinos</forename><surname>Karanasos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlo</forename><surname>Curino</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Markus</forename><surname>Weimer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matteo</forename><surname>Interlandi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">14th {USENIX} Symposium on Operating Systems Design and Implementation ({OSDI} 20)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="899" to="917" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,615.12,224.81,6.18;12,69.23,623.09,224.82,6.18;12,333.39,89.04,224.82,6.25;12,332.97,97.01,80.85,6.25" xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Scalable inference of decision tree ensembles: Flexible design for cpu-fpga platforms</title>
+		<author>
+			<persName coords=""><forename type="first">Muhsen</forename><surname>Owaida</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hantian</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ce</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gustavo</forename><surname>Alonso</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 27th International Conference on Field Programmable Logic and Applications (FPL)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="1" to="8" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,105.04,225.58,6.18;12,333.39,113.01,224.81,6.18;12,333.06,120.98,226.33,6.18;12,333.39,129.26,225.64,6.18;12,333.39,137.17,224.92,6.25" xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Scikit-learn: Machine learning in python</title>
+		<author>
+			<persName coords=""><forename type="first">Fabian</forename><surname>Pedregosa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gaël</forename><surname>Varoquaux</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandre</forename><surname>Gramfort</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vincent</forename><surname>Michel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bertrand</forename><surname>Thirion</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Olivier</forename><surname>Grisel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mathieu</forename><surname>Blondel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Prettenhofer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ron</forename><surname>Weiss</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vincent</forename><surname>Dubourg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jake</forename><surname>Vanderplas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexandre</forename><surname>Passos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Cournapeau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthieu</forename><surname>Brucher</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matthieu</forename><surname>Perrot</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Édouard</forename><surname>Duchesnay</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. Mach. Learn. Res</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="2825" to="2830" />
+			<date type="published" when="2011-11">nov 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,145.20,225.58,6.18;12,333.39,153.17,225.59,6.18;12,333.39,159.49,224.82,6.18;12,333.39,167.41,97.24,6.25" xml:id="b32">
+	<monogr>
+		<title level="m" type="main">Data science through the looking glass and what we found there</title>
+		<author>
+			<persName coords=""><forename type="first">Fotis</forename><surname>Psallidas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiwen</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bojan</forename><surname>Karlas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Matteo</forename><surname>Interlandi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Avrilia</forename><surname>Floratou</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Konstantinos</forename><surname>Karanasos</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wentao</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ce</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Subru</forename><surname>Krishnan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlo</forename><surname>Curino</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Markus</forename><surname>Weimer</surname></persName>
+		</author>
+		<idno>CoRR, abs/1912.09536</idno>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,175.38,225.51,6.25;12,333.39,183.35,224.81,6.25;12,332.97,191.32,108.54,6.25" xml:id="b33">
+	<analytic>
+		<title level="a" type="main">A quick review of machine learning algorithms</title>
+		<author>
+			<persName coords=""><forename type="first">Susmita</forename><surname>Ray</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 International conference on machine learning, big data, cloud and parallel computing (COMITCon)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="35" to="39" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,199.34,225.89,6.18;12,333.39,207.32,225.89,6.18;12,333.39,215.23,176.32,6.25" xml:id="b34">
+	<analytic>
+		<title level="a" type="main">torch. fx: Practical program capture and transformation for deep learning in python</title>
+		<author>
+			<persName coords=""><forename type="first">James</forename><surname>Reed</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zachary</forename><surname>Devito</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Horace</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ansley</forename><surname>Ussery</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Ansel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Machine Learning and Systems</title>
+				<meeting>Machine Learning and Systems</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">4</biblScope>
+			<biblScope unit="page" from="638" to="651" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,223.26,224.81,6.18;12,333.39,231.17,173.85,6.25" xml:id="b35">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Nils</forename><surname>Reimers</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Iryna</forename><surname>Gurevych</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1908.10084</idno>
+		<title level="m">Sentence-bert: Sentence embeddings using siamese bert-networks</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,333.39,239.14,225.87,6.25" xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Linear models</title>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Shayle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marvin Hj</forename><surname>Searle</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Gruber</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<publisher>John Wiley &amp; Sons</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,247.17,224.81,6.18;12,333.39,255.14,224.81,6.18;12,333.39,263.11,224.81,6.18;12,333.39,271.02,91.57,6.25" xml:id="b37">
+	<analytic>
+		<title level="a" type="main">Nuclear morphology optimized deep hybrid learning (numodril): A novel architecture for accurate diagnosis/prognosis of ovarian cancer</title>
+		<author>
+			<persName coords=""><forename type="first">Duhita</forename><surname>Sengupta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nishan</forename><surname>Sk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aditya</forename><surname>Ali</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joy</forename><surname>Bhattacharya</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Asima</forename><surname>Mustafi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kaushik</forename><surname>Mukhopadhyay</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Sengupta</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">bioRxiv</title>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,278.99,224.81,6.25;12,333.39,286.96,172.38,6.25" xml:id="b38">
+	<analytic>
+		<title level="a" type="main">Implementing decision trees and forests on a gpu</title>
+		<author>
+			<persName coords=""><forename type="first">Toby</forename><surname>Sharp</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">European conference on computer vision</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="595" to="608" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,294.99,224.82,6.18;12,333.13,302.90,225.07,6.25;12,333.39,310.87,224.82,6.25;12,333.23,318.90,41.06,6.18" xml:id="b39">
+	<analytic>
+		<title level="a" type="main">Parsing with compositional vector grammars</title>
+		<author>
+			<persName coords=""><forename type="first">Richard</forename><surname>Socher</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Bauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christopher</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><forename type="middle">Y</forename><surname>Ng</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 51st Annual Meeting of the Association for Computational Linguistics</title>
+		<title level="s">Long Papers</title>
+		<meeting>the 51st Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="page" from="455" to="465" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,326.87,224.81,6.18;12,333.39,334.84,224.81,6.18;12,333.16,342.75,225.04,6.25;12,333.39,350.72,109.55,6.25" xml:id="b40">
+	<analytic>
+		<title level="a" type="main">Christian Gehl, and Vojtěch Franc. The shogun machine learning toolbox</title>
+		<author>
+			<persName coords=""><forename type="first">Sören</forename><surname>Sonnenburg</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gunnar</forename><surname>Rätsch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sebastian</forename><surname>Henschel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Widmer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jonas</forename><surname>Behr</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Zien</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fabio</forename><surname>De Bona</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><surname>Binder</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The Journal of Machine Learning Research</title>
+		<imprint>
+			<biblScope unit="volume">11</biblScope>
+			<biblScope unit="page" from="1799" to="1802" />
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,358.69,224.81,6.25;12,333.39,366.66,190.65,6.25" xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Support vector machine</title>
+		<author>
+			<persName coords=""><forename type="first">Shan</forename><surname>Suthaharan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Machine learning models and algorithms for big data classification</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="207" to="235" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,374.69,225.16,6.18;12,333.39,382.66,36.76,6.18" xml:id="b42">
+	<monogr>
+		<title level="m" type="main">Tensorflow decision forests</title>
+		<author>
+			<persName coords=""><surname>Tensorflow</surname></persName>
+		</author>
+		<ptr target="https://www.tensorflow.org/decision_forests" />
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,390.57,224.82,6.25;12,333.39,398.54,95.55,6.25" xml:id="b43">
+	<monogr>
+		<title level="m" type="main">Python data science handbook: Essential tools for working with data</title>
+		<author>
+			<persName coords=""><forename type="first">Jake</forename><surname>Vanderplas</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2016">2016</date>
+			<publisher>O&apos;Reilly Media, Inc</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,406.57,225.99,6.18;12,333.39,414.54,225.59,6.18;12,333.28,422.51,225.70,6.18;12,333.39,430.48,225.58,6.18;12,333.39,438.45,225.99,6.18;12,333.39,446.36,224.82,6.25;12,333.39,454.33,225.89,6.25;12,333.15,462.36,121.86,6.18" xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Transformers: State-of-the-art natural language processing</title>
+		<author>
+			<persName coords=""><forename type="first">Thomas</forename><surname>Wolf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lysandre</forename><surname>Debut</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Victor</forename><surname>Sanh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Julien</forename><surname>Chaumond</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Clement</forename><surname>Delangue</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anthony</forename><surname>Moi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Pierric</forename><surname>Cistac</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tim</forename><surname>Rault</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rémi</forename><surname>Louf</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Morgan</forename><surname>Funtowicz</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joe</forename><surname>Davison</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sam</forename><surname>Shleifer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Clara</forename><surname>Patrick Von Platen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yacine</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Julien</forename><surname>Jernite</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Canwen</forename><surname>Plu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Teven</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sylvain</forename><surname>Le Scao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mariama</forename><surname>Gugger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Quentin</forename><surname>Drame</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alexander</forename><forename type="middle">M</forename><surname>Lhoest</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Rush</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations</title>
+				<meeting>the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics</publisher>
+			<date type="published" when="2020-10">October 2020</date>
+			<biblScope unit="page" from="38" to="45" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,470.33,224.81,6.18;12,333.39,478.30,225.58,6.18;12,333.39,486.27,225.59,6.18;12,333.39,494.24,225.59,6.18;12,333.39,502.21,224.82,6.18;12,333.39,510.12,224.81,6.25;12,333.39,518.09,148.10,6.25" xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Machine learning at facebook: Understanding inference at the edge</title>
+		<author>
+			<persName coords=""><forename type="first">Carole-Jean</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Brooks</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kevin</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Douglas</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sy</forename><surname>Choudhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marat</forename><surname>Dukhan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kim</forename><surname>Hazelwood</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Eldad</forename><surname>Isaac</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yangqing</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bill</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tommer</forename><surname>Leyvand</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hao</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lin</forename><surname>Qiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brandon</forename><surname>Reagen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Joe</forename><surname>Spisak</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Fei</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Tulloch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Vajda</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaodong</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yanghan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bram</forename><surname>Wasti</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yiming</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ran</forename><surname>Xian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Sungjoo</forename><surname>Yoo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peizhao</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE International Symposium on High Performance Computer Architecture (HPCA)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="331" to="344" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,526.12,224.82,6.18;12,333.39,534.09,225.89,6.18;12,333.39,542.00,224.82,6.25;12,333.39,550.03,47.55,6.18" xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Production machine learning pipelines: Empirical analysis and optimization opportunities</title>
+		<author>
+			<persName coords=""><forename type="first">Doris</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hui</forename><surname>Miao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2021 International Conference on Management of Data</title>
+				<meeting>the 2021 International Conference on Management of Data</meeting>
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="2639" to="2652" />
+		</imprint>
+	</monogr>
+	<note>Aditya Parameswaran, and Neoklis Polyzotis</note>
+</biblStruct>
+
+<biblStruct coords="12,333.39,558.00,224.82,6.18;12,333.39,565.91,224.81,6.25;12,333.39,573.88,163.06,6.25" xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Spark: cluster computing with working sets</title>
+		<author>
+			<persName coords=""><forename type="first">Matei</forename><surname>Zaharia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mosharaf</forename><surname>Chowdhury</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Scott</forename><surname>Michael J Franklin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ion</forename><surname>Shenker</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Stoica</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2nd USENIX conference on Hot topics in cloud computing</title>
+				<meeting>the 2nd USENIX conference on Hot topics in cloud computing</meeting>
+		<imprint>
+			<date type="published" when="2010">2010</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,581.91,226.00,6.18;12,332.89,589.88,225.32,6.18;12,333.39,597.79,224.81,6.25;12,333.39,605.76,224.82,6.25;12,333.39,613.79,41.06,6.18" xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Ansor: Generating high-performance tensor programs for deep learning</title>
+		<author>
+			<persName coords=""><forename type="first">Lianmin</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chengfan</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Minmin</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Zhao</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cody</forename><forename type="middle">Hao</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ameer</forename><surname>Haj-Ali</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yida</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jun</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Danyang</forename><surname>Zhuo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Koushik</forename><surname>Sen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 14th USENIX Conference on Operating Systems Design and Implementation</title>
+				<meeting>the 14th USENIX Conference on Operating Systems Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="page" from="863" to="879" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

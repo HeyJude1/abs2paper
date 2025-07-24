@@ -1,0 +1,6 @@
+论文标题：Using Additive Modifications in LU Factorization Instead of Pivoting
+
+关键词：LU factorization，linear algebra，communication avoidance
+
+摘要：Direct solvers for dense systems of linear equations commonly use partial pivoting to ensure numerical stability. However, pivoting can introduce significant performance overheads, such as synchronization and data movement, particularly on distributed systems. To improve the performance of these solvers, we present an alternative to pivoting in which numerical stability is obtained through additive updates. We implemented this approach using SLATE, a GPU-accelerated numerical linear algebra library, and evaluated it on the Summit supercomputer. Our approach provides better performance (up to 5-fold speedup) than Gaussian elimination with partial pivoting for comparable accuracy on most of the tested matrices. It also provides better accuracy (up to 15 more digits) than Gaussian elimination with no pivoting for comparable performance.
+• Mathematics of computing → Mathematical software performance; Computations on matrices; • Computing methodologies → Distributed algorithms.

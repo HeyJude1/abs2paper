@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Transfer-learning-based Autotuning using Gaussian Copula</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2023-06-21">2023-06-21</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,92.24,141.90,94.73,12.72;1,186.97,139.23,1.19,9.28"><forename type="first">Thomas</forename><surname>Randall</surname></persName>
+							<idno type="ORCID">0000-0002-1213-1011</idno>
+						</author>
+						<author>
+							<persName coords="1,266.53,141.90,74.64,12.72;1,341.17,139.23,1.19,9.28"><forename type="first">Jaehoon</forename><surname>Koo</surname></persName>
+							<email>jaehoonkoo@hanyang.ac.kr</email>
+							<idno type="ORCID">0000-0003-3742-1485</idno>
+						</author>
+						<author>
+							<persName coords="1,432.71,141.90,74.89,12.72"><forename type="first">Brice</forename><surname>Videau</surname></persName>
+							<email>bvideau@anl.gov</email>
+							<idno type="ORCID">0000-0001-6824-1263</idno>
+						</author>
+						<author>
+							<persName coords="1,99.74,205.14,84.22,12.72"><forename type="first">Michael</forename><surname>Kruse</surname></persName>
+							<email>michael.kruse@anl.gov</email>
+							<idno type="ORCID">0000-0001-7756-7126</idno>
+						</author>
+						<author>
+							<persName coords="1,273.33,205.14,64.87,12.72"><forename type="first">Xingfu</forename><surname>Wu</surname></persName>
+							<email>xingfu.wu@anl.gov</email>
+							<idno type="ORCID">0000-0001-8150-5171</idno>
+						</author>
+						<author>
+							<persName coords="1,430.44,205.14,79.42,12.72"><forename type="first">Paul</forename><surname>Hovland</surname></persName>
+							<email>hovland@anl.gov</email>
+							<idno type="ORCID">0000-0002-0907-2567</idno>
+						</author>
+						<author>
+							<persName coords="1,111.99,268.38,59.72,12.72"><forename type="first">Mary</forename><surname>Hall</surname></persName>
+							<email>mhall@cs.utah.edu</email>
+							<idno type="ORCID">0000-0002-3058-7573</idno>
+						</author>
+						<author>
+							<persName coords="1,280.79,268.38,50.43,12.72"><forename type="first">Rong</forename><surname>Ge</surname></persName>
+							<idno type="ORCID">0000-0002-2218-3675</idno>
+						</author>
+						<author>
+							<persName coords="1,403.42,268.38,129.39,12.72;1,532.81,265.71,1.19,9.28"><forename type="first">Prasanna</forename><surname>Balaprakash</surname></persName>
+							<idno type="ORCID">0000-0002-0292-5715</idno>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">Clemson University</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Hanyang University Republic of Korea</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="laboratory">Argonne National Laboratory</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="laboratory">Argonne National Laboratory</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="laboratory">Argonne National Laboratory</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="laboratory">Argonne National Laboratory</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="institution">University of Utah</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="institution">Clemson University</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff8">
+								<orgName type="institution">Oak Ridge National Laboratory</orgName>
+								<address>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff9">
+								<orgName type="department">ICS &apos;23</orgName>
+								<address>
+									<addrLine>June 21-23</addrLine>
+									<postCode>2023</postCode>
+									<settlement>Orlando</settlement>
+									<region>FL</region>
+									<country key="US">USA</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Transfer-learning-based Autotuning using Gaussian Copula</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 37th International Conference on Supercomputing</title>
+						<meeting>the 37th International Conference on Supercomputing						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="37" to="49"/>
+							<date type="published" when="2023-06-21" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">F312C48FB2EC5F5F053ADDD1A1D0761A</idno>
+					<idno type="DOI">10.1145/3577193.3593712</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Transfer Learning</term>
+					<term>Autotuning</term>
+					<term>Few-Shot Learning</term>
+					<term>Gaussian Copula</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>As diverse high-performance computing (HPC) systems are built, many opportunities arise for applications to solve larger problems than ever before. Given the significantly increased complexity of these HPC systems and application tuning, empirical performance tuning, such as autotuning, has emerged as a promising approach in recent years. Despite its effectiveness, autotuning is often a computationally expensive approach. Transfer learning (TL)-based autotuning seeks to address this issue by leveraging the data from prior tuning. Current TL methods for autotuning spend significant time modeling the relationship between parameter configurations and performance, which is ineffective for fewshot (that is, few empirical evaluations) tuning on new tasks. We introduce the first generative TL-based autotuning approach based on the Gaussian copula (GC) to model the high-performing regions of the search space from prior data and then generate high-performing configurations for new tasks. This allows a sampling-based approach that maximizes</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">INTRODUCTION</head><p>The arrival of diverse architectures in high-performance computing (HPC) systems has unlocked many new opportunities and also permits existing applications to push beyond their former limitations. In order to maximize performance, new and old applications alike will need to be tuned. Since these applications frequently allow many potential optimizations, searching for the best configurations by hand or with exhaustive enumeration is typically too expensive. Empirical performance tuning, widely known as autotuning, is a promising approach that evaluates a small subset of parameter configurations of a given kernel or application from a large user-defined search space by running them on the target platform to identify the best-performing configurations. A sophisticated search algorithm is often employed to intelligently navigate the large search space. Such autotuning approaches have achieved success in several prior works <ref type="bibr" coords="2,81.00,242.55,10.37,8.84" target="#b1">[2,</ref><ref type="bibr" coords="2,93.86,242.55,11.46,8.84" target="#b10">11,</ref><ref type="bibr" coords="2,107.81,242.55,11.46,8.84" target="#b14">15,</ref><ref type="bibr" coords="2,121.76,242.55,11.46,8.84" target="#b15">16,</ref><ref type="bibr" coords="2,135.70,242.55,11.46,8.84" target="#b21">22,</ref><ref type="bibr" coords="2,149.65,242.55,11.46,8.84" target="#b22">23,</ref><ref type="bibr" coords="2,163.60,242.55,11.25,8.84" target="#b24">25]</ref>.</p><p>Despite prior successes, however, autotuning has faced adoption challenges for real applications because it is still resource expensive. Each empirical evaluation involves generating the executable with the parameter configuration and actual execution. Even simple kernels may require several hours to tune, while more advanced and complex applications with larger search spaces may require days. To reduce the computational expense of autotuning, researchers have developed transfer learning (TL) methods to leverage data from related autotuning tasks (e.g., similar input sizes or kernels). Although the optimum for a kernel changes with input size, high-performing regions in the search space are related across input sizes. This allows TL in autotuning to tune new input sizes of that kernel efficiently.</p><p>Existing TL autotuning methods are ineffective for fewshot, i.e., a minimal number of empirical evaluations, as they require many samples for new tasks to model the transfer relationship. To overcome this issue, we develop a new generative autotuning approach that uses Gaussian copula (GC), a data-efficient statistical model, to enable rapid TL autotuning. We use GCs to model each configuration parameter's distribution and codependencies. GCs permit generative tuning via conditional sampling, which restricts sample generation to configurations to satisfy constraints such as high performance for the input size or kernel of interest. Conditional sampling enhances the explainability of generated configurations and improves the likelihood of success on transferred problems. We enhance the GC's ability to model the marginal and joint distributions of parameters while mitigating its limitations for autotuning settings.</p><p>Our main contributions are as follows:</p><p>• A new generative modeling approach based on a dataefficient GC model, which enables few-shot TL based autotuning with a small number of empirical evaluations for new tasks; a generative modeling approach has never been developed or applied for TL autotuning before.</p><p>• Estimation of success probability for generative modeling to determine the necessary budget to expect quality autotuning results; this is the first work that provides probability estimation for TL autotuning. • We demonstrate new performance insights for Polybench and Exascale Computing Project mini-applications by utilizing few-shot autotuning.</p><p>Our code is open source and available at https://github. com/tlranda/GC_TLA.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">BACKGROUND 2.1 Autotuning</head><p>Autotuning <ref type="bibr" coords="2,367.20,242.41,10.39,8.84" target="#b2">[3,</ref><ref type="bibr" coords="2,380.08,242.41,11.46,8.84" target="#b21">22,</ref><ref type="bibr" coords="2,394.03,242.41,12.82,8.84" target="#b22">23]</ref> is a process that efficiently evaluates a number of parameter configurations from a user-defined parameterized kernel or application to optimize a given objective such as performance (e.g., runtime, FLOPS). Here we provide a walkthrough with the Polybench kernel <ref type="bibr" coords="2,541.71,290.24,16.50,8.84" target="#b25">[26]</ref> "3mm" as a concrete example of basic autotuning concepts. The kernel performs dense matrix multiplication with four matrices 𝐴, 𝐵, 𝐶, 𝐷 such that the output is (𝐴 × 𝐵) × (𝐶 × 𝐷).</p><p>Autotuning utilizes a finite budget (typically time or number of evaluations) to optimize a relationship 𝑓 (𝑐; 𝑡) ∈ R 𝑑 between a given parameter configuration 𝑐, out of all possible configurations 𝐶, a tuning task 𝑡, and 𝑑 objective outputs such that argmax 𝑐 𝑓 (𝑐; 𝑡) ∀𝑐 ∈ C. Each task 𝑡 is a specific instance from a set of related tasks T , which may have different configurations for optimum performance. Each objective 𝑑 is a real-valued metric that functionally depends on both the task and parameters according to 𝑓 (𝑐; 𝑡). The exact closed form of 𝑓 (𝑐; 𝑡) is unknown but is assumed to be a complex, nonlinear relationship.</p><p>An example task of tuning the 3mm kernel's runtime performance involves 𝑛 = 10 parameters in the form of source code annotations that affect loop tile sizes (i.e., 4, 8, 32), loop interchanges (the order loop iterators appear in nested loops), and memory management (the packing used for tile memory structures). Each evaluation of the objective requires annotating the source with parameter values, then compiling and executing it on the benchmark system to collect timing data, which incurs considerable cost even for small input matrices. There are 376,320 unique combinations of the ten parameters that define our tuning space for 3mm, which is prohibitively costly to brute-force with empirical searches. Autotuning uses more intelligent approaches to identify the configurations that achieve optimal performance.</p><p>Autotuning must differentiate input scales as different tasks because changing the input scale frequently induces drastic changes in the optimum configuration. As shown in Table <ref type="table" coords="2,354.25,672.94,3.48,8.84" target="#tab_0">1</ref>, small sizes require the packed-array technique for matrices 𝐴 and 𝐸, but medium-sized inputs do not. The degree of improvement can also vary between input scales, where small 3mm inputs can gain 1.13× speedup from autotuning. However, medium-sized 3mm inputs gain 14.94× speedup over the respective baselines.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Transfer Learning in Autotuning</head><p>Several search methods have been developed to reduce the number of evaluations required to find the best configuration for autotuning tasks. They can be classified into model-based and model-free methods. The former methods learn the relationship between the parameter configurations and the objective function through an incrementally updated surrogate model and leverage it to cheaply evaluate multiple points and minimize the number of actual evaluations. Examples include Bayesian optimization that employs Gaussian process regression and random forest and their variants. The latter methods optimize the objective function without such models. Examples include random search, grid search, genetic algorithms, and Nelder--Mead. The key advantage of the model-based methods is that they require significantly fewer evaluations than the model-free methods, especially for large search spaces <ref type="bibr" coords="3,148.26,452.06,15.00,8.84" target="#b10">[11,</ref><ref type="bibr" coords="3,165.75,452.06,11.46,8.84" target="#b21">22,</ref><ref type="bibr" coords="3,179.70,452.06,11.46,8.84" target="#b22">23,</ref><ref type="bibr" coords="3,193.65,452.06,11.25,8.84" target="#b24">25]</ref>. TL in autotuning is an emerging approach that leverages data from one autotuning task in related autotuning tasks to improve sample efficiency significantly. Related autotuning tasks are common in HPC applications, which include tuning different input sizes of the same kernel or application, tuning the same kernel across architectures, and tuning related kernels with the same computational signature. While the best configurations are often different for different autotuning tasks, TL is particularly effective when the related tasks share similar high-performing characteristics in the search space. Model-based search methods are promising for TL because the model can be pretrained or bootstrapped with the existing data from related tasks.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Gaussian Copula</head><p>The generative modeling-based TL approach that we propose is based on the GC, a well-known multivariate probability distribution in statistics literature. Let us consider a simple autotuning example with three variables: input scale, one tunable parameter, and the performance metric. After tuning several input scales, we can model the distribution of the values of the three variables independently. These are referred to as marginal distributions. The three variables are correlated, however, so we also model their interactions with one another using a joint probability distribution.</p><p>Copulas are a class of statistical modeling techniques that decompose a multivariate probability distribution into its marginal distributions and use a separate function to couple those distributions. This approach allows us to specify the correlation separately via a correlation matrix. GCs adopt probability integral transform, a technique that can transform any probability distribution into a uniform distribution and vice versa. GCs use the uniform and normal distribution as the intermediate distribution to model complex joint probability distribution. This is achieved as follows. Given the values of the three variables, a covariance matrix that models the correlation among the variables is computed. A multivariate normal distribution is then defined using the computed covariance matrix with a zero mean vector. The probability integral transform is applied to convert the marginals of the Gaussian distribution to uniform distributions. The uniform marginal distributions are then converted into the original distribution using the probability integral transform. We refer the reader to the work of Masarotto and Varin <ref type="bibr" coords="3,527.19,350.15,16.50,8.84" target="#b12">[13]</ref> for a more detailed mathematical exposition of the statistical model and mechanics.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">PROPOSED FRAMEWORK</head><p>The key idea of our TL approach is to leverage the GC to predict high-performing configurations on related tasks in few-shot autotuning.</p><p>Our proposed method consists of two phases: model training and model inference, as shown in Figure <ref type="figure" coords="3,499.85,459.74,3.40,8.84" target="#fig_0">1</ref>. Model training uses GC to fit data collected from source tasks in an expert-defined tuning space. In our work, the source tasks correspond to different input sizes for the same application, and the tuning space is specified via application source code annotation and predefined parameter values. The source tasks, tuning space, and source input sizes are presented to an existing autotuner <ref type="bibr" coords="3,409.94,543.42,74.50,8.84">[4-6, 9, 16, 21, 25]</ref> with a fixed evaluation budget to collect a small, quality training dataset of empirical performance. Model inference uses the fitted GC model to propose high-performing configurations for new tasks, which are then empirically evaluated. We discuss the modules in greater detail in the remainder of this section.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Model Training</head><p>Autotuning problems require experts to delineate key highlevel features. The GC also requires several interventions to permit its general usage in autotuning and to improve its utility as a few-shot TL autotuner.</p><p>3.1.1 GC for Autotuning. We make several adaptations for GC to generalize it for the autotuning problem. TOP: Model Training, which uses GC to train fitted models with data collected from source tasks (multiple input sizes of an application) in a human-designed tuning space. BOTTOM: Model Inference, which uses the fitted GC models to propose high-performing configurations for new tasks and evaluates them.</p><p>Variable Preprocessing. Standard GCs model real variables but do not model mixed-integer (discrete, integer, and categorical) variables. To address this issue, we adopt a new GC approach proposed for synthetic data generation <ref type="bibr" coords="4,248.47,396.83,14.68,8.84" target="#b13">[14]</ref>. In this GC approach, numeric variables (real or integer) are modeled by truncated Gaussian distributions, and categories are reordered by their frequency in the fitting data. The GC also reduces the bias from distribution shape by converting all variable distributions to standard normal distribution before computing covariance.</p><p>GC as an Autotuner. GC can be used as an autotuner given a dataset of observed configurations in a defined tuning space. Each tunable parameter in an autotuning space can be represented by a marginal variable in the GC model; the combination of parameter interactions can be described through the joint model of the GC, permitting representation of distributions throughout a tuning space. The resulting fitted model identifies appropriate marginal and joint distributions. The fitted model can generate new configurations through the GC's probability integral transform, which statistically resembles the training data's observed marginal and joint behaviors. Any configurations a GCs generates can be empirically evaluated to determine its fitness without iterative feedback.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1.2">GC Model</head><p>Fitting for Few-Shot Tuning. Unlike existing TL autotuning methods, the GC does not benefit from access to extensive or exhaustive datasets. Without modeling the relationships between performance and parameter configurations, GC lacks a mechanism to disfavor parameter configurations with subpar performance. Nevertheless, we can intentionally filter training data based on observed highperformance and fit the GC only to high performance configurations. In the TL setting, GC-based autotuners generate high-performing configurations immediately and minimize the exploration of low-performing regions.</p><p>Quantile Filtering. We investigate dataset filtering based on performance quantiles to include only top-performing configurations in the training data for GC modeling. The best quantiles should result in a training data subset with similar distribution for high-performing configurations while maintaining ample tuning space coverage. To motivate the need for the proper threshold quantile, we present a brief analysis from an exhaustively tuned Syr2k task using Kullback-Leibler (KL) divergence <ref type="bibr" coords="4,420.77,272.61,14.98,8.84" target="#b9">[10]</ref>, a statistical measure of the difference between two probability distributions. Zero KL divergence indicates that the compared distributions are identical; increasing differences between compared distributions increases divergence. We also analyze the tuning space coverage based on the filtered dataset since filtering can prevent some configurations from being generated. Quantile filtering cannot be too aggressive. As shown in Table <ref type="table" coords="4,343.13,565.34,3.48,8.84" target="#tab_1">2</ref>, the tuning space coverage decreases gradually at first but decreases dramatically (i.e., 0.82 to 0.07) when the filtering quantile decreases from 30% to 20%. The significant decrease suggests that a majority of parameter options, especially categorical parameters, have been eliminated. Generating near-optimal configurations for many tasks requires variation within the tuning space, so filtering must not overly restrict coverage. The table also indicates that reducing the filtering quantile of source data reduces the average marginal KL divergence between the represented data and the top 10% of all possible configurations of this particular Syr2k tuning task. Again, the filtering quantile cannot be reduced indefinitely without consequence: an aggressive filter can increase divergence. We expect the optimum to change between tasks; overreliance on the source task optimum harms the generalization of the 𝑓 (𝑐, 𝑡) relationship.</p><p>A smaller divergence for the filtered source increases the likelihood of sampling optimal configurations by redistributing the sampling probability from suboptimal areas of the space to regions that closely resemble known near-optimal configurations. Based on this trend and our experiments, we recommend using less than 50% of the original tuning data to exclude low-performing characteristics from prior data. This excludes many evaluations that prior autotuners made to inform the surrogate model rather than to improve the best-known optimum. Empirically, we determine that at least the top 15% of data from related tuning runs is needed to avoid over-specification. We utilize the top 30% of prior data in our experiments to ensure adequate information is available for complex tuning tasks without overly harming the tuning space coverage.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Model Inference</head><p>The fitted GC model represents learned distributions that can be used for inference, but additional steps must be taken to utilize it as an effective TL autotuner.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.1">Conditional Sampling.</head><p>Quantile filtering increases the likelihood that a sampled configuration from the GC will reproduce optimal traits in new tasks, but this fails to respect the specific tuning needs for different tasks. Meaningful transfer between tasks requires us to label fitting data with a representation of the task, 𝑡. This permits conditional sampling; we specify the condition that every sample indicates a particular task. Conditional sampling imposes arbitrary constraints on the model during generation, which affect the distributions of unconstrained variables before generating their values. We explain the mathematical mechanics of conditional sampling for GCs in greater detail in our repository. Conditional sampling prompts the GC to reconstruct the best-fit distribution it learned for the indicated task; if that task was not observed in prior tuning, the same model mechanics "recover" a transferred relationship for the new task.</p><p>Conditional sampling is particularly effective for the GC because it identifies and isolates critical information from the model. Since the GC operates on filtered high-performing source data, conditional sampling generates configurations that are expected to perform well for the transferred task.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.2">Advantages over Alternative Generative Models.</head><p>Other generative models can fit a labeled dataset and generate constrained samples, but the GC has lower latency and yields more usable samples than alternatives. Table <ref type="table" coords="5,233.70,696.85,4.54,8.84" target="#tab_2">3</ref> demonstrates the inference latency of comparable deep neural-networkbased generative methods such as CTGAN and TVAE <ref type="bibr" coords="5,541.04,99.09,14.96,8.84" target="#b23">[24]</ref>. GC has the lowest latency of all, which is comparable to purely random sampling. The GC's advantage in latency is partially due to the acceptance rate of generated samples, also shown in Table <ref type="table" coords="5,552.78,295.84,3.48,8.84" target="#tab_2">3</ref>. The separation of joint and marginal models permits the GC to satisfy constraints before generating other values, so only repeated parameter configurations are removed from its generated configurations. Some other models, such as the CopulaGAN [1], can also utilize conditional sampling; however, it can fail to generate any configurations when prompted to produce out-of-distribution data, which is important for transferring tuning to new tasks.</p><p>CTGAN and TVAE generate excess samples and then employ filters to discard ill-conditioned data. These methods are computationally inefficient. While relaxing constraints can help reduce their generation latency, it comes at the cost of compromising the quality of the generated data, which no longer best fits the desired task. CTGAN and TVAE are not ideal for few-shot transfer learning autotuning scenarios, where both latency and utility are crucial factors to consider.</p><p>CopulaGAN, CTGAN, and TVAE are proposed for synthetic data generation and are effective when provided with large amounts of data. In autotuning, however, we often have limited data. GC is more effective for these settings because of its computational simplicity.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.3">Managing Probability of Success.</head><p>The success rate for generative autotuning is subject to randomness, even though the transferred distribution is biased toward values that are expected to be near-optimal. Therefore, it is crucial to understand the probabilities involved in GC generation to determine whether the technique is appropriate and what evaluation budget is necessary to expect a certain threshold of success.</p><p>The GC's autotuning process samples 𝑘 configurations without replacement from a distribution that spans |𝐶 | potential candidates. Within the distribution are |𝐼 | ideal candidates, which are optimal or near-optimal. Frequently, the top 1% of evaluations in real-world benchmarks have nearly equivalent performance. Identifying one or more of these top 1% candidates within the budgeted 𝑘 trials is an acceptable goal for few-shot TL autotuning. The probability that one or more such ideal candidates are selected within 𝑘 trials is hypergeometric sampling, described by Equation <ref type="formula" coords="6,255.54,146.91,3.49,8.84" target="#formula_0">1</ref>:</p><formula xml:id="formula_0">𝑃 (#𝑂𝑝𝑡𝑖𝑚𝑎𝑙 ≥ 1) = 𝑘 ∑︁ 𝑖=1 |𝐼 | 𝑖 |𝐶 | − |𝐼 | 𝑘 −𝑖 |𝐶 | 𝑘 .<label>(1)</label></formula><p>If we fit all source task data and |𝐶 | is the size of the entire configuration space, then sampling the top 1% of performance within a few shots is unlikely. Using quantile filtering on the source data for the GC can make some configurations statistically improbable or impossible to generate, eliminating them from the search. These excluded configurations are expected to be suboptimal because they fail to exhibit characteristics common with known optimal-like data from source task tuning.</p><p>Eliminating suboptimal configurations with quantile filtering reduces the size |𝐶 |. Recall from Table <ref type="table" coords="6,225.95,327.14,4.62,8.84" target="#tab_1">2</ref> that the tuning space coverage decreases dramatically after a certain quantile. The best filtering quantile will minimize KL divergence from the optimal distribution and limit |𝐶 | without overspecifying the search space since the latter also contributes to the probability of the few-shot success. We can determine the reduced |𝐶 | from the GC by estimating the number of unique samples generated by the fitted GC. Nevertheless, we can only measure the resulting change in |𝐼 | with exhaustive evaluation, which is needed to quantify the probability of success in Equation 1.</p><p>The exact reduction in |𝐼 | is unknown but can be modeled as a proportion of the eliminated configurations, which represents the opportunity cost of some removed configurations being optimal. With adjusted |𝐶 | and |𝐼 |, the value of 𝑘 in Equation 1 can be increased until the probability meets a desired confidence level. This provides an adequate budget of evaluations 𝑘 that generates one or more ideal candidates with probability equal to the specified confidence (e.g., 95%). This budget-engineering calculation operates similarly to a convergence guarantee because it permits evaluations of the GC's viability via the size of its budget constraint without performing any empirical evaluations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">Addressing Limitations for Autotuning</head><p>Even with our modifications, a few of the known limitations of GC models have limited significance in our intended use case of TL autotuning for source code annotations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.1">Underfitting</head><p>Cross-Variable Dependencies. The GC expresses codependence between variables using linear correlation, which will underfit complex variable codependencies. The GC's correlation is expressed between variable pairs, so the number of simultaneously interacting variables is less important than the complexity of dependence between variable pairs. In most cases for source-code autotuning, annotations are functionally independent of one another or adhere to the linear correlation that the model can express.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.2">False</head><p>Ordering and Transitivity for Categories. The GC's linearized representation of categorical values implies and attempts to leverage a total ordering that may not exist between categories. This creates transitive relationships that may prove counterproductive for the marginal optimization of categorical data. One way to counteract this behavior is to utilize binary expansion or one-hot encodings for each category, but this can create many variables when applied to large categories. Many source code annotations consist of only two values, such as the presence or absence of a #pragma annotation, which limits the variable to two categories. Other categorical variables in annotation autotuning are limited to fewer than ten values, which bound the error that marginal kernels must overcome to acceptable degrees.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3.3">Model-Fitting</head><p>Complexity. Fitting a GC has cubic time complexity based on the number of variables due to the joint covariance model. Other TL methods gain a competitive edge when the GC models fifty or more variables, which can make some modifications, such as one-hot encoding, less desirable in practice. Source code annotations pose some inherent limits on the number of tunable variables due to the decreasing performance significance of additional, non-bottleneck optimization points in an application. Larger applications require explicit measures, such as importance sampling, to identify the most critical variables to tune. Our current techniques continue to rely on experts for annotation and can also rely on them to curate an appropriately sized set of variables.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">EXPERIMENT DESIGN</head><p>We evaluate our method and several existing techniques in few-shot TL autotuning with a variety of benchmarks empirically evaluated on a real system. TL Autotuning Benchmarks. We use the Polybench 4.2 <ref type="bibr" coords="6,541.99,577.30,16.21,8.84" target="#b25">[26]</ref> benchmark suite and several Exascale Computing Project (ECP) proxy mini-applications to evaluate our GC autotuning methodology. ECP benchmarks are multithreaded, and one (SWLite) is a GPU program. The selected applications are based on our ability to define valuable optimizations in our tuning spaces.</p><p>Polybench consists of numerical computation kernels extracted from various application domains. We utilize six of the most complex benchmarks spanning the application domains of linear algebra, image processing, stencils, and data Table <ref type="table" coords="7,80.57,87.89,3.84,8.56">4</ref>: Tuning spaces for each benchmark alongside the GC's coverage and budget based on the top-30% of source evaluations. Specific parameters are described in Tables <ref type="table" coords="7,96.94,123.76,30.65,8.56" target="#tab_5">5 and 6</ref>. mining: Syr2k, 3mm, Heat-3d, LU, Covariance, and Floyd-Warshall.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Benchmark</head><p>The ECP proxy applications represent essential computational kernels from high-performance computing programs, allowing for highly effective performance analyses and tuning without requiring the time-intensive execution of the entire application. We include four mini-applications-AMG, RSBench, XSBench, and SW4Lite-with different computememory access ratios and memory accesses patterns.</p><p>We parameterize each kernel with code modifications in performance-critical sections of the benchmark that may improve performance. These modifications include tile sizes, loop optimization techniques, parallelization and scheduling strategies, data allocation formats, and multiprocess synchronization frequencies. Table <ref type="table" coords="7,167.73,407.73,4.73,8.84">4</ref> shows the number of unique parameters in each experimental benchmark as well as the combinatoric search space size of all possible parameter configurations. The largest search space has over 5 million potential configurations. The tuning spaces for Polybench and ECP applications are described in greater detail in Tables <ref type="table" coords="7,289.38,467.51,4.67,8.84;7,53.80,479.46,20.90,8.84" target="#tab_5">5  and 6</ref>, respectively.</p><p>Source Tasks and Training Dataset. To form the prior knowledge for TL autotuning, we use offline autotuning through YTOPT <ref type="bibr" coords="7,86.29,529.34,16.37,8.84" target="#b24">[25]</ref> to collect 200 evaluations in each of three nontarget tasks: small, medium, and large. Since 200 evaluations represent &lt;5% of the search space, any chosen tuner must span performance for maximally effective TL. All of our YTOPT autotuning is performed by Bayesian optimization with random forests, tuned for 90% confidence in the 50 𝑡ℎ quantile of evaluated performance.</p><p>Table <ref type="table" coords="7,87.88,613.16,4.55,8.84">4</ref> summarizes the tuning spaces of source tasks and includes the GC's predicted evaluation budget based on filtered source data. The prediction is based on the model's capability to identify one or more evaluations in the top 1% with 95% confidence, assuming that as much as 5% of pruned configurations are potentially optimal. A dash represents an unknown budget, where the overall problem size is reduced to such a degree that it is impossible to predict a budget requirement using Equation 1. In this case, the GC's tuning space coverage could fail to include the optimal region if the transfer relationship is poorly informed. Hence, we cautiously treat indeterminate budgets the same as few-shot TL for techniques that cannot determine their own budget, and we determine how well the GC can perform using the same budget as prior techniques.</p><p>Compared Approaches. We evaluate the following autotuning approaches to demonstrate our advantage:</p><p>• Baseline. Parameter values are taken directly from their respective sources; no parameter tuning is performed except compiler flag -O3. • Bayesian Optimization. Bayesian optimization (BO) without TL using YTOPT <ref type="bibr" coords="7,449.73,257.25,15.12,8.84" target="#b21">[22,</ref><ref type="bibr" coords="7,467.35,257.25,11.50,8.84" target="#b22">23,</ref><ref type="bibr" coords="7,481.36,257.25,11.34,8.84" target="#b24">25]</ref>. The autotuner utilizes a random forest surrogate model and a hedged Gaussian process to evaluate the expected improvement of proposed configurations. • GPTune DTLA. GPTune <ref type="bibr" coords="7,445.64,305.07,16.22,8.84" target="#b10">[11]</ref> with DTLA is a state-ofthe-art autotuner that is capable of utilizing TL using a neural joint model to combine Gaussian processes representing individual parameters.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>• Gaussian Copula (ours). A GC is fit to the top 30%</head><p>performing data from source tasks, then conditionally sampled on the target task to generate configurations.</p><p>Autotuning Procedure. Each benchmark has three source task sizes (small, medium, and large) based on given magnitudes of performance-scaling input features. The three target task sizes are small-medium (SM), medium-large (ML), and extra-large (XL). The first two represent two interpolations between source tasks, and the last is an extrapolation beyond the scope of source tasks. Each target is tuned independently after the model is exposed to all source datasets. In order to permit the fairest possible comparison among different techniques, the same source tasks dataset is presented to each transfer-capable technique, but the GC filters source datasets for its benefit. In order to mitigate the variance of randomness employed by each technique, the few-shot tuning process is repeated with three random seeds, and results are reported using the average across all seeds.</p><p>We permit each autotuning technique a fixed budget of 30 evaluations per target task. Even when the GC can predict a viable budget of fewer than 30 evaluations shown in Table <ref type="table" coords="7,552.62,601.21,3.34,8.84">4</ref>, we collect all 30 and specifically note the intermediate results when the predicted budget is exhausted. Since we expect TL techniques to extract some understanding of the problem from prior data, we evaluate success primarily based on the best-observed performance among limited evaluations.</p><p>For all evaluations of source and target tasks, the parameterized code is compiled once and executed three times. The autotuning objective is reported as the mean of the last two evaluations to minimize the impact of variance and uncontrolled noise in the execution environment. Timing data is collected with internal measurements in the benchmark source code to ensure that overheads such as process startup and data initialization are excluded.</p><p>Experimental Platform. All experiments are conducted on a Linux machine with 320 GB 2x AMD EPYC 7742 64-core processor (128 total cores) 1 TB DDR4 with Ubuntu 20.04.2 LTS. The machine also includes a 40 GB NVIDIA A100, which we use for evaluating the GPU-based SW4Lite ECP application. Measurements of elapsed time include time for sample generation, source code compilation using the Clang compiler, and program execution. Each benchmark internally measures empirical performance.</p><p>Because the tuning spaces we defined express optimizations through Polly <ref type="bibr" coords="8,135.51,531.39,10.48,8.84" target="#b6">[7]</ref>, a loop optimizer for LLVM, we use a Clang compiler (version 13.0.0) for compilation. However, any compiler that supports Polly is suitable for replicating our experiments. Some Polly optimizations can be applied heuristically based on analysis of the LLVM intermediate representation, while others can be induced by programmersupplied #pragma directives in the source code. Currently, not all code transformations can be specified by directives, such as unroll-and-jam, loop fusion, and code motion. For this reason, two of our applications (3mm and LU) adopt heuristic optimizations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">RESULTS</head><p>We separate the presentation of our results between the Polybench and Exascale benchmark suites and identify key successes and limitations of our technique compared with the state-of-the-art approaches.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Polybench Autotuning</head><p>The Polybench benchmarks demonstrate several different behaviors for generative autotuning with the GC, including aggressive space pruning, uncertain optimization signals, and high-confidence benchmarks that represent a best-case scenario for the technique.</p><p>General results for the Polybench benchmarks are presented in the upper portion of Table <ref type="table" coords="8,464.95,462.15,3.36,8.84" target="#tab_6">7</ref>. On the 3mm XL task, the GC yields an additional 12.81× speedup (i.e., 33.39× vs. 20.58×) compared with prior autotuning techniques. In half of the Polybench tasks, the GC's first evaluation outperforms the best tuning result discovered by BO or GPTune. When we utilize the GC's expected budget or the maximum number of evaluations whenever the budget is undefined, the GC outperforms GPTune and BO in over 80% of all tuning tasks. Even on tasks where the GC does not outperform prior work, the peak speedup sampled by the GC is within 5.5% of the peak performance sampled by prior work.</p><p>The GC is highly successful both on its first evaluation and within its allotted evaluation budget because of the effectiveness of its search space reductions and distribution transfer through conditional sampling. Both GPTune and BO must allocate portions of their evaluation budget to explore the space and refine the model's transfer or general surrogate knowledge. The GC does not need these subpar evaluations. Thus it can be extremely aggressive in the few-shot tuning,  as shown in Figure <ref type="figure" coords="9,134.60,524.47,4.73,8.84" target="#fig_1">2</ref> where nearly every proposed evaluation of the GC outperforms all evaluations proposed by other tuning methods.</p><p>The GC prunes spaces for 3mm, Covariance, and LU too aggressively for us to predict an evaluation budget. Our results demonstrate that the GC still identifies the best speedup across all techniques in all tasks for these benchmarks when given the same tuning budget allocated to other techniques. The search space reduction performed by the GC outperforms prior autotuning by properly identifying characteristics of optimal configurations across tasks and correctly modifying these relationships for each target task.</p><p>The Floyd-Warshall and LU benchmarks are challenging for any autotuning technique to optimize. Without exhaustive data for these benchmarks, it is unclear whether this is due to the original source code parameters being nearoptimal or the tuning space exposing mostly unhelpful alterations to the benchmark source. Critically, the GC still produces highly consistent and comparatively valuable results on each evaluation, as shown for the LU benchmark in Figure <ref type="figure" coords="9,346.33,294.60,3.41,8.84" target="#fig_2">3</ref>.</p><p>To ensure that few-shot TL autotuning is effective, we brute-force all configurations of the Syr2k XL task in Figure <ref type="figure" coords="9,334.97,330.46,3.48,8.84">4</ref>. Both the GC and GPTune closely approximate the global optimum within a few shots. However, all evaluations proposed by the GC are near-optimal, while other methods require repeated exploration of poor-performing regions to identify their transfer relationships.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Exascale Miniapplications Autotuning</head><p>The selected exascale benchmarks represent the most significant challenge for few-shot TL autotuning, with search spaces that are orders of magnitudes larger than those present in the Polybench kernels and complex interplay between many variables. We expect less speedup from autotuning spaces for these applications for several reasons. First, the tuning spaces are orders of magnitude larger than Polybench tuning spaces; we use the same number of source task evaluations for all experiments, which means that TL operates on less complete information about each ECP tuning problem. Second, for more advanced applications, it is more challenging to represent highly effective tunable optimizations than the more straightforward Polybench kernels. Third, some speedup from system-related tuning parameters can be hidden by other tuning parameters. The choice of core affinity, for example, has a greater impact on performance if the configuration also includes many threads. Finally, some parameter defaults, such as loop tiling values, are already highly effective, which limits the improvement that can be extracted from the tuning space. Although we temper our expected improvement from autotuning, these experiments represent more realistic tuning scenarios where autotuning refines more complex and partially optimized code.</p><p>Even though our GC technique cannot leverage information gained through iterative evaluations, the technique  Figure <ref type="figure" coords="10,85.37,377.55,3.87,8.56">4</ref>: Brute-forcing the Syr2k XL task proves that the GC and GPTune can identify the global optimum in 30 evaluations, but the GC avoids poor evaluations, giving it better average performance. meets or exceeds the original expert-optimized performance on over half of the exascale tuning tasks. The AMG task is the most difficult for any technique to optimize, but the GC outperforms GPTune either from its first evaluation or within its predicted budget for all transfer tasks. Even as the relationship between parameters and performance becomes more complex and search spaces grow orders of magnitude larger, the GC can identify high-performing traits in prior data and produce high-quality candidates in the few-shot tuning scenario. Across all exascale benchmarks, the GC produces configurations within a performance margin of 2% of those discovered by GPTune at worst. Notably, GPTune's best evaluations for two XSBench tuning tasks are better than ours, but the superior evaluations are collected during its random sampling for the new task, as shown in Figure <ref type="figure" coords="10,284.44,594.08,7.43,8.84">5a</ref>. This may indicate that the prior tuning data does not adequately inform autotuning techniques of characteristics of the optimum for this benchmark. We also note that the GC retains the black-box characteristics enjoyed by prior methods such as BO. Unlike other benchmarks in this work, SW4Lite is a GPU-enabled benchmark, and the tuned kernel is executed on GPU hardware. As shown in Figure <ref type="figure" coords="10,134.24,689.72,7.60,8.84">5b</ref>, the GC evaluates higher-performing configurations than exploratory techniques such as GPTune do. The proposed tuning budget is also reliable across multiple seeds, such that the GC reliably makes its best evaluation within the budgeted number of evaluations. If much larger budgets are allowed, the GC has less chance of improving than other TL autotuning techniques have. In such cases, or if any possible performance gain is desired, our technique may be best utilized to perform initial exploration of new spaces within a limited few-shot budget to bootstrap iterative techniques.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">RELATED WORK</head><p>Prior TL autotuning has enabled data reuse on related tasks for increased sampling efficiency and reduced modeling overhead. BLISS <ref type="bibr" coords="10,366.41,386.01,16.21,8.84" target="#b15">[16]</ref> attributes significant cost to tuning multiple models for large-scale applications but also demonstrates that it is difficult to generalize between small datasets and the full range of potential performance. Other work <ref type="bibr" coords="10,510.84,421.88,11.58,8.84" target="#b7">[8]</ref> employs cost models to substitute cheaper sources of information and utilizes TL to generalize information as needed. However, in situations with a limited budget, the cost model is less relevant to the target problem and requires model reconstruction. Projecting an optimum via machine learning techniques such as GPTune <ref type="bibr" coords="10,386.07,493.61,15.04,8.84" target="#b10">[11,</ref><ref type="bibr" coords="10,403.61,493.61,12.84,8.84" target="#b17">18]</ref> enables more budget optimization for few-shot transfer, but these models require blind evaluations in each new task to form the basis for the transfer relationship. Other works such as Active Harmony, ANGEL, and ParEGO <ref type="bibr" coords="10,371.15,541.43,10.39,8.84" target="#b4">[5,</ref><ref type="bibr" coords="10,384.03,541.43,6.83,8.84" target="#b8">9,</ref><ref type="bibr" coords="10,393.36,541.43,12.83,8.84" target="#b20">21]</ref> focus on multiobjective efficiency by refining a surrogate Pareto frontier. These algorithms provide stronger long-term convergence guarantees rather than few-shot performance. Our work permits immediate access to the most efficient samples through conditional sampling, allowing for aggressive few-shot tuning.</p><p>Prior works have also used biased sample distribution and importance sampling to increase autotuning capabilities. Marathe et al. <ref type="bibr" coords="10,396.10,637.07,16.42,8.84" target="#b11">[12]</ref> found that the correlation between different input scales and available parallelism improves performance predictions. Their work, however, intends to optimize for common-case average outputs and cannot drive the search aggressively. GEIST <ref type="bibr" coords="10,431.14,684.89,16.46,8.84" target="#b19">[20]</ref> transforms the problem of bias and variance in parameter spaces into undirected graphs</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="4,53.80,275.94,241.96,8.56;4,53.47,287.90,240.58,8.56;4,53.80,299.85,242.04,8.56;4,53.80,311.81,240.26,8.56;4,53.80,323.76,240.26,8.56;4,53.80,335.72,242.03,8.56;4,53.80,347.68,204.86,8.56;4,63.76,360.91,230.29,8.91;4,53.80,372.92,241.94,8.84;4,53.80,384.88,240.26,8.84;4,53.80,396.83,240.25,8.84;4,53.80,408.79,241.94,8.84;4,53.80,420.74,240.26,8.84;4,53.80,432.70,240.26,8.84;4,53.80,444.65,240.26,8.84;4,53.55,456.61,240.50,8.84;4,53.80,468.56,92.23,8.84"><head>Figure 1 :</head><label>1</label><figDesc>Figure1: TL-based Autotuning Framework Using GC. TOP: Model Training, which uses GC to train fitted models with data collected from source tasks (multiple input sizes of an application) in a human-designed tuning space. BOTTOM: Model Inference, which uses the fitted GC models to propose high-performing configurations for new tasks and evaluates them.Variable Preprocessing. Standard GCs model real variables but do not model mixed-integer (discrete, integer, and categorical) variables. To address this issue, we adopt a new GC approach proposed for synthetic data generation<ref type="bibr" coords="4,248.47,396.83,14.68,8.84" target="#b13">[14]</ref>. In this GC approach, numeric variables (real or integer) are modeled by truncated Gaussian distributions, and categories are reordered by their frequency in the fitting data. The GC also reduces the bias from distribution shape by converting all variable distributions to standard normal distribution before computing covariance.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="9,53.80,194.63,504.42,8.56;9,53.80,206.59,172.18,8.56"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Observed speedup vs. log-scale elapsed time for few-shot TL autotuning. The dotted lines indicate results trimmed to the GC's predicted budget.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="10,53.80,194.55,504.42,8.56"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Ambiguous responses to tuning yield minimal speedup, but the GC remains competitive with prior work.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="3,53.47,87.89,240.59,124.64"><head>Table 1 :</head><label>1</label><figDesc>Matrix input scales affect speedup and the best configurations for the 3mm kernel.</figDesc><table coords="3,75.42,123.24,192.77,89.29"><row><cell></cell><cell></cell><cell cols="2">Input Scale</cell></row><row><cell></cell><cell>Small</cell><cell cols="2">Medium Large</cell></row><row><cell></cell><cell cols="2">Input Scale Characteristics</cell><cell></cell></row><row><cell>Array Dimensions</cell><cell>≤ 80</cell><cell>≤ 220</cell><cell>≤ 1200</cell></row><row><cell>Naive Tera-Ops</cell><cell>0.037</cell><cell>4.75</cell><cell>2924.24</cell></row><row><cell>Worst Runtime (s)</cell><cell>0.00017</cell><cell>0.1096</cell><cell>9.8631</cell></row><row><cell></cell><cell cols="2">Best Configuration Values</cell><cell></cell></row><row><cell>Packed Arrays</cell><cell>A,E,F</cell><cell>F</cell><cell>A,B,E</cell></row><row><cell>Loop Interchanges</cell><cell>N/A</cell><cell>N/A</cell><cell>Outer Exchange</cell></row><row><cell>Tile Sizes</cell><cell cols="2">16, 2048, 4 96, 16, 4</cell><cell>4, 2048, 4</cell></row><row><cell cols="2">Speedup Over Default 1.13×</cell><cell>14.94×</cell><cell>50.50×</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="4,317.63,367.79,242.37,168.88"><head>Table 2 :</head><label>2</label><figDesc>The tuning space coverage and average marginal KL divergence of quantile-based filtering for the Syr2k benchmark. The KL divergence is calculated using the top 10% of all configurations as a reference, obtained through brute-force.</figDesc><table coords="4,372.64,438.82,126.64,97.84"><row><cell>Filtering</cell><cell>Tuning Space</cell><cell>KL</cell></row><row><cell>Quantile (%)</cell><cell>Coverage</cell><cell>Divergence</cell></row><row><cell>100</cell><cell>1.00</cell><cell>0.1878</cell></row><row><cell>90</cell><cell>1.00</cell><cell>0.1713</cell></row><row><cell>80</cell><cell>1.00</cell><cell>0.1609</cell></row><row><cell>70</cell><cell>1.00</cell><cell>0.1525</cell></row><row><cell>60</cell><cell>0.91</cell><cell>0.1409</cell></row><row><cell>50</cell><cell>0.91</cell><cell>0.1212</cell></row><row><cell>40</cell><cell>0.91</cell><cell>0.1333</cell></row><row><cell>30</cell><cell>0.82</cell><cell>0.1713</cell></row><row><cell>20</cell><cell>0.07</cell><cell>0.2766</cell></row><row><cell>10</cell><cell>0.06</cell><cell>0.3079</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="5,317.63,147.47,242.37,118.67"><head>Table 3 :</head><label>3</label><figDesc>The cost of generating 1,000 unique samples using various techniques. Conditional sampling with the GC has latency similar to random sampling but represents learned relationships without ill-conditioned data.</figDesc><table coords="5,362.26,218.51,147.41,47.63"><row><cell>Method</cell><cell>Time (s)</cell><cell cols="2">Reject Reason (%) Repeated Ill-Conditioned</cell></row><row><cell>Random</cell><cell>0.24</cell><cell>-</cell><cell>-</cell></row><row><cell>GC</cell><cell>0.52</cell><cell>62.13%</cell><cell>0%</cell></row><row><cell>CTGAN</cell><cell>1.28</cell><cell>7.33%</cell><cell>87.87%</cell></row><row><cell>TVAE</cell><cell>80.77</cell><cell>2.25%</cell><cell>97.70%</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="8,53.47,87.89,504.75,20.51"><head>Table 5 :</head><label>5</label><figDesc>Parameters used to tune Polybench Kernels. Values within brackets indicate the options available for an independent parameter, and a list of brackets represents multiple independent parameters.</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="8,124.53,181.74,362.94,136.64"><head>Table 6 :</head><label>6</label><figDesc>Parameters used to tune ECP mini-applications.</figDesc><table coords="8,124.53,204.95,362.94,113.43"><row><cell>Parameter</cell><cell>AMG</cell><cell>RSBench</cell><cell>XSBench</cell><cell>SW4Lite</cell></row><row><cell>Tile Sizes</cell><cell>[10-200], [2-256], [2-256], [10-200]</cell><cell>[2-256], [2-256]</cell><cell>[2-256], [2-256]</cell><cell>-</cell></row><row><cell>Optional Parameters</cell><cell>Parallel For</cell><cell>Parallel For</cell><cell>Parallel For</cell><cell>Parallel For, Nowait, MPI_Barrier</cell></row><row><cell>Parallel For Schedule</cell><cell>-</cell><cell>[100-2000], [10-200]</cell><cell>[10-160]</cell><cell>[dynamic, static]</cell></row><row><cell>Unrolling Options</cell><cell>[unroll, N/A]</cell><cell>[unroll, N/A]</cell><cell>[unroll, N/A]</cell><cell>[unroll (6) 2 , unroll, no-unroll]</cell></row><row><cell># Threads</cell><cell>[4-8]</cell><cell>[2-256]</cell><cell>[2-256]</cell><cell>[2-256]</cell></row><row><cell></cell><cell>[compact, scatter,</cell><cell>[compact, scatter,</cell><cell>[compact, scatter,</cell><cell></cell></row><row><cell>KMP Affinity</cell><cell>balanced]</cell><cell>balanced, none,</cell><cell>balanced, none,</cell><cell>-</cell></row><row><cell></cell><cell></cell><cell>disabled, explicit]</cell><cell>disabled, explicit]</cell><cell></cell></row><row><cell>OMP Proc Bind</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>[close, spread, master]</cell></row><row><cell>OMP Places</cell><cell cols="4">[core, threads, sockets] [core, threads, sockets] [core, threads, sockets] [core, threads, sockets]</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="9,53.47,233.48,250.46,285.38"><head>Table 7 :</head><label>7</label><figDesc>Autotuning results after a maximum of 30 evaluations; results are averaged across three repeated tuning attempts with unique seeds.</figDesc><table coords="9,59.41,280.61,244.52,238.25"><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="3">Peak Speedup (# Evaluation Discovered)</cell><cell></cell></row><row><cell></cell><cell>App.</cell><cell>Scale</cell><cell></cell><cell>GC</cell><cell></cell><cell>BO</cell><cell>GPTune</cell></row><row><cell></cell><cell></cell><cell></cell><cell>1 𝑠𝑡</cell><cell>Budget</cell><cell>Best</cell><cell>Best</cell><cell>Best</cell></row><row><cell></cell><cell></cell><cell>SM</cell><cell>5.09</cell><cell>5.70 (23)</cell><cell>5.70 (23)</cell><cell>3.03 (26)</cell><cell>5.53 (30)</cell></row><row><cell></cell><cell>3mm</cell><cell>ML</cell><cell>5.25</cell><cell>5.57 (29)</cell><cell>5.57 (29)</cell><cell>3.29 (30)</cell><cell>5.16 (16)</cell></row><row><cell></cell><cell></cell><cell>XL</cell><cell>27.10</cell><cell>33.39 (18)</cell><cell cols="3">33.39 (18) 20.58 (30) 18.96 (25)</cell></row><row><cell></cell><cell></cell><cell>SM</cell><cell>21.10</cell><cell cols="4">21.98 (21) 21.98 (21) 21.83 (28) 13.30 (30)</cell></row><row><cell>Polybench Kernels</cell><cell>Cov. Heat3d LU</cell><cell>ML XL SM ML XL SM ML</cell><cell>4.13 23.04 1.83 1.89 1.50 1.16 1.15</cell><cell>4.27 (26) 23.96 (2) 2.03 (5) 1.89 (1) 2.92 (2) 1.18 (25) 1.20 (24)</cell><cell>4.27 (26) 23.96 (2) 2.06 (18) 2.06 (10) 3.09 (18) 1.18 (25) 1.20 (24)</cell><cell>3.87 (25) 8.43 (12) 2.21 (15) 2.12 (25) 2.16 (13) 1.12 (30) 1.17 (26)</cell><cell>4.07 (30) 17.88 (9) 2.30 (28) 1.80 (6) 2.75 (29) 1.11 (19) 1.19 (5)</cell></row><row><cell></cell><cell></cell><cell>XL</cell><cell>1.00</cell><cell>1.00 (3)</cell><cell>1.00 (3)</cell><cell>0.98 (13)</cell><cell>1.00 (29)</cell></row><row><cell></cell><cell></cell><cell>SM</cell><cell>2.06</cell><cell>2.90 (2)</cell><cell>3.32 (18)</cell><cell>2.34 (12)</cell><cell>2.41 (11)</cell></row><row><cell></cell><cell>Syr2k</cell><cell>ML</cell><cell>0.80</cell><cell>1.17 (2)</cell><cell>1.22 (16)</cell><cell>0.93 (29)</cell><cell>0.85 (30)</cell></row><row><cell></cell><cell></cell><cell>XL</cell><cell>0.95</cell><cell>1.09 (2)</cell><cell>1.09 (2)</cell><cell>0.42 (23)</cell><cell>0.85 (26)</cell></row><row><cell></cell><cell></cell><cell>SM</cell><cell>0.87</cell><cell>0.91 (3)</cell><cell>0.91 (3)</cell><cell>0.92 (19)</cell><cell>0.90 (19)</cell></row><row><cell>Exascale Computing Proxies</cell><cell>AMG RSBench XSBench SW4Lite</cell><cell>ML XL SM ML XL SM ML XL SM ML</cell><cell>0.93 0.95 1.40 1.02 1.00 1.20 1.05 1.01 0.99 0.99</cell><cell>0.93 (1) 0.95 (5) 1.40 (3) 1.04 (2) 1.00 (1) 1.20 (7) 1.06 (4) 1.02 (5) 1.00 (6) 0.99 (10)</cell><cell>0.93 (1) 0.98 (23) 1.40 (8) 1.04 (15) 1.01 (10) 1.21 (28) 1.06 (4) 1.03 (24) 1.00 (6) 0.99 (16)</cell><cell>0.93 (20) 0.97 (27) 1.25 (29) 0.97 (22) 0.97 (14) 1.17 (24) 1.04 (6) 0.99 (6) 0.98 (26) 0.99 (3)</cell><cell>0.87 (3) 0.93 (25) 1.13 (22) 1.04 (27) 1.02 (18) 1.21 (24) 1.07 (5) 1.05 (5) 0.99 (17) 0.99 (30)</cell></row><row><cell></cell><cell></cell><cell>XL</cell><cell>0.99</cell><cell>0.99 (12)</cell><cell>0.99 (12)</cell><cell>0.99 (1)</cell><cell>0.99 (14)</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="2" xml:id="foot_0">Specifically unroll loops by a factor of 6 iterations</note>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>ACKNOWLEDGMENT</head><p>This research was partially supported by the Exascale Computing Project (17-SC-20-SC), a collaborative effort of the U.S. Department of Energy Office of Science and the National Nuclear Security Administration, and by U.S. National Science Foundation under Grants CCF-1942182. This material is based upon work supported by the U.S. Department of Energy, Office of Science, under contract number DE-AC02-06CH11357.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Figure <ref type="figure" coords="11,109.88,326.23,3.84,8.56">5</ref>: The GC remains competitive with state-of-the-art techniques on complex ECP benchmarks.</p><p>and reframes the optimization problem into predicting labels for high or low performance. The autotuning framework Tuneful <ref type="bibr" coords="11,88.64,378.38,11.87,8.84" target="#b5">[6]</ref> utilizes incremental sensitivity analysis in BO and explicitly utilizes importance to identify performance trends. Chen et al. <ref type="bibr" coords="11,132.44,402.29,11.87,8.84" target="#b3">[4]</ref> use random forest importance measures in massive search spaces by limiting the number of simultaneously tuned parameters to permit full-space exploration. Our biased generative GC reinforces and benefits from increased likelihood to sample the most important parameters of a search space.</p><p>Copulas have been reported in the literature as part of an autotuning process. Salinas et al. <ref type="bibr" coords="11,191.15,485.97,16.46,8.84" target="#b16">[17]</ref> used the GC process to bootstrap expected improvement from a small number of initial samples in a BO framework based on ranked quantiles. More recently, Zhang et al. <ref type="bibr" coords="11,163.36,521.84,16.22,8.84" target="#b26">[27]</ref> utilized the correlation identified by a GC to explore the multiobjective Pareto frontier. Both studies used the GC to aid the BO process in TL. Salinas et al. <ref type="bibr" coords="11,75.53,557.70,16.26,8.84" target="#b16">[17]</ref> used GCs to build an expected improvement autotuning model with minimal initial random samples or prior data and iteratively refit the model as information became available. The effectiveness of copulas in these techniques is limited to variable correlations in relatively low degrees.</p><p>Our work uses the traditional GC with some modifications from the SDV <ref type="bibr" coords="11,112.45,629.44,16.35,8.84" target="#b13">[14]</ref> implementation. While our experiments do not yield evidence that special care in dependence modeling is necessary, we note that different copulas or GCs are available <ref type="bibr" coords="11,93.79,665.30,14.99,8.84" target="#b18">[19]</ref>. Users can select between variations better suited for tail distributions for which Pearson correlation is insufficient to describe covariant behaviors jointly.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">CONCLUSIONS</head><p>In this work, we propose the GC as the first generative TL-based autotuning technique. Our technique aggressively searches for best-performing configurations in few-shot settings using quantile filtering and conditional sampling to bias distributions learned by the GC model. We are the first TLbased autotuning work to include expectation of success as a budget-identifying measure to predict few-shot performance. We then evaluate our technique on various real-world benchmark applications, demonstrating remarkable effectiveness in few-shot TL settings where continued explorations of benchmark characteristics performed by other methods are wasteful resource expenditures.</p><p>Many avenues remain for further research with this generative TL-based autotuning framework, including multi-node evaluations, multiobjective tuning, and modifications to the internal state that permit iterative refinement or bootstrapping for continued tuning similar to the prior work.</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="8,181.61,123.06,14.26,6.19;8,233.28,123.06,32.18,6.19;8,286.78,123.06,43.19,6.19;8,357.19,123.06,20.37,6.19;8,422.23,123.06,8.29,6.19;8,477.19,123.06,16.38,6.19;8,102.30,135.41,26.82,6.19;8,162.80,131.43,346.90,6.19;8,176.97,139.40,23.54,6.19;8,239.22,139.40,20.29,6.19;8,298.22,139.40,20.29,6.19;8,357.23,139.40,20.29,6.19;8,416.23,139.40,20.29,6.19;8,475.24,139.40,20.29,6.19;8,102.30,147.77,50.14,6.19;8,174.00,147.77,29.49,6.19;8,234.63,147.77,29.49,6.19;8,293.63,147.77,29.49,6.19;8,352.63,147.77,29.49,6.19;8,411.64,147.77,29.49,6.19;8,470.64,147.77,29.49,6.19;8,102.30,156.14,41.23,6.19;8,168.03,155.56,41.42,6.77;8,234.63,156.14,29.49,6.19;8,293.63,156.14,29.49,6.19;8,346.66,155.56,41.42,6.77;8,411.64,156.14,29.49,6.19;8,464.67,155.56,41.42,6.77;12,53.80,86.14,76.07,10.27;12,57.50,101.39,237.76,7.07;12,70.87,111.35,224.52,7.07;12,70.87,121.27,223.17,7.13;12,70.87,131.28,223.17,7.07;12,70.87,141.24,171.01,7.07" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Generative adversarial networks for network traffic feature generation</title>
+		<idno type="DOI">10.1080/1206212X.2023.2191072</idno>
+		<ptr target="https://doi.org/10.1080/1206212X.2023.2191072arXiv:https://doi.org/10.1080/1206212X.2023.2191072" />
+	</analytic>
+	<monogr>
+		<title level="m">3mm Covariance Floyd-Warshall Heat3d LU Syr2k Tile Sizes</title>
+				<editor>
+			<persName><forename type="first">J</forename><surname>Tertsegha</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Sami</forename><surname>Anande</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Mark</forename><forename type="middle">S</forename><surname>Al-Saadi</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Leeson</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+			<biblScope unit="volume">0</biblScope>
+			<biblScope unit="page" from="1" to="9" />
+		</imprint>
+	</monogr>
+	<note>4-2048. 4-2048. 4-128. 4-2048. 4-128. 4-2048. 4-128. 4-2048. 4-128. 4-2048. 4-128. 4-2048. 4-2048. 4-256. 4-256. 4-256. 4-256. 4-256. Yes, N/A] × 2 [Yes, N/A] [Yes, N/A] × 2 REFERENCES [1</note>
+</biblStruct>
+
+<biblStruct coords="12,70.87,151.20,224.05,7.07;12,70.87,161.16,224.11,7.07;12,70.87,171.08,223.17,7.13;12,70.87,181.04,223.17,7.13;12,70.87,191.00,223.32,7.13;12,70.87,201.01,223.69,7.07;12,70.69,210.98,80.20,7.07" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Siblingrivalry: Online Autotuning through Local Competitions</title>
+		<author>
+			<persName coords=""><forename type="first">Jason</forename><surname>Ansel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maciej</forename><surname>Pacula</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yee</forename><forename type="middle">Lok</forename><surname>Wong</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cy</forename><surname>Chan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Marek</forename><surname>Olszewski</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Una-May O'</forename><surname>Reilly</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Saman</forename><surname>Amarasinghe</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2380403.2380425</idno>
+		<ptr target="https://doi.org/10.1145/2380403.2380425" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2012 International Conference on Compilers, Architectures and Synthesis for Embedded Systems</title>
+				<meeting>the 2012 International Conference on Compilers, Architectures and Synthesis for Embedded Systems<address><addrLine>Tampere, Finland; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="91" to="100" />
+		</imprint>
+	</monogr>
+	<note>CASES &apos;12)</note>
+</biblStruct>
+
+<biblStruct coords="12,70.87,220.94,224.52,7.07;12,70.87,230.85,224.40,7.13;12,70.87,240.86,142.24,7.07" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Autotuning in High-Performance Computing Applications</title>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Balaprakash</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/JPROC.2018.2841200</idno>
+		<ptr target="https://doi.org/10.1109/JPROC.2018.2841200" />
+	</analytic>
+	<monogr>
+		<title level="j">Proc. of the IEEE</title>
+		<imprint>
+			<biblScope unit="volume">106</biblScope>
+			<biblScope unit="page" from="2068" to="2083" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,250.83,224.40,7.07;12,70.87,260.74,223.17,7.13;12,70.87,270.70,224.40,7.13;12,70.69,280.72,187.51,7.07" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Efficient Compiler Autotuning via Bayesian Optimization</title>
+		<author>
+			<persName coords=""><forename type="first">Junjie</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ningxin</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peiqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hongyu</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ICSE43902.2021.00110</idno>
+		<ptr target="https://doi.org/10.1109/ICSE43902.2021.00110" />
+	</analytic>
+	<monogr>
+		<title level="m">2021 IEEE/ACM 43rd International Conference on Software Engineering (ICSE)</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="1198" to="1209" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,290.68,223.17,7.07;12,70.59,300.59,223.46,7.13;12,70.87,310.56,223.17,7.13;12,70.87,320.52,223.32,7.13;12,70.87,330.53,224.11,7.07;12,70.62,340.49,110.85,7.07" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">ANGEL: A Hierarchical Approach to Multi-Objective Online Auto-Tuning</title>
+		<author>
+			<persName coords=""><forename type="first">Ray</forename><forename type="middle">S</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><forename type="middle">K</forename><surname>Hollingsworth</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2768405.2768409</idno>
+		<ptr target="https://doi.org/10.1145/2768405.2768409" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 5th International Workshop on Runtime and Operating Systems for Supercomputers</title>
+				<meeting>the 5th International Workshop on Runtime and Operating Systems for Supercomputers<address><addrLine>Portland, OR, USA; New York, NY, USA, Article</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,350.45,224.05,7.07;12,70.87,360.42,224.51,7.07;12,70.87,370.33,224.40,7.13;12,70.87,380.34,162.46,7.07" xml:id="b5">
+	<monogr>
+		<title level="m" type="main">Tuneful: An Online Significance-Aware Configuration Tuner for Big Data Analytics</title>
+		<author>
+			<persName coords=""><forename type="first">Ayat</forename><surname>Fekry</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lucian</forename><surname>Carata</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">F</forename><forename type="middle">J</forename><surname>Thomas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">-M</forename><surname>Pasquier</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Rice</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andy</forename><surname>Hopper</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2001.08002</idno>
+		<ptr target="https://arxiv.org/abs/2001.08002" />
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,390.30,223.37,7.07;12,69.99,400.27,224.05,7.07;12,70.87,410.18,224.40,7.13;12,70.87,420.19,27.19,7.07" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Polly -Performing Polyhedral Optimizations on a Low-Level Intermediate Representation</title>
+		<author>
+			<persName coords=""><forename type="first">Tobias</forename><surname>Grosser</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Armin</forename><surname>Grösslinger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Lengauer</surname></persName>
+		</author>
+		<ptr target="http://polly.llvm.org" />
+	</analytic>
+	<monogr>
+		<title level="j">Parallel Processing Letters</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page">4</biblScope>
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,430.15,224.05,7.07;12,70.87,440.12,223.17,7.07;12,70.87,450.03,223.17,7.13;12,70.87,459.99,223.17,7.13;12,70.87,469.96,147.64,7.13" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Transfer learning for improving model predictions in highly configurable software</title>
+		<author>
+			<persName coords=""><forename type="first">Pooyan</forename><surname>Jamshidi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Miguel</forename><surname>Velez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Christian</forename><surname>Kästner</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Norbert</forename><surname>Siegmund</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Prasad</forename><surname>Kawthekar</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE/ACM 12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="31" to="41" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,479.97,223.17,7.07;12,70.87,489.93,224.40,7.07;12,70.87,499.85,224.40,7.13;12,70.87,509.86,135.51,7.07" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">ParEGO: a hybrid algorithm with on-line landscape approximation for expensive multiobjective optimization problems</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Knowles</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TEVC.2005.851274</idno>
+		<ptr target="https://doi.org/10.1109/TEVC.2005.851274" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Evolutionary Computation</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="50" to="66" />
+			<date type="published" when="2006">2006. 2006</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,519.82,224.40,7.07;12,70.87,529.73,224.40,7.13;12,70.87,539.74,96.80,7.07" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">On Information and Sufficiency</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Kullback</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><forename type="middle">A</forename><surname>Leibler</surname></persName>
+		</author>
+		<idno type="DOI">10.1214/aoms/1177729694</idno>
+		<ptr target="https://doi.org/10.1214/aoms/1177729694" />
+	</analytic>
+	<monogr>
+		<title level="j">The Annals of Mathematical Statistics</title>
+		<imprint>
+			<biblScope unit="volume">22</biblScope>
+			<biblScope unit="page" from="79" to="86" />
+			<date type="published" when="1951">1951. 1951</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,549.71,223.17,7.07;12,70.87,559.67,224.11,7.07;12,70.87,569.58,223.17,7.13;12,70.87,579.55,223.17,7.13;12,70.87,589.51,223.17,7.13;12,70.87,599.52,185.15,7.07" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">GPTune: multitask learning for autotuning exascale applications</title>
+		<author>
+			<persName coords=""><forename type="first">Yang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Wissam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Osni</forename><surname>Sid-Lakhdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xinran</forename><surname>Marques</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Chang</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">W</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoye</forename><forename type="middle">S</forename><surname>Demmel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of PPoPP &apos;21: Proceedings of the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;21)</title>
+				<meeting>PPoPP &apos;21: the 26th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP&apos;21)<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2021-02">February 2021</date>
+			<biblScope unit="page" from="234" to="246" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,70.87,609.48,224.05,7.07;12,70.74,619.45,223.51,7.07;12,70.87,629.41,223.32,7.07;12,70.87,639.32,223.18,7.13;12,70.87,649.28,223.96,7.13;12,70.87,659.25,223.18,7.13;12,70.87,669.26,224.40,7.07;12,70.87,679.22,129.31,7.07" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Performance Modeling under Resource Constraints Using Deep Transfer Learning</title>
+		<author>
+			<persName coords=""><forename type="first">Aniruddha</forename><surname>Marathe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rushil</forename><surname>Anirudh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikhil</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abhinav</forename><surname>Bhatele</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jayaraman</forename><surname>Thiagarajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Bhavya</forename><surname>Kailkhura</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jae-Seung</forename><surname>Yeom</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Barry</forename><surname>Rountree</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Todd</forename><surname>Gamblin</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3126908.3126969</idno>
+		<ptr target="https://doi.org/10.1145/3126908.3126969" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis</title>
+				<meeting>the International Conference for High Performance Computing, Networking, Storage and Analysis<address><addrLine>Denver, Colorado; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page">31</biblScope>
+		</imprint>
+	</monogr>
+	<note>SC &apos;17)</note>
+</biblStruct>
+
+<biblStruct coords="12,70.87,687.30,223.17,7.07;12,70.87,697.22,201.86,7.13" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Gaussian Copula Marginal Regression</title>
+		<author>
+			<persName coords=""><forename type="first">Guido</forename><surname>Masarotto</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Cristiano</forename><surname>Varin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Electronic Journal of Statistics</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="1517" to="1549" />
+			<date type="published" when="2012">2012. 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,88.44,223.17,7.07;12,335.03,98.35,223.17,7.13;12,335.03,108.31,224.40,7.13;12,335.03,118.32,23.99,7.07" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">The Synthetic Data Vault</title>
+		<author>
+			<persName coords=""><forename type="first">N</forename><surname>Patki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">R</forename><surname>Wedge</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Veeramachaneni</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/DSAA.2016.49</idno>
+		<ptr target="https://doi.org/10.1109/DSAA.2016.49" />
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE International Conference on Data Science and Advanced Analytics (DSAA)</title>
+				<imprint>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="399" to="410" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,128.29,224.05,7.07;12,335.03,138.25,223.17,7.07;12,335.03,148.16,223.97,7.13;12,335.03,158.13,224.39,7.13;12,335.03,168.14,25.94,7.07" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">You Only Run Once: Spark Auto-Tuning from a Single Run</title>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Buchaca Prats</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Felipe</forename><forename type="middle">Albuquerque</forename><surname>Portella</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Carlos</forename><forename type="middle">H A</forename><surname>Costa</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Josep Lluis</forename><surname>Berral</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TNSM.2020.3034824</idno>
+		<ptr target="https://doi.org/10.1109/TNSM.2020.3034824" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Network and Service Management</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page" from="2039" to="2051" />
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,178.10,224.40,7.07;12,335.03,188.01,223.17,7.13;12,335.03,197.98,224.05,7.13;12,335.03,207.99,224.40,7.07;12,335.03,217.95,25.94,7.07" xml:id="b15">
+	<monogr>
+		<title level="m" type="main">Bliss: Auto-Tuning Complex Applications Using a Pool of Diverse Lightweight Learning Models</title>
+		<author>
+			<persName coords=""><forename type="first">Rohan</forename><surname>Basu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Roy</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tirthak</forename><surname>Patel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Gadepally</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Devesh</forename><surname>Tiwari</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3453483.3454109</idno>
+		<ptr target="https://doi.org/10.1145/3453483.3454109" />
+		<imprint>
+			<date type="published" when="2021">2021</date>
+			<publisher>Association for Computing Machinery</publisher>
+			<biblScope unit="page" from="1280" to="1295" />
+			<pubPlace>New York, NY, USA</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,227.91,224.52,7.07;12,335.03,237.83,223.17,7.13;12,335.03,247.79,223.96,7.13;12,335.03,257.75,223.17,7.13;12,335.03,267.76,223.69,7.07;12,335.03,277.73,50.10,7.07" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">A Quantilebased Approach for Hyperparameter Transfer Learning</title>
+		<author>
+			<persName coords=""><forename type="first">David</forename><surname>Salinas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huibin</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Valerio Perrone</surname></persName>
+		</author>
+		<ptr target="https://proceedings.mlr.press/v119/salinas20a.html" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 37th International Conference on Machine Learning (Proceedings of Machine Learning Research</title>
+				<editor>
+			<persName><forename type="first">Hal</forename><surname>Daumé</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Iii</forename></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Aarti</forename><surname>Singh</surname></persName>
+		</editor>
+		<meeting>the 37th International Conference on Machine Learning ( Machine Learning Research</meeting>
+		<imprint>
+			<date type="published" when="2020">2020</date>
+			<biblScope unit="volume">119</biblScope>
+			<biblScope unit="page" from="8438" to="8448" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,287.69,223.17,7.07;12,334.90,297.65,223.30,7.07;12,335.03,307.57,196.59,7.13" xml:id="b17">
+	<monogr>
+		<title level="m" type="main">Multitask and transfer learning for autotuning exascale applications</title>
+		<author>
+			<persName coords=""><forename type="first">Mohsen</forename><surname>Wissam M Sid-Lakhdar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Xiaoye</forename><forename type="middle">S</forename><surname>Mahmoudi Aznaveh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">W</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Demmel</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1908.05792</idno>
+		<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct coords="12,335.03,317.58,223.17,7.07;12,335.03,327.49,223.17,7.13;12,335.03,337.50,191.10,7.07" xml:id="b18">
+	<analytic>
+		<title level="a" type="main">Copula, marginal distributions and model selection: A Bayesian note</title>
+		<author>
+			<persName coords=""><forename type="first">Ralph</forename><surname>Silva</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Hedibert</forename><surname>Lopes</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/s11222-008-9058-y</idno>
+		<ptr target="https://doi.org/10.1007/s11222-008-9058-y" />
+	</analytic>
+	<monogr>
+		<title level="j">Statistics and Computing</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page" from="313" to="320" />
+			<date type="published" when="2008-09">2008. 09 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,347.46,223.17,7.07;12,335.03,357.43,224.05,7.07;12,334.75,367.39,224.79,7.07;12,335.03,377.30,223.97,7.13;12,335.03,387.27,224.40,7.13;12,334.75,397.28,224.68,7.07;12,335.03,407.24,129.31,7.07" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Bootstrapping Parameter Space Exploration for Fast Tuning</title>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Jayaraman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikhil</forename><surname>Thiagarajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rushil</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Alfredo</forename><surname>Anirudh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rahul</forename><surname>Gimenez</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Aniruddha</forename><surname>Sridhar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tao</forename><surname>Marathe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Murali</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abhinav</forename><surname>Emani</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Todd</forename><surname>Bhatele</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Gamblin</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/3205289.3205321</idno>
+		<ptr target="https://doi.org/10.1145/3205289.3205321" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2018 International Conference on Supercomputing</title>
+				<meeting>the 2018 International Conference on Supercomputing<address><addrLine>Beijing, China; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="385" to="395" />
+		</imprint>
+	</monogr>
+	<note>ICS &apos;18)</note>
+</biblStruct>
+
+<biblStruct coords="12,335.03,417.20,223.17,7.07;12,335.03,427.12,223.45,7.13;12,335.03,437.08,223.69,7.13;12,335.03,447.09,46.19,7.07" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Online Adaptive Code Generation and Tuning</title>
+		<author>
+			<persName coords=""><forename type="first">Ananta</forename><surname>Tiwari</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jeffrey</forename><forename type="middle">K</forename><surname>Hollingsworth</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/IPDPS.2011.86</idno>
+		<ptr target="https://doi.org/10.1109/IPDPS.2011.86" />
+	</analytic>
+	<monogr>
+		<title level="m">2011 IEEE International Parallel &amp; Distributed Processing Symposium</title>
+				<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="879" to="892" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,457.05,224.40,7.07;12,334.79,467.02,223.41,7.07;12,334.75,476.93,223.46,7.13;12,335.03,486.89,223.38,7.13;12,334.84,496.90,34.13,7.07" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Balaprakash</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kruse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">J</forename><surname>Koo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Videau</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Hovland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Taylor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">B</forename><surname>Gelts</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Jana</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Hall</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of Cray User Group Conference 2023 (CUG&apos;23)</title>
+				<meeting>Cray User Group Conference 2023 (CUG&apos;23)<address><addrLine>Helsinki, Finland</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2023-05-07">2023. May 7-11, 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,506.87,224.05,7.07;12,335.03,516.83,223.17,7.07;12,335.03,526.79,224.40,7.07;12,335.03,536.71,223.17,7.13;12,335.03,546.72,159.94,7.07" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Autotuning PolyBench benchmarks with LLVM Clang/Polly Loop Optimization Pragmas Using Bayesian Optimization</title>
+		<author>
+			<persName coords=""><forename type="first">X</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Kruse</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Balaprakash</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">H</forename><surname>Finkel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">P</forename><surname>Hovland</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">V</forename><surname>Taylor</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">M</forename><surname>Hall</surname></persName>
+		</author>
+		<idno type="DOI">10.1002/cpe.6683</idno>
+		<ptr target="https://doi.org/10.1002/cpe.6683" />
+	</analytic>
+	<monogr>
+		<title level="j">Concurrency and Computation: Practice and Experience</title>
+		<imprint>
+			<biblScope unit="volume">34</biblScope>
+			<biblScope unit="issue">20</biblScope>
+			<biblScope unit="page">e6683</biblScope>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,556.68,224.51,7.07;12,335.03,566.64,224.40,7.07;12,335.03,576.56,223.69,7.13;12,334.84,586.57,35.11,7.07" xml:id="b23">
+	<monogr>
+		<title level="m" type="main">Alfredo Cuesta-Infante, and Kalyan Veeramachaneni</title>
+		<author>
+			<persName coords=""><forename type="first">Lei</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Maria</forename><surname>Skoularidou</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1907.00503</idno>
+		<ptr target="http://arxiv.org/abs/1907.00503" />
+		<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note>Modeling Tabular data using Conditional GAN</note>
+</biblStruct>
+
+<biblStruct coords="12,335.03,596.53,224.40,7.07;12,335.03,606.49,224.40,7.07;12,335.03,616.46,120.24,7.07" xml:id="b24">
+	<monogr>
+		<title level="m" type="main">ytopt: a machine learning-based autotuning software package. Last accessed</title>
+		<ptr target="https://github.com/ytopt-team/ytopt" />
+		<imprint>
+			<date type="published" when="2021-03-11">March 11, 2021</date>
+		</imprint>
+		<respStmt>
+			<orgName>Argonne National Laboratory</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,626.42,224.40,7.07;12,335.03,636.38,223.69,7.07;12,335.03,646.34,36.58,7.07" xml:id="b25">
+	<monogr>
+		<title/>
+		<author>
+			<persName coords=""><forename type="first">Tomofumi</forename><surname>Yuki</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Louis-Noel</forename><surname>Pouchet</surname></persName>
+		</author>
+		<ptr target="https://sourceforge.net/projects/polybench/" />
+		<imprint>
+			<date type="published" when="2016-03-11">2016. March 11</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,335.03,656.31,224.40,7.07;12,334.75,666.27,224.80,7.07;12,335.03,676.18,223.17,7.13;12,335.03,686.15,224.40,7.13;12,334.75,696.16,224.68,7.07" xml:id="b26">
+	<analytic>
+		<title level="a" type="main">A Fast Parameter Tuning Framework via Transfer Learning and Multi-Objective Bayesian Optimization</title>
+		<author>
+			<persName coords=""><forename type="first">Zheng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tinghuan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Jiaxin</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Meng</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 59th ACM/IEEE Design Automation Conference</title>
+				<meeting>the 59th ACM/IEEE Design Automation Conference<address><addrLine>San Francisco, California; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="133" to="138" />
+		</imprint>
+	</monogr>
+	<note>DAC &apos;22)</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

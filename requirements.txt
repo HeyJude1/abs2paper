@@ -1,0 +1,15 @@
+pymilvus>=2.3.0
+pymupdf>=1.22.0
+numpy>=1.24.0
+requests>=2.28.0
+langchain>=0.0.267
+pydantic>=2.4.0
+python-dotenv>=1.0.0
+transformers>=4.30.0
+sentencepiece>=0.1.99
+torch>=2.0.0
+tqdm>=4.65.0
+
+# 添加提取相关依赖
+grobid-client-python>=0.0.5
+promptlib>=0.1.0  # 如果可用 

@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">PipeGen: Automated Transformation of a Single-Core Pipeline into a Multicore Pipeline for a Given Memory Consistency Model</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>ACM</publisher>
+				<availability status="unknown"><p>Copyright ACM</p>
+				</availability>
+				<date type="published" when="2024-10-13">2024-10-13</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName coords="1,110.15,130.34,63.97,11.96"><forename type="first">An</forename><forename type="middle">Qi</forename><surname>Zhang</surname></persName>
+							<email>an.qi.zhang@utah.edu</email>
+							<idno type="ORCID">0009-0000-5859-1892</idno>
+							<affiliation key="aff0">
+								<orgName type="institution">University of Utah United States of America</orgName>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="institution">University</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Andrés</forename><surname>Goens</surname></persName>
+							<idno type="ORCID">0000-0002-0409-1363</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Nicolai</forename><surname>Oswald</surname></persName>
+							<idno type="ORCID">0009-0009-9272-0518</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Tobias</forename><surname>Grosser</surname></persName>
+							<idno type="ORCID">0000-0003-3874-6003</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Daniel</forename><surname>Sorin</surname></persName>
+							<idno type="ORCID">0000-0001-7013-8986</idno>
+						</author>
+						<author>
+							<persName><forename type="first">Vijay</forename><surname>Nagarajan</surname></persName>
+							<idno type="ORCID">0009-0000-5045-4754</idno>
+						</author>
+						<title level="a" type="main">PipeGen: Automated Transformation of a Single-Core Pipeline into a Multicore Pipeline for a Given Memory Consistency Model</title>
+					</analytic>
+					<monogr>
+						<title level="m">Proceedings of the 2024 International Conference on Parallel Architectures and Compilation Techniques</title>
+						<meeting>the 2024 International Conference on Parallel Architectures and Compilation Techniques						</meeting>
+						<imprint>
+							<publisher>ACM</publisher>
+							<biblScope unit="page" from="1" to="13"/>
+							<date type="published" when="2024-10-13" />
+						</imprint>
+					</monogr>
+					<idno type="MD5">58C0DCCFEB511FCB0664329B874CE37C</idno>
+					<idno type="DOI">10.1145/3656019.3676889</idno>
+					<note type="submission">Automated Transformation of a Single-Core Pipeline into a Multicore Pipeline for a Given Memory Consistency Model PACT &apos;24, October 14</note>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Memory Consistency Model</term>
+					<term>Computer Architecture</term>
+					<term>Microarchitecture</term>
+					<term>Programming Language</term>
+					<term>Compiler</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Designing a pipeline for a multicore processor is difficult. One major challenge is designing it such that the pipeline correctly enforces the intended memory consistency model (MCM). We have developed the PipeGen design automation tool to allow architects to start with a single core pipeline that only enforces single-threaded correctness and automatically transform it to enforce a given MCM. Our key innovation is a set of compiler-like transformations that codify three different ways of enforcing memory ordering at the pipeline. We have validated that PipeGen correctly enforces the ARMv8 and x86TSO MCMs on three distinct pipeline implementations, using litmus tests with the Murphi model checker.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CCS Concepts</head><p>• Computer systems organization → Multicore architectures.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="11" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="12" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="13" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Designing a modern, high-performance processor pipeline is a difficult challenge. In the pursuit of performance, cores often seek additional improvements by executing instructions out-of-order. Out-of-order execution must not affect single-threaded functionality, though, and thus microarchitects use structures like the reorder buffer (ROB) and load-store queue (LSQ) to ensure the illusion of in-order behavior for a given hardware thread.</p><p>In addition to single-threaded correctness, another key challenge is ensuring that a processor comprised of multiple highperformance cores maintains the desired memory consistency model (MCM). It is very difficult to reason about the possible interleavings of reads (loads) and writes (stores) across threads on different cores and whether they are allowed by the MCM. An architect may design an optimization but fail to realize its full potential on the enforced MCM <ref type="bibr" coords="1,427.41,345.45,9.39,8.97" target="#b0">[1,</ref><ref type="bibr" coords="1,439.04,345.45,10.17,8.97" target="#b19">20]</ref>, or more worryingly, make a design error that leads to the desired MCM no longer being enforced <ref type="bibr" coords="1,317.96,367.37,13.50,8.97" target="#b9">[10,</ref><ref type="bibr" coords="1,333.70,367.37,10.31,8.97" target="#b15">16,</ref><ref type="bibr" coords="1,346.25,367.37,10.13,8.97" target="#b16">17]</ref>.</p><p>In this work, we create the PipeGen design automation tool to address this design challenge. Specifically, PipeGen enables an architect to design a pipeline in an MCM-oblivious fashion, needing only to enforce single-threaded correctness. The architect specifies the single-core design using a new microarchitectural domain specific language (DSL) that we have developed for this purpose. PipeGen then transforms that pipeline into a multicore pipeline that enforces the specified MCM, as illustrated in Figure <ref type="figure" coords="1,528.07,455.04,3.11,8.97" target="#fig_0">1</ref>. A key insight is that we can achieve this automation as code analysis and transformations in a DSL, borrowing methods from compiler design. PipeGen currently uses transformations that encode three different ways of enforcing memory ordering in the pipeline. PipeGen enables microarchitects to focus on designing their core, while offloading the burden of correctly implementing the MCM to our automation tool. PipeGen additionally decouples the implementation of the ISA and MCM, reducing the work necessary to enforce a different MCM. In the history of microarchitectures and MCMs, it has not been uncommon to move between ISAs that use different MCMs, as Apple has done between IBM, x86TSO, and now ARMv8. PipeGen creates the possibility of designing an efficient microarchitecture, and being able to reuse it across different MCMs by using our algorithms to enforce the desired MCM.</p><p>Our DSL is tailored for specifying the structures that comprise a microarchitecture. The primary structures are queues that contain one or more entries, such as the reorder buffer (ROB) and load-store queue (LSQ). As such, we refer to our DSL as "A Queue Language" (AQL). Within these queues, the architect specifies the controller state machines that describe the behaviors of these structures. Crucially, we require the architect to identify and label certain key memory instruction states to facilitate PipeGen's automation.</p><p>PipeGen's output is a transformed core, described in AQL, that supports the specified MCM. Our key contribution is a set of three compiler-like transformations implementing three different methods of enforcing memory ordering (in-order memory instructions, load replay, and invalidation tracking). While the methods are well known, our innovation here is to codify this domain knowledge into transformations, allowing us to instantiate these on any single-core pipeline expressible in AQL. With the variety of different pipeline microarchitectures being implemented across the different types of processors, this style of design automation has the potential for broad applicability and impact.</p><p>We verify that PipeGen correctly produces these cores by automatically translating the output AQL into the language of the Murphi model checker <ref type="bibr" coords="2,138.15,360.90,10.47,8.97" target="#b8">[9]</ref> and performing model checking on specific so-called litmus tests <ref type="bibr" coords="2,145.30,371.86,9.27,8.97" target="#b1">[2]</ref>. We have verified PipeGen for a variety of core models and MCMs. While other backends are possible -e.g., to hardware description languages such as Verilog -we leave them for future work.</p><p>While there has been much work on verifying that a given pipeline core correctly enforces the specified MCM, the most recent of which is the *-Check suite of tools <ref type="bibr" coords="2,185.13,437.61,13.40,8.97" target="#b13">[14,</ref><ref type="bibr" coords="2,200.30,437.61,10.05,8.97" target="#b16">17]</ref>, our point of departure is that our work is a correct-by-construction approach to generating pipelines. This correct-by-construction methodology has seen a recent resurgence for generating coherence protocols <ref type="bibr" coords="2,262.99,470.49,14.85,8.97" target="#b23">[24]</ref> and single-core processors <ref type="bibr" coords="2,140.15,481.44,14.85,8.97" target="#b24">[25]</ref> but ours is the first to automate the generation of MCM implementations to our knowledge. We discuss related work more extensively in Section 7.</p><p>Our contributions are:</p><p>• We have created PipeGen, a methodology and a tool for automatically transforming a single-core pipeline into a multicore pipeline that adheres to a given MCM. • PipeGen consists of a DSL called AQL and a set of compilerlike analyses and transformations. Through these transformations, we codify, for the first time, three well-known methods for enforcing memory orderings. This codification allows us to instantiate these methods automatically on any given single-core pipeline expressible in AQL.</p><p>• We have validated PipeGen on 3 different pipeline implementations to enforce 2 different memory models (x86TSO and ARMv8) using 3 different methods for enforcing memory ordering (in-order issue, load replay or invalidation-tracking). These were validated in the Murphi model checker exhaustively running litmus tests. Our results show that PipeGen produces multicore pipelines that correctly support the specified MCMs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Background: System Model and MCMs</head><p>In this section, we explain our single-core pipeline model and provide the necessary background on MCMs and how they can be enforced at the pipeline level.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Single-Core Pipeline Model</head><p>We consider a fairly generic pipeline model that supports out-oforder execution of instructions while providing precise exceptions through in-order (i.e., in program order) fetch and commit. The pipeline consists of multiple structures that manage the out-of-order execution. Different cores use different structures, but commonly used examples include the reorder buffer (ROB), load-store queue (LSQ), physical register file, and post-commit store buffer (SB).</p><p>Because MCMs concern the ordering of memory operations (loads, stores, fences), PipeGen's transformations focus on the structures that manage the out-of-order execution of memory operations. Even in a single-core pipeline, management of memory operations can be complicated, due to the desire to speculatively execute loads before all previous (in program order) memory operations have completed. To ensure that PipeGen is broadly applicable, we consider pipelines with three quite different designs for managing memory operations as case studies. There are, of course, many designs because of the many possible trade-offs between structure size, complexity, performance, and power, and we considered these three designs to showcase the versatility of PipeGen. In each of these designs there is an issue queue (IQ) into which all of the instructions are inserted in program order. The designs differ from each other based on what happens to a memory instruction upon dispatch from the issue queue.</p><p>Design 1: LQ/SQ/WB. Design-1 uses three distinct structures to manage memory instructions: store queue (SQ), post-commit write buffer (WB), and load queue (LQ). At dispatch from the issue queue, a store is allocated an address-tagged entry in the SQ. When a store executes, it writes the value into its SQ entry. When a store commits, it frees its SQ entry and writes to the tail of the WB. Similarly, at dispatch, a load is allocated an address-tagged entry in the LQ. At execute, a load searches the SQ for the most recent store to the same address that is older than the load. If no match is found in the SQ, the load accesses the WB for the most recent store to the same address; if none is found, the load accesses the memory system (i.e., starting with the L1 data cache). To detect misspeculation in which a load speculatively reads an address before an older store (which is possible because an older store's address might not yet have been available when the load was ready to execute), when a store executes it checks the LQ for younger loads that have already executed; a match indicates misspeculation.</p><p>This design provides the most performance of the three we consider. However, all three structures require associative searches. A load must be able to find address-matching entries in the SQ and WB, and a store must be able to find address-matching entries in the LQ.</p><p>Design 2: LSQ. Design-2 uses a single load-store queue (LSQ) and no WB. The LSQ serves the purpose of both the LQ and SQ Design 3: LB. Design-3 allows loads to speculatively enter a load buffer (LB) as soon as their addresses are available. (We use a different term here -buffer rather than a queue -to reinforce that the unit is simply a staging area for executing the loads.) Because addresses might be resolved in an arbitrary order, loads in this design can potentially execute out-of-order, and loads may not receive data from older stores.</p><p>We assume single-core pipelines have the necessary instructions for providing software-directed ordering (e.g., mfence) but they are implemented as NOPs until PipeGen transforms the pipeline.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">MCMs</head><p>A multicore pipeline must preserve both single-threaded correctness 𝑎𝑛𝑑 enforce the architecture's MCM, where an MCM defines the legal apparent orderings of memory operations across all threads. Many consistency models exist, from strongly-ordered models like sequential consistency (SC) and x86TSO to weak models like release consistency (RC) and ARMv8. We briefly discuss two widely used models we focus on in this paper: TSO and ARMv8.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.1">x86TSO</head><p>. The x86TSO MCM is similar to SC, but relaxes Store → Load ordering across different addresses. This relaxation permits the use of the WB in Design-1, which would violate the stricter SC. When software wants Store → Load ordering to be enforced, it must insert an mfence instruction between the store and the load. The mfence enforces ordering between memory instructions by ensuring older instructions have finished executing before younger instructions execute. With an mfence between a store and load, the load must stall to execute in-order with the store or speculatively execute and then check if it misspeculated. x86TSO orderings are shown above in Table <ref type="table" coords="3,135.65,594.83,3.07,8.97" target="#tab_0">1</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2.2">ARMv8</head><p>. The ARMv8 MCM relaxes all orderings, only keeping same address dependencies as they are required for singlethreaded correctness. When ordering is required, it can be added with load acquires, store releases, and fences. Fences, called Data Memory Barriers (DMB), come in several varieties, including DMB SY (orders all loads and stores), DMB LD (orders Load → Load and Load → Store), and DMB ST (orders Store → Store). Load acquires and store releases are annotated versions of loads and stores, respectively, that also enforce some orderings: specifically the load </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">MCM Enforcement</head><p>Architects have developed mechanisms for 𝑚𝑎𝑛𝑢𝑎𝑙𝑙𝑦 transforming an out-of-order single-core pipeline such that it does not violate the desired MCM. We consider three MCM enforcement mechanisms in this work: In-Order Memory Instructions, Load-Replay <ref type="bibr" coords="3,317.96,367.04,9.27,8.97" target="#b5">[6]</ref>, and Invalidation Tracking <ref type="bibr" coords="3,427.94,367.04,13.22,8.97" target="#b10">[11]</ref>. These are the mechanisms that PipeGen will 𝑎𝑢𝑡𝑜𝑚𝑎𝑡𝑖𝑐𝑎𝑙𝑙𝑦 implement when performing its transformations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2.3.1</head><p>In-Order Memory Instructions. One mechanism to order memory instructions is to execute them in order. To order memory instruction type X before memory instruction type Y, an instruction of type Y must stall execution until all older instructions of type X have completed. For example, our Design-1 has a post-commit WB that enables loads to be reordered with respect to older stores. To prevent that reordering, we could require a load to stall until the WB is empty (i.e., all older stores have completed).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.2">Load-Replay.</head><p>With load-replay <ref type="bibr" coords="3,456.37,520.02,10.49,8.97" target="#b5">[6]</ref> a load may speculatively execute out-of-order, and this speculation is checked by replaying the load at commit time. If the replayed load's value matches the initial load value, it has correctly speculated. If not, the new value is written and older instructions are squashed, as they may have used the misspeculated value.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3.3">Invalidation Tracking.</head><p>Invalidation tracking <ref type="bibr" coords="3,503.56,601.99,14.75,8.97" target="#b10">[11]</ref> is an alternative mechanism to avoid the need to replay loads at commit. A core observes the incoming cache coherence traffic-specifically, invalidation messages-to identify which addresses have been written by other cores. Any loads that have speculatively read from those addresses may have misspeculated. They, as well as older instructions, are then squashed. Similar to the load-replay mechanism, invalidation handling also enforces Store → Load if there is no WB, since the load must re-execute to again read an updated value.  3</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Input to PipeGen</head><p>The input to PipeGen is an MCM-oblivious single-core pipeline.</p><p>In theory, an architect could specify the core pipeline using any language for expressing finite state machines. HDLs like Verilog or BlueSpec <ref type="bibr" coords="4,99.22,282.13,14.68,8.97" target="#b20">[21]</ref> or even state-machine languages like Murphi <ref type="bibr" coords="4,282.56,282.13,9.35,8.97" target="#b8">[9]</ref>, for example, would all suffice. However, none of these generalpurpose languages would make it easy for an automated tool like PipeGen to perform its compiler-like analysis and transformations.</p><p>We could either mandate a restricted, stylized version of one of these languages or use a domain-specific language (DSL), and we have chosen the latter.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Abstract Model of Pipeline</head><p>We have developed a DSL that enables relatively high-level specifications that focus on functionality more than cycle-accurate behavior.</p><p>The DSL allows the architect to model the core pipeline as an interconnected group of queue-based structures that each have one or more entries. Because our DSL describes queue-based structures, we call it A Queue Language (AQL). Structures can communicate with each other by sending messages or signals.</p><p>Commonly used pipeline structures include the physical register file, reorder buffer (ROB), instruction queue (IQ), load queue (LQ), store queue (SQ), load-store-queue (LSQ), post-commit write buffer (WB), etc. Structures with multiples entries may have an entry ordering, such as FIFO.</p><p>Each structure entry is logically a state machine. Each entry has a state (that is initialized to a specified initial state) that consists of one or more fields. An event (i.e., the arrival of a message from another structure) can cause an action and possibly a transition of that entry to a new state. An event satisfies one or more conditions that guard actions/transitions, as illustrated in Figure <ref type="figure" coords="4,207.39,573.23,3.01,8.97" target="#fig_1">2</ref>. We illustrate the state machine for Design-1's LQ in Figure <ref type="figure" coords="4,189.30,584.19,4.17,8.97" target="#fig_2">3</ref> which is self-explanatory.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Memory Instructions: Instruction States and Sub-Operations</head><p>To faciliate PipeGen's analysis and transformation algorithms, AQL considers every memory instruction to start in an initial instruction state and undergo a sequence of sub-operations that change its state.  The state machine and state fields of Design-1's LQ entries. Each LQ entry first awaits a load to be inserted in state WaitingForLoadInst. After receiving a load, the entry progresses to performing sub-operations (highlighted in color) such as issuing the load, waiting for it's response, and writing it's result before waiting to be committed. Some states are simplified away, represented by a dotted line.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.1">Instruction</head><p>of a load or store is ReadyToDispatch. The sequence of subsequent states for a load that is not misspeculated are: Dispatched, ReadyToIssue, WaitingForResponse, WritingToRegister, and ReadyToCommit. If the load is misspeculated in either Waiting-ForResponse or ReadyToCommit, its state changes to an earlier state in the sequence depending on the core design. The ordered sequence of subsequent states for a store are: Dispatched, StoreVal-ueReady, ReadyToCommit, ReadytoIssue and WaitingForResponse. The ordered sequence for a fence is: ReadyToDispatch, Dispatched and ReadyToCommit.</p><p>An instruction state transition can either be a progression (i.e., proceeding in sequence order) or a reset (i.e., returning to an earlier state in the sequence). This ordering enables PipeGen to find memory operations that are older (i.e., have not progressed as far in their instruction state sequences). Architects can define additional, noncanonical states for their own purposes, but any user-defined state between two canonical states is effectively equal to the previous canonical state.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2.2">Sub-operations. AQL considers every memory operation</head><p>to perform a subset of a canonical set of sub-operations, each of which is a keyword in AQL. These sub-operations are: dispatch, issue_load_request, receive_response, issue_write_request, write_load_result, and commit.</p><p>Explicitly using these canonical instruction states and suboperations is critical to PipeGen. At its heart, enforcing memory ordering in the pipeline is all about controlling when and how these sub-operations occur. As we discuss later, adding stalls or replays (or other logic to enforce an MCM) requires PipeGen to identify when to issue to the memory system, when to replay loads, etc.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.3">AQL Programming Requirements</head><p>PipeGen requires the architect to specify instruction states and suboperations such that it can perform its analyses and transformations. There are several programming guidelines that must be followed. The programmer must:</p><p>• Label the canonical sub-operations. PipeGen then identifies the canonical instruction states corresponding to the suboperations, thereby labeling the canonical instruction states. One of the primary motivations for developing AQL instead of using an existing hardware description language (HDL) is that existing HDLs would not necessarily make instruction states explicit. (They could be implicitly derived from the state of the pipeline, but that would greatly complicate PipeGen.) • Label a transition with the appropriate label, described in Section 3.2.1, and illustrated in Figure <ref type="figure" coords="5,218.19,360.83,3.07,8.97" target="#fig_2">3</ref>. • Handle instruction misspeculation.</p><p>• Label the message that the single-core design uses for squashing misspeculation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.4">Case Study: AQL for the LQ in Design 1</head><p>In Listing 1, we provide a snippet of AQL code to provide a sense of what it looks like. The snippet includes the code that describes two canonical instruction states in Design-1's LQ. In each state, the user specifies what event (i.e., message or signal) the structure is waiting for before it transitions to its next instruction state.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Transformations</head><p>Akin to a compiler, the core of PipeGen consists of algorithms for analyzing the input design and transforming it to enforce the desired MCM. In this section, we describe how PipeGen automatically adds the three MCM enforcement mechanisms presented in Section 4.</p><p>The choice of which transformations to perform depends on both the user's desired consistency model and the user's preference for the type of MCM enforcement mechanism.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">In-Order Memory Instructions</head><p>Consider two memory instructions, M1 and M2, where M1 is before M2 in program order. To enforce in-order execution of two memory instructions M1 → M2, the pipeline must stall M2 until M1 has completed. This enforcement of in-order execution can be used to provide whatever orderings are required by the desired MCM.</p><p>To implement this transformation, PipeGen must:</p><p>• Identify the M2 instruction state in which M2 should stall. ReadyToIssue performs the sub-operation issue_load_request and transitions to WaitingForReponse. WaitingForResponse waits for the memory system to respond with the load's value in the sub-operation receive_response, then transitions to WriteToRegister. Both states shown are wrapped in a listen-handle block, to handle misspeculation by resetting the entry's state to WaitingForLoadInst.</p><p>• Add logic to stall and then un-stall M2 in these identified states. PipeGen needs to identify M1's post-memory completion states. The post-memory completion states refer to the set of states after the memory instruction has globally performed. For a load and a store, the post-completion states are all states after WaitingForResponsei.e., all states after a memory response has been received. For a fence, the post-completion states are all states after ReadyToCommit. Once again, because these instruction states are labeled in AQL, it is simple for PipeGen to find their successors. Specifically, PipeGen extracts the instruction state graph from the input AQL code. As discussed in Section 3.2.1, in AQL each instruction has a set of states that it can be in and transitions between these states-we call this an instruction state graph. PipeGen then performs a reachability analysis to compute M1's post-completion states.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1.3">Adding Logic to Stall M2 in its Memory</head><p>Access State and Unstall it in M1's Memory Completion State. When M2 is in its memory access state, the pipeline must stall M2 if M1 is in any instruction state prior to its memory completion state. Thus, PipeGen makes the following transformations:</p><p>• Adds logic to the structure that holds M2 when M2 is in its memory access state (or any state before it if stalling at access state causes a deadlock), and this logic queries all structures that can hold M1 in a pre-completion state.</p><p>• Adds logic to the structure holding M2 to stall M2 until receiving a subsequent un-stall message from a structure holding M1 in a pre-completion state. • Adds logic to all structures that can hold M1 in a precompletion state, and this logic sends an un-stall message to the structure holding M2 when M1 changes its instruction state to its completion state. This stall we add is conservative in that not all controllers that can hold M1 in a pre-complete state need to be queried. For example, in Design-1, a load is inserted in the IQ, LQ, and ROB, and has state in all of these controllers. Querying all of these controllers' state is redundant, because the LQ holds all in-flight loads and their instruction states. The IQ and ROB do not contribute any information about loads beyond what the LQ already has.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Load-Replay</head><p>The load replay transformation has the pipeline replay each load at ReadyToCommit (reusing the originally computed address) and compare the replayed value to the value that was returned from the memory system when the load earlier executed speculatively. To implement this transformation, PipeGen must:</p><p>• Add logic to re-issue each load to the memory system when the load is ready to commit. • Identify where the original, speculative value is held.</p><p>• Add logic to compare the replayed load value to the original, speculative value. If the values differ, the logic must use the misspeculation recovery logic provided by the user for recovering from single-core misspeculation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.1">Adding Logic to Replay Loads. PipeGen must first identify</head><p>where in the pipeline loads are issued to the memory system. Because the user labels the canonical instruction states, PipeGen can find where a load transitions from ReadyToIssue to WaitingForResponse; this transition occurs in the structure that issues loads. We refer to this structure as the load-issuing structure. PipeGen adds logic to the load-issuing structure to make it perform the replay load. If the system contains a structure that holds committed writes before they are written to memory, such as a post-commit write buffer (WB), that structure is logically part of the memory system and it is queried at replay. (PipeGen is able to identify whether or not an input pipeline has a post-commit WB by performing reachability analysis on post-commit store states.) To identify whether there is a post-commit WB, once again PipeGen extracts the instruction state graph-this time of a store instruction. PipeGen then performs a reachability analysis starting from the store's ReadyToCommit state, and identifies the set of postcommit states of the store. Within the post-commit states of the store, PipeGen searches for the ReadyToIssue and WaitingForResponse states, and a match indicates the presence of a post-commit WB.</p><p>PipeGen must similarly identify where in the pipeline that loads commit, which we refer to as the commit structure. At that location, PipeGen adds logic to send a message from the commit structure to the load-issuing structure, requesting a load to be issued and stalling until the response from the memory system arrives at the load-issuing structure.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.2">Identifying</head><p>Where the Original Load Value Is. PipeGen searches for the sub-operation keyword write_load_result. The structure that includes that keyword is the structure that holds the data that has been returned by the memory system.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2.3">Adding Logic to Compare the Original Value to the Replayed</head><p>Value. PipeGen identifies the structure where a load commits, using the commit sub-operation keyword. PipeGen adds logic there to (a) send a message to the structure that holds the originally read value of the load, requesting a response with the original value, (b) send a message to the load-issuing structure to replay the load and receive a newly read value, (c) compare the two values, and (d) if the values differ, trigger the single-core misspeculation recovery mechanism.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Invalidation Tracking</head><p>The invalidation tracking transformation observes incoming coherence invalidations and compares their addresses to the addresses of in-flight loads that have already speculatively executed. To implement this transformation, PipeGen makes the following transformation:</p><p>• Adds a structure to track the addresses of speculative loads.</p><p>• Adds logic to compare the addresses of speculative loads to the addresses of incoming coherence invalidations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.1">Adding Structure to Track Addresses of Speculative Loads.</head><p>PipeGen adds a structure whose entries are the addresses (and sequence numbers) of loads that have already been speculatively executed. The entries of this structure, which we refer to as Load-Tracker, are unordered. LoadTracker can be queried by address, and it accepts messages for adding and removing entries. PipeGen adds logic to (a) add an entry whenever a load performs the suboperation issue_load_request and (b) remove an entry whenever a load performs the sub-operation commit. LoadTracker can also accept messages to reset it (i.e., clear all of its entries).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.2">Adding Logic to Compare Addresses of Speculative Loads to</head><p>Invalidations. PipeGen adds logic to the memory system to send the addresses of incoming coherence invalidations to LoadTracker. If there is a match, LoadTracker resets itself and triggers the pipeline's single-core misspeculation mechanism to squash the misspeculated load and all instructions younger than it.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Usage Model</head><p>In the last section we discussed the three transformations used for enforcing a given MCM. How does the architect specify what transformations to employ? More generally, what is the usage model of PipeGen? Conceptually, PipeGen takes as input a single-threaded pipeline and the MCM and produces a pipeline that enforces the MCM. More concretely, the input pipeline is expressed in AQL, our DSL. What about the MCM? The MCM is expressed as a MOST table <ref type="bibr" coords="7,266.71,262.27,13.54,8.97" target="#b17">[18,</ref><ref type="bibr" coords="7,282.49,262.27,11.55,8.97" target="#b18">19]</ref> which is a standardized format for expressing the memory orderings enforced by the MCM. For example, the MOST table for x86TSO specifies that TSO enforces the Load → Load, Load → Store, and the Store → Store orderings, and the fact that an x86TSO fence instruction, mfence, is ordered with loads, stores, and other mfences.</p><p>PipeGen first employs extensive litmus testing to determine what orderings are already enforced by the input pipeline. For example, in most input pipelines, the Load → Store ordering is enforced by default because stores are only allowed to issue to the memory system after any previous loads commit. For the orderings that are not enforced by default, PipeGen must enforce them. But the architect must specify which transformation to use for enforcing each ordering.</p><p>We introduced three transformations in the previous section: inorder (IO), load replay (LR), and invalidation tracking (IT). As we discussed in the previous section, IO is the most flexible and can enforce all 4 combinations of memory orderings and fences. LR and IT can enforce the M → Load ordering (where M is a load, store, or fence). Therefore, for every ordering in the MOST table, PipeGen could potentially offer a choice if that ordering can be enforced by both IO and LR/IT. The architect should then specify what transformation must be employed for enforcing that ordering guarantee. We leave this to the architect because they are in the best position to make this choice depending on the type of pipeline. As an extreme example, consider an input pipeline that is not speculative and uses a post-commit write buffer which can violate the Store → Load ordering. In such a pipeline it makes sense to use only the IO transformation because of the lack of speculative capabilities in the original pipeline. We show the MOST table for the x86TSO processor in Table <ref type="table" coords="7,125.98,591.03,3.13,8.97" target="#tab_6">3</ref>. As we can see, there are three choices for enforcing the Load → Load ordering; the architect chooses one of them. The Load → Store ordering happens to be already enforced and is indicated in the table. Other entries follow a similar pattern.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Output: Results and Verification</head><p>PipeGen's output is the transformed pipeline with the MCM mechanisms in place. Currently, PipeGen produces this output both in AQL and in the language of the Murphi model checker <ref type="bibr" coords="7,257.85,689.66,9.46,8.97" target="#b8">[9]</ref>. Other output formats are possible, such as Verilog or BlueSpec, but given We have used the Murphi output to verify that PipeGen produces pipelines that correctly enforce the specified MCMs. We have explored combinations of three different single-core pipeline designs (Designs 1, 2, and 3), two different MCMs (x86TSO and ARMv8), and three MCM enforcement mechanisms (i.e., the three transformations from Section 4).</p><p>But before discussing the verification results, we show sample output generated by PipeGen to convey a feel for the automation performed.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.1">Example Output generated by PipeGen</head><p>In this section, we show sample output generated by PipeGen for Design-3. Recall that in Design-3 loads can issue to the memory system out-of-order from the load buffer (LB), violating the Load → Load ordering. (We consider a design which has precisely one entry in the LB.) We use PipeGen to enforce this ordering using the In-order (IO) transformation.</p><p>At first look, manual IO enforcement might look trivial for this situation: stall the issue of a load to the memory system until all earlier (in program order) loads complete. An architect manually implementing this transformation might be tempted to implement this at the LB since that is where loads are issued to the memory system. But as discussed in Section 4.1 this could lead to a deadlock.</p><p>Why? Let us consider two loads, ld1 and ld2, with ld1 before ld2 in program order. Suppose ld2's address resolves first and it enters the LB. Now, if the IO enforcement were implemented at the LB, then the issue of ld2 would have been stalled until the earlier ld1 has its result from the memory system. But ld1 will never be able to enter the LB as that space is occupied by ld2.</p><p>This example illustrates that even a seemingly simple enforcement method like IO can be tricky when specializing for different pipelines. As discussed earlier, PipeGen identifies that loads do not enter the LB in program order and therefore searches "backwards" to identify a suitable structure where IO can be safely implemented. In Design-3, that structure is the issue queue (IQ).</p><p>Listing 2 shows the "before" and "after" versions of the issue queue for a load instruction (the "after" parts are shown in blue). As can be seen, the original pipeline code simply dispatches the load to the LB when the LB unit is ready (lines 22-28). PipeGen identifies the IQ as a suitable structure to enforce IO. It then adds the code to check whether there are undispatched (to the LB) prior loads (lines <ref type="bibr" coords="7,363.25,656.79,3.43,8.97" target="#b2">[3]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b3">[4]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b4">[5]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b5">[6]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b6">[7]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b7">[8]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b8">[9]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b9">[10]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b10">[11]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b11">[12]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b12">[13]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b13">[14]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b14">[15]</ref><ref type="bibr" coords="7,366.68,656.79,3.43,8.97" target="#b15">[16]</ref><ref type="bibr" coords="7,370.12,656.79,10.29,8.97" target="#b16">[17]</ref>. This is a simple associative search within the entries of the IQ as shown. We argue that with the knowledge of this output snippet, it should be a fairly easy task for the architect to implement these changes in any hardware design language such as Verilog. In summary, this example illustrates that: (1) Even seemingly simple transformations are not easy to specialize for a given pipeline;</p><p>(2) PipeGen's automatic transformation solves this problem; and (3) It is relatively straightforward for an architect to look at the PipeGen output to implement the changes in any HDL.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.2">Verification Methodology</head><p>We run litmus tests to check if all orderings allowed by the MCM are possible and all orderings disallowed by the MCM are impossible. By using Murphi to "run" the litmus tests we ensure that each litmus test is explored exhaustively (i.e., every possible interleaving of instructions is tested). While litmus testing is not a complete proof, it is widely used and quite effective.</p><p>The litmus tests we run cover multi-core orderings, checking that the algorithms have added the orderings required by x86TSO and ARMv8. The basic litmus tests are MP (Message Passing), Dekker's, LB (Load Buffering), and n7, where we additionally run several barrier variants of MP, LB, and Dekker's to test barrier instruction orderings required by x86TSO and ARMv8. A barrier instruction may be between instructions in the Dekker's, LB, and MP litmus tests, where stores and loads may be releases and acquires.</p><p>MP litmus test. The message passing (MP) litmus test is shown in Table <ref type="table" coords="8,86.37,634.87,3.13,8.97" target="#tab_7">4</ref>. In MP, with standard stores and loads, Core 1's reads should not be able to read 1 and 0 in r1 and r2, respectively, if Store → Store and Load → Load are enforced.</p><p>Dekker's litmus test. The Dekker's litmus test is shown in Table <ref type="table" coords="8,75.23,678.71,3.02,8.97" target="#tab_8">5</ref>. If Store → Load is enforced, then reading the results 0 and 0 in both cores is not possible, but it is possible if that ordering is relaxed.  LB litmus test. The load buffering LB litmus test is shown in Table <ref type="table" coords="8,339.23,558.16,3.01,8.97" target="#tab_9">6</ref>. If Load → Store is enforced, then reading 1 in both cores is not possible, but is possible if the ordering is relaxed.</p><p>N7 litmus test. The n7 litmus test is in Table <ref type="table" coords="8,501.24,580.08,3.13,8.97" target="#tab_10">7</ref>. In this test, a LSQ that has a post-commit WB and that enforces Load → Load, but does not enforce Store → Load, permits (a) Core 0 reading 1 into r1 and reading 0 into r2 and (b) Core 2 reading a 1 into r1 and 0 into r2. The second load in Core 0 thus reads from address y before Core 1's store writes to y, and after it writes to y, Core 2's first load reads from y. Then the second load reads 0 from x as Core 0's store is in its SB.</p><p>As TSO includes the mfence instruction, we exhaustively test all combinations of load and store instructions with an mfence added between the instructions, resulting in 7 litmus tests per design. Similarly, ARMv8 introduces LDAR, STLR, DMB SY, DMB ST, and DMB LD, resulting in 22 litmus tests per design after adding litmus test variations of MP, LB, and Dekker's with these ARMv8 fence instructions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.3">Transformation Combinations Used in Experiments</head><p>PipeGen can apply three different transformations, described in Section 4, and it can apply them in isolation or in combinations. We consider three combinations:</p><p>• In-order memory instructions only. The in-order memory instruction transformation can be used to provide any ordering that is desired. • In-order memory + load replay. This combination uses load replay to provide some orderings (M → Load) and in-order memory for the rest. • In-order memory + invalidation tracking. This combination uses invalidation tracking to provide some orderings (M → Load) and in-order memory for the rest.</p><p>In Table <ref type="table" coords="9,94.52,314.21,3.01,8.97">8</ref>, we show how we use these three transformation combinations for a cross-product of the three designs and two MCMs we consider in this evaluation. As there are 3 LSQ microarchitectures, and 3 combinations of transformations to evaluate on each microarchitecture for each MCM (TSO and ARMv8), we litmus test 9 experiments per MCM. Across TSO and ARMv8, we litmus test the 7 and 22 litmus tests respectively from Section 6.2 experiment, for a total of 63 and 198 litmus tests.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4">Results for Design 1</head><p>Design-1 lets loads and stores in any order (that does not violate single-thread correctness), and as a result, it does not enforce Load → Load, Store → Store, or Store → Load orderings. Design-1 does enforce Load → Store though, as loads have completed their access when they commit, and stores have not yet been issued to the memory system when they commit.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4.1">Verifying Transformation Combinations that Enforce TSO.</head><p>The results corroborate that all of the generated pipelines behave as expected, allowing the allowable litmus test outcomes and disallowing the prohibited outcomes. Unlike some other design/MCM pairs we discuss later, the transformations do not cause any overly conservative orderings.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.4.2">Verifying Transformation Combinations that Enforce ARMv8.</head><p>The results are shown in Table <ref type="table" coords="9,162.27,601.99,3.01,8.97" target="#tab_11">9</ref>, where most expected behaviors are exhibited, except for the grey cells. The enforced MCM is slightly stronger than the ARMv8 MCM. Specifically, in the Dekker's litmus test with an added DMB ST fence, transformation combinations with Invalidation Tracking and Load Replay both enforce Store → DMB-ST → Load. This is because DMB-ST stalls until prior stores complete, and loads following the DMB-ST can only commit after the DMB-ST commits. With invalidation tracking and load replay taking care of misspeculated loads, this results in Store → DMB-ST → Load to be enforced.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.5">Results for Design 2</head><p>Design-2 is similar to Design-1 in terms of the orderings it enforces, except that without a post-commit WB, stores are executed inorder at commit. Loads still execute out of order and forward from older stores. Thus Design-2 enforces Load → Store by default (like Design-1) but also Store → Store because of the lack of a WB. 6.5.1 Transformation Combinations to Enforce TSO. Design-2's single LSQ disallows the weaker orderings (in the yellow cells of Table <ref type="table" coords="9,317.75,183.26,7.49,8.97" target="#tab_12">10</ref>) from the litmus tests when tested with the Load Replay and Invalidation Tracking transformations, even for Dekker's and n7, as Design-2 has no post-commit WB, resulting in Store → Load being enforced. (Different from grey cells, the yellow cells indicate that while the relevant orderings are disallowed by PipeGen, the orderings would also have been disallowed by any manual enforcement technique. Thus, yellow cells are disallowed not because of the conservatism demonstrated by PipeGen but because of the design itself.) 6.5.2 Algorithms Combinations to Enforce ARMv8. Shown in Table <ref type="table" coords="9,317.75,298.78,7.01,8.97" target="#tab_13">11</ref>, Design-2 with only the in-order algorithm applied meets the expected orderings, except in the event of Dekker's with the DMB LD barrier (the grey cell) which behaves stronger than required; this is because the load is stalled until the barrier is committed which can't commit until the store completes. With invalidation tracking and load-replay the test results (the yellow cells) are all disallowed as there is no post-commit WB, causing the two mechanisms to add Load → Load and Store → Load, as loads' speculation is validated after older stores complete.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.6">Results for Design 3</head><p>Although Design-3 is different from Design-2 (microarchitecturally speaking), like Design-2, it also enforces Store → Store and Load → Store by default (and violates the other two orderings) while also relaxing Store → Load for the same address. Therefore, the results that we observe for Design-3 are identical to those observed for Design-2 in enforcing x86TSO as well as ARMV8 (Tables <ref type="table" coords="9,534.73,476.56,23.47,8.97;9,317.75,487.52,6.36,8.97" target="#tab_13">10 and  11</ref>), except for N7 that makes use of Store to Load forwarding in its allowed outcome.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6.7">Summary</head><p>In summary, our results show that PipeGen always generates pipelines that adhere to the intended MCM; i.e., our generated pipeline never violates the intended MCM. In a couple of examples (involving fences -the grey cells) PipeGen shows slightly stronger behavior than what the intended MCM would show.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Related Work</head><p>Verification. There has been a rich history of verifying processor pipelines using theorem proving and model checking <ref type="bibr" coords="9,520.99,623.91,9.43,8.97" target="#b4">[5,</ref><ref type="bibr" coords="9,533.03,623.91,10.35,8.97" target="#b11">12,</ref><ref type="bibr" coords="9,545.98,623.91,10.21,8.97" target="#b12">13]</ref>. Each of these techniques verify a model of the processor, typically expressed as a state machine, and verify it against the instruction set specification. More recently PipeCheck <ref type="bibr" coords="9,473.81,656.79,14.64,8.97" target="#b16">[17]</ref> uses the 𝜇spec representation of pipelines to verify the MCM orderings of a pipeline using exhaustive litmus testing. For each litmus test, PipeCheck constructs a happens-before graph of the memory instruction events, and a cycle in this graph corresponds to whether an outcome is Table <ref type="table" coords="10,77.40,85.73,3.38,7.70">8</ref>: Three tested ordering mechanism combinations per design. Each combination is either IO (In-order), IO + LR (using IO and Load Replay), and IO + IT (using IO + Load Replay). An ordering may already be enforced (Y) or unenforced (N). *Design 3 does not enforce Store to Load for the same address. </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>TSO Orderings</head><formula xml:id="formula_0">Ld → Ld Ld → St St → St St → Ld Ld → mF St → mF mF → Ld mF → St mF → mF Design 1, TSO IO IO + LR IO + IT IO LR IT Y Y Y IO IO IO N N N Y Y Y IO IO IO IO LR IT Y Y Y Y Y Y Design 2, TSO IO IO + LR IO + IT IO LR IT Y Y Y Y Y Y N LR IT Y Y Y Y Y Y IO LR IO Y Y Y Y Y Y Design 3, TSO IO IO + LR IO + IT IO LR IT Y Y Y Y Y Y N* LR IT Y Y Y Y Y Y IO LR IO Y Y Y Y Y Y ARM Orderings Ld → Ld Ld → St St → St St → Ld LDA → Ld, LDA LDA → St, STR Ld, LDA → STR St, STR → STR Ld,</formula><formula xml:id="formula_1">IO IO + LR IO + IT N LR IT Y Y Y N N N N N N IO LR IT Y Y Y Y Y Y IO IO IO Y Y Y IO LR IT IO IO IO Y Y Y Y Y Y Design 2, ARM IO IO + LR IO + IT N LR IT Y Y Y Y Y Y N LR IT IO LR IT Y Y Y Y Y Y Y Y Y Y Y Y IO LR IT IO IO IO Y Y Y Y Y Y Design 3, ARM IO IO + LR IO + IT N LR IT Y Y Y Y Y Y N* LR IT IO LR IT Y Y Y Y Y Y Y Y Y Y Y Y IO LR IT IO IO IO Y Y Y Y Y Y</formula><p>disallowed. This is similar to Herd <ref type="bibr" coords="10,186.18,454.70,9.52,8.97" target="#b2">[3]</ref>, where cycles in memory instruction executions indicate a disallowed outcome. In contrast to pipeline verification, our work is focused on the top-down correctby-construction <ref type="bibr" coords="10,115.40,487.58,10.68,8.97" target="#b7">[8]</ref> generation of pipelines, in which we add the required MCM orderings, rather than verifying that an existing pipeline correctly enforces MCM orderings.</p><p>Hardware Description Languages. Our work is related to hardware description languages such as Verilog, VHDL, Chisel <ref type="bibr" coords="10,266.02,539.31,9.32,8.97" target="#b3">[4]</ref>, and Bluespec <ref type="bibr" coords="10,87.60,550.27,13.22,8.97" target="#b21">[22]</ref>, in that we share the end goal of generating hardware designs. The point of departure of our work is that our approach is not general: our goal is geared towards generating processor pipelines as opposed to general hardware designs; in fact, our DSL is specialized to processor pipelines, and our transformations take advantage of this domain knowledge.</p><p>Microarchitecture Description Languages. Our work is most closely related to what we call microarchitecture description languages. These works raise the level of abstraction of microarchitecture design by using a DSL for expressing aspects of microarchitecture and using compiler technology to lower it to hardware. The earliest example of this is the Teapot language <ref type="bibr" coords="10,219.35,678.71,10.43,8.97" target="#b6">[7]</ref> for generating coherence protocols. Other early works raised the level of abstraction of processor pipelines for single-core processors <ref type="bibr" coords="10,232.34,700.62,13.50,8.97" target="#b14">[15,</ref><ref type="bibr" coords="10,248.08,700.62,10.13,8.97" target="#b22">23]</ref>. This area has had a recent resurgence. With open instruction sets and the advent of hardware startups, there is a demand for faster, more reliable and cheaper microarchitecture design. ProtoGen <ref type="bibr" coords="10,543.61,476.62,14.60,8.97" target="#b23">[24]</ref> proposes a DSL for synthesizing cache coherence protocols that are correct by construction, and they also use model checking to verify the synthesized protocols. PDL <ref type="bibr" coords="10,429.51,509.50,13.22,8.97" target="#b24">[25]</ref>, proposes a pipeline description language and supports limited out-of-order execution. But PDL does not support multicore processors and as a consequence does not help enforce MCMs. To summarize, ours is the only approach to our knowledge that automates the generation of MCMs at the pipeline level.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="8">Conclusion</head><p>One of the biggest challenges in designing an out-of-order pipeline is ensuring that it correctly supports a desired MCM. While MCM enforcement mechanisms have been previously developed, applying them manually is challenging and error-prone. We have developed PipeGen to automate that design challenge. Specifically, given an MCM and a single-core pipeline design that is MCM-oblivious, PipeGen outputs a pipeline that correctly supports the given MCM. We have verified PipeGen for a variety of single-core pipelines, MCMs, and MCM enforcement mechanisms. PipeGen's fundamental contribution is a set of transformations that codify three different methods of enforcing MCMs at the pipeline. Another important contribution is the identification of important states and sub-operations which are essential to perform these transformations.</p><p>But this work is only the first step. While we have used our own DSL for specifying the input, it would be interesting to explore whether existing HDLs can be extended to convey the important annotations that are required to implement our transformations. Secondly, whereas a Murphi backend validates that PipeGen works correctly, it would be interesting to create an HDL backend.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,317.96,590.64,240.25,7.70;1,317.96,601.60,240.25,7.70;1,317.96,612.55,240.25,7.70;1,317.96,623.51,71.64,7.70"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Automation goal: Given a pipeline in our DSL that correctly enforces single-threaded correctness, and a desired MCM, PipeGen automatically creates a pipeline that enforces the desired MCM.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1" coords="4,53.80,201.48,240.25,7.70;4,53.80,212.44,166.54,7.70"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Illustration of a queue structure with state fields shown as registers (boxes with triangles).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="4,317.96,382.47,240.25,7.70;4,317.96,393.42,240.25,7.70;4,317.96,404.38,241.85,7.70;4,317.96,415.34,240.25,7.70;4,317.96,426.30,241.34,7.70;4,317.96,437.26,240.25,7.70;4,317.96,448.22,223.40,7.70"><head>Figure 3 :</head><label>3</label><figDesc>Figure3: The state machine and state fields of Design-1's LQ entries. Each LQ entry first awaits a load to be inserted in state WaitingForLoadInst. After receiving a load, the entry progresses to performing sub-operations (highlighted in color) such as issuing the load, waiting for it's response, and writing it's result before waiting to be committed. Some states are simplified away, represented by a dotted line.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="8,46.50,88.71,94.82,5.64;8,46.50,97.67,102.94,5.64;8,46.50,106.64,182.69,5.64;8,46.50,115.61,199.55,5.64;8,46.50,125.23,2.32,4.98;8,129.76,124.57,91.07,5.61;8,46.50,134.20,2.32,4.98;8,129.70,133.54,112.05,5.61;8,129.64,142.51,103.85,5.61;8,46.50,152.13,2.32,4.98;8,146.44,151.47,120.42,5.61;8,46.50,161.10,2.32,4.98;8,71.09,160.44,128.81,5.61;8,44.18,170.06,4.63,4.98;8,79.37,169.40,179.11,5.61;8,44.18,179.03,4.63,4.98;8,87.95,178.37,141.25,5.61;8,44.18,188.00,4.63,4.98;8,79.25,187.34,32.78,5.61;8,44.18,196.96,4.63,4.98;8,87.95,196.30,145.43,5.61;8,44.18,205.93,4.63,4.98;8,79.25,205.27,3.49,5.61;8,44.18,214.89,4.63,4.98;8,70.88,214.24,3.49,5.61;8,44.18,223.86,4.63,4.98;8,71.09,223.20,124.62,5.61;8,44.18,232.17,21.82,5.64;8,44.18,241.14,214.18,5.64;8,44.18,250.10,155.72,5.64;8,44.18,259.73,4.63,4.98;8,79.49,259.07,86.94,5.61;8,44.18,268.03,21.82,5.64;8,44.18,277.00,130.61,5.64;8,44.18,286.63,4.63,4.98;8,71.00,285.97,137.27,5.61;8,44.18,295.59,4.63,4.98;8,79.54,294.93,158.02,5.61;8,44.18,304.56,4.63,4.98;8,79.50,303.90,36.71,5.61;8,44.18,313.52,4.63,4.98;8,79.52,312.87,95.27,5.61;8,44.18,322.49,4.63,4.98;8,70.88,321.83,3.49,5.61;8,44.18,330.80,21.82,5.64;8,44.18,339.77,13.45,5.64;8,57.05,351.51,233.75,7.70"><head>1 state IQScheduleInst { 2 / 18 / 19 ifListing 2 :</head><label>218192</label><figDesc>/ STALL IF THERE ARE ANY OLDER LOADS IN THE IQ . op == ld ) { 23 if ( load_buffer . state == ready ) { 24 load_buffer . execute_load ( instruction ) ; Example output AQL code of the IQ in Design 3.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="10,114.06,380.39,88.00,8.97;10,106.88,391.35,88.88,8.97;10,109.59,402.31,83.45,8.97;10,102.64,413.27,97.37,8.97;10,87.15,424.23,128.34,8.97;10,249.53,263.14,60.27,7.70"><head></head><label></label><figDesc>LDA → DMB SY/ST/LD DMB SY/LD → Ld, LDA St, STR → DMB SY/ST DMB SY/ST/LD → St, STR DMB SY/ST/LD → DMB SY/ST/LD Design 1, ARM</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="3,53.50,87.64,241.92,176.55"><head>Table 1 :</head><label>1</label><figDesc>x86TSO memory orderings. Row labels are earlier in program order than column labels. AA indicates Any Address, and SA Same Address.</figDesc><table coords="3,53.80,134.63,241.63,129.56"><row><cell></cell><cell cols="3">Load Store mfence</cell></row><row><cell>Load</cell><cell>AA</cell><cell>AA</cell><cell>AA</cell></row><row><cell>Store</cell><cell>SA</cell><cell>AA</cell><cell>AA</cell></row><row><cell cols="2">mfence AA</cell><cell>AA</cell><cell>AA</cell></row><row><cell cols="4">in Design-1. Because this LSQ must be associatively searched (by</cell></row><row><cell cols="4">both loads and stores), it cannot be made larger than either the LQ</cell></row><row><cell cols="4">or SQ from Design-1, and thus can manage fewer in-flight memory</cell></row><row><cell cols="4">operations. But Design-2 is less expensive that Design-1. This design</cell></row><row><cell cols="4">also does not have a WB. Stores issue to the memory system when</cell></row><row><cell cols="4">they reach the top of the ROB, and so stores are performed in order.</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1" coords="3,317.66,87.64,240.55,198.91"><head>Table 2 :</head><label>2</label><figDesc>ARMv8 memory orderings. Row labels are earlier in program order than column labels. AA = Any Address, SA = Same Address, and No indicates an ordering is not enforced.</figDesc><table coords="3,317.96,134.63,240.25,151.93"><row><cell></cell><cell cols="3">LD LDA ST STR</cell><cell>DMB SY</cell><cell>DMB ST</cell><cell>DMB LD</cell></row><row><cell>LD</cell><cell>SA</cell><cell>SA</cell><cell>SA AA</cell><cell>AA</cell><cell>No</cell><cell>AA</cell></row><row><cell>LDA</cell><cell cols="3">AA AA AA AA</cell><cell>AA</cell><cell>No</cell><cell>AA</cell></row><row><cell>ST</cell><cell>SA</cell><cell>SA</cell><cell>SA AA</cell><cell>AA</cell><cell>AA</cell><cell>No</cell></row><row><cell>STR</cell><cell cols="3">AA AA AA AA</cell><cell>AA</cell><cell>AA</cell><cell>No</cell></row><row><cell cols="4">DMB SY AA AA AA AA</cell><cell>AA</cell><cell>AA</cell><cell>AA</cell></row><row><cell cols="2">DMB ST No</cell><cell>No</cell><cell>AA AA</cell><cell>AA</cell><cell>AA</cell><cell>AA</cell></row><row><cell cols="4">DMB LD AA AA AA AA</cell><cell>AA</cell><cell>AA</cell><cell>AA</cell></row><row><cell cols="7">acquire orders all of the memory operations following it in program</cell></row><row><cell cols="7">order, whereas the store release orders all of the memory operations</cell></row><row><cell cols="5">before it. ARMv8 orderings are shown in Table 2.</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="5,317.69,427.40,241.90,271.23"><head></head><label></label><figDesc>4.1.1 Identifying M2 State in Which M2 Should Stall. Every type of memory instruction has a canonical instruction state in which it is about to access the memory system, and we refer to this instruction state as the memory access state. For a load or store, the access state is ReadyToIssue. For a Fence, the access state is ReadyToCommit. The access state of M2 is the state in which M2 should stall to avoid being ordered ahead of M1. Intuitively, if M2 stalls before it interacts with the memory system, it cannot appear in memory order before M1. Because AQL requires labeling of canonical states in the input pipeline model, it is easy for PipeGen to identify the memory access state for M2.But blindly choosing the access state as the state in which M2 should stall could lead to deadlock, if we are not careful. Consider a pipeline in which instructions of type M2 reside in a dedicated structure while waiting to access the memory system. Deadlock can arise if this structure fills with younger instructions and an older instruction cannot enter it. To avoid this situation, PipeGen checks if instructions of type M2 enter this M2-specific structure in program order. If not, PipeGen searches backwards through the sequence of structures through which instructions of type M2 traverse, and it has M2 stall at the latest structure in this sequence for which instructions of type M2 are inserted in program order. 4.1.2 Identifying M1 State in Which M2 Should Un-Stall. M2 cannot un-stall until M1 has completed its memory operation and thus</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="7,317.66,85.73,240.55,108.87"><head>Table 3 :</head><label>3</label><figDesc>MOST table of TSO ordering transformation choices.</figDesc><table coords="7,317.96,110.79,240.24,83.81"><row><cell></cell><cell>Load</cell><cell cols="2">Store mFence</cell></row><row><cell>Load</cell><cell>LR, IT or IO</cell><cell>Y</cell><cell>IO</cell></row><row><cell>Store</cell><cell>LR, IT or IO</cell><cell>IO</cell><cell>IO</cell></row><row><cell cols="2">mFence LR, IT or IO</cell><cell>IO</cell><cell>IO</cell></row><row><cell cols="4">that the first goal of PipeGen is ensuring functionality, Murphi is</cell></row><row><cell>more useful.</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="8,317.66,87.64,240.55,93.34"><head>Table 4 :</head><label>4</label><figDesc>MP Litmus test, parameterized. With standard stores and loads, core 1 reading 1 and 0 in r1 and r2 respectively is not allowed in x86TSO, and allowed in ARMv8.</figDesc><table coords="8,364.73,134.63,146.70,46.36"><row><cell>Core 0</cell><cell>Core 1</cell></row><row><cell>Store [x] 1</cell><cell>Load r1 [y]</cell></row><row><cell cols="2">[Opt. Barrier Inst.] [Opt. Barrier Inst.]</cell></row><row><cell>Store [y] 1</cell><cell>Load r2 [x]</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="8,317.66,203.23,242.08,93.34"><head>Table 5 :</head><label>5</label><figDesc>Dekker's litmus test, parameterized. Core 0 and 1 both reading 0 is only possible if Store → Load is not enforced. This outcome is observable in x86TSO and ARMv8.</figDesc><table coords="8,364.73,250.22,146.70,46.36"><row><cell>Core 0</cell><cell>Core 1</cell></row><row><cell>Store [x] 1</cell><cell>Store [y] 1</cell></row><row><cell cols="2">[Opt. Barrier Inst.] [Opt. Barrier Inst.]</cell></row><row><cell>Load r1 [y]</cell><cell>Load r1 [x]</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9" coords="8,317.66,318.82,241.64,93.34"><head>Table 6 :</head><label>6</label><figDesc>The LB litmus test. If Cores 0 and 1 both read 1 in r1, then the MCM relaxes Load → Store. This outcome is allowed in ARMv8.</figDesc><table coords="8,364.73,365.81,146.70,46.36"><row><cell>Core 0</cell><cell>Core 1</cell></row><row><cell>Load r1 [x]</cell><cell>Load r1 [y]</cell></row><row><cell cols="2">[Opt. Barrier Inst.] [Opt. Barrier Inst.]</cell></row><row><cell>Store [y] 1</cell><cell>Store [x] 1</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10" coords="8,317.66,434.41,240.55,93.34"><head>Table 7 :</head><label>7</label><figDesc>The n7 litmus test. If Cores 0 and 2 both read 1 and 0 in r1 and r2, then the MCM relaxes Store → Load or Load → Load. This outcome is allowed both in x86TSO and ARMv8.</figDesc><table coords="8,367.90,481.40,140.35,46.36"><row><cell>Core 0</cell><cell>Core 1</cell><cell>Core 2</cell></row><row><cell cols="3">Store [x] 1 Store [y] 1 Load r1 [y]</cell></row><row><cell>Load r1 [x]</cell><cell></cell><cell>Load r2 [x]</cell></row><row><cell>Load r2 [y]</cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11" coords="11,58.78,87.64,244.68,421.64"><head>Table 9 :</head><label>9</label><figDesc>Design 1 ARMv8 litmus test results.</figDesc><table coords="11,58.78,113.71,244.68,395.58"><row><cell>Design 1</cell><cell>ARMv8 Expected</cell><cell>In-Order</cell><cell>In-Order + Inval</cell><cell>In-Order + Load-Replay</cell></row><row><cell>MP</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>MP DMB_SY</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>MP DMB_LD DMB_ST</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>MP DMB_LD</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>DMB_ST</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>Mismatch</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>MP Ordered LDAR STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>MP Unordered LDAR STLR</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>MP Only LDAR STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>Dekker's LDAR</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>Dekker's STLR</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>Dekker's LDAR STLR</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>Dekker's DMB_SY</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's DMB_LD</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row><row><cell>Dekker's DMB_ST</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>LB</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB LDAR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB LDAR STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB DMB_SY</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB DMB_ST</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB DMB_LD</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>n7</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell><cell>Allow</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_12" coords="11,53.50,526.46,242.14,172.78"><head>Table 10 :</head><label>10</label><figDesc>Design-2 (Design-3) TSO litmus test results. *Design-3 disallows N7, as it doesn't forward from stores.</figDesc><table coords="11,63.37,562.48,221.10,136.76"><row><cell>Design 2</cell><cell>x86TSO Expected</cell><cell>In-Order</cell><cell>In-Order + Inval. Handling</cell><cell>In-Order + Load Replay</cell></row><row><cell>Message Passing</cell><cell cols="2">Disallow Disallow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell cols="3">MP Fence Disallow Disallow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's Fence</cell><cell cols="2">Disallow Disallow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>LB</cell><cell cols="2">Disallow Disallow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell cols="3">LB Fence Disallow Disallow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>n7</cell><cell>Allow</cell><cell>Allow*</cell><cell>Disallow</cell><cell>Disallow</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_13" coords="11,317.18,87.64,252.68,432.49"><head>Table 11 :</head><label>11</label><figDesc>Design-2 (Design-3) ARMv8 litmus test results. *Design-3 doesn't allow N7, as it doesn't forward from stores.</figDesc><table coords="11,322.94,124.67,246.92,395.47"><row><cell>Design 2</cell><cell>ARMv8 Expected</cell><cell>In-Order</cell><cell>In-Order + Inval</cell><cell>In-Order + Load-Replay</cell></row><row><cell>MP</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>MP DMB_SY</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>MP DMB_LD DMB_ST</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>MP DMB_LD</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>DMB_ST</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Mismatch</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>MP Ordered LDAR STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>MP Unordered LDAR STLR</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>MP Only LDARs STLRs</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's LDAR</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's STLR</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's LDAR STLR</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's DMB_SY</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's DMB_LD</cell><cell>Allow</cell><cell cols="2">Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>Dekker's DMB_ST</cell><cell>Allow</cell><cell>Allow</cell><cell>Disallow</cell><cell>Disallow</cell></row><row><cell>LB</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB LDAR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB LDAR STLR</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB DMB_SY</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB DMB_ST</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>LB DMB_LD</cell><cell cols="3">Disallow Disallow Disallow</cell><cell>Disallow</cell></row><row><cell>n7</cell><cell>Allow</cell><cell>Allow*</cell><cell>Disallow</cell><cell>Disallow</cell></row></table></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Acknowledgments</head><p>This work is supported by the National Science Foundation under grant CCF-200-2737 and the Engineering and Physical Sciences Research Council, through grant EP/V038699/1.</p></div>
+			</div>
+
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A Artifact Appendix A.1 Abstract</head><p>This paper provides an artifact, which includes a docker image, prepared with all the necessary files and an environment to reproduce the tables in the paper. The minimum requirements to run our artifact are 15 GB of RAM, and 10 GB of disk space. However, the more cores and RAM that's available, the faster the artifact evaluation will be, as we provide an automated script in the docker image to run experiments in parallel, and each experiment requires at least 15 GB of RAM.</p><p>The docker image contains a python3.10 script that will run all the experiments and corresponding litmus tests to reproduce the tables in the paper. The instructions to run the script are in the README-Artifact-Evaluation.md README file in the docker image.</p><p>A.2 Artifact check-list (meta-information) </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.4 Installation</head><p>Download the archive.tar file from Zenodo (https://zenodo.org/ uploads/12682811). Run docker load &lt; archive.tar, which will add the docker image aql. Run the docker image interactively with docker run -it aql.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.5 Experiment workflow</head><p>Follow the instructions in the README-Artifact-Evaluation.md README file in the docker image. These are instructions for running the python script "run-litmus-on-lsqs.py" to reproduce the experiments and tables in the paper. Line 356 in the python script makes the script run all experiments. Line 358 in the script shows an example of running specific experiments. The workflow this script automates consists of applying transformations on input LSQ microarchitectures per memory model and main transformation experiment from the paper. Each of these experiments is evaluated with litmus tests in a model checker, to examine the resulting memory model orderings the produced microarchitecture enforces. These memory model orderings are collected in tables, as shown in this paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.6 Evaluation and expected results</head><p>As described above, this artifact transforms a LSQ microarchitecture to enforce a specified memory model. The evaluation of whether a memory model is enforced, and determining which orderings are enforced as a result of PipeGen's transformations is performed by checking litmus tests in the Murphi model checker. Litmus tests check for at least one memory model ordering, and as a memory consistency model consists of a number of orderings, by checking the enforced orderings with litmus tests, we can determine if a microarchitecture enforces a memory consistency model. If a microarchitecture enforces a few more orderings than specified, this is conservative, but acceptable.</p><p>The results of the litmus tests are printed in tables, and should match the paper's table. The one exception being the LB LSQ microarchitecture with the N7 litmus test, the ARM memory model, enforced with only the IO (In-Order) transformation, which is disallowed, and will be updated and explained in the camera-ready version.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.7 Experiment customization</head><p>Experiments can be customized if desired, by changing the transformations used.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.8 Notes</head><p>This artifact uses a docker image tarball, containing all dependencies, and an automated script to run all experiments in the paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.9 Methodology</head><p>Submission, reviewing and badging methodology:</p><p>• https://www.acm.org/publications/policies/artifact-reviewand-badging-current • http://cTuning.org/ae/submission-20201122.html • http://cTuning.org/ae/reviewing-20201122.html</p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="12,62.51,160.15,231.53,6.97;12,69.23,168.12,225.49,6.97;12,69.23,176.09,39.63,6.97" xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Gem5 TSO implemention which permits only one operation in the store buffer</title>
+		<ptr target="https://gem5-users.gem5.narkive.com/RqRv5GVj/lsq-bottleneck-when-using-x86-tso" />
+		<imprint>
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,184.06,225.99,6.97;12,69.23,192.03,224.81,6.97;12,69.23,200.00,172.24,6.97" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Litmus: Running tests against hardware</title>
+		<author>
+			<persName coords=""><forename type="first">Jade</forename><surname>Alglave</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luc</forename><surname>Maranget</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Susmit</forename><surname>Sarkar</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Peter</forename><surname>Sewell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Tools and Algorithms for the Construction and Analysis of Systems</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="41" to="44" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,207.97,225.99,6.97;12,69.23,215.94,224.81,6.97;12,69.23,223.91,195.21,6.97" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Herding cats: Modelling, simulation, testing, and data mining for weak memory</title>
+		<author>
+			<persName coords=""><forename type="first">Jade</forename><surname>Alglave</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Luc</forename><surname>Maranget</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Tautschnig</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Programming Languages and Systems</title>
+		<imprint>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="1" to="74" />
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+	<note>TOPLAS)</note>
+</biblStruct>
+
+<biblStruct coords="12,69.23,231.88,225.99,6.97;12,69.23,239.85,225.63,6.97;12,69.23,247.82,224.81,6.97;12,69.23,256.42,225.58,6.23;12,69.23,263.76,225.88,6.97;12,69.23,271.73,113.14,6.97" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Chisel: constructing hardware in a Scala embedded language</title>
+		<author>
+			<persName coords=""><forename type="first">Jonathan</forename><surname>Bachrach</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Huy</forename><surname>Vo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brian</forename><forename type="middle">C</forename><surname>Richards</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Yunsup</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><surname>Waterman</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Rimas</forename><surname>Avizienis</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><surname>Wawrzynek</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Krste</forename><surname>Asanovic</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2228360.2228584</idno>
+		<ptr target="https://doi.org/10.1145/2228360.2228584" />
+	</analytic>
+	<monogr>
+		<title level="m">The 49th Annual Design Automation Conference 2012, DAC &apos;12</title>
+				<editor>
+			<persName><forename type="first">Patrick</forename><surname>Groeneveld</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Donatella</forename><surname>Sciuto</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Soha</forename><surname>Hassoun</surname></persName>
+		</editor>
+		<meeting><address><addrLine>San Francisco, CA, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2012-06-03">2012. June 3-7, 2012</date>
+			<biblScope unit="page" from="1216" to="1225" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,279.70,224.81,6.97;12,69.23,287.67,225.51,6.97;12,69.23,296.27,225.50,6.23;12,69.23,303.61,225.88,6.97;12,69.23,311.58,117.08,6.97" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Automatic verification of Pipelined Microprocessor Control</title>
+		<author>
+			<persName coords=""><forename type="first">Jerry</forename><forename type="middle">R</forename><surname>Burch</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">David</forename><forename type="middle">L</forename><surname>Dill</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/3-540-58179-0_44</idno>
+		<ptr target="https://doi.org/10.1007/3-540-58179-0_44" />
+	</analytic>
+	<monogr>
+		<title level="m">Computer Aided Verification, 6th International Conference, CAV &apos;94</title>
+		<title level="s">Proceedings (Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">L</forename><surname>David</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Dill</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Stanford, California, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1994-06-21">1994. June 21-23, 1994</date>
+			<biblScope unit="volume">818</biblScope>
+			<biblScope unit="page" from="68" to="80" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,319.55,224.81,6.97;12,69.23,327.52,199.77,6.97" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Memory ordering: A value-based approach</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Harold</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mikko</forename><forename type="middle">H</forename><surname>Cain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Lipasti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGARCH Computer Architecture News</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page">90</biblScope>
+			<date type="published" when="2004">2004. 2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,335.49,224.81,6.97;12,69.23,343.46,224.81,6.97;12,69.23,352.06,224.81,6.23;12,68.81,359.40,226.31,6.97;12,68.99,367.37,153.97,6.97" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Teapot: Language Support for Writing Memory Coherence Protocols</title>
+		<author>
+			<persName coords=""><forename type="first">Satish</forename><surname>Chandra</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Brad</forename><surname>Richards</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">R</forename><surname>Larus</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/231379.231430</idno>
+		<ptr target="https://doi.org/10.1145/231379.231430" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM SIGPLAN&apos;96 Conference on Programming Language Design and Implementation (PLDI)</title>
+				<editor>
+			<persName><forename type="first">N</forename><surname>Charles</surname></persName>
+		</editor>
+		<editor>
+			<persName><surname>Fischer</surname></persName>
+		</editor>
+		<meeting>the ACM SIGPLAN&apos;96 Conference on Programming Language Design and Implementation (PLDI)<address><addrLine>Philadephia, Pennsylvania, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="1996-05-21">1996. May 21-24, 1996</date>
+			<biblScope unit="page" from="237" to="248" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,375.34,225.99,6.97;12,69.23,383.31,225.89,6.97;12,69.23,391.28,70.96,6.97" xml:id="b7">
+	<monogr>
+		<title level="m" type="main">A constructive approach to the problem of program correctness</title>
+		<author>
+			<persName coords=""><forename type="first">W</forename><surname>Edsger</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Dijkstra</surname></persName>
+		</author>
+		<ptr target="http://www.cs.utexas.edu/users/EWD/ewd02xx/EWD209.PDFcirculatedprivately" />
+		<imprint>
+			<date type="published" when="1967-08">1967. Aug. 1967</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,399.25,225.27,6.97;12,69.23,407.85,225.57,6.23;12,69.23,415.19,106.61,6.97" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">The Mur 𝜙 verification system</title>
+		<author>
+			<persName coords=""><forename type="first">L</forename><surname>David</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Dill</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Computer Aided Verification: 8th International Conference, CAV&apos;96</title>
+				<meeting><address><addrLine>New Brunswick, NJ, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1996-07-31">1996. July 31-August 3, 1996</date>
+			<biblScope unit="volume">8</biblScope>
+			<biblScope unit="page" from="390" to="393" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,423.16,224.99,6.97;12,69.23,431.13,224.81,6.97;12,69.23,439.73,225.57,6.23;12,69.23,447.07,225.89,6.97;12,69.07,455.04,72.18,6.97" xml:id="b9">
+	<analytic>
+		<title level="a" type="main">McVerSi: A test generation framework for fast memory consistency verification in simulation</title>
+		<author>
+			<persName coords=""><forename type="first">Marco</forename><surname>Elver</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Nagarajan</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/HPCA.2016.7446099</idno>
+		<ptr target="https://doi.org/10.1109/HPCA.2016.7446099" />
+	</analytic>
+	<monogr>
+		<title level="m">2016 IEEE International Symposium on High Performance Computer Architecture, HPCA 2016</title>
+				<meeting><address><addrLine>Barcelona, Spain</addrLine></address></meeting>
+		<imprint>
+			<publisher>IEEE Computer Society</publisher>
+			<date type="published" when="2016-03-12">2016. March 12-16, 2016</date>
+			<biblScope unit="page" from="618" to="630" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,463.01,224.81,6.97;12,69.23,470.98,224.81,6.97;12,69.23,478.95,91.52,6.97" xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Two techniques to enhance the performance of memory consistency models</title>
+		<author>
+			<persName coords=""><forename type="first">Kourosh</forename><surname>Gharachorloo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Anoop</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">John</forename><forename type="middle">L</forename><surname>Hennessy</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1991">1991</date>
+		</imprint>
+		<respStmt>
+			<orgName>Computer Systems Laboratory, Stanford University</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,486.92,225.99,6.97;12,69.23,494.89,224.81,6.97;12,69.23,503.49,225.57,6.23;12,69.23,511.46,225.58,6.23;12,69.23,518.80,225.27,6.97;12,69.07,526.77,59.06,6.97" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Verifying Advanced Microarchitectures that Support Speculation and Exceptions</title>
+		<author>
+			<persName coords=""><forename type="first">Ravi</forename><surname>Hosabettu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ganesh</forename><surname>Gopalakrishnan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mandayam</forename><forename type="middle">K</forename><surname>Srivas</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/10722167_39</idno>
+		<ptr target="https://doi.org/10.1007/10722167_39" />
+	</analytic>
+	<monogr>
+		<title level="m">Computer Aided Verification, 12th International Conference, CAV 2000</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">E</forename></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Allen</forename><surname>Emerson</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">A</forename><forename type="middle">Prasad</forename><surname>Sistla</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Chicago, IL, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2000-07-15">2000. July 15-19, 2000</date>
+			<biblScope unit="volume">1855</biblScope>
+			<biblScope unit="page" from="521" to="537" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,534.74,225.99,6.97;12,69.23,542.71,224.81,6.97;12,69.23,551.31,224.81,6.23;12,68.54,558.65,225.51,6.97;12,69.23,566.63,224.81,6.97" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Decomposing the Proof of Correctness of pipelined Microprocessors</title>
+		<author>
+			<persName coords=""><forename type="first">Ravi</forename><surname>Hosabettu</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">K</forename><surname>Mandayam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Ganesh</forename><surname>Srivas</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Gopalakrishnan</surname></persName>
+		</author>
+		<idno type="DOI">10.1007/BFB0028739</idno>
+		<ptr target="https://doi.org/10.1007/BFB0028739" />
+	</analytic>
+	<monogr>
+		<title level="m">Computer Aided Verification, 10th International Conference, CAV &apos;98</title>
+		<title level="s">Lecture Notes in Computer Science</title>
+		<editor>
+			<persName><forename type="first">Alan</forename><forename type="middle">J</forename><surname>Hu</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Moshe</forename><forename type="middle">Y</forename><surname>Vardi</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Vancouver, BC, Canada</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="1998-06-28">1998. June 28 -July 2, 1998</date>
+			<biblScope unit="volume">1427</biblScope>
+			<biblScope unit="page" from="122" to="134" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,574.60,224.81,6.97;12,69.03,582.57,226.19,6.97;12,69.23,590.54,224.81,6.97;12,69.23,598.51,187.90,6.97" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Synthesizing Formal Models of Hardware from RTL for Efficient Verification of Memory Model Implementations</title>
+		<author>
+			<persName coords=""><forename type="first">Yao</forename><surname>Hsiao</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Dominic</forename><forename type="middle">P</forename><surname>Mulligan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Nikos</forename><surname>Nikoleris</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gustavo</forename><surname>Petri</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Caroline</forename><surname>Trippel</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">MICRO-54: 54th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+			<biblScope unit="page" from="679" to="694" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,606.48,224.81,6.97;12,69.23,615.07,225.57,6.23;12,69.23,622.42,217.79,6.97" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Automated Pipeline Design</title>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Kroening</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Wolfgang</forename><forename type="middle">J</forename><surname>Paul</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/378239.379071</idno>
+		<ptr target="https://doi.org/10.1145/378239.379071" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 38th Design Automation Conference, DAC 2001</title>
+				<meeting>the 38th Design Automation Conference, DAC 2001<address><addrLine>Las Vegas, NV, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2001-06-18">2001. June 18-22, 2001</date>
+			<biblScope unit="page" from="810" to="815" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,630.39,224.81,6.97;12,69.23,638.36,224.81,6.97;12,69.23,646.33,133.28,6.97" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">The locality-aware adaptive cache coherence protocol</title>
+		<author>
+			<persName coords=""><forename type="first">George</forename><surname>Kurian</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Omer</forename><surname>Khan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Srinivas</forename><surname>Devadas</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 40th Annual International Symposium on Computer Architecture</title>
+				<meeting>the 40th Annual International Symposium on Computer Architecture</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="523" to="534" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,654.30,225.99,6.97;12,69.23,662.27,224.99,6.97;12,69.23,670.24,225.51,6.97;12,69.23,678.21,63.80,6.97" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">PipeCheck: Specifying and verifying microarchitectural enforcement of memory consistency models</title>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Lustig</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Margaret</forename><surname>Martonosi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2014 47th Annual IEEE/ACM International Symposium on Microarchitecture</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="635" to="646" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,69.23,686.18,225.89,6.97;12,68.99,694.15,226.23,6.97;12,69.23,702.12,224.81,6.97;12,333.39,88.42,224.81,6.97;12,333.39,96.39,224.81,6.97" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">ArMOR: defending against memory consistency model mismatches in heterogeneous architectures</title>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Lustig</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Caroline</forename><surname>Trippel</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Michael</forename><surname>Pellauer</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Margaret</forename><surname>Martonosi</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2749469.2750378</idno>
+		<ptr target="https://doi.org/10.1145/2749469.2750378" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 42nd Annual International Symposium on Computer Architecture</title>
+				<editor>
+			<persName><forename type="first">Deborah</forename><forename type="middle">T</forename><surname>Marr</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">David</forename><forename type="middle">H</forename><surname>Albonesi</surname></persName>
+		</editor>
+		<meeting>the 42nd Annual International Symposium on Computer Architecture<address><addrLine>Portland, OR, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>ACM</publisher>
+			<date type="published" when="2015-06-13">2015. June 13-17, 2015</date>
+			<biblScope unit="page" from="388" to="400" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,104.36,224.81,6.97;12,333.39,112.33,174.30,6.97" xml:id="b18">
+	<monogr>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><surname>Joseph</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Lustig</forename></persName>
+		</author>
+		<title level="m">Specifying, Verifying, and Translating Between Memory Consistency Models</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+		<respStmt>
+			<orgName>Ph. D. Dissertation. Princeton University</orgName>
+		</respStmt>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,120.30,225.88,6.97;12,333.39,128.27,224.81,6.97;12,333.39,136.24,224.81,6.97;12,333.39,144.21,168.18,6.97" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Correctly implementing value prediction in microprocessors that support multithreading or multiprocessing</title>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><forename type="middle">J</forename><surname>Milo Mk Martin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Harold</forename><forename type="middle">W</forename><surname>Sorin</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mark</forename><forename type="middle">D</forename><surname>Cain</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Mikko</forename><forename type="middle">H</forename><surname>Hill</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Lipasti</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings. 34th ACM/IEEE International Symposium on Microarchitecture</title>
+				<meeting>34th ACM/IEEE International Symposium on Microarchitecture</meeting>
+		<imprint>
+			<publisher>MICRO-34. IEEE</publisher>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="328" to="337" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,152.18,224.81,6.97;12,333.39,160.15,224.81,6.97;12,333.39,168.12,223.16,6.97" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Bluespec System Verilog: efficient, correct RTL from high level specifications</title>
+		<author>
+			<persName coords=""><forename type="first">Rishiyur</forename><surname>Nikhil</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings. Second ACM and IEEE International Conference on Formal Methods and Models for Co-Design</title>
+				<meeting>Second ACM and IEEE International Conference on Formal Methods and Models for Co-Design</meeting>
+		<imprint>
+			<publisher>MEMOCODE&apos;04. IEEE</publisher>
+			<date type="published" when="2004">2004. 2004</date>
+			<biblScope unit="page" from="69" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,176.09,224.81,6.97;12,333.39,184.06,224.81,6.97;12,333.39,192.66,225.57,6.23;12,333.39,200.00,225.89,6.97;12,333.23,207.97,83.64,6.97" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Bluespec System Verilog: efficient, correct RTL from high level specifications</title>
+		<author>
+			<persName coords=""><forename type="first">S</forename><surname>Rishiyur</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Nikhil</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/MEMCOD.2004.1459818</idno>
+		<ptr target="https://doi.org/10.1109/MEMCOD.2004.1459818" />
+	</analytic>
+	<monogr>
+		<title level="m">2nd ACM &amp; IEEE International Conference on Formal Methods and Models for Co-Design (MEMOCODE 2004)</title>
+				<meeting><address><addrLine>San Diego, California, USA</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2004-06">2004. June 2004</date>
+			<biblScope unit="page" from="69" to="70" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,215.94,224.81,6.97;12,333.39,223.91,225.57,6.97;12,333.39,231.88,225.26,6.97;12,333.18,239.85,56.91,6.97" xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Automatic Pipelining From Transactional Datapath Specifications</title>
+		<author>
+			<persName coords=""><forename type="first">Eriko</forename><surname>Nurvitadhi</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">James</forename><forename type="middle">C</forename><surname>Hoe</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Timothy</forename><surname>Kam</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Shih-Lien</forename><surname>Lu</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TCAD.2010.2088950</idno>
+		<ptr target="https://doi.org/10.1109/TCAD.2010.2088950" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. Comput. Aided Des. Integr. Circuits Syst</title>
+		<imprint>
+			<biblScope unit="volume">30</biblScope>
+			<biblScope unit="page" from="441" to="454" />
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,247.82,225.99,6.97;12,333.39,255.79,225.88,6.97;12,333.39,263.76,224.81,6.97;12,332.97,271.73,63.39,6.97" xml:id="b23">
+	<analytic>
+		<title level="a" type="main">ProtoGen: Automatically generating directory cache coherence protocols from atomic specifications</title>
+		<author>
+			<persName coords=""><forename type="first">Nicolai</forename><surname>Oswald</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Vijay</forename><surname>Nagarajan</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Daniel</forename><forename type="middle">J</forename><surname>Sorin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM/IEEE 45th Annual International Symposium on Computer Architecture (ISCA)</title>
+				<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="2018">2018. 2018</date>
+			<biblScope unit="page" from="247" to="260" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="12,333.39,279.70,225.89,6.97;12,333.39,287.67,224.81,6.97;12,333.39,296.27,224.81,6.23;12,333.39,303.61,133.27,6.97" xml:id="b24">
+	<analytic>
+		<title level="a" type="main">PDL: a high-level hardware design language for pipelined processors</title>
+		<author>
+			<persName coords=""><forename type="first">Drew</forename><surname>Zagieboylo</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Charles</forename><surname>Sherk</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Gookwon</forename><forename type="middle">Edward</forename><surname>Suh</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Andrew</forename><forename type="middle">C</forename><surname>Myers</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 43rd ACM SIGPLAN International Conference on Programming Language Design and Implementation</title>
+				<meeting>the 43rd ACM SIGPLAN International Conference on Programming Language Design and Implementation</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="719" to="732" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

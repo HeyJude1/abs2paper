@@ -1,0 +1,5 @@
+论文标题：Allocation Strategies for Disaggregated Memory in HPC Systems
+
+关键词：Memory Disaggregation，High performance computing，Scheduling，Stochastic model
+
+摘要：In this work we consider scheduling strategies to deal with disaggregated memory for HPC systems. Disaggregated memory is an implementation of storage management that provides flexibility by giving the option to allocate storage based on system-defined parameters. In this case, we consider a memory hierarchy that allows to partition the memory resources arbitrarily amongst several nodes depending on the need. This memory can be dynamically reconfigured at a cost. We provide algorithms that pre-allocate or reconfigure dynamically the disaggregated memory based on estimated needs. We provide theoretical performance results for these algorithms. An important contribution of our work is that it shows that the system can design allocation algorithms even if user memory estimates are not accurate, and for dynamic memory patterns. These algorithms rely on statistical behavior of applications. We observe the impact on the performance of parameters of interest such as the reconfiguration cost.

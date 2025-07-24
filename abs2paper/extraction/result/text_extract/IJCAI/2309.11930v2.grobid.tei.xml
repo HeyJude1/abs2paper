@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Bridging the Gap: Learning Pace Synchronization for Open-World Semi-Supervised Learning</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName coords="1,167.41,135.98,29.55,10.75"><forename type="first">Bo</forename><surname>Ye</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer Science and Engineering</orgName>
+								<orgName type="institution">Southeast University</orgName>
+								<address>
+									<postCode>211189</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="laboratory">Key Lab. of Computer Network and Information Integration (Southeast University)</orgName>
+								<address>
+									<settlement>MoE</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,214.26,135.98,43.52,10.75"><forename type="first">Kai</forename><surname>Gan</surname></persName>
+							<email>gank@seu.edu.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer Science and Engineering</orgName>
+								<orgName type="institution">Southeast University</orgName>
+								<address>
+									<postCode>211189</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="laboratory">Key Lab. of Computer Network and Information Integration (Southeast University)</orgName>
+								<address>
+									<settlement>MoE</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,275.08,135.98,48.27,10.75"><forename type="first">Tong</forename><surname>Wei</surname></persName>
+							<email>weit@seu.edu.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer Science and Engineering</orgName>
+								<orgName type="institution">Southeast University</orgName>
+								<address>
+									<postCode>211189</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="laboratory">Key Lab. of Computer Network and Information Integration (Southeast University)</orgName>
+								<address>
+									<settlement>MoE</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<persName coords="1,344.91,135.98,85.37,10.75"><forename type="first">Min-Ling</forename><surname>Zhang</surname></persName>
+							<email>zhangml@seu.edu.cn</email>
+							<affiliation key="aff0">
+								<orgName type="department">School of Computer Science and Engineering</orgName>
+								<orgName type="institution">Southeast University</orgName>
+								<address>
+									<postCode>211189</postCode>
+									<settlement>Nanjing</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+							<affiliation key="aff1">
+								<orgName type="laboratory">Key Lab. of Computer Network and Information Integration (Southeast University)</orgName>
+								<address>
+									<settlement>MoE</settlement>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Bridging the Gap: Learning Pace Synchronization for Open-World Semi-Supervised Learning</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date/>
+						</imprint>
+					</monogr>
+					<idno type="MD5">E1F2E58D2F5967B877C5A506DAB1B938</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-07-22T11:40+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In open-world semi-supervised learning, a machine learning model is tasked with uncovering novel categories from unlabeled data while maintaining performance on seen categories from labeled data. The central challenge is the substantial learning gap between seen and novel categories, as the model learns the former faster due to accurate supervisory information. Moreover, capturing the semantics of unlabeled novel category samples is also challenging due to the missing label information. To address the above issues, we introduce 1) the adaptive synchronizing marginal loss which imposes class-specific negative margins to alleviate the model bias towards seen classes, and 2) the pseudo-label contrastive clustering which exploits pseudo-labels predicted by the model to group unlabeled data from the same category together in the output space. Extensive experiments on benchmark datasets demonstrate that previous approaches may significantly hinder novel class learning, whereas our method strikingly balances the learning pace between seen and novel classes, achieving a remarkable 3% average accuracy increase on the Im-ageNet dataset. Importantly, we find that finetuning the self-supervised pre-trained model significantly boosts the performance, which is overlooked in prior literature. Our code is available at https://github.com/yebo0216best/LPS-main.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<facsimile>
+		<surface n="1" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="2" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="3" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="4" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="5" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="6" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="7" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="8" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="9" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+		<surface n="10" ulx="0.0" uly="0.0" lrx="612.0" lry="792.0"/>
+	</facsimile>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Over the past decade, Semi-Supervised Learning (SSL) algorithms <ref type="bibr" coords="1,81.88,595.90,104.20,9.53">[Zhu and Goldberg, 2009]</ref> have demonstrated remarkable performance across multiple tasks, even when presented with a meagre number of labeled training samples. These algorithms delve into the underlying data distribution by harnessing numerous unlabeled samples. Among the representative methods employed for this purpose are pseudo-labeling <ref type="bibr" coords="1,54.00,661.65,47.45,9.53" target="#b11">[Lee, 2013]</ref> and consistency regularization <ref type="bibr" coords="1,230.43,661.65,66.57,9.53;1,54.00,673.50,22.69,8.64">[Laine and Aila, 2016;</ref><ref type="bibr" coords="1,78.95,673.33,75.83,8.82" target="#b13">Sajjadi et al., 2016]</ref>. Pseudo-labeling involves utilizing † Corresponding author model predictions as target labels, while consistency regularization encourages similar predictions for distinct views of an unlabeled sample. However, the majority of current approaches operate under the assumption that unlabeled data exclusively comprises samples belonging to seen classes, as observed within the labeled data <ref type="bibr" coords="1,450.26,451.34,107.75,9.53" target="#b1">[Bendale and Boult, 2015;</ref><ref type="bibr" coords="1,315.00,463.01,77.33,8.82" target="#b2">Boult et al., 2019]</ref>. In contrast, the presence of samples from novel classes in the unlabeled data is common, as it is challenging for human annotators to discern such instances amidst an extensive pool of unlabeled samples <ref type="bibr" coords="1,504.19,495.17,53.81,9.31;1,315.00,507.03,21.44,8.64" target="#b13">[Oliver et al., 2018]</ref>.</p><p>To aid this challenge, Open-World Semi-Supervised Learning, denoted as OpenSSL, has gained recent attention, leading to the proposition of several effective methodologies <ref type="bibr" coords="1,315.00,552.15,72.69,9.53" target="#b4">[Cao et al., 2022;</ref><ref type="bibr" coords="1,391.17,552.87,70.48,8.82" target="#b7">Guo et al., 2022;</ref><ref type="bibr" coords="1,465.13,552.87,65.91,8.82" target="#b13">Liu et al., 2023]</ref>. Figure <ref type="figure" coords="1,330.22,564.01,4.98,8.64" target="#fig_0">1</ref> demonstrates the problem setting of OpenSSL as an intuitive example. To tackle this issue, extant methods adopt a two-pronged strategy. On one front, they endeavour to identify unlabeled samples pertaining to seen classes and allocate pseudo-labels accordingly. On the other front, they automatically cluster unlabeled samples belonging to novel categories. Notably, OpenSSL shares an affinity with Novel Class Discovery (NCD) <ref type="bibr" coords="1,375.92,639.82,72.38,9.53">[Han et al., 2019;</ref><ref type="bibr" coords="1,451.52,640.54,67.81,8.82" target="#b8">Han et al., 2020]</ref>, particularly concerning the clustering of novel class samples. However, NCD methodologies presuppose that unlabeled samples originate exclusively from novel classes. OpenSSL relaxes this assumption to mirror real-world scenarios more accurately. Evidently, the central challenge of effectively clus-arXiv: <ref type="bibr" coords="1,24.34,393.90,12.00,166.10;1,18.34,322.26,10.29,61.64">2309.11930v2 [cs.</ref>LG] 17 Apr 2024  tering novel class samples hinges upon the acquisition of discriminative feature representations, given the absence of supervisory information. To mitigate this quandary, existing methods harness self-supervised learning paradigms (e.g., <ref type="bibr" coords="2,54.00,274.38,115.48,9.53">SimCLR [Chen et al., 2020a]</ref>) which circumvent the need for labeled data during the training of feature extractors within deep neural networks. Subsequently, a linear classifier is cultivated by optimizing the cross-entropy loss for labeled data, in conjunction with specifically tailored unsupervised objectives for the unlabeled counterpart. Widely employed unsupervised objectives include entropy regularization and pairwise loss, both of which effectively enhance performance.</p><p>This paper introduces a novel OpenSSL algorithm. An initial observation reveals that the model exhibits faster learning of seen classes compared to novel classes. This discrepancy is intuitive because of accurate supervision within labeled data for seen classes, whereas novel classes are learned through unsupervised means. Figure <ref type="figure" coords="2,169.02,417.74,4.98,8.64" target="#fig_2">2</ref>  This unsupervised contrastive objective operates as a complement to the pseudo-label contrastive clustering. Combining the aforementioned modules, we present, LPS, to address the OpenSSL challenge. Figure <ref type="figure" coords="2,167.49,625.96,4.98,8.64" target="#fig_2">2</ref> showcases the efficacy of LPS compared with existing state-of-the-art approaches. Notably, we reveal that the conventional practice of freezing the feature extractor, previously trained via self-supervised learning in prior research, falls short of optimal.</p><p>In summary, our main contributions are:</p><p>• We propose a novel and simple method, LPS, to effec-tively synchronize the learning pace of seen and novel classes for open-world semi-supervised learning.</p><p>• We conduct extensive experiments to verify the effectiveness of the proposed method against the previous state-of-the-art. Particularly, LPS achieves over 3% average increase of accuracy on the ImageNet dataset.</p><p>• We examine the effectiveness of the key components of the proposed method. Different from previous works, we discover that fine-tuning the pre-trained backbone allows the model to learn more useful features, which can significantly improve the performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Work</head><p>Semi-Supervised Learning. Within the realm of SSL, pseudo-labeling <ref type="bibr" coords="2,382.47,236.23,48.15,9.53" target="#b11">[Lee, 2013]</ref> and consistency regularization <ref type="bibr" coords="2,315.00,247.19,91.35,9.53">[Laine and Aila, 2016;</ref><ref type="bibr" coords="2,409.20,247.91,78.91,8.82" target="#b13">Sajjadi et al., 2016;</ref><ref type="bibr" coords="2,490.96,247.91,67.04,8.82" target="#b18">Wei et al., 2022;</ref><ref type="bibr" coords="2,315.00,259.04,79.26,8.64" target="#b17">Wei and Gan, 2023]</ref> are two widely used techniques. Pseudolabeling converts model predictions on unlabeled samples into either soft labels or hard labels, subsequently employed as target labels. Consistency regularization strives to ensure model outputs exhibit a high degree of consistency when applied to perturbed samples. Recent advancements <ref type="bibr" coords="2,529.23,312.94,24.66,8.64;2,315.00,324.62,69.28,8.82" target="#b1">[Berthelot et al., 2019;</ref><ref type="bibr" coords="2,388.07,324.62,74.81,8.82">Sohn et al., 2020;</ref><ref type="bibr" coords="2,466.68,324.62,67.05,8.82" target="#b19">Xu et al., 2021]</ref> combine pseudo-labeling with consistency regularization to yield further performance enhancements. In addition to the above techniques, the application of contrastive learning into SSL has also received substantial interest. For example, TCL <ref type="bibr" coords="2,315.00,378.70,75.76,9.53">[Singh et al., 2021]</ref> introduces contrastive learning as a tool to enhance representation learning. TCL maximizes agreement between different views of the same sample while minimizing agreement for distinct samples. In consonance with this paradigm, we design a new complementary contrastive loss to explore the consistency of all samples effectively.</p><p>Novel Class Discovery. The setting of NCD aligns closely with the scenario investigated in this paper. NCD assumes a scenario where the labeled data consists of samples of seen classes, while the unlabeled data exclusively comprises samples of novel classes. <ref type="bibr" coords="2,407.34,492.82,73.50,9.53">[Han et al., 2019]</ref> initially raised the NCD problem. Subsequent research such as <ref type="bibr" coords="2,509.13,503.78,48.87,9.31;2,315.00,515.64,22.69,8.64" target="#b8">[Han et al., 2020;</ref><ref type="bibr" coords="2,341.67,515.46,85.38,8.82" target="#b20">Zhong et al., 2021a;</ref><ref type="bibr" coords="2,431.02,515.46,86.48,8.82" target="#b21">Zhong et al., 2021b]</ref> predominantly adopted multi-stage training strategies. The underlying principle is capturing comprehensive high-level semantic information from labeled data, subsequently propagated to unlabeled counterparts. The majority of NCD methods involve preliminary model pre-training, wherein several objective functions are invoked to minimize inter-sample distances for each class. However, in real-world scenarios, the assumption of unlabeled data solely comprising novel classes is unrealistic, as seen classes also significantly populate the unlabeled dataset. Our experimentation reveals that NCD algorithms struggle to match the performance of other leading methods in the context of OpenSSL.</p><p>Open-World Semi-Supervised Learning. While conventional SSL methods operate under the assumption of labeled and unlabeled data being associated with a predefined set of classes, recent advancements <ref type="bibr" coords="2,471.11,694.62,82.35,9.53" target="#b13">[Oliver et al., 2018</ref>; 3 The Proposed Method</p><p>Notations. The training dataset is composed of the labeled data D l = {(x i , y i )} n i=1 and the unlabeled data D u = {x i } n+m i=n+1 . Within the context of OpenSSL, the classes in D l are designated as seen classes, constituting the set denoted as C s . The scenario of interest acknowledges a distribution mismatch, leading to D u comprising instances from both seen and novel classes. The collection of these novel classes is represented as C n . Additionally, we adopt the premise of a known number of novel classes akin to prior OpenSSL methodologies <ref type="bibr" coords="3,156.69,633.07,69.94,9.53" target="#b4">[Cao et al., 2022;</ref><ref type="bibr" coords="3,229.27,633.79,67.74,8.82" target="#b7">Guo et al., 2022;</ref><ref type="bibr" coords="3,54.00,644.75,62.37,8.82" target="#b13">Liu et al., 2023]</ref>. The goal of OpenSSL is to classify samples originating from the C s and cluster samples emanating from the C n .</p><p>Overview. The fundamental challenge in OpenSSL arises from the pronounced discrepancy in learning paces between seen and novel classes, primarily due to the precise supervisory guidance for seen classes. This discrepancy results in a bias towards seen classes in the model's predictions, adversely impacting both the accurate classification of seen class samples and the effective clustering of novel class samples. To circumvent this challenge, we introduce Learning Pace Synchronization (LPS), a methodology with adaptive synchronizing loss and pseudo-label contrastive clustering as in Figure <ref type="figure" coords="3,352.55,434.02,3.74,8.64" target="#fig_4">3</ref>. The adaptive synchronizing loss aims to achieve a balance between the learning pace of seen and novel classes, and the pseudo-label contrastive clustering exploits pseudolabels to group unlabeled data from the same class together in the output space.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Adaptive Synchronizing</head><p>To start with, we describe the proposed adaptive marginal loss which regularizes the learning pace of seen classes to synchronize the learning pace of the model. Conventionally, the margin is defined as the minimum distance of the data to the classification boundary. For a sample (x, y), we have:</p><formula xml:id="formula_0">∆(x, y) = f (x) y − max j̸ =y f (x) j<label>(1)</label></formula><p>Instead of employing a fixed margin, LDAM <ref type="bibr" coords="3,509.83,591.86,48.17,9.30;3,315.00,603.72,23.24,8.64">[Cao et al., 2020]</ref> introduces a class-specific margin, where the margin between rare classes and other classes is larger than the margin for frequent classes, for tackling class-imbalanced data. Specifically, it sets the margin of class j as:</p><formula xml:id="formula_1">∆ j = C n 1/4 j (2)</formula><p>The constant C controls the intensity and n j denotes the frequency of class j in the training data. Motivated by this, we</p><p>propose a new variant of the margin loss to synchronize the learning pace of seen and novel classes. We apply adaptive margin loss to demand a larger margin between the novel and other classes, so that scores for seen classes, towards which the model highly biased, do not overwhelm the novel classes.</p><p>For each sample (x, y), the adaptive margin loss is defined as follows:</p><formula xml:id="formula_2">ℓ AM (x, y) = − log exp(z y − ∆ y ) exp(z y − ∆ y ) + j̸ =y exp(z j ) where ∆ j = −KL π π π j max( π) C, j ∈ [K]<label>(3)</label></formula><p>In this formulation, K represents the total number of classes, z j signifies the model output for the j-th class, z = f (x; θ), and π denotes the estimated class distribution by the model. Additionally, we introduce an approximation of the true class distribution π, which is naturally inaccessible during training.</p><p>In line with prior studies, we assume a uniform distribution for π, leaving the exploration of arbitrary distributions for future investigations. The hyper-parameter C is introduced to control the maximum margin, and we empirically set C = 10 across all experiments. We conduct a series of studies on the value of C in the supplementary material.</p><p>For the sake of simplicity, we assume that the mini-batch is comprised of labeled data B l and unlabeled data B u . Given that the computation of Eq. ( <ref type="formula" coords="4,175.81,336.21,3.87,8.64" target="#formula_2">3</ref>) relies on the class distribution, we proceed to estimate the complete class distribution through labeled data and unlabeled data exhibiting high predictive confidence. Specifically, we endeavour to achieve this estimation through:</p><formula xml:id="formula_3">π = Normalize   xi∈B l y i + xj ∈Bu I max( y j ) ≥ λ y j   (4)</formula><p>Here, y = softmax(z). In view of the tendency for novel class samples to exhibit underconfidence, we empirically introduce a progressively evolving confidence threshold λ novel = 0.4 + 0.4 × t T , where t and T signify the current training iteration and the total training iterations, respectively. For seen classes, a fixed confidence threshold λ seen = 0.95 is employed.</p><p>Given that the estimated class distribution π mirrors the model's confidence in class predictions, we harness this insight to regulate the learning pace of both seen and novel classes. Notably, in the early training phases, the model is inclined towards seen classes, with the logit adjustment term ∆ j assuming a larger negative margin for seen classes, thereby attenuating their learning pace. As training progresses, the model attains a more balanced capability across both seen and novel classes, as reflected by a diminishing Kullback-Leibler (KL) divergence between π and π.</p><p>In summary, the adaptive margin loss L AM for both labeled and pseudo-labeled data is defined as follows:</p><formula xml:id="formula_4">L AM = 1 |B l | xi∈B l ℓ AM (z w i , y)+ 1 |B u | xj ∈Bu I max( y j ) ≥ λ ℓ AM (z s j , p j )<label>(5)</label></formula><p>In this context, z w and z s correspond to the output logits stemming from the weak and strong augmented versions of sample x, respectively. The symbol | • | denotes the set cardinality operation. Additionally, we utilize p = arg max(softmax(z w )) to represent the pseudo-label associated with the sample.</p><p>Distinctions and Connections with Alternatives. It is worth noting that the concept of adaptive margin has been used in prior literature <ref type="bibr" coords="4,408.06,149.94,63.69,9.53" target="#b12">[Li et al., 2020;</ref><ref type="bibr" coords="4,474.68,150.84,83.33,8.64">Ha and Blanz, 2021;</ref><ref type="bibr" coords="4,315.00,161.62,71.43,8.82" target="#b4">Cao et al., 2022]</ref>. Different from LPS, <ref type="bibr" coords="4,488.65,160.90,69.35,9.53" target="#b12">[Li et al., 2020]</ref> leverages the semantic similarities between classes to generate adaptive margins with the motivation to separate similar classes in the embedding space, and [Ha and Blanz, 2021] utilizes the ground-truth distance between different samples to generate adaptive margins with the motivation to adapt to rating datasets. In OpenSSL, ORCA <ref type="bibr" coords="4,454.24,226.65,71.03,9.53" target="#b4">[Cao et al., 2022]</ref> also integrates an adaptive margin mechanism based on the model's predictive uncertainty, which can only equally suppress the learning pace of seen classes. However, there are still differences in the learning paces of different classes among seen classes. Our proposed adaptive margin is based on the current estimated distribution to reflect the learning pace of different classes, which offers increased flexibility for regulating the learning pace across classes by generating the class-specific negative margin. Furthermore, the inclusion of the KL divergence term effectively guards against the model converging to a trivial solution where all samples are arbitrarily assigned to a single class.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Pseudo-Label Contrastive Clustering</head><p>The basic idea of discovering novel classes is to explore the correlations between different samples and cluster them into several groups. Prior OpenSSL approaches often transform the clustering task into a pairwise similarity prediction task, wherein a modified form of binary cross-entropy loss is optimized. Different from existing works, we introduce a new clustering method to fully exploit reliable model predictions as supervisory signals.</p><p>Our approach involves the construction of a multi-viewed mini-batch by using weak and strong augmentations. Within each mini-batch, we group the labeled and confident unlabeled samples, which is denoted as B l ′ . Concurrently, unlabeled samples exhibiting predicted confidence levels failing below the threshold λ are denoted as B u ′ . Pseudo-label contrastive clustering only takes B l ′ as inputs. For each sample in B l ′ , the set of the positive pairs contains samples with the same given label or pseudo-label. Conversely, the set of negative pairs contains samples of other classes. Formally, the objective of pseudo-label contrastive clustering is defined as follows:</p><formula xml:id="formula_5">L PC = − 1 |B l ′ | xi∈B l ′ log 1 |P (x i )| xp∈P (xi) exp (z i •z p /τ ) xa∈A(xi) exp (z i •z a /τ ) ,<label>(6)</label></formula><p>where z i denotes the output logits, P (x i ) denotes the set of positives of x i and A(x i ) ≡ B l ′ \{x i }. τ is a tunable temperature parameter and we set τ = 0.4 in all experiments.</p><p>In contrast to existing methods such as ORCA <ref type="bibr" coords="5,252.36,56.58,44.64,9.31;5,54.00,68.44,23.24,8.64" target="#b4">[Cao et al., 2022]</ref> and NACH <ref type="bibr" coords="5,126.40,67.54,69.14,9.53" target="#b7">[Guo et al., 2022]</ref>, which establish a single positive pair for each sample by identifying its nearest neighbour, the objective in Eq. ( <ref type="formula" coords="5,167.65,90.35,3.87,8.64" target="#formula_5">6</ref>) adopts pseudo-labels to form multiple positive pairs. This approach offers dual advantages: firstly, the alignment of samples within the same class is more effectively harnessed through the utilization of multiple positive sample pairs; secondly, it leverages the consistency of distinct views of the same sample to mitigate the negative impact of erroneous positive pairs, while concurrently imparting a repulsion effect to samples from different classes through negative pairs.</p><p>Since Eq. ( <ref type="formula" coords="5,113.00,192.72,3.87,8.64" target="#formula_5">6</ref>) augments the labeled dataset by unlabeled samples of high predictive confidence, we ask whether unlabeled samples of low confidence can be used to enrich representation learning. In pursuit of this, we incorporate unsupervised contrastive learning [Wang and <ref type="bibr" coords="5,221.16,236.56,48.67,8.64" target="#b16">Isola, 2020]</ref> to encourage similar predictions rather than embeddings between a given sample and its augmented counterpart. This helps to signify the uniformity among unlabeled samples, ultimately leading to clearer separations. In detail, for each sample in the low-confidence set B u ′ , the unsupervised contrastive learning couples it with its augmented view to constitute a positive pair. Simultaneously, a set of negative pairs is formulated, containing all the samples within the mini-batch except the sample itself. The unsupervised contrastive learning loss L UC is formulated as follows:</p><formula xml:id="formula_6">L UC = − 1 |B u ′ | xj ∈B u ′ log exp (z j • z p /τ ) xa∈ A(xj ) exp (z j • z a /τ )<label>(7)</label></formula><p>Here, x p is the positive sample of x j and A(x j ) ≡ B u ′ ∪ B l ′ \{x j } for the sample x j .</p><p>In essence, unsupervised contrastive learning complements the pseudo-label contrastive clustering by fully exploiting the unlabeled samples. In the experiments, the ablation studies underscore the pivotal role played by both types of contrastive losses in our approach.</p><p>Lastly, we incorporate a maximum entropy regularizer to address the challenge of converging during the initial training phases, when the predictions are mostly wrong (e.g., the model tends to assign all samples to the same class) <ref type="bibr" coords="5,269.34,534.21,27.66,8.64;5,54.00,545.89,49.43,8.82" target="#b0">[Arazo et al., 2020]</ref>. Specifically, we leverage the KL divergence between the class distribution predicted by the model and a uniform prior distribution. It is worth noting that the integration of an entropy regularizer is a widespread practice in dealing with the OpenSSL problem, including approaches such as ORCA, NACH, and OpenNCD. The final objective function of LPS is articulated as follows:</p><formula xml:id="formula_7">L total = L AM + η 1 L PC + η 2 L UC + R Entropy (8)</formula><p>where R Entropy denotes the entropy regularizer, η 1 and η 2 are hyper-parameters set to 1 in all our experiments. We provide detailed analyses on the sensitivity of hyperparameters in the supplementary material.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Experiments</head></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">Experimental Setup</head><p>Datasets. We evaluate our method on three commonly used datasets, i.e., CIFAR-10, CIFAR-100 <ref type="bibr" coords="5,463.07,106.01,74.20,9.53" target="#b9">[Krizhevsky, 2009]</ref>, and ImageNet <ref type="bibr" coords="5,356.81,116.97,104.46,9.53" target="#b13">[Russakovsky et al., 2015]</ref>. Following prior works <ref type="bibr" coords="5,315.00,127.92,70.88,9.53" target="#b4">[Cao et al., 2022;</ref><ref type="bibr" coords="5,388.81,128.64,68.67,8.82" target="#b7">Guo et al., 2022;</ref><ref type="bibr" coords="5,460.41,128.64,64.10,8.82" target="#b13">Liu et al., 2023]</ref>, we assume that the number of novel classes is known. Specifically, we randomly select 50% of the classes as seen classes, and the remaining classes are regarded as novel classes, e.g., the number of novel classes is 50 for CIFAR-100. On each dataset, we consider two types of labeled ratios, i.e., only 10% or 50% of data in seen classes are labeled. For the ImageNet dataset, we subsample 100 classes to form the ImageNet-100 dataset for fair comparisons with existing works.</p><p>Following prior works <ref type="bibr" coords="5,417.24,231.14,70.13,9.53" target="#b4">[Cao et al., 2022;</ref><ref type="bibr" coords="5,490.08,231.86,67.92,8.82" target="#b7">Guo et al., 2022;</ref><ref type="bibr" coords="5,315.00,242.82,63.46,8.82" target="#b13">Liu et al., 2023]</ref>, we evaluate our method with respect to the accuracy of seen classes, novel classes, and all classes. For seen classes, the accuracy is calculated as the normal classification task. For novel classes, we first utilize the Hungarian algorithm <ref type="bibr" coords="5,355.99,285.94,53.33,9.53" target="#b10">[Kuhn, 1955]</ref> to solve the optimal prediction-target class assignment problem and then calculate the accuracy of novel classes. For overall accuracy, we also solve the optimal assignment in the entire unlabeled dataset to calculate the novel class accuracy, measuring the overall performance.</p><p>Implementation Details. Following <ref type="bibr" coords="5,466.43,345.32,71.34,9.53" target="#b4">[Cao et al., 2022;</ref><ref type="bibr" coords="5,540.84,346.21,17.16,8.64;5,315.00,356.99,49.06,8.82" target="#b7">Guo et al., 2022;</ref><ref type="bibr" coords="5,367.19,356.99,64.79,8.82" target="#b13">Liu et al., 2023]</ref>, we utilize the self-supervised learning method SimCLR [Chen et al., 2020a] to pre-train the backbone and fix the first three blocks. In LPS, the weak augmentation contains random crop and horizontal flip, and the strong augmentation is RandAugment <ref type="bibr" coords="5,472.35,400.11,81.36,9.53" target="#b6">[Cubuk et al., 2019]</ref>. For CIFAR-10 and CIFAR-100, we utilize ResNet-18 as our backbone which is trained by the standard SGD with a momentum of 0.9 and a weight decay of 0.0005. We train the model for 200 epochs with a batch size of 512. For the Im-ageNet dataset, we opt for ResNet-50 as our backbone. This choice also undergoes training via the standard SGD, featuring a momentum coefficient of 0.9 and a weight decay of 0.0001. The training process spans 90 epochs, with a batch size of 512. and The cosine annealing learning rate schedule is adopted on CIFAR and ImageNet datasets. These experiments are conducted on a single NVIDIA 3090 GPU.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Comparing with Existing Methods</head><p>Baselines. We compare LPS with SSL methods, open-set SSL methods, NCD methods, and OpenSSL methods. The NCD methods consider that the labeled data only has disjoint classes compared with the unlabeled data and aim at clustering novel classes without recognizing seen classes. For novel classes, clustering accuracy can be obtained directly. For seen classes, we first regard them as novel classes and leverage the Hungarian algorithm to match some of the discovered classes with seen classes, and then calculate the classification accuracy. We select two competitive NCD methods DTC <ref type="bibr" coords="5,538.09,661.74,19.91,8.64;5,315.00,673.42,50.02,8.82">[Han et al., 2019]</ref> and RankStats <ref type="bibr" coords="5,429.77,672.70,73.25,9.53" target="#b8">[Han et al., 2020]</ref> in the experiments. Moreover, we include GCD <ref type="bibr" coords="5,466.73,683.66,76.26,9.53" target="#b15">[Vaze et al., 2022]</ref>  For the SSL and open-set SSL methods, we leverage their capability in estimating out-of-distribution samples to extend to the OpenSSL setting. For comparison, we select FixMatch <ref type="bibr" coords="6,92.49,287.66,73.63,8.82">[Sohn et al., 2020]</ref>, which assigns pseudo-labels to unlabeled samples based on confidence. The classification accuracy of seen classes can be reported directly according to pseudo-labels. For novel classes, we first estimate samples without pseudo-labels as novel classes and then utilize k-means to cluster them. The open-set SSL methods maintain the classification performance of seen classes by rejecting novel classes. We compare with DS 3 L <ref type="bibr" coords="6,225.68,364.68,71.32,9.53" target="#b6">[Guo et al., 2020]</ref> and calculate its accuracy in the same way as FixMatch.</p><p>For the OpenSSL methods, we compare with ORCA <ref type="bibr" coords="6,277.63,387.83,19.37,8.64;6,54.00,399.50,47.31,8.82" target="#b4">[Cao et al., 2022]</ref>, NACH <ref type="bibr" coords="6,139.01,398.78,70.70,9.53" target="#b7">[Guo et al., 2022]</ref>, and OpenNCD <ref type="bibr" coords="6,279.85,398.78,17.16,8.64;6,54.00,410.46,45.66,8.82" target="#b13">[Liu et al., 2023]</ref>. We also compare the self-supervised pre-trained model SimCLR and conduct K-means on the primary features to calculate the accuracy.</p><p>Results. The results on three datasets are reported in Table <ref type="table" coords="6,54.00,459.93,3.74,8.64" target="#tab_0">1</ref>. The mean accuracy is computed over three runs for each method. Although the non-OpenSSL methods perform well on their original tasks, their overall performance is unsatisfactory in the OpenSSL setting. The results of SimCLR are obtained by the pre-trained model without extra fine-tuning, and the OpenSSL methods are based on the pre-trained model. It is obvious that the OpenSSL methods achieve significant performance improvements compared to non-OpenSSL methods. Compared with the state-of-the-art OpenSSL methods, our method LPS achieves the best overall performance across all datasets. On the CIFAR-10 dataset, LPS outperforms NACH by 1.2% in novel class accuracy. Likewise, on the CIFAR-100 dataset, LPS demonstrates superiority, yielding a substantial 3.2% improvement. Particularly concerning the ImageNet-100 dataset, LPS has the capacity to surpass existing state-of-the-art methods, resulting in a 3.8% increase in overall accuracy. Experimental results demonstrate that LPS can effectively balance the learning of seen and novel classes.</p><p>Distribution Analysis. For further validation of our approach, we present a comprehensive analysis of the KL divergence trend between the estimated and prior class distributions, along with the estimated class distributions at the  foundation of SimCLR pre-trained backbone, the visualization, and NMI results highlight the efficacy of our approach in enhancing representation learning.  Fine-tuning the Pre-trained Backbone. Furthermore, it is noteworthy that all previous OpenSSL methods adopt a practice of freezing the parameters within the first three blocks of the backbone, solely fine-tuning the last block, with the intention of mitigating overfitting. However, such an approach constrains the extent of performance enhancement, as the backbone's parameters remain unmodifiable and unoptimized to better suit downstream tasks. To establish that our method is not susceptible to the overfitting dilemma, we conducted a series of experiments on the CIFAR dataset employing stateof-the-art OpenSSL methods while fine-tuning the backbone.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CIFAR</head><p>The results are reported in Table <ref type="table" coords="7,186.89,607.84,3.74,8.64" target="#tab_3">3</ref>. The experimental results reveal that existing OpenSSL methods manifest modest performance improvement, if any, in comparison to their initial frozen counterparts. In contrast, our proposed method, unaffected by overfitting concerns, consistently yields substantial performance gains across both seen and novel classes. Specifically, the overall accuracy for CIFAR-10 experiences a notable improvement of 2.9%, while an impressive 6.3% increase is observed for CIFAR-100. These results underscore 64.5 49.9 54.3</p><p>Table <ref type="table" coords="7,337.25,284.20,3.49,7.77">4</ref>: Accuracy when removing key components of our method. We report the average accuracy over three runs on CIFAR datasets with 50% seen classes (50% labeled) and 50% novel classes.</p><p>the effectiveness of LPS in harnessing the additional learnable parameters for further enhancing model performance.</p><p>Ablation Analysis. Moreover, we conduct a comprehensive analysis of the contributions of distinct components in our approach. The objective function of LPS comprises the adaptive margin loss (L AM ), the pseudo-label contrastive clustering loss (L PC ), the unsupervised contrastive learning loss (L UC ), and the entropy regularizer (R Entropy ). Concretely, the ablation study is mainly conducted by removing each term individually from the objective function except for the adaptive margin which is replaced by a standard cross-entropy. As observed in Table <ref type="table" coords="7,388.46,461.16,3.74,8.64">4</ref>, the removal of any components leads to performance degradation. The substantial drop in novel performance after removing the entropy regularizer highlights its significant role in the process of novel class discovery. Moreover, the utilization of both pseudo-label contrastive loss and adaptive margin loss substantially improves the accuracy of novel classes.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Conclusion</head><p>In this study, we present Learning Pace Synchronization (LPS), a potent solution tailored to the OpenSSL problem. LPS introduces an adaptive margin loss to effectively narrow the learning pace gap that exists between seen and novel classes. Moreover, we formulate a pseudo-label contrastive clustering loss to augment the process of novel class discovery. Extensive evaluation is conducted across three benchmark datasets with distinct quantities of labeled data. We also discover that the conventional practice of freezing the self-supervised pre-trained backbone hinders the generalization performance. We hope our work can inspire more efforts towards this realistic setting.</p><p>Parameters η 1 and η 2 define the weight of the pseudo-label contrastive clustering loss and the unsupervised contrastive learning loss, respectively. We conduct several experiments on the CIFAR datasets with various values of η 1 and η 2 to assess the performance of our method LPS, and the results are shown in Table <ref type="table" coords="9,116.76,629.76,3.74,8.64" target="#tab_4">5</ref>. By further adjusting the parameters η 1 and η 2 , our method LPS displays great robustness and promising results. We also provide detailed analysis for λ novel . In particular, we set λ novel = 0.4 + {0.3, 0.35, 0.4, 0.45, 0.5} × t T and the results are reported in Table <ref type="table" coords="9,194.86,673.60,3.74,8.64" target="#tab_5">6</ref>. We find that higher values of λ novel achieve better performance on seen classes. Intuitively, higher values of λ novel will pseudo-label less novel unlabeled samples and further let L AM give more importance to seen classes.</p><p>Recall that C defined in L AM is a tunable parameter to control the maximum margin. Table <ref type="table" coords="9,445.67,312.42,4.98,8.64" target="#tab_6">7</ref> displays the results of LPS under varying C conditions. Intuitively, increasing the C will lead to a faster alignment between the predicted distribution and the prior distribution. From the results of C = 20 in the Table <ref type="table" coords="9,340.02,356.26,3.74,8.64" target="#tab_6">7</ref>, if the alignment is too fast, the model may balance the learning pace between seen and novel classes by assigning incorrect pseudo-labels. Meanwhile, if the alignment is too slow, the margin mechanism does not effectively bias the model towards novel classes, which is reflected in the results of C = 1 and C = 5 in the Table <ref type="table" coords="9,449.13,411.05,3.74,8.64" target="#tab_6">7</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>CIFAR-10</head><p>CIFAR-100 C Seen Novel All Seen Novel All The temperature parameter τ within L PC and L UC is used to adjust the measurement of similarity between samples. Increasing the temperature will lead to a flatter representation space for samples. Conversely, decreasing it results in a sharper space. We conduct a series of experiments by setting various temperature values. Table <ref type="table" coords="9,457.85,607.54,4.98,8.64" target="#tab_7">8</ref> depicts that alterations in τ do not exert a pronounced impact on performance and τ = 0.4 yields the best performance.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7.2">Additional Results</head><p>In addition, we conduct more experiments to validate the robustness of the proposed method. We first conduct a series experiments on CIFAR-100 dataset with different numbers of novel classes, and the results are reported in the Figure <ref type="figure" coords="9,539.25,695.51,4.98,8.64" target="#fig_8">6</ref>    To further evaluate the performance when fine-tuning the pre-trained backbone, we conduct a series of experiments on the CIFAR dataset with 50% seen classes (10% labeled) and 50% novel classes. From Table <ref type="table" coords="10,202.85,586.24,3.74,8.64" target="#tab_8">9</ref>, we can see that both ORCA and NACH show significant declines (over 10% overall accuracy), while our method LPS maintains high performance on CIFAR-100 and shows further improvements on CIFAR-10, which further verifies that LPS is not susceptible to the overfitting dilemma.  </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0" coords="1,363.75,364.82,145.50,7.77;1,315.00,216.00,242.99,137.72"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Summary of OpenSSL setting.</figDesc><graphic coords="1,315.00,216.00,242.99,137.72" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2" coords="2,54.00,173.67,243.00,7.77;2,54.00,183.63,243.00,7.77;2,54.00,193.59,243.00,7.77;2,54.00,203.56,114.03,7.77;2,172.39,51.18,125.38,94.03"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: (a) Accuracy gap between seen and novel classes. (b) The overall accuracy of LPS, ORCA, and NACH. Experiments are conducted on the CIFAR-100 dataset with 50% seen classes (50% labeled) and 50% novel classes.</figDesc><graphic coords="2,172.39,51.18,125.38,94.03" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3" coords="2,176.58,417.74,120.42,8.64;2,54.00,428.70,243.00,8.64;2,54.00,439.66,243.00,8.64;2,54.00,450.62,243.00,8.64;2,54.00,461.57,243.00,8.64;2,54.00,472.53,243.00,8.64;2,54.00,483.49,243.00,8.64;2,54.00,494.45,243.00,8.64;2,54.00,505.41,243.00,8.64;2,54.00,516.37,243.00,8.64;2,54.00,527.33,243.00,8.64;2,54.00,538.29,243.00,8.64;2,54.00,549.25,243.00,8.64;2,54.00,560.20,243.00,8.64;2,54.00,571.16,243.00,8.64;2,54.00,582.12,243.00,8.64"><head></head><label></label><figDesc>depicts a demonstration of the learning speed discrepancy between seen and novel classes. Motivated by this intrinsic problem, we propose an adaptive distribution-aware margin mechanism, designed to steer the model's attention towards novel class learning. Notably, this margin diminishes as the model's predicted class distribution approaches the underlying (class-balanced) distribution. To learn robust representations and facilitate the clustering of novel classes, we introduce pseudo-label contrastive clustering. This technique aggregates unlabeled samples sharing the same class, guided by model predictions. Importantly, we exploit multiple positive and negative pairs as supervisory signals, in contrast to the reliance on a single positive pair as seen in previous works. For unlabeled samples exhibiting low confidence, we integrate unsupervised contrastive learning to facilitate the acquisition of informative representations.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4" coords="3,54.00,305.86,504.00,8.06;3,54.00,315.82,332.67,8.06;3,79.20,54.01,453.59,241.04"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Overview of LPS framework. The LPS objective function is composed of an adaptive margin objective LAM, a pseudo-label contrastive clustering objective LPC, and an unsupervised contrastive learning objective LUC.</figDesc><graphic coords="3,79.20,54.01,453.59,241.04" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6" coords="6,315.00,369.45,243.00,7.77;6,315.00,379.41,243.00,7.77;6,315.00,389.37,243.00,7.77;6,315.00,399.34,243.00,7.77;6,319.34,251.49,115.92,86.94"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: (a) The KL divergence between the estimated and prior class distributions. (b) The estimated class distribution of the final training iteration. Experiments are conducted on the CIFAR-100 dataset with 50% seen classes (50% labeled) and 50% novel classes.</figDesc><graphic coords="6,319.34,251.49,115.92,86.94" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7" coords="10,54.00,181.15,243.00,8.64;10,54.00,191.72,243.00,9.03;10,54.00,203.07,243.00,8.64;10,54.00,214.03,243.00,8.64;10,54.00,224.99,243.00,8.64;10,54.00,235.95,243.00,8.64;10,54.00,246.91,243.00,8.64;10,54.00,257.87,107.34,8.64;10,67.46,378.01,93.63,7.77;10,195.92,379.53,77.57,7.77;10,67.46,488.90,93.63,7.77;10,195.92,490.41,77.57,7.77"><head></head><label></label><figDesc>and (b). Further, we conduct a series experiments on CIFAR-100 dataset with different ratios of labeled data, and the results are shown in the Figure6(c) and (d). From the results, it can be clearly seen that LPS consistently outperforms ORCA and NACH across all settings. In Figure6(c) and (d), both ORCA and NACH deteriorate their performance when the ratio of labeled data reaches 70%, while LPS is able to yield further improvement. (a) Novel Class Accuracy. (b) Overall Accuracy. (c) Novel Class Accuracy. (b) Overall Accuracy.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8" coords="10,54.00,510.34,243.00,7.77;10,54.00,520.30,243.00,7.77;10,54.00,530.27,201.80,7.77;10,174.73,389.35,119.95,89.96"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: (a) The novel class accuracy and (b) overall accuracy with different numbers of novel classes. (c) The novel class accuracy and (d) overall accuracy with different ratios of labeled data.</figDesc><graphic coords="10,174.73,389.35,119.95,89.96" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0" coords="5,315.00,684.56,243.00,19.60"><head>Table 1 :</head><label>1</label><figDesc>for comparison, which is an extended NCD method. Accuracy comparison of seen, novel, and all classes on CIFAR-10, CIFAR-100, and ImageNet-100 datasets with 50% classes as seen and 50% classes as novel. We conducted experiments with 10% and 50% labeled data of seen classes.</figDesc><table coords="6,56.28,58.00,499.46,142.33"><row><cell></cell><cell></cell><cell></cell><cell cols="2">CIFAR-10</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">CIFAR-100</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="2">ImageNet-100</cell><cell></cell><cell></cell></row><row><cell></cell><cell cols="3">10% labeled</cell><cell cols="3">50% labeled</cell><cell cols="3">10% labeled</cell><cell cols="3">50% labeled</cell><cell cols="3">10% labeled</cell><cell cols="3">50% labeled</cell></row><row><cell>Methods</cell><cell cols="18">Seen Novel All Seen Novel All Seen Novel All Seen Novel All Seen Novel All Seen Novel All</cell></row><row><cell>FixMatch</cell><cell>64.3</cell><cell>49.4</cell><cell>47.3</cell><cell>71.5</cell><cell>50.4</cell><cell>49.5</cell><cell>30.9</cell><cell>18.5</cell><cell>15.3</cell><cell>39.6</cell><cell>23.5</cell><cell>20.3</cell><cell>60.9</cell><cell>33.7</cell><cell>30.2</cell><cell>65.8</cell><cell>36.7</cell><cell>34.9</cell></row><row><cell>DS 3 L</cell><cell>70.5</cell><cell>46.6</cell><cell>43.5</cell><cell>77.6</cell><cell>45.3</cell><cell>40.2</cell><cell>33.7</cell><cell>15.8</cell><cell>15.1</cell><cell>55.1</cell><cell>23.7</cell><cell>24.0</cell><cell>64.3</cell><cell>28.1</cell><cell>25.9</cell><cell>71.2</cell><cell>32.5</cell><cell>30.8</cell></row><row><cell>DTC</cell><cell>42.7</cell><cell>31.8</cell><cell>32.4</cell><cell>53.9</cell><cell>39.5</cell><cell>38.3</cell><cell>22.1</cell><cell>10.5</cell><cell>13.7</cell><cell>31.3</cell><cell>22.9</cell><cell>18.3</cell><cell>24.5</cell><cell>17.8</cell><cell>19.3</cell><cell>25.6</cell><cell>20.8</cell><cell>21.3</cell></row><row><cell>RankStats</cell><cell>71.4</cell><cell>63.9</cell><cell>66.7</cell><cell>86.6</cell><cell>81.0</cell><cell>82.9</cell><cell>20.4</cell><cell>16.7</cell><cell>17.8</cell><cell>36.4</cell><cell>28.4</cell><cell>23.1</cell><cell>41.2</cell><cell>26.8</cell><cell>37.4</cell><cell>47.3</cell><cell>28.7</cell><cell>40.3</cell></row><row><cell>SimCLR</cell><cell>44.9</cell><cell>48.0</cell><cell>47.7</cell><cell>58.3</cell><cell>63.4</cell><cell>51.7</cell><cell>26.0</cell><cell>28.8</cell><cell>26.5</cell><cell>28.6</cell><cell>21.1</cell><cell>22.3</cell><cell>42.9</cell><cell>41.6</cell><cell>41.5</cell><cell>39.5</cell><cell>35.7</cell><cell>36.9</cell></row><row><cell>ORCA</cell><cell>82.8</cell><cell>85.5</cell><cell>84.1</cell><cell>88.2</cell><cell>90.4</cell><cell>89.7</cell><cell>52.5</cell><cell>31.8</cell><cell>38.6</cell><cell>66.9</cell><cell>43.0</cell><cell>48.1</cell><cell>83.9</cell><cell>60.5</cell><cell>69.7</cell><cell>89.1</cell><cell>72.1</cell><cell>77.8</cell></row><row><cell>GCD</cell><cell>78.4</cell><cell>79.7</cell><cell>79.1</cell><cell>78.4</cell><cell>79.7</cell><cell>79.1</cell><cell>49.7</cell><cell>27.6</cell><cell>38.0</cell><cell>68.5</cell><cell>33.5</cell><cell>45.2</cell><cell>82.3</cell><cell>58.3</cell><cell>68.2</cell><cell>82.3</cell><cell>58.3</cell><cell>68.2</cell></row><row><cell>OpenNCD</cell><cell>83.5</cell><cell>86.7</cell><cell>85.3</cell><cell>88.4</cell><cell>90.6</cell><cell>90.1</cell><cell>53.6</cell><cell>33.0</cell><cell>41.2</cell><cell>69.7</cell><cell>43.4</cell><cell>49.3</cell><cell>84.0</cell><cell>65.8</cell><cell>73.2</cell><cell>90.0</cell><cell>77.5</cell><cell>81.6</cell></row><row><cell>NACH</cell><cell>86.4</cell><cell>89.4</cell><cell>88.1</cell><cell>89.5</cell><cell>92.2</cell><cell>91.3</cell><cell>57.4</cell><cell>37.5</cell><cell>43.5</cell><cell>68.7</cell><cell>47.0</cell><cell>52.1</cell><cell>86.3</cell><cell>66.5</cell><cell>71.0</cell><cell>91.0</cell><cell>75.5</cell><cell>79.6</cell></row><row><cell>LPS (ours)</cell><cell>86.3</cell><cell>90.6</cell><cell>88.6</cell><cell>90.2</cell><cell>93.4</cell><cell>92.4</cell><cell>55.2</cell><cell>41.0</cell><cell>47.5</cell><cell>64.5</cell><cell>49.9</cell><cell>54.3</cell><cell>87.0</cell><cell>73.6</cell><cell>78.0</cell><cell>91.3</cell><cell>81.3</cell><cell>84.5</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2" coords="7,77.44,462.05,196.12,7.77"><head>Table 2 :</head><label>2</label><figDesc>The NMI of novel classes on CIFAR datasets.</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3" coords="7,315.00,58.38,243.00,211.07"><head>Table 3 :</head><label>3</label><figDesc>Mean accuracy over three runs with removing the limitation of freezing the backbone on CIFAR datasets with 50% seen classes (50% labeled) and 50% novel classes.</figDesc><table coords="7,322.82,58.38,227.35,211.07"><row><cell></cell><cell>CIFAR-10</cell><cell>CIFAR-100</cell></row><row><cell>Methods</cell><cell>Seen Novel All</cell><cell>Seen Novel All</cell></row><row><cell>ORCA</cell><cell>89.8 90.8 90.5</cell><cell>69.4 42.5 48.2</cell></row><row><cell cols="2">OpenNCD 88.9 91.8 90.8</cell><cell>62.2 44.9 50.4</cell></row><row><cell>NACH</cell><cell>95.0 93.3 93.9</cell><cell>73.8 47.8 54.6</cell></row><row><cell cols="2">LPS (ours) 95.0 95.5 95.3</cell><cell>72.6 55.5 60.6</cell></row><row><cell></cell><cell>CIFAR-10</cell><cell>CIFAR-100</cell></row><row><cell>Methods</cell><cell>Seen Novel All</cell><cell>Seen Novel All</cell></row><row><cell>w/o L AM</cell><cell>90.6 89.4 89.8</cell><cell>67.1 46.2 52.7</cell></row><row><cell>w/o L PC</cell><cell>89.7 89.1 89.3</cell><cell>60.4 48.1 51.8</cell></row><row><cell>w/o L UC</cell><cell>91.3 88.2 89.2</cell><cell>64.7 42.3 48.5</cell></row><row><cell cols="2">w/o R Entropy 90.8 55.4 66.2</cell><cell>73.4 28.8 30.8</cell></row><row><cell cols="2">LPS (ours) 90.2 93.4 92.4</cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4" coords="9,331.11,58.38,208.29,184.07"><head>Table 5 :</head><label>5</label><figDesc>Accuracy with various values of η1 and η2.</figDesc><table coords="9,331.11,58.38,208.29,184.07"><row><cell cols="2">CIFAR-100</cell><cell cols="2">CIFAR-100</cell></row><row><cell cols="4">η 1 Seen Novel All η 2 Seen Novel All</cell></row><row><cell>0.6 63.5</cell><cell cols="2">48.4 53.1 0.6 64.7</cell><cell>50.8 55.1</cell></row><row><cell>0.8 63.7</cell><cell cols="2">49.3 53.7 0.8 64.4</cell><cell>49.8 53.6</cell></row><row><cell>1.0 64.5</cell><cell cols="2">49.9 54.3 1.0 64.5</cell><cell>49.9 54.3</cell></row><row><cell>1.2 64.2</cell><cell cols="2">50.2 54.4 1.2 63.7</cell><cell>49.8 54.0</cell></row><row><cell>1.4 64.1</cell><cell cols="2">48.8 53.5 1.4 63.2</cell><cell>50.6 54.4</cell></row><row><cell cols="2">CIFAR-10</cell><cell cols="2">CIFAR-100</cell></row><row><cell cols="2">λ novel Seen Novel All</cell><cell cols="2">Seen Novel All</cell></row><row><cell>0.70 89.9</cell><cell>92.2 91.5</cell><cell>62.9</cell><cell>49.3 53.4</cell></row><row><cell>0.75 89.8</cell><cell>93.5 92.3</cell><cell>63.9</cell><cell>49.0 53.5</cell></row><row><cell>0.80 90.2</cell><cell>93.4 92.4</cell><cell>64.5</cell><cell>49.9 54.3</cell></row><row><cell>0.85 90.5</cell><cell>91.7 91.3</cell><cell>64.8</cell><cell>48.0 53.2</cell></row><row><cell>0.90 90.9</cell><cell>90.3 90.5</cell><cell>65.2</cell><cell>49.6 54.4</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5" coords="9,348.68,251.93,175.64,8.35"><head>Table 6 :</head><label>6</label><figDesc>Accuracy with various values of λ novel .</figDesc><table /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6" coords="9,340.25,460.84,192.51,74.99"><head>Table 7 :</head><label>7</label><figDesc>Accuracy with various values of C.</figDesc><table coords="9,340.25,460.84,192.51,52.47"><row><cell>1 90.5</cell><cell>90.6 90.5</cell><cell>66.6</cell><cell>45.3 51.9</cell></row><row><cell>5 90.3</cell><cell>91.9 91.4</cell><cell>64.6</cell><cell>47.4 52.7</cell></row><row><cell>10 90.2</cell><cell>93.4 92.4</cell><cell>64.5</cell><cell>49.9 54.3</cell></row><row><cell>15 90.2</cell><cell>93.3 92.2</cell><cell>63.2</cell><cell>50.8 54.6</cell></row><row><cell>20 90.2</cell><cell>91.9 91.3</cell><cell>62.4</cell><cell>48.7 52.9</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7" coords="9,546.94,695.51,11.06,8.64"><head>Table 8 :</head><label>8</label><figDesc>(a)    Accuracy with various values of τ .</figDesc><table coords="10,78.00,58.38,195.00,79.78"><row><cell cols="2">CIFAR-10</cell><cell cols="2">CIFAR-100</cell></row><row><cell cols="2">τ Seen Novel All</cell><cell cols="2">Seen Novel All</cell></row><row><cell>0.2 85.3</cell><cell>92.7 90.3</cell><cell>61.4</cell><cell>48.8 52.6</cell></row><row><cell>0.3 89.2</cell><cell>92.2 91.2</cell><cell>63.2</cell><cell>49.2 53.4</cell></row><row><cell>0.4 90.2</cell><cell>93.4 92.4</cell><cell>64.5</cell><cell>49.9 54.3</cell></row><row><cell>0.5 90.9</cell><cell>92.3 91.8</cell><cell>64.4</cell><cell>47.2 52.5</cell></row><row><cell>0.6 91.0</cell><cell>91.3 91.2</cell><cell>63.8</cell><cell>46.5 51.8</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8" coords="10,315.00,407.10,243.00,17.74"><head>Table 9 :</head><label>9</label><figDesc>Accuracy without freezing the backbone on CIFAR datasets.</figDesc><table /></figure>
+		</body>
+		<back>
+
+			<div type="acknowledgement">
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Acknowledgments</head><p>This work was supported by the National Science Foundation of China (62206049, 62225602), and the Big Data Computing Center of Southeast University.</p></div>
+			</div>
+
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct coords="8,58.61,133.36,238.39,9.53;8,65.62,145.22,231.38,8.64;8,65.62,156.18,231.38,8.64;8,65.62,166.96,231.39,8.82;8,65.62,177.92,51.20,8.82" xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Pseudolabeling and confirmation bias in deep semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Arazo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Joint Conference on Neural Networks</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,192.36,243.00,9.53;8,65.62,204.03,231.39,8.82;8,65.62,214.99,227.22,8.82;8,54.00,229.43,243.00,9.53;8,65.62,241.29,231.38,8.64;8,65.62,252.25,231.38,8.64;8,65.62,263.03,231.39,8.82;8,65.62,273.99,45.66,8.82" xml:id="b1">
+	<analytic>
+		<title level="a" type="main">MixMatch: A holistic approach to semisupervised learning</title>
+		<author>
+			<persName coords=""><forename type="first">Boult</forename><surname>Bendale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Abhijit</forename><surname>Bendale</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Terrance</forename><forename type="middle">E</forename><surname>Boult</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">;</forename><surname>Berthelot</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2015">2015. 2015. 2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note>Neural Information Processing Systems</note>
+</biblStruct>
+
+<biblStruct coords="8,54.00,288.43,243.00,9.53;8,65.62,300.28,231.38,8.64;8,65.62,311.24,231.38,8.64;8,65.62,322.02,231.39,8.82;8,65.62,332.98,112.25,8.82" xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Learning and the unknown: Surveying steps toward open world recognition</title>
+		<author>
+			<persName coords=""><surname>Boult</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI Conference on Artificial Intelligence</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,347.42,243.00,9.53;8,65.62,359.27,231.38,8.64;8,65.62,370.05,231.38,8.82;8,65.62,381.01,135.42,8.82" xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Learning imbalanced datasets with label-distribution-aware margin loss</title>
+		<author>
+			<persName coords=""><surname>Cao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,395.45,243.00,9.53;8,65.62,407.13,231.38,8.82;8,65.62,418.09,226.46,8.82;8,54.00,432.53,243.00,9.53;8,65.62,444.38,231.38,8.64;8,65.62,455.16,231.38,8.82;8,65.62,466.12,197.34,8.82" xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Mohammad Norouzi, and Geoffrey Hinton. A simple framework for contrastive learning of visual representations</title>
+		<author>
+			<persName coords=""><surname>Cao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2020">2022. 2022. 2020a. 2020</date>
+		</imprint>
+	</monogr>
+	<note>International Conference on Machine Learning</note>
+</biblStruct>
+
+<biblStruct coords="8,54.00,480.56,243.00,9.53;8,65.62,492.42,231.38,8.64;8,65.62,503.20,231.39,8.82;8,65.62,514.16,74.33,8.82" xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Semi-supervised learning under class distribution mismatch</title>
+		<author>
+			<persName coords=""><forename type="first">Chen</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI Conference on Artificial Intelligence</title>
+				<imprint>
+			<date type="published" when="2020">2020b. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,54.00,528.60,243.00,9.53;8,65.62,540.45,231.38,8.64;8,65.62,551.41,231.38,8.64;8,65.62,562.19,159.58,8.82;8,54.00,576.63,243.00,9.53;8,65.62,588.49,231.38,8.64;8,65.62,599.45,231.38,8.64;8,65.62,610.23,216.71,8.82" xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Practical automated data augmentation with a reduced search space</title>
+		<author>
+			<persName coords=""><surname>Cubuk</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1909.13719</idno>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019. 2020. 2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Safe deep semisupervised learning for unseen-class unlabeled data</note>
+</biblStruct>
+
+<biblStruct coords="8,54.00,624.67,243.00,9.53;8,65.62,636.52,231.38,8.64;8,65.62,647.30,231.38,8.82;8,65.62,658.26,135.42,8.82;8,54.00,672.70,243.00,9.53;8,65.62,684.38,231.38,8.82;8,65.62,695.34,100.17,8.82;8,315.00,56.58,243.00,9.53;8,326.62,68.44,231.38,8.64;8,326.62,79.22,231.39,8.82;8,326.62,90.17,138.36,8.82" xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Learning to discover novel visual categories via deep transfer clustering</title>
+		<author>
+			<persName coords=""><surname>Guo</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2107.06187</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Deep ranking with adaptive margin triplet loss</title>
+				<editor>
+			<persName><surname>Han</surname></persName>
+		</editor>
+		<imprint>
+			<date type="published" when="2019">2022. 2022. 2021. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Robust semi-supervised learning when not all classes have labels. In IEEE International Conference on Computer Vision</note>
+</biblStruct>
+
+<biblStruct coords="8,315.00,104.82,243.00,9.53;8,326.62,116.67,231.38,8.64;8,326.62,127.63,231.38,8.64;8,326.62,138.41,231.38,8.82;8,326.62,149.37,142.70,8.82" xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Automatically discovering and learning new visual categories with ranking statistics</title>
+		<author>
+			<persName coords=""><surname>Han</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,315.00,164.01,243.00,9.53;8,326.62,175.87,219.81,8.64" xml:id="b9">
+	<monogr>
+		<title level="m" type="main">Learning multiple layers of features from tiny images</title>
+		<author>
+			<persName coords=""><forename type="first">Alex</forename><surname>Krizhevsky</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Krizhevsky</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2009">2009. 2009</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Master&apos;s thesis</note>
+</biblStruct>
+
+<biblStruct coords="8,319.63,190.33,238.37,9.53;8,326.62,202.01,231.39,8.82;8,326.62,212.97,45.66,8.82;8,315.00,227.61,243.00,9.53;8,326.62,239.29,231.38,8.82;8,326.62,250.25,173.65,8.82" xml:id="b10">
+	<analytic>
+		<title level="a" type="main">The Hungarian method for the assignment problem. Naval Research Logistics Quarterly</title>
+		<author>
+			<persName coords=""><forename type="first">Harold</forename><forename type="middle">W</forename><surname>Kuhn</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Kuhn</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Samuli Laine and Timo Aila. Temporal Ensembling for Semi-Supervised Learning. arXiv: Neural and Evolutionary Computing</title>
+				<imprint>
+			<publisher>Laine and Aila</publisher>
+			<date type="published" when="1955">1955. 1955. 2016. 2016</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,319.15,264.89,238.85,9.53;8,326.62,276.74,231.38,8.64;8,326.62,287.52,231.38,8.82;8,326.62,298.48,89.84,8.82" xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Pseudo-label: The simple and efficient semi-supervised learning method for deep neural networks</title>
+		<author>
+			<persName coords=""><forename type="first">Dong-Hyun</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Lee</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Workshop on challenges in representation learning, ICML</title>
+				<imprint>
+			<date type="published" when="2013">2013. 2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,319.06,313.12,238.94,9.53;8,326.62,324.98,231.38,8.64;8,326.62,335.76,231.39,8.82;8,326.62,346.72,206.47,8.82" xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Boosting few-shot learning with adaptive margin loss</title>
+		<author>
+			<persName coords=""><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="8,315.00,361.36,243.00,9.53;8,326.62,373.22,231.38,8.64;8,326.62,384.00,231.38,8.82;8,326.62,394.96,220.66,8.82;8,315.00,409.60,243.00,9.53;8,326.62,421.45,231.38,8.64;8,326.62,432.41,231.38,8.64;8,326.62,443.19,185.36,8.82;8,315.00,457.83,243.00,9.53;8,326.62,469.69,231.38,8.64;8,326.62,480.65,231.38,8.64;8,326.62,491.61,231.38,8.64;8,326.62,502.39,231.38,8.82;8,326.62,513.53,22.42,8.64;8,315.00,527.99,243.00,9.53;8,326.62,539.85,231.38,8.64;8,326.62,550.62,231.38,8.82;8,326.62,561.58,123.25,8.82;8,315.00,576.23,243.00,9.53;8,326.62,588.08,231.38,8.64;8,326.62,599.04,231.38,8.64;8,326.62,609.82,231.39,8.82;8,315.00,624.46,243.00,9.53;8,326.62,636.32,231.38,8.64;8,326.62,647.28,231.38,8.64;8,326.62,658.06,231.38,8.82;8,326.62,669.02,194.02,8.82;8,315.00,683.66,243.00,9.53;8,326.62,695.51,231.38,8.64;9,65.62,57.48,231.38,8.64;9,65.62,68.44,231.38,8.64;9,65.62,79.22,231.39,8.82;9,65.62,90.17,45.66,8.82" xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Regularization with stochastic transformations and perturbations for deep semi-supervised learning</title>
+		<author>
+			<persName coords=""><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Omprakash Chakraborty, Ashutosh Varshney, Rameswar Panda, Rogerio Feris, Kate Saenko, and Abir Das</title>
+				<editor>
+			<persName><forename type="first">David</forename><surname>Berthelot</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Chun-Liang</forename><surname>Li</surname></persName>
+		</editor>
+		<meeting><address><addrLine>Nicholas Carlini, Ekin D. Cubuk, Alex Kurakin, Han Zhang</addrLine></address></meeting>
+		<imprint>
+			<publisher>Kihyuk Sohn</publisher>
+			<date type="published" when="2015">2023. 2023. 2018. 2018. 2015. 2015. 2021. 2021. 2016. 2016. 2021. 2020</date>
+		</imprint>
+	</monogr>
+	<note>Neural Information Processing Systems</note>
+</biblStruct>
+
+<biblStruct coords="9,58.70,105.21,238.29,9.53;9,65.62,116.89,231.38,8.82;9,65.62,127.85,143.96,8.82" xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Laurens Van der Maaten and Geoffrey Hinton. Visualizing data using t-sne</title>
+		<author>
+			<persName coords=""><surname>Van Der Maaten</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><surname>Hinton</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of machine learning research</title>
+		<imprint>
+			<date type="published" when="2008">2008. 2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,58.54,142.89,238.46,9.53;9,65.62,154.75,231.38,8.64;9,65.62,165.53,231.38,8.82;9,65.62,176.48,75.45,8.82" xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Generalized category discovery</title>
+		<author>
+			<persName coords=""><surname>Vaze</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,54.00,191.52,243.00,9.53;9,65.62,203.38,231.38,8.64;9,65.62,214.16,231.38,8.82;9,65.62,225.12,187.38,8.82" xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Understanding contrastive representation learning through alignment and uniformity on the hypersphere</title>
+		<author>
+			<persName coords=""><forename type="first">Wang</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Isola</forename><forename type="middle">;</forename></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tongzhou</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Phillip</forename><surname>Isola</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,54.00,240.16,243.00,9.53;9,65.62,252.01,231.38,8.64;9,65.62,262.79,231.38,8.82;9,65.62,273.75,151.68,8.82" xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Towards realistic long-tailed semi-supervised learning: Consistency is all you need</title>
+		<author>
+			<persName coords=""><forename type="first">Gan</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Tong</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName coords=""><forename type="first">Kai</forename><surname>Gan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE/CVF Conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,58.78,288.79,238.22,9.53;9,65.62,300.65,231.38,8.64;9,65.62,311.43,231.39,8.82;9,65.62,322.39,40.13,8.82" xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Transfer and share: Semisupervised learning from long-tailed data. Machine Learning</title>
+		<author>
+			<persName coords=""><surname>Wei</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,59.16,337.43,237.83,9.53;9,65.62,349.28,231.38,8.64;9,65.62,360.06,231.38,8.82;9,65.62,371.02,197.34,8.82" xml:id="b19">
+	<analytic>
+		<title level="a" type="main">Dash: Semisupervised learning with dynamic thresholding</title>
+		<author>
+			<persName coords=""><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,58.89,386.06,238.11,9.53;9,65.62,397.92,231.38,8.64;9,65.62,408.87,231.38,8.64;9,65.62,419.65,231.38,8.59;9,65.62,430.61,50.65,8.82" xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Neighborhood contrastive learning for novel class discovery</title>
+		<author>
+			<persName coords=""><surname>Zhong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2021">2021a. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,54.00,445.65,243.00,9.53;9,65.62,457.51,231.38,8.64;9,65.62,468.47,231.38,8.64;9,65.62,479.25,231.38,8.82;9,65.62,490.21,151.68,8.82;9,54.00,505.25,243.00,9.53;9,65.62,516.92,214.63,8.82" xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Openmix: Reviving known knowledge for discovering novel visual categories in an open world</title>
+		<author>
+			<persName coords=""><surname>Zhong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">IEEE conference on Computer Vision and Pattern Recognition</title>
+				<meeting><address><addrLine>Goldberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Xiaojin Zhu and Andrew B Goldberg</publisher>
+			<date type="published" when="2009">2021b. 2021. 2009. 2009</date>
+		</imprint>
+	</monogr>
+	<note>Introduction to semi-supervised learning</note>
+</biblStruct>
+
+<biblStruct coords="9,71.93,540.87,168.72,10.75;9,54.00,558.76,9.09,9.81" xml:id="b22">
+	<analytic>
+		<title/>
+	</analytic>
+	<monogr>
+		<title level="j">Supplementary Material for LPS</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct coords="9,78.55,558.76,142.80,9.81" xml:id="b23">
+	<monogr>
+		<title level="m">Parameter Sensitivity Analysis</title>
+				<imprint/>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
