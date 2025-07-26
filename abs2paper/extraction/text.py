@@ -27,60 +27,62 @@ def extract_text():
         bool: 处理是否成功
     """
     try:
-        # 确定项目根目录
+        # 确定项目根目录和模块目录
         module_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(module_dir))
         
-        # 设置固定的输入输出路径
-        input_dir = os.path.abspath(os.path.join(project_root, "data", "raw", "paper_kb"))
-        output_dir = os.path.abspath(os.path.join(module_dir, "result", "text_extract"))
-        
-        # 使用固定的配置文件路径(从当前模块目录加载)
-        # 原代码
-        # config_path = os.path.join(project_root, "config", "config.json")
-        # 新代码
-        config_path = os.path.join(module_dir, "config.json")
-            
-        # 确保配置文件存在
-        if not os.path.exists(config_path):
-            logger.error(f"配置文件不存在: {config_path}")
+        # 加载项目配置文件(用于路径配置)
+        project_config_path = os.path.join(project_root, "config", "config.json")
+        if not os.path.exists(project_config_path):
+            logger.error(f"项目配置文件不存在: {project_config_path}")
             return False
             
-        # 读取配置文件
         try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                config = json.load(f)
+            with open(project_config_path, 'r', encoding='utf-8') as f:
+                project_config = json.load(f)
+                logger.info(f"已加载项目配置文件: {project_config_path}")
         except Exception as e:
-            logger.error(f"读取配置文件失败: {str(e)}")
+            logger.error(f"读取项目配置文件失败: {str(e)}")
             return False
             
-        # 原代码
-        # # 获取grobid配置
-        # if 'grobid' not in config:
-        #     logger.error("配置文件中缺少grobid配置部分")
-        #     return False
-        #     
-        # # 获取grobid配置
-        # grobid_config = config['grobid']
+        # 获取Grobid本地配置文件路径(用于初始化GrobidClient)
+        grobid_config_path = os.path.join(module_dir, "config.json")
+        if not os.path.exists(grobid_config_path):
+            logger.error(f"Grobid配置文件不存在: {grobid_config_path}")
+            return False
+            
+        logger.info(f"将使用Grobid配置文件: {grobid_config_path}")
+        
+        # 从配置中读取路径
+        data_paths = project_config["data_paths"]
+        raw_papers_path = data_paths["raw_papers"]["path"].lstrip('/')
+        text_extract_path = data_paths["text_extract"]["path"].lstrip('/')
+        
+        # 构建完整路径
+        input_dir = os.path.abspath(os.path.join(project_root, raw_papers_path))
+        output_dir = os.path.abspath(os.path.join(project_root, text_extract_path))
         
         # 确保输出目录存在
         os.makedirs(output_dir, exist_ok=True)
         
-        # 原代码
-        # # 使用配置初始化客户端
-        # client = GrobidClient(grobid_config)
-        
-        # 新代码 - 使用配置文件路径初始化客户端，而不是配置对象
-        client = GrobidClient(config_path=config_path)
+        # 使用本地配置文件初始化Grobid客户端
+        client = GrobidClient(config_path=grobid_config_path)
         
         logger.info(f"🚀 开始处理PDF文件")
-        logger.info(f"📄 使用配置文件: {config_path}")
+        logger.info(f"📄 使用Grobid配置: {grobid_config_path}")
         
-        # 新代码
-        logger.info(f"🖥️ GROBID服务器: {config.get('grobid_server', 'http://localhost:8070')}")
+        # 读取Grobid配置以供日志输出
+        try:
+            with open(grobid_config_path, 'r', encoding='utf-8') as f:
+                grobid_config = json.load(f)
+                grobid_server = grobid_config.get('grobid_server', 'http://localhost:8070')
+        except Exception:
+            grobid_server = "http://localhost:8070" # 默认值
+        
+        # 日志输出Grobid服务器和路径信息
+        logger.info(f"🖥️ GROBID服务器: {grobid_server}")
         logger.info(f"📂 输入目录: {input_dir}")
         logger.info(f"📂 输出目录: {output_dir}")
-
         
         # 批量处理PDF文件
         client.process(

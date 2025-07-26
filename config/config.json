@@ -42,6 +42,7 @@
     "host": "192.168.70.174",
     "port": "19530",
     "db_name": "abs2paper",
+    "alias": "paper",
     "embedding_dim": 1024
   },
   "grobid": {
@@ -51,11 +52,99 @@
     "timeout": 60,
     "coordinates": ["persName", "figure", "ref", "biblStruct"]
   },
-  "paths": {
-    "text_extract": "/extraction/result/text_extract",
-    "component_extract": "/extraction/result/component_extract",
-    "abstract_extract": "/extraction/result/abstract_extract",
-    "label": "/extraction/result/label",
-    "raw_data": "/data/raw/paper_kb"
+  "data_paths": {
+    "raw_papers": {
+      "path": "/data/raw/paper_kb",
+      "description": "原始论文PDF文件存放目录",
+      "used_by": ["text.py"]
+    },
+    "text_extract": {
+      "path": "/abs2paper/extraction/result/text_extract",
+      "description": "PDF解析后的XML文件存放目录",
+      "used_by": ["text.py (输出)", "abstract.py (输入)", "component.py (输入)"]
+    },
+    "abstract_extract": {
+      "path": "/abs2paper/extraction/result/abstract_extract",
+      "description": "提取的论文摘要存放目录",
+      "used_by": ["abstract.py (输出)", "labeling.py (输入)"]
+    },
+    "component_extract": {
+      "path": "/abs2paper/extraction/result/component_extract",
+      "description": "提取的论文组件存放目录",
+      "used_by": ["component.py (输出)", "paper_ingestor.py (输入)"]
+    },
+    "label": {
+      "path": "/abs2paper/extraction/result/label",
+      "description": "论文标签数据存放目录",
+      "used_by": ["labeling.py (输出)", "paper_ingestor.py (输入)"]
+    },
+    "prompt_kb": {
+      "path": "/data/prompt_kb.txt",
+      "description": "主题提取提示词模板文件",
+      "used_by": ["labeling.py"]
+    }
+  },
+  "paper": {
+    "sections": ["引言", "相关工作", "方法", "实验评价", "总结"],
+    "section_mapping_en": {
+      "引言": "introduction",
+      "相关工作": "related_work",
+      "方法": "methodology",
+      "实验评价": "experiments",
+      "总结": "conclusion"
+    },
+    "chapter_mapping": {
+      "introduction": "引言",
+      "related work": "相关工作",
+      "method": "方法",
+      "methodology": "方法",
+      "approach": "方法",
+      "design": "方法",
+      "implementation": "方法",
+      "evaluation": "实验评价",
+      "experiments": "实验评价",
+      "experimental": "实验评价",
+      "results": "实验评价",
+      "conclusion": "总结",
+      "conclusions": "总结",
+      "future work": "总结",
+      "summary": "总结"
+    },
+    "collection_fields": {
+      "id": {
+        "type": "INT64",
+        "is_primary": true,
+        "auto_id": true
+      },
+      "paper_id": {
+        "type": "VARCHAR",
+        "max_length": 128
+      },
+      "section": {
+        "type": "VARCHAR",
+        "max_length": 32
+      },
+      "text": {
+        "type": "VARCHAR",
+        "max_length": 8192
+      },
+      "topics": {
+        "type": "ARRAY",
+        "max_capacity": 10,
+        "element_type": "VARCHAR",
+        "element_max_length": 128
+      },
+      "embedding": {
+        "type": "FLOAT_VECTOR",
+        "dim": "${embedding_dim}"
+      }
+    },
+    "index_params": {
+      "index_type": "IVF_FLAT",
+      "params": {
+        "nlist": 128
+      },
+      "metric_type": "L2"
+    }
   }
 } 

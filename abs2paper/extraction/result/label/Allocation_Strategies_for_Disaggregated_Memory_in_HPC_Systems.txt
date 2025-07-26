@@ -2,4 +2,4 @@ Allocation_Strategies_for_Disaggregated_Memory_in_HPC_Systems.txt:
 1. High Performance Computing  
 7. Memory Management Optimization  
 
-故该论文的主题关键词总结为[1, 7]。
+故该论文的主题关键词总结为[1,7]。

@@ -1,6 +1,7 @@
 MiCRO_Near-Zero_Cost_Gradient_Sparsification_for_Scaling_and_Accelerating_Distributed_DNN_Training.txt:
 1. High Performance Computing
+6. GPU Programming and Acceleration
 10. Machine Learning
 11. Artificial Intelligence
 
-故该论文的主题关键词总结为[1,10,11]。
+故该论文的主题关键词总结为[1,6,10,11]。

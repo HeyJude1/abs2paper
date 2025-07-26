@@ -1,8 +1,7 @@
 Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization.txt:
-1. High Performance Computing  
-4. Compiler Optimization  
-5. Automated Code Generation  
-6. GPU Programming and Acceleration  
-10. Machine Learning  
+10. Keywords: Machine Learning  
+11. Keywords: Artificial Intelligence  
+2. Keywords: Parallel Programming  
+6. Keywords: GPU Programming and Acceleration  
 
-故该论文的主题关键词总结为[1,4,5,6,10]。
+故该论文的主题关键词总结为[10, 11, 2, 6]。

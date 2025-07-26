@@ -1,13 +1,11 @@
 G-Sparse_Compiler-Driven_Acceleration_for_Generalized_Sparse_Computation_for_Graph_Neural_Networks_on_Modern_GPUs.txt:
-1. High Performance Computing
-2. Parallel Programming
-4. Compiler Optimization
-5. Automated Code Generation
-6. GPU Programming and Acceleration
-7. Memory Management Optimization
-8. Heterogeneous Computing Architectures
-9. Compiler Intermediate Representation Optimization
-10. Machine Learning
-11. Artificial Intelligence
+1.Keywords: High Performance Computing
+2.Keywords: Parallel Programming
+3.Keywords: Code Optimization Techniques
+4.Keywords: Compiler Optimization
+6.Keywords: GPU Programming and Acceleration
+8.Keywords: Heterogeneous Computing Architectures
+10.Keywords: Machine Learning
+11.Keywords: Artificial Intelligence
 
-故该论文的主题关键词总结为[4,5,6,7,8,9,10,11]。
+故该论文的主题关键词总结为[1,2,3,4,6,8,10,11]。

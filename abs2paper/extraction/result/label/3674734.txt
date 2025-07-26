@@ -1,6 +1,7 @@
 3674734.txt:
-序号.英文关键词keywords  
-序号.英文关键词keywords  
-故该论文的主题关键词总结为[1, 4, 7]。  
+1. High Performance Computing  
+6. GPU Programming and Acceleration  
+7. Memory Management Optimization  
+8. Heterogeneous Computing Architectures  
 
-（注：根据摘要内容，论文主要涉及高性能计算场景下的延迟优化（匹配关键词1）、编译器或系统级对CPU状态的调度优化（匹配关键词4）、以及内存/缓存管理相关的冷启动延迟优化（匹配关键词7）。用户提供的原始关键词未直接对应知识库条目，故按技术实质匹配。）
+故该论文的主题关键词总结为[1,6,7,8]。

@@ -2,10 +2,13 @@ import os
 import json
 import logging
 from typing import Dict, List, Optional, Tuple
-from pymilvus import connections, FieldSchema, CollectionSchema, DataType, Collection, utility
+import re
+import copy
+from pymilvus import FieldSchema, DataType
+
 from abs2paper.utils.topic_manager import TopicManager
 from abs2paper.utils.llm_client import LLMClient
-import re
+from abs2paper.utils.db_client import MilvusClient
 
 class PaperIngestor:
     """
@@ -13,67 +16,45 @@ class PaperIngestor:
     """
     def __init__(self, config_path: Optional[str] = None):
         """
-        初始化PaperIngestor，加载配置、连接Milvus、初始化主题管理器和LLMClient。
+        初始化PaperIngestor，加载配置、初始化主题管理器、LLMClient和MilvusClient
         Args:
             config_path: 配置文件路径，默认为项目config/config.json
         """
+        # 设置项目根目录和配置文件路径
         self.project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         self.config_path = config_path or os.path.join(self.project_root, "config", "config.json")
         self.config = self._load_config()
-        self.embedding_config = self.config.get("embedding", {})
-        self.vector_db_config = self.config.get("vector_db", {})
+        
+        # 初始化工具类
         self.topic_manager = TopicManager()
         self.llm_client = LLMClient()
         
-        # 设置Milvus连接参数
-        self.milvus_host = self.vector_db_config.get("host", "192.168.70.174")
-        self.milvus_port = self.vector_db_config.get("port", "19530")
-        self.milvus_alias = "paper_db"
-        self.db_name = self.vector_db_config.get("db_name", "abs2paper")
+        # 读取数据库配置
+        vector_db_config = self.config["vector_db"]          # 数据库连接配置
+        self.embedding_dim = vector_db_config["embedding_dim"]    # 嵌入向量维度
         
-        # 初始化集合引用存储
-        self.collections = {}
-        self.collections_loaded = False
+        # 读取论文配置
+        paper_config = self.config["paper"]
+        self.section_names = paper_config["sections"]             # 论文部分名称列表
+        self.section_name_en = paper_config["section_mapping_en"] # 部分英文名映射
+        self.section_mapping = paper_config["chapter_mapping"]    # 章节映射表
+        self.collection_fields_config = paper_config["collection_fields"] # 集合字段配置
+        self.index_params = paper_config["index_params"]          # 索引参数
         
-        self.section_names = ["引言", "相关工作", "方法", "实验评价", "总结"]
-        self.section_name_en = {
-            "引言": "introduction",
-            "相关工作": "related_work",
-            "方法": "methodology",
-            "实验评价": "experiments",
-            "总结": "conclusion"
+        # 初始化Milvus客户端
+        db_config = {
+            "host": vector_db_config["host"],         # 服务器地址
+            "port": vector_db_config["port"],         # 服务端口
+            "alias": vector_db_config["alias"],       # 连接别名
+            "db_name": vector_db_config["db_name"]    # 数据库名称
         }
+        self.db_client = MilvusClient(db_config)
         
-        # 章节名称映射表，将文件名映射到预定义的部分
-        self.section_mapping = {
-            "introduction": "引言",
-            "related work": "相关工作",
-            "method": "方法",
-            "methodology": "方法",
-            "approach": "方法",
-            "design": "方法",
-            "implementation": "方法",
-            "evaluation": "实验评价",
-            "experiments": "实验评价",
-            "experimental": "实验评价",
-            "results": "实验评价",
-            "conclusion": "总结",
-            "conclusions": "总结",
-            "future work": "总结",
-            "summary": "总结"
-        }
+        # 设置正则表达式模式
+        self.roman_pattern = re.compile(r'^([IVX]+)\.\s+(.+)', re.IGNORECASE)     # 罗马数字章节名
+        self.number_pattern = re.compile(r'^(\d+)(\.\d+)?\s+(.+)', re.IGNORECASE) # 数字章节名
         
-        # 罗马数字章节名正则表达式
-        self.roman_pattern = re.compile(r'^([IVX]+)\.\s+(.+)', re.IGNORECASE)
-        
-        # 数字章节名正则表达式
-        self.number_pattern = re.compile(r'^(\d+)(\.\d+)?\s+(.+)', re.IGNORECASE)
-        
-        self.embedding_dim = self.embedding_config.get("request", {}).get("payload", {}).get("embedding_dim", 1024)
-        
-        # 连接到Milvus向量数据库
-        self._connect_to_milvus()
-        # 创建或获取所有集合
+        # 创建集合
         self._create_collections()
 
     def _load_config(self):
@@ -84,73 +65,8 @@ class PaperIngestor:
         """
         with open(self.config_path, "r", encoding="utf-8") as f:
             return json.load(f)
-
-    def _connect_to_milvus(self):
-        """
-        连接到Milvus向量数据库
-        """
-        try:
-            logging.info(f"正在连接到Milvus服务: {self.milvus_host}:{self.milvus_port}，数据库: {self.db_name}")
-            connections.connect(
-                alias=self.milvus_alias,
-                host=self.milvus_host,
-                port=self.milvus_port,
-                db_name=self.db_name
-            )
-            logging.info("✅ Milvus连接成功")
-        except Exception as e:
-            logging.error(f"⚠️ 连接Milvus失败: {str(e)}")
-            raise
-
-    def _create_collections(self):
-        """创建所有需要的集合"""
-        logging.info("创建和准备集合...")
-        
-        for section in self.section_names:
-            collection_name = self.get_collection_name(section)
             
-            fields = [
-                FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
-                FieldSchema(name="paper_id", dtype=DataType.VARCHAR, max_length=128),
-                FieldSchema(name="section", dtype=DataType.VARCHAR, max_length=32),
-                FieldSchema(name="text", dtype=DataType.VARCHAR, max_length=8192),
-                FieldSchema(name="topics", dtype=DataType.ARRAY, max_capacity=10, element_type=DataType.VARCHAR, max_length=128),
-                FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=self.embedding_dim)
-            ]
-            schema = CollectionSchema(fields, f"Collection for {section}")
-            
-            try:
-                # 检查集合是否存在
-                has_collection = utility.has_collection(collection_name, using=self.milvus_alias)
-                
-                if has_collection:
-                    logging.info(f"集合 '{collection_name}' 已存在，直接获取")
-                    collection = Collection(name=collection_name, using=self.milvus_alias)
-                else:
-                    logging.info(f"创建新集合: '{collection_name}'")
-                    collection = Collection(name=collection_name, schema=schema, using=self.milvus_alias)
-                
-                # 检查索引
-                try:
-                    has_index = False
-                    index_info = collection.index()
-                    if index_info:
-                        has_index = True
-                except Exception:
-                    has_index = False
-                
-                if not has_index:
-                    logging.info(f"为集合 '{collection_name}' 创建索引...")
-                    index_params = {"index_type": "IVF_FLAT", "params": {"nlist": 128}, "metric_type": "L2"}
-                    collection.create_index(field_name="embedding", index_params=index_params)
-                
-                # 存储集合引用
-                self.collections[section] = collection
-                
-            except Exception as e:
-                logging.error(f"创建或准备集合 '{collection_name}' 失败: {e}")
-
-    def get_collection_name(self, section: str) -> str:
+    def _get_collection_name(self, section: str) -> str:
         """
         获取指定论文部分的Milvus集合名称
         Args:
@@ -158,50 +74,70 @@ class PaperIngestor:
         Returns:
             集合名称字符串
         """
-        section_en = self.section_name_en.get(section, "other")
+        section_en = self.section_name_en[section]  # 获取英文名称
         return f"paper_{section_en}"
-
-    def ensure_collection(self, section: str):
+    
+    def _create_field_schema(self) -> List[FieldSchema]:
         """
-        确保指定论文部分的Milvus集合存在，不存在则创建
-        Args:
-            section: 论文部分中文名
+        根据配置创建字段模式列表
         Returns:
-            Collection对象
+            字段模式列表
         """
-        # 如果已经有引用，直接返回
-        if section in self.collections:
-            return self.collections[section]
+        fields = []
+        
+        # 解析配置并创建字段模式
+        for field_name, field_config in self.collection_fields_config.items():
+            # 获取字段类型
+            field_type = field_config["type"]
+            data_type = getattr(DataType, field_type)
             
-        collection_name = self.get_collection_name(section)
-        try:
-            # 检查集合是否存在
-            if utility.has_collection(collection_name, using=self.milvus_alias):
-                collection = Collection(name=collection_name, using=self.milvus_alias)
-            else:
-                # 创建新集合
-                fields = [
-                    FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
-                    FieldSchema(name="paper_id", dtype=DataType.VARCHAR, max_length=128),
-                    FieldSchema(name="section", dtype=DataType.VARCHAR, max_length=32),
-                    FieldSchema(name="text", dtype=DataType.VARCHAR, max_length=8192),
-                    FieldSchema(name="topics", dtype=DataType.ARRAY, max_capacity=10, element_type=DataType.VARCHAR, max_length=64),
-                    FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=self.embedding_dim)
-                ]
-                schema = CollectionSchema(fields, f"Collection for {section}")
-                collection = Collection(name=collection_name, schema=schema, using=self.milvus_alias)
+            # 处理参数
+            kwargs = {}
+            for key, value in field_config.items():
+                if key == "type":
+                    continue
+                    
+                # 处理变量替换
+                if isinstance(value, str) and value.startswith("${") and value.endswith("}"):
+                    var_name = value[2:-1]
+                    if var_name == "embedding_dim":
+                        value = self.embedding_dim
                 
-                # 创建索引
-                index_params = {"index_type": "IVF_FLAT", "params": {"nlist": 128}, "metric_type": "L2"}
-                collection.create_index(field_name="embedding", index_params=index_params)
+                # 特殊处理数组元素类型
+                if key == "element_type" and isinstance(value, str):
+                    value = getattr(DataType, value)
+                
+                # 重命名element_max_length为max_length
+                if key == "element_max_length":
+                    kwargs["max_length"] = value
+                else:
+                    kwargs[key] = value
             
-            # 存储引用
-            self.collections[section] = collection
-            return collection
-            
-        except Exception as e:
-            logging.error(f"确保集合 {collection_name} 存在时出错: {e}")
-            raise
+            # 创建字段模式
+            field = FieldSchema(name=field_name, dtype=data_type, **kwargs)
+            fields.append(field)
+        
+        return fields
+    
+    def _create_collections(self):
+        """准备集合配置并调用db_client创建集合"""
+        # 准备集合配置列表
+        collection_configs = []
+        fields = self._create_field_schema()
+        
+        # 为每个论文部分创建集合配置
+        for section in self.section_names:
+            collection_name = self._get_collection_name(section)
+            collection_configs.append({
+                "name": collection_name,                    # 集合名称
+                "fields": fields,                           # 字段定义
+                "description": f"Collection for paper {section}",  # 集合描述
+                "index_field": "embedding",                 # 索引字段
+                "index_params": self.index_params           # 索引参数
+            })
+        
+        # 调用db_client创建集合
+        self.db_client.create_collections(collection_configs)
 
     def split_text(self, text: str, chunk_size: int = 300, overlap_size: int = 50) -> List[str]:
         """
@@ -264,15 +200,16 @@ class PaperIngestor:
         Returns:
             提取的主题关键词列表
         """
-        # 读取标签
+        # 构建标签文件路径
         label_file = os.path.join(label_dir, f"{paper_id}.txt")
         topics = []
         
+        # 如果文件不存在，尝试使用基本文件名
         if not os.path.exists(label_file):
-            # 尝试查找不带路径的文件名匹配
             base_name = os.path.basename(paper_id)
             label_file = os.path.join(label_dir, f"{base_name}.txt")
         
+        # 读取并解析标签文件
         if os.path.exists(label_file):
             with open(label_file, "r", encoding="utf-8") as lf:
                 for line in lf:
@@ -284,13 +221,12 @@ class PaperIngestor:
 
     def _map_section_name(self, section_name: str) -> str:
         """
-        将章节文件名映射到标准论文部分，参考milvus_paper.py的实现
+        将章节文件名映射到标准论文部分
         Args:
             section_name: 章节文件名
         Returns:
             映射后的标准部分名称
         """
-        # 移除数字前缀和扩展名
         # 标准化文件名
         section_title = section_name.lower()
         
@@ -321,6 +257,7 @@ class PaperIngestor:
         Returns:
             按标准部分组织的文本字典
         """
+        # 初始化各部分文本
         section_texts = {section: "" for section in self.section_names}
         
         # 遍历论文目录下的所有txt文件（章节）
@@ -355,10 +292,6 @@ class PaperIngestor:
             处理是否成功
         """
         try:
-            collection = self.collections.get(section)
-            if not collection:
-                collection = self.ensure_collection(section)
-            
             # 将文本切分成小块
             chunks = self.split_text(text, chunk_size=500, overlap_size=100)
             logging.info(f"将论文 {paper_id} 的 {section} 部分切分为 {len(chunks)} 个块")
@@ -377,12 +310,13 @@ class PaperIngestor:
                     "embedding": embedding
                 })
             
-            # 批量插入数据
-            if data:
-                collection.insert(data)
+            # 使用MilvusClient插入数据
+            collection_name = self._get_collection_name(section)
+            success = self.db_client.insert_data(collection_name, data)
+            if success:
                 logging.info(f"已入库: {paper_id} {section} ({len(chunks)} 个块)")
+            return success
             
-            return True
         except Exception as e:
             logging.error(f"处理论文 {paper_id} 的 {section} 部分时出错: {str(e)}")
             import traceback
@@ -440,8 +374,11 @@ class PaperIngestor:
         
         def find_papers(dir_path, current_conf=None):
             # 检查是否为叶子目录(包含txt文件)
-            has_txt = any(item.endswith('.txt') and os.path.isfile(os.path.join(dir_path, item)) 
+            try:
+                has_txt = any(item.endswith('.txt') and os.path.isfile(os.path.join(dir_path, item)) 
                           for item in os.listdir(dir_path))
+            except:
+                return
             
             # 如果包含txt文件，认为是论文目录
             if has_txt:
@@ -454,10 +391,13 @@ class PaperIngestor:
                 current_conf = os.path.basename(dir_path)
             
             # 继续递归子目录
-            for item in os.listdir(dir_path):
-                item_path = os.path.join(dir_path, item)
-                if os.path.isdir(item_path):
-                    find_papers(item_path, current_conf)
+            try:
+                for item in os.listdir(dir_path):
+                    item_path = os.path.join(dir_path, item)
+                    if os.path.isdir(item_path):
+                        find_papers(item_path, current_conf)
+            except:
+                pass
         
         find_papers(root_dir)
         return paper_dirs
@@ -466,11 +406,13 @@ class PaperIngestor:
         """
         批量读取论文分段和主题标签，生成embedding并写入Milvus。
         Args:
-            component_dir: 论文分段目录，默认为项目abs2paper/extraction/result/component_extract
-            label_dir: 主题标签目录，默认为项目abs2paper/extraction/result/label
+            component_dir: 论文分段目录，必须通过参数指定
+            label_dir: 主题标签目录，必须通过参数指定
         """
-        component_dir = component_dir or os.path.join(self.project_root, "abs2paper", "extraction", "result", "component_extract")
-        label_dir = label_dir or os.path.join(self.project_root, "abs2paper", "extraction", "result", "label")
+        # 确保目录路径已提供
+        if not component_dir or not label_dir:
+            logging.error("必须提供组件目录和标签目录路径")
+            return
         
         logging.info(f"开始处理论文目录: {component_dir}")
         logging.info(f"标签目录: {label_dir}")
@@ -492,4 +434,43 @@ class PaperIngestor:
         except Exception as e:
             logging.error(f"处理论文数据时出现错误: {str(e)}")
             import traceback
-            logging.error(traceback.format_exc()) 
+            logging.error(traceback.format_exc())
+    
+    def search_papers(self, query_vector: List[float], section: Optional[str] = None,
+                     top_n: int = 5, filter_expr: Optional[str] = None):
+        """
+        搜索相似论文段落
+        Args:
+            query_vector: 查询向量
+            section: 指定搜索的论文部分，如果为None则搜索所有部分
+            top_n: 返回的最大结果数
+            filter_expr: 过滤表达式
+        Returns:
+            匹配结果列表
+        """
+        # 搜索参数
+        params = {"metric_type": "L2", "params": {"nprobe": 10}}
+        output_fields = ["text", "paper_id", "section", "topics"]
+        
+        if section:
+            # 搜索指定部分
+            collection_name = self._get_collection_name(section)
+            return self.db_client.search(
+                collection_name=collection_name,
+                query_vector=query_vector,
+                expr=filter_expr,
+                output_fields=output_fields,
+                top_n=top_n,
+                params=params
+            )
+        else:
+            # 搜索所有部分
+            collection_names = [self._get_collection_name(sec) for sec in self.section_names]
+            return self.db_client.search_multiple_collections(
+                collection_names=collection_names,
+                query_vector=query_vector,
+                expr=filter_expr,
+                output_fields=output_fields,
+                top_n=top_n,
+                params=params
+            ) 

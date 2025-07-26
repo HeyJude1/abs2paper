@@ -1,3 +1,3 @@
 Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs.txt:
 1. High Performance Computing
-故该论文的主题关键词总结为[1]。
+该论文的主题关键词总结为[1]。

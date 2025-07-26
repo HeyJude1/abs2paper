@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 import logging
 import sys
 import argparse
+import json
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
 
@@ -38,12 +39,27 @@ class ComponentExtractor:
     
     def __init__(self):
         """初始化组件提取器"""
-        # 集中配置默认路径
+        # 确定项目根目录
         module_dir = os.path.dirname(os.path.abspath(__file__))
+        self.project_root = os.path.dirname(os.path.dirname(module_dir))
+        
+        # 加载配置文件
+        config_path = os.path.join(self.project_root, "config", "config.json")
+        with open(config_path, 'r', encoding='utf-8') as f:
+            self.config = json.load(f)
+            logger.info(f"已加载配置: {config_path}")
+        
+        # 获取路径配置
+        data_paths = self.config["data_paths"]
+        text_extract_path = data_paths["text_extract"]["path"].lstrip('/')
+        component_extract_path = data_paths["component_extract"]["path"].lstrip('/')
         
         # 固定的输入输出路径
-        self.input_dir = os.path.abspath(os.path.join(module_dir, "result", "text_extract"))
-        self.output_dir = os.path.abspath(os.path.join(module_dir, "result", "component_extract"))
+        self.input_dir = os.path.abspath(os.path.join(self.project_root, text_extract_path))
+        self.output_dir = os.path.abspath(os.path.join(self.project_root, component_extract_path))
+        
+        logger.info(f"📂 输入目录: {self.input_dir}")
+        logger.info(f"📂 输出目录: {self.output_dir}")
         
         # 初始化状态变量
         self.reset_state()

@@ -35,19 +35,30 @@ class PaperLabeler:
         Args:
             topic_manager: 可选的主题管理器实例
         """
+        # 确定项目根目录
+        module_dir = os.path.dirname(os.path.abspath(__file__))
+        self.project_root = os.path.dirname(os.path.dirname(module_dir))
+        
+        # 加载配置文件
+        config_path = os.path.join(self.project_root, "config", "config.json")
+        with open(config_path, 'r', encoding='utf-8') as f:
+            self.config = json.load(f)
+            logger.info(f"已加载配置: {config_path}")
+        
         # 创建LLM客户端
         self.llm_client = LLMClient()
         
         # 加载提示词模板
         self.prompt_template = self._load_prompt_template()
         
-        # 设置固定路径
-        module_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(os.path.dirname(module_dir))
+        # 获取路径配置
+        data_paths = self.config["data_paths"]
+        abstract_extract_path = data_paths["abstract_extract"]["path"].lstrip('/')
+        label_path = data_paths["label"]["path"].lstrip('/')
         
         # 固定的输入输出路径
-        self.input_dir = os.path.join(project_root, "abs2paper", "extraction", "result", "abstract_extract")
-        self.output_dir = os.path.join(project_root, "abs2paper", "extraction", "result", "label")
+        self.input_dir = os.path.join(self.project_root, abstract_extract_path)
+        self.output_dir = os.path.join(self.project_root, label_path)
         
         # 确保目录存在
         os.makedirs(self.input_dir, exist_ok=True)
@@ -58,7 +69,7 @@ class PaperLabeler:
         
         # 初始化或使用传入的主题管理器
         self.topic_manager = topic_manager or TopicManager()
-        
+    
     def _load_prompt_template(self) -> str:
         """
         加载提示词模板
@@ -69,19 +80,14 @@ class PaperLabeler:
         Raises:
             FileNotFoundError: 如果提示词模板文件不存在
         """
-        # 确定提示词模板路径
-        module_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(os.path.dirname(module_dir))
-        prompt_path = os.path.join(project_root, "data", "prompt_kb.txt")
+        # 从配置中读取提示词模板路径
+        prompt_kb_path = self.config["data_paths"]["prompt_kb"]["path"].lstrip('/')
+        prompt_path = os.path.join(self.project_root, prompt_kb_path)
         
-        try:
-            with open(prompt_path, 'r', encoding='utf-8') as f:
-                template = f.read().strip()
-                logger.info(f"✅ 已加载提示词模板: {prompt_path}")
-                return template
-        except Exception as e:
-            logger.error(f"❌ 加载提示词模板失败: {str(e)}")
-            raise FileNotFoundError(f"未找到提示词模板文件: {prompt_path}")
+        with open(prompt_path, 'r', encoding='utf-8') as f:
+            template = f.read().strip()
+            logger.info(f"✅ 已加载提示词模板: {prompt_path}")
+            return template
     
     def extract_keywords_array(self, response: str) -> str:
         """
@@ -337,24 +343,30 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
         处理是否成功（至少成功处理一个文件）
     """
     try:
-    # 初始化论文标签生成器
+        # 初始化论文标签生成器
         labeler = PaperLabeler()
+        
         # 如果提供了自定义路径，则使用自定义路径
         if input_dir:
             labeler.input_dir = input_dir
         if output_dir:
             labeler.output_dir = output_dir
-    # 确保输出目录存在
+            
+        # 确保输出目录存在
         os.makedirs(labeler.output_dir, exist_ok=True)
-    # 处理所有论文
+        
+        # 处理所有论文
         logger.info(f"🚀 开始处理论文，源目录: {labeler.input_dir}")
         success_count, total_count, all_paper_results = labeler.process_directory()
-    # 保存汇总结果
-    if all_paper_results:
+        
+        # 保存汇总结果
+        if all_paper_results:
             keyword_counts = labeler.save_results(all_paper_results)
-        logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
-    logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
+            logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
+            
+        logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
         logger.info(f"结果已保存至 {labeler.output_dir}")
+        
         # 如果至少有一个文件成功处理，则认为操作成功
         return success_count > 0
     except Exception as e:
