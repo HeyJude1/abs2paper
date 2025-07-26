@@ -7,7 +7,8 @@ import requests
 import json
 import logging
 import copy
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -111,36 +112,53 @@ class LLMClient:
 
     def get_embedding(self, texts: list) -> list:
         """
-        调用SiliconFlow embedding API获取文本嵌入向量
+        调用SiliconFlow embedding API获取文本嵌入向量，使用批处理方式
+        
         Args:
             texts: 文本列表
+            
         Returns:
             嵌入向量列表
-        Raises:
-            ValueError: API返回数据不符合预期
-            requests.exceptions.RequestException: API请求异常
         """
         embedding_config = self.config.get("embedding", {})
         request_config = embedding_config.get("request", {})
-
+        
         url = request_config.get("url", "https://api.siliconflow.cn/v1/embeddings")
-
-        payload = copy.deepcopy(request_config.get("payload", {}))
-        payload["input"] = texts
-
         headers = copy.deepcopy(request_config.get("headers", {}))
-        headers["Authorization"] = f"Bearer {embedding_config.get('api_key')}"
-
+        api_key = embedding_config.get("api_key")
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
         timeout = embedding_config.get("timeout", 30)
         
-        response = requests.post(url, json=payload, headers=headers, timeout=timeout)
-
-        if response.status_code != 200:
-            raise ValueError(f"Embedding API请求失败，状态码: {response.status_code}, 响应: {response.text}")
-
-        data = response.json()
+        # 批处理大小，根据API限制设置
+        batch_size = 32
         
-        if "data" in data:
-            return [item["embedding"] for item in data["data"]]
-        else:
-            raise ValueError(f"Embedding API返回数据不符合预期: {data}") 
+        # 计算总批次数
+        total_batches = (len(texts) + batch_size - 1) // batch_size
+        all_embeddings = []
+        
+        for i in range(0, len(texts), batch_size):
+            # 获取当前批次的文本
+            batch_texts = texts[i:i+batch_size]
+            batch_num = i // batch_size + 1
+            logger.info(f"处理第 {batch_num}/{total_batches} 批，包含 {len(batch_texts)} 个文本")
+            
+            try:
+                payload = copy.deepcopy(request_config.get("payload", {}))
+                payload["input"] = batch_texts
+                
+                response = requests.post(url, json=payload, headers=headers, timeout=timeout)
+                
+                if response.status_code == 200:
+                    response_data = response.json()
+                    batch_embeddings = [item["embedding"] for item in response_data["data"]]
+                    all_embeddings.extend(batch_embeddings)
+                else:
+                    logger.error(f"Embedding API请求失败，状态码: {response.status_code}")
+                    return []
+                    
+            except Exception as e:
+                logger.error(f"获取embedding时出错: {str(e)}")
+                return []
+        
+        return all_embeddings 
