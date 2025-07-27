@@ -4,6 +4,10 @@
 本模块实现两阶段主题提取流程：
 1. 从论文摘要中提取初步主题
 2. 整合和合并提取的主题
+
+同时支持整个两阶段工作流：
+1. 阶段一：从论文摘要中初次提取和整合主题词，形成稳定主题列表
+2. 阶段二：使用稳定主题列表重新为论文分配主题
 """
 
 import os
@@ -15,6 +19,7 @@ from datetime import datetime
 
 # 导入主题管理器
 from abs2paper.utils.topic_manager import TopicManager, Topic
+# from abs2paper.processing.labeling import PaperLabeler
 
 # 设置日志
 logging.basicConfig(
@@ -50,21 +55,10 @@ class TopicExtractor:
             extracted_topics: 提取的主题词列表，格式为[(论文ID, [主题ID])]
         """
         extracted_topics = []
+        all_new_topics = []
         
-        # 获取当前有效的主题词列表
-        topic_list = self.topic_manager.generate_topic_list_text()
-        
-        # 构建提示模板
-        prompt_template = """
-请分析以下论文摘要，给出与之相关的主题关键词。
-仅从以下主题关键词中选择：
-{topic_list}
-
-论文摘要：
-{abstract}
-
-请输出相关的主题ID，格式为[ID1, ID2, ...]：
-        """
+        # 加载提示词模板
+        prompt_template = self._load_prompt_template()
         
         logger.info(f"开始从 {len(abstracts)} 篇论文摘要中提取主题")
         
@@ -74,16 +68,23 @@ class TopicExtractor:
             
             try:
                 # 构建完整提示
-                prompt = prompt_template.format(
-                    topic_list=topic_list,
-                    abstract=abstract
-                )
+                prompt = prompt_template.replace("{abstract}", abstract)
                 
                 # 调用LLM
                 response = self.llm_client.get_completion(prompt)
                 
-                # 解析响应，提取主题ID
-                topic_ids = self._parse_topic_ids(response)
+                # 解析响应，提取主题ID和新主题
+                topic_ids, new_topics = self._parse_topics_response(response)
+                
+                # 收集所有新主题
+                if new_topics:
+                    all_new_topics.extend(new_topics)
+                    logger.info(f"从论文 {paper_id} 中提取到 {len(new_topics)} 个新主题词")
+                
+                # 处理新主题
+                if new_topics:
+                    for topic_name in new_topics:
+                        self._add_new_topic(topic_name)
                 
                 if topic_ids:
                     logger.info(f"论文 {paper_id} 的主题: {topic_ids}")
@@ -94,176 +95,145 @@ class TopicExtractor:
             except Exception as e:
                 logger.error(f"提取论文 {paper_id} 的主题时出错: {e}")
         
+        # 保存所有新生成的主题词
+        if all_new_topics:
+            self._save_generated_topics(all_new_topics)
+            logger.info(f"已保存 {len(all_new_topics)} 个新生成的主题词")
+        
         logger.info(f"已从 {len(extracted_topics)} 篇论文中提取主题")
         return extracted_topics
     
-    def _parse_topic_ids(self, response: str) -> List[str]:
+    def _load_prompt_template(self) -> str:
         """
-        从模型响应中解析主题ID
+        加载提示词模板
         
-        Args:
-            response: 模型响应文本
-            
         Returns:
-            主题ID列表
+            prompt_template: 提示词模板
         """
-        # 尝试匹配方括号中的内容
-        match = re.search(r'\[(.*?)\]', response)
-        if match:
-            # 提取所有数字
-            topic_ids = re.findall(r'\d+', match.group(1))
-            return topic_ids
-        
-        # 如果没有匹配到方括号，尝试直接提取数字
-        topic_ids = re.findall(r'\d+', response)
-        return topic_ids
-    
-    def consolidate_topics(self, extracted_topics: List[Tuple[str, List[str]]]) -> List[Tuple[str, List[str]]]:
-        """
-        整合和合并所有提取的主题
-        
-        Args:
-            extracted_topics: 初步提取的主题词，格式为[(论文ID, [主题ID])]
-            
-        Returns:
-            consolidated_topics: 整合后的主题词，格式为[(论文ID, [主题ID])]
-        """
-        if not extracted_topics:
-            logger.warning("没有提供任何主题进行整合")
-            return []
-        
-        # 收集所有出现的主题ID
-        all_topic_ids = set()
-        for _, topics in extracted_topics:
-            all_topic_ids.update(topics)
-        
-        if not all_topic_ids:
-            logger.warning("没有发现任何主题ID")
-            return extracted_topics
-        
-        logger.info(f"开始整合 {len(all_topic_ids)} 个主题: {all_topic_ids}")
-        
-        # 获取所有主题的详细信息
-        topic_details = []
-        for topic_id in all_topic_ids:
-            topic_info = self.topic_manager.get_topic_info(topic_id)
-            if topic_info:
-                topic_details.append(topic_info)
-        
-        # 按创建时间排序主题（早期创建的主题优先）
-        topic_details.sort(key=lambda x: x.get('created_at', ''))
-        
-        # 如果只有一个主题，无需合并
-        if len(topic_details) <= 1:
-            logger.info("只有一个主题，无需合并")
-            return extracted_topics
-        
-        # 构建主题合并提示
-        merge_prompt = self._create_merge_prompt(topic_details)
-        
         try:
-            # 调用LLM获取合并建议
-            merge_response = self.llm_client.get_completion(merge_prompt)
+            # 获取项目根目录
+            module_dir = os.path.dirname(os.path.abspath(__file__))
+            project_root = os.path.dirname(os.path.dirname(module_dir))
             
-            # 解析合并建议
-            merge_suggestions = self._parse_merge_suggestions(merge_response)
+            # 获取配置文件路径
+            config_path = os.path.join(project_root, "config", "config.json")
             
-            logger.info(f"解析到 {len(merge_suggestions)} 个合并建议")
+            # 读取配置文件获取提示词路径
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
             
-            # 执行合并操作
-            for source_id, target_id in merge_suggestions:
-                logger.info(f"合并主题 {source_id} 到 {target_id}")
-                self.topic_manager.merge_topics(source_id, target_id)
+            generate_topic_path = os.path.join(project_root, config["data_paths"]["generate_topic"]["path"].lstrip('/'))
             
-            # 更新所有论文的主题映射
-            updated_topics = []
-            for paper_id, topics in extracted_topics:
-                # 获取每个主题的有效ID
-                effective_topics = [self.topic_manager.get_effective_topic_id(t) for t in topics]
-                # 去重
-                effective_topics = list(set(effective_topics))
-                updated_topics.append((paper_id, effective_topics))
-            
-            logger.info(f"主题整合完成，更新了 {len(updated_topics)} 篇论文的主题")
-            return updated_topics
+            # 读取提示词模板
+            with open(generate_topic_path, 'r', encoding='utf-8') as f:
+                prompt_template = f.read()
+                logger.info(f"已加载提示词模板: {generate_topic_path}")
+                
+            return prompt_template
             
         except Exception as e:
-            logger.error(f"整合主题时出错: {e}")
-            return extracted_topics
-    
-    def _create_merge_prompt(self, topic_details: List[Dict[str, Any]]) -> str:
+            logger.error(f"加载提示词模板时出错: {e}")
+            raise
+            
+    def _save_generated_topics(self, new_topics: List[str]) -> bool:
         """
-        创建主题合并提示
+        保存生成的主题词到gen_topic.json
         
         Args:
-            topic_details: 主题详细信息列表
+            new_topics: 新生成的主题词列表
             
         Returns:
-            合并提示文本
+            是否成功保存
         """
-        # 生成主题列表文本
-        topic_list = []
-        for topic in topic_details:
-            topic_list.append(f"{topic['id']}. {topic['name_zh']}（{topic['name_en']}）")
-        
-        topic_list_text = "\n".join(topic_list)
-        
-        # 构建提示模板
-        prompt = f"""
-我有以下主题关键词（按重要性排序）：
-{topic_list_text}
-
-请分析这些主题词，识别相似或重复的概念，建议将哪些主题合并。
-合并时，应该将后创建的主题合并到先创建的主题中，保持原有的主题体系。
-
-请按照以下规则给出合并建议：
-1. 如果两个主题完全相同或高度相似，应该合并
-2. 如果一个主题是另一个主题的子集或特例，应该合并
-3. 避免创建过于宽泛的主题
-
-回复格式为：合并[待合并ID]->[目标ID]，例如"合并5->3"表示将主题5合并到主题3中。
-每行一个合并建议，如果没有需要合并的主题，请回答"无需合并"。
-        """
-        
-        return prompt
+        if not new_topics:
+            logger.info("没有新生成的主题词需要保存")
+            return True
+            
+        try:
+            # 加载现有的生成主题词
+            generated_topics = self.topic_manager.load_generated_topics()
+            
+            # 为新主题词分配临时ID
+            for topic in new_topics:
+                # 检查是否已存在
+                exists = False
+                for topic_data in generated_topics.values():
+                    if (topic_data.get("name_zh") == topic) or (topic in topic_data.get("aliases", [])):
+                        exists = True
+                        break
+                
+                if not exists:
+                    # 生成临时ID (gen_前缀加时间戳)
+                    temp_id = f"gen_{int(datetime.now().timestamp())}"
+                    
+                    # 解析主题名称，提取中文和英文部分
+                    name_zh = topic
+                    name_en = topic
+                    
+                    if '，' in topic or ',' in topic:
+                        parts = re.split(r'[,，]', topic)
+                        name_zh = parts[0].strip()
+                        
+                        # 尝试查找英文部分
+                        for part in parts[1:]:
+                            if "Keywords:" in part or "keywords:" in part:
+                                name_en = part.split(':', 1)[1].strip() if ':' in part else part.strip()
+                                break
+                        
+                        # 如果没有找到英文部分，使用最后一个部分
+                        if name_en == topic:
+                            name_en = parts[-1].strip()
+                    
+                    # 添加到生成主题词字典
+                    generated_topics[temp_id] = {
+                        "id": temp_id,
+                        "name_zh": name_zh,
+                        "name_en": name_en,
+                        "aliases": [],
+                        "status": "pending", # pending表示待处理
+                        "created_at": datetime.now().isoformat()
+                    }
+                    
+                    logger.info(f"添加新生成的主题词: {temp_id}. {name_zh} ({name_en})")
+            
+            # 保存更新后的生成主题词
+            return self.topic_manager.save_generated_topics(generated_topics)
+            
+        except Exception as e:
+            logger.error(f"保存生成的主题词失败: {e}")
+            return False
     
-    # 这一块需要修改，因为模型可能会返回多个合并建议，需要解析出所有的合并建议
-    # 对于prompt需要进行回复的格式进行要求，才能进行字符匹配。
-    def _parse_merge_suggestions(self, response: str) -> List[Tuple[str, str]]:
+    def _parse_topics_response(self, response: str) -> Tuple[List[str], List[str]]:
         """
-        解析合并建议
+        解析模型响应，提取主题ID和新主题
         
         Args:
             response: 模型响应文本
             
         Returns:
-            合并建议列表，格式为[(源主题ID, 目标主题ID)]
+            (topic_ids, new_topics): 主题ID列表和新主题列表
         """
-        merge_suggestions = []
+        topic_ids = []
+        new_topics = []
         
-        # 检查是否无需合并
-        if "无需合并" in response:
-            logger.info("模型建议无需合并主题")
-            return merge_suggestions
+        # 提取已有主题ID
+        for line in response.split('\n'):
+            # 匹配已有主题ID
+            if line.strip() and line[0].isdigit() and '.' in line:
+                id_part = line.split('.')[0].strip()
+                if id_part.isdigit():
+                    topic_ids.append(id_part)
         
-        # 匹配所有"合并X->Y"模式
-        pattern = r'合并\s*(\d+)\s*->\s*(\d+)'
-        matches = re.findall(pattern, response)
+        # 提取新主题
+        for line in response.split('\n'):
+            if "新添加主题词" in line:
+                parts = line.split("：", 1)
+                if len(parts) > 1:
+                    new_topic = parts[1].strip()
+                    new_topics.append(new_topic)
         
-        for source, target in matches:
-            merge_suggestions.append((source, target))
-        
-        # 如果没有找到标准格式，尝试直接提取数字对
-        if not merge_suggestions:
-            # 查找形如 "5->3" 的模式
-            alt_pattern = r'(\d+)\s*->\s*(\d+)'
-            alt_matches = re.findall(alt_pattern, response)
-            
-            for source, target in alt_matches:
-                merge_suggestions.append((source, target))
-        
-        return merge_suggestions
-    
+        return topic_ids, new_topics
+
     def process_abstracts(self, abstracts: List[Tuple[str, str]]) -> Dict[str, List[str]]:
         """
         处理论文摘要，提取并整合主题（完整流程）
@@ -279,8 +249,16 @@ class TopicExtractor:
         # 第一阶段：初步提取主题
         extracted_topics = self.extract_initial_topics(abstracts)
         
-        # 第二阶段：整合和合并主题
-        consolidated_topics = self.consolidate_topics(extracted_topics)
+        # 第二阶段：处理新主题并添加
+        for _, topics in extracted_topics:
+            # 处理提取到的新主题词
+            for topic_name in topics:
+                if isinstance(topic_name, str) and not topic_name.isdigit():
+                    # 这是一个新主题，需要添加
+                    self.topic_manager.add_new_topic(topic_name)
+        
+        # 第三阶段：整合和合并主题
+        consolidated_topics = self.topic_manager.consolidate_topics(extracted_topics, self.llm_client)
         
         # 转换为字典格式
         paper_topics = {paper_id: topics for paper_id, topics in consolidated_topics}
@@ -363,4 +341,17 @@ class TopicExtractor:
             
         except Exception as e:
             logger.error(f"保存论文主题失败: {e}")
-            return False 
+            return False
+            
+    def add_initial_topic(self, initial_topic: str) -> str:
+        """
+        添加初始主题词
+        
+        Args:
+            initial_topic: 初始主题词，如"代码生成"
+            
+        Returns:
+            新主题ID
+        """
+        # 直接调用topic_manager的方法
+        return self.topic_manager.add_initial_topic(initial_topic) 

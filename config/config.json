@@ -78,10 +78,30 @@
       "description": "论文标签数据存放目录",
       "used_by": ["labeling.py (输出)", "paper_ingestor.py (输入)"]
     },
-    "prompt_kb": {
-      "path": "/data/prompt_kb.txt",
+    "get_topic": {
+      "path": "/abs2paper/data/prompt/get_topic",
       "description": "主题提取提示词模板文件",
       "used_by": ["labeling.py"]
+    },
+    "generate_topic": {
+      "path": "/abs2paper/data/prompt/generate_topic",
+      "description": "主题提取初始化提示词模板",
+      "used_by": ["extract_topics.py"]
+    },
+    "merge_topic": {
+      "path": "/abs2paper/data/prompt/merge_topic",
+      "description": "主题合并提示词模板文件",
+      "used_by": ["topic_manager.py"]
+    },
+    "topic_json": {
+      "path": "/abs2paper/processing/data/topic.json",
+      "description": "主题词配置文件",
+      "used_by": ["topic_manager.py"]
+    },
+    "gen_topic_json": {
+      "path": "/abs2paper/processing/data/gen_topic.json",
+      "description": "生成的主题词存储文件",
+      "used_by": ["topic_extractor.py", "topic_manager.py"]
     }
   },
   "paper": {

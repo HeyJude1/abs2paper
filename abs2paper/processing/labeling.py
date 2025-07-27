@@ -81,8 +81,8 @@ class PaperLabeler:
             FileNotFoundError: 如果提示词模板文件不存在
         """
         # 从配置中读取提示词模板路径
-        prompt_kb_path = self.config["data_paths"]["prompt_kb"]["path"].lstrip('/')
-        prompt_path = os.path.join(self.project_root, prompt_kb_path)
+        get_topic_path = self.config["data_paths"]["get_topic"]["path"].lstrip('/')
+        prompt_path = os.path.join(self.project_root, get_topic_path)
         
         with open(prompt_path, 'r', encoding='utf-8') as f:
             template = f.read().strip()
@@ -343,7 +343,7 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
         处理是否成功（至少成功处理一个文件）
     """
     try:
-        # 初始化论文标签生成器
+    # 初始化论文标签生成器
         labeler = PaperLabeler()
         
         # 如果提供了自定义路径，则使用自定义路径
@@ -351,22 +351,22 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
             labeler.input_dir = input_dir
         if output_dir:
             labeler.output_dir = output_dir
-            
-        # 确保输出目录存在
+    
+    # 确保输出目录存在
         os.makedirs(labeler.output_dir, exist_ok=True)
-        
-        # 处理所有论文
+    
+    # 处理所有论文
         logger.info(f"🚀 开始处理论文，源目录: {labeler.input_dir}")
         success_count, total_count, all_paper_results = labeler.process_directory()
-        
-        # 保存汇总结果
-        if all_paper_results:
+    
+    # 保存汇总结果
+    if all_paper_results:
             keyword_counts = labeler.save_results(all_paper_results)
-            logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
-            
-        logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
+        logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
+    
+    logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
         logger.info(f"结果已保存至 {labeler.output_dir}")
-        
+    
         # 如果至少有一个文件成功处理，则认为操作成功
         return success_count > 0
     except Exception as e:

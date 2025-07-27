@@ -13,6 +13,7 @@ import json
 import logging
 from datetime import datetime
 from typing import Dict, List, Set, Tuple, Optional, Any, Union
+import re
 
 # 设置日志
 logging.basicConfig(
@@ -99,15 +100,27 @@ class TopicManager:
         Args:
             config_file: 配置文件路径，可选（默认为项目根目录下的topics.json）
         """
-        # 确定配置文件路径
+        # 获取项目根目录和配置路径
+        module_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.project_root = os.path.dirname(module_dir)
+        
+        # 加载项目配置
+        config_path = os.path.join(self.project_root, "config", "config.json")
+        with open(config_path, 'r', encoding='utf-8') as f:
+            self.config = json.load(f)
+        
+        # 确定主题配置文件路径
         if config_file is None:
-            module_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            project_root = os.path.dirname(module_dir)
-            self.config_file = os.path.join(project_root, "config", "topics.json")
+            topic_json_path = self.config["data_paths"]["topic_json"]["path"].lstrip('/')
+            self.config_file = os.path.join(self.project_root, topic_json_path)
             # 确保配置目录存在
             os.makedirs(os.path.dirname(self.config_file), exist_ok=True)
         else:
             self.config_file = config_file
+        
+        # 确定生成主题配置文件路径
+        gen_topic_json_path = self.config["data_paths"]["gen_topic_json"]["path"].lstrip('/')
+        self.gen_topic_file = os.path.join(self.project_root, gen_topic_json_path)
         
         # 初始化主题词字典和映射关系
         self.topics: Dict[str, Topic] = {}  # {id: Topic}
@@ -128,10 +141,11 @@ class TopicManager:
             是否成功加载
         """
         try:
-            # 如果配置文件不存在，尝试初始化默认主题词
+            # 如果配置文件不存在，创建一个空的主题词字典
             if not os.path.exists(self.config_file):
-                logger.info(f"配置文件 {self.config_file} 不存在，初始化默认主题词")
-                self._initialize_default_topics()
+                logger.warning(f"主题词配置文件 {self.config_file} 不存在，创建空主题词列表")
+                self.topics = {}
+                self.topic_mapping = {}
                 return True
             
             # 读取配置文件
@@ -153,43 +167,10 @@ class TopicManager:
             
         except Exception as e:
             logger.error(f"加载主题词失败: {e}")
-            # 如果加载失败，尝试初始化默认主题词
-            self._initialize_default_topics()
+            # 如果加载失败，初始化空主题词列表
+            self.topics = {}
+            self.topic_mapping = {}
             return False
-    
-    def _initialize_default_topics(self) -> None:
-        """初始化默认主题词（基于prompt_kb.txt中的关键词）"""
-        default_topics = [
-            {"id": "1", "name_zh": "高性能计算", "name_en": "High Performance Computing"},
-            {"id": "2", "name_zh": "并行编程", "name_en": "Parallel Programming"},
-            {"id": "3", "name_zh": "代码优化技术", "name_en": "Code Optimization Techniques"},
-            {"id": "4", "name_zh": "编译器优化", "name_en": "Compiler Optimization"},
-            {"id": "5", "name_zh": "自动化代码生成", "name_en": "Automated Code Generation"},
-            {"id": "6", "name_zh": "GPU编程与加速", "name_en": "GPU Programming and Acceleration"},
-            {"id": "7", "name_zh": "内存管理优化", "name_en": "Memory Management Optimization"},
-            {"id": "8", "name_zh": "异构计算架构", "name_en": "Heterogeneous Computing Architectures"},
-            {"id": "9", "name_zh": "编译器中间表示优化", "name_en": "Compiler Intermediate Representation Optimization"},
-            {"id": "10", "name_zh": "机器学习", "name_en": "Machine Learning"},
-            {"id": "11", "name_zh": "人工智能", "name_en": "Artificial Intelligence"}
-        ]
-        
-        # 清空现有主题词
-        self.topics = {}
-        self.topic_mapping = {}
-        
-        # 添加默认主题词
-        for topic_data in default_topics:
-            topic = Topic(
-                id=topic_data["id"],
-                name_zh=topic_data["name_zh"],
-                name_en=topic_data["name_en"]
-            )
-            self.topics[topic.id] = topic
-        
-        # 保存到配置文件
-        self.save_topics()
-        
-        logger.info(f"已初始化 {len(self.topics)} 个默认主题词")
     
     def save_topics(self) -> bool:
         """
@@ -463,4 +444,425 @@ class TopicManager:
         
         topic_list = self.generate_topic_list_text()
         
-        return f"{header}\n{topic_list}" 
+        return f"{header}\n{topic_list}"
+        
+    def list_all_topics(self) -> bool:
+        """
+        打印所有主题词列表，包括映射关系
+        
+        Returns:
+            是否成功列出
+        """
+        try:
+            # 获取所有主题词
+            topics = self.list_topics()
+            
+            if not topics:
+                logger.warning("没有找到任何主题词")
+                return True
+            
+            # 打印主题词列表
+            print("\n当前主题词列表:")
+            print("=" * 60)
+            print(f"{'ID':<5} {'中文名称':<20} {'英文名称':<30} {'合并到':<10}")
+            print("-" * 60)
+            
+            for topic in sorted(topics, key=lambda x: x['id']):
+                id_str = topic['id']
+                name_zh = topic['name_zh']
+                name_en = topic['name_en']
+                parent_id = topic['parent_id'] if topic['parent_id'] else ""
+                
+                print(f"{id_str:<5} {name_zh:<20} {name_en:<30} {parent_id:<10}")
+            
+            print("=" * 60)
+            print(f"总计: {len(topics)} 个主题词")
+            
+            # 打印映射关系
+            if self.topic_mapping:
+                print("\n主题映射关系:")
+                print("=" * 30)
+                print(f"{'旧ID':<5} -> {'新ID':<5}")
+                print("-" * 30)
+                
+                for old_id, new_id in self.topic_mapping.items():
+                    print(f"{old_id:<5} -> {new_id:<5}")
+                
+                print("=" * 30)
+                print(f"总计: {len(self.topic_mapping)} 个映射")
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"列出主题词时出错: {str(e)}")
+            return False
+            
+    def add_initial_topic(self, initial_topic: str) -> str:
+        """
+        添加初始主题词
+        
+        Args:
+            initial_topic: 初始主题词，如"代码生成"
+            
+        Returns:
+            新主题ID
+        """
+        logger.info(f"添加初始主题词: {initial_topic}")
+        
+        # 获取最大ID
+        max_id = 0
+        for topic in self.topics.values():
+            try:
+                topic_id = int(topic.id)
+                if topic_id > max_id:
+                    max_id = topic_id
+            except ValueError:
+                pass
+        
+        # 生成新ID
+        new_id = str(max_id + 1)
+        
+        # 判断是否是英文
+        is_english = all(c.isalpha() or c.isspace() or c == '-' for c in initial_topic)
+        
+        # 添加初始主题词
+        if is_english:
+            name_en = initial_topic
+            name_zh = initial_topic  # 需要翻译功能，但我们移除翻译相关代码以保持专注
+        else:
+            name_zh = initial_topic
+            name_en = initial_topic if initial_topic.isascii() else "Code Generation"
+            
+        # 添加初始主题词
+        success = self.add_topic(
+            id=new_id, 
+            name_zh=name_zh, 
+            name_en=name_en
+        )
+        
+        if success:
+            logger.info(f"已添加初始主题词，ID: {new_id}")
+        else:
+            logger.error(f"添加初始主题词失败: {initial_topic}")
+            
+        return new_id
+        
+    def update_prompt_template(self, config: Optional[Dict] = None) -> bool:
+        """
+        更新提示词模板
+        
+        Args:
+            config: 配置信息字典，如果为None则自动加载
+            
+        Returns:
+            是否成功更新
+        """
+        try:
+            # 获取提示词模板路径
+            if config is None:
+                module_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                project_root = os.path.dirname(module_dir)
+                config_path = os.path.join(project_root, "config", "config.json")
+                
+                # 读取配置文件获取提示词路径
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+            
+            # 从配置中获取路径
+            project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            prompt_kb_path = os.path.join(project_root, config["data_paths"]["prompt_kb"]["path"].lstrip('/'))
+            
+            # 读取原始提示词
+            with open(prompt_kb_path, 'r', encoding='utf-8') as f:
+                original_prompt = f.read()
+            
+            # 生成主题词列表文本
+            pattern = r"##知识库：.*?(?=##|$)"
+            replacement = self.generate_prompt_kb_text()
+            
+            # 替换提示词中的知识库部分
+            updated_prompt = re.sub(pattern, replacement, original_prompt, flags=re.DOTALL)
+            
+            # 如果没有成功替换，报错
+            if updated_prompt == original_prompt:
+                logger.warning("无法在提示词中找到知识库部分进行替换")
+                return False
+            
+            # 备份原始提示词
+            backup_path = f"{prompt_kb_path}.bak"
+            with open(backup_path, 'w', encoding='utf-8') as f:
+                f.write(original_prompt)
+            
+            # 保存更新后的提示词
+            with open(prompt_kb_path, 'w', encoding='utf-8') as f:
+                f.write(updated_prompt)
+            
+            logger.info(f"已更新提示词模板 {prompt_kb_path}")
+            logger.info(f"原始提示词已备份到 {backup_path}")
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"更新提示词模板时出错: {str(e)}")
+            return False
+            
+    def consolidate_topics(self, extracted_topics: List[Tuple[str, List[str]]], llm_client) -> List[Tuple[str, List[str]]]:
+        """
+        整合和合并所有提取的主题
+        
+        Args:
+            extracted_topics: 初步提取的主题词，格式为[(论文ID, [主题ID])]
+            llm_client: LLM客户端，用于调用大模型
+            
+        Returns:
+            consolidated_topics: 整合后的主题词，格式为[(论文ID, [主题ID])]
+        """
+        if not extracted_topics:
+            logger.warning("没有提供任何主题进行整合")
+            return []
+        
+        # 收集所有出现的主题ID
+        all_topic_ids = set()
+        for _, topics in extracted_topics:
+            all_topic_ids.update(topics)
+        
+        if not all_topic_ids:
+            logger.warning("没有发现任何主题ID")
+            return extracted_topics
+        
+        logger.info(f"开始整合 {len(all_topic_ids)} 个主题: {all_topic_ids}")
+        
+        # 获取所有主题的详细信息
+        topic_details = []
+        for topic_id in all_topic_ids:
+            topic_info = self.get_topic_info(topic_id)
+            if topic_info:
+                topic_details.append(topic_info)
+        
+        # 按创建时间排序主题（早期创建的主题优先）
+        topic_details.sort(key=lambda x: x.get('created_at', ''))
+        
+        # 如果只有一个主题，无需合并
+        if len(topic_details) <= 1:
+            logger.info("只有一个主题，无需合并")
+            return extracted_topics
+        
+        # 创建主题合并提示
+        merge_prompt = self._create_merge_prompt(topic_details)
+        
+        try:
+            # 调用LLM获取合并建议
+            merge_response = llm_client.get_completion(merge_prompt)
+            
+            # 解析合并建议
+            merge_suggestions = self._parse_merge_suggestions(merge_response)
+            
+            logger.info(f"解析到 {len(merge_suggestions)} 个合并建议")
+            
+            # 执行合并操作
+            for source_id, target_id in merge_suggestions:
+                logger.info(f"合并主题 {source_id} 到 {target_id}")
+                self.merge_topics(source_id, target_id)
+            
+            # 更新所有论文的主题映射
+            updated_topics = []
+            for paper_id, topics in extracted_topics:
+                # 获取每个主题的有效ID
+                effective_topics = [self.get_effective_topic_id(t) for t in topics]
+                # 去重
+                effective_topics = list(set(effective_topics))
+                updated_topics.append((paper_id, effective_topics))
+            
+            logger.info(f"主题整合完成，更新了 {len(updated_topics)} 篇论文的主题")
+            return updated_topics
+            
+        except Exception as e:
+            logger.error(f"整合主题时出错: {e}")
+            return extracted_topics
+    
+    def _create_merge_prompt(self, topic_details: List[Dict[str, Any]]) -> str:
+        """
+        创建主题合并提示
+        
+        Args:
+            topic_details: 主题详细信息列表
+            
+        Returns:
+            合并提示文本
+        """
+        # 生成主题列表文本
+        topic_list = []
+        for topic in topic_details:
+            topic_list.append(f"{topic['id']}. {topic['name_zh']}（{topic['name_en']}）")
+        
+        topic_list_text = "\n".join(topic_list)
+        
+        # 获取merge_topic提示模板路径
+        module_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        project_root = os.path.dirname(module_dir)
+        config_path = os.path.join(project_root, "config", "config.json")
+        
+        # 读取配置文件获取merge_topic提示词路径
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        
+        merge_topic_path = os.path.join(project_root, config["data_paths"]["merge_topic"]["path"].lstrip('/'))
+        
+        # 读取提示模板
+        with open(merge_topic_path, 'r', encoding='utf-8') as f:
+            merge_prompt_template = f.read()
+        
+        # 填充模板
+        merge_prompt = merge_prompt_template.format(topic_list_text=topic_list_text)
+        
+        return merge_prompt
+    
+    def _parse_merge_suggestions(self, response: str) -> List[Tuple[str, str]]:
+        """
+        解析合并建议
+        
+        Args:
+            response: 模型响应文本
+            
+        Returns:
+            合并建议列表，格式为[(源主题ID, 目标主题ID)]
+        """
+        merge_suggestions = []
+        
+        # 检查是否无需合并
+        if "无需合并" in response:
+            logger.info("模型建议无需合并主题")
+            return merge_suggestions
+        
+        # 匹配所有"合并X->Y"模式
+        pattern = r'合并\s*(\d+)\s*->\s*(\d+)'
+        matches = re.findall(pattern, response)
+        
+        for source, target in matches:
+            merge_suggestions.append((source, target))
+        
+        # 如果没有找到标准格式，尝试直接提取数字对
+        if not merge_suggestions:
+            # 查找形如 "5->3" 的模式
+            alt_pattern = r'(\d+)\s*->\s*(\d+)'
+            alt_matches = re.findall(alt_pattern, response)
+            
+            for source, target in alt_matches:
+                merge_suggestions.append((source, target))
+        
+        return merge_suggestions
+        
+    def add_new_topic(self, topic_name: str) -> str:
+        """
+        添加新主题
+        
+        Args:
+            topic_name: 主题名称，格式为"中文名称，Keywords: 英文名称"
+            
+        Returns:
+            新主题ID
+        """
+        # 获取最大ID
+        max_id = 0
+        for topic in self.topics.values():
+            try:
+                topic_id = int(topic.id)
+                if topic_id > max_id:
+                    max_id = topic_id
+            except ValueError:
+                pass
+        
+        # 生成新ID
+        new_id = str(max_id + 1)
+        
+        # 解析主题名称，提取中文和英文部分
+        if '，' in topic_name or ',' in topic_name:
+            parts = re.split(r'[,，]', topic_name)
+            name_zh = parts[0].strip()
+            
+            # 尝试查找英文部分
+            name_en = ""
+            for part in parts[1:]:
+                if "Keywords:" in part or "keywords:" in part:
+                    name_en = part.split(':', 1)[1].strip() if ':' in part else part.strip()
+                    break
+            
+            # 如果没有找到英文部分，使用最后一个部分
+            if not name_en:
+                name_en = parts[-1].strip()
+        else:
+            # 没有明确分隔，使用原名称
+            name_zh = topic_name
+            name_en = topic_name
+        
+        # 添加新主题
+        success = self.add_topic(new_id, name_zh, name_en)
+        
+        if success:
+            logger.info(f"已添加新主题: {new_id}. {name_zh} ({name_en})")
+        else:
+            logger.error(f"添加主题 {topic_name} 失败")
+        
+        return new_id 
+
+    def save_generated_topics(self, generated_topics: Dict[str, Dict[str, Any]]) -> bool:
+        """
+        保存生成的主题词到gen_topic.json
+        
+        Args:
+            generated_topics: 生成的主题词字典 {id: 主题数据}
+            
+        Returns:
+            是否成功保存
+        """
+        try:
+            # 确保目录存在
+            os.makedirs(os.path.dirname(self.gen_topic_file), exist_ok=True)
+            
+            # 准备数据
+            data = {
+                "topics": generated_topics,
+                "version": "1.0.0",
+                "last_updated": datetime.now().isoformat(),
+                "description": "存储阶段一询问大模型生成的主题词（待处理的主题词）"
+            }
+            
+            # 保存到文件
+            with open(self.gen_topic_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            
+            logger.info(f"成功保存 {len(generated_topics)} 个生成的主题词到 {self.gen_topic_file}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"保存生成主题词失败: {e}")
+            return False
+    
+    def load_generated_topics(self) -> Dict[str, Dict[str, Any]]:
+        """
+        从gen_topic.json加载生成的主题词
+        
+        Returns:
+            生成的主题词字典 {id: 主题数据}
+        """
+        generated_topics = {}
+        
+        try:
+            # 如果文件不存在，返回空字典
+            if not os.path.exists(self.gen_topic_file):
+                return generated_topics
+            
+            # 读取文件
+            with open(self.gen_topic_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # 加载主题词
+            if "topics" in data:
+                generated_topics = data["topics"]
+                logger.info(f"成功加载 {len(generated_topics)} 个生成的主题词")
+            
+            return generated_topics
+            
+        except Exception as e:
+            logger.error(f"加载生成主题词失败: {e}")
+            return {} 
