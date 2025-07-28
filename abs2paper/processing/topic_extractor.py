@@ -55,7 +55,6 @@ class TopicExtractor:
             extracted_topics: 提取的主题词列表，格式为[(论文ID, [主题ID])]
         """
         extracted_topics = []
-        all_new_topics = []
         
         # 加载提示词模板
         prompt_template = self._load_prompt_template()
@@ -76,29 +75,50 @@ class TopicExtractor:
                 # 解析响应，提取主题ID和新主题
                 topic_ids, new_topics = self._parse_topics_response(response)
                 
-                # 收集所有新主题
-                if new_topics:
-                    all_new_topics.extend(new_topics)
-                    logger.info(f"从论文 {paper_id} 中提取到 {len(new_topics)} 个新主题词")
+                # 收集主题信息用于日志
+                known_topics_count = len(topic_ids)
+                new_topics_count = len(new_topics)
                 
-                # 处理新主题
-                if new_topics:
-                    for topic_name in new_topics:
-                        self._add_new_topic(topic_name)
-                
+                # 获取匹配到的主题名称，用于日志
+                matched_topic_info = []
                 if topic_ids:
-                    logger.info(f"论文 {paper_id} 的主题: {topic_ids}")
+                    for topic_id in topic_ids:
+                        if topic_id in self.topic_manager.topics:
+                            topic = self.topic_manager.topics[topic_id]
+                            matched_topic_info.append(f"{topic_id}.{topic.name_zh}")
+                
+                # 打印匹配和新增的主题数量，并包括具体匹配的主题
+                if matched_topic_info:
+                    matched_str = ", ".join(matched_topic_info)
+                    logger.info(f"匹配{known_topics_count}个已有主题（{matched_str}），得到{new_topics_count}个新主题")
+                else:
+                    logger.info(f"匹配{known_topics_count}个已有主题，得到{new_topics_count}个新主题")
+                
+                # 如果有新主题，立即保存到gen_topic.json
+                if new_topics:
+                    # logger.info(f"从论文 {paper_id} 中提取到 {len(new_topics)} 个新主题词")
+                    logger.debug(f"新主题词: {new_topics}")
+                    
+                    # 立即保存新主题词到gen_topic.json
+                    self._save_generated_topics(new_topics)
+                
+                # 日志输出
+                if topic_ids:
+                    logger.debug(f"论文 {paper_id} 匹配已有主题: {topic_ids} ({known_topics_count}个)")
+                # else:
+                #     logger.info(f"论文 {paper_id} 未匹配到已有主题")
+                
+                # if new_topics:
+                #     logger.info(f"论文 {paper_id} 提取新主题: {new_topics} ({new_topics_count}个)")
+                
+                if topic_ids or new_topics:
                     extracted_topics.append((paper_id, topic_ids))
                 else:
-                    logger.warning(f"无法从论文 {paper_id} 中提取主题")
+                    logger.warning(f"无法从论文 {paper_id} 中提取任何主题")
                     
             except Exception as e:
                 logger.error(f"提取论文 {paper_id} 的主题时出错: {e}")
-        
-        # 保存所有新生成的主题词
-        if all_new_topics:
-            self._save_generated_topics(all_new_topics)
-            logger.info(f"已保存 {len(all_new_topics)} 个新生成的主题词")
+                logger.exception(e)
         
         logger.info(f"已从 {len(extracted_topics)} 篇论文中提取主题")
         return extracted_topics
@@ -153,7 +173,26 @@ class TopicExtractor:
             # 加载现有的生成主题词
             generated_topics = self.topic_manager.load_generated_topics()
             
-            # 为新主题词分配临时ID
+            # 加载topic.json中的主题，获取最大ID作为起始点
+            # 这样生成的ID会从topic.json的最大ID+1开始
+            max_id = 0
+            for topic in self.topic_manager.topics.values():
+                try:
+                    topic_id = int(topic.id)
+                    max_id = max(max_id, topic_id)
+                except ValueError:
+                    pass
+            
+            # 检查gen_topic.json中是否有更大的ID
+            for topic_id in generated_topics:
+                try:
+                    id_num = int(topic_id)
+                    max_id = max(max_id, id_num)
+                except ValueError:
+                    pass
+            
+            # 为新主题词分配连续的ID
+            next_id = max_id + 1
             for topic in new_topics:
                 # 检查是否已存在
                 exists = False
@@ -163,8 +202,9 @@ class TopicExtractor:
                         break
                 
                 if not exists:
-                    # 生成临时ID (gen_前缀加时间戳)
-                    temp_id = f"gen_{int(datetime.now().timestamp())}"
+                    # 直接使用纯数字ID
+                    temp_id = str(next_id)
+                    next_id += 1
                     
                     # 解析主题名称，提取中文和英文部分
                     name_zh = topic
@@ -216,21 +256,83 @@ class TopicExtractor:
         topic_ids = []
         new_topics = []
         
-        # 提取已有主题ID
-        for line in response.split('\n'):
-            # 匹配已有主题ID
-            if line.strip() and line[0].isdigit() and '.' in line:
-                id_part = line.split('.')[0].strip()
-                if id_part.isdigit():
-                    topic_ids.append(id_part)
+        # 记录原始响应，便于调试
+        logger.debug(f"原始LLM响应: {response}")
         
-        # 提取新主题
-        for line in response.split('\n'):
-            if "新添加主题词" in line:
-                parts = line.split("：", 1)
-                if len(parts) > 1:
-                    new_topic = parts[1].strip()
+        # 分析不同类型的主题
+        known_topics_matched = []
+        new_topics_added = []
+        
+        # 遍历响应的每一行
+        for line in response.strip().split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+                
+            # 检查是否是已有主题词格式：数字.中文关键词，Keywords: English Keywords
+            if line[0].isdigit() and '.' in line.split(' ')[0]:
+                id_part = line.split('.')[0].strip()
+                if id_part.isdigit() and id_part in self.topic_manager.topics:
+                    topic_ids.append(id_part)
+                    topic_name = self.topic_manager.topics[id_part].name_zh
+                    known_topics_matched.append(f"{id_part}.{topic_name}")
+            
+            # 检查是否是新添加主题词格式：新添加主题词：中文关键词，Keywords: English Keywords
+            elif "新添加主题词" in line:
+                try:
+                    # 提取新主题词部分
+                    topic_part = line.split("：", 1)[1].strip() if "：" in line else line.split(":", 1)[1].strip()
+                    if topic_part:
+                        new_topics.append(topic_part)
+                        new_topics_added.append(topic_part)
+                except IndexError:
+                    continue
+        
+        # 输出解析结果统计
+        if known_topics_matched:
+            logger.debug(f"匹配到 {len(known_topics_matched)} 个已有主题: {', '.join(known_topics_matched)}")
+        else:
+            logger.debug(f"未匹配到任何已有主题")
+            
+        if new_topics_added:
+            logger.debug(f"添加了 {len(new_topics_added)} 个新主题: {', '.join(new_topics_added)}")
+        
+        # 如果没有找到任何主题，记录警告并尝试其他格式
+        if not topic_ids and not new_topics:
+            logger.warning(f"使用标准格式无法从LLM响应中提取任何主题，尝试其他格式...")
+            
+            # 尝试其他格式提取新主题
+            # 1. 检查"该论文提出了新主题"格式
+            new_topic_pattern2 = r'该论文提出了新主题[：:]\s*(.*?)(?:\n|$)'
+            for match in re.finditer(new_topic_pattern2, response):
+                new_topic = match.group(1).strip()
+                if new_topic and len(new_topic) > 1:
                     new_topics.append(new_topic)
+            
+            # 2. 检查"需要添加新主题"格式
+            new_topic_pattern3 = r'需要添加新主题[：:]\s*(.*?)(?:\n|$)'
+            for match in re.finditer(new_topic_pattern3, response):
+                new_topic = match.group(1).strip()
+                if new_topic and len(new_topic) > 1:
+                    new_topics.append(new_topic)
+            
+            # 3. 尝试从"故该论文的主题关键词总结为"后面的内容中提取
+            summary_pattern = r'故该论文的主题关键词总结为\[(.*?)\]'
+            for match in re.finditer(summary_pattern, response):
+                keywords = match.group(1).strip().split(',')
+                for keyword in keywords:
+                    keyword = keyword.strip()
+                    # 如果是纯数字，可能是ID
+                    if keyword.isdigit():
+                        if keyword in self.topic_manager.topics:
+                            topic_ids.append(keyword)
+                    # 否则可能是新主题
+                    elif keyword and len(keyword) > 1 and not keyword.isdigit():
+                        new_topics.append(keyword)
+            
+            # 如果仍然没找到
+            if not topic_ids and not new_topics:
+                logger.warning(f"无法从LLM响应中提取任何主题，响应内容: {response[:200]}...")
         
         return topic_ids, new_topics
 
@@ -278,20 +380,26 @@ class TopicExtractor:
         """
         abstracts = []
         
-        # 读取目录中的所有文件
-        for filename in os.listdir(abstract_dir):
-            if filename.endswith(".txt"):
-                paper_id = os.path.splitext(filename)[0]
-                
-                try:
-                    with open(os.path.join(abstract_dir, filename), 'r', encoding='utf-8') as f:
-                        abstract = f.read().strip()
+        # 递归遍历目录查找所有.txt文件
+        for root, dirs, files in os.walk(abstract_dir):
+            for filename in files:
+                if filename.endswith(".txt"):
+                    file_path = os.path.join(root, filename)
+                    paper_id = os.path.splitext(filename)[0]
                     
-                    if abstract:
-                        abstracts.append((paper_id, abstract))
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            abstract = f.read().strip()
                         
-                except Exception as e:
-                    logger.error(f"读取文件 {filename} 失败: {e}")
+                        if abstract:
+                            abstracts.append((paper_id, abstract))
+                            # 删除冗余日志输出
+                            # logger.info(f"已读取摘要: {file_path}")
+                    
+                    except Exception as e:
+                        logger.error(f"读取文件 {file_path} 失败: {e}")
+        
+        logger.info(f"总共找到 {len(abstracts)} 篇论文摘要")
         
         # 处理论文摘要
         return self.process_abstracts(abstracts)
@@ -302,7 +410,7 @@ class TopicExtractor:
         
         Args:
             paper_topics: 论文主题词字典，格式为{论文ID: [主题ID]}
-            output_dir: 输出目录，路径是/data/mjs/project/abs2paper/output/paper_topics
+            output_dir: 输出目录，默认路径是/abs2paper/processing/data/output/paper_topics
             
         Returns:
             是否保存成功

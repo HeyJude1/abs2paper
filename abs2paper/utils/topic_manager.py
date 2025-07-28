@@ -1,25 +1,19 @@
+#!/usr/bin/env python3
 """
-主题词管理模块
+主题词管理工具
 
-本模块提供主题词的管理、更新和合并功能。
-主要功能：
-1. 维护主题词列表和映射关系
-2. 支持添加、更新和合并主题词
-3. 提供主题词持久化存储
+提供主题词的添加、修改、合并等功能，以及主题词的序列化和反序列化功能。
 """
 
 import os
 import json
+import re
+import uuid
 import logging
 from datetime import datetime
-from typing import Dict, List, Set, Tuple, Optional, Any, Union
-import re
+from typing import Dict, List, Optional, Tuple, Any, Union
 
-# 设置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+# 获取日志记录器
 logger = logging.getLogger(__name__)
 
 class Topic:
@@ -122,6 +116,10 @@ class TopicManager:
         gen_topic_json_path = self.config["data_paths"]["gen_topic_json"]["path"].lstrip('/')
         self.gen_topic_file = os.path.join(self.project_root, gen_topic_json_path)
         
+        # 确定合并意见文件路径
+        merge_opinion_path = self.config["data_paths"]["merge_opinion"]["path"].lstrip('/')
+        self.merge_opinion_file = os.path.join(self.project_root, merge_opinion_path)
+        
         # 初始化主题词字典和映射关系
         self.topics: Dict[str, Topic] = {}  # {id: Topic}
         self.topic_mapping: Dict[str, str] = {}  # {旧ID: 新ID}
@@ -195,7 +193,7 @@ class TopicManager:
             with open(self.config_file, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             
-            logger.info(f"成功保存 {len(self.topics)} 个主题词到 {self.config_file}")
+            logger.debug(f"成功保存 {len(self.topics)} 个主题词到 {self.config_file}")
             return True
             
         except Exception as e:
@@ -227,7 +225,7 @@ class TopicManager:
         # 保存更新
         self.save_topics()
         
-        logger.info(f"已添加新主题词: {topic}")
+        logger.debug(f"已添加新主题词: {topic}")
         return True
     
     def update_topic(self, id: str, name_zh: Optional[str] = None, 
@@ -266,64 +264,6 @@ class TopicManager:
         self.save_topics()
         
         logger.info(f"已更新主题词: {topic}")
-        return True
-    
-    def merge_topics(self, source_id: str, target_id: str) -> bool:
-        """
-        合并主题词（将source合并到target）
-        
-        Args:
-            source_id: 源主题ID
-            target_id: 目标主题ID
-            
-        Returns:
-            是否成功合并
-        """
-        # 检查ID是否存在
-        if source_id not in self.topics:
-            logger.warning(f"源主题词ID {source_id} 不存在，无法合并")
-            return False
-        
-        if target_id not in self.topics:
-            logger.warning(f"目标主题词ID {target_id} 不存在，无法合并")
-            return False
-        
-        # 检查是否尝试合并到自身
-        if source_id == target_id:
-            logger.warning(f"源主题和目标主题相同 ({source_id})，无需合并")
-            return False
-        
-        # 检查是否创建循环引用
-        # 这一块可以在prompt中声明是序号靠后的主题词合并到序号靠前的主题词，所以不需要检查循环引用
-        current_id = target_id
-        while current_id in self.topic_mapping:
-            current_id = self.topic_mapping[current_id]
-            if current_id == source_id:
-                logger.warning(f"检测到循环引用，无法合并 {source_id} 到 {target_id}")
-                return False
-        
-        # 获取源主题和目标主题
-        source_topic = self.topics[source_id]
-        target_topic = self.topics[target_id]
-        
-        # 更新映射关系
-        self.topic_mapping[source_id] = target_id
-        
-        # 更新源主题的parent_id
-        source_topic.parent_id = target_id
-        
-        # 合并别名（去重）
-        target_topic.aliases = list(set(target_topic.aliases + source_topic.aliases + [source_topic.name_zh, source_topic.name_en]))
-        
-        # 递归更新任何指向源主题的映射
-        for old_id, new_id in list(self.topic_mapping.items()):
-            if new_id == source_id:
-                self.topic_mapping[old_id] = target_id
-        
-        # 保存更新
-        self.save_topics()
-        
-        logger.info(f"已合并主题词 {source_id} 到 {target_id}")
         return True
     
     def get_effective_topic_id(self, topic_id: str) -> str:
@@ -461,35 +401,40 @@ class TopicManager:
                 logger.warning("没有找到任何主题词")
                 return True
             
-            # 打印主题词列表
-            print("\n当前主题词列表:")
-            print("=" * 60)
-            print(f"{'ID':<5} {'中文名称':<20} {'英文名称':<30} {'合并到':<10}")
-            print("-" * 60)
-            
-            for topic in sorted(topics, key=lambda x: x['id']):
-                id_str = topic['id']
-                name_zh = topic['name_zh']
-                name_en = topic['name_en']
-                parent_id = topic['parent_id'] if topic['parent_id'] else ""
-                
-                print(f"{id_str:<5} {name_zh:<20} {name_en:<30} {parent_id:<10}")
-            
-            print("=" * 60)
-            print(f"总计: {len(topics)} 个主题词")
-            
-            # 打印映射关系
+            # 仅记录简短的主题数量信息
+            logger.info(f"主题词总计: {len(topics)} 个")
             if self.topic_mapping:
-                print("\n主题映射关系:")
-                print("=" * 30)
-                print(f"{'旧ID':<5} -> {'新ID':<5}")
-                print("-" * 30)
+                logger.info(f"主题映射关系: {len(self.topic_mapping)} 个")
+            
+            # 详细内容以DEBUG级别日志记录
+            if logger.isEnabledFor(logging.DEBUG):
+                # 打印主题词列表（仅在DEBUG模式下）
+                logger.debug("\n当前主题词列表:")
+                logger.debug("=" * 60)
+                logger.debug(f"{'ID':<5} {'中文名称':<20} {'英文名称':<30} {'合并到':<10}")
+                logger.debug("-" * 60)
                 
-                for old_id, new_id in self.topic_mapping.items():
-                    print(f"{old_id:<5} -> {new_id:<5}")
+                for topic in sorted(topics, key=lambda x: x['id']):
+                    id_str = topic['id']
+                    name_zh = topic['name_zh']
+                    name_en = topic['name_en']
+                    parent_id = topic['parent_id'] if topic['parent_id'] else ""
+                    
+                    logger.debug(f"{id_str:<5} {name_zh:<20} {name_en:<30} {parent_id:<10}")
                 
-                print("=" * 30)
-                print(f"总计: {len(self.topic_mapping)} 个映射")
+                logger.debug("=" * 60)
+                
+                # 打印映射关系（仅在DEBUG模式下）
+                if self.topic_mapping:
+                    logger.debug("\n主题映射关系:")
+                    logger.debug("=" * 30)
+                    logger.debug(f"{'旧ID':<5} -> {'新ID':<5}")
+                    logger.debug("-" * 30)
+                    
+                    for old_id, new_id in self.topic_mapping.items():
+                        logger.debug(f"{old_id:<5} -> {new_id:<5}")
+                    
+                    logger.debug("=" * 30)
             
             return True
             
@@ -570,7 +515,8 @@ class TopicManager:
             
             # 从配置中获取路径
             project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-            prompt_kb_path = os.path.join(project_root, config["data_paths"]["prompt_kb"]["path"].lstrip('/'))
+            # 使用get_topic而不是prompt_kb
+            prompt_kb_path = os.path.join(project_root, config["data_paths"]["get_topic"]["path"].lstrip('/'))
             
             # 读取原始提示词
             with open(prompt_kb_path, 'r', encoding='utf-8') as f:
@@ -621,26 +567,36 @@ class TopicManager:
             logger.warning("没有提供任何主题进行整合")
             return []
         
-        # 收集所有出现的主题ID
-        all_topic_ids = set()
-        for _, topics in extracted_topics:
-            all_topic_ids.update(topics)
+        # 从gen_topic.json获取主题详细信息，而不是topic.json
+        gen_topics = self.load_generated_topics()
         
-        if not all_topic_ids:
-            logger.warning("没有发现任何主题ID")
+        # 如果gen_topics为空，则无需整合
+        if not gen_topics:
+            logger.warning("gen_topic.json中没有主题，无需整合")
             return extracted_topics
         
-        logger.info(f"开始整合 {len(all_topic_ids)} 个主题: {all_topic_ids}")
+        # 直接使用gen_topic.json中的所有主题，忽略extracted_topics中的主题ID
+        # 这样可以确保所有生成的主题都会被考虑进行合并
+        logger.info(f"准备整合gen_topic.json中的 {len(gen_topics)} 个主题")
         
-        # 获取所有主题的详细信息
+        # 收集所有主题的详细信息
         topic_details = []
-        for topic_id in all_topic_ids:
-            topic_info = self.get_topic_info(topic_id)
-            if topic_info:
-                topic_details.append(topic_info)
+        
+        # 将gen_topic.json中的主题转换为topic_details格式
+        for gen_id, topic_data in gen_topics.items():
+            topic_info = {
+                "id": gen_id,
+                "name_zh": topic_data.get("name_zh", ""),
+                "name_en": topic_data.get("name_en", ""),
+                "aliases": topic_data.get("aliases", []),
+                "created_at": topic_data.get("created_at", datetime.now().isoformat())
+            }
+            topic_details.append(topic_info)
         
         # 按创建时间排序主题（早期创建的主题优先）
         topic_details.sort(key=lambda x: x.get('created_at', ''))
+        
+        logger.info(f"从gen_topic.json中加载了 {len(topic_details)} 个主题用于整合")
         
         # 如果只有一个主题，无需合并
         if len(topic_details) <= 1:
@@ -651,18 +607,52 @@ class TopicManager:
         merge_prompt = self._create_merge_prompt(topic_details)
         
         try:
+            # 定义output目录路径
+            output_dir = os.path.join(
+                os.path.dirname(self.merge_opinion_file), 
+                "output"
+            )
+            os.makedirs(output_dir, exist_ok=True)
+            
+            # 保存原始主题词列表到merge_ori文件
+            merge_ori_path = os.path.join(output_dir, "merge_ori")
+            try:
+                # 生成原始主题词列表文本
+                topic_list = []
+                for topic in topic_details:
+                    # 使用纯数字ID，不添加gen_前缀
+                    topic_list.append(f"{topic['id']}. {topic['name_zh']}，Keywords: {topic['name_en']}")
+                topic_list_text = "\n".join(topic_list)
+                
+                with open(merge_ori_path, 'w', encoding='utf-8') as f:
+                    f.write(topic_list_text)
+                logger.info(f"已保存原始主题词列表到 {merge_ori_path}")
+            except Exception as e:
+                logger.error(f"保存原始主题词列表失败: {e}")
+            
             # 调用LLM获取合并建议
             merge_response = llm_client.get_completion(merge_prompt)
             
-            # 解析合并建议
-            merge_suggestions = self._parse_merge_suggestions(merge_response)
+            # 保存合并建议
+            self.save_merge_opinion(merge_response)
+            logger.info("已保存合并建议")
             
+            # 保存原始LLM响应到指定的output目录
+            merge_llm_result_path = os.path.join(output_dir, "merge_LLM_result")
+            try:
+                with open(merge_llm_result_path, 'w', encoding='utf-8') as f:
+                    f.write(merge_response)
+                logger.info(f"已保存LLM原始响应到 {merge_llm_result_path}")
+            except Exception as e:
+                logger.error(f"保存LLM原始响应失败: {e}")
+            
+            # 解析合并建议（仅用于记录日志，不执行合并）
+            merge_suggestions = self._parse_merge_suggestions(merge_response)
             logger.info(f"解析到 {len(merge_suggestions)} 个合并建议")
             
-            # 执行合并操作
-            for source_id, target_id in merge_suggestions:
-                logger.info(f"合并主题 {source_id} 到 {target_id}")
-                self.merge_topics(source_id, target_id)
+            # 更新主题词列表
+            logger.info("开始更新主题词列表")
+            self.update_topics_with_suggestions(llm_client)
             
             # 更新所有论文的主题映射
             updated_topics = []
@@ -734,7 +724,7 @@ class TopicManager:
             logger.info("模型建议无需合并主题")
             return merge_suggestions
         
-        # 匹配所有"合并X->Y"模式
+        # 匹配所有"合并X->Y"模式，只匹配纯数字ID
         pattern = r'合并\s*(\d+)\s*->\s*(\d+)'
         matches = re.findall(pattern, response)
         
@@ -748,6 +738,14 @@ class TopicManager:
             alt_matches = re.findall(alt_pattern, response)
             
             for source, target in alt_matches:
+                merge_suggestions.append((source, target))
+        
+        # 匹配"更新并合并"模式
+        update_pattern = r'更新并合并\s*(\d+)\s*->\s*(\d+)'
+        update_matches = re.findall(update_pattern, response)
+        
+        for source, target in update_matches:
+            if (source, target) not in merge_suggestions:
                 merge_suggestions.append((source, target))
         
         return merge_suggestions
@@ -831,7 +829,9 @@ class TopicManager:
             with open(self.gen_topic_file, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             
-            logger.info(f"成功保存 {len(generated_topics)} 个生成的主题词到 {self.gen_topic_file}")
+            # 简化日志消息，只显示文件名，不显示路径和数量
+            file_name = os.path.basename(self.gen_topic_file)
+            logger.info(f"成功保存生成的主题词到 {file_name}")
             return True
             
         except Exception as e:
@@ -859,10 +859,424 @@ class TopicManager:
             # 加载主题词
             if "topics" in data:
                 generated_topics = data["topics"]
-                logger.info(f"成功加载 {len(generated_topics)} 个生成的主题词")
+                logger.debug(f"成功加载 {len(generated_topics)} 个生成的主题词")
             
             return generated_topics
             
         except Exception as e:
             logger.error(f"加载生成主题词失败: {e}")
             return {} 
+
+    def save_merge_opinion(self, response: str) -> bool:
+        """
+        保存大模型返回的合并建议到merge_opinion.json
+        
+        Args:
+            response: 大模型返回的响应文本
+            
+        Returns:
+            是否成功保存
+        """
+        try:
+            # 确保目录存在
+            os.makedirs(os.path.dirname(self.merge_opinion_file), exist_ok=True)
+            
+            # 提取"合并建议"部分
+            merge_suggestions_text = ""
+            if "合并建议" in response:
+                # 从"合并建议"开始截取
+                merge_suggestions_text = response[response.find("合并建议"):]
+            elif "无需合并" in response:
+                # 如果是"无需合并"，直接使用整个响应
+                merge_suggestions_text = response
+            else:
+                # 如果没有明确的标识，使用整个响应
+                merge_suggestions_text = response
+            
+            # 解析合并建议
+            merge_suggestions = self._parse_merge_suggestions(response)
+            
+            # 准备数据
+            data = {
+                "merge_suggestions": merge_suggestions,
+                "raw_response": merge_suggestions_text,
+                "last_updated": datetime.now().isoformat(),
+                "description": "存储大模型生成的主题词合并建议"
+            }
+            
+            # 保存到文件
+            with open(self.merge_opinion_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            
+            logger.info(f"成功保存合并建议到 {self.merge_opinion_file}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"保存合并建议失败: {e}")
+            return False
+    
+    def extract_merge_suggestions(self) -> List[Tuple[str, str, bool]]:
+        """
+        从merge_LLM_result文件提取合并建议
+        
+        Returns:
+            合并建议列表，格式为[(源主题ID, 目标主题ID, 是否是概念精炼合并)]
+        """
+        try:
+            # 直接从output/merge_LLM_result文件读取
+            output_dir = os.path.join(os.path.dirname(self.merge_opinion_file), "output")
+            merge_llm_result_path = os.path.join(output_dir, "merge_LLM_result")
+            
+            # 读取原始LLM响应
+            with open(merge_llm_result_path, 'r', encoding='utf-8') as f:
+                raw_response = f.read()
+            
+            # 使用_parse_merge_suggestions方法来解析
+            raw_suggestions = self._parse_merge_suggestions(raw_response)
+            
+            # 将解析结果转换为所需的格式
+            suggestions = []
+            for source, target in raw_suggestions:
+                # 判断是否是概念精炼合并
+                is_refinement = bool(re.search(rf'更新并合并\s*{source}\s*->\s*{target}', raw_response))
+                suggestions.append((source, target, is_refinement))
+            
+            logger.info(f"从LLM响应文件成功提取 {len(suggestions)} 个合并建议")
+            return suggestions
+            
+        except Exception as e:
+            logger.error(f"提取合并建议失败: {e}")
+            return []
+    
+    def update_topics_with_suggestions(self, llm_client) -> bool:
+        """
+        根据合并建议更新主题词列表
+        
+        Args:
+            llm_client: LLM客户端，用于调用大模型
+            
+        Returns:
+            是否成功更新
+        """
+        try:
+            # 提取合并建议
+            merge_suggestions = self.extract_merge_suggestions()
+            if not merge_suggestions:
+                logger.warning("没有找到合并建议，无法更新主题词")
+                return False
+            
+            # 创建原始主题词列表文本
+            topic_list_text = self.generate_topic_list_text()
+            
+            # 创建合并建议列表文本
+            merge_suggestions_text = self._format_merge_suggestions(merge_suggestions)
+            
+            # 加载update_topic提示模板
+            update_topic_template = self._load_update_topic_template()
+            
+            # 构建完整提示
+            prompt = update_topic_template.format(
+                topic_list_text=topic_list_text,
+                merge_suggestions_list_text=merge_suggestions_text
+            )
+            
+            # 调用LLM
+            response = llm_client.get_completion(prompt)
+            
+            # 解析更新后的主题词列表
+            updated_topics = self._parse_updated_topics(response)
+            
+            # 应用更新
+            success = self.apply_topic_updates(updated_topics)
+            
+            return success
+            
+        except Exception as e:
+            logger.error(f"更新主题词失败: {e}")
+            return False
+    
+    def apply_topic_updates(self, updated_topics: Dict[str, Dict[str, str]]) -> bool:
+        """
+        应用更新后的主题词
+        
+        Args:
+            updated_topics: 更新后的主题词字典 {id: {"name_zh": 中文名, "name_en": 英文名}}
+            
+        Returns:
+            是否成功应用
+        """
+        try:
+            # 如果没有更新的主题词，直接返回
+            if not updated_topics:
+                logger.warning("没有更新的主题词")
+                return False
+            
+            # 创建一个新的topics字典，保留原有结构
+            new_topics = {}
+            
+            # 应用更新
+            for topic_id, topic_data in updated_topics.items():
+                # 创建新的Topic对象
+                if topic_id in self.topics:
+                    # 更新现有主题词
+                    topic = self.topics[topic_id]
+                    topic.name_zh = topic_data.get("name_zh", topic.name_zh)
+                    topic.name_en = topic_data.get("name_en", topic.name_en)
+                    # 保留其他字段不变
+                    new_topics[topic_id] = topic
+                else:
+                    # 创建新主题词
+                    new_topic = Topic(
+                        id=topic_id,
+                        name_zh=topic_data.get("name_zh", ""),
+                        name_en=topic_data.get("name_en", ""),
+                        aliases=topic_data.get("aliases", []),
+                        created_at=topic_data.get("created_at", datetime.now().isoformat())
+                    )
+                    new_topics[topic_id] = new_topic
+            
+            # 更新topics字典
+            self.topics = new_topics
+            
+            # 保存更新
+            self.save_topics()
+            
+            logger.info(f"成功应用 {len(updated_topics)} 个主题词更新")
+            return True
+            
+        except Exception as e:
+            logger.error(f"应用主题词更新失败: {e}")
+            return False
+    
+    def _load_update_topic_template(self) -> str:
+        """
+        加载update_topic提示模板
+        
+        Returns:
+            提示模板文本
+        """
+        try:
+            # 获取update_topic路径
+            update_topic_path = os.path.join(
+                self.project_root, 
+                self.config["data_paths"]["update_topic"]["path"].lstrip('/')
+            )
+            
+            # 读取提示模板
+            with open(update_topic_path, 'r', encoding='utf-8') as f:
+                template = f.read().strip()
+                logger.info(f"已加载update_topic模板: {update_topic_path}")
+                return template
+                
+        except Exception as e:
+            logger.error(f"加载update_topic模板失败: {e}")
+            raise
+    
+    def _format_merge_suggestions(self, merge_suggestions: List[Tuple[str, str, bool]]) -> str:
+        """
+        格式化合并建议为文本
+        
+        Args:
+            merge_suggestions: 合并建议列表，格式为[(源主题ID, 目标主题ID, 是否是概念精炼合并)]
+            
+        Returns:
+            合并建议文本
+        """
+        if not merge_suggestions:
+            return "无需合并"
+        
+        lines = []
+        for i, (source, target, is_refinement) in enumerate(merge_suggestions, 1):
+            source_topic = self._get_topic_info_text(source)
+            target_topic = self._get_topic_info_text(target)
+            
+            if is_refinement:
+                lines.append(f"{i}. 更新并合并 {source} -> {target}，理由：采纳ID {source}的更精确表述\"{source_topic}\"来更新ID {target}的表述\"{target_topic}\"")
+            else:
+                lines.append(f"{i}. 合并 {source} -> {target}，理由：概念相似或层级包含")
+        
+        return "\n".join(lines)
+    
+    def _get_topic_info_text(self, topic_id: str) -> str:
+        """
+        获取主题词信息文本
+        
+        Args:
+            topic_id: 主题词ID
+            
+        Returns:
+            主题词信息文本
+        """
+        topic_info = self.get_topic_info(topic_id)
+        if topic_info:
+            return f"{topic_info.get('name_zh', '')}"
+        else:
+            # 尝试从生成主题词中查找
+            gen_topics = self.load_generated_topics()
+            if topic_id in gen_topics:
+                return f"{gen_topics[topic_id].get('name_zh', '')}"
+            else:
+                return f"未知主题({topic_id})"
+    
+    def _parse_updated_topics(self, response: str) -> Dict[str, Dict[str, str]]:
+        """
+        解析更新后的主题词列表
+        
+        Args:
+            response: 大模型返回的响应文本
+            
+        Returns:
+            更新后的主题词字典 {id: {"name_zh": 中文名, "name_en": 英文名}}
+        """
+        updated_topics = {}
+        
+        # 寻找最终主题词列表的开始位置
+        start_text = "最终的稳定主题词列表："
+        if start_text in response:
+            # 从"最终的稳定主题词列表："开始截取
+            topics_text = response[response.find(start_text) + len(start_text):].strip()
+        else:
+            # 如果没有明确的标识，使用整个响应
+            topics_text = response.strip()
+        
+        # 匹配所有主题词：ID. 中文关键词，Keywords: 英文关键词
+        pattern = r'(\d+)\.\s+(.*?)(?:，|,)\s*(?:Keywords|keywords):\s*(.*?)(?:\n|$)'
+        matches = re.findall(pattern, topics_text, re.MULTILINE)
+        
+        for topic_id, name_zh, name_en in matches:
+            updated_topics[topic_id] = {
+                "name_zh": name_zh.strip(),
+                "name_en": name_en.strip()
+            }
+        
+        logger.info(f"成功解析 {len(updated_topics)} 个更新后的主题词")
+        return updated_topics 
+
+    def update_topics_from_gen_topic(self, llm_client) -> bool:
+        """
+        将gen_topic.json中的主题覆盖更新到topic.json
+        
+        这个方法实现新的工作流：
+        1. 先根据合并建议处理gen_topic.json中的主题关系
+        2. 然后将处理好的主题覆盖更新到topic.json
+        
+        Args:
+            llm_client: LLM客户端，用于调用大模型
+            
+        Returns:
+            是否成功更新
+        """
+        try:
+            # 1. 先处理合并建议，更新gen_topic.json内部的关系
+            merge_suggestions = self.extract_merge_suggestions()
+            
+            if merge_suggestions:
+                logger.info(f"处理 {len(merge_suggestions)} 个合并建议")
+                # 加载所有gen_topic中的主题
+                gen_topics = self.load_generated_topics()
+                
+                # 执行合并操作（仅在gen_topic内部）
+                for source, target, is_refinement in merge_suggestions:
+                    # 确保source和target都在gen_topic中
+                    if source in gen_topics and target in gen_topics:
+                        source_topic = gen_topics[source]
+                        target_topic = gen_topics[target]
+                        
+                        logger.info(f"合并 {source}({source_topic.get('name_zh', '')}) -> {target}({target_topic.get('name_zh', '')})")
+                        
+                        # 更新target_topic的别名列表，加入source_topic的名称
+                        if "aliases" not in target_topic:
+                            target_topic["aliases"] = []
+                        
+                        # 添加source的名称到target的别名中（如果不存在）
+                        source_name_zh = source_topic.get("name_zh", "")
+                        source_name_en = source_topic.get("name_en", "")
+                        
+                        if source_name_zh and source_name_zh not in target_topic["aliases"]:
+                            target_topic["aliases"].append(source_name_zh)
+                        
+                        if source_name_en and source_name_en not in target_topic["aliases"]:
+                            target_topic["aliases"].append(source_name_en)
+                        
+                        # 添加source的别名到target的别名中
+                        for alias in source_topic.get("aliases", []):
+                            if alias not in target_topic["aliases"]:
+                                target_topic["aliases"].append(alias)
+                        
+                        # 标记source被合并到target
+                        source_topic["merged_to"] = target
+                        source_topic["status"] = "merged"
+                
+                # 保存更新后的gen_topics
+                self.save_generated_topics(gen_topics)
+            
+            # 2. 将处理后的gen_topic覆盖更新到topic.json
+            # 加载gen_topic.json中的所有主题
+            gen_topics = self.load_generated_topics()
+            
+            # 创建一个新的topics字典
+            new_topics = {}
+            
+            # 不保留原有mapping关系，全部重新生成
+            mappings = {}
+            
+            # 从ID 1开始分配新ID
+            next_id = 1
+            
+            # 记录gen_topic.json中主题ID到topic.json中ID的映射
+            gen_to_topic_id_map = {}
+            
+            # 处理所有未被合并的主题，不区分来源
+            for gen_id, gen_topic in gen_topics.items():
+                if not gen_topic.get("status") == "merged":
+                    # 分配新ID
+                    new_id = str(next_id)
+                    next_id += 1
+                    
+                    # 记录映射关系
+                    gen_to_topic_id_map[gen_id] = new_id
+                    
+                    # 添加新主题
+                    new_topics[new_id] = Topic(
+                        id=new_id,
+                        name_zh=gen_topic.get("name_zh", ""),
+                        name_en=gen_topic.get("name_en", ""),
+                        aliases=gen_topic.get("aliases", []),
+                        created_at=gen_topic.get("created_at")
+                    )
+                    
+                    logger.debug(f"添加主题 {new_id}: {gen_topic.get('name_zh')}")
+            
+            # 最后处理被合并的主题，更新映射关系
+            for gen_id, gen_topic in gen_topics.items():
+                if gen_topic.get("status") == "merged" and "merged_to" in gen_topic:
+                    target_gen_id = gen_topic["merged_to"]
+                    
+                    # 检查原始ID和目标ID是否已经映射到topic.json
+                    if gen_id in gen_to_topic_id_map and target_gen_id in gen_to_topic_id_map:
+                        source_topic_id = gen_to_topic_id_map[gen_id]
+                        target_topic_id = gen_to_topic_id_map[target_gen_id]
+                        
+                        # 更新映射关系
+                        mappings[source_topic_id] = target_topic_id
+                        logger.info(f"更新主题映射: {source_topic_id} -> {target_topic_id}")
+            
+            # 更新topics和mappings
+            self.topics = new_topics
+            self.topic_mapping = mappings
+            
+            # 保存更新
+            success = self.save_topics()
+            
+            if success:
+                logger.info(f"成功从gen_topic.json更新 {len(new_topics)} 个主题到topic.json")
+                logger.info(f"映射关系: {len(mappings)} 个")
+                return True
+            else:
+                logger.error("保存更新的主题失败")
+                return False
+                
+        except Exception as e:
+            logger.error(f"更新主题失败: {e}")
+            logger.exception(e)
+            return False 

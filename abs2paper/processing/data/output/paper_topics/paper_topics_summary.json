@@ -1,0 +1,68 @@
+{
+  "paper_topics": {
+    "3577193.3593731": [],
+    "3577193.3593714": [],
+    "3577193.3593710": [],
+    "3577193.3593712": [],
+    "3650200.3656628": [],
+    "3650200.3656600": [],
+    "3650200.3656620": [],
+    "0728": [
+      "1"
+    ],
+    "2404.13891v2": [],
+    "2406.15763v2": [],
+    "2309.11930v2": [],
+    "2309.17288v3": [],
+    "Automatic_Code_Generation_for_High-Performance_Graph_Algorithms": [
+      "1"
+    ],
+    "UWOmppro_UWOmp_with_Point-to-Point_Synchronization_Reduction_and_Schedules": [],
+    "G-Sparse_Compiler-Driven_Acceleration_for_Generalized_Sparse_Computation_for_Graph_Neural_Networks_on_Modern_GPUs": [],
+    "Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization": [],
+    "3656019.3676895": [
+      "1"
+    ],
+    "3656019.3689905": [],
+    "3656019.3676889": [
+      "1"
+    ],
+    "3674911": [
+      "1"
+    ],
+    "3689342": [
+      "1"
+    ],
+    "3688612": [],
+    "3676847": [],
+    "3674734": [],
+    "3685277": [
+      "1"
+    ],
+    "3703352": [],
+    "3701993": [
+      "1"
+    ],
+    "3674910": [],
+    "3689341": [],
+    "3701997": [],
+    "3688609": [
+      "1"
+    ],
+    "Hybrid_CUDA_Unified_Memory_Management_in_Fully_Homomorphic_Encryption_Workloads": [],
+    "DNA-TEQ_An_Adaptive_Exponential_Quantization_of_Tensors_for_DNN_Inference": [],
+    "CAPTURE_Memory-Centric_Partitioning_for_Distributed_DNN_Training_with_Hybrid_Parallelism": [],
+    "Fast_Parallel_Tensor_Times_Same_Vector_for_Hypergraphs": [],
+    "A_118_GOPS_mm23D_eDRAM_TensorCore_Architecture_for_Large-scale_Matrix_Multiplication": [],
+    "DeltaSPARSE_High-Performance_Sparse_General_Matrix-Matrix_Multiplication_on_Multi-GPU_Systems": [],
+    "Oikonomos-II_A_Reinforcement-Learning_Resource-Recommendation_System_for_Cloud_HPC": [],
+    "MiCRO_Near-Zero_Cost_Gradient_Sparsification_for_Scaling_and_Accelerating_Distributed_DNN_Training": [],
+    "Simulation_of_Large-Scale_HPC_Storage_Systems_Challenges_and_Methodologies": [],
+    "Allocation_Strategies_for_Disaggregated_Memory_in_HPC_Systems": [],
+    "Leveraging_LLVM_OpenMP_GPU_Offload_Optimizations_for_Kokkos_Applications": [],
+    "HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach": [],
+    "Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs": []
+  },
+  "timestamp": "2025-07-28T18:54:31.886993",
+  "topic_count": 1
+}

@@ -9,19 +9,8 @@
 ##论文来源：CCF认定的A类会议或者A刊
 ##你的目标 :
 1、阅读论文的摘要，然后总结论文的主题，匹配所给的关键词。
-##知识库：以下是与高性能、编译、代码优化和人工智能相关的11个论文内容主题关键词及其英文翻译，其结构是序号+中文关键词+英文关键词Keywords：
-1. 高性能计算，Keywords: High Performance Computing
-2. 并行编程，Keywords: Parallel Programming
-3. 代码优化技术，Keywords: Code Optimization Techniques
-4. 编译器优化，Keywords: Compiler Optimization
-5. 自动化代码生成，Keywords: Automated Code Generation
-6. GPU编程与加速，Keywords: GPU Programming and Acceleration
-7. 内存管理优化，Keywords: Memory Management Optimization
-8. 异构计算架构，Keywords: Heterogeneous Computing Architectures
-9. 编译器中间表示（IR）优化，Keywords: Compiler Intermediate Representation Optimization
-10. 机器学习，Keywords：Machine Learning
-11. 人工智能，Keywords：Artificial Intelligence
-##答案的语言：中文
+##知识库：以下是与高性能、编译、代码优化和人工智能相关的论文内容主题关键词及其英文翻译，其结构是序号+中文关键词+英文关键词Keywords：
+1. 代码生成，Keywords: Code Generation##答案的语言：中文
 ##本次答案的范围：答案所给的主题的关键词的范围只能限定在“知识库”中所给的11种主题关键词，不需要给出其他任何说明。
 ##回答的限制：
 1、根据“本次答案的范围”限制回答的内容。
