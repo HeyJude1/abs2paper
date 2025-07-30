@@ -87,29 +87,15 @@ class TopicExtractor:
                             topic = self.topic_manager.topics[topic_id]
                             matched_topic_info.append(f"{topic_id}.{topic.name_zh}")
                 
-                # 打印匹配和新增的主题数量，并包括具体匹配的主题
-                if matched_topic_info:
-                    matched_str = ", ".join(matched_topic_info)
-                    logger.info(f"匹配{known_topics_count}个已有主题（{matched_str}），得到{new_topics_count}个新主题")
-                else:
-                    logger.info(f"匹配{known_topics_count}个已有主题，得到{new_topics_count}个新主题")
+                # 记录匹配和新增主题数量
+                logger.info(f"匹配{known_topics_count}个已有主题，得到{new_topics_count}个新主题")
                 
                 # 如果有新主题，立即保存到gen_topic.json
                 if new_topics:
-                    # logger.info(f"从论文 {paper_id} 中提取到 {len(new_topics)} 个新主题词")
                     logger.debug(f"新主题词: {new_topics}")
                     
                     # 立即保存新主题词到gen_topic.json
                     self._save_generated_topics(new_topics)
-                
-                # 日志输出
-                if topic_ids:
-                    logger.debug(f"论文 {paper_id} 匹配已有主题: {topic_ids} ({known_topics_count}个)")
-                # else:
-                #     logger.info(f"论文 {paper_id} 未匹配到已有主题")
-                
-                # if new_topics:
-                #     logger.info(f"论文 {paper_id} 提取新主题: {new_topics} ({new_topics_count}个)")
                 
                 if topic_ids or new_topics:
                     extracted_topics.append((paper_id, topic_ids))
@@ -256,6 +242,11 @@ class TopicExtractor:
         topic_ids = []
         new_topics = []
         
+        # 如果响应为None（可能因网络问题），直接返回空结果
+        if response is None:
+            logger.warning("收到空响应（可能是网络问题），无法提取主题")
+            return [], []
+        
         # 记录原始响应，便于调试
         logger.debug(f"原始LLM响应: {response}")
         
@@ -263,30 +254,61 @@ class TopicExtractor:
         known_topics_matched = []
         new_topics_added = []
         
-        # 遍历响应的每一行
-        for line in response.strip().split('\n'):
+        # 将响应分成多个部分，便于处理
+        parts = response.split("匹配的主题词：")
+        
+        # 如果找到"匹配的主题词："标记
+        if len(parts) > 1:
+            matched_part = parts[1]
+            # 进一步分割，获取匹配主题和新添加主题的部分
+            sub_parts = matched_part.split("新添加的主题词：")
+            
+            # 处理匹配的主题词部分
+            matched_topics_text = sub_parts[0].strip()
+            for line in matched_topics_text.split('\n'):
+                line = line.strip()
+                if not line:
+                    continue
+                    
+                # 检查是否是已有主题词格式：数字.中文关键词，Keywords: English Keywords
+                if line[0].isdigit() and '.' in line.split(' ')[0]:
+                    id_part = line.split('.')[0].strip()
+                    if id_part.isdigit() and id_part in self.topic_manager.topics:
+                        topic_ids.append(id_part)
+                        topic_name = self.topic_manager.topics[id_part].name_zh
+                        known_topics_matched.append(f"{id_part}.{topic_name}")
+            
+            # 如果有新添加的主题词部分
+            if len(sub_parts) > 1:
+                new_topics_text = sub_parts[1].strip()
+                for line in new_topics_text.split('\n'):
+                    line = line.strip()
+                    if not line and "新添加的主题词：" not in line:
+                        continue
+                        
+                    # 检查是否是新的主题词格式
+                    if "，Keywords:" in line or ", Keywords:" in line:
+                        new_topics.append(line)
+                        new_topics_added.append(line)
+        
+        # 直接查找"新添加的主题词："标记
+        for line in response.split('\n'):
             line = line.strip()
+            
+            # 跳过空行或已处理的行
             if not line:
                 continue
-                
-            # 检查是否是已有主题词格式：数字.中文关键词，Keywords: English Keywords
-            if line[0].isdigit() and '.' in line.split(' ')[0]:
-                id_part = line.split('.')[0].strip()
-                if id_part.isdigit() and id_part in self.topic_manager.topics:
-                    topic_ids.append(id_part)
-                    topic_name = self.topic_manager.topics[id_part].name_zh
-                    known_topics_matched.append(f"{id_part}.{topic_name}")
             
-            # 检查是否是新添加主题词格式：新添加主题词：中文关键词，Keywords: English Keywords
-            elif "新添加主题词" in line:
-                try:
-                    # 提取新主题词部分
-                    topic_part = line.split("：", 1)[1].strip() if "：" in line else line.split(":", 1)[1].strip()
-                    if topic_part:
-                        new_topics.append(topic_part)
-                        new_topics_added.append(topic_part)
-                except IndexError:
-                    continue
+            # 如果是"新添加的主题词："标记行
+            if "新添加的主题词：" in line:
+                continue
+                
+            # 如果是一个完整的主题词格式（包含Keywords）
+            if ("，Keywords:" in line or ", Keywords:" in line) and line not in new_topics:
+                # 检查这不是匹配的主题词（不以数字和点开头）
+                if not (line[0].isdigit() and '.' in line.split(' ')[0]):
+                    new_topics.append(line)
+                    new_topics_added.append(line)
         
         # 输出解析结果统计
         if known_topics_matched:
@@ -301,38 +323,31 @@ class TopicExtractor:
         if not topic_ids and not new_topics:
             logger.warning(f"使用标准格式无法从LLM响应中提取任何主题，尝试其他格式...")
             
-            # 尝试其他格式提取新主题
-            # 1. 检查"该论文提出了新主题"格式
-            new_topic_pattern2 = r'该论文提出了新主题[：:]\s*(.*?)(?:\n|$)'
-            for match in re.finditer(new_topic_pattern2, response):
-                new_topic = match.group(1).strip()
-                if new_topic and len(new_topic) > 1:
-                    new_topics.append(new_topic)
+            # 尝试更广泛地匹配新主题词
+            # 查找所有可能是"中文关键词，Keywords: English Keywords"格式的行
+            keyword_pattern = r'([^，,:]+)[，,](?:\s*Keywords:|\s*keywords:)\s*([^\n]+)'
+            for match in re.finditer(keyword_pattern, response, re.IGNORECASE):
+                name_zh = match.group(1).strip()
+                name_en = match.group(2).strip()
+                if name_zh and name_en:
+                    topic_text = f"{name_zh}，Keywords: {name_en}"
+                    if topic_text not in new_topics:
+                        new_topics.append(topic_text)
             
-            # 2. 检查"需要添加新主题"格式
-            new_topic_pattern3 = r'需要添加新主题[：:]\s*(.*?)(?:\n|$)'
-            for match in re.finditer(new_topic_pattern3, response):
-                new_topic = match.group(1).strip()
-                if new_topic and len(new_topic) > 1:
-                    new_topics.append(new_topic)
-            
-            # 3. 尝试从"故该论文的主题关键词总结为"后面的内容中提取
-            summary_pattern = r'故该论文的主题关键词总结为\[(.*?)\]'
-            for match in re.finditer(summary_pattern, response):
-                keywords = match.group(1).strip().split(',')
-                for keyword in keywords:
-                    keyword = keyword.strip()
-                    # 如果是纯数字，可能是ID
-                    if keyword.isdigit():
-                        if keyword in self.topic_manager.topics:
-                            topic_ids.append(keyword)
-                    # 否则可能是新主题
-                    elif keyword and len(keyword) > 1 and not keyword.isdigit():
-                        new_topics.append(keyword)
+            # 尝试查找格式为"序号.中文关键词，Keywords: English Keywords"的行
+            id_pattern = r'(\d+)[\.。]([^，,:]+)[，,](?:\s*Keywords:|\s*keywords:)\s*([^\n]+)'
+            for match in re.finditer(id_pattern, response, re.IGNORECASE):
+                topic_id = match.group(1).strip()
+                if topic_id in self.topic_manager.topics:
+                    topic_ids.append(topic_id)
             
             # 如果仍然没找到
             if not topic_ids and not new_topics:
                 logger.warning(f"无法从LLM响应中提取任何主题，响应内容: {response[:200]}...")
+        
+        # 去重
+        topic_ids = list(set(topic_ids))
+        new_topics = list(set(new_topics))
         
         return topic_ids, new_topics
 
@@ -346,26 +361,13 @@ class TopicExtractor:
         Returns:
             paper_topics: 论文主题词字典，格式为{论文ID: [主题ID]}
         """
-        logger.info("开始完整的主题提取流程")
-        
         # 第一阶段：初步提取主题
         extracted_topics = self.extract_initial_topics(abstracts)
         
-        # 第二阶段：处理新主题并添加
-        for _, topics in extracted_topics:
-            # 处理提取到的新主题词
-            for topic_name in topics:
-                if isinstance(topic_name, str) and not topic_name.isdigit():
-                    # 这是一个新主题，需要添加
-                    self.topic_manager.add_new_topic(topic_name)
-        
-        # 第三阶段：整合和合并主题
-        consolidated_topics = self.topic_manager.consolidate_topics(extracted_topics, self.llm_client)
-        
         # 转换为字典格式
-        paper_topics = {paper_id: topics for paper_id, topics in consolidated_topics}
+        paper_topics = {paper_id: topics for paper_id, topics in extracted_topics}
         
-        logger.info(f"主题提取完成，处理了 {len(paper_topics)} 篇论文")
+        # 不再执行后续的整合和合并操作，这些应该由extract_topics.py调用topic_manager来完成
         return paper_topics
     
     def extract_topics_from_file(self, abstract_dir: str) -> Dict[str, List[str]]:

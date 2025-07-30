@@ -135,105 +135,147 @@ def main():
         # 初始化主题管理器
         topic_manager = TopicManager()
         
-        if args.command == 'full' or args.command == 'extract':
-            # 1. 初始化LLM客户端和主题提取器
-            llm_client = LLMClient()
-            topic_extractor = TopicExtractor(llm_client, topic_manager)
+        # 执行不同的命令
+        if args.command == 'extract':
+            # 从论文中提取主题词
+            extract_from_papers(config, module_dir, topic_manager)
             
-            # 2. 获取输入和输出路径
-            abstract_path = config["data_paths"]["abstract_extract"]["path"].lstrip('/')
-            input_dir = os.path.join(module_dir, abstract_path)
+        elif args.command == 'generate_merge':
+            # 生成主题合并建议
+            generate_merge_suggestions(topic_manager)
             
-            paper_topics_path = config["data_paths"]["paper_topics"]["path"].lstrip('/')
-            output_dir = os.path.join(module_dir, paper_topics_path)
-            
-            # 3. 提取主题
-            logger.info(f"开始从 {input_dir} 提取主题")
-            paper_topics = topic_extractor.extract_topics_from_file(input_dir)
-            
-            # 4. 保存结果
-            success = topic_extractor.save_paper_topics(paper_topics, output_dir)
-            
-            # 5. 更新提示词模板和显示结果
-            if success:
-                topic_manager.update_prompt_template()
-                logger.info("最终主题词列表：")
-                topic_manager.list_all_topics()
-        
-        if args.command == 'full' or args.command == 'generate_merge':
-            # 生成合并建议
-            logger.info("开始生成主题合并建议")
-            llm_client = LLMClient()
-            
-            # 只从gen_topic.json中获取所有主题的详细信息
-            topic_details = []
-            gen_topics = topic_manager.load_generated_topics()
-            
-            # 将gen_topic.json中的主题转换为topic_details格式
-            for gen_id, topic_data in gen_topics.items():
-                # 将生成主题的格式转换为和topic_info一致
-                topic_info = {
-                    "id": gen_id,
-                    "name_zh": topic_data.get("name_zh", ""),
-                    "name_en": topic_data.get("name_en", ""),
-                    "aliases": topic_data.get("aliases", []),
-                    "created_at": topic_data.get("created_at", datetime.now().isoformat())
-                }
-                
-                # 如果有原始ID，则添加
-                if "original_id" in topic_data:
-                    topic_info["original_id"] = topic_data["original_id"]
-                
-                topic_details.append(topic_info)
-            
-            # 按创建时间排序主题
-            topic_details.sort(key=lambda x: x.get('created_at', ''))
-            
-            logger.info(f"准备生成合并建议，共有 {len(topic_details)} 个主题")
-            
-            # 创建主题合并提示并调用LLM
-            merge_prompt = topic_manager._create_merge_prompt(topic_details)
-            merge_response = llm_client.get_completion(merge_prompt)
-            
-            # 保存合并建议并解析
-            topic_manager.save_merge_opinion(merge_response)
-            merge_suggestions = topic_manager._parse_merge_suggestions(merge_response)
-            
-            if merge_suggestions:
-                logger.info("成功生成合并建议：")
-                for source, target in merge_suggestions:
-                    logger.info(f"- 合并 {source} -> {target}")
-                logger.info(f"建议总数: {len(merge_suggestions)}")
-            else:
-                logger.info("没有需要合并的主题")
-        
-        if args.command == 'full' or args.command == 'update_topics':
+        elif args.command == 'update_topics':
             # 根据合并建议更新主题词
-            logger.info("开始更新主题词")
-            llm_client = LLMClient()
+            update_topics(topic_manager)
             
-            # 使用一个新的功能来将gen_topic.json中的主题覆盖到topic.json
-            success = topic_manager.update_topics_from_gen_topic(llm_client)
-            
-            if success:
-                logger.info("成功更新主题词")
-                topic_manager.list_all_topics()
-                
-                # 不再清空gen_topic.json，保留原始内容
-                logger.info("保留gen_topic.json中的原始主题词")
-            else:
-                logger.info("没有更新主题词")
-        
-        if args.command == 'list':
+        elif args.command == 'list':
             # 列出所有主题词
             topic_manager.list_all_topics()
-        
-        if args.command == 'full':
+            
+        elif args.command == 'full':
+            # 执行完整流程
+            logger.info("开始执行完整的主题提取、合并和更新流程")
+            
+            # 1. 从论文中提取主题词
+            extract_from_papers(config, module_dir, topic_manager)
+            
+            # 2. 生成主题合并建议
+            generate_merge_suggestions(topic_manager)
+            
+            # 3. 根据合并建议更新主题词
+            update_topics(topic_manager)
+            
             logger.info("完整的主题提取、合并建议生成和更新流程已完成！")
     
     except Exception as e:
         logger.error(f"执行命令时出错: {str(e)}")
         sys.exit(1)
+
+def extract_from_papers(config, module_dir, topic_manager):
+    """从论文中提取主题词"""
+    logger.info("开始从论文中提取主题词")
+    
+    # 初始化LLM客户端和主题提取器
+    llm_client = LLMClient()
+    topic_extractor = TopicExtractor(llm_client, topic_manager)
+    
+    # 获取输入路径
+    abstract_path = config["data_paths"]["abstract_extract"]["path"].lstrip('/')
+    input_dir = os.path.join(module_dir, abstract_path)
+    
+    # 提取主题
+    logger.info(f"开始从 {input_dir} 提取主题")
+    paper_topics = topic_extractor.extract_topics_from_file(input_dir)
+    logger.info(f"主题提取完成，处理了 {len(paper_topics)} 篇论文")
+    
+    # 不再调用update_prompt_template，避免无法找到知识库部分的错误
+
+def generate_merge_suggestions(topic_manager):
+    """生成主题合并建议"""
+    logger.info("开始生成主题合并建议")
+    
+    # 初始化LLM客户端
+    llm_client = LLMClient()
+    
+    # 从gen_topic.json获取所有主题的详细信息
+    topic_details = []
+    gen_topics = topic_manager.load_generated_topics()
+    
+    # 将gen_topic.json中的主题转换为topic_details格式
+    for gen_id, topic_data in gen_topics.items():
+        # 将生成主题的格式转换为和topic_info一致
+        topic_info = {
+            "id": gen_id,
+            "name_zh": topic_data.get("name_zh", ""),
+            "name_en": topic_data.get("name_en", ""),
+            "aliases": topic_data.get("aliases", []),
+            "created_at": topic_data.get("created_at", datetime.now().isoformat())
+        }
+        
+        # 如果有原始ID，则添加
+        if "original_id" in topic_data:
+            topic_info["original_id"] = topic_data["original_id"]
+        
+        topic_details.append(topic_info)
+    
+    # 按创建时间排序主题
+    topic_details.sort(key=lambda x: x.get('created_at', ''))
+    
+    logger.info(f"准备生成合并建议，共有 {len(topic_details)} 个主题")
+    
+    # 定义输出目录路径
+    output_dir = os.path.join(
+        os.path.dirname(topic_manager.merge_opinion_file), 
+        "output"
+    )
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # 保存原始主题词列表到merge_ori文件
+    merge_ori_path = os.path.join(output_dir, "merge_ori")
+    topic_list = []
+    for topic in topic_details:
+        topic_list.append(f"{topic['id']}. {topic['name_zh']}，Keywords: {topic['name_en']}")
+    topic_list_text = "\n".join(topic_list)
+    
+    with open(merge_ori_path, 'w', encoding='utf-8') as f:
+        f.write(topic_list_text)
+    logger.info(f"已保存原始主题词列表到 {merge_ori_path}")
+    
+    # 创建主题合并提示并调用LLM
+    merge_prompt = topic_manager.create_merge_prompt(topic_details)
+    merge_response = llm_client.get_completion(merge_prompt)
+    
+    # 保存LLM原始响应到指定的output目录
+    merge_llm_result_path = os.path.join(output_dir, "merge_LLM_result")
+    with open(merge_llm_result_path, 'w', encoding='utf-8') as f:
+        f.write(merge_response)
+    logger.info(f"已保存LLM原始响应到 {merge_llm_result_path}")
+    
+    # 保存合并建议并解析
+    topic_manager.save_merge_opinion(merge_response)
+    merge_suggestions = topic_manager.parse_merge_suggestions(merge_response)
+    
+    if merge_suggestions:
+        logger.info(f"解析到 {len(merge_suggestions)} 个合并建议")
+    else:
+        logger.info("没有需要合并的主题")
+        
+def update_topics(topic_manager):
+    """根据合并建议更新主题词"""
+    logger.info("开始更新主题词")
+    llm_client = LLMClient()
+    
+    # 使用一个新的功能来将gen_topic.json中的主题覆盖到topic.json
+    success = topic_manager.update_topics_from_gen_topic(llm_client)
+    
+    if success:
+        logger.info("成功更新主题词")
+        topic_manager.list_all_topics()
+        
+        # 不再清空gen_topic.json，保留原始内容
+        logger.info("保留gen_topic.json中的原始主题词")
+    else:
+        logger.info("没有更新主题词")
 
 
 if __name__ == "__main__":

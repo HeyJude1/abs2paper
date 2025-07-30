@@ -1,24 +1,33 @@
 合并建议：
 
-1. 合并 15 -> 9，理由：两个主题词完全相同，均为"自动调优(Autotuning)"，构成完全重复。
+1. 合并3->2，理由：LU分解是线性代数中的一种特定算法，构成层级包含关系。
 
-2. 合并 54 -> 49，理由：两个主题词完全相同，均为"编译器优化(Compiler Optimization)"，构成完全重复。
+2. 合并23->2，理由：矩阵运算是线性代数的核心组成部分，构成层级包含关系。
 
-3. 合并 96 -> 58，理由：两个主题词完全相同，均为"GPU加速(GPU Acceleration)"，构成完全重复。
+3. 合并52->2，理由：稀疏线性代数是线性代数的特例形式，构成层级包含关系。
 
-4. 合并 120 -> 95，理由：两个主题词完全相同，均为"张量编译器(Tensor Compiler)"，构成完全重复。
+4. 合并68->52，理由：稀疏张量计算是稀疏线性代数的扩展形式，构成层级包含关系。
 
-5. 合并 129 -> 11，理由：两个主题词完全相同，均为"深度学习(Deep Learning)"，构成完全重复。
+5. 合并79->52，理由：稀疏三角求解是稀疏线性代数中的特定操作。
 
-6. 合并 131 -> 114，理由：两个主题词完全相同，均为"内存优化(Memory Optimization)"，构成完全重复。
+6. 合并84->52，理由：稀疏-稠密矩阵乘法是稀疏线性代数的应用场景。
 
-7. 合并 141 -> 98，理由：两个主题词完全相同，均为"稀疏通用矩阵乘法(Sparse General Matrix-Matrix multiplication (SpGEMM))"，构成完全重复。
+7. 合并89->52，理由：稀疏矩阵向量乘法是稀疏线性代数的基本操作。
 
-8. 合并 142 -> 87，理由：两个主题词完全相同，均为"多GPU系统(multi-GPU systems/Multi-GPU system)"，构成完全重复。
+8. 合并90->52，理由：稀疏矩阵划分是处理稀疏矩阵的技术。
 
-9. 合并 145 -> 64,158,169,168,153,155,156,157,164,170,171,172,160,161,162,163,165,166,167,168
-   理由："高性能计算(High Performance Computing/High performance computing/High-Performance Computing/High-Performance Computing (HPC)/HPC Applications/HPC Storage Systems/Parallel File System/Performance Modeling/Memory Disaggregation/Performance Portability Frameworks/Performance Analysis Tools/Performance Optimization/Data Collection Overheads/Scheduling/Multi-Armed Bandit/Edge Devices/Parameter Autotuning/GPU Acceleration/Compiler Optimization/Parallel Programming/Scheduling)"
-   这些主题词都与高性能计算相关且高度重叠。
+9. 合并101->52，理由：稀疏通用矩阵乘法属于稀疏线性代数范畴。
 
-10.更新并合并78->58
-   理由：采纳ID78的更精确表述"GPU并行计算(GPU Parallel Computing)"来更新ID58的表述"GPU加速(GPU Acceleration)"
+10. 合并146->52，理由：稀疏矩阵是稀疏线性代数的基础概念。
+
+11. 合并139->68，理由：稀疏对称张量同向量乘属于稀疏张量计算范畴。
+
+12. 更新并合并141->23，理由：采纳ID141的更精确表述"矩阵乘法"来更新ID23的表述"Matrix Operation"，因为前者更具体明确。
+
+13. 合并145->101，理由：两者都是指Sparse General Matrix-Matrix Multiplication的同一概念。
+
+14. 合并98->84，理由：两者都是指Sparse-dense Matrix Multiplication的同一概念。
+
+15. 更新并合并57->52，理由：采纳ID57的更精确表述"稀疏计算"来更新ID52的表述"Sparse Linear Algebra"，因为前者涵盖范围更广但更简洁。
+
+16. 更新并合并17->33，理由：采纳ID33的更精确表述"概率分布对齐"来更新ID17的表述"高斯耦合"，因为前者更具通用性且描述更准确。
