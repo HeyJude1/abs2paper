@@ -210,6 +210,10 @@ class TopicExtractor:
                         if name_en == topic:
                             name_en = parts[-1].strip()
                     
+                    # 移除主题名称中的前缀数字和点
+                    # 例如 "1. 高性能计算" -> "高性能计算"
+                    name_zh = re.sub(r'^\d+\.\s*', '', name_zh)
+                    
                     # 添加到生成主题词字典
                     generated_topics[temp_id] = {
                         "id": temp_id,
@@ -239,8 +243,8 @@ class TopicExtractor:
         Returns:
             (topic_ids, new_topics): 主题ID列表和新主题列表
         """
-        topic_ids = []
-        new_topics = []
+        topic_ids = set()  # 使用集合去重
+        new_topics = set()  # 使用集合去重
         
         # 如果响应为None（可能因网络问题），直接返回空结果
         if response is None:
@@ -274,7 +278,7 @@ class TopicExtractor:
                 if line[0].isdigit() and '.' in line.split(' ')[0]:
                     id_part = line.split('.')[0].strip()
                     if id_part.isdigit() and id_part in self.topic_manager.topics:
-                        topic_ids.append(id_part)
+                        topic_ids.add(id_part)
                         topic_name = self.topic_manager.topics[id_part].name_zh
                         known_topics_matched.append(f"{id_part}.{topic_name}")
             
@@ -288,8 +292,10 @@ class TopicExtractor:
                         
                     # 检查是否是新的主题词格式
                     if "，Keywords:" in line or ", Keywords:" in line:
-                        new_topics.append(line)
-                        new_topics_added.append(line)
+                        # 移除主题名称中的前缀数字和点 (例如 "1. 高性能计算" -> "高性能计算")
+                        cleaned_line = re.sub(r'^\d+\.\s*', '', line)
+                        new_topics.add(cleaned_line)
+                        new_topics_added.append(cleaned_line)
         
         # 直接查找"新添加的主题词："标记
         for line in response.split('\n'):
@@ -304,11 +310,14 @@ class TopicExtractor:
                 continue
                 
             # 如果是一个完整的主题词格式（包含Keywords）
-            if ("，Keywords:" in line or ", Keywords:" in line) and line not in new_topics:
+            if ("，Keywords:" in line or ", Keywords:" in line):
                 # 检查这不是匹配的主题词（不以数字和点开头）
                 if not (line[0].isdigit() and '.' in line.split(' ')[0]):
-                    new_topics.append(line)
-                    new_topics_added.append(line)
+                    # 移除主题名称中的前缀数字和点
+                    cleaned_line = re.sub(r'^\d+\.\s*', '', line)
+                    if cleaned_line not in new_topics:
+                        new_topics.add(cleaned_line)
+                        new_topics_added.append(cleaned_line)
         
         # 输出解析结果统计
         if known_topics_matched:
@@ -327,29 +336,41 @@ class TopicExtractor:
             # 查找所有可能是"中文关键词，Keywords: English Keywords"格式的行
             keyword_pattern = r'([^，,:]+)[，,](?:\s*Keywords:|\s*keywords:)\s*([^\n]+)'
             for match in re.finditer(keyword_pattern, response, re.IGNORECASE):
-                name_zh = match.group(1).strip()
-                name_en = match.group(2).strip()
-                if name_zh and name_en:
-                    topic_text = f"{name_zh}，Keywords: {name_en}"
-                    if topic_text not in new_topics:
-                        new_topics.append(topic_text)
-            
-            # 尝试查找格式为"序号.中文关键词，Keywords: English Keywords"的行
-            id_pattern = r'(\d+)[\.。]([^，,:]+)[，,](?:\s*Keywords:|\s*keywords:)\s*([^\n]+)'
-            for match in re.finditer(id_pattern, response, re.IGNORECASE):
-                topic_id = match.group(1).strip()
-                if topic_id in self.topic_manager.topics:
-                    topic_ids.append(topic_id)
-            
-            # 如果仍然没找到
-            if not topic_ids and not new_topics:
-                logger.warning(f"无法从LLM响应中提取任何主题，响应内容: {response[:200]}...")
+                # 获取中文部分
+                zh_part = match.group(1).strip()
+                # 移除前缀数字和点
+                zh_part = re.sub(r'^\d+\.\s*', '', zh_part)
+                # 获取英文部分
+                en_part = match.group(2).strip()
+                
+                # 组合成完整的主题词格式
+                topic = f"{zh_part}，Keywords: {en_part}"
+                if topic not in new_topics:
+                    new_topics.add(topic)
+                    new_topics_added.append(topic)
         
-        # 去重
-        topic_ids = list(set(topic_ids))
-        new_topics = list(set(new_topics))
+        # 如果仍然没有找到任何主题，尝试使用更宽松的匹配方法
+        if not topic_ids and not new_topics:
+            logger.warning(f"仍然无法提取任何主题，尝试使用更宽松的匹配...")
+            
+            # 查找可能的中文主题词，不要求Keywords格式
+            potential_topics = []
+            for line in response.split('\n'):
+                line = line.strip()
+                if line and ',' not in line and '，' not in line and len(line) <= 20:
+                    # 移除前缀数字和点
+                    line = re.sub(r'^\d+\.\s*', '', line)
+                    potential_topics.append(f"{line}，Keywords: {line}")
+            
+            if potential_topics:
+                for topic in potential_topics:
+                    if topic not in new_topics:
+                        new_topics.add(topic)
+                        new_topics_added.append(topic)
+                logger.debug(f"通过宽松匹配添加了 {len(potential_topics)} 个新主题")
         
-        return topic_ids, new_topics
+        # 将集合转换回列表
+        return list(topic_ids), list(new_topics)
 
     def process_abstracts(self, abstracts: List[Tuple[str, str]]) -> Dict[str, List[str]]:
         """

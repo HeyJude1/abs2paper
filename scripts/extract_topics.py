@@ -12,14 +12,15 @@ import argparse
 import json
 import logging
 from datetime import datetime
+import re # Added for re.sub
 
 # 添加项目根目录到Python路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 # 导入相关模块
 from abs2paper.utils.topic_manager import TopicManager
-from abs2paper.utils.llm_client import LLMClient
 from abs2paper.processing.topic_extractor import TopicExtractor
+from abs2paper.utils.llm_client import LLMClient
 
 # 设置日志
 logging.basicConfig(
@@ -234,14 +235,16 @@ def generate_merge_suggestions(topic_manager):
     merge_ori_path = os.path.join(output_dir, "merge_ori")
     topic_list = []
     for topic in topic_details:
-        topic_list.append(f"{topic['id']}. {topic['name_zh']}，Keywords: {topic['name_en']}")
+        # 移除主题名称中可能存在的前缀数字
+        name_zh = re.sub(r'^\d+\.\s*', '', topic['name_zh'])
+        topic_list.append(f"{topic['id']}. {name_zh}，Keywords: {topic['name_en']}")
     topic_list_text = "\n".join(topic_list)
     
     with open(merge_ori_path, 'w', encoding='utf-8') as f:
         f.write(topic_list_text)
     logger.info(f"已保存原始主题词列表到 {merge_ori_path}")
     
-    # 创建主题合并提示并调用LLM
+    # 创建主题合并提示并调用LLM生成最新的合并建议
     merge_prompt = topic_manager.create_merge_prompt(topic_details)
     merge_response = llm_client.get_completion(merge_prompt)
     
@@ -260,13 +263,16 @@ def generate_merge_suggestions(topic_manager):
     else:
         logger.info("没有需要合并的主题")
         
+    logger.info("使用代码合并方法执行合并操作")
+
 def update_topics(topic_manager):
     """根据合并建议更新主题词"""
     logger.info("开始更新主题词")
     llm_client = LLMClient()
     
-    # 使用一个新的功能来将gen_topic.json中的主题覆盖到topic.json
-    success = topic_manager.update_topics_from_gen_topic(llm_client)
+    # 使用新的代码合并方法（use_code_merge=True）
+    # 如果需要使用LLM合并方法，可以设置use_code_merge=False
+    success = topic_manager.update_topics_from_gen_topic(llm_client, use_code_merge=True)
     
     if success:
         logger.info("成功更新主题词")

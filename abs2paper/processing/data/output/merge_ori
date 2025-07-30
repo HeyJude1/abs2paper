@@ -1,174 +1,166 @@
 1. 代码生成，Keywords: Code Generation
-2. 线性代数，Keywords: linear algebra
-3. LU分解，Keywords: LU factorization
-4. 通信避免，Keywords: communication avoidance
-5. 分布式算法，Keywords: Distributed algorithms
-6. 性能优化，Keywords: Performance Optimization
-7. 编译器优化，Keywords: Compiler Optimization
-8. 迁移调优，Keywords: Transfer Tuning
-9. 嵌入表示，Keywords: Embeddings
-10. 经典机器学习，Keywords: Classical Machine Learning
+2. 高性能计算，Keywords: High Performance Computing
+3. 分布式计算，Keywords: Distributed Computing
+4. 矩阵计算，Keywords: Matrix Computations
+5. 数值线性代数，Keywords: Numerical Linear Algebra
+6. 自动调优，Keywords: Autotuning
+7. 知识迁移，Keywords: Transfer Learning
+8. 编译器优化，Keywords: Compiler Optimization
+9. 性能优化，Keywords: Performance Optimization
+10. 计算图优化，Keywords: Computational Graph Optimization
 11. 机器学习编译器，Keywords: Machine Learning Compiler
-12. 计算图优化，Keywords: Computational Graph Optimization
-13. 深度学习，Keywords: Deep Learning
-14. 小样本学习，Keywords: Few-Shot Learning
-15. 自动调优，Keywords: Autotuning
-16. 迁移学习，Keywords: Transfer Learning
-17. 高斯耦合，Keywords: Gaussian Copula
-18. 2. 异构边缘环境，Keywords: Heterogeneous Edge Environments
-19. 3. Transformer架构，Keywords: Transformer Architecture
-20. 1. 并行推理，Keywords: Parallel Inference
-21. 4. 模型并行与分区，Keywords: Model Parallelism and Partitioning
-22. 最短路径，Keywords: Shortest Paths
+12. 混合部署，Keywords: Hybrid Deployment
+13. 性能优化，Keywords: Performance Optimization
+14. 迁移学习，Keywords: Transfer Learning
+15. 少样本学习，Keywords: Few-Shot Learning
+16. 自动调优，Keywords: Autotuning
+17. 动态负载优化，Keywords: Dynamic Workload Optimization
+18. 边缘计算，Keywords: Edge Computing
+19. 模型并行，Keywords: Model Parallelism
+20. 分布式推理，Keywords: Distributed Inference
+21. 最短路径，Keywords: Shortest Paths
+22. 图论，Keywords: Graph Theory
 23. 矩阵运算，Keywords: Matrix Operation
 24. 并行计算，Keywords: Parallel Computing
-25. 图论，Keywords: Graph Theory
-26. 2. ARM多核架构，Keywords: ARM Multi-core Architecture
-27. 1. 注意力机制优化，Keywords: Attention Module Optimization
-28. 4. 内存高效计算，Keywords: Memory-efficient Computing
-29. 3. 计算内核融合，Keywords: Kernel Fusion
-30. 数据稀缺场景，Keywords: Data-scarce Scenarios
-31. 任务感知解码，Keywords: Task-aware Decoding
-32. 下游任务适应，Keywords: Downstream Task Adaptation
-33. 概率分布对齐，Keywords: Probability Distribution Alignment
-34. 非完美信息博弈，Keywords: Imperfect-Information Games
-35. 在线镜像下降，Keywords: Online Mirror Descent (OMD)
-36. 纳什均衡收敛，Keywords: Nash Equilibrium Convergence
-37. 反事实遗憾最小化，Keywords: Counterfactual Regret Minimization (CFR)
-38. 自适应阈值，Keywords: Adaptive Threshold
-39. 半监督学习，Keywords: Semi-Supervised Learning
-40. 伪标签，Keywords: Pseudo-Labeling
-41. 一致性正则化，Keywords: Consistency Regularization
-42. 伪标签对比聚类，Keywords: Pseudo-Label Contrastive Clustering
-43. 自监督预训练模型微调，Keywords: Self-Supervised Pre-trained Model Finetuning
-44. 学习步调同步，Keywords: Learning Pace Synchronization
-45. 开放世界半监督学习，Keywords: Open-World Semi-Supervised Learning
-46. 自动代理生成，Keywords: Automatic Agent Generation
-47. 任务规划，Keywords: Task Planning
-48. 团队协作，Keywords: Team Cooperation
-49. 多智能体系统，Keywords: Multi-agent Systems
-50. 高性能图算法，Keywords: High-Performance Graph Algorithms
-51. 编译器优化，Keywords: Compiler Optimization
-52. 稀疏线性代数，Keywords: Sparse Linear Algebra
+25. 异构计算优化，Keywords: Heterogeneous Computing Optimization
+26. 内存高效计算，Keywords: Memory-Efficient Computing
+27. 注意力机制优化，Keywords: Attention Mechanism Optimization
+28. SIMD向量化，Keywords: SIMD Vectorization
+29. 任务感知解码，Keywords: Task-Aware Decoding
+30. 概率分布对齐，Keywords: Probability Distribution Alignment
+31. 下游任务适应，Keywords: Downstream Task Adaptation
+32. 在线镜像下降，Keywords: Online Mirror Descent
+33. 纳什均衡，Keywords: Nash Equilibrium
+34. 反事实遗憾最小化，Keywords: Counterfactual Regret Minimization
+35. 博弈论，Keywords: Game Theory
+36. 自适应阈值机制，Keywords: Adaptive Threshold Mechanism
+37. 一致性正则化，Keywords: Consistency Regularization
+38. 半监督学习，Keywords: Semi-Supervised Learning
+39. 对比学习，Keywords: Contrastive Learning
+40. 开放世界识别，Keywords: Open-World Recognition
+41. 类别不平衡学习，Keywords: Class Imbalance Learning
+42. 半监督学习，Keywords: Semi-Supervised Learning
+43. 团队协作优化，Keywords: Team Collaboration Optimization
+44. 自动代理生成，Keywords: Automatic Agent Generation
+45. 多智能体系统，Keywords: Multi-Agent Systems
+46. 任务自适应，Keywords: Task Adaptation
+47. 稀疏线性代数，Keywords: Sparse Linear Algebra
+48. 编译器优化，Keywords: Compiler Optimization
+49. 高性能计算，Keywords: High-Performance Computing
+50. 领域特定语言，Keywords: Domain-Specific Language
+51. 同步机制，Keywords: Synchronization Mechanism
+52. 编译器优化，Keywords: Compiler Optimization
 53. 并行编程模型，Keywords: Parallel Programming Model
-54. 运行时系统，Keywords: Runtime System
-55. 编译器优化，Keywords: Compiler Optimization
-56. 同步机制，Keywords: Synchronization Mechanism
-57. 3.稀疏计算，Keywords: Sparse Computation
-58. 2.领域特定语言编译器，Keywords: Domain Specific Language Compiler
-59. 4.自动调优，Keywords: Auto-tuning
-60. 1.图神经网络，Keywords: Graph Neural Network (GNN)
-61. 随机森林，Keywords: Random Forests
-62. 机器学习，Keywords: Machine Learning
-63. 并行处理，Keywords: Parallel Processing
-64. 决策树，Keywords: Decision Trees
-65. 2. 性能优化，Keywords: Performance Optimization
-66. 4. 预训练模型，Keywords: Pre-trained Models
-67. 3. 多模态建模，Keywords: Multi-modal Modeling
-68. 稀疏张量计算，Keywords: Sparse Tensor Computations
-69. 硬件加速，Keywords: Hardware Acceleration
-70. 稀疏压缩格式，Keywords: Sparse Compression Formats
-71. 机器学习硬件，Keywords: Machine Learning Hardware
+54. 稀疏计算优化，Keywords: Sparse Computation Optimization
+55. 图神经网络加速，Keywords: Graph Neural Network Acceleration
+56. 自动调优，Keywords: Auto-Tuning
+57. 领域特定语言编译器，Keywords: Domain-Specific Language Compiler
+58. 机器学习推理，Keywords: Machine Learning Inference
+59. 决策树集成，Keywords: Decision Tree Ensembles
+60. 并行计算，Keywords: Parallel Computing
+61. 迁移学习，Keywords: Transfer Learning
+62. 多模态建模，Keywords: Multi-modal Modeling
+63. 自动调优，Keywords: Auto-tuning
+64. 性能优化，Keywords: Performance Optimization
+65. 稀疏压缩格式，Keywords: Sparse Compression Formats
+66. 机器学习硬件，Keywords: Machine Learning Hardware
+67. 硬件加速，Keywords: Hardware Acceleration
+68. 稀疏矩阵计算，Keywords: Sparse Matrix Computations
+69. 微体系结构，Keywords: Microarchitecture
+70. 编译器优化，Keywords: Compiler Optimization
+71. 新添加的主题词：
+1.内存一致性模型，Keywords: Memory Consistency Model
 72. 计算机体系结构，Keywords: Computer Architecture
-73. 内存一致性模型，Keywords: Memory Consistency Model
-74. 微体系结构，Keywords: Microarchitecture
-75. 编译器，Keywords: Compiler
+73. 并行计算，Keywords: Parallel Computing
+74. 性能建模，Keywords: Performance Modeling
+75. 稀疏矩阵计算，Keywords: Sparse Matrix Computation
 76. 自动优化框架，Keywords: Automatic Optimization Framework
-77. 计算图变换，Keywords: Computation Graph Transformation
-78. GPU并行计算，Keywords: GPU Parallel Computing
-79. 稀疏三角求解，Keywords: Sparse Triangular Solve (SpTRSV)
-80. 张量布局，Keywords: Tensor layout
-81. 稀疏张量，Keywords: Sparse tensors
-82. 循环融合，Keywords: Loop fusion
-83. 张量网络，Keywords: Tensor networks
-84. 稀疏-稠密矩阵乘法，Keywords: Sparse-dense Matrix Multiplication (SpMM)
-85. 硬件加速器，Keywords: Hardware Accelerator
-86. 数据流优化，Keywords: Dataflow Optimization
-87. 软件-硬件协同设计，Keywords: Software-Hardware Co-design
-88. 多GPU系统优化，Keywords: Multi-GPU System Optimization
-89. 稀疏矩阵向量乘法，Keywords: Sparse Matrix-Vector Multiplication (SpMV)
-90. 稀疏矩阵划分，Keywords: Sparse Matrix Partitioning
-91. 数据传输隐藏，Keywords: Data Transmission Hiding
-92. C状态，Keywords: C-states
-93. 空闲状态，Keywords: Idle states
-94. 数据中心，Keywords: Datacenters
-95. 微服务，Keywords: Microservices
-96. 功耗管理，Keywords: Power management
-97. 张量编译器，Keywords: Tensor Compiler
-98. 稀疏-密集矩阵乘法，Keywords: Sparse-dense Matrix Multiplication (SpMM)
-99. 神经网络剪枝，Keywords: Neural Network Pruning
-100. GPU计算优化，Keywords: GPU Computing Optimization
-101. 稀疏通用矩阵乘法，Keywords: Sparse General Matrix-Matrix multiplication (SpGEMM)
-102. 异构计算，Keywords: Heterogeneous computing
-103. 负载均衡，Keywords: Load balancing
-104. 并行算法，Keywords: Parallel algorithms
-105. 并行计算，Keywords: Parallel Computing
-106. 指针分析，Keywords: Pointer Analysis
-107. 静态分析，Keywords: Static Analysis
-108. 强化学习，Keywords: Reinforcement learning
-109. 移动操作系统优化，Keywords: Mobile OS optimization
-110. 用户界面流畅性，Keywords: UI smoothness
-111. 功耗优化，Keywords: Power consumption optimization
-112. 图构造，Keywords: Graph construction
-113. 图划分，Keywords: Graph partitioning
-114. 并行计算模型，Keywords: Parallel computing models
-115. 图表示，Keywords: Graph representation
-116. 4.延迟优化，Keywords: Latency Optimization
-117. 2.内存优化，Keywords: Memory Optimization
-118. 1.边缘计算，Keywords: Edge Computing
-119. 3.分布式推理，Keywords: Distributed Inference
-120. 神经网络压缩，Keywords: Neural Network Compression
-121. 协同设计，Keywords: Co-Design
-122. 深度学习加速，Keywords: Deep Learning Acceleration
-123. 张量编译器，Keywords: Tensor Compiler
-124. GPU内存管理，Keywords: GPU Memory Management
-125. 动态调度器，Keywords: Dynamic Scheduler
-126. 统一内存架构，Keywords: Unified Memory Architecture
-127. 全同态加密，Keywords: Fully Homomorphic Encryption (FHE)
-128. 1. 量化，Keywords: Quantization
-129. 3. 张量处理，Keywords: Tensor Processing
-130. 2. 深度神经网络，Keywords: Deep Neural Networks (DNNs)
-131. 4. 指数分布，Keywords: Exponential Distribution
-132. 内存优化，Keywords: Memory Optimization
-133. 分布式深度学习训练，Keywords: Distributed Deep Learning Training
-134. GPU计算，Keywords: GPU Computing
-135. 混合并行策略，Keywords: Hybrid Parallelism
-136. 张量特征向量，Keywords: Tensor Eigenvector
-137. 超图，Keywords: Hypergraphs
-138. 生成函数，Keywords: Generating Function
-139. 稀疏对称张量同向量乘，Keywords: Sparse Symmetric Tensor Times Same Vector
-140. 存内计算，Keywords: Compute-in-memory
-141. 矩阵乘法，Keywords: matrix multiplication
-142. 机器学习加速器，Keywords: ML accelerator
-143. 单片3D集成，Keywords: monolithic 3D integration
-144. 分层任务调度，Keywords: hierarchical task scheduling
-145. 稀疏通用矩阵乘法，Keywords: SpGEMM (Sparse General Matrix-Matrix Multiplication)
-146. 稀疏矩阵，Keywords: sparse matrix
-147. 多GPU系统，Keywords: multi-GPU systems
-148. 资源推荐系统，Keywords: resource recommendation
-149. 高性能计算，Keywords: High-Performance Computing
-150. 云计算，Keywords: cloud computing
-151. 强化学习，Keywords: reinforcement learning
-152. 分布式深度学习，Keywords: distributed deep learning
-153. 深度神经网络训练，Keywords: DNN training
-154. 可扩展性，Keywords: scalability
-155. 梯度稀疏化，Keywords: gradient sparsification
-156. 建模，Keywords: Modeling
-157. 高性能计算存储系统，Keywords: HPC Storage Systems
-158. 仿真，Keywords: Simulation
-159. 并行文件系统，Keywords: Parallel File System
-160. 高性能计算，Keywords: High performance computing
-161. 随机模型，Keywords: Stochastic model
-162. 内存解聚，Keywords: Memory Disaggregation
-163. 调度策略，Keywords: Scheduling
-164. GPU卸载优化，Keywords: GPU Offload Optimization
-165. 并行编程框架，Keywords: Parallel Programming Framework
-166. 性能可移植性，Keywords: Performance Portability
-167. 边缘设备，Keywords: Edge Devices
-168. 参数自动调优，Keywords: Parameter Autotuning
-169. 多臂老虎机，Keywords: Multi-Armed Bandit
-170. 高性能计算应用，Keywords: HPC Applications
-171. 高性能计算性能分析，Keywords: High-Performance Computing (HPC) Performance Analysis
-172. 大规模程序优化，Keywords: Large-Scale Program Optimization
-173. 性能瓶颈识别，Keywords: Performance Bottleneck Identification
-174. 性能分析工具，Keywords: Performance Analysis Tools
+77. 编译器优化，Keywords: Compiler Optimization
+78. 稀疏张量网络，Keywords: Sparse Tensor Networks
+79. 约束求解，Keywords: Constraint Solving
+80. 内存优化，Keywords: Memory Optimization
+81. 软硬件协同设计，Keywords: Software-Hardware Co-design
+82. 硬件加速器，Keywords: Hardware Accelerators
+83. 稀疏密集矩阵乘法，Keywords: Sparse-dense Matrix Multiplication
+84. 负载均衡，Keywords: Load Balancing
+85. 高性能计算，Keywords: High Performance Computing
+86. 稀疏矩阵计算，Keywords: Sparse Matrix Computation
+87. 并行计算，Keywords: Parallel Computing
+88. 微服务架构，Keywords: Microservices Architecture
+89. 功耗管理，Keywords: Power Management
+90. 数据中心优化，Keywords: Datacenter Optimization
+91. 稀疏矩阵计算，Keywords: Sparse Matrix Computation
+92. 深度学习优化，Keywords: Deep Learning Optimization
+93. 并行计算，Keywords: Parallel Computing
+94. 负载均衡，Keywords: Load Balancing
+95. 稀疏矩阵乘法，Keywords: Sparse Matrix Multiplication
+96. 异构计算，Keywords: Heterogeneous Computing
+97. 并行计算，Keywords: Parallel Computing
+98. 并行计算，Keywords: Parallel Computing
+99. 静态分析，Keywords: Static Analysis
+100. 指针分析，Keywords: Pointer Analysis
+101. 强化学习，Keywords: Reinforcement Learning
+102. 能耗优化，Keywords: Energy Optimization
+103. 移动计算，Keywords: Mobile Computing
+104. 系统调度，Keywords: System Scheduling
+105. 图划分，Keywords: Graph Partitioning
+106. 图处理，Keywords: Graph Processing
+107. 分布式计算，Keywords: Distributed Computing
+108. 图表示，Keywords: Graph Representation
+109. 内存优化，Keywords: Memory Optimization
+110. 分布式推理，Keywords: Distributed Inference
+111. 边缘计算，Keywords: Edge Computing
+112. 延迟优化，Keywords: Latency Optimization
+113. 张量编译器，Keywords: Tensor Compiler
+114. 设计空间探索，Keywords: Design Space Exploration
+115. 深度学习加速，Keywords: Deep Learning Acceleration
+116. 协同设计，Keywords: Co-Design
+117. 运行时调度，Keywords: Runtime Scheduling
+118. GPU内存管理，Keywords: GPU Memory Management
+119. 全同态加密，Keywords: Fully Homomorphic Encryption
+120. 自适应优化，Keywords: Adaptive Optimization
+121. 新添加的主题词：
+1.神经网络量化，Keywords: Neural Network Quantization
+122. 张量压缩，Keywords: Tensor Compression
+123. 硬件加速，Keywords: Hardware Acceleration
+124. 混合并行策略，Keywords: Hybrid Parallelism
+125. 分布式训练，Keywords: Distributed Training
+126. 内存优化，Keywords: Memory Optimization
+127. 深度学习优化，Keywords: Deep Learning Optimization
+128. 超图分析，Keywords: Hypergraph Analysis
+129. 特征向量中心性，Keywords: Eigenvector Centrality
+130. 张量计算，Keywords: Tensor Computation
+131. 并行算法，Keywords: Parallel Algorithm
+132. 三维集成技术，Keywords: monolithic 3D integration
+133. 内存计算，Keywords: Compute-in-memory
+134. 矩阵乘法，Keywords: matrix multiplication
+135. 机器学习加速器，Keywords: ML accelerator
+136. 负载均衡，Keywords: Load Balancing
+137. 高性能计算，Keywords: High Performance Computing
+138. 稀疏矩阵计算，Keywords: Sparse Matrix Computation
+139. 并行计算，Keywords: Parallel Computing
+140. 云计算，Keywords: Cloud Computing
+141. 资源推荐，Keywords: Resource Recommendation
+142. 强化学习，Keywords: Reinforcement Learning
+143. 高性能计算，Keywords: High-Performance Computing
+144. 可扩展性优化，Keywords: Scalability Optimization
+145. 分布式深度学习，Keywords: Distributed Deep Learning
+146. 梯度稀疏化，Keywords: Gradient Sparsification
+147. 存储模拟，Keywords: Storage Simulation
+148. 性能建模，Keywords: Performance Modeling
+149. 高性能计算存储系统，Keywords: HPC Storage Systems
+150. 随机模型，Keywords: Stochastic model
+151. 高性能计算，Keywords: High performance computing
+152. 内存解耦，Keywords: Memory Disaggregation
+153. 调度策略，Keywords: Scheduling
+154. 性能可移植性，Keywords: Performance Portability
+155. 并行编程模型，Keywords: Parallel Programming Models
+156. 编译器优化，Keywords: Compiler Optimization
+157. GPU计算，Keywords: GPU Computing
+158. 自动调优，Keywords: Autotuning
+159. 边缘计算，Keywords: Edge Computing
+160. 性能建模，Keywords: Performance Modeling
+161. 强化学习，Keywords: Reinforcement Learning
+162. 程序优化，Keywords: Program Optimization
+163. 性能分析，Keywords: Performance Analysis
+164. 高性能计算，Keywords: High-Performance Computing
