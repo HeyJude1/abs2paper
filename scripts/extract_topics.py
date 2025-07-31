@@ -106,6 +106,22 @@ def reset_data_files():
             json.dump(empty_merge_opinion, f, ensure_ascii=False, indent=2)
             
         logger.info("已重置merge_opinion.json")
+        
+        # 重置middle_topic.json
+        middle_topic_path = os.path.join(os.path.dirname(topic_json_file), "middle_topic.json")
+        empty_middle_topic = {
+            "topics": {},
+            "mappings": {},
+            "version": "1.0.0",
+            "last_updated": datetime.now().isoformat(),
+            "description": "存储中间合并过程的主题词"
+        }
+        
+        with open(middle_topic_path, 'w', encoding='utf-8') as f:
+            json.dump(empty_middle_topic, f, ensure_ascii=False, indent=2)
+            
+        logger.info("已重置middle_topic.json")
+        
         return True
         
     except Exception as e:
@@ -160,11 +176,8 @@ def main():
             # 1. 从论文中提取主题词
             extract_from_papers(config, module_dir, topic_manager)
             
-            # 2. 生成主题合并建议
-            generate_merge_suggestions(topic_manager)
-            
-            # 3. 根据合并建议更新主题词
-            update_topics(topic_manager)
+            # 2. 执行多轮合并循环
+            execute_merge_cycles(topic_manager)
             
             logger.info("完整的主题提取、合并建议生成和更新流程已完成！")
     
@@ -191,38 +204,80 @@ def extract_from_papers(config, module_dir, topic_manager):
     
     # 不再调用update_prompt_template，避免无法找到知识库部分的错误
 
-def generate_merge_suggestions(topic_manager):
+def execute_merge_cycles(topic_manager):
+    """执行多轮合并循环"""
+    logger.info("开始执行多轮合并循环")
+    
+    # 第一轮：从gen_topic.json到middle_topic.json
+    logger.info("=== 第一轮合并：从gen_topic.json到middle_topic.json ===")
+    generate_merge_suggestions(topic_manager, source="gen_topic")
+    update_topics(topic_manager, target="middle_topic")
+    
+    # 第二轮：从middle_topic.json到middle_topic.json
+    logger.info("=== 第二轮合并：从middle_topic.json到middle_topic.json ===")
+    generate_merge_suggestions(topic_manager, source="middle_topic")
+    update_topics(topic_manager, target="middle_topic")
+    
+    # 第三轮：从middle_topic.json到topic.json
+    logger.info("=== 第三轮合并：从middle_topic.json到topic.json ===")
+    generate_merge_suggestions(topic_manager, source="middle_topic")
+    update_topics(topic_manager, target="topic")
+    
+    logger.info("多轮合并循环完成")
+
+def generate_merge_suggestions(topic_manager, source="gen_topic"):
     """生成主题合并建议"""
-    logger.info("开始生成主题合并建议")
+    logger.info(f"开始生成主题合并建议（数据源：{source}）")
     
     # 初始化LLM客户端
     llm_client = LLMClient()
     
-    # 从gen_topic.json获取所有主题的详细信息
-    topic_details = []
-    gen_topics = topic_manager.load_generated_topics()
+    # 根据源类型获取主题数据
+    if source == "gen_topic":
+        # 从gen_topic.json获取所有主题的详细信息
+        topic_details = []
+        gen_topics = topic_manager.load_generated_topics()
+        
+        # 将gen_topic.json中的主题转换为topic_details格式
+        for gen_id, topic_data in gen_topics.items():
+            # 将生成主题的格式转换为和topic_info一致
+            topic_info = {
+                "id": gen_id,
+                "name_zh": topic_data.get("name_zh", ""),
+                "name_en": topic_data.get("name_en", ""),
+                "aliases": topic_data.get("aliases", []),
+                "created_at": topic_data.get("created_at", datetime.now().isoformat())
+            }
+            
+            # 如果有原始ID，则添加
+            if "original_id" in topic_data:
+                topic_info["original_id"] = topic_data["original_id"]
+            
+            topic_details.append(topic_info)
     
-    # 将gen_topic.json中的主题转换为topic_details格式
-    for gen_id, topic_data in gen_topics.items():
-        # 将生成主题的格式转换为和topic_info一致
-        topic_info = {
-            "id": gen_id,
-            "name_zh": topic_data.get("name_zh", ""),
-            "name_en": topic_data.get("name_en", ""),
-            "aliases": topic_data.get("aliases", []),
-            "created_at": topic_data.get("created_at", datetime.now().isoformat())
-        }
+    elif source == "middle_topic":
+        # 从middle_topic.json获取主题数据
+        topic_details = []
+        middle_topics = topic_manager.load_middle_topics()
         
-        # 如果有原始ID，则添加
-        if "original_id" in topic_data:
-            topic_info["original_id"] = topic_data["original_id"]
-        
-        topic_details.append(topic_info)
+        for topic_id, topic_data in middle_topics.items():
+            topic_info = {
+                "id": topic_id,
+                "name_zh": topic_data.get("name_zh", ""),
+                "name_en": topic_data.get("name_en", ""),
+                "aliases": topic_data.get("aliases", []),
+                "created_at": topic_data.get("created_at", datetime.now().isoformat())
+            }
+            topic_details.append(topic_info)
+    
+    else:
+        logger.error(f"不支持的数据源类型：{source}")
+        return
     
     # 按创建时间排序主题
     topic_details.sort(key=lambda x: x.get('created_at', ''))
     
-    logger.info(f"准备生成合并建议，共有 {len(topic_details)} 个主题")
+    logger.info(f"准备生成合并建议，共有 {len(topic_details)} 个主题（数据源：{source}）")
     
     # 定义输出目录路径
     output_dir = os.path.join(
@@ -232,7 +287,7 @@ def generate_merge_suggestions(topic_manager):
     os.makedirs(output_dir, exist_ok=True)
     
     # 保存原始主题词列表到merge_ori文件
-    merge_ori_path = os.path.join(output_dir, "merge_ori")
+    merge_ori_path = os.path.join(output_dir, f"merge_ori")
     topic_list = []
     for topic in topic_details:
         # 移除主题名称中可能存在的前缀数字
@@ -249,7 +304,7 @@ def generate_merge_suggestions(topic_manager):
     merge_response = llm_client.get_completion(merge_prompt)
     
     # 保存LLM原始响应到指定的output目录
-    merge_llm_result_path = os.path.join(output_dir, "merge_LLM_result")
+    merge_llm_result_path = os.path.join(output_dir, f"merge_LLM_result")
     with open(merge_llm_result_path, 'w', encoding='utf-8') as f:
         f.write(merge_response)
     logger.info(f"已保存LLM原始响应到 {merge_llm_result_path}")
@@ -264,24 +319,25 @@ def generate_merge_suggestions(topic_manager):
         logger.info("没有需要合并的主题")
         
     logger.info("使用代码合并方法执行合并操作")
+    return merge_suggestions
 
-def update_topics(topic_manager):
-    """根据合并建议更新主题词"""
-    logger.info("开始更新主题词")
+def update_topics(topic_manager, target="topic"):
+    """更新主题词"""
+    logger.info(f"开始更新主题词（目标：{target}）")
+    
+    # 初始化LLM客户端
     llm_client = LLMClient()
     
-    # 使用新的代码合并方法（use_code_merge=True）
-    # 如果需要使用LLM合并方法，可以设置use_code_merge=False
-    success = topic_manager.update_topics_from_gen_topic(llm_client, use_code_merge=True)
+    # 执行主题更新
+    success = topic_manager.update_topics_from_merge(llm_client, target=target, use_code_merge=True)
     
     if success:
-        logger.info("成功更新主题词")
-        topic_manager.list_all_topics()
-        
-        # 不再清空gen_topic.json，保留原始内容
-        logger.info("保留gen_topic.json中的原始主题词")
+        # 删除重复日志，TopicManager已经有详细的日志输出
+        pass
     else:
-        logger.info("没有更新主题词")
+        logger.error(f"更新主题到 {target} 失败")
+    
+    return success
 
 
 if __name__ == "__main__":

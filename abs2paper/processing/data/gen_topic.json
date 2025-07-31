@@ -11,82 +11,67 @@
     },
     "2": {
       "id": "2",
-      "name_zh": "高性能计算",
-      "name_en": "High Performance Computing",
-      "aliases": [
-        "Parallel Computing",
-        "并行计算"
-      ],
+      "name_zh": "数值线性代数",
+      "name_en": "Numerical Linear Algebra",
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:47.972809"
+      "created_at": "2025-07-31T19:29:54.996118"
     },
     "3": {
       "id": "3",
+      "name_zh": "高性能计算",
+      "name_en": "High Performance Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:29:54.996284"
+    },
+    "4": {
+      "id": "4",
       "name_zh": "分布式计算",
       "name_en": "Distributed Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:47.973046"
-    },
-    "4": {
-      "id": "4",
-      "name_zh": "矩阵计算",
-      "name_en": "Matrix Computations",
-      "aliases": [
-        "矩阵运算",
-        "Matrix Operation"
-      ],
-      "status": "pending",
-      "created_at": "2025-07-30T20:50:47.973210"
+      "created_at": "2025-07-31T19:29:54.996386"
     },
     "5": {
       "id": "5",
-      "name_zh": "稀疏线性代数",
-      "name_en": "Sparse Linear Algebra",
+      "name_zh": "自动调优",
+      "name_en": "Autotuning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:47.973346"
+      "created_at": "2025-07-31T19:29:58.716393"
     },
     "6": {
       "id": "6",
-      "name_zh": "自动调优",
-      "name_en": "Autotuning",
-      "aliases": [
-        "自动调优",
-        "Autotuning"
-      ],
-      "status": "pending",
-      "created_at": "2025-07-30T20:50:53.265818"
-    },
-    "7": {
-      "id": "7",
-      "name_zh": "知识迁移",
-      "name_en": "Transfer Learning",
-      "aliases": [
-        "迁移学习",
-        "Transfer Learning"
-      ],
-      "status": "pending",
-      "created_at": "2025-07-30T20:50:53.266031"
-    },
-    "8": {
-      "id": "8",
       "name_zh": "编译器优化",
       "name_en": "Compiler Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:53.266208"
+      "created_at": "2025-07-31T19:29:58.716616"
+    },
+    "7": {
+      "id": "7",
+      "name_zh": "性能优化",
+      "name_en": "Performance Optimization",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:29:58.716773"
+    },
+    "8": {
+      "id": "8",
+      "name_zh": "嵌入学习",
+      "name_en": "Embedding Learning",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:29:58.716911"
     },
     "9": {
       "id": "9",
-      "name_zh": "性能优化",
-      "name_en": "Performance Optimization",
-      "aliases": [
-        "性能优化",
-        "Performance Optimization"
-      ],
+      "name_zh": "混合部署",
+      "name_en": "Hybrid Deployment",
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:53.266350"
+      "created_at": "2025-07-31T19:30:01.106605"
     },
     "10": {
       "id": "10",
@@ -94,7 +79,7 @@
       "name_en": "Computational Graph Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:59.392631"
+      "created_at": "2025-07-31T19:30:01.106857"
     },
     "11": {
       "id": "11",
@@ -102,53 +87,47 @@
       "name_en": "Machine Learning Compiler",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:59.392849"
+      "created_at": "2025-07-31T19:30:01.107020"
     },
     "12": {
       "id": "12",
-      "name_zh": "混合部署",
-      "name_en": "Hybrid Deployment",
+      "name_zh": "自动调优",
+      "name_en": "Autotuning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:50:59.393009"
+      "created_at": "2025-07-31T19:30:04.141778"
     },
     "13": {
       "id": "13",
-      "name_zh": "性能优化",
-      "name_en": "Performance Optimization",
+      "name_zh": "少样本学习",
+      "name_en": "Few-Shot Learning",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:50:59.393149",
-      "merged": true,
-      "merged_to": "9"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:04.142001"
     },
     "14": {
       "id": "14",
       "name_zh": "迁移学习",
       "name_en": "Transfer Learning",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:05.019957",
-      "merged": true,
-      "merged_to": "7"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:04.142158"
     },
     "15": {
       "id": "15",
-      "name_zh": "少样本学习",
-      "name_en": "Few-Shot Learning",
+      "name_zh": "异构边缘计算",
+      "name_en": "Heterogeneous Edge Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:05.020174"
+      "created_at": "2025-07-31T19:30:07.464739"
     },
     "16": {
       "id": "16",
-      "name_zh": "自动调优",
-      "name_en": "Autotuning",
+      "name_zh": "Transformer架构推理",
+      "name_en": "Transformer Architecture Inference",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:05.020328",
-      "merged": true,
-      "merged_to": "6"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:07.464965"
     },
     "17": {
       "id": "17",
@@ -156,31 +135,31 @@
       "name_en": "Dynamic Workload Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:08.656819"
+      "created_at": "2025-07-31T19:30:07.465129"
     },
     "18": {
       "id": "18",
-      "name_zh": "边缘计算",
-      "name_en": "Edge Computing",
+      "name_zh": "模型并行与划分",
+      "name_en": "Model Parallelism and Partitioning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:08.657038"
+      "created_at": "2025-07-31T19:30:07.465274"
     },
     "19": {
       "id": "19",
-      "name_zh": "模型并行",
-      "name_en": "Model Parallelism",
+      "name_zh": "并行计算",
+      "name_en": "Parallel Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:08.657215"
+      "created_at": "2025-07-31T19:30:11.096019"
     },
     "20": {
       "id": "20",
-      "name_zh": "分布式推理",
-      "name_en": "Distributed Inference",
+      "name_zh": "图论",
+      "name_en": "Graph Theory",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:08.657352"
+      "created_at": "2025-07-31T19:30:11.096255"
     },
     "21": {
       "id": "21",
@@ -188,265 +167,215 @@
       "name_en": "Shortest Paths",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:13.139966"
+      "created_at": "2025-07-31T19:30:11.096418"
     },
     "22": {
       "id": "22",
-      "name_zh": "图论",
-      "name_en": "Graph Theory",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:13.140202"
-    },
-    "23": {
-      "id": "23",
       "name_zh": "矩阵运算",
       "name_en": "Matrix Operation",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:13.140365",
-      "merged": true,
-      "merged_to": "4"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:11.096563"
     },
-    "24": {
-      "id": "24",
-      "name_zh": "并行计算",
-      "name_en": "Parallel Computing",
-      "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:13.140503",
-      "merged": true,
-      "merged_to": "2"
-    },
-    "25": {
-      "id": "25",
-      "name_zh": "异构计算优化",
-      "name_en": "Heterogeneous Computing Optimization",
-      "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:16.282818",
-      "merged": true,
-      "merged_to": "96"
-    },
-    "26": {
-      "id": "26",
+    "23": {
+      "id": "23",
       "name_zh": "内存高效计算",
       "name_en": "Memory-Efficient Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:16.283044"
+      "created_at": "2025-07-31T19:30:14.608296"
     },
-    "27": {
-      "id": "27",
+    "24": {
+      "id": "24",
       "name_zh": "注意力机制优化",
       "name_en": "Attention Mechanism Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:16.283205"
+      "created_at": "2025-07-31T19:30:14.608534"
     },
-    "28": {
-      "id": "28",
-      "name_zh": "SIMD向量化",
-      "name_en": "SIMD Vectorization",
+    "25": {
+      "id": "25",
+      "name_zh": "并行计算",
+      "name_en": "Parallel Computing",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:16.283347",
-      "merged": true,
-      "merged_to": "157"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:14.608702"
     },
-    "29": {
-      "id": "29",
+    "26": {
+      "id": "26",
+      "name_zh": "异构计算优化",
+      "name_en": "Heterogeneous Computing Optimization",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:14.608847"
+    },
+    "27": {
+      "id": "27",
       "name_zh": "任务感知解码",
       "name_en": "Task-Aware Decoding",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:20.475058"
+      "created_at": "2025-07-31T19:30:18.434676"
     },
-    "30": {
-      "id": "30",
+    "28": {
+      "id": "28",
+      "name_zh": "下游任务适应",
+      "name_en": "Downstream Task Adaptation",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:18.434912"
+    },
+    "29": {
+      "id": "29",
       "name_zh": "概率分布对齐",
       "name_en": "Probability Distribution Alignment",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:20.475283",
-      "merged": true,
-      "merged_to": "31"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:18.435078"
+    },
+    "30": {
+      "id": "30",
+      "name_zh": "预训练模型微调",
+      "name_en": "Pre-trained Model Fine-tuning",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:18.435224"
     },
     "31": {
       "id": "31",
-      "name_zh": "任务自适应",
-      "name_en": "Task Adaptation",
-      "aliases": [
-        "Probability Distribution Alignment",
-        "概率分布对齐"
-      ],
+      "name_zh": "反事实遗憾最小化",
+      "name_en": "Counterfactual Regret Minimization",
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:20.475448"
+      "created_at": "2025-07-31T19:30:21.582828"
     },
     "32": {
       "id": "32",
       "name_zh": "在线镜像下降",
       "name_en": "Online Mirror Descent",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:23.448562",
-      "merged": true,
-      "merged_to": "101"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:21.583064"
     },
     "33": {
       "id": "33",
-      "name_zh": "纳什均衡",
-      "name_en": "Nash Equilibrium",
+      "name_zh": "博弈论",
+      "name_en": "Game Theory",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:23.448786",
-      "merged": true,
-      "merged_to": "35"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:21.583233"
     },
     "34": {
       "id": "34",
-      "name_zh": "反事实遗憾最小化",
-      "name_en": "Counterfactual Regret Minimization",
+      "name_zh": "强化学习",
+      "name_en": "Reinforcement Learning",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:23.448952",
-      "merged": true,
-      "merged_to": "35"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:21.583378"
     },
     "35": {
       "id": "35",
-      "name_zh": "博弈论",
-      "name_en": "Game Theory",
-      "aliases": [
-        "Counterfactual Regret Minimization",
-        "Nash Equilibrium",
-        "反事实遗憾最小化",
-        "纳什均衡"
-      ],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:23.449098"
-    },
-    "36": {
-      "id": "36",
-      "name_zh": "自适应阈值机制",
-      "name_en": "Adaptive Threshold Mechanism",
-      "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:28.529924",
-      "merged": true,
-      "merged_to": "120"
-    },
-    "37": {
-      "id": "37",
       "name_zh": "一致性正则化",
       "name_en": "Consistency Regularization",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:28.530019",
-      "merged": true,
-      "merged_to": "38"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:25.517055"
+    },
+    "36": {
+      "id": "36",
+      "name_zh": "伪标签技术",
+      "name_en": "Pseudo-Labeling",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:25.517286"
+    },
+    "37": {
+      "id": "37",
+      "name_zh": "自适应阈值机制",
+      "name_en": "Adaptive Threshold Mechanism",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:25.517457"
     },
     "38": {
       "id": "38",
       "name_zh": "半监督学习",
       "name_en": "Semi-Supervised Learning",
-      "aliases": [
-        "Contrastive Learning",
-        "Consistency Regularization",
-        "对比学习",
-        "一致性正则化"
-      ],
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:28.530103"
+      "created_at": "2025-07-31T19:30:25.517606"
     },
     "39": {
       "id": "39",
-      "name_zh": "对比学习",
-      "name_en": "Contrastive Learning",
-      "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:31.551201",
-      "merged": true,
-      "merged_to": "38"
-    },
-    "40": {
-      "id": "40",
       "name_zh": "开放世界识别",
       "name_en": "Open-World Recognition",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:31.551435",
-      "merged": true,
-      "merged_to": "41"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:28.231021"
+    },
+    "40": {
+      "id": "40",
+      "name_zh": "对比聚类",
+      "name_en": "Contrastive Clustering",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:28.231262"
     },
     "41": {
       "id": "41",
-      "name_zh": "类别不平衡学习",
-      "name_en": "Class Imbalance Learning",
-      "aliases": [
-        "Open-World Recognition",
-        "开放世界识别"
-      ],
+      "name_zh": "模型偏差缓解",
+      "name_en": "Model Bias Mitigation",
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:31.551602"
+      "created_at": "2025-07-31T19:30:28.231435"
     },
     "42": {
       "id": "42",
       "name_zh": "半监督学习",
       "name_en": "Semi-Supervised Learning",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:31.551749",
-      "merged": true,
-      "merged_to": "38"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:28.231590"
     },
     "43": {
       "id": "43",
       "name_zh": "多智能体系统",
       "name_en": "Multi-Agent Systems",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:35.286471",
-      "merged": true,
-      "merged_to": "45"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:31.781362"
     },
     "44": {
       "id": "44",
-      "name_zh": "团队协作优化",
-      "name_en": "Team Collaboration Optimization",
+      "name_zh": "自动任务解决",
+      "name_en": "Automated Task-Solving",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:35.286711",
-      "merged": true,
-      "merged_to": "45"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:31.781597"
     },
     "45": {
       "id": "45",
-      "name_zh": "自动代理生成",
-      "name_en": "Automatic Agent Generation",
+      "name_zh": "动态角色分配",
+      "name_en": "Dynamic Role Assignment",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:35.286882"
+      "created_at": "2025-07-31T19:30:31.781769"
     },
     "46": {
       "id": "46",
-      "name_zh": "下游任务适应",
-      "name_en": "Downstream Task Adaptation",
+      "name_zh": "团队协作优化",
+      "name_en": "Team Collaboration Optimization",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:35.287032",
-      "merged": true,
-      "merged_to": "31"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:31.781923"
     },
     "47": {
       "id": "47",
-      "name_zh": "数值线性代数",
-      "name_en": "Numerical Linear Algebra",
+      "name_zh": "稀疏线性代数",
+      "name_en": "Sparse Linear Algebra",
       "aliases": [],
-      "status": "merged",
-      "created_at": "2025-07-30T20:51:40.650483",
-      "merged": true,
-      "merged_to": "5"
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:36.291548"
     },
     "48": {
       "id": "48",
@@ -454,31 +383,31 @@
       "name_en": "Compiler Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:40.650730"
+      "created_at": "2025-07-31T19:30:36.291672"
     },
     "49": {
       "id": "49",
-      "name_zh": "高性能计算",
-      "name_en": "High-Performance Computing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:40.650902"
-    },
-    "50": {
-      "id": "50",
       "name_zh": "领域特定语言",
       "name_en": "Domain-Specific Language",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:40.651053"
+      "created_at": "2025-07-31T19:30:36.291743"
+    },
+    "50": {
+      "id": "50",
+      "name_zh": "高性能计算",
+      "name_en": "High-Performance Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:36.291805"
     },
     "51": {
       "id": "51",
-      "name_zh": "同步机制",
-      "name_en": "Synchronization Mechanism",
+      "name_zh": "新添加的主题词：\n1.并行编程模型",
+      "name_en": "Parallel Programming Model",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:43.646365"
+      "created_at": "2025-07-31T19:30:41.636734"
     },
     "52": {
       "id": "52",
@@ -486,103 +415,103 @@
       "name_en": "Compiler Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:43.646761"
+      "created_at": "2025-07-31T19:30:41.636976"
     },
     "53": {
       "id": "53",
-      "name_zh": "并行编程模型",
-      "name_en": "Parallel Programming Model",
+      "name_zh": "同步机制",
+      "name_en": "Synchronization Mechanism",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:43.647041"
+      "created_at": "2025-07-31T19:30:41.637153"
     },
     "54": {
       "id": "54",
-      "name_zh": "稀疏计算优化",
-      "name_en": "Sparse Computation Optimization",
+      "name_zh": "图神经网络",
+      "name_en": "Graph Neural Networks",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:49.680997"
+      "created_at": "2025-07-31T19:30:45.268500"
     },
     "55": {
       "id": "55",
-      "name_zh": "图神经网络加速",
-      "name_en": "Graph Neural Network Acceleration",
+      "name_zh": "稀疏计算",
+      "name_en": "Sparse Computation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:49.681236"
+      "created_at": "2025-07-31T19:30:45.268765"
     },
     "56": {
       "id": "56",
-      "name_zh": "自动调优",
-      "name_en": "Auto-Tuning",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:49.681408"
-    },
-    "57": {
-      "id": "57",
-      "name_zh": "领域特定语言编译器",
+      "name_zh": "特定领域语言编译器",
       "name_en": "Domain-Specific Language Compiler",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:49.681561"
+      "created_at": "2025-07-31T19:30:45.268945"
     },
-    "58": {
-      "id": "58",
-      "name_zh": "机器学习推理",
-      "name_en": "Machine Learning Inference",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:54.237193"
-    },
-    "59": {
-      "id": "59",
-      "name_zh": "决策树集成",
-      "name_en": "Decision Tree Ensembles",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:54.237320"
-    },
-    "60": {
-      "id": "60",
-      "name_zh": "并行计算",
-      "name_en": "Parallel Computing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:54.237405"
-    },
-    "61": {
-      "id": "61",
-      "name_zh": "迁移学习",
-      "name_en": "Transfer Learning",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:59.580597"
-    },
-    "62": {
-      "id": "62",
-      "name_zh": "多模态建模",
-      "name_en": "Multi-modal Modeling",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:51:59.580844"
-    },
-    "63": {
-      "id": "63",
+    "57": {
+      "id": "57",
       "name_zh": "自动调优",
       "name_en": "Auto-tuning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:59.581031"
+      "created_at": "2025-07-31T19:30:45.269105"
     },
-    "64": {
-      "id": "64",
+    "58": {
+      "id": "58",
+      "name_zh": "并行计算",
+      "name_en": "Parallel Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:48.570269"
+    },
+    "59": {
+      "id": "59",
+      "name_zh": "决策树推理",
+      "name_en": "Decision Tree Inference",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:48.570563"
+    },
+    "60": {
+      "id": "60",
+      "name_zh": "机器学习优化",
+      "name_en": "Machine Learning Optimization",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:48.570759"
+    },
+    "61": {
+      "id": "61",
       "name_zh": "性能优化",
       "name_en": "Performance Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:51:59.581192"
+      "created_at": "2025-07-31T19:30:53.060915"
+    },
+    "62": {
+      "id": "62",
+      "name_zh": "自动调优",
+      "name_en": "Auto-tuning",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:53.061199"
+    },
+    "63": {
+      "id": "63",
+      "name_zh": "预训练模型",
+      "name_en": "Pre-trained Models",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:53.061379"
+    },
+    "64": {
+      "id": "64",
+      "name_zh": "多模态建模",
+      "name_en": "Multi-modal Modeling",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:53.061539"
     },
     "65": {
       "id": "65",
@@ -590,7 +519,7 @@
       "name_en": "Sparse Compression Formats",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:02.254612"
+      "created_at": "2025-07-31T19:30:56.444694"
     },
     "66": {
       "id": "66",
@@ -598,23 +527,23 @@
       "name_en": "Machine Learning Hardware",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:02.254871"
+      "created_at": "2025-07-31T19:30:56.444940"
     },
     "67": {
       "id": "67",
-      "name_zh": "硬件加速",
-      "name_en": "Hardware Acceleration",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:02.255049"
-    },
-    "68": {
-      "id": "68",
       "name_zh": "稀疏矩阵计算",
       "name_en": "Sparse Matrix Computations",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:02.255207"
+      "created_at": "2025-07-31T19:30:56.445119"
+    },
+    "68": {
+      "id": "68",
+      "name_zh": "硬件加速",
+      "name_en": "Hardware Acceleration",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:56.445279"
     },
     "69": {
       "id": "69",
@@ -622,7 +551,7 @@
       "name_en": "Microarchitecture",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:05.491114"
+      "created_at": "2025-07-31T19:30:59.747112"
     },
     "70": {
       "id": "70",
@@ -630,23 +559,23 @@
       "name_en": "Compiler Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:05.491361"
+      "created_at": "2025-07-31T19:30:59.747385"
     },
     "71": {
       "id": "71",
-      "name_zh": "新添加的主题词：\n1.内存一致性模型",
-      "name_en": "Memory Consistency Model",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:05.491543"
-    },
-    "72": {
-      "id": "72",
       "name_zh": "计算机体系结构",
       "name_en": "Computer Architecture",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:05.491705"
+      "created_at": "2025-07-31T19:30:59.747571"
+    },
+    "72": {
+      "id": "72",
+      "name_zh": "内存一致性模型",
+      "name_en": "Memory Consistency Model",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:30:59.747736"
     },
     "73": {
       "id": "73",
@@ -654,79 +583,79 @@
       "name_en": "Parallel Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:08.577281"
+      "created_at": "2025-07-31T19:31:03.440697"
     },
     "74": {
       "id": "74",
-      "name_zh": "性能建模",
-      "name_en": "Performance Modeling",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:08.577526"
-    },
-    "75": {
-      "id": "75",
       "name_zh": "稀疏矩阵计算",
       "name_en": "Sparse Matrix Computation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:08.577710"
+      "created_at": "2025-07-31T19:31:03.440947"
     },
-    "76": {
-      "id": "76",
+    "75": {
+      "id": "75",
       "name_zh": "自动优化框架",
       "name_en": "Automatic Optimization Framework",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:08.577871"
+      "created_at": "2025-07-31T19:31:03.441134"
+    },
+    "76": {
+      "id": "76",
+      "name_zh": "高性能计算",
+      "name_en": "High Performance Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:03.441301"
     },
     "77": {
       "id": "77",
-      "name_zh": "编译器优化",
-      "name_en": "Compiler Optimization",
+      "name_zh": "张量网络优化",
+      "name_en": "Tensor Network Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:11.908409"
+      "created_at": "2025-07-31T19:31:06.622736"
     },
     "78": {
       "id": "78",
-      "name_zh": "稀疏张量网络",
-      "name_en": "Sparse Tensor Networks",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:11.908664"
-    },
-    "79": {
-      "id": "79",
       "name_zh": "约束求解",
       "name_en": "Constraint Solving",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:11.908846"
+      "created_at": "2025-07-31T19:31:06.623022"
+    },
+    "79": {
+      "id": "79",
+      "name_zh": "稀疏张量计算",
+      "name_en": "Sparse Tensor Computation",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:06.623213"
     },
     "80": {
       "id": "80",
-      "name_zh": "内存优化",
-      "name_en": "Memory Optimization",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:14.803988"
-    },
-    "81": {
-      "id": "81",
       "name_zh": "软硬件协同设计",
       "name_en": "Software-Hardware Co-design",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:14.804245"
+      "created_at": "2025-07-31T19:31:10.338286"
     },
-    "82": {
-      "id": "82",
+    "81": {
+      "id": "81",
       "name_zh": "硬件加速器",
       "name_en": "Hardware Accelerators",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:14.804430"
+      "created_at": "2025-07-31T19:31:10.338598"
+    },
+    "82": {
+      "id": "82",
+      "name_zh": "内存访问优化",
+      "name_en": "Memory Access Optimization",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:10.338789"
     },
     "83": {
       "id": "83",
@@ -734,23 +663,23 @@
       "name_en": "Sparse-dense Matrix Multiplication",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:14.804595"
+      "created_at": "2025-07-31T19:31:10.338963"
     },
     "84": {
       "id": "84",
-      "name_zh": "负载均衡",
-      "name_en": "Load Balancing",
+      "name_zh": "数据传输隐藏",
+      "name_en": "Data Transmission Hiding",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:18.348377"
+      "created_at": "2025-07-31T19:31:13.544267"
     },
     "85": {
       "id": "85",
-      "name_zh": "高性能计算",
-      "name_en": "High Performance Computing",
+      "name_zh": "并行计算优化",
+      "name_en": "Parallel Computing Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:18.348650"
+      "created_at": "2025-07-31T19:31:13.544534"
     },
     "86": {
       "id": "86",
@@ -758,15 +687,15 @@
       "name_en": "Sparse Matrix Computation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:18.348838"
+      "created_at": "2025-07-31T19:31:13.544723"
     },
     "87": {
       "id": "87",
-      "name_zh": "并行计算",
-      "name_en": "Parallel Computing",
+      "name_zh": "多GPU系统",
+      "name_en": "Multi-GPU Systems",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:18.349008"
+      "created_at": "2025-07-31T19:31:13.544899"
     },
     "88": {
       "id": "88",
@@ -774,173 +703,167 @@
       "name_en": "Microservices Architecture",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:21.129610"
+      "created_at": "2025-07-31T19:31:16.118524"
     },
     "89": {
       "id": "89",
-      "name_zh": "功耗管理",
-      "name_en": "Power Management",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:21.129735"
-    },
-    "90": {
-      "id": "90",
       "name_zh": "数据中心优化",
       "name_en": "Datacenter Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:21.129815"
+      "created_at": "2025-07-31T19:31:16.118781"
+    },
+    "90": {
+      "id": "90",
+      "name_zh": "功耗管理",
+      "name_en": "Power Management",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:16.118972"
     },
     "91": {
       "id": "91",
+      "name_zh": "并行算法",
+      "name_en": "Parallel Algorithms",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:19.979028"
+    },
+    "92": {
+      "id": "92",
       "name_zh": "稀疏矩阵计算",
       "name_en": "Sparse Matrix Computation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:25.449881"
-    },
-    "92": {
-      "id": "92",
-      "name_zh": "深度学习优化",
-      "name_en": "Deep Learning Optimization",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:25.450169"
+      "created_at": "2025-07-31T19:31:19.979299"
     },
     "93": {
       "id": "93",
-      "name_zh": "并行计算",
-      "name_en": "Parallel Computing",
+      "name_zh": "神经网络加速",
+      "name_en": "Neural Network Acceleration",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:25.450359"
+      "created_at": "2025-07-31T19:31:19.979490"
     },
     "94": {
       "id": "94",
-      "name_zh": "负载均衡",
-      "name_en": "Load Balancing",
+      "name_zh": "张量编译器",
+      "name_en": "Tensor Compiler",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:29.381284"
+      "created_at": "2025-07-31T19:31:19.979663"
     },
     "95": {
       "id": "95",
+      "name_zh": "异构计算",
+      "name_en": "Heterogeneous Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:22.937869"
+    },
+    "96": {
+      "id": "96",
+      "name_zh": "并行算法",
+      "name_en": "Parallel Algorithms",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:22.938142"
+    },
+    "97": {
+      "id": "97",
       "name_zh": "稀疏矩阵乘法",
       "name_en": "Sparse Matrix Multiplication",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:29.381550"
-    },
-    "96": {
-      "id": "96",
-      "name_zh": "异构计算",
-      "name_en": "Heterogeneous Computing",
-      "aliases": [
-        "异构计算优化",
-        "Heterogeneous Computing Optimization"
-      ],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:29.381740"
-    },
-    "97": {
-      "id": "97",
-      "name_zh": "并行计算",
-      "name_en": "Parallel Computing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:29.381923"
+      "created_at": "2025-07-31T19:31:22.938335"
     },
     "98": {
       "id": "98",
-      "name_zh": "并行计算",
-      "name_en": "Parallel Computing",
+      "name_zh": "负载均衡",
+      "name_en": "Load Balancing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:32.267618"
+      "created_at": "2025-07-31T19:31:22.938544"
     },
     "99": {
       "id": "99",
+      "name_zh": "自动并行化",
+      "name_en": "Auto-parallelization",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:26.069393"
+    },
+    "100": {
+      "id": "100",
       "name_zh": "静态分析",
       "name_en": "Static Analysis",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:32.267887"
+      "created_at": "2025-07-31T19:31:26.069666"
     },
-    "100": {
-      "id": "100",
+    "101": {
+      "id": "101",
       "name_zh": "指针分析",
       "name_en": "Pointer Analysis",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:32.268079"
-    },
-    "101": {
-      "id": "101",
-      "name_zh": "强化学习",
-      "name_en": "Reinforcement Learning",
-      "aliases": [
-        "Online Mirror Descent",
-        "在线镜像下降"
-      ],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:36.020752"
+      "created_at": "2025-07-31T19:31:26.069862"
     },
     "102": {
       "id": "102",
-      "name_zh": "能耗优化",
-      "name_en": "Energy Optimization",
+      "name_zh": "强化学习调度",
+      "name_en": "Reinforcement Learning Scheduling",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:36.021021"
+      "created_at": "2025-07-31T19:31:28.989953"
     },
     "103": {
       "id": "103",
-      "name_zh": "移动计算",
-      "name_en": "Mobile Computing",
+      "name_zh": "移动操作系统优化",
+      "name_en": "Mobile OS Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:36.021214"
+      "created_at": "2025-07-31T19:31:28.990233"
     },
     "104": {
       "id": "104",
-      "name_zh": "系统调度",
-      "name_en": "System Scheduling",
+      "name_zh": "能效优化",
+      "name_en": "Energy Efficiency Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:36.021385"
+      "created_at": "2025-07-31T19:31:28.990458"
     },
     "105": {
       "id": "105",
-      "name_zh": "图划分",
-      "name_en": "Graph Partitioning",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:38.611498"
-    },
-    "106": {
-      "id": "106",
-      "name_zh": "图处理",
-      "name_en": "Graph Processing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:38.611778"
-    },
-    "107": {
-      "id": "107",
-      "name_zh": "分布式计算",
-      "name_en": "Distributed Computing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:38.611975"
-    },
-    "108": {
-      "id": "108",
       "name_zh": "图表示",
       "name_en": "Graph Representation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:38.612150"
+      "created_at": "2025-07-31T19:31:32.291774"
+    },
+    "106": {
+      "id": "106",
+      "name_zh": "图划分",
+      "name_en": "Graph Partitioning",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:32.292086"
+    },
+    "107": {
+      "id": "107",
+      "name_zh": "图处理",
+      "name_en": "Graph Processing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:32.292286"
+    },
+    "108": {
+      "id": "108",
+      "name_zh": "分布式计算",
+      "name_en": "Distributed Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:32.292466"
     },
     "109": {
       "id": "109",
@@ -948,63 +871,63 @@
       "name_en": "Memory Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:41.708955"
+      "created_at": "2025-07-31T19:31:35.506339"
     },
     "110": {
       "id": "110",
-      "name_zh": "分布式推理",
-      "name_en": "Distributed Inference",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:41.709235"
-    },
-    "111": {
-      "id": "111",
       "name_zh": "边缘计算",
       "name_en": "Edge Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:41.709432"
+      "created_at": "2025-07-31T19:31:35.506641"
     },
-    "112": {
-      "id": "112",
+    "111": {
+      "id": "111",
       "name_zh": "延迟优化",
       "name_en": "Latency Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:41.709614"
+      "created_at": "2025-07-31T19:31:35.506844"
+    },
+    "112": {
+      "id": "112",
+      "name_zh": "分布式推理",
+      "name_en": "Distributed Inference",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:35.507028"
     },
     "113": {
       "id": "113",
-      "name_zh": "张量编译器",
-      "name_en": "Tensor Compiler",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:52.042680"
-    },
-    "114": {
-      "id": "114",
       "name_zh": "设计空间探索",
       "name_en": "Design Space Exploration",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:52.042987"
+      "created_at": "2025-07-31T19:31:38.795115"
+    },
+    "114": {
+      "id": "114",
+      "name_zh": "张量编译",
+      "name_en": "Tensor Compilation",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:38.795399"
     },
     "115": {
       "id": "115",
+      "name_zh": "协同设计",
+      "name_en": "Codesign",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:38.795602"
+    },
+    "116": {
+      "id": "116",
       "name_zh": "深度学习加速",
       "name_en": "Deep Learning Acceleration",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:52.043218"
-    },
-    "116": {
-      "id": "116",
-      "name_zh": "协同设计",
-      "name_en": "Co-Design",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:52:52.043429"
+      "created_at": "2025-07-31T19:31:38.795787"
     },
     "117": {
       "id": "117",
@@ -1012,7 +935,7 @@
       "name_en": "Runtime Scheduling",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:55.635660"
+      "created_at": "2025-07-31T19:31:42.116785"
     },
     "118": {
       "id": "118",
@@ -1020,7 +943,7 @@
       "name_en": "GPU Memory Management",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:55.635933"
+      "created_at": "2025-07-31T19:31:42.117074"
     },
     "119": {
       "id": "119",
@@ -1028,34 +951,31 @@
       "name_en": "Fully Homomorphic Encryption",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:55.636136"
+      "created_at": "2025-07-31T19:31:42.117281"
     },
     "120": {
       "id": "120",
-      "name_zh": "自适应优化",
-      "name_en": "Adaptive Optimization",
-      "aliases": [
-        "自适应阈值机制",
-        "Adaptive Threshold Mechanism"
-      ],
+      "name_zh": "张量处理",
+      "name_en": "Tensor Processing",
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:59.487528"
+      "created_at": "2025-07-31T19:31:47.574619"
     },
     "121": {
       "id": "121",
-      "name_zh": "新添加的主题词：\n1.神经网络量化",
+      "name_zh": "神经网络量化",
       "name_en": "Neural Network Quantization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:59.487800"
+      "created_at": "2025-07-31T19:31:47.574912"
     },
     "122": {
       "id": "122",
-      "name_zh": "张量压缩",
-      "name_en": "Tensor Compression",
+      "name_zh": "自适应优化",
+      "name_en": "Adaptive Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:59.488003"
+      "created_at": "2025-07-31T19:31:47.575118"
     },
     "123": {
       "id": "123",
@@ -1063,135 +983,135 @@
       "name_en": "Hardware Acceleration",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:52:59.488187"
+      "created_at": "2025-07-31T19:31:47.575306"
     },
     "124": {
       "id": "124",
-      "name_zh": "混合并行策略",
-      "name_en": "Hybrid Parallelism",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:02.529998"
-    },
-    "125": {
-      "id": "125",
-      "name_zh": "分布式训练",
-      "name_en": "Distributed Training",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:02.530274"
-    },
-    "126": {
-      "id": "126",
       "name_zh": "内存优化",
       "name_en": "Memory Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:02.530504"
+      "created_at": "2025-07-31T19:31:50.647870"
+    },
+    "125": {
+      "id": "125",
+      "name_zh": "分布式深度学习训练",
+      "name_en": "Distributed Deep Learning Training",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:50.648189"
+    },
+    "126": {
+      "id": "126",
+      "name_zh": "计算资源效率",
+      "name_en": "Computational Resource Efficiency",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:50.648406"
     },
     "127": {
       "id": "127",
-      "name_zh": "深度学习优化",
-      "name_en": "Deep Learning Optimization",
+      "name_zh": "混合并行策略",
+      "name_en": "Hybrid Parallelism",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:02.530697"
+      "created_at": "2025-07-31T19:31:50.648598"
     },
     "128": {
       "id": "128",
-      "name_zh": "超图分析",
-      "name_en": "Hypergraph Analysis",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:05.166080"
-    },
-    "129": {
-      "id": "129",
-      "name_zh": "特征向量中心性",
-      "name_en": "Eigenvector Centrality",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:05.166363"
-    },
-    "130": {
-      "id": "130",
       "name_zh": "张量计算",
       "name_en": "Tensor Computation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:05.166599"
+      "created_at": "2025-07-31T19:31:53.538521"
+    },
+    "129": {
+      "id": "129",
+      "name_zh": "并行算法",
+      "name_en": "Parallel Algorithms",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:53.538803"
+    },
+    "130": {
+      "id": "130",
+      "name_zh": "超图分析",
+      "name_en": "Hypergraph Analytics",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:53.539010"
     },
     "131": {
       "id": "131",
-      "name_zh": "并行算法",
-      "name_en": "Parallel Algorithm",
+      "name_zh": "特征向量中心性",
+      "name_en": "Eigenvector Centrality",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:05.166789"
+      "created_at": "2025-07-31T19:31:53.539197"
     },
     "132": {
       "id": "132",
-      "name_zh": "三维集成技术",
-      "name_en": "monolithic 3D integration",
+      "name_zh": "矩阵运算",
+      "name_en": "Matrix operation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:07.668042"
+      "created_at": "2025-07-31T19:31:57.030367"
     },
     "133": {
       "id": "133",
+      "name_zh": "三维集成技术",
+      "name_en": "3D integration technology",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:57.030687"
+    },
+    "134": {
+      "id": "134",
+      "name_zh": "硬件加速器",
+      "name_en": "Hardware accelerator",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:57.030898"
+    },
+    "135": {
+      "id": "135",
       "name_zh": "内存计算",
       "name_en": "Compute-in-memory",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:07.668330"
-    },
-    "134": {
-      "id": "134",
-      "name_zh": "矩阵乘法",
-      "name_en": "matrix multiplication",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:07.668541"
-    },
-    "135": {
-      "id": "135",
-      "name_zh": "机器学习加速器",
-      "name_en": "ML accelerator",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:07.668728"
+      "created_at": "2025-07-31T19:31:57.031086"
     },
     "136": {
       "id": "136",
-      "name_zh": "负载均衡",
-      "name_en": "Load Balancing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:11.861510"
-    },
-    "137": {
-      "id": "137",
-      "name_zh": "高性能计算",
-      "name_en": "High Performance Computing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:11.861815"
-    },
-    "138": {
-      "id": "138",
-      "name_zh": "稀疏矩阵计算",
-      "name_en": "Sparse Matrix Computation",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:11.862028"
-    },
-    "139": {
-      "id": "139",
       "name_zh": "并行计算",
       "name_en": "Parallel Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:11.862215"
+      "created_at": "2025-07-31T19:31:59.470546"
+    },
+    "137": {
+      "id": "137",
+      "name_zh": "稀疏矩阵计算",
+      "name_en": "Sparse Matrix Computation",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:59.470836"
+    },
+    "138": {
+      "id": "138",
+      "name_zh": "高性能计算",
+      "name_en": "High Performance Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:31:59.471049"
+    },
+    "139": {
+      "id": "139",
+      "name_zh": "高性能计算",
+      "name_en": "High-Performance Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:01.879148"
     },
     "140": {
       "id": "140",
@@ -1199,7 +1119,7 @@
       "name_en": "Cloud Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:17.474452"
+      "created_at": "2025-07-31T19:32:01.879450"
     },
     "141": {
       "id": "141",
@@ -1207,7 +1127,7 @@
       "name_en": "Resource Recommendation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:17.474750"
+      "created_at": "2025-07-31T19:32:01.879669"
     },
     "142": {
       "id": "142",
@@ -1215,95 +1135,95 @@
       "name_en": "Reinforcement Learning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:17.474962"
+      "created_at": "2025-07-31T19:32:01.879861"
     },
     "143": {
       "id": "143",
-      "name_zh": "高性能计算",
-      "name_en": "High-Performance Computing",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:17.475151"
-    },
-    "144": {
-      "id": "144",
-      "name_zh": "可扩展性优化",
-      "name_en": "Scalability Optimization",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:20.894253"
-    },
-    "145": {
-      "id": "145",
-      "name_zh": "分布式深度学习",
-      "name_en": "Distributed Deep Learning",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:20.894378"
-    },
-    "146": {
-      "id": "146",
       "name_zh": "梯度稀疏化",
       "name_en": "Gradient Sparsification",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:20.894481"
+      "created_at": "2025-07-31T19:32:04.808889"
+    },
+    "144": {
+      "id": "144",
+      "name_zh": "分布式深度学习",
+      "name_en": "Distributed Deep Learning",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:04.809197"
+    },
+    "145": {
+      "id": "145",
+      "name_zh": "可扩展性",
+      "name_en": "Scalability",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:04.809413"
+    },
+    "146": {
+      "id": "146",
+      "name_zh": "存储系统建模",
+      "name_en": "Storage System Modeling",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:09.822949"
     },
     "147": {
       "id": "147",
-      "name_zh": "存储模拟",
-      "name_en": "Storage Simulation",
+      "name_zh": "存储系统仿真",
+      "name_en": "Storage System Simulation",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:24.660156"
+      "created_at": "2025-07-31T19:32:09.823255"
     },
     "148": {
       "id": "148",
-      "name_zh": "性能建模",
-      "name_en": "Performance Modeling",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:24.660311"
-    },
-    "149": {
-      "id": "149",
       "name_zh": "高性能计算存储系统",
       "name_en": "HPC Storage Systems",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:24.660402"
+      "created_at": "2025-07-31T19:32:09.823473"
+    },
+    "149": {
+      "id": "149",
+      "name_zh": "并行文件系统",
+      "name_en": "Parallel File System",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:09.823672"
     },
     "150": {
       "id": "150",
-      "name_zh": "随机模型",
-      "name_en": "Stochastic model",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:29.012992"
-    },
-    "151": {
-      "id": "151",
       "name_zh": "高性能计算",
       "name_en": "High performance computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:29.013290"
+      "created_at": "2025-07-31T19:32:12.610203"
     },
-    "152": {
-      "id": "152",
-      "name_zh": "内存解耦",
-      "name_en": "Memory Disaggregation",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:29.013511"
-    },
-    "153": {
-      "id": "153",
+    "151": {
+      "id": "151",
       "name_zh": "调度策略",
       "name_en": "Scheduling",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:29.013713"
+      "created_at": "2025-07-31T19:32:12.610539"
+    },
+    "152": {
+      "id": "152",
+      "name_zh": "内存解聚",
+      "name_en": "Memory Disaggregation",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:12.610766"
+    },
+    "153": {
+      "id": "153",
+      "name_zh": "随机模型",
+      "name_en": "Stochastic model",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:12.610967"
     },
     "154": {
       "id": "154",
@@ -1311,34 +1231,31 @@
       "name_en": "Performance Portability",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:32.518846"
+      "created_at": "2025-07-31T19:32:16.438871"
     },
     "155": {
       "id": "155",
-      "name_zh": "并行编程模型",
-      "name_en": "Parallel Programming Models",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:32.519137"
-    },
-    "156": {
-      "id": "156",
       "name_zh": "编译器优化",
       "name_en": "Compiler Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:32.519355"
+      "created_at": "2025-07-31T19:32:16.439140"
+    },
+    "156": {
+      "id": "156",
+      "name_zh": "GPU计算",
+      "name_en": "GPU Computing",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:16.439338"
     },
     "157": {
       "id": "157",
-      "name_zh": "GPU计算",
-      "name_en": "GPU Computing",
-      "aliases": [
-        "SIMD向量化",
-        "SIMD Vectorization"
-      ],
+      "name_zh": "并行编程模型",
+      "name_en": "Parallel Programming Model",
+      "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:32.519550"
+      "created_at": "2025-07-31T19:32:16.439515"
     },
     "158": {
       "id": "158",
@@ -1346,7 +1263,7 @@
       "name_en": "Autotuning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:38.581498"
+      "created_at": "2025-07-31T19:32:19.958067"
     },
     "159": {
       "id": "159",
@@ -1354,7 +1271,7 @@
       "name_en": "Edge Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:38.581798"
+      "created_at": "2025-07-31T19:32:19.958379"
     },
     "160": {
       "id": "160",
@@ -1362,7 +1279,7 @@
       "name_en": "Performance Modeling",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:38.582018"
+      "created_at": "2025-07-31T19:32:19.958634"
     },
     "161": {
       "id": "161",
@@ -1370,23 +1287,23 @@
       "name_en": "Reinforcement Learning",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:38.582217"
+      "created_at": "2025-07-31T19:32:19.958837"
     },
     "162": {
       "id": "162",
+      "name_zh": "性能分析工具",
+      "name_en": "Performance Analysis Tools",
+      "aliases": [],
+      "status": "pending",
+      "created_at": "2025-07-31T19:32:22.588681"
+    },
+    "163": {
+      "id": "163",
       "name_zh": "程序优化",
       "name_en": "Program Optimization",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:40.844086"
-    },
-    "163": {
-      "id": "163",
-      "name_zh": "性能分析",
-      "name_en": "Performance Analysis",
-      "aliases": [],
-      "status": "pending",
-      "created_at": "2025-07-30T20:53:40.844389"
+      "created_at": "2025-07-31T19:32:22.588993"
     },
     "164": {
       "id": "164",
@@ -1394,10 +1311,10 @@
       "name_en": "High-Performance Computing",
       "aliases": [],
       "status": "pending",
-      "created_at": "2025-07-30T20:53:40.844607"
+      "created_at": "2025-07-31T19:32:22.589217"
     }
   },
   "version": "1.0.0",
-  "last_updated": "2025-07-30T20:54:07.743162",
+  "last_updated": "2025-07-31T19:32:22.589429",
   "description": "存储阶段一询问大模型生成的主题词（待处理的主题词）"
 }
