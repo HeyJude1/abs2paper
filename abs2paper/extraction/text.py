@@ -18,7 +18,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# 为保持与extract_knowledge.py兼容，提供简单的提取函数
+# 为保持与extract_component.py兼容，提供简单的提取函数
 def extract_text():
     """
     从PDF文件中提取文本的API函数，使用固定的默认路径和配置
