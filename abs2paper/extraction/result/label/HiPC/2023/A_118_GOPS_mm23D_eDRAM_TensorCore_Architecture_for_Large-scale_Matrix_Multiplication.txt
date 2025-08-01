@@ -1,0 +1,12 @@
+A_118_GOPS_mm23D_eDRAM_TensorCore_Architecture_for_Large-scale_Matrix_Multiplication.txt:
+3. High Performance Computing  
+20. Matrix Operation  
+21. Memory-Efficient Computing  
+46. Computer Architecture  
+47. Software-Hardware Co-design  
+54. Neural Network Acceleration  
+75. Hardware Acceleration  
+84. Hardware accelerator  
+85. Compute-in-memory  
+
+故该论文的主题关键词总结为[3, 20, 21, 46, 47, 54, 75, 84, 85]。

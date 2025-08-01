@@ -1,6 +1,0 @@
-3650200.3656600.txt:
-1. High Performance Computing  
-2. Parallel Programming  
-6. GPU Programming and Acceleration  
-
-故该论文的主题关键词总结为[1, 2, 6]。

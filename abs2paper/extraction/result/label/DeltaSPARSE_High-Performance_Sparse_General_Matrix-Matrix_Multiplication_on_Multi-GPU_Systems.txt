@@ -1,5 +1,0 @@
-DeltaSPARSE_High-Performance_Sparse_General_Matrix-Matrix_Multiplication_on_Multi-GPU_Systems.txt:
-1.High Performance Computing
-6.GPU Programming and Acceleration
-8.Heterogeneous Computing Architectures
-故该论文的主题关键词总结为[1,6,8]。

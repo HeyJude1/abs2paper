@@ -1,7 +1,0 @@
-A_118_GOPS_mm23D_eDRAM_TensorCore_Architecture_for_Large-scale_Matrix_Multiplication.txt:
-1. High Performance Computing
-6. GPU Programming and Acceleration
-10. Machine Learning
-11. Artificial Intelligence
-
-故该论文的主题关键词总结为[1,6,10,11]。

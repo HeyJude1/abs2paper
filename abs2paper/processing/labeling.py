@@ -120,7 +120,7 @@ class PaperLabeler:
     
     def update_prompt_with_topics(self, prompt: str) -> str:
         """
-        使用最新的主题列表更新提示词模板
+        使用稳定的主题列表更新提示词模板
         
         Args:
             prompt: 原始提示词
@@ -128,40 +128,60 @@ class PaperLabeler:
         Returns:
             更新后的提示词
         """
-        # 生成主题词列表文本
-        topic_list = self.topic_manager.generate_topic_list_text()
+        # 获取所有稳定主题
+        topics = self.topic_manager.list_topics()
         
-        # 查找知识库部分并替换
-        pattern = r"##知识库：.*?(?=##|$)"
-        replacement = self.topic_manager.generate_prompt_kb_text()
-        
-        # 尝试替换
-        updated_prompt = re.sub(pattern, replacement, prompt, flags=re.DOTALL)
-        
-        # 如果没有成功替换，保留原提示词
-        if updated_prompt == prompt:
-            logger.warning("无法在提示词中找到知识库部分进行替换")
+        if not topics:
+            logger.warning("⚠️ 没有找到稳定的主题词，使用原始提示词")
             return prompt
+        
+        # 生成主题词列表文本，格式：序号. 中文名称，Keywords: 英文名称
+        topic_lines = []
+        for topic in topics:
+            topic_lines.append(f"{topic['id']}. {topic['name_zh']}，Keywords: {topic['name_en']}")
+        
+        topic_list_text = "\n".join(topic_lines)
+        
+        # 构建知识库部分
+        knowledge_section = f"""##知识库：以下是与高性能、编译、代码优化和人工智能相关的论文内容主题关键词及其英文翻译，其结构是序号+中文关键词+英文关键词Keywords：
+{topic_list_text}"""
+        
+        # 查找并替换知识库部分
+        pattern = r"##知识库：.*?(?=##|$)"
+        updated_prompt = re.sub(pattern, knowledge_section, prompt, flags=re.DOTALL)
+        
+        # 如果没有成功替换，在原提示词后添加知识库部分
+        if updated_prompt == prompt:
+            logger.warning("⚠️ 无法在提示词中找到知识库部分，将添加到末尾")
+            updated_prompt = prompt + "\n\n" + knowledge_section
             
+        logger.info(f"✅ 已更新提示词，包含 {len(topics)} 个稳定主题词")
         return updated_prompt
     
-    def process_paper_file(self, file_path: str, result_list: Optional[List] = None) -> bool:
+    def process_paper_file(self, file_path: str, rel_path: str = "", result_list: Optional[List] = None) -> bool:
         """
         处理单个论文文件并获取主题标签
         
         Args:
             file_path: 论文文件路径
+            rel_path: 相对路径，用于保持目录结构
             result_list: 可选，用于收集所有结果的列表
             
         Returns:
             处理是否成功
         """
-        # 创建输出目录
-        os.makedirs(self.output_dir, exist_ok=True)
+        # 构建保持目录结构的输出路径
+        if rel_path:
+            output_subdir = os.path.join(self.output_dir, rel_path)
+        else:
+            output_subdir = self.output_dir
+            
+        # 创建输出子目录
+        os.makedirs(output_subdir, exist_ok=True)
         
         # 检查结果文件是否已存在
         paper_name = os.path.basename(file_path)
-        output_file_path = os.path.join(self.output_dir, paper_name)
+        output_file_path = os.path.join(output_subdir, paper_name)
         
         # 如果之前已经生成过结果则跳过处理
         if os.path.exists(output_file_path):
@@ -253,7 +273,7 @@ class PaperLabeler:
             # 如果是TXT文件，则处理它
             elif item.endswith(".txt"):
                 total_count += 1
-                if self.process_paper_file(item_path, result_list):
+                if self.process_paper_file(item_path, rel_path, result_list):
                     success_count += 1
         
         return success_count, total_count, result_list
@@ -343,7 +363,7 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
         处理是否成功（至少成功处理一个文件）
     """
     try:
-    # 初始化论文标签生成器
+        # 初始化论文标签生成器
         labeler = PaperLabeler()
         
         # 如果提供了自定义路径，则使用自定义路径
@@ -352,19 +372,19 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
         if output_dir:
             labeler.output_dir = output_dir
     
-    # 确保输出目录存在
+        # 确保输出目录存在
         os.makedirs(labeler.output_dir, exist_ok=True)
     
-    # 处理所有论文
+        # 处理所有论文
         logger.info(f"🚀 开始处理论文，源目录: {labeler.input_dir}")
         success_count, total_count, all_paper_results = labeler.process_directory()
     
-    # 保存汇总结果
-    if all_paper_results:
+        # 保存汇总结果
+        if all_paper_results:
             keyword_counts = labeler.save_results(all_paper_results)
-        logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
+            logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
     
-    logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
+        logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
         logger.info(f"结果已保存至 {labeler.output_dir}")
     
         # 如果至少有一个文件成功处理，则认为操作成功

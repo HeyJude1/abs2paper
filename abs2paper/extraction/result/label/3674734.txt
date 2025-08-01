@@ -1,7 +1,0 @@
-3674734.txt:
-1. High Performance Computing  
-6. GPU Programming and Acceleration  
-7. Memory Management Optimization  
-8. Heterogeneous Computing Architectures  
-
-故该论文的主题关键词总结为[1,6,7,8]。
