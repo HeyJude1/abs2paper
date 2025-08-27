@@ -1,6 +1,6 @@
 2404.13891v2.txt:
-28. Counterfactual Regret Minimization
-29. Online Mirror Descent
-30. Game Theory
+9. Keywords: Counterfactual Reasoning  
+8. Keywords: Reinforcement Learning  
+10. Keywords: Optimization Algorithms  
 
-故该论文的主题关键词总结为[28, 29, 30]。
+故该论文的主题关键词总结为[9, 8, 10]。

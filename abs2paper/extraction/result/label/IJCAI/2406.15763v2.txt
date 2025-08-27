@@ -1,7 +1,5 @@
 2406.15763v2.txt:
-35. Semi-Supervised Learning
-33. Pseudo-Labeling
-32. Consistency Regularization
-34. Adaptive Threshold Mechanism
+1. Keywords: Transfer Learning
+9. Keywords: Counterfactual Reasoning
 
-故该论文的主题关键词总结为[35,33,32,34]。
+故该论文的主题关键词总结为[1,9]。

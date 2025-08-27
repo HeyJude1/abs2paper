@@ -1,10 +1,7 @@
 3703352.txt:
-3. High Performance Computing  
-4. Distributed Computing  
-14. Heterogeneous Computing  
-20. Matrix Operation  
-48. Sparse Matrix Multiplication  
-80. Parallel Algorithms  
-86. Parallel Computing  
+3.Parallel Computing
+5.Hardware Acceleration
+7.Autotuning
+10.Optimization Algorithms
 
-故该论文的主题关键词总结为[3,4,14,20,48,80,86]。
+故该论文的主题关键词总结为[3,5,7,10]。

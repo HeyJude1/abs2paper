@@ -1,7 +1,5 @@
 7 Conclusion
 In this work, we introduce a static transformation that separates the use of pointers as handles to data containers from their use as iterators. This improves code analyzability and data-centric compilers are shown to benefit from this transformation as eliminating indirection exposes additional parallelization opportunities. Using our approach on the Mantevo HPCCG benchmark, we were able to match the developer-optimized version and even surpass it by up to 6%. On the OpenSSL PBKDF2 implementation, we were able to automatically parallelize it and obtain up to an 11× speedup.
-Appendix
-A Proof Sketch of Pointer Assignment
 We want to show that the assignment of pointers gives equivalent results after the application of the adjunct transformation described in Figure . To do so, we introduce a new pointer q with its q ad j . Let n, m be arbitrary integers, then we define X , Y and X , Y as
 X = (p := p + x i |x i ∈ Z, 0 ≤ i < n) Y = v i := v i + x i |x i ∈ Z & v i ∈
 {p, q}, n ≤ i < m X = p ad j := p ad j + x i |x i ∈ Z, 0 ≤ i < n Y = v i ad j := v i ad j + x i |x i ∈ Z & v i ad j ∈ {p ad j , q ad j }, n ≤ i < m . Using ; to concatenate commands, we define S with S = (X ; (q := p; Y )), where it represents the execution of an arbitrary number of pointer movement statements followed by a pointer assignment and another arbitrary number of pointer movement statements. In the same way, we define S as the adjunct transformation of S. S = (X ; (q := p; (q ad j := p ad j ; Y )))

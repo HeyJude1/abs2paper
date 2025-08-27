@@ -1,14 +1,8 @@
 Leveraging_LLVM_OpenMP_GPU_Offload_Optimizations_for_Kokkos_Applications.txt:
-3. High Performance Computing  
-4. Distributed Computing  
-6. Compiler Optimization  
-7. Performance Optimization  
-14. Heterogeneous Computing  
-16. Model Parallelism and Partitioning  
-17. Parallel Computing Optimization  
-53. Auto-parallelization  
-64. Distributed Inference  
-78. Hybrid Parallelism  
-86. Parallel Computing  
+1. Parallel Computing
+7. Autotuning
+8. Reinforcement Learning
+10. Optimization Algorithms
+12. Auto-tuning
 
-故该论文的主题关键词总结为[3,4,6,7,14,16,17,53,64,78,86]。
+故该论文的主题关键词总结为[1,7,8,10,12]。

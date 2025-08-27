@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-主题词提取工具启动器
+主题词生成和管理工具
 
-本脚本作为主题词提取和管理的命令行入口。
-所有核心功能都在abs2paper.processing.topic_extractor模块中实现。
+提供完整的主题词生成、合并、更新流程
 """
 
 import os
@@ -15,127 +14,77 @@ from datetime import datetime
 import re # Added for re.sub
 
 # 添加项目根目录到Python路径
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # 导入相关模块
 from abs2paper.utils.topic_manager import TopicManager
-from abs2paper.processing.topic_extractor import TopicExtractor
+from abs2paper.processing.topic_generator import TopicGenerator
 from abs2paper.utils.llm_client import LLMClient
 
 # 设置日志
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(sys.stdout)
-    ]
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-
 def reset_data_files():
-    """重置topic.json、gen_topic.json和merge_opinion.json文件"""
+    """重置处理数据文件，但保持topic.json的连续性"""
     try:
-        # 获取文件路径
-        module_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        config_path = os.path.join(module_dir, "config", "config.json")
+        # 获取项目根目录
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(script_dir)
         
+        # 加载配置
+        config_path = os.path.join(project_root, "config", "config.json")
         with open(config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
         
-        # 获取topic.json路径
-        topic_json_path = config["data_paths"]["topic_json"]["path"].lstrip('/')
-        topic_json_file = os.path.join(module_dir, topic_json_path)
+        # 从稳定的topic.json中加载现有主题作为基础
+        topic_manager = TopicManager()
+        current_topics_list = topic_manager.list_topics()  # 这返回一个列表
         
-        # 获取topic_ori.json路径（原始模板文件位于与topic.json同目录）
-        topic_ori_file = os.path.join(os.path.dirname(topic_json_file), "topic_ori.json")
-        
-        # 从topic_ori.json读取初始内容
-        if os.path.exists(topic_ori_file):
-            with open(topic_ori_file, 'r', encoding='utf-8') as f:
-                initial_topic_data = json.load(f)
-                
-            # 复制到topic.json
-            os.makedirs(os.path.dirname(topic_json_file), exist_ok=True)
-            with open(topic_json_file, 'w', encoding='utf-8') as f:
-                json.dump(initial_topic_data, f, ensure_ascii=False, indent=2)
-                
-            logger.info(f"已从{os.path.basename(topic_ori_file)}复制内容到topic.json，重置为初始状态")
-        else:
-            logger.warning(f"未找到模板文件{topic_ori_file}，无法重置topic.json")
-            return False
-        
-        # 获取gen_topic.json路径
-        gen_topic_path = config["data_paths"]["gen_topic_json"]["path"].lstrip('/')
-        gen_topic_file = os.path.join(module_dir, gen_topic_path)
-        
-        # 将初始topic复制到gen_topic.json中
+        # 重置gen_topic.json - 以topic.json中的稳定主题为起始点（但重置状态）
         gen_topic_data = {
-            "topics": initial_topic_data.get("topics", {}),
-            "version": "1.0.0",
+            "topics": {},
+            "version": "1.0.0", 
             "last_updated": datetime.now().isoformat(),
             "description": "存储阶段一询问大模型生成的主题词（待处理的主题词）"
         }
         
-        # 为topics中的所有主题添加status属性
-        for topic_id, topic_info in gen_topic_data["topics"].items():
-            topic_info["status"] = "pending"
+        # 将稳定主题复制为生成主题的起始点，但重置为pending状态
+        if current_topics_list:
+            for topic_info in current_topics_list:  # 遍历列表而不是字典的items()
+                topic_id = topic_info["id"]
+                gen_topic_data["topics"][topic_id] = {
+                    "id": topic_id,
+                    "name_zh": topic_info["name_zh"],
+                    "name_en": topic_info["name_en"], 
+                    "aliases": topic_info.get("aliases", []),
+                    "status": "pending",  # 重置状态
+                    "created_at": topic_info.get("created_at", datetime.now().isoformat())
+                }
         
-        # 保存gen_topic.json
-        os.makedirs(os.path.dirname(gen_topic_file), exist_ok=True)
-        with open(gen_topic_file, 'w', encoding='utf-8') as f:
+        # 保存gen_topic.json（重置）
+        gen_topic_path = os.path.join(project_root, config["data_paths"]["gen_topic_json"]["path"].lstrip('/'))
+        os.makedirs(os.path.dirname(gen_topic_path), exist_ok=True)
+        with open(gen_topic_path, 'w', encoding='utf-8') as f:
             json.dump(gen_topic_data, f, ensure_ascii=False, indent=2)
-            
-        logger.info(f"已重置gen_topic.json，复制了初始主题")
         
-        # 获取merge_opinion.json路径
-        merge_opinion_path = config["data_paths"]["merge_opinion"]["path"].lstrip('/')
-        merge_opinion_file = os.path.join(module_dir, merge_opinion_path)
-        
-        # 重置merge_opinion.json
-        empty_merge_opinion = {
-            "merge_suggestions": [],
-            "raw_response": "",
-            "last_updated": datetime.now().isoformat(),
-            "description": "存储大模型生成的主题词合并建议"
-        }
-        
-        # 保存重置后的文件
-        os.makedirs(os.path.dirname(merge_opinion_file), exist_ok=True)
-        with open(merge_opinion_file, 'w', encoding='utf-8') as f:
-            json.dump(empty_merge_opinion, f, ensure_ascii=False, indent=2)
-            
-        logger.info("已重置merge_opinion.json")
-        
-        # 重置middle_topic.json
-        middle_topic_path = os.path.join(os.path.dirname(topic_json_file), "middle_topic.json")
-        empty_middle_topic = {
-            "topics": {},
-            "mappings": {},
-            "version": "1.0.0",
-            "last_updated": datetime.now().isoformat(),
-            "description": "存储中间合并过程的主题词"
-        }
-        
-        with open(middle_topic_path, 'w', encoding='utf-8') as f:
-            json.dump(empty_middle_topic, f, ensure_ascii=False, indent=2)
-            
-        logger.info("已重置middle_topic.json")
-        
+        logger.info(f"✅ 已重置gen_topic.json（基于{len(current_topics_list)}个稳定主题）")
         return True
         
     except Exception as e:
-        logger.error(f"重置数据文件失败: {e}")
-        logger.exception(e)
+        logger.error(f"重置数据文件时出错: {e}")
         return False
 
 def main():
     """命令行入口函数"""
-    parser = argparse.ArgumentParser(description="主题词提取和管理工具")
+    parser = argparse.ArgumentParser(description="主题词生成和管理工具")
     parser.add_argument('command', nargs='?', default='full', 
                        help='执行的命令：full(默认，执行完整流程), extract, generate_merge, update_topics, list')
     parser.add_argument('--no-reset', action='store_true', 
-                       help='不重置数据文件（gen_topic.json和merge_opinion.json）')
+                       help='跳过数据文件重置（仅用于调试，正常情况下不建议使用）')
     args = parser.parse_args()
     
     try:
@@ -145,16 +94,22 @@ def main():
         with open(config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
         
-        # 除非指定--no-reset，否则重置数据文件
+        # 默认情况下重置数据文件（除了topic.json），除非明确指定--no-reset
         if not args.no_reset and args.command in ['full', 'extract']:
+            logger.info("开始重置数据文件（topic.json将保持不变作为稳定基础）")
             reset_data_files()
+        else:
+            if args.no_reset:
+                logger.info("用户指定了--no-reset参数，跳过数据文件重置")
+            else:
+                logger.info("当前命令不需要重置数据文件")
         
         # 初始化主题管理器
         topic_manager = TopicManager()
         
         # 执行不同的命令
         if args.command == 'extract':
-            # 从论文中提取主题词
+            # 从论文中生成主题词
             extract_from_papers(config, module_dir, topic_manager)
             
         elif args.command == 'generate_merge':
@@ -171,36 +126,32 @@ def main():
             
         elif args.command == 'full':
             # 执行完整流程
-            logger.info("开始执行完整的主题提取、合并和更新流程")
+            logger.info("开始执行完整的主题生成、合并和更新流程")
             
-            # 1. 从论文中提取主题词
+            # 1. 从论文中生成主题词
             extract_from_papers(config, module_dir, topic_manager)
             
             # 2. 执行多轮合并循环
             execute_merge_cycles(topic_manager)
             
-            logger.info("完整的主题提取、合并建议生成和更新流程已完成！")
+            logger.info("完整的主题生成、合并建议生成和更新流程已完成！")
     
     except Exception as e:
         logger.error(f"执行命令时出错: {str(e)}")
         sys.exit(1)
 
 def extract_from_papers(config, module_dir, topic_manager):
-    """从论文中提取主题词"""
-    logger.info("开始从论文中提取主题词")
-    
-    # 初始化LLM客户端和主题提取器
+    """从论文中生成主题词"""
+    # 初始化LLM客户端和主题生成器
     llm_client = LLMClient()
-    topic_extractor = TopicExtractor(llm_client, topic_manager)
+    topic_generator = TopicGenerator(llm_client, topic_manager)
     
     # 获取输入路径
     abstract_path = config["data_paths"]["abstract_extract"]["path"].lstrip('/')
     input_dir = os.path.join(module_dir, abstract_path)
     
-    # 提取主题
-    logger.info(f"开始从 {input_dir} 提取主题")
-    paper_topics = topic_extractor.extract_topics_from_file(input_dir)
-    logger.info(f"主题提取完成，处理了 {len(paper_topics)} 篇论文")
+    # 生成主题
+    paper_topics = topic_generator.generate_topics_from_file(input_dir)
     
     # 不再调用update_prompt_template，避免无法找到知识库部分的错误
 
@@ -208,26 +159,29 @@ def execute_merge_cycles(topic_manager):
     """执行多轮合并循环"""
     logger.info("开始执行多轮合并循环")
     
+    # 重置merge_LLM_result文件，确保每次执行都是最新的合并建议
+    topic_manager.reset_merge_llm_result()
+    
     # 第一轮：从gen_topic.json到middle_topic.json
     logger.info("=== 第一轮合并：从gen_topic.json到middle_topic.json ===")
     generate_merge_suggestions(topic_manager, source="gen_topic")
-    update_topics(topic_manager, target="middle_topic")
+    update_topics(topic_manager, target="middle_topic", source="gen_topic")
     
     # 第二轮：从middle_topic.json到middle_topic.json
     logger.info("=== 第二轮合并：从middle_topic.json到middle_topic.json ===")
     generate_merge_suggestions(topic_manager, source="middle_topic")
-    update_topics(topic_manager, target="middle_topic")
+    update_topics(topic_manager, target="middle_topic", source="middle_topic")
     
     # 第三轮：从middle_topic.json到topic.json
     logger.info("=== 第三轮合并：从middle_topic.json到topic.json ===")
     generate_merge_suggestions(topic_manager, source="middle_topic")
-    update_topics(topic_manager, target="topic")
+    update_topics(topic_manager, target="topic", source="middle_topic")
     
     logger.info("多轮合并循环完成")
 
 def generate_merge_suggestions(topic_manager, source="gen_topic"):
     """生成主题合并建议"""
-    logger.info(f"开始生成主题合并建议（数据源：{source}）")
+    logger.info(f"开始生成合并建议（数据源：{source}）")
     
     # 初始化LLM客户端
     llm_client = LLMClient()
@@ -260,9 +214,9 @@ def generate_merge_suggestions(topic_manager, source="gen_topic"):
         topic_details = []
         middle_topics = topic_manager.load_middle_topics()
         
-        for topic_id, topic_data in middle_topics.items():
+        for mid_id, topic_data in middle_topics.items():
             topic_info = {
-                "id": topic_id,
+                "id": mid_id,
                 "name_zh": topic_data.get("name_zh", ""),
                 "name_en": topic_data.get("name_en", ""),
                 "aliases": topic_data.get("aliases", []),
@@ -277,59 +231,40 @@ def generate_merge_suggestions(topic_manager, source="gen_topic"):
     # 按创建时间排序主题
     topic_details.sort(key=lambda x: x.get('created_at', ''))
     
-    logger.info(f"准备生成合并建议，共有 {len(topic_details)} 个主题（数据源：{source}）")
+    if not topic_details:
+        logger.info("没有需要合并的主题")
+        return []
     
-    # 定义输出目录路径
-    output_dir = os.path.join(
-        os.path.dirname(topic_manager.merge_opinion_file), 
-        "output"
-    )
-    os.makedirs(output_dir, exist_ok=True)
-    
-    # 保存原始主题词列表到merge_ori文件
-    merge_ori_path = os.path.join(output_dir, f"merge_ori")
-    topic_list = []
-    for topic in topic_details:
-        # 移除主题名称中可能存在的前缀数字
-        name_zh = re.sub(r'^\d+\.\s*', '', topic['name_zh'])
-        topic_list.append(f"{topic['id']}. {name_zh}，Keywords: {topic['name_en']}")
-    topic_list_text = "\n".join(topic_list)
-    
-    with open(merge_ori_path, 'w', encoding='utf-8') as f:
-        f.write(topic_list_text)
-    logger.info(f"已保存原始主题词列表到 {merge_ori_path}")
-    
-    # 创建主题合并提示并调用LLM生成最新的合并建议
+    # 创建合并提示
     merge_prompt = topic_manager.create_merge_prompt(topic_details)
-    merge_response = llm_client.get_completion(merge_prompt)
     
-    # 保存LLM原始响应到指定的output目录
-    merge_llm_result_path = os.path.join(output_dir, f"merge_LLM_result")
-    with open(merge_llm_result_path, 'w', encoding='utf-8') as f:
-        f.write(merge_response)
-    logger.info(f"已保存LLM原始响应到 {merge_llm_result_path}")
+    # 调用LLM生成合并建议
+    response = llm_client.get_completion(merge_prompt)
     
-    # 保存合并建议并解析
-    topic_manager.save_merge_opinion(merge_response)
-    merge_suggestions = topic_manager.parse_merge_suggestions(merge_response)
+    # 保存大模型的原始响应
+    topic_manager.save_merge_opinion(response)
+    
+    # 解析合并建议
+    merge_suggestions = topic_manager.parse_merge_suggestions(response)
     
     if merge_suggestions:
-        logger.info(f"解析到 {len(merge_suggestions)} 个合并建议")
+        logger.info(f"生成了 {len(merge_suggestions)} 个合并建议")
+        for source_id, target_id, merge_type in merge_suggestions:
+            logger.debug(f"  {source_id} -> {target_id} ({merge_type})")
     else:
         logger.info("没有需要合并的主题")
         
-    logger.info("使用代码合并方法执行合并操作")
     return merge_suggestions
 
-def update_topics(topic_manager, target="topic"):
+def update_topics(topic_manager, target="topic", source="gen_topic"):
     """更新主题词"""
-    logger.info(f"开始更新主题词（目标：{target}）")
+    logger.info(f"开始更新主题词（目标：{target}，来源：{source}）")
     
     # 初始化LLM客户端
     llm_client = LLMClient()
     
     # 执行主题更新
-    success = topic_manager.update_topics_from_merge(llm_client, target=target, use_code_merge=True)
+    success = topic_manager.update_topics_from_merge(llm_client, target=target, use_code_merge=True, source=source)
     
     if success:
         # 删除重复日志，TopicManager已经有详细的日志输出

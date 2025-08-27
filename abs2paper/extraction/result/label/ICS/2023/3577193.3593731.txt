@@ -1,7 +1,8 @@
 3577193.3593731.txt:
-2. Numerical Linear Algebra  
-3. High Performance Computing  
-4. Distributed Computing  
-20. Matrix Operation  
+1. Parallel Computing
+7. Autotuning
+4. Graph Theory
+5. Hardware Acceleration
+10. Optimization Algorithms
 
-故该论文的主题关键词总结为[2, 3, 4, 20]。
+故该论文的主题关键词总结为[1,7,4,5,10]。

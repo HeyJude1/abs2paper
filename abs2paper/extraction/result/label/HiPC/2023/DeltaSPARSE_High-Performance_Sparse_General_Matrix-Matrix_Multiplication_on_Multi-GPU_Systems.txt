@@ -1,11 +1,6 @@
 DeltaSPARSE_High-Performance_Sparse_General_Matrix-Matrix_Multiplication_on_Multi-GPU_Systems.txt:
-3. High Performance Computing
-4. Distributed Computing
-14. Heterogeneous Computing
-20. Matrix Operation
-48. Sparse Matrix Multiplication
-49. Multi-GPU Systems
-80. Parallel Algorithms
-100. GPU Computing
+3. Parallel Computing  
+4. Graph Theory  
+5. Hardware Acceleration  
 
-故该论文的主题关键词总结为[3,4,14,20,48,49,80,100]。
+故该论文的主题关键词总结为[3,4,5]。

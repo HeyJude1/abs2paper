@@ -1,6 +1,5 @@
 5 Experimental Methodology
 We evaluate AW using Memcached and MicroSuite (see Section 2.5 ).
-66:16
 G. Antoniou et al.
 System . We use the CloudLab infrastructure for the experimental evaluation. Our baseline server is equipped with two Intel Xeon Silver 4114 Skylake-based processors running at a nominal frequency of 2.2GHz (minimum frequency of 0.8GHz and maximum Turbo Boost frequency of 3GHz), with 10 physical cores for a total of 20 hyper-threads, and with 192GB DDR4 DRAM. We choose to disable turbo in all cases to eliminate variations among runs.
 Workload Setup . For evaluating Memcached, we run a single Memcached server process on one of the server machines and run a modified version of the Mutilate load generator on the rest of the machines. We configure the load generator to recreate the ETC workload from Facebook , using one master and four workload generator clients, each running on a separate server machine. We use three nodes to evaluate MicroSuite benchmarks (client, midtier, bucket). Our benchmark configuration follows the configuration of the MicroSuite work . Finally, we pin the processes onto specific cores to eliminate process migration.

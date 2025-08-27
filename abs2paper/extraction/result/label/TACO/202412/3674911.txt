@@ -1,14 +1,7 @@
 3674911.txt:
-3. High Performance Computing  
-4. Distributed Computing  
-5. Autotuning  
-6. Compiler Optimization  
-7. Performance Optimization  
-14. Heterogeneous Computing  
-20. Matrix Operation  
-48. Sparse Matrix Multiplication  
-49. Multi-GPU Systems  
-53. Auto-parallelization  
-100. GPU Computing  
+3.Parallel Computing  
+7.Autotuning  
+12.Auto-tuning  
+10.Optimization Algorithms  
 
-故该论文的主题关键词总结为[3,4,5,6,7,14,20,48,49,53,100]。
+故该论文的主题关键词总结为[3,7,12,10]。

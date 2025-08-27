@@ -1,12 +1,5 @@
 3689341.txt:
-58. Graph Representation
-59. Graph Partitioning
-60. Graph Processing
-15. Load Balancing
-16. Model Parallelism and Partitioning
-64. Distributed Inference
-86. Parallel Computing
-4. Distributed Computing
-3. High Performance Computing
+4. Graph Theory
+3. Parallel Computing
 
-故该论文的主题关键词总结为[58,59,60,15,16,64,86,4,3]。
+故该论文的主题关键词总结为[4,3]。

@@ -1,178 +1,178 @@
 [
   {
     "paper": "3577193.3593731.txt",
-    "labels": "2, 3, 4, 20"
+    "labels": "1,7,4,5,10"
   },
   {
     "paper": "3577193.3593714.txt",
-    "labels": "5,6,7,8"
+    "labels": "2,7,10,12"
   },
   {
     "paper": "3577193.3593710.txt",
-    "labels": "6,9,10,11"
+    "labels": "1,7,10,12"
   },
   {
     "paper": "3577193.3593712.txt",
-    "labels": "5,12,13"
+    "labels": "2,6,7"
   },
   {
     "paper": "3650200.3656628.txt",
-    "labels": "1,3,4,16,17,22,23,62,64,80,86"
+    "labels": "3,7,12"
   },
   {
     "paper": "3650200.3656600.txt",
-    "labels": "3, 18, 19, 20, 80"
+    "labels": "3,4"
   },
   {
     "paper": "3650200.3656620.txt",
-    "labels": "22,3,6,7,21,46,61,100"
+    "labels": "3,5,7,10"
   },
   {
     "paper": "0728.txt",
-    "labels": "3, 24, 25, 26, 27, 55, 68"
+    "labels": "1,8,10"
   },
   {
     "paper": "2404.13891v2.txt",
-    "labels": "28, 29, 30"
+    "labels": "9, 8, 10"
   },
   {
     "paper": "2406.15763v2.txt",
-    "labels": "35,33,32,34"
+    "labels": "1,9"
   },
   {
     "paper": "2309.11930v2.txt",
-    "labels": "36, 35, 25, 27, 38, 33, 37"
+    "labels": "1, 9"
   },
   {
     "paper": "2309.17288v3.txt",
-    "labels": "39,40,41,42"
+    "labels": "1,8,12"
   },
   {
     "paper": "Automatic_Code_Generation_for_High-Performance_Graph_Algorithms.txt",
-    "labels": "3,4,6,7,10,11,14,18,20,43,44"
+    "labels": "1,3,4,5,7,10,12"
   },
   {
     "paper": "UWOmppro_UWOmp_with_Point-to-Point_Synchronization_Reduction_and_Schedules.txt",
-    "labels": "3,6,7,53,86,101"
+    "labels": "3,7,12"
   },
   {
     "paper": "G-Sparse_Compiler-Driven_Acceleration_for_Generalized_Sparse_Computation_for_Graph_Neural_Networks_on_Modern_GPUs.txt",
-    "labels": "3,5,6,7,11,14,44,48,49,55,100"
+    "labels": "1,3,5,7,8,12"
   },
   {
     "paper": "Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization.txt",
-    "labels": "3, 5, 6, 7, 15, 17, 53, 69, 80, 86"
+    "labels": "3,5,7,10"
   },
   {
     "paper": "3656019.3676895.txt",
-    "labels": "3,5,6,7,8,9,11,13,44,45,55"
+    "labels": "3,7,12,13"
   },
   {
     "paper": "3656019.3689905.txt",
-    "labels": "3, 5, 6, 7, 14, 21, 23, 43, 48, 54, 75"
+    "labels": "5,7"
   },
   {
     "paper": "3656019.3676889.txt",
-    "labels": "3,4,46,47,53,86,101"
+    "labels": "1,7,12"
   },
   {
     "paper": "3674911.txt",
-    "labels": "3,4,5,6,7,14,20,48,49,53,100"
+    "labels": "3,7,12,10"
   },
   {
     "paper": "3689342.txt",
-    "labels": "3, 5, 6, 7, 10, 11, 20, 21, 43, 44, 48, 55, 66"
+    "labels": "1,7,10"
   },
   {
     "paper": "3688612.txt",
-    "labels": "3, 14, 20, 21, 48, 55, 66, 67, 68, 75, 84"
+    "labels": "5,10"
   },
   {
     "paper": "3676847.txt",
-    "labels": "3,4,14,48,49,78,80,86,100"
+    "labels": "3,5,10"
   },
   {
     "paper": "3674734.txt",
-    "labels": "1, 3, 50, 51, 63, 77"
+    "labels": "14,15"
   },
   {
     "paper": "3685277.txt",
-    "labels": "3, 5, 6, 7, 11, 20, 48, 54, 55, 66, 100"
+    "labels": "1,7,8,10"
   },
   {
     "paper": "3703352.txt",
-    "labels": "3,4,14,20,48,80,86"
+    "labels": "3,5,7,10"
   },
   {
     "paper": "3701993.txt",
-    "labels": "54,56,53,104,6"
+    "labels": "1,3,7,10"
   },
   {
     "paper": "3674910.txt",
-    "labels": "31, 57, 53, 74, 96"
+    "labels": "8,14"
   },
   {
     "paper": "3689341.txt",
-    "labels": "58,59,60,15,16,64,86,4,3"
+    "labels": "4,3"
   },
   {
     "paper": "3701997.txt",
-    "labels": "3, 6, 7, 9, 14, 21, 61, 62, 63, 64"
+    "labels": "4,7,10,14"
   },
   {
     "paper": "3688609.txt",
-    "labels": "3,5,6,7,11,46,47,53,54,55,66"
+    "labels": "1,7,8,10,12"
   },
   {
     "paper": "Hybrid_CUDA_Unified_Memory_Management_in_Fully_Homomorphic_Encryption_Workloads.txt",
-    "labels": "3, 70, 71, 100"
+    "labels": "1,2,3"
   },
   {
     "paper": "DNA-TEQ_An_Adaptive_Exponential_Quantization_of_Tensors_for_DNN_Inference.txt",
-    "labels": "73, 55, 54, 84, 85"
+    "labels": "10,12"
   },
   {
     "paper": "CAPTURE_Memory-Centric_Partitioning_for_Distributed_DNN_Training_with_Hybrid_Parallelism.txt",
-    "labels": "3,16,51,54,70,76,78,100"
+    "labels": "3,5,8,10,14"
   },
   {
     "paper": "Fast_Parallel_Tensor_Times_Same_Vector_for_Hypergraphs.txt",
-    "labels": "3, 6, 7, 10, 18, 20, 21, 48, 58, 59, 60, 61, 80"
+    "labels": "3,4,5"
   },
   {
     "paper": "A_118_GOPS_mm23D_eDRAM_TensorCore_Architecture_for_Large-scale_Matrix_Multiplication.txt",
-    "labels": "3, 20, 21, 46, 47, 54, 75, 84, 85"
+    "labels": "5,7,10,14"
   },
   {
     "paper": "DeltaSPARSE_High-Performance_Sparse_General_Matrix-Matrix_Multiplication_on_Multi-GPU_Systems.txt",
-    "labels": "3,4,14,20,48,49,80,100"
+    "labels": "3,4,5"
   },
   {
     "paper": "Oikonomos-II_A_Reinforcement-Learning_Resource-Recommendation_System_for_Cloud_HPC.txt",
-    "labels": "3,50,51,88,90,91,96"
+    "labels": "8,7"
   },
   {
     "paper": "MiCRO_Near-Zero_Cost_Gradient_Sparsification_for_Scaling_and_Accelerating_Distributed_DNN_Training.txt",
-    "labels": "89,90,91"
+    "labels": "8, 10"
   },
   {
     "paper": "Simulation_of_Large-Scale_HPC_Storage_Systems_Challenges_and_Methodologies.txt",
-    "labels": "94,92,93,95"
+    "labels": "7, 10, 15"
   },
   {
     "paper": "Allocation_Strategies_for_Disaggregated_Memory_in_HPC_Systems.txt",
-    "labels": "3, 15, 96, 97, 98"
+    "labels": "1,5,14,15"
   },
   {
     "paper": "Leveraging_LLVM_OpenMP_GPU_Offload_Optimizations_for_Kokkos_Applications.txt",
-    "labels": "3,4,6,7,14,16,17,53,64,78,86"
+    "labels": "1,7,8,10,12"
   },
   {
     "paper": "HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach.txt",
-    "labels": "3,5,62,31,102"
+    "labels": "7, 8"
   },
   {
     "paper": "Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs.txt",
-    "labels": "3,103"
+    "labels": "3,4,10"
   }
 ]

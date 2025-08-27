@@ -1,11 +1,9 @@
 CAPTURE_Memory-Centric_Partitioning_for_Distributed_DNN_Training_with_Hybrid_Parallelism.txt:
-3. High Performance Computing
-16. Model Parallelism and Partitioning
-51. Datacenter Optimization
-54. Neural Network Acceleration
-70. GPU Memory Management
-76. Distributed Deep Learning Training
-78. Hybrid Parallelism
-100. GPU Computing
+1. Code Generation
+3. Parallel Computing
+5. Hardware Acceleration
+8. Reinforcement Learning
+10. Optimization Algorithms
+14. Power Management
 
-故该论文的主题关键词总结为[3,16,51,54,70,76,78,100]。
+故该论文的主题关键词总结为[3,5,8,10,14]。

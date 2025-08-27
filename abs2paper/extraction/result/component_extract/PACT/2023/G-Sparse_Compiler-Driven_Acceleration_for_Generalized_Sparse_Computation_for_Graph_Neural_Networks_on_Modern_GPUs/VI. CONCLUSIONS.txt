@@ -8,9 +8,6 @@ Our autotuning still takes seconds to generate the optimal program, and is only 
 The source code, benchmarks, and Python package are provided at https://doi.org/10.5281/zenodo.8254020, and (2) Download the source files g-sparse.zip and gpc-1.0-cp310-cp310-linux_x86_64.whl from the above URL.
 • Hardware dependencies: NVIDIA V100 or P100 GPUs.
 • Software dependencies: CUDA 11.1/11.7, DGL 0.9.1/1.0.0, PyTorch 1.9.0/2.0.0, and Python 3.10.
-C. Installation
 A Python package is provided for installation, and users can run the command pip install gpc-1. 0-cp310-cp310-linux\_x86\_64.whl to make it.
-D. Experiment Workflow
 First, download the source codes and install the Python package as described in Section B. Second, extract the contents of the g-sparse.zip file to a designated directory. Finally, (1) to evaluate the kernels, run the script run_kernels.sh in the benchmarks directory, and (2) to evaluate the GAT, GCN and GraphSAGE models, run the script run.sh in the benchmarks/gat, benchmarks/gcn, and benchmarks/graphsage directories, respectively.
-E. Evaluation and Expected Results
 To get the results, execute the run_kernels.sh and run.sh scripts located in the benchmarks directories. The execution will generate performance results, which will be displayed in the output stream of the terminal.

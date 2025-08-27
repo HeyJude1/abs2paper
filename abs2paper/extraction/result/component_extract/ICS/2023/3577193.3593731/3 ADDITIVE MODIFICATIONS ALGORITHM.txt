@@ -4,7 +4,6 @@ Additive modifications commute naturally with the preceding Schur complement upd
 𝐿 𝑅 = 𝐴 ≡ 𝐴 + 𝑀 𝑈 𝑀 Σ 𝑀 𝑇 𝑉 (1)
 where 𝐿 and 𝑅 are lower and upper block-triangular matrices, respectively, while 𝑀 Σ is a diagonal matrix containing the modifications. Note that we denote the upper block-triangular factor as 𝑅 ("right") instead of the usual 𝑈 ("upper") to avoid confusion with the 𝑈 factor of the SVD. The columns of 𝑀 𝑈 and 𝑀 𝑉 are the left and right singular vectors corresponding to the modifications in 𝑀 Σ and padded with zeros to match the size of 𝐴. Thus, 𝑀
 MV M T L MΣ MU A + ≡ × R
-𝑈 and 𝑀
 𝑉 are tall-and-narrow matrices whose columns are a subset of a block-diagonal matrix. Figure visualizes these sub-matrix structures.
 Because of the perturbations, the factored matrix 𝐴 −1 often only provides the solution to a nearby system, so a correction is needed to obtain the solution to the original system. We considered two approaches for this correction: iterative refinement and the Woodbury formula. While the former has a well established formulation, the latter can take various forms. The most general form of the Woodbury formula is
 (𝐴 − 𝐵𝐶𝐷) −1 = 𝐴 −1 + 𝐴 −1 𝐵(𝐶 −1 − 𝐷𝐴 −1 𝐵) −1 𝐷𝐴 −1 , (2)
@@ -32,6 +31,5 @@ if 𝑚 > 0 and using Woodbury formula then 33:
 𝑥 ← 𝑅 −1 𝑥 36: end procedure number of arithmetic operations used in the modifications and Woodbury formula. Let 𝑛 be the size of the system, 𝑚 be the rank of the Woodbury correction, 𝑛 𝑏 be the size of the diagonal blocks, and ℓ 𝑟ℎ𝑠 be the number of right-hand sides. (If the Woodbury formula is not applied, 𝑚 = 0.) Because the factors' diagonal blocks are full instead of triangular, computing the Schur complement takes an extra 𝑛 2 𝑛 𝑏 + O (𝑛𝑛 2 𝑏 ) FLOP. Thus, BEAM without the Woodbury correction takes
 2 3 𝑛 3 + 2𝑛 2 ℓ 𝑟ℎ𝑠 + 𝑛 2 𝑛 𝑏 + O (𝑛𝑛 2
 𝑏 + 𝑛𝑛 𝑏 ℓ 𝑟ℎ𝑠 ) FLOP. Next, building and factoring the capacitance matrix (via GEPP) takes 2𝑛 2 𝑚 + 2𝑛𝑚 2 + 2 3 𝑚 3 + O (𝑛𝑚) FLOP. Finally, the Woodbury formula requires two triangular solves and two matrix multiplies.
-So, the Woodbury formula adds an extra
 2𝑛 2 𝑚 + 2𝑛𝑚 2 + 2 3 𝑚 3 + 4𝑛𝑚ℓ 𝑟ℎ𝑠 + 2𝑚 2 ℓ 𝑟ℎ𝑠 + O (𝑛 2 + 𝑛ℓ 𝑟ℎ𝑠 ) FLOP.
 Hence, if 𝑛 𝑏 , 𝑚 ≪ 𝑛, the arithmetic overhead compared to GENP should be negligible. While this does not measure the cost of data movement, most of the added computations have high data locality, especially compared to pivoting.

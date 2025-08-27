@@ -1,8 +1,5 @@
 DNA-TEQ_An_Adaptive_Exponential_Quantization_of_Tensors_for_DNN_Inference.txt:
-73. Neural Network Quantization
-55. Tensor Compiler
-54. Neural Network Acceleration
-84. Hardware accelerator
-85. Compute-in-memory
+10. Optimization Algorithms
+12. Auto-tuning
 
-故该论文的主题关键词总结为[73, 55, 54, 84, 85]。
+故该论文的主题关键词总结为[10,12]。

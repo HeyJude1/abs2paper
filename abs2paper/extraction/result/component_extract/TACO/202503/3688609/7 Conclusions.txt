@@ -1,5 +1,3 @@
 7 Conclusions
 This article first motivates and introduces the Deep Learning Acceleration Stack (DLAS) and then presents a perturbation study with an exploration of the impact of varying a small number of parameters at each layer of the stack. In our study, we find a variety of across-stack interactions and scenarios where theoretical performance improvements were not achieved due to lack of full exploitation across the stack. Our work is not intended to propose solutions to all of these limitations, instead highlights some complexities that emerge in deep learning acceleration and presents a conceptual framework (DLAS) for practitioners to approach their studies in the future.
-1:23
 We believe this can be achieved through closer collaboration across the layers of DLAS to enable more holistic co-design and co-optimization. Listing 2: Definition of spatial pack convolution using TVM's tensor expression language. 1 rc = te.reduce_axis((0, in_channel), name="rc") 2 ry = te.reduce_axis((0, kernel_h), name="ry")
-A Appendix

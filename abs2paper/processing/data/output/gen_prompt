@@ -12,7 +12,21 @@
 3.你的核心任务是，识别能够精准概括论文核心贡献的、高层次、总结性的核心主题词。
 ##已有知识库：
 以下是当前已有的所有主题词，你必须优先从中寻找匹配项：
-{existing_topics}
+1. 代码生成，Keywords: Code Generation
+2. 迁移学习，Keywords: Transfer Learning
+3. 并行计算，Keywords: Parallel Computing
+4. 图论，Keywords: Graph Theory
+5. 硬件加速，Keywords: Hardware Acceleration
+6. 高斯Copula，Keywords: Gaussian Copula
+7. 自动调优，Keywords: Autotuning
+8. 强化学习，Keywords: Reinforcement Learning
+9. 反事实推理，Keywords: Counterfactual Reasoning
+10. 优化算法，Keywords: Optimization Algorithms
+11. 博弈论，Keywords: Game Theory
+12. 自动调优，Keywords: Auto-tuning
+13. 多模态建模，Keywords: Multi-modal Modeling
+14. 功耗管理，Keywords: Power Management
+15. 数据中心优化，Keywords: Datacenter Optimization
 ##匹配原则：
 1.严格优先匹配原则：你必须首先仔细检查论文主题是否与已有知识库中的任何主题词相关或匹配。
 2.语义匹配：不仅要考虑字面意思，还要考虑语义相关性。例如：

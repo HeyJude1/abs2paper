@@ -27,25 +27,16 @@ Knowledge Sharing Mechanism. AutoAgents also facilitates the sharing of executio
 Short-term memory is chiefly concentrated on a singular action, encompassing the gamut of intermediary notions, strategies, and outcomes that emerge during the self-refinement or collaborative refinement phases of an individual action. It is salient to note that these actions frequently culminate in a distilled summary of critical information, epitomizing the final phase of the refinement trajectory.
 Long-term memory principally focuses on chronicling the historical trajectory of multifarious actions, predominantly documenting the executed results of each task along with the synthesis of vital feedback information. This aspect is imperative for evaluating the comprehensive extent of task completion.
 Dynamic memory predominantly serves actions necessitating specialized attention. The Action Observer, having access to long-term memory archives, adeptly extracts ancillary information, dynamically tailoring it to the specific requirements of the action for task execution. This process significantly augments the efficiency of a single action in task fulfillment. O agent provides feedback on agent team.
-6:
 P refines agent team based on feedback.
-7:
 O plan provides feedback on execution plan.
-8:
 P refines execution plan based on feedback. 9: until No feedback or reached the maximum iteration limit.
 for {A i , • • • , A j } do 18:
 Agent A m analyzes S k , M S and M D .
-19:
 Agent A m plans the current step and executes this step.
-20:
 The execution result is stored in M S .
-21:
 end for
-22:
 until No step or reached the maximum iteration limit.
-23:
 The execution results of task S k are stored in M L .
-24:
 O action coordinates {S 1 , S 2 , • • • S n } and monitors execution. 25: end for 26: return Execution results of final step.
 3. Creation of New Expert Roles:
 • Avoid duplication of functions in new roles.

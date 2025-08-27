@@ -1,13 +1,17 @@
 Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization.txt:
-3. High Performance Computing  
-5. Autotuning  
-6. Compiler Optimization  
-7. Performance Optimization  
-15. Load Balancing  
-17. Parallel Computing Optimization  
-53. Auto-parallelization  
-69. Runtime Scheduling  
-80. Parallel Algorithms  
-86. Parallel Computing  
+1. Code Generation
+2. Transfer Learning
+3. Parallel Computing
+4. Graph Theory
+5. Hardware Acceleration
+7. Autotuning
+8. Reinforcement Learning
+9. Counterfactual Reasoning
+10. Optimization Algorithms
+11. Game Theory
+12. Auto-tuning
+13. Multi-modal Modeling
+14. Power Management
+15. Datacenter Optimization
 
-故该论文的主题关键词总结为[3, 5, 6, 7, 15, 17, 53, 69, 80, 86]。
+故该论文的主题关键词总结为[3,5,7,10]。

@@ -1,7 +1,5 @@
 9 CONCLUSION
 In this paper, we present a similarity-based tuning framework that lifts peephole optimizations by fuzzy-matching larger program transformations. The approach separates the performance model from the optimizations in the form of performance embeddings and an optimization database. This enables local search for optimizations over the nearest neighbors in the embedding space.
 We demonstrate the approach in different case studies highlighting the reduction of the search complexity by up to four orders of magnitude, and the extensibility of the approach to tailored optimizations on data-dependent applications, outperforming the state-of-the-art MKL library in certain use cases. The approach creates a new space that can be used for explainable and robust optimization, while remaining adaptive to future applications and hardware -transferring a new optimization technique is as simple as adding a row to the database.
-A APPENDIX
 The static encoding maps nodes and edges of an SDFG to a set of features. The mapping of SDFG node types to features is summarized in Table .
-Node Type Features
 Access

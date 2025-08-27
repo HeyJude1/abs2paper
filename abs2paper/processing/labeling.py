@@ -142,18 +142,11 @@ class PaperLabeler:
         
         topic_list_text = "\n".join(topic_lines)
         
-        # 构建知识库部分
-        knowledge_section = f"""##知识库：以下是与高性能、编译、代码优化和人工智能相关的论文内容主题关键词及其英文翻译，其结构是序号+中文关键词+英文关键词Keywords：
-{topic_list_text}"""
+        # 使用占位符机制替换{existing_topics}
+        updated_prompt = prompt.replace("{existing_topics}", topic_list_text)
         
-        # 查找并替换知识库部分
-        pattern = r"##知识库：.*?(?=##|$)"
-        updated_prompt = re.sub(pattern, knowledge_section, prompt, flags=re.DOTALL)
-        
-        # 如果没有成功替换，在原提示词后添加知识库部分
-        if updated_prompt == prompt:
-            logger.warning("⚠️ 无法在提示词中找到知识库部分，将添加到末尾")
-            updated_prompt = prompt + "\n\n" + knowledge_section
+        # 保存整合后的prompt到get_prompt文件
+        self._save_integrated_get_prompt(updated_prompt)
             
         logger.info(f"✅ 已更新提示词，包含 {len(topics)} 个稳定主题词")
         return updated_prompt
@@ -352,6 +345,20 @@ class PaperLabeler:
         
         return dict(sorted_keywords)
 
+    def _save_integrated_get_prompt(self, integrated_prompt: str):
+        """
+        将整合后的提示词保存到get_prompt文件中
+        
+        Args:
+            integrated_prompt: 整合后的提示词
+        """
+        get_topic_path = self.config["data_paths"]["get_topic"]["path"].lstrip('/')
+        prompt_path = os.path.join(self.project_root, get_topic_path)
+        
+        with open(prompt_path, 'w', encoding='utf-8') as f:
+            f.write(integrated_prompt)
+        logger.info(f"✅ 整合后的提示词已保存到: {prompt_path}")
+
 
 def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
     """
@@ -363,6 +370,8 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
         处理是否成功（至少成功处理一个文件）
     """
     try:
+        # --- 所有逻辑都正确地放在了 try 块内，并保持一级缩进 ---
+        
         # 初始化论文标签生成器
         labeler = PaperLabeler()
         
@@ -381,18 +390,22 @@ def label_papers(input_dir: str = None, output_dir: str = None) -> bool:
     
         # 保存汇总结果
         if all_paper_results:
+            # --- 修复了 if 块的缩进 ---
             keyword_counts = labeler.save_results(all_paper_results)
-            logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个关键词")
+            logger.info(f"📊 关键词统计完成，共 {len(keyword_counts)} 个独特的关键词")
     
         logger.info(f"🎉 处理完成！成功处理 {success_count}/{total_count} 个文件。")
         logger.info(f"结果已保存至 {labeler.output_dir}")
     
         # 如果至少有一个文件成功处理，则认为操作成功
         return success_count > 0
+        
     except Exception as e:
-        logger.error(f"处理论文标签时出错: {str(e)}")
+        logger.error(f"处理论文标签时出现严重错误: {str(e)}")
+        # 引入 traceback 可以在日志中打印更详细的错误堆栈信息，方便调试
+        import traceback
+        logger.error(traceback.format_exc())
         return False
-
 
 def main():
     """主函数"""

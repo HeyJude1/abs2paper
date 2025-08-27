@@ -1,6 +1,5 @@
 III. PRELIMINARY CONCEPTS A. Disaggregated memory model
 We consider an architecture with P compute nodes and a two tier memory. Typically, this corresponds to an archi-
-B. Application model
 We consider N parallel applications {A 1 , . . . , A N }. Each application can run using one of the three processing modes: with no access to the disaggregated memory at limited speed, (2) at full speed with complete access to disaggregated memory, or (3) a trade-off with limited access to disaggregated memory. All applications have access to the slower memory. For an application A i , we characterize its memory profile as a function of the requested memory: γ → m i (γ) with γ ∈ [0, 1] the proportion of the application completed. Note that in general this profile is an unknown variable that can only be traced after execution (see Section III-D).
 To model the application memory consumption, we first consider the memory profile as piecewise constant. We divide the memory profile into successive phases, with constant memory profile during each phase. A memory profile is therefore denoted as a set {(γ j , m j ), 0 ≤ j < J} where J is the number of phases of the application, m j is the memory request on phase j, that start when a proportion γ j−1 of the application is executed, and finishes at ratio γ j of the application (γ 0 = 0 and γ J−1 = 1).
 Performance model: The performance of application A i is computed based on the allocation M i of memory allocated to A i : If the application runs with requested memory at each phase, then the runtime of phase j will be T opt i (γ j − γ j−1 ) and the total runtime of the application will be T opt i . With a fixed memory M i ≤ M , a slowdown affects the runtime of each phase. In general this slowdown is very application dependent, but some data , show that a linear slowdown on memory accesses may be a good approximation. Particularly, Liu et al. ] have shown it using several memory swapping systems (Linux, Infiniswap, Fastswap). We can observe that the main difference in performance lies in an architecture-dependent growth factor. This is coherent with the roofline model , . Hence, we compute the slowdown on phase j as follows:
@@ -16,7 +15,6 @@ where memory M k is allocated to the application when the application is between
 K k=1 T opt i (γ ′ k − γ ′ k−1 ) SL i (M k , j)
 .
 The execution time of the application will thus be the sum of execution of each phase. For better clarity, we formulate in the following the memory allocation as a function of the time.
-C. Scheduling problem
 Given a number of nodes P , a fast, disaggregated memory of size M , a relative bandwidth ratio α between fast and slow memory, and a set {A 1 , • • • , A N } of applications defined by: their memory profile m i (γ), their node request c i , a minimal execution time T opt i with unlimited memory. A schedule consists in allocating applications to the P nodes, and partitioning the memory between applications. The memory allocation of a schedule can be described as a time vector t → π(t) = (M 1 (t), . . . , M N (t)) s.t. for all t,
 i≤N M i (t) ≤ M .
 Optimization objective: In line with the literature , we first define the throughput or instantaneous utilization of the system. More specifically, given a set of applications
@@ -26,7 +24,6 @@ Due to low memory allocation, an application can be slowed down, hence we use th
 Finally, we want to maximize the useful utilization of the system, defined as the mean useful throughput over time. The useful utilization U of the schedule S is therefore given by the formula:
 U (S) = 1 T S t Ai∈St c i • SL i (M i (t))
 where T S is the makespan of the schedule. For simplicity, in the rest of this work we use utilization when we talk about useful utilization and throughput when we talk about useful throughput.
-D. Limits of Memory Models
 While an application can be described by a memory profile t → M (t), it may not always be reasonable to consider that we can accurately obtain this profile in practice . There are too many variables that impact the accuracy of this profile: the performance of the system (the CPU may be slower at some time which translates the memory function in time), the shape of the data etc.
 Storing an entire memory profile for applications running on a large scale machine may be extremely costly. For instance, if we collect the node memory consumption every second (stored on 4B), that is roughly 350KB/day/node. On a machine like Frontier with more than 9400 nodes, this comes to 3.2GB/day,  In comparison, over five years of Mira (Jan 2014 to Dec 2018), 330k jobs were executed . If we ran aggregated data per jobs (for instance the percentage of time spent using 0-8GB, 8-16GB, 16-32GB, 32-64GB, 64-128GB ), that would amount to 6.6GB. Of course, this comes with a loss of information.
 In addition to the inaccuracy of the measurement, Peng et al. identified four types of memory temporal patterns to describe applications:
@@ -42,7 +39,6 @@ where, for
 m j0 ≤ M 0 < m j0+1 , g(M 0 ) = c j>j0 p j m j = cE 1 X X > M 0 P (X > M 0 ) (4)
 IV. ALGORITHMS
 In this section we present various algorithmic strategies to solve the problem described in Section III-C. We propose two algorithms: the Priority algorithm, which is suited for application scenarios with known memory behavior, and the Stochastic algorithm, which is suited for application scenarios with dynamic memory requirements. These algorithms are compared to baseline algorithms presented in Section IV-C. Finally, we discuss how these algorithms impact the batch scheduling mechanism in Section IV-D.
-A. Priority
 The first algorithm is priority-based: at all time t 0 , Priority sorts all running applications by decreasing c i /m i (t 0 ). Then while there is memory available, it allocates it (up to the memory requirement) to the first application of the list that needs additional memory.
 Theorem 1. Given a set of running jobs {A 1 , • • • , A N }, with respective constant memory profile t → m i (t) = m i .
 Priority is optimal with respect to the system throughput ρ(t).
@@ -52,7 +48,6 @@ Assume an optimal solution π = (M 1 , . . . , M N ), such that there exists two
 Because the throughput is additive, one can notice that
 ρ(π ′ ) − ρ(π) = (1 − α) c 1 m 1 ε − (1 − α) c 2 m 2 ε > 0
 which contradicts the optimality of π.
-B. Stochastic
 Based on Theorem 1, we expect Priority to work well when the memory profile of an application stays steady, close to the predicted peak usage as can be observed on traces on the Marconi100 supercomputer (see Section III-D1). For applications where the memory consumption is more dynamic within the execution , or where the predicted peak consumption can be far-off, there can be an important reconfiguration cost.
 We provide another approach based on a stochastic memory profile (Definition 1). In the following we assume that the memory profile of applications are described by random variables X whose discrete distributions are known (m j , p j ) j (i.e. for all j, P (X = m j ) = p j ).
 In this case, we derive Stochastic, a strategy with loglinear complexity that minimizes the expected throughput when applications follow a stochastic memory model. In general this can be obtained with historic data or known behavior for recurrent jobs (see Section III-D).
@@ -86,10 +81,8 @@ Algorithm 1 is derived from Theorem 2. It initially allocates 0 memory to each a
 Algorithm 1 Stochastic (A 1 , . . . , A N , M ) 1: Avail_M ← M 2: G table of size N , initialized with G[i] = c i • j≥1 p (i) j /m (i) j . 3: V table of
 j ← V [i] 9: M t ← π[i] 10: π[i] ← min m (i) j+1 , M t + Avail_M 11: Avail_M ← Avail_M − (π[i] − M t ) 12: G[i] ← G[i] − c i • p (i) j+1 /m (i) j+1 13: V [i] ← V [i] + 1 14:
 if G[i] > 0 then insert(H, i) end if 15: end while 16: return π
-C. Others heuristics
 We compared Priority and Stochastic with several heuristics:
 • Aggregated, the baseline heuristic, behaves like a solution would on a machine with aggregated memory, i.e. the memory allocation is proportional to the number of compute resources used by the application. • We also compare to other priority-based heuristics (i.e., heuristics that sort jobs by a priority function and allocates the maximum between the available memory and what the job requires), namely:
 -Oldest-First: sorts jobs by increasing arrival time (i.e. the date in which the job entered the system); -Largest-First: sorts jobs by decreasing size.
-D. Batch Scheduler Integration
 In our work we considered a batch-scheduler relying on EASY-BF . At submission time, users are expected to provide an expected walltime to the batch scheduler. The usual impact of this expected walltime is that if a job lasts longer than this value, it is killed by the resource manager. In our implementation, we chose to separate the memory partitioning from the node allocation, in order to simplify the overhead. This means that if the expected walltime is shorter than the worse case (T opt /α), the job is at the risk of being killed. Hence, a batch scheduler needs to use the worse possible walltime as the expected walltime.
 The focus of this work was to compare different memory allocation strategies, and determining the impact of disaggregated memory. In future work, it may be interesting to study the co-design of Batch-Scheduling strategies with memory partitioning algorithms, this co-design could use better runtime estimates.

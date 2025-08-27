@@ -29,7 +29,7 @@
     "request": {
       "url": "https://api.siliconflow.cn/v1/embeddings",
       "payload": {
-        "model": "BAAI/bge-large-zh-v1.5",
+        "model": "BAAI/bge-m3",
         "input": "${input}",
         "encoding_format": "float"
       },
@@ -117,6 +117,16 @@
       "path": "/abs2paper/processing/data/gen_topic.json",
       "description": "生成的主题词存储文件",
       "used_by": ["topic_extractor.py", "topic_manager.py"]
+    },
+    "gen_prompt": {
+      "path": "/abs2paper/processing/data/output/gen_prompt",
+      "description": "整合了已有主题词的prompt模板文件",
+      "used_by": ["topic_generator.py"]
+    },
+    "get_prompt": {
+      "path": "/abs2paper/processing/data/output/get_prompt",
+      "description": "整合了稳定主题词的get_topic提示词文件",
+      "used_by": ["labeling.py"]
     }
   },
   "paper": {

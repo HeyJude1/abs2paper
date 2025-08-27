@@ -1,10 +1,6 @@
 0728.txt:
-3. High Performance Computing
-24. Task-Aware Decoding
-25. Downstream Task Adaptation
-26. Probability Distribution Alignment
-27. Pre-trained Model Fine-tuning
-55. Tensor Compiler
-68. Deep Learning Acceleration
+1.Keywords: Transfer Learning  
+8.Keywords: Reinforcement Learning  
+10.Keywords: Optimization Algorithms  
 
-故该论文的主题关键词总结为[3, 24, 25, 26, 27, 55, 68]。
+故该论文的主题关键词总结为[1,8,10]。

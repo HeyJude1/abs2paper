@@ -1,12 +1,12 @@
 """
-论文主题提取模块
+论文主题生成模块
 
-本模块实现两阶段主题提取流程：
-1. 从论文摘要中提取初步主题
-2. 整合和合并提取的主题
+本模块实现两阶段主题生成流程：
+1. 从论文摘要中生成初步主题
+2. 整合和合并生成的主题
 
 同时支持整个两阶段工作流：
-1. 阶段一：从论文摘要中初次提取和整合主题词，形成稳定主题列表
+1. 阶段一：从论文摘要中初次生成和整合主题词，形成稳定主题列表
 2. 阶段二：使用稳定主题列表重新为论文分配主题
 """
 
@@ -28,14 +28,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-class TopicExtractor:
+class TopicGenerator:
     """
-    论文主题提取器，实现两阶段主题提取流程
+    论文主题生成器，实现两阶段主题生成流程
     """
     
     def __init__(self, llm_client, topic_manager: Optional[TopicManager] = None):
         """
-        初始化主题提取器
+        初始化主题生成器
         
         Args:
             llm_client: LLM客户端，用于调用大模型
@@ -44,35 +44,42 @@ class TopicExtractor:
         self.llm_client = llm_client
         self.topic_manager = topic_manager or TopicManager()
     
-    def extract_initial_topics(self, abstracts: List[Tuple[str, str]]) -> List[Tuple[str, List[str]]]:
+    def generate_initial_topics(self, abstracts: List[Tuple[str, str]]) -> List[Tuple[str, List[str]]]:
         """
-        从多篇论文摘要中提取初步主题词
+        从多篇论文摘要中生成初步主题词
         
         Args:
             abstracts: 论文摘要列表，格式为[(论文ID, 摘要文本)]
             
         Returns:
-            extracted_topics: 提取的主题词列表，格式为[(论文ID, [主题ID])]
+            generated_topics: 生成的主题词列表，格式为[(论文ID, [主题ID])]
         """
-        extracted_topics = []
+        generated_topics = []
         
         # 加载提示词模板
         prompt_template = self._load_prompt_template()
         
-        logger.info(f"开始从 {len(abstracts)} 篇论文摘要中提取主题")
+        # 生成已有主题词列表文本，整合到prompt模板中
+        existing_topics_text = self.topic_manager.generate_topic_list_text()
+        
+        # 整合已有主题词到prompt模板中（但不包含abstract）
+        integrated_prompt_template = prompt_template.replace("{existing_topics}", existing_topics_text)
+        
+        # 保存整合后的prompt模板到gen_prompt文件供查看
+        self._save_integrated_prompt(integrated_prompt_template)
         
         # 处理每篇论文
         for paper_id, abstract in abstracts:
-            logger.info(f"提取论文 {paper_id} 的主题")
+            logger.info(f"生成论文 {paper_id} 的主题")
             
             try:
-                # 构建完整提示
-                prompt = prompt_template.replace("{abstract}", abstract)
+                # 构建完整提示（在已整合existing_topics的基础上替换abstract）
+                prompt = integrated_prompt_template.replace("{abstract}", abstract)
                 
                 # 调用LLM
                 response = self.llm_client.get_completion(prompt)
                 
-                # 解析响应，提取主题ID和新主题
+                # 解析响应，生成主题ID和新主题
                 topic_ids, new_topics = self._parse_topics_response(response)
                 
                 # 收集主题信息用于日志
@@ -98,16 +105,27 @@ class TopicExtractor:
                     self._save_generated_topics(new_topics)
                 
                 if topic_ids or new_topics:
-                    extracted_topics.append((paper_id, topic_ids))
+                    generated_topics.append((paper_id, topic_ids))
                 else:
-                    logger.warning(f"无法从论文 {paper_id} 中提取任何主题")
+                    logger.warning(f"无法从论文 {paper_id} 中生成任何主题")
                     
             except Exception as e:
-                logger.error(f"提取论文 {paper_id} 的主题时出错: {e}")
+                logger.error(f"生成论文 {paper_id} 的主题时出错: {e}")
                 logger.exception(e)
         
-        logger.info(f"已从 {len(extracted_topics)} 篇论文中提取主题")
-        return extracted_topics
+        # 输出生成的主题数量统计
+        # 计算实际生成的唯一主题词数量
+        all_topic_ids = set()
+        for _, topic_ids in generated_topics:
+            all_topic_ids.update(topic_ids)
+        
+        # 同时统计新生成的主题词数量
+        gen_topics = self.topic_manager.load_generated_topics()
+        new_topics_count = len(gen_topics) if gen_topics else 0
+        
+        logger.info(f"主题提取完成，共匹配到 {len(all_topic_ids)} 个已有主题词，新生成 {new_topics_count} 个主题词")
+        
+        return generated_topics
     
     def _load_prompt_template(self) -> str:
         """
@@ -141,6 +159,44 @@ class TopicExtractor:
             logger.error(f"加载提示词模板时出错: {e}")
             raise
             
+    def _save_integrated_prompt(self, integrated_prompt: str) -> bool:
+        """
+        保存整合了已有主题词的prompt模板到gen_prompt文件
+        
+        Args:
+            integrated_prompt: 整合了existing_topics的prompt模板
+            
+        Returns:
+            是否成功保存
+        """
+        try:
+            # 获取项目根目录
+            module_dir = os.path.dirname(os.path.abspath(__file__))
+            project_root = os.path.dirname(os.path.dirname(module_dir))
+            
+            # 获取配置文件路径
+            config_path = os.path.join(project_root, "config", "config.json")
+            
+            # 读取配置文件获取gen_prompt输出路径
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            
+            gen_prompt_path = os.path.join(project_root, config["data_paths"]["gen_prompt"]["path"].lstrip('/'))
+            
+            # 确保输出目录存在
+            os.makedirs(os.path.dirname(gen_prompt_path), exist_ok=True)
+            
+            # 保存整合后的prompt模板
+            with open(gen_prompt_path, 'w', encoding='utf-8') as f:
+                f.write(integrated_prompt)
+                logger.info(f"已保存整合后的prompt模板到: {gen_prompt_path}")
+                
+            return True
+            
+        except Exception as e:
+            logger.error(f"保存整合后的prompt模板时出错: {e}")
+            return False
+    
     def _save_generated_topics(self, new_topics: List[str]) -> bool:
         """
         保存生成的主题词到gen_topic.json
@@ -235,7 +291,7 @@ class TopicExtractor:
     
     def _parse_topics_response(self, response: str) -> Tuple[List[str], List[str]]:
         """
-        解析模型响应，提取主题ID和新主题
+        解析模型响应，生成主题ID和新主题
         
         Args:
             response: 模型响应文本
@@ -248,7 +304,7 @@ class TopicExtractor:
         
         # 如果响应为None（可能因网络问题），直接返回空结果
         if response is None:
-            logger.warning("收到空响应（可能是网络问题），无法提取主题")
+            logger.warning("收到空响应（可能是网络问题），无法生成主题")
             return [], []
         
         # 记录原始响应，便于调试
@@ -330,7 +386,7 @@ class TopicExtractor:
         
         # 如果没有找到任何主题，记录警告并尝试其他格式
         if not topic_ids and not new_topics:
-            logger.warning(f"使用标准格式无法从LLM响应中提取任何主题，尝试其他格式...")
+            logger.warning(f"使用标准格式无法从LLM响应中生成任何主题，尝试其他格式...")
             
             # 尝试更广泛地匹配新主题词
             # 查找所有可能是"中文关键词，Keywords: English Keywords"格式的行
@@ -351,7 +407,7 @@ class TopicExtractor:
         
         # 如果仍然没有找到任何主题，尝试使用更宽松的匹配方法
         if not topic_ids and not new_topics:
-            logger.warning(f"仍然无法提取任何主题，尝试使用更宽松的匹配...")
+            logger.warning(f"仍然无法生成任何主题，尝试使用更宽松的匹配...")
             
             # 查找可能的中文主题词，不要求Keywords格式
             potential_topics = []
@@ -374,7 +430,7 @@ class TopicExtractor:
 
     def process_abstracts(self, abstracts: List[Tuple[str, str]]) -> Dict[str, List[str]]:
         """
-        处理论文摘要，提取并整合主题（完整流程）
+        处理论文摘要，生成并整合主题（完整流程）
         
         Args:
             abstracts: 论文摘要列表，格式为[(论文ID, 摘要文本)]
@@ -382,18 +438,18 @@ class TopicExtractor:
         Returns:
             paper_topics: 论文主题词字典，格式为{论文ID: [主题ID]}
         """
-        # 第一阶段：初步提取主题
-        extracted_topics = self.extract_initial_topics(abstracts)
+        # 第一阶段：初步生成主题
+        generated_topics = self.generate_initial_topics(abstracts)
         
         # 转换为字典格式
-        paper_topics = {paper_id: topics for paper_id, topics in extracted_topics}
+        paper_topics = {paper_id: topics for paper_id, topics in generated_topics}
         
         # 不再执行后续的整合和合并操作，这些应该由extract_topics.py调用topic_manager来完成
         return paper_topics
     
-    def extract_topics_from_file(self, abstract_dir: str) -> Dict[str, List[str]]:
+    def generate_topics_from_file(self, abstract_dir: str) -> Dict[str, List[str]]:
         """
-        从文件中提取论文主题
+        从文件中生成论文主题
         
         Args:
             abstract_dir: 论文摘要文件目录

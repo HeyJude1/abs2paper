@@ -1,2 +1,5 @@
 3688612.txt:
-[3, 14, 20, 21, 48, 55, 66, 67, 68, 75, 84]
+5.Keywords: Hardware Acceleration  
+10.Keywords: Optimization Algorithms  
+
+故该论文的主题关键词总结为[5,10]。

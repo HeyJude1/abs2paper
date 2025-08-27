@@ -1,16 +1,6 @@
 Fast_Parallel_Tensor_Times_Same_Vector_for_Hypergraphs.txt:
-3. High Performance Computing  
-6. Compiler Optimization  
-7. Performance Optimization  
-10. Computational Graph Optimization  
-18. Graph Theory  
-20. Matrix Operation  
-21. Memory-Efficient Computing  
-48. Sparse Matrix Multiplication  
-58. Graph Representation  
-59. Graph Partitioning  
-60. Graph Processing  
-61. Memory Optimization  
-80. Parallel Algorithms  
+3.Parallel Computing  
+4.Graph Theory  
+5.Hardware Acceleration  
 
-故该论文的主题关键词总结为[3, 6, 7, 10, 18, 20, 21, 48, 58, 59, 60, 61, 80]。
+故该论文的主题关键词总结为[3,4,5]。

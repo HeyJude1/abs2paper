@@ -193,29 +193,66 @@ class PaperIngestor:
 
     def _extract_topics_from_file(self, paper_id: str, label_dir: str) -> List[str]:
         """
-        从标签文件中提取主题关键词
+        从标签文件中提取主题关键词，支持嵌套目录结构查找
         Args:
             paper_id: 论文ID
             label_dir: 标签目录
         Returns:
             提取的主题关键词列表
         """
-        # 构建标签文件路径
-        label_file = os.path.join(label_dir, f"{paper_id}.txt")
         topics = []
         
-        # 如果文件不存在，尝试使用基本文件名
-        if not os.path.exists(label_file):
-            base_name = os.path.basename(paper_id)
-            label_file = os.path.join(label_dir, f"{base_name}.txt")
+        # 尝试多种文件名格式
+        possible_names = [
+            paper_id,  # 完整的paper_id
+            os.path.basename(paper_id),  # 只取文件名部分
+            paper_id.replace('/', '_'),  # 替换路径分隔符
+        ]
         
-        # 读取并解析标签文件
-        if os.path.exists(label_file):
+        # 在整个目录树中递归查找匹配的文件
+        for root, dirs, files in os.walk(label_dir):
+            for filename in files:
+                if filename.endswith('.txt'):
+                    # 去掉扩展名
+                    base_filename = filename[:-4]
+                    
+                    # 检查是否匹配任一可能的名称
+                    for possible_name in possible_names:
+                        if base_filename == possible_name:
+                            label_file = os.path.join(root, filename)
+                            topics = self._read_topics_from_file(label_file)
+                            if topics:  # 找到有效主题就返回
+                                logging.info(f"论文 {paper_id} 找到标签文件: {label_file}")
+                                return topics
+        
+        # 如果没有找到任何匹配的文件，记录详细信息用于调试
+        logging.warning(f"论文 {paper_id} 未找到对应的标签文件，尝试过的名称: {possible_names}")
+        return topics
+    
+    def _read_topics_from_file(self, label_file: str) -> List[str]:
+        """
+        从标签文件中读取主题关键词
+        Args:
+            label_file: 标签文件路径
+        Returns:
+            主题关键词列表
+        """
+        topics = []
+        try:
             with open(label_file, "r", encoding="utf-8") as lf:
-                for line in lf:
-                    if line.strip().startswith("故该论文的主题关键词总结为["):
-                        topics = [x.strip() for x in line.split("[")[-1].split("]")[0].split(",") if x.strip()]
+                content = lf.read()
+                # 查找主题关键词行
+                for line in content.split('\n'):
+                    if "故该论文的主题关键词总结为[" in line:
+                        # 提取括号内的内容
+                        start_idx = line.find('[')
+                        end_idx = line.find(']')
+                        if start_idx != -1 and end_idx != -1:
+                            topics_str = line[start_idx+1:end_idx]
+                            topics = [x.strip() for x in topics_str.split(",") if x.strip()]
                         break
+        except Exception as e:
+            logging.error(f"读取标签文件 {label_file} 时出错: {e}")
         
         return topics
 

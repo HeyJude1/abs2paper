@@ -1,7 +1,6 @@
 Hybrid_CUDA_Unified_Memory_Management_in_Fully_Homomorphic_Encryption_Workloads.txt:
-3. High Performance Computing  
-70. GPU Memory Management  
-71. Fully Homomorphic Encryption  
-100. GPU Computing  
+1. Hardware Acceleration
+2. Optimization Algorithms
+3. Auto-tuning
 
-故该论文的主题关键词总结为[3, 70, 71, 100]。
+故该论文的主题关键词总结为[1,2,3]。
