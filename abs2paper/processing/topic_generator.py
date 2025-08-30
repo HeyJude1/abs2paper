@@ -108,7 +108,7 @@ class TopicGenerator:
                     generated_topics.append((paper_id, topic_ids))
                 else:
                     logger.warning(f"无法从论文 {paper_id} 中生成任何主题")
-                    
+                
             except Exception as e:
                 logger.error(f"生成论文 {paper_id} 的主题时出错: {e}")
                 logger.exception(e)
@@ -196,7 +196,7 @@ class TopicGenerator:
         except Exception as e:
             logger.error(f"保存整合后的prompt模板时出错: {e}")
             return False
-    
+            
     def _save_generated_topics(self, new_topics: List[str]) -> bool:
         """
         保存生成的主题词到gen_topic.json
