@@ -22,20 +22,6 @@ logger = logging.getLogger(__name__)
 class SectionConcluder:
     """论文章节总结器，负责对论文的10个关键方面进行总结"""
     
-    # 10个总结方面与所需section的对应关系（使用中文标准章节名称）
-    CONCLUDE_ASPECTS = {
-        "Background": ["引言"],                    # 问题背景
-        "RelatedWork": ["相关工作"],               # 相关工作
-        "Challenges": ["引言", "相关工作"],         # 挑战或难点
-        "Innovations": ["引言", "总结"],           # 创新点
-        "Methodology": ["方法", "引言"],           # 文章方法概述
-        "ExpeDesign": ["实验评价"],               # 实验设计思路
-        "Baseline": ["实验评价", "相关工作"],       # Baseline选取
-        "Metric": ["实验评价"],                  # 度量指标选取
-        "ResultAnalysis": ["实验评价", "总结"],     # 实验结果分析
-        "Conclusion": ["总结"]                   # 结论和展望
-    }
-    
     def __init__(self, force_overwrite=False):
         """初始化论文章节总结器"""
         self.force_overwrite = force_overwrite
@@ -50,16 +36,20 @@ class SectionConcluder:
             self.config = json.load(f)
             logger.info(f"已加载配置: {config_path}")
         
+        # 从配置文件读取CONCLUDE_ASPECTS
+        self.CONCLUDE_ASPECTS = self.config["paper"]["conclude_aspects"]
+        
         # 创建LLM客户端
         self.llm_client = LLMClient()
         
         # 获取路径配置
         data_paths = self.config["data_paths"]
         component_extract_path = data_paths["component_extract"]["path"].lstrip('/')
+        conclude_prompt_path = data_paths["conclude_prompt"]["path"].lstrip('/')
         
         # 设置输入输出路径
         self.input_dir = os.path.join(self.project_root, component_extract_path)
-        self.conclude_prompt_dir = os.path.join(self.project_root, "data", "conclude_prompt")
+        self.conclude_prompt_dir = os.path.join(self.project_root, conclude_prompt_path)
         self.conclude_result_dir = os.path.join(self.project_root, "abs2paper", "processing", "data", "conclude_result")
         
         # 确保目录存在

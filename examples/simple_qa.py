@@ -11,8 +11,8 @@ import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from abs2paper.core.db_manager import MilvusManager
-from abs2paper.rag.retriever import KnowledgeRetriever
-from abs2paper.rag.generator import ResponseGenerator
+from abs2paper.examples.retriever import KnowledgeRetriever
+from abs2paper.examples.generator import ResponseGenerator
 
 
 def simple_qa_example():

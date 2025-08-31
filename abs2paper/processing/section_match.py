@@ -45,10 +45,11 @@ class SectionMatcher:
         # 获取路径配置
         data_paths = self.config["data_paths"]
         component_extract_path = data_paths["component_extract"]["path"].lstrip('/')
+        section_prompt_path = data_paths["section_prompt"]["path"].lstrip('/')
         
         # 设置输入输出路径
         self.input_dir = os.path.join(self.project_root, component_extract_path)
-        self.section_prompt_dir = os.path.join(self.project_root, "data", "section_prompt")
+        self.section_prompt_dir = os.path.join(self.project_root, section_prompt_path)
         self.section_match_dir = os.path.join(self.project_root, "abs2paper", "processing", "data", "section_match")
         
         # 确保目录存在

@@ -209,6 +209,8 @@ class PaperIngestor:
             paper_id.replace('/', '_'),  # 替换路径分隔符
         ]
         
+        logging.debug(f"  🔍 正在搜索论文 {paper_id} 的标签文件，尝试的名称: {possible_names}")
+        
         # 在整个目录树中递归查找匹配的文件
         for root, dirs, files in os.walk(label_dir):
             for filename in files:
@@ -222,11 +224,11 @@ class PaperIngestor:
                             label_file = os.path.join(root, filename)
                             topics = self._read_topics_from_file(label_file)
                             if topics:  # 找到有效主题就返回
-                                logging.info(f"论文 {paper_id} 找到标签文件: {label_file}")
+                                logging.info(f"  📁 找到标签文件: {os.path.relpath(label_file, label_dir)}")
                                 return topics
         
         # 如果没有找到任何匹配的文件，记录详细信息用于调试
-        logging.warning(f"论文 {paper_id} 未找到对应的标签文件，尝试过的名称: {possible_names}")
+        logging.warning(f"  ⚠️  未找到论文 {paper_id} 的标签文件")
         return topics
     
     def _read_topics_from_file(self, label_file: str) -> List[str]:
@@ -331,10 +333,12 @@ class PaperIngestor:
         try:
             # 将文本切分成小块
             chunks = self.split_text(text, chunk_size=500, overlap_size=100)
-            logging.info(f"将论文 {paper_id} 的 {section} 部分切分为 {len(chunks)} 个块")
+            logging.info(f"      📝 将 {section} 部分切分为 {len(chunks)} 个块 (总字符数: {len(text)})")
             
             # 生成嵌入向量（批量处理）
+            logging.info(f"      🧠 正在生成 {len(chunks)} 个文本块的embedding...")
             embeddings = self.llm_client.get_embedding(chunks)
+            logging.info(f"      ✨ embedding生成完成")
             
             # 构建插入数据（每个chunk一条记录）
             data = []
@@ -349,13 +353,18 @@ class PaperIngestor:
             
             # 使用MilvusClient插入数据
             collection_name = self._get_collection_name(section)
+            logging.info(f"      💾 正在插入数据到集合: {collection_name}")
             success = self.db_client.insert_data(collection_name, data)
+            
             if success:
-                logging.info(f"已入库: {paper_id} {section} ({len(chunks)} 个块)")
+                logging.info(f"      ✅ 成功入库 {section} 部分: {len(chunks)} 个块")
+            else:
+                logging.error(f"      ❌ 入库失败 {section} 部分")
+                
             return success
             
         except Exception as e:
-            logging.error(f"处理论文 {paper_id} 的 {section} 部分时出错: {str(e)}")
+            logging.error(f"      ❌ 处理 {section} 部分时出错: {str(e)}")
             import traceback
             logging.error(traceback.format_exc())
             return False
@@ -370,13 +379,15 @@ class PaperIngestor:
         Returns:
             是否成功处理
         """
-        logging.info(f"处理论文: {paper_id}")
+        logging.info(f"  📄 开始处理论文: {paper_id}")
         
         # 提取主题标签
         topics = self._extract_topics_from_file(paper_id, label_dir)
         if not topics:
-            logging.warning(f"论文 {paper_id} 无法提取主题关键词，跳过处理")
+            logging.warning(f"  ⚠️  论文 {paper_id} 无法提取主题关键词，跳过处理")
             return False
+        
+        logging.info(f"  🏷️  提取到 {len(topics)} 个主题标签: {topics}")
         
         # 主题名映射
         topic_names = []
@@ -385,17 +396,47 @@ class PaperIngestor:
             if topic_info:
                 topic_names.append(f"{topic_info['name_zh']} ({topic_info['name_en']})")
         
+        if topic_names:
+            logging.info(f"  📋 主题名称: {topic_names}")
+        else:
+            logging.warning(f"  ⚠️  论文 {paper_id} 无法获取有效的主题名称")
+        
         # 按章节组织的文本内容
+        logging.info(f"  📖 正在处理论文章节...")
         section_texts = self._process_paper_sections(paper_path)
+        
+        # 统计有内容的章节
+        sections_with_content = [(section, len(text.strip())) for section, text in section_texts.items() if text.strip()]
+        if sections_with_content:
+            logging.info(f"  📑 找到 {len(sections_with_content)} 个有内容的章节:")
+            for section, length in sections_with_content:
+                logging.info(f"    - {section}: {length} 字符")
+        else:
+            logging.warning(f"  ⚠️  论文 {paper_id} 没有找到有效内容")
+            return False
         
         # 对于每个部分，如果有内容，则创建embedding并写入向量数据库
         has_content = False
+        success_sections = 0
+        
         for section, text in section_texts.items():
             if not text.strip():
                 continue
             
             has_content = True
-            self._process_section_chunks(paper_id, section, text, topic_names)
+            logging.info(f"    🔄 处理章节: {section}")
+            
+            try:
+                if self._process_section_chunks(paper_id, section, text, topic_names):
+                    success_sections += 1
+                    logging.info(f"    ✅ 章节 {section} 处理成功")
+                else:
+                    logging.warning(f"    ❌ 章节 {section} 处理失败")
+            except Exception as e:
+                logging.error(f"    ❌ 章节 {section} 处理异常: {e}")
+        
+        if has_content:
+            logging.info(f"  🎯 论文 {paper_id} 完成，成功处理 {success_sections}/{len(sections_with_content)} 个章节")
         
         return has_content
 
@@ -456,18 +497,46 @@ class PaperIngestor:
         
         # 保存处理的论文计数
         processed_count = 0
+        failed_count = 0
         
         try:
             # 使用递归查找所有论文目录
+            logging.info("正在扫描论文目录...")
             paper_directories = self._find_paper_directories(component_dir)
             logging.info(f"找到 {len(paper_directories)} 个论文目录")
             
-            # 处理每个论文目录
-            for paper_id, paper_path in paper_directories:
-                if self._process_single_paper(paper_id, paper_path, label_dir):
-                    processed_count += 1
+            if not paper_directories:
+                logging.warning("未找到任何论文目录，请检查组件目录路径")
+                return
             
-            logging.info(f"数据入库完成，共处理了 {processed_count} 篇论文")
+            # 处理每个论文目录
+            for i, (paper_id, paper_path) in enumerate(paper_directories, 1):
+                logging.info(f"处理进度: {i}/{len(paper_directories)} - 论文ID: {paper_id}")
+                
+                try:
+                    if self._process_single_paper(paper_id, paper_path, label_dir):
+                        processed_count += 1
+                        logging.info(f"✅ 论文 {paper_id} 处理成功")
+                    else:
+                        failed_count += 1
+                        logging.warning(f"❌ 论文 {paper_id} 处理失败")
+                except Exception as e:
+                    failed_count += 1
+                    logging.error(f"❌ 论文 {paper_id} 处理异常: {e}")
+                
+                # 每处理10篇论文输出一次统计
+                if i % 10 == 0:
+                    logging.info(f"已处理 {i} 篇论文，成功: {processed_count}，失败: {failed_count}")
+            
+            # 最终统计
+            logging.info("=" * 60)
+            logging.info(f"数据入库完成!")
+            logging.info(f"总计处理: {len(paper_directories)} 篇论文")
+            logging.info(f"成功入库: {processed_count} 篇")
+            logging.info(f"处理失败: {failed_count} 篇")
+            logging.info(f"成功率: {processed_count/len(paper_directories)*100:.1f}%")
+            logging.info("=" * 60)
+            
         except Exception as e:
             logging.error(f"处理论文数据时出现错误: {str(e)}")
             import traceback

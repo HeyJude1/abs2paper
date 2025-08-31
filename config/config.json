@@ -127,6 +127,26 @@
       "path": "/abs2paper/processing/data/topic_output/get_prompt",
       "description": "整合了稳定主题词的get_topic提示词文件",
       "used_by": ["labeling.py"]
+    },
+    "conclude_result": {
+      "path": "/abs2paper/processing/data/conclude_result",
+      "description": "论文总结结果存放目录",
+      "used_by": ["conclusion_ingestor.py (输入)", "paper_generation_rag.py (输入)"]
+    },
+    "paper_prompt": {
+      "path": "/data/paper_prompt",
+      "description": "论文生成提示词模板目录",
+      "used_by": ["paper_generator.py (输入)"]
+    },
+    "conclude_prompt": {
+      "path": "/data/conclude_prompt",
+      "description": "论文总结提示词模板目录",
+      "used_by": ["section_conclude.py (输入)"]
+    },
+    "section_prompt": {
+      "path": "/data/section_prompt",
+      "description": "章节匹配提示词模板目录",
+      "used_by": ["section_match.py (输入)"]
     }
   },
   "paper": {
@@ -200,6 +220,32 @@
         "nlist": 128
       },
       "metric_type": "L2"
+    },
+    "conclude_aspects": {
+      "Background": ["引言"],
+      "RelatedWork": ["相关工作"],
+      "Challenges": ["引言", "相关工作"],
+      "Innovations": ["引言", "总结"],
+      "Methodology": ["方法", "引言"],
+      "ExpeDesign": ["实验评价"],
+      "Baseline": ["实验评价", "相关工作"],
+      "Metric": ["实验评价"],
+      "ResultAnalysis": ["实验评价", "总结"],
+      "Conclusion": ["总结"]
+    },
+    "paper_section_summary_mapping": {
+      "引言": ["Background", "Challenges", "Innovations", "Methodology"],
+      "相关工作": ["RelatedWork", "Challenges", "Baseline"],
+      "方法": ["Methodology"],
+      "实验评价": ["ExpeDesign", "Baseline", "Metric", "ResultAnalysis"],
+      "总结": ["Conclusion", "ResultAnalysis", "Innovations"]
+    },
+    "context_info_requirements": {
+      "引言": {"need_summaries": true, "need_trends": true, "need_source": false},
+      "相关工作": {"need_summaries": true, "need_trends": true, "need_source": false},
+      "方法": {"need_summaries": true, "need_trends": true, "need_source": true},
+      "实验评价": {"need_summaries": true, "need_trends": true, "need_source": true},
+      "总结": {"need_summaries": true, "need_trends": true, "need_source": false}
     }
   }
 } 
