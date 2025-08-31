@@ -1,0 +1,29 @@
+Baseline选取总结：
+
+1、对比方法:
+- SIGMA
+- Spaghetti
+- GAMMA
+- Sextans
+- AWB-GCN
+- MKL (CPU实现)
+- cuSPARSE (GPU实现)
+- HyGCN (GCN加速器)
+- GCNAX (GCN加速器)
+
+2、选取理由:
+作者选择的Baseline可分为三类：
+(1) 当前最先进的SpMM专用加速器（SIGMA等前5个）：
+- 覆盖主流技术路线：包括基于bitmap存储(SIGMA)、外积合并(Spaghetti)、行式缓存(GAMMA/Sextans)和列式优化(AWB-GCN)等不同设计范式
+- 均为近期顶会论文提出的SOTA方案，如Spaghetti(ISCA'21)、GAMMA(HPCA'22)等
+- 能系统验证Mentor在流水线设计、内存流量和带宽利用率三个关键指标的优势
+
+(2) 通用处理器实现（MKL/cuSPARSE）：
+- 作为工业界标准实现，提供性能基准参考
+- 突显专用加速器在能效比（FLOP/J）上的优势
+
+(3) GCN专用加速器（HyGCN等）：
+- 针对SpMM在图神经网络中的应用场景
+- 包含不同执行策略的代表性工作（如HyGCN的混合数据流）
+
+选择逻辑呈现明显的层次结构：先验证基础算子的通用优势，再证明领域特定场景的有效性，且始终与当前最优方案进行对比。所有Baseline均来自顶会论文或工业级实现，具有权威性和可比性。

@@ -1,0 +1,19 @@
+{
+  "paper_path": "HiPC/2024/HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach",
+  "aspects_completed": 8,
+  "total_aspects": 10,
+  "completed_aspects": [
+    "Background",
+    "Challenges",
+    "Innovations",
+    "Methodology",
+    "ExpeDesign",
+    "Baseline",
+    "Metric",
+    "ResultAnalysis"
+  ],
+  "missing_aspects": [
+    "RelatedWork",
+    "Conclusion"
+  ]
+}

@@ -1,0 +1,33 @@
+### 度量指标总结：
+
+#### 1. 评估指标：
+- **Speedup（加速比）**：衡量算法性能提升的倍数，通过与基准方法（如SIGMA）的对比计算。  
+- **Memory Traffic Reduction（内存流量减少倍数）**：衡量内存访问效率的提升，通过比较与基准方法的内存访问量差异。  
+- **Bandwidth Utilization（带宽利用率）**：评估内存带宽的实际使用效率，体现数据流优化的效果。  
+- **Energy Efficiency（能量效率，FLOP/J）**：单位能量消耗下的计算吞吐量，用于对比CPU/GPU的能效优势。  
+- **Throughput（吞吐量，GFlops/s）**：实际测量与理论峰值计算性能的接近程度，反映硬件利用率。  
+- **PE Utilization（处理单元利用率）**：分析并行计算资源的有效使用率，与问题规模（如`c' = #PE/E_b`）相关。  
+
+#### 2. 选取理由：
+1. **全面覆盖性能维度**：  
+   - **Speedup**和**Throughput**直接反映计算效率；  
+   - **Memory Traffic Reduction**和**Bandwidth Utilization**揭示内存子系统优化效果；  
+   - **Energy Efficiency**突出能效优势，关键对比通用处理器（CPU/GPU）。  
+
+2. **针对性验证设计优势**：  
+   - 列优先设计（Column-wise）的理论优势通过内存流量和带宽指标量化；  
+   - 全流水线设计的有效性通过吞吐量和PE利用率验证；  
+   - 流式构造（Streaming Construction）对稀疏矩阵局部性的优化体现在带宽利用率上。  
+
+3. **跨场景适用性分析**：  
+   - 不同矩阵结构（如分块稀疏、超稀疏）下的指标变化验证方法的鲁棒性；  
+   - GCN案例中的速度/流量指标证明实际应用的泛化能力。  
+
+4. **硬件资源权衡依据**：  
+   - PE数量和Scratchpad容量对性能的影响通过速度提升和资源开销指标量化，为资源配置提供依据。  
+
+5. **对标行业基准**：  
+   与SIGMA、Spaghetti等工作的横向对比采用通用指标（如Geomean），确保结果可比性。  
+
+### 结构化说明：
+论文通过多维度指标形成闭环论证：计算性能（Speedup/Throughput）→内存优化（Traffic/Bandwidth）→能效（Energy Efficiency），辅以硬件资源开销分析，全面验证了Mentor设计的合理性和先进性。

@@ -140,19 +140,24 @@ def setup_dual_logging(log_level: int = logging.INFO) -> tuple[io.StringIO, LogM
     log_buffer = io.StringIO()
     stream_handler = logging.StreamHandler(sys.stdout)
     
+    # 创建格式化器
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    
+    # 为流处理器设置格式化器
+    stream_handler.setFormatter(formatter)
+    
+    # 创建双重处理器
+    dual_handler = DualHandler(stream_handler, log_buffer)
+    dual_handler.setFormatter(formatter)
+    
     # 清除现有的处理器
     root_logger = logging.getLogger()
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
     
-    # 设置日志格式和处理器
-    logging.basicConfig(
-        level=log_level,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[
-            DualHandler(stream_handler, log_buffer)
-        ]
-    )
+    # 设置日志配置
+    root_logger.setLevel(log_level)
+    root_logger.addHandler(dual_handler)
     
     # 创建markdown保存器（暂时不指定输出目录，后续可以更新）
     markdown_saver = LogMarkdownSaver("", log_buffer)

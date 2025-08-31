@@ -1,0 +1,27 @@
+方法概述：
+1、方法名称: Kokkos-OMPX（基于LLVM/OpenMP扩展的Kokkos OpenMP Target后端优化方案）
+
+2、核心思想: 通过集成LLVM/OpenMP的两项关键扩展（动态共享内存分配和SIMT内核模式），使OpenMP Target后端能够实现与CUDA/HIP原生后端等效的GPU并行化能力，包括：(1) 线程团队间的动态共享内存访问；(2) 三维层次化并行；(3) 高效归约操作，从而提升Kokkos在跨平台GPU上的性能可移植性。
+
+3、主要流程/组件
+组件/步骤一: 动态共享内存扩展（ompx_dyn_cgroup_mem）
+- 通过LLVM新增指令实现团队内线程共享的动态内存分配
+- 替代原有HBM存储方案，将level-0 scratch-pad映射到GPU本地高速存储（NVIDIA L1 cache/AMD LDS）
+- 使用llvm_omp_target_dynamic_shared_alloc接口获取内存指针
+
+组件/步骤二: SIMT内核模式（ompx_bare）
+- 引入类CUDA的三维网格/块维度声明（num_teams/thread_limit多参数扩展）
+- 支持完整的三层并行体系：League(团队联盟)→Team(线程团队)→Vector(向量化)
+- 提供ompx::block_dim/id()等原生索引接口替代OpenMP运行时查询
+
+组件/步骤三: 层次化归约优化
+- 结合动态共享内存分配团队局部缓冲区
+- 引入跨线程洗牌指令（ompx::shfl_down_sync）
+- 采用ompx::sync_block_acq_rel同步原语替代__syncthreads
+
+组件/步骤四: 编译器协同优化
+- 根据硬件特性自动计算最优团队数量（max_teams启发式）
+- 消除冗余循环（当league_size ≤ max_teams时）
+- 寄存器分配与缓存访问模式优化
+
+各组件关系：动态共享内存扩展为基础支撑，内核模式扩展实现并行结构等效性，二者共同赋能层次化归约优化，最终通过编译器协同优化实现性能逼近原生后端。该方案在TestSNAP和SPMV等典型负载中验证了15%-4.5×的性能提升。

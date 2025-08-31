@@ -1,0 +1,12 @@
+Baseline选取总结：  
+1、对比方法:  
+- **Hyper Boost**（工业级频率调度器）  
+- **Q-Learning**（基于强化学习的CPU频率调度方法）  
+- **CPUFreq子系统默认调度器**（包括performance、powersave、schedutil、conservative四种策略）  
+
+2、选取理由:  
+- **Hyper Boost**：作为当前工业界最先进的（SOTA）移动设备频率调度器，广泛部署于现代设备中，具有实际应用的代表性。其通过识别关键场景并触发频率提升，是性能与功耗权衡的典型基准。  
+- **Q-Learning**：代表基于机器学习的频率调度技术路线，与MobiRL同属强化学习领域，但仅优化CPU频率且以功耗为单一目标。选择它可突显MobiRL在联合优化CPU/GPU频率及多目标（UI流畅度与功耗）上的优势。  
+- **CPUFreq默认调度器**：作为移动系统广泛使用的经典算法，覆盖不同技术路线（如performance追求高性能、powersave优先省电、schedutil/conservative基于CPU利用率动态调整）。对比这些策略可验证MobiRL在动态负载下的综合优化能力。  
+
+**综合依据**：所选Baseline兼具先进性（SOTA）、技术多样性（规则驱动 vs. 学习驱动）和实际应用覆盖性（工业方案 vs. 学术方案 vs. 系统原生方案），能全面验证MobiRL的创新性与泛化性能。

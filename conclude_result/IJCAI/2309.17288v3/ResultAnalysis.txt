@@ -1,0 +1,28 @@
+### 实验结果分析总结：
+
+#### 1、主要发现:  
+- **Open-ended Question Answer任务**：AutoAgents在协作生成答案时，通过FairEval和HumanEval评估，其表现优于单智能体模型（如Vicuna-13B、ChatGPT和GPT-4）。HumanEval显示其回答在帮助性、可靠性、准确性和细节水平上更符合人类判断。  
+- **Trivia Creative Writing任务**：  
+  - 在N=5和N=10的设置下，AutoAgents相比未采用智能体生成的基准方法（Standard）提升10%的性能（Trivia Creative Writing Metric Score）。  
+  - 即使对比同样采用智能体生成的SSP方法，AutoAgents仍表现更优，归因于其协作细化（collaborative refinement）和自我细化（self-refinement）机制。  
+
+#### 2、消融研究结论:  
+- **协作讨论（Collaborative Discussion）**：  
+  - 移除Observer反馈导致智能体生成偏向单一角色（如仅程序员），性能下降3%，证明协作讨论对生成全面且符合实际的智能体列表至关重要。  
+- **自我细化（Self-Refinement）**：  
+  - 缺少自我细化时，性能下降3%，表明其对单智能体任务执行质量的关键作用。  
+- **协作细化（Collaborative Refinement）**：  
+  - 缺少协作细化时性能下降2%，尤其在需要跨领域知识融合的任务中影响显著。  
+- **动态内存（Dynamic Memory）**：  
+  - 移除动态内存导致性能降低1%，因其能整合历史行动记录以优化任务执行提示。  
+
+#### 3、其他分析洞察:  
+- **案例研究（Case Study）**：  
+  - 在软件工程领域（如Tetris游戏开发），AutoAgents通过生成多专家角色（游戏设计、UI设计、编程、调试）协同工作，验证了其在复杂场景中的适用性。各角色分工明确，输出详尽的文档和程序。  
+- **参数敏感性分析**：  
+  - Drafting阶段最大讨论次数设为3，Execution阶段最大细化次数为5，实验表明此设定平衡了效率与效果。温度参数固定为0以确保可复现性。  
+- **可视化与流程分析**：  
+  - Figure对比显示，协作讨论生成的智能体列表更全面（如包含UI设计师和测试专家），而缺乏讨论时仅生成程序员角色。动态内存通过Action Observer整合关键信息提升协作效率。  
+
+---  
+**关键结论**：AutoAgents的核心优势源于多阶段协作机制（讨论、细化、动态内存），其性能提升具有统计显著性且通过消融实验验证了各组件的必要性。案例研究进一步证明了框架在跨领域复杂任务中的泛化能力。

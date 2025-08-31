@@ -1,0 +1,34 @@
+Baseline选取总结：  
+1、对比方法:  
+**Graph Partitioners:**  
+- 2D decomposition  
+- LDG (Load Balancing-based Distributed Graph Partitioning)  
+- Par-METIS (Parallel METIS)  
+- CLUGP  
+- TopoX  
+
+**Sparse Storage Formats:**  
+- Native CSR (Compressed Sparse Row)  
+- DCSR (Doubly Compressed Sparse Row)  
+- COO (Coordinate list)  
+- CSCSR (Coarse index + Skip list)  
+- BCSR (Bitmap-based sparse matrix representation)  
+- CSR5  
+
+**Graph Processing Engines:**  
+- Gemini  
+- Graph-Scope  
+
+2、选取理由:  
+作者选择的Baseline基于以下三个维度的代表性：  
+1. **技术路线覆盖性**：  
+   - 分区器（Partitioners）涵盖经典方法（如Par-METIS）、负载均衡优化（LDG）、拓扑感知（TopoX）等不同设计思路。  
+   - 稀疏存储格式包含主流优化方案（如DCSR针对超稀疏图、CSR5面向并行计算）。  
+
+2. **性能先进性**：  
+   - Gemini和Graph-Scope被明确标注为"state-of-the-art"图处理引擎，且提供工程师调优的实现，代表当前最优性能对比基准。  
+
+3. **验证全面性**：  
+   - 分区器对比旨在验证通信层次感知设计的优势（如Par-METIS未考虑拓扑结构导致性能不足）；存储格式对比则突出内存压缩技术的创新性（如CSCSR节省99.8%内存）。  
+
+4. **领域认可度**：部分方法（如Graph500标准中的METIS、社交网络分析常用的COO格式）是领域内广泛采用的基准参照。

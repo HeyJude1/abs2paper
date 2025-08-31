@@ -1,0 +1,24 @@
+方法概述：
+1、方法名称: CMLCompiler
+2、核心思想: 通过将经典机器学习（CML）模型转换为深度学习（DL）计算图，利用成熟的DL编译器和框架实现跨硬件部署与性能优化。核心创新在于设计了两层统一抽象——算子表示（Operator Representations）和扩展计算图（ECG），以解决CML与DL在算子类型、数据格式和模型结构上的本质差异。
+
+3、主要流程/组件
+组件/步骤一: 模型解析器（Model Parser）
+- 功能：将CML模型的算子表示转换为扩展计算图（ECG）。初始化算子节点并构建数据依赖边，设置权重稀疏性（sparsity）和数据类型（dtype）等属性。最终输出结构化的ECG表示。
+
+组件/步骤二: 图优化器（Graph Optimizer）
+- 功能：基于ECG特性进行三类无损优化：
+  1) 数据类型重写（Dtype Rewriting）：根据硬件SIMD指令集优化算子数据类型（如bool→int8），通过算法保证精度无损；
+  2) 稀疏算子替换（Sparse Operator Replacing）：对高稀疏权重采用压缩存储格式（CSR）并替换为稀疏算子实现；
+  3) 冗余消除（Redundant Elimination）：利用数学性质（如单调性+索引算子等价性）删除冗余算子。
+
+组件/步骤三: 图翻译器（Graph Translator）
+- 功能：将优化后的ECG转换为DL框架识别的计算图。根据use_sparse/type/dtype等属性选择最优算子实现，并集成硬件特定优化（如AVX指令）。
+
+组件/步骤四: 混合部署框架（Hybrid Deployment）
+- 功能：统一处理CML与DL混合应用。将不同框架模型（如PyTorch/sklearn）转换为ECG子图，通过数据依赖合并为单一ECG，实现端到端优化。
+
+关键技术特征：
+1. ECG扩展属性：显式建模稀疏性、最小数据类型（smallest_dtype）、实际数据类型（actual_dtype），支持非神经网络的CML特性；
+2. 条件算子表示：针对树模型中的if-else语句，通过矩阵乘法（matmul）+argmax组合实现张量化；
+3. TVM底层集成：基于TVM中间表示实现硬件无关的编译部署，支持跨平台异构设备。

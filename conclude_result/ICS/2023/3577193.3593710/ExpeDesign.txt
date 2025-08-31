@@ -1,0 +1,25 @@
+### 实验设计总结：
+
+1. **核心目标**:
+   - 验证基于ECG（Execution Computation Graph）的图重写优化（包括数据类型重写、稀疏算子替换和冗余消除）对传统机器学习模型（CML）性能的提升效果。
+   - 比较所提方法与现有框架（如scikit-learn、Hummingbird、Intel扩展版scikit-learn）在CPU、GPU和IoT设备上的性能差异。
+   - 评估CML与深度学习（DL）模型混合部署的可行性及性能优势。
+
+2. **数据集**:
+   - **YearPrediction**: 包含515,345个样本和90个特征，用于训练和推理测试（80%训练，20%推理）。
+   - **SST2**: 用于句子情感分类任务，结合BERT-tiny和逻辑回归模型。
+   - **CheXpert**: 用于放射影像分析任务，结合DNN特征工程和随机森林分类器。
+   - **Avazu**: 用于点击率预测任务，结合GBDT特征提取和Wide & Deep模型。
+
+3. **关键设置**:
+   - **硬件环境**:
+     - 服务器：双Xeon E5-2620 V3 CPU（6核/CPU）、Nvidia Titan RTX GPU（24 GB显存）、64 GB内存。
+     - IoT设备：Raspberry Pi 4B（32位Raspbian 10系统）。
+   - **软件环境**:
+     - Ubuntu 16.04、TVM 0.8、PyTorch 1.8.1、Hummingbird 0.3.1、scikit-learn 1.0.1、CUDA 10.2。
+   - **实验参数**:
+     - 所有实验重复5次取平均值。
+     - Hummingbird测试使用PyTorch和TVM后端，选取最佳结果。
+     - CML模型包括决策树、随机森林等树模型及逻辑回归等线性模型。
+   - **性能指标**:
+     - 加速比（Speedup）对比基线（如scikit-learn），支持批量处理和单条查询场景。

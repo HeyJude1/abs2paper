@@ -1,0 +1,19 @@
+Baseline选取总结：  
+1、对比方法:  
+- CPU  
+- GPU  
+- RISCV vector coprocessor  
+- Para-Net（3D PIM架构）  
+- M3D-LIME（3D RRAM-CIM架构）  
+- 3D-stacked Logic-in-Memory (LiM) Accelerator（稀疏矩阵专用架构）  
+- eDRAM-CIM（基于1T1C单元的矩阵乘法加速器）  
+- 4T2C eDRAM CIM（支持三值权重的矩阵向量引擎）  
+- Gain-Cell CIM（基于2T1C单元的泄漏优化设计）  
+
+2、选取理由:  
+作者选择的Baseline覆盖了以下关键维度：  
+（1）**通用计算平台对比**：通过CPU、GPU、RISCV向量协处理器体现传统架构的性能边界，用于验证新设计在能效/面积效率上的突破；  
+（2）**3D架构技术路线**：选取Para-Net（数据并行）、M3D-LIME（多器件集成）、LiM Accelerator（稀疏优化）作为3D加速器代表，突显本文设计在密集矩阵场景的优势；  
+（3）**eDRAM-CIM细分方案**：对比不同eDRAM单元结构（1T1C/4T2C/2T1C）的CIM设计，证明本文3D eDRAM阵列在数据流优化上的创新性。  
+
+选择依据明确体现：横向对比SOTA方案（如M3D-LIME）、经典技术路线（CPU/GPU）、以及针对特定问题的优化架构（如稀疏LiM），形成多层次验证体系。

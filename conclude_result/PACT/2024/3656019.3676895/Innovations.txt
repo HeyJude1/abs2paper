@@ -1,0 +1,25 @@
+本文创新点总结：
+
+1、贡献点一的简洁描述 (类型: [例如，新方法/理论证明/新架构])
+2、贡献点二的简洁描述 (类型: [例如，新数据集/深入的实验分析])
+3、贡献点三的简洁描述 (类型: [例如，开源系统/新的评估指标])
+... (继续列出)
+##初始化: 作为科研论文分析师，你已准备好对论文进行深度剖析。请提供论文内容。
+##用户提问：请根据以下论文内容，为我总结其创新点或贡献。
+
+## 论文内容
+
+## 引言
+2 Background
+In this section, we briefly describe the topics relevant to this work.
+2.1 Code Representations and Deep Learning
+Recently, representation learning has been widely used for code modeling tasks. Several prior works have represented programs as a sequence of lexical tokens. However, this fails to capture program structure. To overcome this, syntax as well as semantics based representations have been proposed that aim to extract and understand code structure as well.
+PROGRAML is such an IR-based code representation tool that can model code flow information along with the code structure as multi-graphs. Each multi-graph has a vertex for instruction and control-flow edges between them. Data flow is represented by including separate vertices for variables and constants and associated data-flow edges to instructions. Call flow is represented by edges between callee functions and caller instruction vertices. We use PROGRAML to extract data, control, and call flow graphs from IRs.
+2.2 Multimodal Deep Learning
+Multi-modal learning relates information from multiple sources towards a common goal . If a task can be represented in multiple ways, it can be assigned as multi-modal, with each representation defined as a unique modality. Multi-modal learning has been mostly applied to audio and video analysis, speech synthesis, and gesture recognition tasks . For example, in image and video description tasks, the visual content and associated textual description can be considered different modalities of the same problem.
+We take inspiration from these ideas and apply it to the task of code representation. A sequential and graphical code representation has been used to represent different modalities of the same piece of code. High-level embeddings obtained from each pre-trained modality are combined and associated to generate the feature space for downstream tasks.
+Multi-modal Pre-trained Models. The remarkable success of pretrained models in NLP has driven the development of multi-modal pre-trained model that learns implicit alignment between inputs of different modalities. These models are typically learned from bimodal data, such as pairs of language-image or pairs of language video, for example, ViLBERT . Similarly, VideoBERT learns from language-video data and is trained by video and text masked token prediction. With respect to pre-trained models targeting programming languages, CodeBERT was trained on bimodal data with natural language and programming language pairs. Code comment and source code pairs were used for pre-training. However, our work is different from these prior works, as we aim to only work with source code, and we consider two ways of representing code as separate modalities. Also, unlike prior pre-trained works, we only work with compilable code with a focus on generating features for performance optimization, rather than code generation.
+
+1 Introduction
+The complexity, scale, and heterogeneity of HPC hardware has increased significantly over the past several years improving performance over traditional multi-core systems. However, this has also opened up new opportunities of performance optimizations. Performance engineers and application developers devote considerable time in trying to tune and optimize hardware and software knobs. However, it is extremely difficult to adapt to a constantly changing landscape. Automated techniques are thus necessary to help optimize performance of HPC applications. Prior Works. A large chunk of performance gains for parallel applications come from compiler optimizations, such as those seen in LLVM and GCC. Although such optimizations are painstakingly designed, it might not work in all cases due to the variety of applications seen in HPC. In addition to compiler-driven optimizations, runtime performance tuning by online auto-tuners also help identify configurations/parameters that might often be non-intuitive. Although this improves performance, it comes with significant tuning overhead.
+Machine learning (ML) based techniques have also been widely used for such performance optimizations. Several works have used ML to model handcrafted features for specific tasks . These handcrafted features are not universal and might not be suitable for other optimization tasks. To overcome these shortcomings, studies based on code representational learning were proposed. Most of these works proposed a means of representing source code in a way understandable by machine learning models. Various works designed representations on top of source code for tasks such as variable misuse and method name prediction. However, such representations put a lot of emphasis on stylistic choices in source code, are language dependent, thus are not ideal candidates for performance optimization tasks of compilable source code. Our proposed approach can, on the other hand, work with multiple languages as shown later in Section

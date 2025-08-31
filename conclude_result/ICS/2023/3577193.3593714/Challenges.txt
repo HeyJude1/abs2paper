@@ -1,0 +1,10 @@
+核心挑战总结：
+
+挑战一：**优化空间的组合爆炸问题**  
+分析: 现代计算架构的程序性能优化面临巨大的搜索空间，即使对于小型程序，操作调度和数据移动的可能性也无法穷举（原文："the possibilities to schedule the operations and the data movement become infeasible to explore exhaustively"）。这一挑战源于问题本身的组合复杂性，随着程序规模增大，参数配置的排列组合呈指数级增长。
+
+挑战二：**现有性能模型的局限性**  
+分析: 当前主流性能模型存在两类关键缺陷：(1) 多面体模型（Polyhedral model）仅适用于具有仿射数组访问和简单循环边界的程序（原文："limited in representing real-world applications due to... affine array accesses and simple loop bounds"）；(2) 基于剖析的通用模型（如roofline模型）缺乏算法结构关联性，依赖人工经验解读（原文："lack a connection to the algorithmic structure... requires significant experience"）。这些限制源于模型设计时的理论假设与真实应用复杂性的不匹配。
+
+挑战三：**领域特定优化的不可迁移性**  
+分析: 针对数据依赖型应用（如稀疏线性代数）的优化方法需要构建输入特定的专用模型（原文："must rely on specialized, input-specific models"），导致难以集成到通用优化框架中。该挑战的根源在于不同领域程序在静态特征和动态行为上的异构性，现有技术无法有效捕捉跨领域的可迁移性能模式。
