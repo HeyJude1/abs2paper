@@ -1,0 +1,19 @@
+{
+  "paper_path": "HiPC/2024/Leveraging_LLVM_OpenMP_GPU_Offload_Optimizations_for_Kokkos_Applications",
+  "aspects_completed": 8,
+  "total_aspects": 10,
+  "completed_aspects": [
+    "Background",
+    "RelatedWork",
+    "Challenges",
+    "Innovations",
+    "Methodology",
+    "Baseline",
+    "ResultAnalysis",
+    "Conclusion"
+  ],
+  "missing_aspects": [
+    "ExpeDesign",
+    "Metric"
+  ]
+}

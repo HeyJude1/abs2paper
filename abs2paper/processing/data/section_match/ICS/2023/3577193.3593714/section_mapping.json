@@ -1,0 +1,22 @@
+{
+  "paper_path": "ICS/2023/3577193.3593714",
+  "section_mapping": {
+    "3 EMBEDDING PARALLEL LOOP NESTS": "方法",
+    "2 SIMILARITY IN PERFORMANCE OPTIMIZATION": "方法",
+    "7 RELATED WORK": "相关工作",
+    "1 INTRODUCTION": "引言",
+    "4 PERFORMANCE SIMILARITY": "方法",
+    "5 TRANSFER TUNING": "方法",
+    "9 CONCLUSION": "总结",
+    "8 DISCUSSION": "总结",
+    "6 EVALUATION": "实验评价"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 9
+}

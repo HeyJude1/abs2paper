@@ -1,0 +1,18 @@
+{
+  "paper_path": "PACT/2024/3656019.3689905",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "5 Conclusion": "总结",
+    "3 Experimental Evaluation 3.1 Workloads": "实验评价",
+    "2 Storage Format & Dataflow": "方法",
+    "4 Related Works": "相关工作"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

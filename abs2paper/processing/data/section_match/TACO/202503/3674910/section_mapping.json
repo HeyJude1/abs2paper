@@ -1,0 +1,20 @@
+{
+  "paper_path": "TACO/202503/3674910",
+  "section_mapping": {
+    "2 Background": "引言",
+    "4 MobiRL_ System Design 4.1 The Overview of Our Design": "方法",
+    "1 Introduction": "引言",
+    "8 Conclusions": "总结",
+    "5 Evaluations": "实验评价",
+    "3 Motivation": "引言",
+    "7 Related Work DVFS on Mobile Systems. Several related studies propose ML-based Dynamic Voltage": "相关工作"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

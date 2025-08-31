@@ -1,0 +1,19 @@
+{
+  "paper_path": "IJCAI/0728",
+  "aspects_completed": 9,
+  "total_aspects": 10,
+  "completed_aspects": [
+    "Background",
+    "Challenges",
+    "Innovations",
+    "Methodology",
+    "ExpeDesign",
+    "Baseline",
+    "Metric",
+    "ResultAnalysis",
+    "Conclusion"
+  ],
+  "missing_aspects": [
+    "RelatedWork"
+  ]
+}

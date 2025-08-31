@@ -1,0 +1,20 @@
+{
+  "paper_path": "PACT/2024/3656019.3676895",
+  "section_mapping": {
+    "3 MIREncoder": "方法",
+    "2 Background": "引言",
+    "1 Introduction": "引言",
+    "7 Conclusion and Future Works": "总结",
+    "6 Discussion": "总结",
+    "4 Experiments": "实验评价",
+    "5 Related Works": "相关工作"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

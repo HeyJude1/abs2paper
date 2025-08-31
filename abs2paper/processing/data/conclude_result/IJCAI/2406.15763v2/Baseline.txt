@@ -1,0 +1,16 @@
+Baseline选取总结：  
+1、对比方法:  
+[FixMatch]  
+[FlexMatch]  
+[Dash]  
+[FreeMatch]  
+[SoftMatch]  
+[CoMatch]  
+[SimMatch]  
+[FullMatch]  
+
+2、选取理由:  
+作者选择的Baseline覆盖了半监督学习（SSL）领域三大主流技术路线及最新进展：  
+- **技术路线覆盖性**：包括基于固定阈值（FixMatch）、课程学习启发的动态阈值（FlexMatch、Dash、FreeMatch）、软样本加权（SoftMatch）、对比损失约束（CoMatch、SimMatch）以及混合方法（FullMatch）。  
+- **代表性**：FixMatch是经典SOTA方法，结合了一致性正则化和伪标签技术；FlexMatch等动态阈值方法解决了FixMatch数据利用率低的问题；CoMatch/SimMatch代表对比学习路线；FullMatch是与本文同期工作的最新对比基线。  
+- **创新对比需求**：通过对比不同阈值策略（固定/动态/全局/类别自适应）和约束方式（阈值过滤vs.对比损失），凸显本文方法AllMatch的混合优势（CAT阈值+BCC语义约束）。

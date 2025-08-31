@@ -1,0 +1,20 @@
+{
+  "paper_path": "TACO/202412/3689342",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "2 Background and Overview 2.1 Tensor Networks": "引言",
+    "3 Constraint-based Integrated Fusion and Data Layout Selection": "方法",
+    "4 Code Generation": "方法",
+    "5 Computing Sparse Integral Tensors for DLPNO Methods in Quantum Chemistry": "方法",
+    "6 Related Work": "相关工作",
+    "7 Conclusions": "总结"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

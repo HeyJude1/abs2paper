@@ -1,0 +1,20 @@
+{
+  "paper_path": "HiPC/2024/Simulation_of_Large-Scale_HPC_Storage_Systems_Challenges_and_Methodologies",
+  "section_mapping": {
+    "III. RELATED WORK": "相关工作",
+    "VIII. CONCLUSION": "总结",
+    "VI. SIMULATOR CALIBRATION AND VALIDATION": "实验评价",
+    "I. INTRODUCTION": "引言",
+    "II. SIMULATION CHALLENGES FOR HPC STORAGE": "引言",
+    "IV. THE FIVES SIMULATOR A. FIVES conceptual architecture": "方法",
+    "VII. EVALUATION": "实验评价"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

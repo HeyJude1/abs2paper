@@ -489,7 +489,7 @@ class TopicGenerator:
         
         Args:
             paper_topics: 论文主题词字典，格式为{论文ID: [主题ID]}
-            output_dir: 输出目录，默认路径是/abs2paper/processing/data/output/paper_topics
+            output_dir: 输出目录，默认路径是/abs2paper/processing/data/topic_output/paper_topics
             
         Returns:
             是否保存成功

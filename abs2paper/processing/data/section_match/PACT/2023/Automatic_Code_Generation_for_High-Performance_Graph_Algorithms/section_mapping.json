@@ -1,0 +1,20 @@
+{
+  "paper_path": "PACT/2023/Automatic_Code_Generation_for_High-Performance_Graph_Algorithms",
+  "section_mapping": {
+    "VII. CONCLUSIONS": "总结",
+    "VI. RELATED WORK": "相关工作",
+    "V. EVALUATION": "实验评价",
+    "I. INTRODUCTION": "引言",
+    "II. OVERVIEW": "引言",
+    "IV. EXTENDED LINEAR ALGEBRA GRAPH PRIMITIVES": "方法",
+    "III. EFFICIENT CODE GENERATION OF GRAPH COMPUTATION": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

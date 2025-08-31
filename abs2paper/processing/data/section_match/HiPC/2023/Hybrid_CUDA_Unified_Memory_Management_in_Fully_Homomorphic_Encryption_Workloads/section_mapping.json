@@ -1,0 +1,18 @@
+{
+  "paper_path": "HiPC/2023/Hybrid_CUDA_Unified_Memory_Management_in_Fully_Homomorphic_Encryption_Workloads",
+  "section_mapping": {
+    "V. CONCLUSION AND FUTURE WORK": "总结",
+    "II. BACKGROUND": "引言",
+    "I. INTRODUCTION": "引言",
+    "IV. EVALUATION": "实验评价",
+    "III. IMPLEMENTATION": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

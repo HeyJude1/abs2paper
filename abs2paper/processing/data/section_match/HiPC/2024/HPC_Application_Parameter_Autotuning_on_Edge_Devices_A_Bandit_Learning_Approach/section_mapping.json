@@ -1,0 +1,19 @@
+{
+  "paper_path": "HiPC/2024/HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach",
+  "section_mapping": {
+    "II. PRELIMINARIES": "引言",
+    "V. EVALUATION": "实验评价",
+    "I. INTRODUCTION": "引言",
+    "III. PROBLEM FORMULATION": "方法",
+    "VI. CONCLUDING REMARKS": "总结",
+    "IV. LIGHTWEIGHT AUTOTUNING OF HPC APPLICATION PARAMETER": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 6
+}

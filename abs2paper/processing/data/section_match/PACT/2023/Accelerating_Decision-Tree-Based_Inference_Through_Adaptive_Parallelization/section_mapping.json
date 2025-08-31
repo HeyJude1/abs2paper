@@ -1,0 +1,20 @@
+{
+  "paper_path": "PACT/2023/Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization",
+  "section_mapping": {
+    "I. INTRODUCTION": "引言",
+    "III. RELATED WORK": "相关工作",
+    "IV. DATA STRUCTURES FOR TREE TRAVERSAL": "方法",
+    "V. SIMD VECTORIZATION": "方法",
+    "VI. MAIN LOOPS AND MULTITHREADING": "方法",
+    "VII. EXPERIMENTS": "实验评价",
+    "VIII. CONCLUSIONS": "总结"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

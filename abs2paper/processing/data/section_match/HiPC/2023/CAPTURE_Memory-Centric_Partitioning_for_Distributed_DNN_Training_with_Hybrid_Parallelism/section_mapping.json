@@ -1,0 +1,18 @@
+{
+  "paper_path": "HiPC/2023/CAPTURE_Memory-Centric_Partitioning_for_Distributed_DNN_Training_with_Hybrid_Parallelism",
+  "section_mapping": {
+    "V. CONCLUSION": "总结",
+    "IV. EXPERIMENTS": "实验评价",
+    "II. BACKGROUND AND RELATED WORK A. DNN training": "相关工作",
+    "III. METHOD": "方法",
+    "I. INTRODUCTION": "引言"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

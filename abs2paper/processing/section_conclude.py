@@ -36,8 +36,10 @@ class SectionConcluder:
         "Conclusion": ["总结"]                   # 结论和展望
     }
     
-    def __init__(self):
+    def __init__(self, force_overwrite=False):
         """初始化论文章节总结器"""
+        self.force_overwrite = force_overwrite
+        
         # 确定项目根目录
         module_dir = os.path.dirname(os.path.abspath(__file__))
         self.project_root = os.path.dirname(os.path.dirname(module_dir))
@@ -58,7 +60,7 @@ class SectionConcluder:
         # 设置输入输出路径
         self.input_dir = os.path.join(self.project_root, component_extract_path)
         self.conclude_prompt_dir = os.path.join(self.project_root, "data", "conclude_prompt")
-        self.conclude_result_dir = os.path.join(self.project_root, "conclude_result")  # 修改为项目根目录下
+        self.conclude_result_dir = os.path.join(self.project_root, "abs2paper", "processing", "data", "conclude_result")
         
         # 确保目录存在
         os.makedirs(self.conclude_result_dir, exist_ok=True)
@@ -70,8 +72,11 @@ class SectionConcluder:
         logger.info(f"📂 提示词目录: {self.conclude_prompt_dir}")
         logger.info(f"📂 输出目录: {self.conclude_result_dir}")
         
-        # 加载章节映射关系
-        self.section_mapping = self.config["paper"]["chapter_mapping"]
+        # 注释掉人工设置的章节映射，改用LLM智能匹配结果
+        # self.section_mapping = self.config["paper"]["chapter_mapping"]
+        
+        # 设置章节匹配结果目录
+        self.section_match_dir = os.path.join(self.project_root, "abs2paper", "processing", "data", "section_match")
         
         # 加载所有总结提示词
         self.conclude_prompts = self._load_conclude_prompts()
@@ -105,48 +110,104 @@ class SectionConcluder:
         logger.info(f"📝 总共加载了 {len(conclude_prompts)} 个总结提示词")
         return conclude_prompts
     
-    def _match_section_to_standard(self, section_title: str) -> Optional[str]:
+    def _load_section_mapping(self, paper_rel_path: str) -> Dict[str, str]:
         """
-        将论文的实际章节标题匹配到标准章节
+        从第一阶段的结果中加载章节映射关系
         
         Args:
-            section_title: 实际的章节标题
+            paper_rel_path: 论文相对路径（如 "ICS/2023/paper_name"）
             
         Returns:
-            匹配到的标准章节名称，如果没有匹配则返回"方法"（默认）
+            section_mapping: 章节映射字典 {章节标题: 标准类别}
         """
-        # 转换为小写并去除数字和符号
-        cleaned_title = section_title.lower().strip()
+        mapping_file = os.path.join(self.section_match_dir, paper_rel_path, "section_mapping.json")
         
-        # 移除章节编号（如"1 INTRODUCTION" -> "introduction"）
-        import re
-        cleaned_title = re.sub(r'^\d+\.?\s*', '', cleaned_title)
-        cleaned_title = re.sub(r'[^\w\s]', ' ', cleaned_title).strip()
+        if not os.path.exists(mapping_file):
+            logger.error(f"❌ 未找到章节映射文件: {mapping_file}，请先运行第一阶段章节匹配")
+            return {}
         
-        # 尝试直接匹配
-        for key, standard_section in self.section_mapping.items():
-            if key.lower() in cleaned_title or cleaned_title in key.lower():
-                return standard_section
-        
-        # 如果没有直接匹配，尝试部分匹配
-        for key, standard_section in self.section_mapping.items():
-            key_words = key.lower().split()
-            title_words = cleaned_title.split()
-            
-            # 如果有关键词匹配
-            if any(word in title_words for word in key_words):
-                return standard_section
-        
-        # 默认返回"方法"部分，因为有些论文可能使用项目名称作为方法部分
-        logger.warning(f"⚠️ 无法匹配章节 '{section_title}'，默认归类为'方法'部分")
-        return "方法"
+        try:
+            with open(mapping_file, 'r', encoding='utf-8') as f:
+                mapping_data = json.load(f)
+                section_mapping = mapping_data.get("section_mapping", {})
+                logger.info(f"✅ 已加载章节映射: {len(section_mapping)} 个章节")
+                return section_mapping
+        except Exception as e:
+            logger.error(f"❌ 加载章节映射文件失败: {e}")
+            return {}
     
-    def _read_paper_sections(self, paper_dir: str) -> Dict[str, str]:
+    # def _create_fallback_section_mapping(self, paper_rel_path: str) -> Dict[str, str]:
+    #     """
+    #     当无法加载章节映射时，创建备用映射（基于原有逻辑）
+    #     
+    #     Args:
+    #         paper_rel_path: 论文相对路径
+    #         
+    #     Returns:
+    #         section_mapping: 备用章节映射字典
+    #     """
+    #     logger.warning(f"⚠️ 为论文 {paper_rel_path} 创建备用章节映射")
+    #     
+    #     # 从component_extract目录获取章节标题
+    #     paper_dir = os.path.join(self.input_dir, paper_rel_path)
+    #     section_mapping = {}
+    #     
+    #     if os.path.exists(paper_dir):
+    #         for filename in os.listdir(paper_dir):
+    #             if filename.endswith('.txt'):
+    #                 section_title = filename[:-4]
+    #                 # 使用简化的匹配逻辑
+    #                 standard_section = self._match_section_to_standard_fallback(section_title)
+    #                 section_mapping[section_title] = standard_section
+    #     
+    #     return section_mapping
+    # 
+    # def _match_section_to_standard_fallback(self, section_title: str) -> str:
+    #     """
+    #     备用的章节匹配方法（基于原有逻辑）
+    #     
+    #     Args:
+    #         section_title: 实际的章节标题
+    #         
+    #     Returns:
+    #         匹配到的标准章节名称
+    #     """
+    #     # 转换为小写并去除数字和符号
+    #     cleaned_title = section_title.lower().strip()
+    #     
+    #     # 移除章节编号（如"1 INTRODUCTION" -> "introduction"）
+    #     import re
+    #     cleaned_title = re.sub(r'^\d+\.?\s*', '', cleaned_title)
+    #     cleaned_title = re.sub(r'[^\w\s]', ' ', cleaned_title).strip()
+    #     
+    #     # 使用配置中的章节映射进行匹配
+    #     chapter_mapping = self.config["paper"]["chapter_mapping"]
+    #     
+    #     # 尝试直接匹配
+    #     for key, standard_section in chapter_mapping.items():
+    #         if key.lower() in cleaned_title or cleaned_title in key.lower():
+    #             return standard_section
+    #     
+    #     # 如果没有直接匹配，尝试部分匹配
+    #     for key, standard_section in chapter_mapping.items():
+    #         key_words = key.lower().split()
+    #         title_words = cleaned_title.split()
+    #         
+    #         # 如果有关键词匹配
+    #         if any(word in title_words for word in key_words):
+    #             return standard_section
+    #     
+    #     # 默认返回"方法"部分
+    #     logger.warning(f"⚠️ 无法匹配章节 '{section_title}'，默认归类为'方法'部分")
+    #     return "方法"
+    
+    def _read_paper_sections_with_mapping(self, paper_dir: str, section_mapping: Dict[str, str]) -> Dict[str, str]:
         """
-        读取论文的所有章节内容
+        使用章节映射读取论文的所有章节内容
         
         Args:
             paper_dir: 论文目录路径
+            section_mapping: 章节映射字典 {章节标题: 标准类别}
             
         Returns:
             sections: 标准章节名称到内容的映射
@@ -169,10 +230,10 @@ class SectionConcluder:
                     # 从文件名中提取章节标题（去掉.txt后缀）
                     section_title = filename[:-4]
                     
-                    # 匹配到标准章节
-                    standard_section = self._match_section_to_standard(section_title)
+                    # 从映射中获取标准章节
+                    standard_section = section_mapping.get(section_title, "方法")  # 默认为"方法"
                     
-                    if standard_section and content:
+                    if content:
                         # 如果已有该标准章节，则追加内容
                         if standard_section in sections:
                             sections[standard_section] += f"\n\n{content}"
@@ -256,20 +317,28 @@ class SectionConcluder:
             logger.error(f"❌ {aspect} 总结时出错: {e}")
             return None
     
-    def conclude_paper(self, paper_path: str) -> Dict[str, str]:
+    def conclude_paper(self, paper_path: str, paper_rel_path: str) -> Dict[str, str]:
         """
         对单篇论文进行10个方面的总结
         
         Args:
             paper_path: 论文目录路径
+            paper_rel_path: 论文相对路径（用于加载章节映射）
             
         Returns:
             results: 总结结果字典 {aspect: result}
         """
         results = {}
         
-        # 读取论文章节
-        paper_sections = self._read_paper_sections(paper_path)
+        # 从第一阶段结果中加载章节映射
+        section_mapping = self._load_section_mapping(paper_rel_path)
+        
+        if not section_mapping:
+            logger.error(f"❌ 无法加载章节映射: {paper_rel_path}")
+            return results
+        
+        # 使用章节映射读取论文章节
+        paper_sections = self._read_paper_sections_with_mapping(paper_path, section_mapping)
         
         if not paper_sections:
             logger.error(f"❌ 无法读取论文章节: {paper_path}")
@@ -365,17 +434,35 @@ class SectionConcluder:
                     
                     logger.info(f"🔍 处理论文: {paper_rel_path}")
                     
-                    # 检查是否已经处理过
+                    # 检查是否已经处理过，询问用户是否重新生成
                     output_dir = os.path.join(self.conclude_result_dir, paper_rel_path)
                     summary_file = os.path.join(output_dir, "summary.json")
                     
+                    skip_paper = False
                     if os.path.exists(summary_file):
-                        logger.info(f"⏭️ 论文已处理，跳过: {paper_rel_path}")
-                        success_count += 1
+                        logger.info(f"📄 论文已有结果: {paper_rel_path}")
+                        
+                        if self.force_overwrite:
+                            logger.info(f"🔄 强制模式：自动重新生成: {paper_rel_path}")
+                        else:
+                            while True:
+                                user_input = input(f"是否重新生成该论文的总结? (yes/no): ").strip().lower()
+                                if user_input in ['yes', 'y']:
+                                    logger.info(f"🔄 用户选择重新生成: {paper_rel_path}")
+                                    break
+                                elif user_input in ['no', 'n']:
+                                    logger.info(f"⏭️ 用户选择跳过: {paper_rel_path}")
+                                    success_count += 1
+                                    skip_paper = True
+                                    break
+                                else:
+                                    print("请输入 yes 或 no")
+                    
+                    if skip_paper:
                         continue
                     
                     # 总结论文
-                    results = self.conclude_paper(item_path)
+                    results = self.conclude_paper(item_path, paper_rel_path)
                     
                     if results:
                         # 保存结果
@@ -404,6 +491,7 @@ class SectionConcluder:
         """
         try:
             logger.info(f"🚀 开始处理所有论文，源目录: {self.input_dir}")
+            logger.info(f"📋 发现已存在结果时将询问用户是否重新生成")
             
             # 检查输入目录是否存在
             if not os.path.exists(self.input_dir):

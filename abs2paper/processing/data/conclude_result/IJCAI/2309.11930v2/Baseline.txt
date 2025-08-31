@@ -1,0 +1,37 @@
+根据论文内容，以下是Baseline选取策略的总结：
+
+---
+
+**Baseline选取总结：**
+
+1. **对比方法:**  
+   - **NCD方法**:  
+     - DTC  
+     - RankStats  
+     - GCD  
+   - **SSL与Open-set SSL方法**:  
+     - FixMatch  
+     - DS³L  
+   - **OpenSSL方法**:  
+     - ORCA  
+     - NACH  
+     - OpenNCD  
+   - **自监督预训练模型**:  
+     - SimCLR（基于K-means聚类）  
+
+2. **选取理由:**  
+   - **技术路线覆盖性**: 作者选择了代表不同技术路线的基线方法，包括：  
+     1. **NCD方法**（DTC、RankStats、GCD）：专注于无标签数据中仅包含新类别的场景，用于对比传统新类发现任务的性能。  
+     2. **SSL与Open-set SSL方法**（FixMatch、DS³L）：体现半监督学习和开放集识别的能力，通过伪标签和分布外样本检测扩展至OpenSSL场景。  
+     3. **OpenSSL专用方法**（ORCA、NACH、OpenNCD）：当前最先进的OpenSSL方法，直接解决开放集半监督学习问题。  
+     4. **自监督预训练模型**（SimCLR）：作为基础特征提取能力的参考基准。  
+
+   - **性能对比需求**: 通过与非OpenSSL方法（如FixMatch）和SOTA OpenSSL方法的对比，验证所提方法LPS在平衡已知类分类和新类聚类上的优越性。例如，论文指出NCD方法在真实场景（含混合类别数据）中表现不佳，而OpenSSL方法显著优于非专用方法。  
+
+   - **实验严谨性**: 所有基线均基于相同的预训练骨干网络（SimCLR）和数据集设置（如CIFAR-10/100、ImageNet-100），确保公平比较。  
+
+--- 
+
+**关键依据摘录:**  
+- 原文明确提到选择基线时覆盖了不同任务领域的方法（NCD、SSL、OpenSSL），并强调与SOTA OpenSSL方法的对比（如ORCA、NACH）。  
+- 作者指出非OpenSSL方法在原始任务表现良好但难以适应OpenSSL场景，而SimCLR作为特征提取基准进一步凸显了LPS的优化能力。

@@ -1,0 +1,18 @@
+{
+  "paper_path": "IJCAI/2406.15763v2",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "5 Conclusion": "总结",
+    "2 Related Work": "相关工作",
+    "4 Imbalanced Semi-Supervised Learning": "方法",
+    "3 Methodology": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

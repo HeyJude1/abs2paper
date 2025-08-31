@@ -1,0 +1,21 @@
+{
+  "paper_path": "HiPC/2023/DNA-TEQ_An_Adaptive_Exponential_Quantization_of_Tensors_for_DNN_Inference",
+  "section_mapping": {
+    "II. RELATED WORK": "相关工作",
+    "VI. EXPERIMENTAL RESULTS": "实验评价",
+    "IV. SOFTWARE IMPLEMENTATION": "方法",
+    "VII. CONCLUSIONS": "总结",
+    "VIII. ACKNOWLEDGEMENT": "总结",
+    "I. INTRODUCTION": "引言",
+    "V. HARDWARE IMPLEMENTATION": "方法",
+    "III. DNA-TEQ": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 8
+}

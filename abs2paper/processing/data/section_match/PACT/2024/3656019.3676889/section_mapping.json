@@ -1,0 +1,21 @@
+{
+  "paper_path": "PACT/2024/3656019.3676889",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "2 Background_ System Model and MCMs": "引言",
+    "3 Abstract Model of Pipeline": "方法",
+    "4 Transformations": "方法",
+    "5 Usage Model": "方法",
+    "6 Output_ Results and Verification": "实验评价",
+    "7 Related Work": "相关工作",
+    "8 Conclusion": "总结"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 8
+}

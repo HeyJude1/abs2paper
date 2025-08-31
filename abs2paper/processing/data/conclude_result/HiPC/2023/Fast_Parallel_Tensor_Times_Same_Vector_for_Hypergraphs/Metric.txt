@@ -1,0 +1,23 @@
+### 度量指标总结：
+
+1. **评估指标**:
+   - **Runtime Performance (运行时间性能)**: 衡量算法在不同数据集上的实际执行时间，直接反映计算效率。
+   - **Speedup (加速比)**: 对比不同算法（CCSS-MEMO、CCSS-DIRECT、CCSS-FFT）与基线方法（如单核Python实现）的性能提升倍数，体现算法优化效果。
+   - **Thread Scalability (线程可扩展性)**: 通过增加核心数（如128核）观察算法运行时间的变化，评估并行化效率。
+   - **Compression Ratio (压缩率)**: 比较CCS与CCSS结构的存储效率（如非零IOU重叠的压缩程度），间接影响计算性能。
+   - **Construction Time Ratio (构建时间占比)**: CCSS构建时间占总体计算时间的比例，衡量数据结构预处理的开销。
+
+2. **选取理由**:
+   - **全面性覆盖性能维度**：  
+     - *Runtime* 和 *Speedup* 直接量化算法优化效果；  
+     - *Thread Scalability* 验证并行设计的合理性；  
+     - *Compression Ratio* 和 *Construction Time* 解释数据结构对性能的影响。  
+   - **问题针对性**：  
+     论文核心是比较并行化算法的效率，因此需同时衡量单线程性能（Speedup）和多线程扩展性（Scaling）。  
+   - **数据依赖性分析**：  
+     通过合成数据集控制变量（如超图秩）与真实数据集多样性（如节点规模），验证指标在不同场景下的鲁棒性。  
+
+**结构化补充说明**：  
+- *Speedup* 的显著差异（如1.3×–18.6×）反映了算法对超图结构的敏感性；  
+- *Thread Scalability* 的下降趋势（如原子操作开销）揭示了并行化瓶颈；  
+- *Construction Time Ratio* 为实际应用提供了预处理成本参考。

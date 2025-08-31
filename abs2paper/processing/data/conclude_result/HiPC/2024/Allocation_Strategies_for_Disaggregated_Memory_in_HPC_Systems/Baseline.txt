@@ -1,0 +1,15 @@
+Baseline选取总结：  
+1、对比方法:  
+- **Aggregated**（聚合内存分配策略）  
+- **Oldest-First**（基于任务运行时长优先的启发式算法）  
+- **Largest-First**（基于任务内存需求优先的启发式算法）  
+- **Priority**（动态优先级驱动的在线调度算法）  
+- **Stochastic**（基于统计内存行为的静态分配算法）  
+
+2、选取理由:  
+- **技术路线覆盖性**: 选择的Baseline涵盖了不同技术路径，包括传统聚合分配（Aggregated）、简单启发式规则（Oldest-First/Largest-First）、动态在线调度（Priority）和静态统计优化（Stochastic），以全面评估内存解耦场景下的性能差异。  
+- **SOTA代表性**: Priority和Stochastic是论文针对动态内存模式提出的新算法，需与经典启发式方法（Oldest-First/Largest-First）及默认聚合策略对比，验证其先进性。  
+- **场景适配验证**: Aggregated作为“无内存限制”的基线（256GB/节点），用于量化其他策略在资源受限时的性能损失；Oldest-First/Largest-First则作为低复杂度算法的参照，凸显Priority在极端内存约束下的优势。  
+- **理论假设支撑**: 选择这些方法可验证论文的核心假设——动态内存模式下，Stochastic的统计优化能克服在线算法（Priority）的高开销问题，而静态策略在特定场景（如相位长度≈重配置时间τ_alloc）更优。  
+
+**补充说明**: 论文通过两类实验（固定相位内存模式 vs. 动态内存模式）分层验证Baseline的有效性，确保对比结果对架构参数（α、τ_alloc）和负载特性具有鲁棒性。

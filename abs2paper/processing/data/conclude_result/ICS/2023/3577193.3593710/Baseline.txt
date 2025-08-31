@@ -1,0 +1,25 @@
+Baseline选取总结：  
+1、对比方法:  
+- scikit-learn (sklearn)  
+- Intel Extension for sklearn  
+- Hummingbird  
+
+2、选取理由:  
+作者选择这些Baseline基于以下综合考量：  
+（1）**代表性技术路线覆盖**：  
+- **sklearn**：作为最广泛使用的通用CML框架（GitHub统计），代表传统CPU单核实现的经典方法，是性能对比的基准参照。  
+- **Intel Extension for sklearn**：针对sklearn的硬件优化扩展，体现厂商级CPU加速方案的性能上限。  
+- **Hummingbird**：基于PyTorch/TVM的DL框架扩展方案，代表利用DL基础设施支持CML模型的最先进（SOTA）技术路线。  
+
+（2）**硬件支持全面性**：  
+所选Baseline覆盖不同硬件适配能力（CPU/GPU），其中Hummingbird是唯一支持GPU的对比框架，可验证作者方案在异构计算环境中的优势。  
+
+（3）**优化潜力对比需求**：  
+- sklearn和Intel Extension缺乏对SIMD指令和多核的充分优化，便于突显作者通过TVM编译优化的收益；  
+- Hummingbird虽使用TVM后端，但其间接的PyTorch转换流程导致性能损失，可对比作者直接映射ECG到Relay算子的高效性。  
+
+（4）**实验场景适配性**：  
+在混合部署实验（5.4节）中，选择PyTorch（DL）+ sklearn（CML）作为基线，反映实际应用中分离式框架的典型部署方式，突出统一ECG编译的价值。  
+
+（5）**领域认可度**：  
+所有对比方法均为相关领域公认的主流或SOTA框架（论文6节相关工作已系统分类），确保实验结论的可信度和可复现性。

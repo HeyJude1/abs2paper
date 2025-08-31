@@ -1,0 +1,23 @@
+Baseline选取总结：
+
+1、对比方法:
+- TACO
+- SparseLNR  
+- Sparta
+- Sparse fusion
+- Sparse polyhedral framework
+- SparseTIR
+- SpTTN-Cyclops
+- Indexed Streams  
+- COMET compiler (Tian et al.)
+- Zhou et al. 的手工优化技术
+- Finch
+
+2、选取理由:
+论文选取这些Baseline主要基于以下考量：
+1) 技术路线代表性：覆盖了稀疏张量计算的主要技术路径（编译器生成代码如TACO/SparseLNR、运行时优化如Sparta/Sparse fusion、混合方法如Sparse polyhedral framework）
+2) 先进性对比：包含当前最先进的稀疏张量编译器（TACO）、最新研究框架（Finch）以及手工优化方案
+3) 功能可比性：所有对比方法都涉及张量收缩或循环融合优化，但与CoNST的核心创新点（布局/调度/维度缩减的联合优化）形成明确对比
+4) 局限性凸显：特别选择仅支持特定场景的方法（如SpTTN-Cyclops仅处理单稀疏张量）来突出CoNST处理通用稀疏张量网络的优势
+
+注：作者特别强调这些baseline均未实现CoNST的核心创新点——在融合代码中同时自动优化张量布局、收缩调度和中间结果维度缩减的耦合优化。

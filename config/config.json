@@ -54,7 +54,7 @@
   },
   "data_paths": {
     "raw_papers": {
-      "path": "/data/raw/paper_kb",
+      "path": "/data/paper_kb",
       "description": "原始论文PDF文件存放目录",
       "used_by": ["text.py"]
     },
@@ -79,27 +79,27 @@
       "used_by": ["labeling.py (输出)", "paper_ingestor.py (输入)"]
     },
     "paper_topics": {
-      "path": "/abs2paper/processing/data/output/paper_topics",
+      "path": "/abs2paper/processing/data/topic_output/paper_topics",
       "description": "主题提取结果存放目录",
       "used_by": ["topic_extractor.py (输出)"]
     },
     "get_topic": {
-      "path": "/data/prompt/get_topic",
+      "path": "/data/topic_prompt/get_topic",
       "description": "主题提取提示词模板文件",
       "used_by": ["labeling.py"]
     },
     "generate_topic": {
-      "path": "/data/prompt/generate_topic",
+      "path": "/data/topic_prompt/generate_topic",
       "description": "主题提取初始化提示词模板",
       "used_by": ["extract_topics.py"]
     },
     "merge_topic": {
-      "path": "/data/prompt/merge_topic",
+      "path": "/data/topic_prompt/merge_topic",
       "description": "主题合并提示词模板文件",
       "used_by": ["topic_manager.py"]
     },
     "update_topic": {
-      "path": "/data/prompt/update_topic",
+      "path": "/data/topic_prompt/update_topic",
       "description": "根据合并建议更新主题词的提示词模板",
       "used_by": ["topic_manager.py"]
     },
@@ -119,12 +119,12 @@
       "used_by": ["topic_extractor.py", "topic_manager.py"]
     },
     "gen_prompt": {
-      "path": "/abs2paper/processing/data/output/gen_prompt",
+      "path": "/abs2paper/processing/data/topic_output/gen_prompt",
       "description": "整合了已有主题词的prompt模板文件",
       "used_by": ["topic_generator.py"]
     },
     "get_prompt": {
-      "path": "/abs2paper/processing/data/output/get_prompt",
+      "path": "/abs2paper/processing/data/topic_output/get_prompt",
       "description": "整合了稳定主题词的get_topic提示词文件",
       "used_by": ["labeling.py"]
     }

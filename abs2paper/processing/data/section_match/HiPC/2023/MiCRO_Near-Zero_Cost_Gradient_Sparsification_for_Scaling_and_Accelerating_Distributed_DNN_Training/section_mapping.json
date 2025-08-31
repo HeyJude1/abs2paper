@@ -1,0 +1,18 @@
+{
+  "paper_path": "HiPC/2023/MiCRO_Near-Zero_Cost_Gradient_Sparsification_for_Scaling_and_Accelerating_Distributed_DNN_Training",
+  "section_mapping": {
+    "V. EVALUATION A. Methodology": "实验评价",
+    "III. LIMITATIONS OF STATE-OF-THE-ART METHODS": "相关工作",
+    "VI. CONCLUSION": "总结",
+    "I. INTRODUCTION": "引言",
+    "IV. MICRO DESIGN": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

@@ -1,0 +1,23 @@
+{
+  "paper_path": "ICS/2024/3650200.3656620",
+  "section_mapping": {
+    "9 RELATED WORK": "相关工作",
+    "10 DISCUSSION": "总结",
+    "1 INTRODUCTION": "引言",
+    "4 LOOP OPTIMIZATION": "方法",
+    "3 CHALLENGES AND OVERVIEW 3.1 Problem Scope": "引言",
+    "2 BACKGROUND 2.1 Transformer-based Models": "引言",
+    "6 PARALLELIZATION SCHEME": "方法",
+    "7 EXPERIMENTAL SETUP 7.1 Platform Details": "实验评价",
+    "5 MICRO-KERNEL DESIGN": "方法",
+    "8 64 Cores": "实验评价"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 10
+}

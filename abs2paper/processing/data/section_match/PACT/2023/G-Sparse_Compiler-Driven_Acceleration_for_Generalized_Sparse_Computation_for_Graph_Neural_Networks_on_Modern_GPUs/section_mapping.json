@@ -1,0 +1,19 @@
+{
+  "paper_path": "PACT/2023/G-Sparse_Compiler-Driven_Acceleration_for_Generalized_Sparse_Computation_for_Graph_Neural_Networks_on_Modern_GPUs",
+  "section_mapping": {
+    "I. INTRODUCTION": "引言",
+    "V. RELATED WORK": "相关工作",
+    "III. SYSTEM DESIGN": "方法",
+    "II. BACKGROUND A. Sparse Matrix Computations in GNNs": "引言",
+    "VI. CONCLUSIONS": "总结",
+    "IV. EVALUATIONS": "实验评价"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 6
+}

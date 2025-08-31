@@ -1,0 +1,17 @@
+{
+  "paper_path": "HiPC/2023/DeltaSPARSE_High-Performance_Sparse_General_Matrix-Matrix_Multiplication_on_Multi-GPU_Systems",
+  "section_mapping": {
+    "II. RELATED WORK": "相关工作",
+    "III. DELTASPARSE": "方法",
+    "IV. EXPERIMENTAL RESULTS": "实验评价",
+    "I. INTRODUCTION": "引言"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 4
+}

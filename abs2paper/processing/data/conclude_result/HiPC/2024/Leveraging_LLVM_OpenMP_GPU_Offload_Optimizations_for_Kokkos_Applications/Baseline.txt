@@ -1,0 +1,12 @@
+## Baseline选取总结：
+
+1、对比方法:  
+[LLVM/OpenMP runtime]  
+[Kokkos-OpenMP backend]  
+[RAJA]  
+
+2、选取理由:  
+作者选择的Baseline代表了当前GPU共享内存优化领域的三类技术路线：  
+（1）**LLVM/OpenMP runtime** 作为底层基础工具链，体现了编译器自动优化策略（如变量放置决策）；  
+（2）**Kokkos-OpenMP** 是C++性能可移植性框架的典型代表，直接关联论文研究的后端扩展；  
+（3）**RAJA** 作为同类竞品框架，用于验证技术方案的泛用性。选择依据在于：覆盖从编译器层（LLVM）、中间层（Kokkos）到应用层（RAJA）的全栈对比，且均为支持OpenMP卸载的关键技术栈，符合论文对GPU共享内存自动化管理优化的研究范畴。未选择Intel GPU方案是因上游LLVM暂不支持其OpenMP卸载功能。

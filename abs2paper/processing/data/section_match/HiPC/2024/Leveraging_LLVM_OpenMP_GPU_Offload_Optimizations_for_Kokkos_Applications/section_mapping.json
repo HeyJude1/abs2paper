@@ -1,0 +1,19 @@
+{
+  "paper_path": "HiPC/2024/Leveraging_LLVM_OpenMP_GPU_Offload_Optimizations_for_Kokkos_Applications",
+  "section_mapping": {
+    "II. MOTIVATION": "引言",
+    "III. BACKGROUND": "引言",
+    "VI. CONCLUSION": "总结",
+    "I. INTRODUCTION": "引言",
+    "V. RELATED WORK": "相关工作",
+    "IV. LLVM OPENMP EXTENSIONS": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 6
+}

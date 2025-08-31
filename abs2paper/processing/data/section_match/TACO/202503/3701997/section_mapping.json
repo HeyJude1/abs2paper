@@ -1,0 +1,19 @@
+{
+  "paper_path": "TACO/202503/3701997",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "5 Related Work": "相关工作",
+    "2 Background and Motivation": "引言",
+    "6 Conclusion and Future Work": "总结",
+    "3 Design 3.1 Overview": "方法",
+    "4 Evaluation": "实验评价"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 6
+}

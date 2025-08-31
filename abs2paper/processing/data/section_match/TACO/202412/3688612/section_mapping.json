@@ -1,0 +1,21 @@
+{
+  "paper_path": "TACO/202412/3688612",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "2 Background and Motivation 2.1 Sparse-Dense Matrix Multiplication": "引言",
+    "3 Streaming Construction": "方法",
+    "4 Mentor Architecture": "方法",
+    "5 Evaluation Setup 5.1 Mentor Implementation": "实验评价",
+    "6 Experimental Results": "实验评价",
+    "7 Related Work": "相关工作",
+    "8 Conclusion": "总结"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 8
+}

@@ -1,0 +1,16 @@
+Baseline选取总结：  
+1、对比方法:  
+- XGBoost  
+- LightGBM  
+- Scikit-Learn (Random Forest)  
+- ONNX Runtime  
+- lleaves (仅针对LightGBM模型)  
+
+2、选取理由:  
+作者选择的Baseline涵盖了当前主流的决策树集成模型框架和运行时系统，具体依据如下：  
+- **技术路线覆盖性**：XGBoost、LightGBM（梯度提升）和Scikit-Learn（随机森林）代表了两种不同的决策树集成技术路线（Boosting vs. Bagging），且均为广泛使用的经典库。  
+- **SOTA对比**：ONNX Runtime是支持跨平台模型部署的工业级推理引擎，lleaves是针对LightGBM优化的高性能推理库，二者均为相关领域的先进方案。  
+- **实验全面性**：通过包含原生训练框架（XGBoost等）、通用推理引擎（ONNX Runtime）和专用优化工具（lleaves），确保了对比的层次性和完整性。  
+- **性能基准需求**：论文核心目标是优化小批量推理延迟，所选Baseline均存在对大批量处理的传统优化倾向（如ONNX Runtime），可凸显作者提出的OBF/ODF方案在短批量场景的优势。  
+
+补充说明：从"Related Work"部分可见，作者还系统性梳理了其他技术路线（如QuickScorer系列、完美树等），但未将其纳入实验对比，可能因这些方法存在深度限制或架构差异（如静态并行化），与本文提出的动态优化目标不一致。

@@ -1,0 +1,18 @@
+{
+  "paper_path": "HiPC/2023/A_118_GOPS_mm23D_eDRAM_TensorCore_Architecture_for_Large-scale_Matrix_Multiplication",
+  "section_mapping": {
+    "VI. CONCLUSION": "总结",
+    "V. RELATED WORKS": "相关工作",
+    "I. INTRODUCTION": "引言",
+    "IV. EVALUATION": "实验评价",
+    "III. 3D EDRAM TENSOR CORE ARCHITECTURE": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

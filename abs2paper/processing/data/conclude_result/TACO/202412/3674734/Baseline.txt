@@ -1,0 +1,11 @@
+Baseline选取总结：  
+1、对比方法:  
+- **Power-Optimized Configuration** (Turbo disabled/P-states disabled/C-states enabled)  
+- **Performance-Optimized Configuration** (Turbo disabled/P-states disabled/Deep C-states disabled)  
+
+2、选取理由:  
+- **技术路线覆盖性**: 两类Baseline分别代表数据中心常见的两种优化目标——**能效优先**（启用浅层C-states以节省功耗）和**性能优先**（禁用深层C-states以避免延迟开销），全面覆盖了实际应用场景的配置差异。  
+- **SOTA对比**: 文中指出性能优先配置是当前行业普遍采用的方式（如阿里云等报告的低利用率服务器场景），而能效优先配置则作为传统节能方案的典型代表。通过对比这两类配置，可凸显C6Awarm在**兼顾低延迟与低功耗**上的创新性。  
+- **量化验证需求**: 作者需验证C6Awarm在两种极端配置下的表现，证明其普适性——在能效优化配置中展示相比C1/C1E的功耗优势（0.35W vs 1.44W），在性能优化配置中证明其相比禁用深层C-states的延迟可控性（仅90ns过渡时间）。  
+
+（注：论文未直接引用外部方法作为Baseline，而是通过自建两类系统级配置作为对比基准，以突出其提出的C-state架构改进的通用价值。）

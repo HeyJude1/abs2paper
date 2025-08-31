@@ -1,0 +1,17 @@
+{
+  "paper_path": "TACO/202412/3676847",
+  "section_mapping": {
+    "4 Experimental Evaluation": "实验评价",
+    "5 Conclusion": "总结",
+    "2 Related Work": "相关工作",
+    "3 Methodology": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 4
+}

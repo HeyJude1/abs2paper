@@ -1,0 +1,18 @@
+{
+  "paper_path": "HiPC/2024/Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs",
+  "section_mapping": {
+    "V. CONCLUSION": "总结",
+    "II. BACKGROUND": "引言",
+    "I. INTRODUCTION": "引言",
+    "IV. RESULTS": "实验评价",
+    "III. METHODOLOGY": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

@@ -1,0 +1,22 @@
+{
+  "paper_path": "TACO/202412/3685277",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "2 Overview of LO-SpMM": "方法",
+    "5 Proxy-based Evaluation": "实验评价",
+    "6 Implementation": "方法",
+    "8 Related Work": "相关工作",
+    "9 Conclusion": "总结",
+    "7 Evaluation": "实验评价",
+    "3 Tile Space Reduction": "方法",
+    "4 Sparse Matrix Reordering": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 9
+}

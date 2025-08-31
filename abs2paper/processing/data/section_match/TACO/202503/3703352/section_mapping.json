@@ -1,0 +1,22 @@
+{
+  "paper_path": "TACO/202503/3703352",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "2 Background and Motivation 2.1 SpGEMM and Row-Row Algorithm": "引言",
+    "4 Matrix Pre-Processing": "方法",
+    "6 Evaluation 6.1 Experimental Setup": "实验评价",
+    "3 Overview": "方法",
+    "9 Conclusion": "总结",
+    "5 Out-of-Core Computation": "方法",
+    "8 Limitation and Future Works": "总结",
+    "7 Related Work": "相关工作"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 9
+}

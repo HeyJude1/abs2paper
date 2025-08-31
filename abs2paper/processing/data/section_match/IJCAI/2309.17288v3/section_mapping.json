@@ -1,0 +1,18 @@
+{
+  "paper_path": "IJCAI/2309.17288v3",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "5 Conclusion": "总结",
+    "2 Related Work": "相关工作",
+    "4 Experiments": "实验评价",
+    "3 The Framework for Automatic Agent Generation": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 5
+}

@@ -1,0 +1,20 @@
+{
+  "paper_path": "TACO/202503/3701993",
+  "section_mapping": {
+    "1 Introduction": "引言",
+    "2 Pointer Disaggregation": "方法",
+    "3 Limitations": "总结",
+    "4 Improving Analyzability by Restructuring Data": "方法",
+    "5 Evaluation": "实验评价",
+    "6 Related Work": "相关工作",
+    "7 Conclusion": "总结"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 7
+}

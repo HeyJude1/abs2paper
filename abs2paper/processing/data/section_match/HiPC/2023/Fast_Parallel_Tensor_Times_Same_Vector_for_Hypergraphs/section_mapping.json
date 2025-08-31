@@ -1,0 +1,19 @@
+{
+  "paper_path": "HiPC/2023/Fast_Parallel_Tensor_Times_Same_Vector_for_Hypergraphs",
+  "section_mapping": {
+    "II. PRELIMINARIES": "引言",
+    "VI. CONCLUSION": "总结",
+    "III. COMPOUND CSS STRUCTURE": "方法",
+    "V. EXPERIMENTS": "实验评价",
+    "I. INTRODUCTION": "引言",
+    "IV. S 3 TTVC COMPUTATION": "方法"
+  },
+  "standard_sections": [
+    "引言",
+    "相关工作",
+    "方法",
+    "实验评价",
+    "总结"
+  ],
+  "total_sections": 6
+}

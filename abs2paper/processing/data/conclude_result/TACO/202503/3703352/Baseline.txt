@@ -1,0 +1,15 @@
+Baseline选取总结：  
+1、对比方法:  
+- cuSPARSE  
+- AC-SpGEMM  
+- spECK  
+- TileSpGEMM  
+
+2、选取理由:  
+论文选择的Baseline涵盖了当前SpGEMM（稀疏矩阵-矩阵乘法）领域的代表性方法，具体依据如下：  
+- **技术路线覆盖性**：所选方法代表了不同的优化技术路径（如cuSPARSE为厂商库标准实现，AC-SpGEMM和spECK关注负载均衡与合并策略，TileSpGEMM采用分块计算）。  
+- **SOTA对比需求**：作者明确指出这些方法是"state-of-the-art"（6.3节），旨在验证所提方法相对于当前最优技术的性能优势。例如，spECK和TileSpGEMM在多数矩阵上能稳定达到40 GFlops以上性能。  
+- **实际应用广泛性**：cuSPARSE作为NVIDIA官方库被广泛使用，具有工业界基准意义；其他方法（如AC-SpGEMM）在学术研究中常被引用，覆盖理论优化前沿。  
+- **异构计算相关性**：部分Baseline（如TileSpGEMM）的设计思想与论文的异构协作目标存在可比性（见6.4节性能对比实验）。  
+
+补充说明：论文还通过DGEMM（密集矩阵乘法）作为辅助参照（使用CUBLAS实现），但因其计算特性差异，未列入核心Baseline列表。

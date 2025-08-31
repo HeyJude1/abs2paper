@@ -1,0 +1,19 @@
+{
+  "paper_path": "HiPC/2023/Fast_Parallel_Tensor_Times_Same_Vector_for_Hypergraphs",
+  "aspects_completed": 9,
+  "total_aspects": 10,
+  "completed_aspects": [
+    "Background",
+    "Challenges",
+    "Innovations",
+    "Methodology",
+    "ExpeDesign",
+    "Baseline",
+    "Metric",
+    "ResultAnalysis",
+    "Conclusion"
+  ],
+  "missing_aspects": [
+    "RelatedWork"
+  ]
+}

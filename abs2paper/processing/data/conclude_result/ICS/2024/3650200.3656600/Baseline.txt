@@ -1,0 +1,17 @@
+Baseline选取总结：  
+1、对比方法:  
+- **BFS API from GAP**  
+- **BFS API from Gunrock**  
+- **Direction-Optimizing BFS (hybrid top-down/bottom-up approach)**  
+
+2、选取理由:  
+- **GAP**：作为标准化基准测试套件（Graph Algorithm Platform），其BFS实现代表了当前最先进的（SOTA）性能，且被广泛用于图形处理研究的性能评估。论文强调GAP的便携性和高性能基线特性，适合作为CPU平台的对比基准。  
+- **Gunrock**：作为GPU专用的CUDA图形处理库，其优化策略（如细粒度负载均衡）在GPU上具有显著优势。论文选择Gunrock以验证DAWN在GPU上的性能超越性，尤其在内存效率和并行加速方面。  
+- **Direction-Optimizing BFS**：该算法（来自Scott Beamer等）结合了自上而下和自下而上的技术路线，是经典的方向优化方法。论文通过对比凸显DAWN在不同图形类型（如小世界图、高直径图）中的适应性优势。  
+
+**综合依据**：  
+1. **技术覆盖性**：涵盖CPU（GAP）和GPU（Gunrock）两大平台，以及不同优化策略（方向优化、矩阵算法）。  
+2. **权威性**：GAP和Gunrock均为领域内公认的基准工具，确保对比结果的可信度。  
+3. **问题针对性**：针对SSSP任务的典型算法（如BFS变体）和内存密集型场景（如矩阵算法），验证DAWN的通用性和高效性。  
+
+注：未直接对比Dijkstra或矩阵乘法类算法，因论文聚焦于BFS优化的场景（如无权重图），但相关工作部分提及这些方法以提供理论背景。
