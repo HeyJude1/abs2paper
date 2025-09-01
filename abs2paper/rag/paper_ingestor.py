@@ -258,44 +258,104 @@ class PaperIngestor:
         
         return topics
 
-    def _map_section_name(self, section_name: str) -> str:
+    # ===== 旧的人工规则章节匹配方式（已弃用，改用LLM智能匹配结果）=====
+    # def _map_section_name(self, section_name: str) -> str:
+    #     """
+    #     将章节文件名映射到标准论文部分（旧的人工规则匹配方式）
+    #     Args:
+    #         section_name: 章节文件名
+    #     Returns:
+    #         映射后的标准部分名称
+    #     """
+    #     # 标准化文件名
+    #     section_title = section_name.lower()
+    #     
+    #     # 尝试匹配罗马数字格式
+    #     roman_match = self.roman_pattern.match(section_name)
+    #     if roman_match:
+    #         section_title = roman_match.group(2).lower()
+    #     
+    #     # 尝试匹配数字格式
+    #     number_match = self.number_pattern.match(section_name)
+    #     if number_match:
+    #         section_title = number_match.group(3).lower()
+    #     
+    #     # 尝试匹配标准部分
+    #     for keyword, target_section in self.section_mapping.items():
+    #         # 比较宽泛的匹配
+    #         if keyword in section_title or section_title in keyword:
+    #             return target_section
+    #     
+    #     # 默认返回方法部分，因为有些论文可能使用项目名称作为方法部分
+    #     return "方法"
+
+    def _load_section_mapping(self, paper_id: str) -> Dict[str, str]:
         """
-        将章节文件名映射到标准论文部分
+        从section_match目录加载LLM智能匹配的章节映射结果
+        Args:
+            paper_id: 论文ID（如 "ICS/2023/3577193.3593731"）
+        Returns:
+            章节映射字典 {章节标题: 标准类别}
+        """
+        # 构建映射文件路径
+        section_match_dir = os.path.join(self.project_root, "abs2paper", "processing", "data", "section_match")
+        mapping_file = os.path.join(section_match_dir, paper_id, "section_mapping.json")
+        
+        if not os.path.exists(mapping_file):
+            logging.warning(f"⚠️  未找到论文 {paper_id} 的章节映射文件: {mapping_file}")
+            logging.warning(f"⚠️  请先运行章节匹配: python -m scripts.conclude_papers --only-section-match")
+            return {}
+        
+        try:
+            with open(mapping_file, 'r', encoding='utf-8') as f:
+                mapping_data = json.load(f)
+                section_mapping = mapping_data.get("section_mapping", {})
+                logging.debug(f"✅ 已加载论文 {paper_id} 的章节映射: {len(section_mapping)} 个章节")
+                return section_mapping
+        except Exception as e:
+            logging.error(f"❌ 加载论文 {paper_id} 章节映射文件失败: {e}")
+            return {}
+
+    def _map_section_name_with_llm_result(self, section_name: str, section_mapping: Dict[str, str]) -> str:
+        """
+        使用LLM智能匹配结果将章节文件名映射到标准论文部分
         Args:
             section_name: 章节文件名
+            section_mapping: 从section_match加载的章节映射字典
         Returns:
             映射后的标准部分名称
         """
-        # 标准化文件名
-        section_title = section_name.lower()
+        # 直接从映射字典中查找
+        if section_name in section_mapping:
+            return section_mapping[section_name]
         
-        # 尝试匹配罗马数字格式
-        roman_match = self.roman_pattern.match(section_name)
-        if roman_match:
-            section_title = roman_match.group(2).lower()
+        # 如果直接匹配失败，尝试模糊匹配
+        for original_title, standard_section in section_mapping.items():
+            # 尝试包含关系匹配
+            if section_name in original_title or original_title in section_name:
+                logging.debug(f"📋 模糊匹配: '{section_name}' -> '{original_title}' -> '{standard_section}'")
+                return standard_section
         
-        # 尝试匹配数字格式
-        number_match = self.number_pattern.match(section_name)
-        if number_match:
-            section_title = number_match.group(3).lower()
-        
-        # 尝试匹配标准部分
-        for keyword, target_section in self.section_mapping.items():
-            # 比较宽泛的匹配
-            if keyword in section_title or section_title in keyword:
-                return target_section
-        
-        # 默认返回方法部分，因为有些论文可能使用项目名称作为方法部分
+        # 如果都没有匹配到，默认返回"方法"部分
+        logging.warning(f"⚠️  章节 '{section_name}' 未在LLM映射结果中找到，默认归类为'方法'")
         return "方法"
 
-    def _process_paper_sections(self, paper_path: str) -> Dict[str, str]:
+    def _process_paper_sections(self, paper_path: str, paper_id: str) -> Dict[str, str]:
         """
-        处理论文目录中的所有章节文件
+        处理论文目录中的所有章节文件，使用LLM智能匹配结果
         Args:
             paper_path: 论文目录路径
+            paper_id: 论文ID（用于加载章节映射）
         Returns:
             按标准部分组织的文本字典
         """
+        # 加载该论文的LLM章节映射结果
+        section_mapping = self._load_section_mapping(paper_id)
+        
+        if not section_mapping:
+            logging.error(f"❌ 无法加载论文 {paper_id} 的章节映射，跳过处理")
+            return {}
+        
         # 初始化各部分文本
         section_texts = {section: "" for section in self.section_names}
         
@@ -311,11 +371,13 @@ class PaperIngestor:
             with open(section_file_path, "r", encoding="utf-8") as f:
                 section_content = f.read()
             
-            # 映射章节名到标准部分
-            mapped_section = self._map_section_name(section_name)
+            # 使用LLM智能匹配结果映射章节名到标准部分
+            mapped_section = self._map_section_name_with_llm_result(section_name, section_mapping)
             
             # 将内容添加到对应部分
             section_texts[mapped_section] += section_content + "\n\n"
+            
+            logging.debug(f"📄 章节映射: '{section_name}' -> '{mapped_section}'")
         
         return section_texts
 
@@ -403,7 +465,7 @@ class PaperIngestor:
         
         # 按章节组织的文本内容
         logging.info(f"  📖 正在处理论文章节...")
-        section_texts = self._process_paper_sections(paper_path)
+        section_texts = self._process_paper_sections(paper_path, paper_id)
         
         # 统计有内容的章节
         sections_with_content = [(section, len(text.strip())) for section, text in section_texts.items() if text.strip()]
@@ -446,11 +508,11 @@ class PaperIngestor:
         Args:
             root_dir: 起始目录
         Returns:
-            包含(论文ID, 论文目录路径)的元组列表
+            包含(论文相对路径, 论文目录绝对路径)的元组列表
         """
         paper_dirs = []
         
-        def find_papers(dir_path, current_conf=None):
+        def find_papers(dir_path):
             # 检查是否为叶子目录(包含txt文件)
             try:
                 has_txt = any(item.endswith('.txt') and os.path.isfile(os.path.join(dir_path, item)) 
@@ -460,20 +522,18 @@ class PaperIngestor:
             
             # 如果包含txt文件，认为是论文目录
             if has_txt:
-                paper_id = os.path.basename(dir_path)
+                # 计算相对于component_dir的相对路径作为paper_id
+                paper_id = os.path.relpath(dir_path, root_dir)
                 paper_dirs.append((paper_id, dir_path))
+                logging.debug(f"找到论文目录: {paper_id} -> {dir_path}")
                 return
-            
-            # 如果是会议目录，更新current_conf
-            if current_conf is None:
-                current_conf = os.path.basename(dir_path)
             
             # 继续递归子目录
             try:
                 for item in os.listdir(dir_path):
                     item_path = os.path.join(dir_path, item)
                     if os.path.isdir(item_path):
-                        find_papers(item_path, current_conf)
+                        find_papers(item_path)
             except:
                 pass
         

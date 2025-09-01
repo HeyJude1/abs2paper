@@ -1,14 +1,14 @@
 {
   "paper_path": "TACO/202412/3674734",
   "section_mapping": {
-    "1 Introduction": "引言",
-    "2 Transition Latency": "方法",
     "3 AgileWatts Architecture": "方法",
+    "1 Introduction": "引言",
+    "8 Conclusion": "总结",
     "4 AW Implementation and Hardware Cost": "方法",
-    "5 Experimental Methodology": "实验评价",
+    "2 Transition Latency": "方法",
     "6 Evaluation": "实验评价",
-    "7 Related Work": "相关工作",
-    "8 Conclusion": "总结"
+    "5 Experimental Methodology": "实验评价",
+    "7 Related Work": "相关工作"
   },
   "standard_sections": [
     "引言",

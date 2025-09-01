@@ -1,15 +1,15 @@
 {
   "paper_path": "PACT/2023/UWOmppro_UWOmp_with_Point-to-Point_Synchronization_Reduction_and_Schedules",
   "section_mapping": {
-    "1 Introduction": "引言",
-    "2 Background": "引言",
-    "3 UWOmp 𝑝𝑟𝑜 _ Extending UWOmp++": "方法",
-    "4 UWOmp 𝑝𝑟𝑜 to Efficient OM-OpenMP": "方法",
-    "5 Runtime Support": "方法",
-    "6 Discussion": "总结",
     "7 Implementation and Evaluation": "实验评价",
+    "2 Background": "引言",
+    "1 Introduction": "引言",
     "8 Related Work": "相关工作",
+    "6 Discussion": "总结",
+    "4 UWOmp 𝑝𝑟𝑜 to Efficient OM-OpenMP": "方法",
     "9 Conclusion": "总结",
+    "5 Runtime Support": "方法",
+    "3 UWOmp 𝑝𝑟𝑜 _ Extending UWOmp++": "方法",
     "3 M M": "方法"
   },
   "standard_sections": [

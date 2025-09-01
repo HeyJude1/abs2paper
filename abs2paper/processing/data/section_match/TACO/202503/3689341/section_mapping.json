@@ -1,14 +1,13 @@
 {
   "paper_path": "TACO/202503/3689341",
   "section_mapping": {
-    "1 Introduction": "引言",
-    "2 Background": "引言",
-    "3 Related Work": "相关工作",
-    "4 Motivation and Overview": "引言",
     "5 Methodology": "方法",
-    "6 Experimental Workloads": "实验评价",
+    "2 Background": "引言",
+    "1 Introduction": "引言",
     "7 Conclusion and Future Work": "总结",
-    "4 Motivation and Overview 4.1 Motivation Example": "方法"
+    "4 Motivation and Overview 4.1 Motivation Example": "引言",
+    "6 Experimental Workloads": "实验评价",
+    "3 Related Work": "相关工作"
   },
   "standard_sections": [
     "引言",
@@ -17,5 +16,5 @@
     "实验评价",
     "总结"
   ],
-  "total_sections": 8
+  "total_sections": 7
 }

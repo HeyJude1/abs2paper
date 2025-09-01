@@ -37,7 +37,9 @@ class SectionConcluder:
             logger.info(f"已加载配置: {config_path}")
         
         # 从配置文件读取CONCLUDE_ASPECTS
-        self.CONCLUDE_ASPECTS = self.config["paper"]["conclude_aspects"]
+        conclude_aspects_config = self.config["paper"]["conclude_aspects"]
+        # 过滤掉以_开头的元数据字段
+        self.CONCLUDE_ASPECTS = {k: v for k, v in conclude_aspects_config.items() if not k.startswith('_')}
         
         # 创建LLM客户端
         self.llm_client = LLMClient()

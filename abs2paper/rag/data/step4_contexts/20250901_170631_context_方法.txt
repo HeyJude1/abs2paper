@@ -1,0 +1,88 @@
+结构化RAG上下文
+================================================================================
+【方法 部分的上下文】
+--------------------------------------------------
+上下文长度：2563 字符
+
+上下文内容：
+# 生成论文方法部分的参考资料
+
+### Methodology 总结
+**总结1** (来源: 3656019.3676895):
+方法概述：
+1、方法名称: MIREncoder
+2、核心思想: 通过多模态自监督预训练方法，将LLVM IR（中间表示）同时建模为词序列和依赖图两种模态，以提取语法、语义和结构特征，用于高性能计算（HPC）的性能优化任务。
+
+3、主要流程/组件
+组件/步骤一: IR词序列处理
+- 功能：将IR指令拆分为子词单元，通过训练的WordPiece分词器转换为数值化序列（类似BERT处理方式）
+- 关键点：采用64长度限制的语句级编码，包含特殊标记[CLS]/[SEP]，支持Masked Language Modeling任务
+
+组件/步骤二: 依赖图生成
+- 功能：使用PROGRAML工具将IR转换为包含数据流、控制流和调用流的多图结构
+- 关键点：节点特征为IR语句，通过分词器转换为数值特征供图神经网络处理
+
+组件/步骤三: 多模态预训练任务
+1) 掩码语言建模(MLM)：
+- 随机掩码15%IR词序列，通过Transformer层预测被掩码内容
+- 采用80-10-10的掩码策略避免模型对[MASK]标记过拟合
+
+2) 图自编码(GAE)：
+- 使用GNN层编码多图为低维表示，并重建原...
+
+**总结2** (来源: 3656019.3676895):
+方法概述：
+1、方法名称: MIREncoder
+2、核心思想: 通过多模态自监督预训练方法，将LLVM IR（中间表示）同时建模为词序列和依赖图两种模态，以提取语法、语义和结构特征，用于高性能计算（HPC）的性能优化任务。
+
+3、主要流程/组件
+组件/步骤一: IR词序列处理
+- 功能：将IR指令拆分为子词单元，通过训练的WordPiece分词器转换为数值化序列（类似BERT处理方式）
+- 关键点：采用64长度限制的语句级编码，包含特殊标记[CLS]/[SEP]，支持Masked Language Modeling任务
+
+组件/步骤二: 依赖图生成
+- 功能：使用PROGRAML工具将IR转换为包含数据流、控制流和调用流的多图结构
+- 关键点：节点特征为IR语句，通过分词器转换为数值特征供图神经网络处理
+
+组件/步骤三: 多模态预训练任务
+1) 掩码语言建模(MLM)：
+- 随机掩码15%IR词序列，通过Transformer层预测被掩码内容
+- 采用80-10-10的掩码策略避免模型对[MASK]标记过拟合
+
+2) 图自编码(GAE)：
+- 使用GNN层编码多图为低维表示，并重建原...
+
+**总结3** (来源: 3650200.3656600):
+方法概述：
+1、方法名称: DAWN (Distance Assessment algorithm With matrix operations on Networks)
+2、核心思想: 通过优化布尔矩阵运算来加速无权图中的最短路径计算，利用矩阵乘法的部分结果选择性跳过冗余边访问，从而减少计算量。其核心直觉是：仅关注对最短路径问题有实际影响的矩阵行列，并通过稀疏性优化进一步提升性能。
+
+3、主要流程/组件
+组件/步骤一: BOVM (Boolean Vector-Matrix Operation)
+- 功能：将传统向量-矩阵乘法转化为布尔运算，通过压缩非零元素索引减少计算量。当首次发现路径时立即终止计算（利用Theorem 3.2保证首次发现的路径即最短路径），并跳过后续冗余计算。
+
+组件/步骤二: SOVM (Sparse Optimized Boolean Vector-Matrix Operation)
+- 功能：针对稀疏图的扩展优化，结合图遍历与矩阵运算。通过限制操作范围于邻居节点集，并排除已确定最短路径的节点（利用CSR矩阵格式和动态更新的布尔数组），将时间复杂度降至O(E_...
+
+
+### 研究趋势分析
+**Methodology 趋势**:
+- 技术趋势: Transformer技术广泛应用, 多模态技术广泛应用, 自监督技术广泛应用
+- 研究模式:  在41/5篇论文中被提及(820.0%), '在34/5篇论文中被提及(680.0%), o在21/5篇论文中被提及(420.0%)
+
+
+### 参考原文
+**论文 3656019.3676895 - 方法 章节**:
+片段1: 3 MIREncoder
+Most source-code based performance optimization tasks in HPC usually involve compilable languages such as C, C++, CUDA, and so on. A large number of these languages can be compiled and optimized using the LLVM infrastructure. LLVM IRs are a portable, high-level assembly language that ca...
+片段2: It is fairly simple to extract IRs from source code such as C, C++. IRs generated from source code are usually devoid of most stylistic choices and redundant code. This is why we choose to work with IRs for performance optimizations. Figure shows a high-level overview of our approach. For the first ...
+
+
+### 写作要求
+1. 基于以上参考资料生成论文的方法部分
+2. 保持学术论文的严谨性和专业性
+3. 确保内容逻辑清晰，表达准确
+4. 字数控制在800-1200字之间
+5. 使用规范的学术写作格式
+
+

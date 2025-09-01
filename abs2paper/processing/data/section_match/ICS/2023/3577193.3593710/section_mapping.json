@@ -1,13 +1,13 @@
 {
   "paper_path": "ICS/2023/3577193.3593710",
   "section_mapping": {
-    "1 INTRODUCTION": "引言",
-    "2 MOTIVATION": "引言",
-    "3 THE UNIFIED ABSTRACTIONS": "方法",
     "4 DESIGN AND IMPLEMENTATION": "方法",
+    "2 MOTIVATION": "引言",
+    "1 INTRODUCTION": "引言",
     "5 EVALUATION": "实验评价",
-    "6 RELATED WORK": "相关工作",
-    "7 CONCLUSION": "总结"
+    "7 CONCLUSION": "总结",
+    "3 THE UNIFIED ABSTRACTIONS": "方法",
+    "6 RELATED WORK": "相关工作"
   },
   "standard_sections": [
     "引言",

@@ -1,0 +1,5 @@
+{
+  "section_name": "实验评价",
+  "content": "4.1 实验设置\n- 硬件：2×RTX3090 (NVLink)\n- 数据集：CIFAR-10/100, ImageNet-100\n- Baseline：DTC, FixMatch, ORCA等9种前沿方法\n\n4.2 主要结果\n| 指标         | CIFAR-10 | CIFAR-100 | ImageNet |\n|--------------|----------|-----------|----------|\n| Overall Acc  | +1.5%    | +3.8%     | +4.2%    |\n| Novel Acc    | +2.1%    | +4.5%     | +5.7%    |\n| Memory Save  | -38.6%   | -41.2%    | -43.9%   |\n\n4.3 消融分析\n关键发现：\n1) CAPTURE贡献40%性能提升\n2) LPS对新类识别至关重要\n3) MiCRO减少65%通信开销",
+  "content_length": 436
+}

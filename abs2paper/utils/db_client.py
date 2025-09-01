@@ -218,6 +218,51 @@ class MilvusClient:
             logging.error(f"向集合 '{collection_name}' 插入数据时出错: {str(e)}")
             return False
     
+    def query(self, collection_name: str, filter: str = None, 
+              output_fields: List[str] = None, limit: int = 100) -> List[Dict]:
+        """
+        查询指定集合中的数据
+        Args:
+            collection_name: 集合名称
+            filter: 过滤条件
+            output_fields: 返回的字段列表
+            limit: 返回的最大结果数
+        Returns:
+            查询结果列表
+        """
+        collection = self.get_collection(collection_name)
+        if not collection:
+            logging.error(f"集合 '{collection_name}' 不存在，无法查询")
+            return []
+            
+        output_fields = output_fields or []
+        results = []
+        
+        try:
+            # 确保集合已加载
+            try:
+                logging.debug(f"正在加载集合 '{collection_name}' 到内存...")
+                collection.load()
+            except Exception as load_e:
+                # 如果集合已经加载，会抛出异常，这是正常的
+                logging.debug(f"集合 '{collection_name}' 加载状态: {load_e}")
+            
+            # 执行查询
+            query_results = collection.query(
+                expr=filter,
+                output_fields=output_fields,
+                limit=limit
+            )
+            
+            # 处理结果
+            for result in query_results:
+                results.append(result)
+            
+        except Exception as e:
+            logging.error(f"查询集合 '{collection_name}' 失败: {e}")
+        
+        return results
+
     def search(self, collection_name: str, query_vector: List[float], 
               expr: Optional[str] = None, output_fields: List[str] = None,
               top_n: int = 5, params: Dict = None) -> List[Dict]:
@@ -244,6 +289,19 @@ class MilvusClient:
         results = []
         
         try:
+            # 确保集合已加载
+            if not collection.has_index():
+                logging.warning(f"集合 '{collection_name}' 没有索引，跳过搜索")
+                return []
+            
+            # 直接尝试加载集合到内存
+            try:
+                logging.info(f"正在加载集合 '{collection_name}' 到内存...")
+                collection.load()
+            except Exception as load_e:
+                # 如果集合已经加载，会抛出异常，这是正常的
+                logging.debug(f"集合 '{collection_name}' 加载状态: {load_e}")
+            
             # 执行向量搜索
             search_results = collection.search(
                 data=[query_vector],

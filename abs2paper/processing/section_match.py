@@ -29,6 +29,7 @@ class SectionMatcher:
     def __init__(self, force_overwrite=False):
         """初始化章节匹配器"""
         self.force_overwrite = force_overwrite
+        
         # 确定项目根目录
         module_dir = os.path.dirname(os.path.abspath(__file__))
         self.project_root = os.path.dirname(os.path.dirname(module_dir))
@@ -222,6 +223,32 @@ class SectionMatcher:
     #     
     #     return section_mapping
     
+    def _should_process_paper(self, paper_rel_path: str) -> bool:
+        """
+        判断是否应该处理该论文
+        
+        Args:
+            paper_rel_path: 论文相对路径
+            
+        Returns:
+            是否应该处理该论文
+        """
+        # 检查是否已经处理过
+        output_dir = os.path.join(self.section_match_dir, paper_rel_path)
+        mapping_file = os.path.join(output_dir, "section_mapping.json")
+        
+        if not os.path.exists(mapping_file):
+            # 没有结果文件，需要处理
+            return True
+        
+        # 有结果文件，根据强制模式判断
+        if self.force_overwrite:
+            logger.info(f"🔄 强制模式：重新生成 {paper_rel_path}")
+            return True
+        else:
+            logger.info(f"⏭️ 跳过已存在结果: {paper_rel_path}")
+            return False
+    
     def match_paper_sections(self, paper_path: str) -> Dict[str, str]:
         """
         匹配单篇论文的章节
@@ -315,44 +342,23 @@ class SectionMatcher:
                     
                     logger.info(f"🔍 处理论文: {paper_rel_path}")
                     
-                    # 检查是否已经处理过，询问用户是否重新生成
-                    output_dir = os.path.join(self.section_match_dir, paper_rel_path)
-                    mapping_file = os.path.join(output_dir, "section_mapping.json")
-                    
-                    skip_paper = False
-                    if os.path.exists(mapping_file):
-                        logger.info(f"📄 论文已有章节匹配结果: {paper_rel_path}")
+                    # 检查是否应该处理该论文
+                    if self._should_process_paper(paper_rel_path):
+                        # 匹配论文章节
+                        section_mapping = self.match_paper_sections(item_path)
                         
-                        if self.force_overwrite:
-                            logger.info(f"🔄 强制模式：自动重新生成: {paper_rel_path}")
+                        if section_mapping:
+                            # 保存结果
+                            if self.save_section_mapping(section_mapping, paper_rel_path):
+                                success_count += 1
+                            else:
+                                logger.error(f"❌ 保存章节映射失败: {paper_rel_path}")
                         else:
-                            while True:
-                                user_input = input(f"是否重新生成该论文的章节匹配? (yes/no): ").strip().lower()
-                                if user_input in ['yes', 'y']:
-                                    logger.info(f"🔄 用户选择重新生成: {paper_rel_path}")
-                                    break
-                                elif user_input in ['no', 'n']:
-                                    logger.info(f"⏭️ 用户选择跳过: {paper_rel_path}")
-                                    success_count += 1
-                                    skip_paper = True
-                                    break
-                                else:
-                                    print("请输入 yes 或 no")
-                    
-                    if skip_paper:
-                        continue
-                    
-                    # 匹配论文章节
-                    section_mapping = self.match_paper_sections(item_path)
-                    
-                    if section_mapping:
-                        # 保存结果
-                        if self.save_section_mapping(section_mapping, paper_rel_path):
-                            success_count += 1
-                        else:
-                            logger.error(f"❌ 保存章节映射失败: {paper_rel_path}")
+                            logger.error(f"❌ 章节匹配失败: {paper_rel_path}")
                     else:
-                        logger.error(f"❌ 章节匹配失败: {paper_rel_path}")
+                        # 如果跳过，则计入成功处理
+                        success_count += 1
+                        logger.info(f"⏭️ 跳过已存在结果: {paper_rel_path}")
                 
                 else:
                     # 这是一个中间目录，递归处理
@@ -372,7 +378,10 @@ class SectionMatcher:
         """
         try:
             logger.info(f"🚀 开始处理所有论文，源目录: {self.input_dir}")
-            logger.info(f"📋 发现已存在结果时将询问用户是否重新生成")
+            if self.force_overwrite:
+                logger.info(f"🔄 强制模式：将重新生成所有论文的章节匹配结果")
+            else:
+                logger.info(f"⏭️ 默认模式：将跳过已存在的结果，只处理新论文")
             
             # 检查输入目录是否存在
             if not os.path.exists(self.input_dir):

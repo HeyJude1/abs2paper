@@ -5,7 +5,7 @@
 import os
 from typing import List, Dict, Any, Optional
 
-from abs2paper.core.llm_client import LLMClient
+from abs2paper.utils.llm_client import LLMClient
 
 class ResponseGenerator:
     """回答生成器，负责根据检索到的内容生成回答"""
@@ -18,7 +18,7 @@ class ResponseGenerator:
             llm_client: LLM客户端实例，如果不提供则创建新实例
             config_path: 配置文件路径
         """
-        self.llm_client = llm_client if llm_client else LLMClient(config_path)
+        self.llm_client = llm_client if llm_client else LLMClient()
     
     def generate(self, results: List[Dict[str, Any]], query: str) -> str:
         """
@@ -35,12 +35,30 @@ class ResponseGenerator:
         prompt = self._build_prompt(results, query)
         
         # 保存提示词用于调试
-        self.llm_client.save_prompt(prompt)
+        self.save_prompt(prompt)
         
-        # 生成回答
-        response = self.llm_client.generate_response(prompt)
+        # 生成回答 - 使用utils版本的方法名
+        response = self.llm_client.get_completion(prompt)
         
-        return response
+        return response or "抱歉，无法生成回答。"
+    
+    def save_prompt(self, prompt: str):
+        """保存提示词到文件用于调试"""
+        try:
+            prompt_dir = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                "prompt"
+            )
+            os.makedirs(prompt_dir, exist_ok=True)
+            
+            import time
+            timestamp = time.strftime("%Y%m%d-%H%M%S")
+            prompt_file = os.path.join(prompt_dir, f"prompt_{timestamp}.txt")
+            
+            with open(prompt_file, 'w', encoding='utf-8') as f:
+                f.write(prompt)
+        except Exception as e:
+            print(f"保存提示词失败: {e}")
     
     def _build_prompt(self, results: List[Dict[str, Any]], query: str) -> str:
         """

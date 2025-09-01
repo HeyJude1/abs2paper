@@ -1,0 +1,12 @@
+{
+  "user_requirement": "基于深度学习的图像分类方法研究",
+  "top_k_per_type": 5,
+  "relevant_summaries": {},
+  "statistics": {
+    "total_summaries": 0,
+    "types_found": 0,
+    "type_counts": {},
+    "unique_papers": 0,
+    "average_score_by_type": {}
+  }
+}

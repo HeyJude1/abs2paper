@@ -3,7 +3,7 @@
   "section_mapping": {
     "1 Introduction": "引言",
     "2 Regret Minimization": "方法",
-    "3 Performance Decline of PCFR+ in the Presence of Dominated Actions": "实验评价",
+    "3 Performance Decline of PCFR+ in the Presence of Dominated Actions": "方法",
     "4 Minimizing Weighted Counterfactual": "方法",
     "5 Experiments": "实验评价",
     "6 Conclusions and Future Research": "总结"

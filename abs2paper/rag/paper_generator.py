@@ -23,133 +23,88 @@ class PaperGenerator:
         paper_prompt_path = data_paths["paper_prompt"]["path"].lstrip('/')
         self.paper_prompt_dir = os.path.join(self.project_root, paper_prompt_path)
         
-        # 加载论文生成提示词
-        self.paper_prompts = self._load_paper_prompts()
+        # 从配置加载生成顺序和提示词映射
+        paper_config = self.config["paper"]
+        self.generation_order = paper_config["generation_order"]["steps"]
+        self.prompt_files = paper_config["prompt_files"]
         
-        # 论文部分生成顺序和依赖关系
-        self.generation_order = [
-            {
-                "section": "引言",
-                "dependencies": [],
-                "context_sources": ["Background", "Challenges", "Innovations"],
-                "include_source_text": False,
-                "previous_context_needed": False
-            },
-            {
-                "section": "相关工作", 
-                "dependencies": ["引言"],
-                "context_sources": ["RelatedWork", "Challenges"],
-                "include_source_text": False,
-                "previous_context_needed": True,
-                "previous_context_type": "概述"  # 只需要引言的概述
-            },
-            {
-                "section": "方法",
-                "dependencies": ["引言", "相关工作"],
-                "context_sources": ["Methodology"],
-                "include_source_text": True,
-                "previous_context_needed": True,
-                "previous_context_type": "概述"  # 需要引言+相关工作的概述
-            },
-            {
-                "section": "实验评价",
-                "dependencies": ["方法"],
-                "context_sources": ["ExpeDesign", "Baseline", "Metric", "ResultAnalysis"],
-                "include_source_text": True,
-                "previous_context_needed": True,
-                "previous_context_type": "详细"  # 需要方法的详细内容
-            },
-            {
-                "section": "总结",
-                "dependencies": ["引言", "相关工作", "方法", "实验评价"],
-                "context_sources": ["Conclusion", "ResultAnalysis", "Innovations"],
-                "include_source_text": False,
-                "previous_context_needed": True,
-                "previous_context_type": "概述"  # 需要全文概述
-            }
-        ]
+        # 加载所有论文生成提示词
+        self.paper_prompts = self._load_all_prompts()
     
     def _load_config(self):
         """加载配置文件"""
         with open(self.config_path, "r", encoding="utf-8") as f:
             return json.load(f)
     
-    def _load_paper_prompts(self) -> Dict[str, str]:
-        """加载论文生成提示词"""
-        paper_prompts = {}
+    def _load_all_prompts(self) -> Dict[str, str]:
+        """加载所有论文生成相关的提示词"""
+        all_prompts = {}
         
-        # 5个论文部分对应的prompt文件
-        section_prompts = {
-            "引言": "Introduction_prompt",
-            "相关工作": "RelatedWork_prompt", 
-            "方法": "Methodology_prompt",
-            "实验评价": "Experiments_prompt",
-            "总结": "Conclusion_prompt"
-        }
-        
-        for section, prompt_file in section_prompts.items():
+        # 加载章节生成提示词
+        for section, prompt_file in self.prompt_files["section_prompts"].items():
             prompt_path = os.path.join(self.paper_prompt_dir, prompt_file)
-            
-            try:
-                with open(prompt_path, 'r', encoding='utf-8') as f:
-                    prompt_content = f.read().strip()
-                    if prompt_content:
-                        paper_prompts[section] = prompt_content
-                        logging.info(f"✅ 已加载 {section} 生成提示词")
-                    else:
-                        logging.warning(f"⚠️ {section} 提示词文件为空: {prompt_path}")
-            
-            except FileNotFoundError:
-                logging.error(f"❌ 未找到 {section} 提示词文件: {prompt_path}")
-            except Exception as e:
-                logging.error(f"❌ 加载 {section} 提示词时出错: {e}")
+            prompt_content = self._load_single_prompt(prompt_path, f"{section}生成")
+            if prompt_content:
+                all_prompts[f"section_{section}"] = prompt_content
         
-        logging.info(f"📝 总共加载了 {len(paper_prompts)} 个论文生成提示词")
-        return paper_prompts
+        # 加载工具提示词
+        for tool_name, prompt_file in self.prompt_files["utility_prompts"].items():
+            prompt_path = os.path.join(self.paper_prompt_dir, prompt_file)
+            prompt_content = self._load_single_prompt(prompt_path, tool_name)
+            if prompt_content:
+                all_prompts[tool_name] = prompt_content
+        
+        logging.info(f"📝 总共加载了 {len(all_prompts)} 个论文生成提示词")
+        return all_prompts
+    
+    def _load_single_prompt(self, prompt_path: str, prompt_name: str) -> Optional[str]:
+        """加载单个提示词文件"""
+        try:
+            with open(prompt_path, 'r', encoding='utf-8') as f:
+                prompt_content = f.read().strip()
+                if prompt_content:
+                    logging.info(f"✅ 已加载 {prompt_name} 提示词")
+                    return prompt_content
+                else:
+                    logging.warning(f"⚠️ {prompt_name} 提示词文件为空: {prompt_path}")
+                    return None
+        
+        except FileNotFoundError:
+            logging.error(f"❌ 未找到 {prompt_name} 提示词文件: {prompt_path}")
+            return None
+        except Exception as e:
+            logging.error(f"❌ 加载 {prompt_name} 提示词时出错: {e}")
+            return None
     
     def _generate_section_content(self, section_name: str, 
                                 context: str, 
                                 user_requirement: str) -> str:
         """生成特定部分的内容"""
-        # 使用加载的提示词模板
-        if section_name not in self.paper_prompts:
-            logging.error(f"未找到 {section_name} 的提示词模板")
-            # 使用默认提示词
-            prompt = f"""
-请根据以下上下文生成论文的{section_name}部分：
-
-{context}
-
-用户需求：{user_requirement}
-
-要求：
-1. 内容要与用户需求"{user_requirement}"高度相关
-2. 保持学术论文的规范格式
-3. 确保逻辑清晰，表达准确
-4. 字数控制在800-1200字之间
-5. 使用规范的学术写作格式
-"""
-        else:
-            # 使用加载的提示词模板
-            base_prompt = self.paper_prompts[section_name]
-            prompt = f"{base_prompt}\n\n{context}"
+        # 使用配置中的提示词
+        prompt_key = f"section_{section_name}"
+        if prompt_key not in self.paper_prompts:
+            error_msg = f"未找到 {section_name} 的提示词模板，请检查配置文件和提示词文件"
+            logging.error(error_msg)
+            raise ValueError(error_msg)
         
-        return self.llm_client.get_completion(prompt)
+        # 构建完整的提示词
+        base_prompt = self.paper_prompts[prompt_key]
+        full_prompt = f"{base_prompt}\n\n{context}"
+        
+        return self.llm_client.get_completion(full_prompt)
     
     def _generate_section_summary(self, section_name: str, content: str) -> str:
         """生成部分内容的概述，供后续部分使用"""
-        prompt = f"""
-请为以下论文{section_name}部分生成一个150字左右的概述，突出关键点：
-
-{content}
-
-要求：
-1. 概述要简洁明了，突出核心内容
-2. 为后续部分提供必要的逻辑衔接信息
-3. 避免过于详细的技术细节
-"""
+        if "section_summary" not in self.paper_prompts:
+            error_msg = "未找到章节概述生成提示词，请检查配置文件和SectionSummary_prompt文件"
+            logging.error(error_msg)
+            raise ValueError(error_msg)
         
-        return self.llm_client.get_completion(prompt)
+        # 构建完整的提示词
+        base_prompt = self.paper_prompts["section_summary"]
+        full_prompt = f"{base_prompt}\n\n{content}"
+        
+        return self.llm_client.get_completion(full_prompt)
     
     def _build_full_context_for_section(self, section_name: str,
                                        base_context: str,
@@ -196,40 +151,17 @@ class PaperGenerator:
                            user_requirement: str) -> Dict[str, str]:
         """对整篇论文进行统一润色，确保逻辑连贯性"""
         
-        polish_prompt = f"""
-请对以下论文各部分进行整体润色，确保逻辑连贯性：
-
-用户需求：{user_requirement}
-
-请重点关注：
-1. 各部分之间的逻辑连接和过渡
-2. 术语使用的一致性  
-3. 表达的流畅性和学术规范性
-4. 避免内容重复和矛盾
-5. 确保论文整体结构的完整性
-
-请分别返回润色后的各部分内容，保持以下格式：
-
-## 引言
-[润色后的引言内容]
-
-## 相关工作
-[润色后的相关工作内容]
-
-## 方法
-[润色后的方法内容]
-
-## 实验评价
-[润色后的实验评价内容]
-
-## 总结
-[润色后的总结内容]
-
-原始内容：
-{self._format_sections_for_polish(sections)}
-"""
+        if "paper_polish" not in self.paper_prompts:
+            error_msg = "未找到论文润色提示词，请检查配置文件和PaperPolish_prompt文件"
+            logging.error(error_msg)
+            raise ValueError(error_msg)
         
-        polished_content = self.llm_client.get_completion(polish_prompt)
+        # 构建完整的提示词
+        base_prompt = self.paper_prompts["paper_polish"]
+        formatted_sections = self._format_sections_for_polish(sections)
+        full_prompt = f"{base_prompt}\n\n原始内容：\n{formatted_sections}"
+        
+        polished_content = self.llm_client.get_completion(full_prompt)
         
         # 解析润色后的内容
         polished_sections = self._parse_polished_content(polished_content)

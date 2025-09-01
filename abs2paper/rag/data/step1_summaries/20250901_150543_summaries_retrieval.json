@@ -1,0 +1,9 @@
+{
+  "user_requirement": "基于深度学习的图像分类方法研究",
+  "top_k_per_type": 5,
+  "relevant_summaries": {
+    "background": [
+      {
+        "paper_id": "CAPTURE_Memory-Centric_Partitioning_for_Distributed_DNN_Training_with_Hybrid_Parallelism",
+        "summary_text": "问题背景总结：\n1、研究领域: 分布式深度学习训练优化（特别是混合并行训练系统）\n\n2、核心问题: 如何为混合并行（流水线/数据/张量并行）的DNN训练设计内存优化的模型分区和并行化方案，以突破现有吞吐量导向型分区方法的内存瓶颈。\n\n3、研究动机: \n- 理论价值：现有混合并行系统（如Alpa/Varuna）的分区方法仅考虑训练吞吐量，导致GPU间内存使用不均衡，限制了可训练模型规模。\n- 实践价值：降低峰值内存使用可实现在相同硬件上训练更大模型（提升43.9%），或使用更少资源完成训练（硬件需求减少2倍以上），显著降低大模型训练成本。\n\n4、潜在应用:\n- 大规模NLP/视觉模型的分布式训练\n- 在廉价云实例（如spot-VMs）上实现经济高效的大模型训练\n- 支持Transformer等内存密集型模型的扩展训练",
+        "source_sections": 

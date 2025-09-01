@@ -74,14 +74,12 @@ class SourceTextRetriever:
     
     def _get_complete_section_content(self, paper_id: str, section_name: str) -> List[str]:
         """
-        获取指定论文的完整章节内容（所有chunks）
-        
+        获取论文指定章节的完整内容
         Args:
-            paper_id: 论文ID（基础ID，不含chunk后缀）
+            paper_id: 论文ID
             section_name: 章节名称
-        
         Returns:
-            该章节的所有chunks内容列表
+            章节内容列表（多个chunks组合）
         """
         collection_name = self.collection_mapping.get(section_name)
         if not collection_name:
@@ -89,8 +87,12 @@ class SourceTextRetriever:
             return []
         
         try:
-            # 查询所有匹配的chunks
-            query_filter = f"paper_id like '{paper_id}_%'"
+            # 构建查询过滤条件，支持两种格式的paper_id匹配
+            # 1. 简化格式：如 "3688609"
+            # 2. 完整格式：如 "ICS/2023/3577193.3593712_0"
+            
+            # 先尝试精确匹配简化格式
+            query_filter = f"paper_id like '%/{paper_id}_%'"
             
             results = self.db_client.query(
                 collection_name=collection_name,
@@ -99,18 +101,51 @@ class SourceTextRetriever:
                 limit=100
             )
             
+            # 如果没有结果，尝试直接匹配（可能总结中的paper_id就是完整格式）
+            if not results:
+                query_filter = f"paper_id like '{paper_id}%'"
+                results = self.db_client.query(
+                    collection_name=collection_name,
+                    filter=query_filter,
+                    output_fields=["paper_id", "text"],
+                    limit=100
+                )
+            
+            # 如果还是没有结果，尝试包含匹配
+            if not results:
+                query_filter = f"paper_id like '%{paper_id}%'"
+                results = self.db_client.query(
+                    collection_name=collection_name,
+                    filter=query_filter,
+                    output_fields=["paper_id", "text"],
+                    limit=100
+                )
+            
             if not results:
                 logging.warning(f"未找到论文 {paper_id} 的 {section_name} 章节内容")
                 return []
             
-            # 按paper_id后缀排序，确保chunks顺序正确
-            sorted_results = sorted(results, key=lambda x: int(x['paper_id'].split('_')[-1]))
+            # 按paper_id排序，确保chunks的顺序正确
+            def extract_chunk_number(pid):
+                """从paper_id中提取chunk编号"""
+                try:
+                    if '_' in pid:
+                        return int(pid.split('_')[-1])
+                    return 0
+                except:
+                    return 0
+            
+            sorted_results = sorted(results, key=lambda x: extract_chunk_number(x['paper_id']))
             
             # 提取文本内容
-            section_chunks = [result['text'] for result in sorted_results]
+            section_content = []
+            for result in sorted_results:
+                text = result.get('text', '')
+                if text:
+                    section_content.append(text)
             
-            logging.info(f"获取到论文 {paper_id} 的 {section_name} 章节，共 {len(section_chunks)} 个chunks")
-            return section_chunks
+            logging.info(f"成功获取论文 {paper_id} 的 {section_name} 章节内容，共 {len(section_content)} 个chunks")
+            return section_content
             
         except Exception as e:
             logging.error(f"获取章节内容失败: {paper_id}, {section_name}, 错误: {e}")

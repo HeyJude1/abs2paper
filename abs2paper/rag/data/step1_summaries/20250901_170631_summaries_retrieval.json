@@ -1,0 +1,455 @@
+{
+  "user_requirement": "基于计算机视觉的物体检测与识别技术研究",
+  "top_k_per_type": 5,
+  "relevant_summaries": {
+    "expedesign": [
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "### 实验设计总结：\n\n1. **核心目标**:  \n   - 验证提出的LPS方法在开放集半监督学习（OpenSSL）场景下的鲁棒性和有效性。  \n   - 比较LPS与现有方法（SSL、OpenSSL、NCD等）在已知类和新类识别上的性能差异。  \n   - 分析LPS在微调预训练骨干网络时的抗过拟合能力。\n\n2. **数据集**:  \n   - **CIFAR-10/100**：标准图像分类数据集，分别包含10类和100类。实验中随机选择50%的类作为已知类（其中10%或50%数据有标签），其余为未标记的新类。  \n   - **ImageNet-100**：从ImageNet中抽取的100类子集，用于公平对比现有工作，实验设置与CIFAR类似（50%已知类+50%新类）。  \n\n3. **关键设置**:  \n   - **骨干网络**：CIFAR使用ResNet-18，ImageNet使用ResNet-50；均通过SimCLR预训练并固定前三层块。  \n   - **训练参数**：  \n     - CIFAR：SGD优化器（动量0.9，权重衰减0.0005），200 epoch，批量大小512，余弦退火学习率。  \n     - ImageNet：SGD优化器（动量0.9，权重衰减0.0001），90 epoch，批量大小512。  \n   - **数据增强**：弱增强（随机裁剪+水平翻转）+强增强（RandAugment）。  \n   - **评价指标**：已知类分类准确率、新类聚类准确率（通过匈牙利算法匹配）、整体准确率；所有结果取3次实验均值。  \n\n---  \n### 结构化补充说明：\n- **对比实验设计**：包括非OpenSSL方法（FixMatch、DS3L）、NCD方法（DTC、RankStats）、OpenSSL方法（ORCA、NACH）及SimCLR+K-means基线。  \n- **抗过拟合验证**：通过微调全部骨干网络参数（而非仅最后一层）验证LPS的性能提升稳定性。  \n- **消融分析**：移除自适应边界损失（\\(L_{AM}\\)）、伪标签对比聚类损失（\\(L_{PC}\\)）、无监督对比损失（\\(L_{UC}\\)）或熵正则项（\\(R_{Entropy}\\)）以验证各组件贡献。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.0159136056900024,
+        "summary_type": "expedesign"
+      },
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "### 实验设计总结：\n\n1. **核心目标**:  \n   - 验证提出的LPS方法在开放集半监督学习（OpenSSL）场景下的鲁棒性和有效性。  \n   - 比较LPS与现有方法（SSL、OpenSSL、NCD等）在已知类和新类识别上的性能差异。  \n   - 分析LPS在微调预训练骨干网络时的抗过拟合能力。\n\n2. **数据集**:  \n   - **CIFAR-10/100**：标准图像分类数据集，分别包含10类和100类。实验中随机选择50%的类作为已知类（其中10%或50%数据有标签），其余为未标记的新类。  \n   - **ImageNet-100**：从ImageNet中抽取的100类子集，用于公平对比现有工作，实验设置与CIFAR类似（50%已知类+50%新类）。  \n\n3. **关键设置**:  \n   - **骨干网络**：CIFAR使用ResNet-18，ImageNet使用ResNet-50；均通过SimCLR预训练并固定前三层块。  \n   - **训练参数**：  \n     - CIFAR：SGD优化器（动量0.9，权重衰减0.0005），200 epoch，批量大小512，余弦退火学习率。  \n     - ImageNet：SGD优化器（动量0.9，权重衰减0.0001），90 epoch，批量大小512。  \n   - **数据增强**：弱增强（随机裁剪+水平翻转）+强增强（RandAugment）。  \n   - **评价指标**：已知类分类准确率、新类聚类准确率（通过匈牙利算法匹配）、整体准确率；所有结果取3次实验均值。  \n\n---  \n### 结构化补充说明：\n- **对比实验设计**：包括非OpenSSL方法（FixMatch、DS3L）、NCD方法（DTC、RankStats）、OpenSSL方法（ORCA、NACH）及SimCLR+K-means基线。  \n- **抗过拟合验证**：通过微调全部骨干网络参数（而非仅最后一层）验证LPS的性能提升稳定性。  \n- **消融分析**：移除自适应边界损失（\\(L_{AM}\\)）、伪标签对比聚类损失（\\(L_{PC}\\)）、无监督对比损失（\\(L_{UC}\\)）或熵正则项（\\(R_{Entropy}\\)）以验证各组件贡献。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.0159136056900024,
+        "summary_type": "expedesign"
+      },
+      {
+        "paper_id": "3688609",
+        "summary_text": "### 实验设计总结：\n\n#### 1. 核心目标:\n- **验证模型压缩技术的有效性**：通过权重剪枝（weight pruning）、通道剪枝（channel pruning）和数据量化（float16/int8）三种方法，评估其对模型精度和推理性能的影响。\n- **比较不同卷积算法的性能**：在CPU和GPU上测试直接卷积（direct）、GEMM和空间打包卷积（spatial pack）三种算法的效率，包括密集（dense）和稀疏（sparse）版本。\n- **评估跨硬件平台的适应性**：分析模型在Intel CPU、Arm CPU（HiKey 970）、Arm GPU（HiKey 970）和Nvidia GPU（Xavier）上的表现差异。\n\n#### 2. 数据集:\n- **CIFAR-10**：小型图像分类数据集，包含10类60,000张32x32图像。实验中训练了ResNet18、MobileNet V1/V2和VGG-16模型。\n- **ImageNet**：大规模图像分类数据集，包含1,000类约120万张图像。实验中使用了预训练的DenseNet161、EfficientNetB0、ResNet50和MobileNetV2模型。\n\n#### 3. 关键设置:\n- **训练与微调**：\n  - CIFAR-10模型：SGD优化器（动量0.9，权重衰减5×10⁻⁴），初始学习率5×10⁻²，使用1cycle学习率调度器，训练200 epoch；剪枝后微调210 epoch。\n  - ImageNet模型：预训练模型来自TorchVision，微调140 epoch，初始学习率1×10⁻³，使用余弦退火学习率调度器。\n- **剪枝策略**：\n  - **权重剪枝**：从50%开始，逐步增加至95%和99%，每次剪枝后微调。\n  - **通道剪枝**：从5%开始，逐步增加至99%，采用更细粒度的微调补偿粗粒度剪枝。\n- **量化实现**：\n  - float16量化直接通过TVM工具转换，无额外校准。\n  - int8量化使用ONNXRuntime后训练校准工具恢复精度。\n- **硬件与软件环境**：\n  - CPU：Intel i7（AVX指令集）和HiKey 970 Arm A73核心；GPU：HiKey Mali-G72和Nvidia Xavier。\n  - 编译器框架：Apache TVM v0.8.0，使用Ansor自动调度器优化卷积算法（20,000次变体搜索）。\n  - GPU稀疏计算限制：因TVM不支持自动调度稀疏卷积的跨线程归约问题，仅能评估未调优的稀疏模型。\n\n#### 结构化补充说明：\n- **实验分阶段设计**：\n  1. **精度分析**：确定每种压缩技术的“肘点”（压缩比与精度下降的平衡点）。\n  2. **推理性能测试**：在未调优（baseline）和自动调优（tuned）两种模式下，测量不同硬件上的中位推理时间。\n  3. **跨数据集对比**：CIFAR-10（过参数化明显）与ImageNet（更大规模任务）的结果差异分析。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.021521806716919,
+        "summary_type": "expedesign"
+      },
+      {
+        "paper_id": "3688609",
+        "summary_text": "### 实验设计总结：\n\n#### 1. 核心目标:\n- **验证模型压缩技术的有效性**：通过权重剪枝（weight pruning）、通道剪枝（channel pruning）和数据量化（float16/int8）三种方法，评估其对模型精度和推理性能的影响。\n- **比较不同卷积算法的性能**：在CPU和GPU上测试直接卷积（direct）、GEMM和空间打包卷积（spatial pack）三种算法的效率，包括密集（dense）和稀疏（sparse）版本。\n- **评估跨硬件平台的适应性**：分析模型在Intel CPU、Arm CPU（HiKey 970）、Arm GPU（HiKey 970）和Nvidia GPU（Xavier）上的表现差异。\n\n#### 2. 数据集:\n- **CIFAR-10**：小型图像分类数据集，包含10类60,000张32x32图像。实验中训练了ResNet18、MobileNet V1/V2和VGG-16模型。\n- **ImageNet**：大规模图像分类数据集，包含1,000类约120万张图像。实验中使用了预训练的DenseNet161、EfficientNetB0、ResNet50和MobileNetV2模型。\n\n#### 3. 关键设置:\n- **训练与微调**：\n  - CIFAR-10模型：SGD优化器（动量0.9，权重衰减5×10⁻⁴），初始学习率5×10⁻²，使用1cycle学习率调度器，训练200 epoch；剪枝后微调210 epoch。\n  - ImageNet模型：预训练模型来自TorchVision，微调140 epoch，初始学习率1×10⁻³，使用余弦退火学习率调度器。\n- **剪枝策略**：\n  - **权重剪枝**：从50%开始，逐步增加至95%和99%，每次剪枝后微调。\n  - **通道剪枝**：从5%开始，逐步增加至99%，采用更细粒度的微调补偿粗粒度剪枝。\n- **量化实现**：\n  - float16量化直接通过TVM工具转换，无额外校准。\n  - int8量化使用ONNXRuntime后训练校准工具恢复精度。\n- **硬件与软件环境**：\n  - CPU：Intel i7（AVX指令集）和HiKey 970 Arm A73核心；GPU：HiKey Mali-G72和Nvidia Xavier。\n  - 编译器框架：Apache TVM v0.8.0，使用Ansor自动调度器优化卷积算法（20,000次变体搜索）。\n  - GPU稀疏计算限制：因TVM不支持自动调度稀疏卷积的跨线程归约问题，仅能评估未调优的稀疏模型。\n\n#### 结构化补充说明：\n- **实验分阶段设计**：\n  1. **精度分析**：确定每种压缩技术的“肘点”（压缩比与精度下降的平衡点）。\n  2. **推理性能测试**：在未调优（baseline）和自动调优（tuned）两种模式下，测量不同硬件上的中位推理时间。\n  3. **跨数据集对比**：CIFAR-10（过参数化明显）与ImageNet（更大规模任务）的结果差异分析。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.021521806716919,
+        "summary_type": "expedesign"
+      },
+      {
+        "paper_id": "3650200.3656628",
+        "summary_text": "实验设计总结：\n\n1、核心目标:  \n- 验证Hepti并行推理方法在边缘计算环境中的有效性（对比局部推理和1D/2D分块权重切片方法）  \n- 评估动态负载分区算法在异构网络带宽和内存条件下的适应性（对比CoEdge静态分区）  \n- 量化动态分区算法的运行时开销对端到端延迟的影响  \n\n2、数据集:  \n- **模型负载**：BERT-large（940M参数）、MobileBERT（轻量级变体）作为核心测试模型，扩展验证包括Whisper和Vision Transformer等同类架构  \n- **输入规格**：固定256个token的文本输入，单批次处理  \n\n3、关键设置:  \n- **硬件平台**：树莓派4（主设备）+非GPU服务器（从设备）构成的异构边缘平台，通过cpulimit和tc工具模拟CPU利用率限制和网络带宽变化  \n- **软件框架**：PyTorch实现推理引擎，IBM DOcplex库求解线性规划问题  \n- **关键参数**：  \n  - 网络带宽测试场景：940 Mbps/470 Mbps（性能对比）、200-300 Mbps（异构适应性）  \n  - 内存约束：从设备1.63GB（标准WS模式）、1GB（触发1D-tiled WS切换）  \n  - 并行方法对比基线：1D/2D-tiled权重切片(WS)、CoEdge静态分区  \n- **评估指标**：端到端延迟、通信数据量（如1D-tiled WS传输1.05GB vs Hepti仅245.8KB）、计算操作数（矩阵乘/加次数）  \n\n结构化补充说明：  \n- **控制变量**：在并行推理性能实验中固定初始分区决策，隔离算法影响；在异构实验中动态调整带宽/内存以测试鲁棒性  \n- **创新对照**：Hepti的WS模式采用L行向矩阵乘法，避免传统分块方法的子矩阵加法开销和频繁通信",
+        "source_sections": "['实验评价']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)']",
+        "score": 1.0239598751068115,
+        "summary_type": "expedesign"
+      }
+    ],
+    "innovations": [
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "本文创新点总结：\n\n1、提出了一种新颖且简单的方法LPS（Learning Pace Synchronization），通过自适应边缘损失（adaptive margin loss）同步已见类别和未见类别的学习速度 (类型: [新方法])  \n2、设计了伪标签对比聚类损失（pseudo-label contrastive clustering loss），结合无监督对比学习目标，显著提升了未见类别的发现性能 (类型: [新优化目标/理论创新])  \n3、通过大量实验验证了方法的有效性，在ImageNet数据集上实现了3%以上的平均准确率提升，并系统分析了关键参数的影响 (类型: [深入的实验分析])  \n4、揭示了现有方法的局限性：发现冻结自监督预训练主干网络会阻碍泛化性能，提出微调策略可学习更具判别性的特征 (类型: [新发现/方法改进])  \n5、构建了完整的OpenSSL解决方案，在三种不同标注数据规模的基准数据集上验证了鲁棒性 (类型: [系统性框架])  \n\n注：贡献点提炼自论文引言末尾的明确声明（\"In summary, our main contributions are\"）及结论部分的补充说明，分类依据包括方法创新（1、2）、理论改进（2）、实验验证（3）、技术发现（4）和系统整合（5）。",
+        "source_sections": "['引言', '总结']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.015366792678833,
+        "summary_type": "innovations"
+      },
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "本文创新点总结：\n\n1、提出了一种新颖且简单的方法LPS（Learning Pace Synchronization），通过自适应边缘损失（adaptive margin loss）同步已见类别和未见类别的学习速度 (类型: [新方法])  \n2、设计了伪标签对比聚类损失（pseudo-label contrastive clustering loss），结合无监督对比学习目标，显著提升了未见类别的发现性能 (类型: [新优化目标/理论创新])  \n3、通过大量实验验证了方法的有效性，在ImageNet数据集上实现了3%以上的平均准确率提升，并系统分析了关键参数的影响 (类型: [深入的实验分析])  \n4、揭示了现有方法的局限性：发现冻结自监督预训练主干网络会阻碍泛化性能，提出微调策略可学习更具判别性的特征 (类型: [新发现/方法改进])  \n5、构建了完整的OpenSSL解决方案，在三种不同标注数据规模的基准数据集上验证了鲁棒性 (类型: [系统性框架])  \n\n注：贡献点提炼自论文引言末尾的明确声明（\"In summary, our main contributions are\"）及结论部分的补充说明，分类依据包括方法创新（1、2）、理论改进（2）、实验验证（3）、技术发现（4）和系统整合（5）。",
+        "source_sections": "['引言', '总结']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.015366792678833,
+        "summary_type": "innovations"
+      },
+      {
+        "paper_id": "Oikonomos-II_A_Reinforcement-Learning_Resource-Recommendation_System_for_Cloud_HPC",
+        "summary_text": "本文创新点总结：\n\n1、提出了一种基于强化学习的异构云环境HPC应用实例推荐系统 (类型: [新方法/新系统])  \n• 采用深度上下文多臂老虎机算法，克服了早期搜索型和预测型方法的局限性  \n• 首次实现混合型推荐系统，结合了两种传统方法的优势  \n\n2、改进了Neural-LinUCB算法 (类型: [算法优化])  \n• 通过引入软更新(soft update)机制，支持使用更深层的神经网络  \n• 实现了更复杂的上下文-奖励关系建模能力  \n\n3、在四种不同HPC应用上进行了系统性性能验证 (类型: [实验分析])  \n• 证明了强化学习方法的鲁棒性  \n• 展示了方案的通用性和可复用潜力  \n• 实证显示在大多数情况下能成功选择最优实例类型  \n\n注：所有贡献点均直接提取自论文引言部分明确列出的三个贡献项，并按照方法创新、算法改进和实验验证三个维度进行了分类。其中第一个贡献具有双重属性，既是新方法也是新系统实现。",
+        "source_sections": "['引言', '总结']",
+        "topics": "['强化学习 (Reinforcement Learning)', '自动调优 (Autotuning)']",
+        "score": 1.0472240447998047,
+        "summary_type": "innovations"
+      },
+      {
+        "paper_id": "Oikonomos-II_A_Reinforcement-Learning_Resource-Recommendation_System_for_Cloud_HPC",
+        "summary_text": "本文创新点总结：\n\n1、提出了一种基于强化学习的异构云环境HPC应用实例推荐系统 (类型: [新方法/新系统])  \n• 采用深度上下文多臂老虎机算法，克服了早期搜索型和预测型方法的局限性  \n• 首次实现混合型推荐系统，结合了两种传统方法的优势  \n\n2、改进了Neural-LinUCB算法 (类型: [算法优化])  \n• 通过引入软更新(soft update)机制，支持使用更深层的神经网络  \n• 实现了更复杂的上下文-奖励关系建模能力  \n\n3、在四种不同HPC应用上进行了系统性性能验证 (类型: [实验分析])  \n• 证明了强化学习方法的鲁棒性  \n• 展示了方案的通用性和可复用潜力  \n• 实证显示在大多数情况下能成功选择最优实例类型  \n\n注：所有贡献点均直接提取自论文引言部分明确列出的三个贡献项，并按照方法创新、算法改进和实验验证三个维度进行了分类。其中第一个贡献具有双重属性，既是新方法也是新系统实现。",
+        "source_sections": "['引言', '总结']",
+        "topics": "['强化学习 (Reinforcement Learning)', '自动调优 (Autotuning)']",
+        "score": 1.0472240447998047,
+        "summary_type": "innovations"
+      },
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "本文创新点总结：\n\n1、贡献点一的简洁描述 (类型: [例如，新方法/理论证明/新架构])\n2、贡献点二的简洁描述 (类型: [例如，新数据集/深入的实验分析])\n3、贡献点三的简洁描述 (类型: [例如，开源系统/新的评估指标])\n... (继续列出)\n##初始化: 作为科研论文分析师，你已准备好对论文进行深度剖析。请提供论文内容。\n##用户提问：请根据以下论文内容，为我总结其创新点或贡献。\n\n## 论文内容\n\n## 引言\n2 Background\nIn this section, we briefly describe the topics relevant to this work.\n2.1 Code Representations and Deep Learning\nRecently, representation learning has been widely used for code modeling tasks. Several prior works have represented programs as a sequence of lexical tokens. However, this fails to capture program structure. To overcome this, syntax as well as semantics based representations have been proposed that aim to extract and understand code structure as well.\nPROGRAML is such an IR-based code representation tool that can model code flow information along with the code structure as multi-graphs. Each multi-graph has a vertex for instruction and control-flow edges between them. Data flow is represented by including separate vertices for variables and constants and associated data-flow edges to instructions. Call flow is represented by edges between callee functions and caller instruction vertices. We use PROGRAML to extract data, control, and call flow graphs from IRs.\n2.2 Multimodal Deep Learning\nMulti-modal learning relates information from multiple sources towards a common goal . If a task can be represented in multiple ways, it can be assigned as multi-modal, with each representation defined as a unique modality. Multi-modal learning has been mostly applied to audio and video analysis, speech synthesis, and gesture recognition tasks . For example, in image and video description tasks, the visual content and associated textual description can be considered different modalities of the same problem.\nWe take inspiration from these ideas and apply it to the task of code representation. A sequential and graphical code representation has been used to represent different modalities of the same piece of code. High-level embeddings obtained from each pre-trained modality are combined and associated to generate the feature space for downstream tasks.\nMulti-modal Pre-trained Models. The remarkable success of pretrained models in NLP has driven the development of multi-modal pre-trained model that learns implicit alignment between inputs of different modalities. These models are typically learned from bimodal data, such as pairs of language-image or pairs of language video, for example, ViLBERT . Similarly, VideoBERT learns from language-video data and is trained by video and text masked token prediction. With respect to pre-trained models targeting programming languages, CodeBERT was trained on bimodal data with natural language and programming language pairs. Code comment and source code pairs were used for pre-training. However, our work is different from these prior works, as we aim to only work with source code, and we consider two ways of representing code as separate modalities. Also, unlike prior pre-trained works, we only work with compilable code with a focus on generating features for performance optimization, rather than code generation.\n\n1 Introduction\nThe complexity, scale, and heterogeneity of HPC hardware has increased significantly over the past several years improving performance over traditional multi-core systems. However, this has also opened up new opportunities of performance optimizations. Performance engineers and application developers devote considerable time in trying to tune and optimize hardware and software knobs. However, it is extremely difficult to adapt to a constantly changing landscape. Automated techniques are thus necessary to help optimize performance of HPC applications. Prior Works. A large chunk of performance gains for parallel applications come from compiler optimizations, such as those seen in LLVM and GCC. Although such optimizations are painstakingly designed, it might not work in all cases due to the variety of applications seen in HPC. In addition to compiler-driven optimizations, runtime performance tuning by online auto-tuners also help identify configurations/parameters that might often be non-intuitive. Although this improves performance, it comes with significant tuning overhead.\nMachine learning (ML) based techniques have also been widely used for such performance optimizations. Several works have used ML to model handcrafted features for specific tasks . These handcrafted features are not universal and might not be suitable for other optimization tasks. To overcome these shortcomings, studies based on code representational learning were proposed. Most of these works proposed a means of representing source code in a way understandable by machine learning models. Various works designed representations on top of source code for tasks such as variable misuse and method name prediction. However, such representations put a lot of emphasis on stylistic choices in source code, are language dependent, thus are not ideal candidates for performance optimization tasks of compilable source code. Our proposed approach can, on the other hand, work with multiple languages as shown later in Section",
+        "source_sections": "['引言', '总结']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 1.048025131225586,
+        "summary_type": "innovations"
+      }
+    ],
+    "relatedwork": [
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "相关工作总结：\n\n1、现有方法一：基于词法标记的代码表示方法\n核心思想: 早期研究主要依赖源代码的词法标记（lexical tokens）进行代码表示，通过解析代码的文本特征来支持优化决策。\n主要局限性: 无法有效捕捉代码的语义信息，导致对程序行为的理解存在本质性缺陷。\n\n2、现有方法二：基于LLVM IR的表示学习方法\n核心思想: 新一代方法利用LLVM中间表示（IR）提取代码语义特征，为深度学习模型提供结构化程序信息。\n主要局限性: 需要为每个独立任务设计复杂的图神经网络（GNN）建模，缺乏可迁移的通用表示能力。\n\n3、现有方法三：非神经网络的机器学习方法\n核心思想: 采用传统机器学习（如贝叶斯优化）进行参数自动调优，典型应用包括OpenMP调优和在线调优任务。\n主要局限性: \n- 严重依赖领域特定知识，泛化能力差\n- 需要多次执行目标代码来评估参数性能\n- 计算开销仍然显著\n\n4、现有方法四：基于搜索的自动调优技术\n核心思想: 使用爬山算法、随机搜索、Nelder-Mead等搜索空间优化技术替代暴力搜索，代表工作包括ActiveHarmony和OpenTuner。\n主要局限性:\n- 采样过程产生巨大开销\n- 仍需大量实际执行来评估参数配置\n\n研究缺口：\n1. 现有代码表示方法在语义捕获与模型通用性之间存在矛盾：词法方法缺乏语义，而LLVM IR方法又过度依赖任务特定建模。\n2. 传统调优方法普遍存在\"执行依赖\"问题，需要反复运行目标程序来验证参数效果。\n3. 当前缺乏能够同时满足以下要求的解决方案：\n   - 跨任务可迁移的预训练表示\n   - 避免目标程序执行的预测能力\n   - 支持轻量级下游建模的通用嵌入\n\n（注：根据论文内容，作者提出的多模态预训练方法正是针对上述缺口，通过可迁移的LLVM IR表示和免执行的预测能力来解决这些核心问题。）",
+        "source_sections": "['相关工作']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 0.9851576089859009,
+        "summary_type": "relatedwork"
+      },
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "相关工作总结：\n\n1、现有方法一：基于词法标记的代码表示方法\n核心思想: 早期研究主要依赖源代码的词法标记（lexical tokens）进行代码表示，通过解析代码的文本特征来支持优化决策。\n主要局限性: 无法有效捕捉代码的语义信息，导致对程序行为的理解存在本质性缺陷。\n\n2、现有方法二：基于LLVM IR的表示学习方法\n核心思想: 新一代方法利用LLVM中间表示（IR）提取代码语义特征，为深度学习模型提供结构化程序信息。\n主要局限性: 需要为每个独立任务设计复杂的图神经网络（GNN）建模，缺乏可迁移的通用表示能力。\n\n3、现有方法三：非神经网络的机器学习方法\n核心思想: 采用传统机器学习（如贝叶斯优化）进行参数自动调优，典型应用包括OpenMP调优和在线调优任务。\n主要局限性: \n- 严重依赖领域特定知识，泛化能力差\n- 需要多次执行目标代码来评估参数性能\n- 计算开销仍然显著\n\n4、现有方法四：基于搜索的自动调优技术\n核心思想: 使用爬山算法、随机搜索、Nelder-Mead等搜索空间优化技术替代暴力搜索，代表工作包括ActiveHarmony和OpenTuner。\n主要局限性:\n- 采样过程产生巨大开销\n- 仍需大量实际执行来评估参数配置\n\n研究缺口：\n1. 现有代码表示方法在语义捕获与模型通用性之间存在矛盾：词法方法缺乏语义，而LLVM IR方法又过度依赖任务特定建模。\n2. 传统调优方法普遍存在\"执行依赖\"问题，需要反复运行目标程序来验证参数效果。\n3. 当前缺乏能够同时满足以下要求的解决方案：\n   - 跨任务可迁移的预训练表示\n   - 避免目标程序执行的预测能力\n   - 支持轻量级下游建模的通用嵌入\n\n（注：根据论文内容，作者提出的多模态预训练方法正是针对上述缺口，通过可迁移的LLVM IR表示和免执行的预测能力来解决这些核心问题。）",
+        "source_sections": "['相关工作']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 0.9852957725524902,
+        "summary_type": "relatedwork"
+      },
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "相关工作总结：\n\n1、现有方法一：半监督学习（Semi-Supervised Learning, SSL）\n核心思想: \n- 伪标签技术（Pseudo-labeling）：将模型对无标签样本的预测转换为软标签或硬标签，作为目标标签使用。\n- 一致性正则化（Consistency Regularization）：确保模型在扰动样本上的输出保持高度一致。\n- 对比学习应用：如TCL通过最大化同一样本不同视图间的一致性，同时最小化不同样本间的一致性，以增强表示学习。\n\n主要局限性: \n- 现有方法通常假设有标签和无标签数据来自相同的类别分布，而现实场景中无标签数据可能包含新类别（即分布不匹配问题）。\n- 传统SSL方法未充分考虑新类别样本的聚类需求。\n\n2、现有方法二：新类别发现（Novel Class Discovery, NCD）\n核心思想: \n- 采用多阶段训练策略：先从有标签数据中捕获高层语义信息，再迁移到无标签数据（假设无标签数据仅含新类别）。\n- 通过目标函数最小化类内样本距离。\n\n主要局限性: \n- 强假设无标签数据仅包含新类别，而实际场景中无标签数据往往同时包含已知类别和新类别。\n- 实验表明NCD方法在开放世界半监督学习（OpenSSL）场景下性能显著劣于其他先进方法。\n\n3、现有方法三：开放世界半监督学习（Open-World Semi-Supervised Learning）\n核心思想: \n- 突破传统SSL的封闭世界假设，允许无标签数据包含已知类别和新类别的混合分布。\n\n主要局限性: \n- （论文未直接陈述该领域的局限性，但通过上下文可推断）现有OpenSSL方法存在学习速度不平衡问题：已知类别因有明确监督信号而学习过快，导致模型预测偏向已知类别，进而影响新类别的聚类效果。\n\n研究缺口总结：\n1. 分布不匹配的现实性：现有SSL/NCD方法对无标签数据的分布假设过于理想化（NCD假设仅含新类别，SSL假设类别一致）。\n2. 学习速度失衡：OpenSSL中已知类别与新类别的学习进度差异导致模型偏差。\n3. 伪标签利用不足：现有方法未能有效利用伪标签实现新类别的结构化聚类。",
+        "source_sections": "['相关工作']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.0056307315826416,
+        "summary_type": "relatedwork"
+      },
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "相关工作总结：\n\n1、现有方法一：半监督学习（Semi-Supervised Learning, SSL）\n核心思想: \n- 伪标签技术（Pseudo-labeling）：将模型对无标签样本的预测转换为软标签或硬标签，作为目标标签使用。\n- 一致性正则化（Consistency Regularization）：确保模型在扰动样本上的输出保持高度一致。\n- 对比学习应用：如TCL通过最大化同一样本不同视图间的一致性，同时最小化不同样本间的一致性，以增强表示学习。\n\n主要局限性: \n- 现有方法通常假设有标签和无标签数据来自相同的类别分布，而现实场景中无标签数据可能包含新类别（即分布不匹配问题）。\n- 传统SSL方法未充分考虑新类别样本的聚类需求。\n\n2、现有方法二：新类别发现（Novel Class Discovery, NCD）\n核心思想: \n- 采用多阶段训练策略：先从有标签数据中捕获高层语义信息，再迁移到无标签数据（假设无标签数据仅含新类别）。\n- 通过目标函数最小化类内样本距离。\n\n主要局限性: \n- 强假设无标签数据仅包含新类别，而实际场景中无标签数据往往同时包含已知类别和新类别。\n- 实验表明NCD方法在开放世界半监督学习（OpenSSL）场景下性能显著劣于其他先进方法。\n\n3、现有方法三：开放世界半监督学习（Open-World Semi-Supervised Learning）\n核心思想: \n- 突破传统SSL的封闭世界假设，允许无标签数据包含已知类别和新类别的混合分布。\n\n主要局限性: \n- （论文未直接陈述该领域的局限性，但通过上下文可推断）现有OpenSSL方法存在学习速度不平衡问题：已知类别因有明确监督信号而学习过快，导致模型预测偏向已知类别，进而影响新类别的聚类效果。\n\n研究缺口总结：\n1. 分布不匹配的现实性：现有SSL/NCD方法对无标签数据的分布假设过于理想化（NCD假设仅含新类别，SSL假设类别一致）。\n2. 学习速度失衡：OpenSSL中已知类别与新类别的学习进度差异导致模型偏差。\n3. 伪标签利用不足：现有方法未能有效利用伪标签实现新类别的结构化聚类。",
+        "source_sections": "['相关工作']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.0056307315826416,
+        "summary_type": "relatedwork"
+      },
+      {
+        "paper_id": "3650200.3656628",
+        "summary_text": "相关工作总结：\n\n1、现有方法一：**输入张量数据分布式推理（DeepThings、MoDNN、CoEdge、EdgeFlow）**\n核心思想: \n- DeepThings通过分配输入张量数据的感受野，实现卷积层的独立推理；\n- MoDNN采用贪心算法划分卷积层和全连接层的输入张量，按设备算力分配负载；\n- CoEdge提出异构设备自适应负载划分技术，综合考虑计算资源和网络带宽；\n- EdgeFlow基于DAG模型重构分区方法，通过分析模型图的输入输出关系分配层操作。\n主要局限性: \n- 上述方法均针对CNN架构设计，未考虑Transformer等非CNN模型的并行需求；\n- 分区策略对动态网络条件和设备异构性的适应性不足（仅CoEdge部分涉及）。\n\n2、现有方法二：**Transformer模型并行（Megatron-LM）**\n核心思想: \n- 利用矩阵乘法并行（Mat-Mul）分析Transformer运算行为；\n- 通过算子级并行实现单层内的计算加速。\n主要局限性: \n- 缺乏针对异构设备网络条件和计算能力的动态分区算法；\n- 仅支持层内并行，无法有效利用跨层流水线机会。\n\n3、现有方法三：**跨层流水线并行（PipeEdge）**\n核心思想: \n- 将输入批次划分为微批次（micro-batches）；\n- 在多设备间建立执行流水线，实现层间并行。\n主要局限性: \n- 论文未明确提及该方法是否解决了动态资源调度问题；\n- 对微批次划分粒度与延迟/吞吐量的权衡关系缺乏理论分析。\n\n研究缺口：\n1. CNN并行方法无法直接迁移至Transformer架构\n2. 现有Transformer并行方案缺乏：\n   - 异构设备感知的动态分区机制\n   - 层内与层间并行的协同优化\n3. 边缘环境下网络波动与计算资源变化的适应性不足",
+        "source_sections": "['相关工作']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)']",
+        "score": 1.0220295190811157,
+        "summary_type": "relatedwork"
+      }
+    ],
+    "challenges": [
+      {
+        "paper_id": "3701997",
+        "summary_text": "核心挑战总结：\n\n挑战一：边缘设备内存约束下的模型分布式执行优化  \n分析:  \n1. 问题本质：边缘设备（如智能摄像头、门锁等）内存容量有限，而分布式推理涉及中间张量存储、算子参数复制等内存开销源  \n2.技术瓶颈：  \n- 模型DAG结构中算子执行顺序影响中间张量生命周期，导致内存开销动态变化（PC完全问题，搜索空间随算子数量指数增长）  \n- 现有方法（如HMCOS）仅针对单GPU优化，缺乏分布式场景下的内存约束考量  \n3.数据特征：卷积算子等大参数量操作加剧内存压力（如特征图高度/输出通道维度的分区会产生不同内存占用模式）\n\n挑战二：多维度模型划分的延迟最小化问题  \n分析:  \n1. 复杂性根源：  \n- 混合划分策略需同时考虑水平/垂直划分及算子间依赖关系  \n- 分区决策涉及维度选择（如cout/fmh）、分区数量、比例等多变量耦合  \n2. 现有技术缺陷：  \n- 粗粒度近似方法（如线性规划转化）引入误差  \n- 单算子独立优化无法保证全局最优（相邻算子分区存在级联影响）  \n3. 性能权衡：并行计算降低时延但可能增加数据同步开销（如卷积核分区导致输入张量重复存储）\n\n挑战三：DAG结构下的高效拓扑排序搜索  \n分析:  \n1. 计算复杂性：遍历DAG所有拓扑排序属于NP难问题，传统动态规划方法难以扩展到大规模模型  \n2. 实际限制：多分支结构模型（如ResNet）中，算子执行顺序对峰值内存的影响呈现非线性特征  \n3. 优化矛盾：内存优化需要保留更多中间结果，而延迟优化倾向于尽早释放张量，二者存在目标冲突  \n\n补充说明：这些挑战的相互关联性体现在——内存约束限制了分区方案的选择空间，而分区方案又直接影响通信/计算时延，三者共同构成边缘分布式推理的\"不可能三角\"优化难题。论文通过引入BTSearch的剪枝策略和GenEFlow的多染色体编码，尝试在多项式时间内逼近该问题的帕累托前沿。",
+        "source_sections": "['引言', '相关工作']",
+        "topics": "['图论 (Graph Theory)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '功耗管理 (Power Management)']",
+        "score": 1.0482838153839111,
+        "summary_type": "challenges"
+      },
+      {
+        "paper_id": "3701997",
+        "summary_text": "核心挑战总结：\n\n挑战一：边缘设备内存约束下的模型分布式执行优化  \n分析:  \n1. 问题本质：边缘设备（如智能摄像头、门锁等）内存容量有限，而分布式推理涉及中间张量存储、算子参数复制等内存开销源  \n2.技术瓶颈：  \n- 模型DAG结构中算子执行顺序影响中间张量生命周期，导致内存开销动态变化（PC完全问题，搜索空间随算子数量指数增长）  \n- 现有方法（如HMCOS）仅针对单GPU优化，缺乏分布式场景下的内存约束考量  \n3.数据特征：卷积算子等大参数量操作加剧内存压力（如特征图高度/输出通道维度的分区会产生不同内存占用模式）\n\n挑战二：多维度模型划分的延迟最小化问题  \n分析:  \n1. 复杂性根源：  \n- 混合划分策略需同时考虑水平/垂直划分及算子间依赖关系  \n- 分区决策涉及维度选择（如cout/fmh）、分区数量、比例等多变量耦合  \n2. 现有技术缺陷：  \n- 粗粒度近似方法（如线性规划转化）引入误差  \n- 单算子独立优化无法保证全局最优（相邻算子分区存在级联影响）  \n3. 性能权衡：并行计算降低时延但可能增加数据同步开销（如卷积核分区导致输入张量重复存储）\n\n挑战三：DAG结构下的高效拓扑排序搜索  \n分析:  \n1. 计算复杂性：遍历DAG所有拓扑排序属于NP难问题，传统动态规划方法难以扩展到大规模模型  \n2. 实际限制：多分支结构模型（如ResNet）中，算子执行顺序对峰值内存的影响呈现非线性特征  \n3. 优化矛盾：内存优化需要保留更多中间结果，而延迟优化倾向于尽早释放张量，二者存在目标冲突  \n\n补充说明：这些挑战的相互关联性体现在——内存约束限制了分区方案的选择空间，而分区方案又直接影响通信/计算时延，三者共同构成边缘分布式推理的\"不可能三角\"优化难题。论文通过引入BTSearch的剪枝策略和GenEFlow的多染色体编码，尝试在多项式时间内逼近该问题的帕累托前沿。",
+        "source_sections": "['引言', '相关工作']",
+        "topics": "['图论 (Graph Theory)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '功耗管理 (Power Management)']",
+        "score": 1.0482838153839111,
+        "summary_type": "challenges"
+      },
+      {
+        "paper_id": "2309.17288v3",
+        "summary_text": "核心挑战总结：\n\n挑战一：多领域异构信息整合的复杂性  \n分析: 论文指出在创造性产业等实际场景中，需要综合来自不同领域的异构信息（如小说创作需整合情节规划、角色开发等多专业知识）。这一挑战源于问题本身的复杂性——不同领域知识体系存在语义鸿沟，且传统LLM缺乏跨域知识协同机制。现有技术瓶颈表现为静态多智能体框架（如MetaGPT）依赖预定义角色，难以动态适应跨域任务的知识重组需求。\n\n挑战二：动态智能体协作的可扩展性限制  \n分析: 现有多智能体系统（如BabyAGI、Camel）面临两大根源性问题：(1) 需人工指定固定角色和通信顺序，导致系统灵活性不足；(2) 缺乏自主生成与优化能力，如Camel不支持工具调用。这些限制源于现有技术对\"预设架构\"的依赖，使得系统无法根据任务复杂度自动调整团队结构（如自动增删专家角色），从而制约了在软件开发等长周期任务中的适应性。\n\n挑战三：自我优化与协作可靠性的平衡  \n分析: 作者发现当前自动生成智能体方法（如SSP、AgentVerse）存在可靠性缺陷：生成的执行计划缺乏验证机制，且智能体间协作易出现信息不一致。这一挑战兼具技术和数据特性：(1) 技术层面缺少协同精炼机制（collaborative refinement）；(2) 数据层面受限于单轮对话的监督信号，难以支撑迭代优化。论文特别强调 hallucination 现象在多智能体场景会被放大，需要新的自优化框架确保输出一致性。",
+        "source_sections": "['引言', '相关工作']",
+        "topics": "['代码生成 (Code Generation)', '强化学习 (Reinforcement Learning)', '自动调优 (Auto-tuning)']",
+        "score": 1.0489422082901,
+        "summary_type": "challenges"
+      },
+      {
+        "paper_id": "2309.17288v3",
+        "summary_text": "核心挑战总结：\n\n挑战一：多领域异构信息整合的复杂性  \n分析: 论文指出在创造性产业等实际场景中，需要综合来自不同领域的异构信息（如小说创作需整合情节规划、角色开发等多专业知识）。这一挑战源于问题本身的复杂性——不同领域知识体系存在语义鸿沟，且传统LLM缺乏跨域知识协同机制。现有技术瓶颈表现为静态多智能体框架（如MetaGPT）依赖预定义角色，难以动态适应跨域任务的知识重组需求。\n\n挑战二：动态智能体协作的可扩展性限制  \n分析: 现有多智能体系统（如BabyAGI、Camel）面临两大根源性问题：(1) 需人工指定固定角色和通信顺序，导致系统灵活性不足；(2) 缺乏自主生成与优化能力，如Camel不支持工具调用。这些限制源于现有技术对\"预设架构\"的依赖，使得系统无法根据任务复杂度自动调整团队结构（如自动增删专家角色），从而制约了在软件开发等长周期任务中的适应性。\n\n挑战三：自我优化与协作可靠性的平衡  \n分析: 作者发现当前自动生成智能体方法（如SSP、AgentVerse）存在可靠性缺陷：生成的执行计划缺乏验证机制，且智能体间协作易出现信息不一致。这一挑战兼具技术和数据特性：(1) 技术层面缺少协同精炼机制（collaborative refinement）；(2) 数据层面受限于单轮对话的监督信号，难以支撑迭代优化。论文特别强调 hallucination 现象在多智能体场景会被放大，需要新的自优化框架确保输出一致性。",
+        "source_sections": "['引言', '相关工作']",
+        "topics": "['代码生成 (Code Generation)', '强化学习 (Reinforcement Learning)', '自动调优 (Auto-tuning)']",
+        "score": 1.0489422082901,
+        "summary_type": "challenges"
+      },
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "核心挑战总结：\n\n挑战一：**未标记数据中混杂新类别样本的识别与聚类**\n分析: 传统半监督学习(SSL)假设未标记数据仅包含已标记数据中的已知类别（seen classes），但实际场景中未标记数据常混杂未知的新类别（novel classes）。这一挑战源于标注者难以在海量未标记数据中识别新类别样本，导致模型需要同时解决已知类别的分类和新类别的无监督聚类问题。现有方法虽采用自监督学习获取特征表示，但缺乏对新类别聚类的有效监督信号。\n\n挑战二：**已知类别与新类别的学习速度差异**\n分析: 由于已知类别有准确的标签监督而新类别依赖无监督学习，模型对已知类别的学习速度显著快于新类别（如图表所示）。这种差异导致模型预测偏向已知类别，进而影响两方面性能：(1) 已知类别样本的分类准确性；(2) 新类别样本的聚类效果。其根源在于监督信号与非监督信号之间的固有不对称性。\n\n挑战三：**预训练特征提取器的适应性不足**\n分析: 现有方法通常冻结通过自监督学习预训练的特征提取器，但实验表明这种固定特征表示无法适应开放世界场景的动态需求。这是因为预训练目标（如对比学习）与下游开放世界半监督学习任务的目标存在偏差，且固定特征无法针对新类别进行针对性优化。\n\n（注：根据论文内容，\"Notations\"和\"Overview\"部分实际属于方法论章节，故未纳入挑战提炼范围。以上分析严格基于引言和相关工作部分的明确论述。）",
+        "source_sections": "['引言', '相关工作']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 1.0593925714492798,
+        "summary_type": "challenges"
+      }
+    ],
+    "methodology": [
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "方法概述：\n1、方法名称: MIREncoder\n2、核心思想: 通过多模态自监督预训练方法，将LLVM IR（中间表示）同时建模为词序列和依赖图两种模态，以提取语法、语义和结构特征，用于高性能计算（HPC）的性能优化任务。\n\n3、主要流程/组件\n组件/步骤一: IR词序列处理\n- 功能：将IR指令拆分为子词单元，通过训练的WordPiece分词器转换为数值化序列（类似BERT处理方式）\n- 关键点：采用64长度限制的语句级编码，包含特殊标记[CLS]/[SEP]，支持Masked Language Modeling任务\n\n组件/步骤二: 依赖图生成\n- 功能：使用PROGRAML工具将IR转换为包含数据流、控制流和调用流的多图结构\n- 关键点：节点特征为IR语句，通过分词器转换为数值特征供图神经网络处理\n\n组件/步骤三: 多模态预训练任务\n1) 掩码语言建模(MLM)：\n- 随机掩码15%IR词序列，通过Transformer层预测被掩码内容\n- 采用80-10-10的掩码策略避免模型对[MASK]标记过拟合\n\n2) 图自编码(GAE)：\n- 使用GNN层编码多图为低维表示，并重建原始图的邻接矩阵\n- 创新性三流联合训练：同时处理控制流/数据流/调用流子图，通过聚合损失优化\n\n3) IR-图匹配：\n- 新颖的二分类任务，判断词序列与图是否来自同一IR源码\n- 组合Transformer和GNN的输出层，通过交叉熵损失学习模态对齐",
+        "source_sections": "['方法', '引言']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 1.0320723056793213,
+        "summary_type": "methodology"
+      },
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "方法概述：\n1、方法名称: MIREncoder\n2、核心思想: 通过多模态自监督预训练方法，将LLVM IR（中间表示）同时建模为词序列和依赖图两种模态，以提取语法、语义和结构特征，用于高性能计算（HPC）的性能优化任务。\n\n3、主要流程/组件\n组件/步骤一: IR词序列处理\n- 功能：将IR指令拆分为子词单元，通过训练的WordPiece分词器转换为数值化序列（类似BERT处理方式）\n- 关键点：采用64长度限制的语句级编码，包含特殊标记[CLS]/[SEP]，支持Masked Language Modeling任务\n\n组件/步骤二: 依赖图生成\n- 功能：使用PROGRAML工具将IR转换为包含数据流、控制流和调用流的多图结构\n- 关键点：节点特征为IR语句，通过分词器转换为数值特征供图神经网络处理\n\n组件/步骤三: 多模态预训练任务\n1) 掩码语言建模(MLM)：\n- 随机掩码15%IR词序列，通过Transformer层预测被掩码内容\n- 采用80-10-10的掩码策略避免模型对[MASK]标记过拟合\n\n2) 图自编码(GAE)：\n- 使用GNN层编码多图为低维表示，并重建原始图的邻接矩阵\n- 创新性三流联合训练：同时处理控制流/数据流/调用流子图，通过聚合损失优化\n\n3) IR-图匹配：\n- 新颖的二分类任务，判断词序列与图是否来自同一IR源码\n- 组合Transformer和GNN的输出层，通过交叉熵损失学习模态对齐",
+        "source_sections": "['方法', '引言']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 1.0320723056793213,
+        "summary_type": "methodology"
+      },
+      {
+        "paper_id": "3650200.3656600",
+        "summary_text": "方法概述：\n1、方法名称: DAWN (Distance Assessment algorithm With matrix operations on Networks)\n2、核心思想: 通过优化布尔矩阵运算来加速无权图中的最短路径计算，利用矩阵乘法的部分结果选择性跳过冗余边访问，从而减少计算量。其核心直觉是：仅关注对最短路径问题有实际影响的矩阵行列，并通过稀疏性优化进一步提升性能。\n\n3、主要流程/组件\n组件/步骤一: BOVM (Boolean Vector-Matrix Operation)\n- 功能：将传统向量-矩阵乘法转化为布尔运算，通过压缩非零元素索引减少计算量。当首次发现路径时立即终止计算（利用Theorem 3.2保证首次发现的路径即最短路径），并跳过后续冗余计算。\n\n组件/步骤二: SOVM (Sparse Optimized Boolean Vector-Matrix Operation)\n- 功能：针对稀疏图的扩展优化，结合图遍历与矩阵运算。通过限制操作范围于邻居节点集，并排除已确定最短路径的节点（利用CSR矩阵格式和动态更新的布尔数组），将时间复杂度降至O(E_wcc(i))。\n\n组件/步骤三: 动态收敛判断机制\n- 功能：基于Fact 1实现早期终止条件——当距离向量不再变化时（即未发现新路径），立即终止迭代过程。\n\n组件/步骤四: 内存优化设计\n- 功能：采用反向BFS策略和布尔数组替代距离向量，将内存需求从BFS的4m+8n字节降至4m+3n字节，尤其适合GPU内存受限场景。\n\n各组件关系：BOVM提供基础布尔运算框架，SOVM在其基础上引入稀疏图特化优化；动态收敛机制贯穿所有运算步骤；内存优化设计与算法流程协同工作。整体形成\"计算简化-稀疏优化-提前终止-内存节省\"的闭环优化链。",
+        "source_sections": "['方法', '引言']",
+        "topics": "['并行计算 (Parallel Computing)', '图论 (Graph Theory)']",
+        "score": 1.0336008071899414,
+        "summary_type": "methodology"
+      },
+      {
+        "paper_id": "3650200.3656600",
+        "summary_text": "方法概述：\n1、方法名称: DAWN (Distance Assessment algorithm With matrix operations on Networks)\n2、核心思想: 通过优化布尔矩阵运算来加速无权图中的最短路径计算，利用矩阵乘法的部分结果选择性跳过冗余边访问，从而减少计算量。其核心直觉是：仅关注对最短路径问题有实际影响的矩阵行列，并通过稀疏性优化进一步提升性能。\n\n3、主要流程/组件\n组件/步骤一: BOVM (Boolean Vector-Matrix Operation)\n- 功能：将传统向量-矩阵乘法转化为布尔运算，通过压缩非零元素索引减少计算量。当首次发现路径时立即终止计算（利用Theorem 3.2保证首次发现的路径即最短路径），并跳过后续冗余计算。\n\n组件/步骤二: SOVM (Sparse Optimized Boolean Vector-Matrix Operation)\n- 功能：针对稀疏图的扩展优化，结合图遍历与矩阵运算。通过限制操作范围于邻居节点集，并排除已确定最短路径的节点（利用CSR矩阵格式和动态更新的布尔数组），将时间复杂度降至O(E_wcc(i))。\n\n组件/步骤三: 动态收敛判断机制\n- 功能：基于Fact 1实现早期终止条件——当距离向量不再变化时（即未发现新路径），立即终止迭代过程。\n\n组件/步骤四: 内存优化设计\n- 功能：采用反向BFS策略和布尔数组替代距离向量，将内存需求从BFS的4m+8n字节降至4m+3n字节，尤其适合GPU内存受限场景。\n\n各组件关系：BOVM提供基础布尔运算框架，SOVM在其基础上引入稀疏图特化优化；动态收敛机制贯穿所有运算步骤；内存优化设计与算法流程协同工作。整体形成\"计算简化-稀疏优化-提前终止-内存节省\"的闭环优化链。",
+        "source_sections": "['方法', '引言']",
+        "topics": "['并行计算 (Parallel Computing)', '图论 (Graph Theory)']",
+        "score": 1.0336008071899414,
+        "summary_type": "methodology"
+      },
+      {
+        "paper_id": "3577193.3593731",
+        "summary_text": "方法概述：\n\n1、方法名称: BEAM (Block Elimination with Additive Modifications)\n\n2、核心思想: 该方法通过在对角块出现小值时采用加性修正（而非传统行交换）来改进LU分解的数值稳定性。其核心直觉是：通过分块SVD分解监控对角块的奇异值，对低于阈值的奇异值进行系统性修正，从而避免部分主元法（GEPP）的并行性限制，同时保持优于非主元法（GENP）的数值鲁棒性。\n\n3、主要流程/组件\n组件/步骤一: 分块SVD分解\n- 对每个对角块进行SVD分解，识别小于预设阈值τ的奇异值\n- 记录需要修正的奇异值及其对应奇异向量（存储为修正矩阵M_U和M_V）\n\n组件/步骤二: 加性修正实施\n- 对过小的奇异值统一提升至阈值τ\n- 生成对角修正矩阵M_Σ（包含所有τ-σ_i的差值）\n- 通过矩阵加法实现等效修正：A → A + M_U M_Σ M_V^T\n\n组件/步骤三: 分块LU分解\n- 在修正后的矩阵上执行非主元分块LU分解\n- 生成下/上分块三角矩阵L和R（与传统LU不同）\n\n组件/步骤四: Woodbury校正（可选）\n- 构建电容矩阵C = I - M_Σ M_V^T A^{-1} M_U\n- 通过因式分解避免显式求逆（推荐使用GEPP）\n- 最终解通过x ← (I + C_L C^{-1} C_R)L^{-1}b R^{-1}获得\n\n组件/步骤五: 迭代精化（替代方案）\n- 作为Woodbury公式的替代选项\n- 通过标准迭代过程校正扰动系统解\n\n关键关系说明：\n1. SVD修正与LU分解通过Schur补更新自然交换顺序\n2. Woodbury公式将分散的秩-m修正整合为单次全局校正\n3. 分块结构使得L/R的面板更新可并行执行",
+        "source_sections": "['方法', '引言']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '图论 (Graph Theory)', '硬件加速 (Hardware Acceleration)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0499378442764282,
+        "summary_type": "methodology"
+      }
+    ],
+    "conclusion": [
+      {
+        "paper_id": "3577193.3593714",
+        "summary_text": "结论与展望总结：  \n\n1、**结论回顾**:  \n- 论文提出了一种基于相似性的调优框架，通过模糊匹配更大的程序变换来提升窥孔优化（peephole optimizations）。  \n- 该方法将性能模型与优化分离，采用性能嵌入（performance embeddings）和优化数据库的形式，支持在嵌入空间中对最近邻进行局部搜索以寻找优化方案。  \n- 通过多个案例研究验证了该方法的有效性，包括将搜索复杂度降低多达四个数量级，并在某些用例中优于最先进的MKL库。  \n- 该方法具有可扩展性，适用于数据依赖应用的定制优化，同时为可解释、鲁棒的优化提供了新思路，且能适应未来应用和硬件的变化。  \n\n2、**工作局限性**:  \n- 论文未明确提及具体局限性或不足之处（需结合全文其他部分进一步确认）。  \n\n3、**未来工作**:  \n- 论文建议未来研究方向包括：  \n  - 进一步扩展该方法的适应性，使其能更简单地集成新的优化技术（如通过向数据库添加新条目）。  \n  - 探索静态编码（static encoding）中SDFG节点和边特征的更高效映射方法（参考文中提到的Table）。",
+        "source_sections": "['总结']",
+        "topics": "['迁移学习 (Transfer Learning)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0362393856048584,
+        "summary_type": "conclusion"
+      },
+      {
+        "paper_id": "3577193.3593714",
+        "summary_text": "结论与展望总结：  \n\n1、**结论回顾**:  \n- 论文提出了一种基于相似性的调优框架，通过模糊匹配更大的程序变换来提升窥孔优化（peephole optimizations）。  \n- 该方法将性能模型与优化分离，采用性能嵌入（performance embeddings）和优化数据库的形式，支持在嵌入空间中对最近邻进行局部搜索以寻找优化方案。  \n- 通过多个案例研究验证了该方法的有效性，包括将搜索复杂度降低多达四个数量级，并在某些用例中优于最先进的MKL库。  \n- 该方法具有可扩展性，适用于数据依赖应用的定制优化，同时为可解释、鲁棒的优化提供了新思路，且能适应未来应用和硬件的变化。  \n\n2、**工作局限性**:  \n- 论文未明确提及具体局限性或不足之处（需结合全文其他部分进一步确认）。  \n\n3、**未来工作**:  \n- 论文建议未来研究方向包括：  \n  - 进一步扩展该方法的适应性，使其能更简单地集成新的优化技术（如通过向数据库添加新条目）。  \n  - 探索静态编码（static encoding）中SDFG节点和边特征的更高效映射方法（参考文中提到的Table）。",
+        "source_sections": "['总结']",
+        "topics": "['迁移学习 (Transfer Learning)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0362393856048584,
+        "summary_type": "conclusion"
+      },
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "结论与展望总结：\n\n1、结论回顾: \n- 提出MIREncoder，一种多模态预训练方法，用于编码LLVM IR，便于基于深度学习的HPC性能优化模型使用。\n- 设计了一个规模较小的预训练模型，减轻了对高端大规模计算资源的依赖。\n- 通过引入多模态学习弥补了小模型可能带来的性能损失，实验结果表明该方法在降低开销的同时保持了良好性能。\n- 该预训练模型可与在线自动调优器结合使用以辅助搜索过程。\n\n2、工作局限性:\n- 论文未明确提及具体局限性（需注意：原文中未直接陈述不足）\n\n3、未来工作:\n- 研究预训练模型与在线自动调优器的结合应用",
+        "source_sections": "['总结']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 1.0543255805969238,
+        "summary_type": "conclusion"
+      },
+      {
+        "paper_id": "3656019.3676895",
+        "summary_text": "结论与展望总结：\n\n1、结论回顾: \n- 提出MIREncoder，一种多模态预训练方法，用于编码LLVM IR，便于基于深度学习的HPC性能优化模型使用。\n- 设计了一个规模较小的预训练模型，减轻了对高端大规模计算资源的依赖。\n- 通过引入多模态学习弥补了小模型可能带来的性能损失，实验结果表明该方法在降低开销的同时保持了良好性能。\n- 该预训练模型可与在线自动调优器结合使用以辅助搜索过程。\n\n2、工作局限性:\n- 论文未明确提及具体局限性（需注意：原文中未直接陈述不足）\n\n3、未来工作:\n- 研究预训练模型与在线自动调优器的结合应用",
+        "source_sections": "['总结']",
+        "topics": "['并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '自动调优 (Auto-tuning)', '多模态建模 (Multi-modal Modeling)']",
+        "score": 1.0543255805969238,
+        "summary_type": "conclusion"
+      },
+      {
+        "paper_id": "Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs",
+        "summary_text": "结论与展望总结：  \n1、结论回顾:  \n   - 本文对大规模高性能计算（HPC）系统的性能分析工具进行了全面研究。  \n   - 提出了性能分析工具的关键特征，并基于这些特征对现有工具进行了评估和详细对比。  \n   - 研究发现不同工具在功能、适用场景及对大规模HPC系统的支持程度上存在显著差异。  \n   - 该研究可为研究人员和实践者选择适合其应用的性能分析工具提供指导。  \n\n2、工作局限性:  \n   - 论文未明确提及具体局限性（需进一步检查其他章节或补充信息）。  \n\n3、未来工作:  \n   - 论文未明确列出未来研究方向（需结合其他章节或作者隐含建议推断，例如：可能包括开发更通用的性能分析工具或优化现有工具对超大规模系统的支持）。  \n\n注：若需更完整的局限性或未来展望，建议补充论文中\"Discussion\"或\"Limitations\"章节内容。当前总结仅基于提供的结论段落。",
+        "source_sections": "['总结']",
+        "topics": "['并行计算 (Parallel Computing)', '图论 (Graph Theory)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0727343559265137,
+        "summary_type": "conclusion"
+      }
+    ],
+    "metric": [
+      {
+        "paper_id": "3688609",
+        "summary_text": "### 度量指标总结  \n\n#### 1、评估指标:  \n- **Top-1 Accuracy**：衡量模型在分类任务中的正确率，即预测结果中最高概率的类别是否为真实类别。  \n- **Inference Time**：衡量模型在特定硬件（CPU/GPU）上执行单次推理的耗时（中位数），反映计算效率。  \n- **Compression Ratio**：量化模型压缩程度（如剪枝率95%表示保留5%的权重），用于评估压缩技术的激进程度。  \n- **Expected Speedup vs. Achieved Speedup**：对比理论加速比（基于压缩比）与实际加速比，衡量压缩技术的实际优化效果。  \n- **Accuracy Drop**：记录压缩技术（如剪枝、量化）导致的精度损失，用于权衡精度与效率。  \n\n#### 2、选取理由:  \n- **全面性覆盖**：  \n  - **Top-1 Accuracy**和**Accuracy Drop**直接反映模型的核心性能（分类能力）及压缩对性能的影响。  \n  - **Inference Time**是硬件部署的关键指标，尤其针对边缘设备（如HiKey 970、Xavier）的实时性需求。  \n  - **Compression Ratio**和**Speedup对比**量化了压缩技术的有效性，揭示理论潜力与实际优化瓶颈（如稀疏计算支持不足）。  \n- **任务相关性**：  \n  - 论文聚焦模型压缩与跨栈优化（DLAS），需同时评估精度（面向ML任务）和时延（面向系统部署）。  \n  - 通过对比不同硬件（CPU/GPU）、算法（Direct/GEMM/Spatial Pack）和压缩技术（剪枝/量化）的组合效果，指标选取支持多维度分析。  \n- **客观性保障**：  \n  - 采用中位数推理时间（排除异常值）、多次重复实验（150次）确保数据可靠性。  \n  - 通过“肘点”（elbow point）选择压缩阈值，避免主观偏差，平衡精度与效率。  \n\n#### 补充说明：  \n论文未使用F1-Score等细分指标，因图像分类任务中Top-1 Accuracy已足够表征全局性能；未引入能耗指标或因实验聚焦于时延与精度的基础权衡（硬件差异通过平台对比间接体现）。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0604972839355469,
+        "summary_type": "metric"
+      },
+      {
+        "paper_id": "3688609",
+        "summary_text": "### 度量指标总结  \n\n#### 1、评估指标:  \n- **Top-1 Accuracy**：衡量模型在分类任务中的正确率，即预测结果中最高概率的类别是否为真实类别。  \n- **Inference Time**：衡量模型在特定硬件（CPU/GPU）上执行单次推理的耗时（中位数），反映计算效率。  \n- **Compression Ratio**：量化模型压缩程度（如剪枝率95%表示保留5%的权重），用于评估压缩技术的激进程度。  \n- **Expected Speedup vs. Achieved Speedup**：对比理论加速比（基于压缩比）与实际加速比，衡量压缩技术的实际优化效果。  \n- **Accuracy Drop**：记录压缩技术（如剪枝、量化）导致的精度损失，用于权衡精度与效率。  \n\n#### 2、选取理由:  \n- **全面性覆盖**：  \n  - **Top-1 Accuracy**和**Accuracy Drop**直接反映模型的核心性能（分类能力）及压缩对性能的影响。  \n  - **Inference Time**是硬件部署的关键指标，尤其针对边缘设备（如HiKey 970、Xavier）的实时性需求。  \n  - **Compression Ratio**和**Speedup对比**量化了压缩技术的有效性，揭示理论潜力与实际优化瓶颈（如稀疏计算支持不足）。  \n- **任务相关性**：  \n  - 论文聚焦模型压缩与跨栈优化（DLAS），需同时评估精度（面向ML任务）和时延（面向系统部署）。  \n  - 通过对比不同硬件（CPU/GPU）、算法（Direct/GEMM/Spatial Pack）和压缩技术（剪枝/量化）的组合效果，指标选取支持多维度分析。  \n- **客观性保障**：  \n  - 采用中位数推理时间（排除异常值）、多次重复实验（150次）确保数据可靠性。  \n  - 通过“肘点”（elbow point）选择压缩阈值，避免主观偏差，平衡精度与效率。  \n\n#### 补充说明：  \n论文未使用F1-Score等细分指标，因图像分类任务中Top-1 Accuracy已足够表征全局性能；未引入能耗指标或因实验聚焦于时延与精度的基础权衡（硬件差异通过平台对比间接体现）。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0604972839355469,
+        "summary_type": "metric"
+      },
+      {
+        "paper_id": "3577193.3593731",
+        "summary_text": "根据论文内容，以下是度量指标选取策略的总结：\n\n---\n\n### **度量指标总结**\n\n#### 1. **评估指标**  \n**指标1 名称**：Infinity-norm backward error (𝜂∞(𝑥))  \n- **说明其衡量方面**：衡量求解线性系统𝐴𝑥=𝑏的数值稳定性，通过计算残差的无穷范数（∥𝑏−𝐴𝑥∥∞）与系统矩阵和解的范数（∥𝐴∥∞∥𝑥∥∞ + ∥𝑏∥∞）的比值，反映解的相对误差。  \n\n**指标2 名称**：Number of modifications  \n- **说明其衡量方面**：统计算法对矩阵𝐴的修改次数（如通过SVD调整奇异值），反映算法为保持数值稳定性所需的干预程度。  \n\n**指标3 名称**：Iterative refinement steps  \n- **说明其衡量方面**：记录迭代精炼（iterative refinement）的迭代次数（上限为30），用于评估算法收敛到高精度解的效率。  \n\n**指标4 名称**：Condition number (𝜅2(𝐴))  \n- **说明其衡量方面**：通过矩阵的谱条件数（最大与最小奇异值之比）分析问题的病态程度，间接影响解的误差界限和迭代精炼的收敛性。  \n\n---\n\n#### 2. **选取理由**  \n1. **全面性覆盖性能维度**：  \n   - **𝜂∞(𝑥)**直接量化解的数值精度，是线性求解器的核心评价标准；  \n   - **Number of modifications**反映算法对病态问题的适应性，与理论分析中的修改阈值τ相关；  \n   - **Iterative refinement steps**验证算法在有限步内达到机器精度的能力；  \n   - **Condition number**解释误差来源（如定理4.1中τ𝜅2(𝐴)≪1的条件）。  \n\n2. **理论与实验的一致性**：  \n   - 论文的理论分析（如式5、定理4.1）明确将𝜂∞(𝑥)和𝜅2(𝐴)作为误差上界的核心变量，实验指标与之对应；  \n   - 修改次数和迭代步数验证了理论假设（如τ的选择对稳定性的影响）。  \n\n3. **实际应用需求**：  \n   - Infinity范数误差（而非2范数）更易计算且与浮点运算的实际误差匹配；  \n   - 结构化矩阵（如orthog、zielkeNS）的病态性要求通过条件数和修改次数联合评估算法的鲁棒性。  \n\n--- \n\n### **关键结论**\n论文通过上述指标系统性地验证了BEAM算法在以下方面的表现：  \n- 数值稳定性（𝜂∞(𝑥) vs. GEPP/GENP）；  \n- 计算效率（迭代步数、修改次数与运行时间的权衡）；  \n- 理论边界与实际性能的匹配性（如τ与条件数的关系）。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '图论 (Graph Theory)', '硬件加速 (Hardware Acceleration)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0729718208312988,
+        "summary_type": "metric"
+      },
+      {
+        "paper_id": "3577193.3593731",
+        "summary_text": "根据论文内容，以下是度量指标选取策略的总结：\n\n---\n\n### **度量指标总结**\n\n#### 1. **评估指标**  \n**指标1 名称**：Infinity-norm backward error (𝜂∞(𝑥))  \n- **说明其衡量方面**：衡量求解线性系统𝐴𝑥=𝑏的数值稳定性，通过计算残差的无穷范数（∥𝑏−𝐴𝑥∥∞）与系统矩阵和解的范数（∥𝐴∥∞∥𝑥∥∞ + ∥𝑏∥∞）的比值，反映解的相对误差。  \n\n**指标2 名称**：Number of modifications  \n- **说明其衡量方面**：统计算法对矩阵𝐴的修改次数（如通过SVD调整奇异值），反映算法为保持数值稳定性所需的干预程度。  \n\n**指标3 名称**：Iterative refinement steps  \n- **说明其衡量方面**：记录迭代精炼（iterative refinement）的迭代次数（上限为30），用于评估算法收敛到高精度解的效率。  \n\n**指标4 名称**：Condition number (𝜅2(𝐴))  \n- **说明其衡量方面**：通过矩阵的谱条件数（最大与最小奇异值之比）分析问题的病态程度，间接影响解的误差界限和迭代精炼的收敛性。  \n\n---\n\n#### 2. **选取理由**  \n1. **全面性覆盖性能维度**：  \n   - **𝜂∞(𝑥)**直接量化解的数值精度，是线性求解器的核心评价标准；  \n   - **Number of modifications**反映算法对病态问题的适应性，与理论分析中的修改阈值τ相关；  \n   - **Iterative refinement steps**验证算法在有限步内达到机器精度的能力；  \n   - **Condition number**解释误差来源（如定理4.1中τ𝜅2(𝐴)≪1的条件）。  \n\n2. **理论与实验的一致性**：  \n   - 论文的理论分析（如式5、定理4.1）明确将𝜂∞(𝑥)和𝜅2(𝐴)作为误差上界的核心变量，实验指标与之对应；  \n   - 修改次数和迭代步数验证了理论假设（如τ的选择对稳定性的影响）。  \n\n3. **实际应用需求**：  \n   - Infinity范数误差（而非2范数）更易计算且与浮点运算的实际误差匹配；  \n   - 结构化矩阵（如orthog、zielkeNS）的病态性要求通过条件数和修改次数联合评估算法的鲁棒性。  \n\n--- \n\n### **关键结论**\n论文通过上述指标系统性地验证了BEAM算法在以下方面的表现：  \n- 数值稳定性（𝜂∞(𝑥) vs. GEPP/GENP）；  \n- 计算效率（迭代步数、修改次数与运行时间的权衡）；  \n- 理论边界与实际性能的匹配性（如τ与条件数的关系）。",
+        "source_sections": "['实验评价']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '图论 (Graph Theory)', '硬件加速 (Hardware Acceleration)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0729718208312988,
+        "summary_type": "metric"
+      },
+      {
+        "paper_id": "Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs",
+        "summary_text": "### 度量指标总结  \n\n#### 1、评估指标:  \n- **数据丰度（Abundance of performance data）**: 衡量工具收集的性能数据类型多样性（如CPU性能计数器、耗时、函数参数、MPI通信、函数追踪等）。  \n- **时间开销（Time overhead）**: 衡量工具进行数据收集时额外消耗的时间（单位：秒）。  \n- **存储开销（Storage overhead）**: 衡量工具收集的性能数据占用的额外存储空间（单位：KB）。  \n- **热点分析（Hotspot analysis）**: 通过调用栈树状图（HPCToolkit）、扁平视图（TAU）或内存缓冲区排序（Scalasca）识别程序中最耗时的函数或代码区域。  \n- **可扩展性损失指标（Scalability loss metrics）**: 量化程序在扩展时性能与理想速度的差距（如HPCToolkit的树状视图和TAU的实测/理想加速比对比）。  \n- **性能方差分析（Performance variance analysis）**: 通过异常检测（如TAU的ParaProf分布图）识别程序运行时的性能波动或异常节点。  \n\n#### 2、选取理由:  \n论文选择的指标全面覆盖了高性能计算（HPC）性能分析的四个核心维度：  \n1. **数据收集效率**：通过丰度、时间/存储开销，量化不同工具（采样型vs插桩型）在数据全面性与资源消耗间的权衡。  \n2. **可视化有效性**：热点分析和追踪可视化指标揭示了现有工具在直观呈现大规模程序性能问题上的不足。  \n3. **可扩展性诊断**：可扩展性损失指标直接反映程序并行化效率，但缺乏根因定位能力。  \n4. **异常检测**：性能方差分析指标用于识别硬件/软件配置导致的非确定性性能下降。  \n\n这些指标的选取依据在于：  \n- **针对性**：每个指标对应HPC性能分析的关键挑战（如低开销数据收集、大规模追踪可解释性）。  \n- **互补性**：结合定量指标（时间/存储开销）与定性评估（可视化效果），综合评判工具优劣。  \n- **实用性**：直指现有工具的缺陷（如Pitfall 1-4），为未来工具开发提供改进方向（如结合机器学习优化根因分析）。  \n\n综上，论文通过多维度的指标设计，系统评估了HPC性能分析工具的能力边界与改进空间。",
+        "source_sections": "['实验评价']",
+        "topics": "['并行计算 (Parallel Computing)', '图论 (Graph Theory)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0813192129135132,
+        "summary_type": "metric"
+      }
+    ],
+    "background": [
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "问题背景总结：  \n1、研究领域: 半监督学习（Semi-Supervised Learning, SSL）与开放世界识别（Open-World Recognition）的交叉领域，具体为开放世界半监督学习（OpenSSL）。  \n\n2、核心问题: 如何在未标记数据中同时存在已知类别（seen classes）和未知新类别（novel classes）的情况下，实现有效的半监督学习，即同步提升模型对已知类别的分类能力与对新类别的聚类能力。  \n\n3、研究动机:  \n- **理论价值**: 现有SSL方法假设未标记数据仅包含已知类别，而实际场景中未标记数据常混杂新类别，传统方法无法直接适用。  \n- **实践价值**: 解决开放世界半监督学习问题可降低对人工标注的依赖，更贴合真实应用场景（如大规模图像分类中未知类别的自动发现）。  \n\n4、潜在应用:  \n- 图像分类系统（如ImageNet数据集）中自动识别并归类未标注的新物体类别。  \n- 医学影像分析中利用少量标注数据同时识别已知疾病和发现潜在新病症。",
+        "source_sections": "['引言']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 0.9062854051589966,
+        "summary_type": "background"
+      },
+      {
+        "paper_id": "2309.11930v2",
+        "summary_text": "问题背景总结：  \n1、研究领域: 半监督学习（Semi-Supervised Learning, SSL）与开放世界识别（Open-World Recognition）的交叉领域，具体为开放世界半监督学习（OpenSSL）。  \n\n2、核心问题: 如何在未标记数据中同时存在已知类别（seen classes）和未知新类别（novel classes）的情况下，实现有效的半监督学习，即同步提升模型对已知类别的分类能力与对新类别的聚类能力。  \n\n3、研究动机:  \n- **理论价值**: 现有SSL方法假设未标记数据仅包含已知类别，而实际场景中未标记数据常混杂新类别，传统方法无法直接适用。  \n- **实践价值**: 解决开放世界半监督学习问题可降低对人工标注的依赖，更贴合真实应用场景（如大规模图像分类中未知类别的自动发现）。  \n\n4、潜在应用:  \n- 图像分类系统（如ImageNet数据集）中自动识别并归类未标注的新物体类别。  \n- 医学影像分析中利用少量标注数据同时识别已知疾病和发现潜在新病症。",
+        "source_sections": "['引言']",
+        "topics": "['代码生成 (Code Generation)', '反事实推理 (Counterfactual Reasoning)']",
+        "score": 0.9062854051589966,
+        "summary_type": "background"
+      },
+      {
+        "paper_id": "3688609",
+        "summary_text": "问题背景总结：  \n1、研究领域: **深度学习加速与系统优化**（跨机器学习与计算机系统领域）  \n\n2、核心问题: **如何通过跨层协同优化（从模型架构到硬件）实现深度神经网络（DNN）在资源受限设备上的高效部署**，同时平衡推理精度、执行时间、内存占用和能耗等约束条件。  \n\n3、研究动机:  \n- **理论价值**：当前DNN优化方法（如模型压缩、算法改进）缺乏系统性评估框架，机器学习与系统优化社区存在割裂，导致潜在性能未被充分挖掘。  \n- **实践需求**：新兴应用（如自动驾驶、无人机避障）依赖轻量化DNN部署，但现有优化方案缺乏统一基准和跨层交互分析，难以适配多样化硬件资源限制。  \n\n4、潜在应用:  \n- **边缘计算场景**：实时性要求高的移动设备（手机、无人机）、嵌入式系统（IoT设备）。  \n- **高能效推理**：数据中心大规模DNN服务部署的能耗优化。",
+        "source_sections": "['引言']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 0.9650797843933105,
+        "summary_type": "background"
+      },
+      {
+        "paper_id": "3688609",
+        "summary_text": "问题背景总结：  \n1、研究领域: **深度学习加速与系统优化**（跨机器学习与计算机系统领域）  \n\n2、核心问题: **如何通过跨层协同优化（从模型架构到硬件）实现深度神经网络（DNN）在资源受限设备上的高效部署**，同时平衡推理精度、执行时间、内存占用和能耗等约束条件。  \n\n3、研究动机:  \n- **理论价值**：当前DNN优化方法（如模型压缩、算法改进）缺乏系统性评估框架，机器学习与系统优化社区存在割裂，导致潜在性能未被充分挖掘。  \n- **实践需求**：新兴应用（如自动驾驶、无人机避障）依赖轻量化DNN部署，但现有优化方案缺乏统一基准和跨层交互分析，难以适配多样化硬件资源限制。  \n\n4、潜在应用:  \n- **边缘计算场景**：实时性要求高的移动设备（手机、无人机）、嵌入式系统（IoT设备）。  \n- **高能效推理**：数据中心大规模DNN服务部署的能耗优化。",
+        "source_sections": "['引言']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 0.9650797843933105,
+        "summary_type": "background"
+      },
+      {
+        "paper_id": "3701993",
+        "summary_text": "问题背景总结：\n1、研究领域: 编程语言优化与并行计算\n2、核心问题: 如何通过静态分析解决C语言中指针移动导致的数据访问模式识别难题，以实现更有效的代码并行化。\n3、研究动机: \n- 理论价值：C语言缺乏原生并行支持，现有指针机制阻碍数据流分析，制约编译器自动并行化能力\n- 实践价值：现代硬件依赖并行计算突破性能瓶颈，但手动并行化成本高且易错（如OpenMP/MPI增加复杂度），数据移动已成为计算性能关键瓶颈\n4、潜在应用:\n- 高性能计算：自动优化科学计算基准测试（如Mantevo HPCCG）\n- 密码学加速：提升安全算法实现效率（如OpenSSL的PBKDF2）\n- 编译器开发：增强数据流分析框架（如HPVM/Halide）对指针密集型代码的处理能力",
+        "source_sections": "['引言']",
+        "topics": "['代码生成 (Code Generation)', '并行计算 (Parallel Computing)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)']",
+        "score": 0.9733163118362427,
+        "summary_type": "background"
+      }
+    ],
+    "resultanalysis": [
+      {
+        "paper_id": "3577193.3593714",
+        "summary_text": "实验结果分析总结：\n\n1、主要发现:  \n- 与基线模型（如基于重用距离分析的模型、IR2Vec和Baghdadi等人的多面体性能模型）相比，本文提出的性能嵌入模型在所有内存相关性能指标（如内存带宽利用率、数据局部性）上均表现出更低的局部变异度（local variation），表明其相似性搜索更精准。  \n- 在案例研究中，基于嵌入的迁移调优（transfer tuning）在多数应用中将运行时性能优化至参考优化的5%以内，同时将搜索复杂度降低4个数量级（例如，Tiramisu自动调度器的MCTS需测试大量配置，而迁移调优仅需局部搜索）。  \n- 在稀疏矩阵乘法（SpMM）的动态调度任务中，迁移调优在10个测试基准中正确选择了8个最优调度策略，且在某些用例中显著优于Intel MKL库。\n\n2、消融研究结论:  \n- **动态与静态特征的作用**：  \n  - 仅使用动态特征（如性能计数器数据）足以推理内存带宽优化，但静态特征（如数组访问模式、步长）对理解数据局部性和I/O复杂度至关重要。  \n  - 节点嵌入分析显示，静态特征（如访问步长和数组大小）能生成有意义的嵌入，反映实际L2加载带宽的相似性。  \n\n3、其他分析洞察:  \n- **可视化分析**：t-SNE图显示嵌入空间能清晰分离不同数据局部性的样本，而基线模型无法实现这种分离，表明本文模型能有效编码性能关键特征。  \n- **跨领域迁移能力**：在稀疏化BERT模型的实验中，嵌入空间同样呈现可分离性，验证了方法对跨领域任务的泛化性。  \n- **参数敏感性**：优化数据库的密度（即相似邻居的可用性）是关键超参数。例如，MLP基准因矩阵维度差异导致迁移效果较差，凸显了邻居相似性的重要性。  \n- **可解释性**：通过分析最近邻优化决策（如Daubechies小波借鉴Haar小波的并行化策略），模型提供了传统端到端神经网络缺乏的优化解释能力。  \n\n---  \n总结：本文通过性能嵌入和迁移调优实现了高效、可解释的跨程序优化迁移，显著降低了搜索复杂度，并在多种案例中优于现有工具。消融实验明确了静态与动态特征的互补作用，可视化与案例分析进一步验证了模型的鲁棒性和泛化能力。",
+        "source_sections": "['实验评价', '总结']",
+        "topics": "['迁移学习 (Transfer Learning)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.054437279701233,
+        "summary_type": "resultanalysis"
+      },
+      {
+        "paper_id": "3577193.3593714",
+        "summary_text": "实验结果分析总结：\n\n1、主要发现:  \n- 与基线模型（如基于重用距离分析的模型、IR2Vec和Baghdadi等人的多面体性能模型）相比，本文提出的性能嵌入模型在所有内存相关性能指标（如内存带宽利用率、数据局部性）上均表现出更低的局部变异度（local variation），表明其相似性搜索更精准。  \n- 在案例研究中，基于嵌入的迁移调优（transfer tuning）在多数应用中将运行时性能优化至参考优化的5%以内，同时将搜索复杂度降低4个数量级（例如，Tiramisu自动调度器的MCTS需测试大量配置，而迁移调优仅需局部搜索）。  \n- 在稀疏矩阵乘法（SpMM）的动态调度任务中，迁移调优在10个测试基准中正确选择了8个最优调度策略，且在某些用例中显著优于Intel MKL库。\n\n2、消融研究结论:  \n- **动态与静态特征的作用**：  \n  - 仅使用动态特征（如性能计数器数据）足以推理内存带宽优化，但静态特征（如数组访问模式、步长）对理解数据局部性和I/O复杂度至关重要。  \n  - 节点嵌入分析显示，静态特征（如访问步长和数组大小）能生成有意义的嵌入，反映实际L2加载带宽的相似性。  \n\n3、其他分析洞察:  \n- **可视化分析**：t-SNE图显示嵌入空间能清晰分离不同数据局部性的样本，而基线模型无法实现这种分离，表明本文模型能有效编码性能关键特征。  \n- **跨领域迁移能力**：在稀疏化BERT模型的实验中，嵌入空间同样呈现可分离性，验证了方法对跨领域任务的泛化性。  \n- **参数敏感性**：优化数据库的密度（即相似邻居的可用性）是关键超参数。例如，MLP基准因矩阵维度差异导致迁移效果较差，凸显了邻居相似性的重要性。  \n- **可解释性**：通过分析最近邻优化决策（如Daubechies小波借鉴Haar小波的并行化策略），模型提供了传统端到端神经网络缺乏的优化解释能力。  \n\n---  \n总结：本文通过性能嵌入和迁移调优实现了高效、可解释的跨程序优化迁移，显著降低了搜索复杂度，并在多种案例中优于现有工具。消融实验明确了静态与动态特征的互补作用，可视化与案例分析进一步验证了模型的鲁棒性和泛化能力。",
+        "source_sections": "['实验评价', '总结']",
+        "topics": "['迁移学习 (Transfer Learning)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.054437279701233,
+        "summary_type": "resultanalysis"
+      },
+      {
+        "paper_id": "Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs",
+        "summary_text": "实验结果分析总结：\n\n1、主要发现:\n- 数据收集方面：采样工具（如HPCToolkit）在收集所有类型函数事件时（不考虑函数参数）比插桩工具（如TAU-P和Scalasca-P）具有更低的时间开销。但对于MPI通信事件，插桩工具（TAU-T和Scalasca-T）由于能收集丰富的参数信息，更适合且时间开销可忽略。\n- 存储开销方面：插桩工具由于高频事件数据收集导致存储开销更高，与函数调用次数成正比；而采样工具的存储开销与样本数成正比。\n- 可视化分析方面：现有工具（如HPCToolkit和TAU）的跟踪可视化在16进程规模下已难以解读；Scalasca通过提取关键指标（如延迟发送/接收问题）提供更直观的性能问题诊断。\n- 热点分析方面：HPCToolkit的调用栈树形视图最直观，TAU的扁平视图可接受，而Scalasca的热点展示方式不直观且难以识别关键代码区域。\n- 可扩展性分析方面：HPCToolkit通过自定义可扩展性损失度量提供上下文洞察，但难以定位根本原因；TAU通过实测与理想加速比对比展示差距，但缺乏优化指导。\n\n2、消融研究结论:\n- 数据收集方法对比研究表明：计算事件更适合采样方法（低开销），通信事件更适合插桩方法（参数丰富）。单一方法无法兼顾全面性能分析与可接受开销（Pitfall 1）。\n- 跟踪可视化对比揭示：直接展示原始跟踪数据混乱无意义，需通过异常区域高亮或机器学习技术提取关键指标（Pitfall 2）。\n- 热点展示方式对比表明：仅提供性能统计不足够，需结合多维分析（如低效指令/数据结构）提供可操作优化建议（Pitfall 3）。\n\n3、其他分析洞察:\n- 性能方差分析发现：TAU通过ParaProf可直观识别异常MPI等待事件（如内存噪声注入节点），而HPCToolkit无法有效检测注入的干扰。\n- 未来工具开发方向：\n  1) 融合采样与插桩方法的混合数据收集策略；\n  2) 通过机器学习自动识别大规模跟踪数据中的性能瓶颈；\n  3) 结合图神经网络实现可扩展性问题的快速根因定位；\n  4) 基于深度学习的时序异常检测技术分析性能方差。",
+        "source_sections": "['实验评价', '总结']",
+        "topics": "['并行计算 (Parallel Computing)', '图论 (Graph Theory)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0913569927215576,
+        "summary_type": "resultanalysis"
+      },
+      {
+        "paper_id": "Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs",
+        "summary_text": "实验结果分析总结：\n\n1、主要发现:\n- 数据收集方面：采样工具（如HPCToolkit）在收集所有类型函数事件时（不考虑函数参数）比插桩工具（如TAU-P和Scalasca-P）具有更低的时间开销。但对于MPI通信事件，插桩工具（TAU-T和Scalasca-T）由于能收集丰富的参数信息，更适合且时间开销可忽略。\n- 存储开销方面：插桩工具由于高频事件数据收集导致存储开销更高，与函数调用次数成正比；而采样工具的存储开销与样本数成正比。\n- 可视化分析方面：现有工具（如HPCToolkit和TAU）的跟踪可视化在16进程规模下已难以解读；Scalasca通过提取关键指标（如延迟发送/接收问题）提供更直观的性能问题诊断。\n- 热点分析方面：HPCToolkit的调用栈树形视图最直观，TAU的扁平视图可接受，而Scalasca的热点展示方式不直观且难以识别关键代码区域。\n- 可扩展性分析方面：HPCToolkit通过自定义可扩展性损失度量提供上下文洞察，但难以定位根本原因；TAU通过实测与理想加速比对比展示差距，但缺乏优化指导。\n\n2、消融研究结论:\n- 数据收集方法对比研究表明：计算事件更适合采样方法（低开销），通信事件更适合插桩方法（参数丰富）。单一方法无法兼顾全面性能分析与可接受开销（Pitfall 1）。\n- 跟踪可视化对比揭示：直接展示原始跟踪数据混乱无意义，需通过异常区域高亮或机器学习技术提取关键指标（Pitfall 2）。\n- 热点展示方式对比表明：仅提供性能统计不足够，需结合多维分析（如低效指令/数据结构）提供可操作优化建议（Pitfall 3）。\n\n3、其他分析洞察:\n- 性能方差分析发现：TAU通过ParaProf可直观识别异常MPI等待事件（如内存噪声注入节点），而HPCToolkit无法有效检测注入的干扰。\n- 未来工具开发方向：\n  1) 融合采样与插桩方法的混合数据收集策略；\n  2) 通过机器学习自动识别大规模跟踪数据中的性能瓶颈；\n  3) 结合图神经网络实现可扩展性问题的快速根因定位；\n  4) 基于深度学习的时序异常检测技术分析性能方差。",
+        "source_sections": "['实验评价', '总结']",
+        "topics": "['并行计算 (Parallel Computing)', '图论 (Graph Theory)', '优化算法 (Optimization Algorithms)']",
+        "score": 1.0913569927215576,
+        "summary_type": "resultanalysis"
+      },
+      {
+        "paper_id": "2309.17288v3",
+        "summary_text": "### 实验结果分析总结：\n\n#### 1、主要发现:  \n- **Open-ended Question Answer任务**：AutoAgents在协作生成答案时，通过FairEval和HumanEval评估，其表现优于单智能体模型（如Vicuna-13B、ChatGPT和GPT-4）。HumanEval显示其回答在帮助性、可靠性、准确性和细节水平上更符合人类判断。  \n- **Trivia Creative Writing任务**：  \n  - 在N=5和N=10的设置下，AutoAgents相比未采用智能体生成的基准方法（Standard）提升10%的性能（Trivia Creative Writing Metric Score）。  \n  - 即使对比同样采用智能体生成的SSP方法，AutoAgents仍表现更优，归因于其协作细化（collaborative refinement）和自我细化（self-refinement）机制。  \n\n#### 2、消融研究结论:  \n- **协作讨论（Collaborative Discussion）**：  \n  - 移除Observer反馈导致智能体生成偏向单一角色（如仅程序员），性能下降3%，证明协作讨论对生成全面且符合实际的智能体列表至关重要。  \n- **自我细化（Self-Refinement）**：  \n  - 缺少自我细化时，性能下降3%，表明其对单智能体任务执行质量的关键作用。  \n- **协作细化（Collaborative Refinement）**：  \n  - 缺少协作细化时性能下降2%，尤其在需要跨领域知识融合的任务中影响显著。  \n- **动态内存（Dynamic Memory）**：  \n  - 移除动态内存导致性能降低1%，因其能整合历史行动记录以优化任务执行提示。  \n\n#### 3、其他分析洞察:  \n- **案例研究（Case Study）**：  \n  - 在软件工程领域（如Tetris游戏开发），AutoAgents通过生成多专家角色（游戏设计、UI设计、编程、调试）协同工作，验证了其在复杂场景中的适用性。各角色分工明确，输出详尽的文档和程序。  \n- **参数敏感性分析**：  \n  - Drafting阶段最大讨论次数设为3，Execution阶段最大细化次数为5，实验表明此设定平衡了效率与效果。温度参数固定为0以确保可复现性。  \n- **可视化与流程分析**：  \n  - Figure对比显示，协作讨论生成的智能体列表更全面（如包含UI设计师和测试专家），而缺乏讨论时仅生成程序员角色。动态内存通过Action Observer整合关键信息提升协作效率。  \n\n---  \n**关键结论**：AutoAgents的核心优势源于多阶段协作机制（讨论、细化、动态内存），其性能提升具有统计显著性且通过消融实验验证了各组件的必要性。案例研究进一步证明了框架在跨领域复杂任务中的泛化能力。",
+        "source_sections": "['实验评价', '总结']",
+        "topics": "['代码生成 (Code Generation)', '强化学习 (Reinforcement Learning)', '自动调优 (Auto-tuning)']",
+        "score": 1.097805142402649,
+        "summary_type": "resultanalysis"
+      }
+    ],
+    "baseline": [
+      {
+        "paper_id": "3577193.3593714",
+        "summary_text": "Baseline选取总结：\n\n1、对比方法:\n- Reuse Distance Analysis (重用距离分析)\n- IR2Vec\n- Baghdadi et al.'s Polyhedral Performance Model (Baghdadi等人的多面体性能模型)\n\n2、选取理由: \n作者选择这些Baseline主要基于以下三个维度：\n(1) 技术路线代表性：覆盖传统分析（重用距离分析）、中间表示学习（IR2Vec）和现代多面体优化（Baghdadi模型）三种典型技术路径；\n(2) 先进性考量：Baghdadi模型是当前多面体程序优化的SOTA方法，IR2Vec是基于LLVM IR的最新嵌入方法；\n(3) 对比完整性：重用距离分析作为经典缓存行为模拟方法，提供传统性能分析的基准参照。三者共同构成从传统到现代、从模拟到学习的完整技术谱系对比。\n\n特别值得注意的是，作者对每个Baseline都进行了适应性改造以确保可比性：对重用距离分析限制模拟迭代次数（500次），对Baghdadi模型移除最后的线性预测层，这种处理体现了对比实验的严谨性。",
+        "source_sections": "['实验评价', '相关工作']",
+        "topics": "['迁移学习 (Transfer Learning)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0481784343719482,
+        "summary_type": "baseline"
+      },
+      {
+        "paper_id": "3577193.3593714",
+        "summary_text": "Baseline选取总结：\n\n1、对比方法:\n- Reuse Distance Analysis (重用距离分析)\n- IR2Vec\n- Baghdadi et al.'s Polyhedral Performance Model (Baghdadi等人的多面体性能模型)\n\n2、选取理由: \n作者选择这些Baseline主要基于以下三个维度：\n(1) 技术路线代表性：覆盖传统分析（重用距离分析）、中间表示学习（IR2Vec）和现代多面体优化（Baghdadi模型）三种典型技术路径；\n(2) 先进性考量：Baghdadi模型是当前多面体程序优化的SOTA方法，IR2Vec是基于LLVM IR的最新嵌入方法；\n(3) 对比完整性：重用距离分析作为经典缓存行为模拟方法，提供传统性能分析的基准参照。三者共同构成从传统到现代、从模拟到学习的完整技术谱系对比。\n\n特别值得注意的是，作者对每个Baseline都进行了适应性改造以确保可比性：对重用距离分析限制模拟迭代次数（500次），对Baghdadi模型移除最后的线性预测层，这种处理体现了对比实验的严谨性。",
+        "source_sections": "['实验评价', '相关工作']",
+        "topics": "['迁移学习 (Transfer Learning)', '自动调优 (Autotuning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0481784343719482,
+        "summary_type": "baseline"
+      },
+      {
+        "paper_id": "HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach",
+        "summary_text": "### Baseline选取总结：\n\n1. **对比方法**:  \n   - BLISS（Bayesian Learning-based Iterative Software System）\n\n2. **选取理由**:  \n   - **SOTA代表性**：BLISS是当前最先进的（SOTA）基于机器学习的优化方法，采用贝叶斯优化（BO）来减少调优开销，并通过构建多样化的简化模型池加速收敛。选择它能够直接对比LASP与前沿方法的性能差异。  \n   - **技术路线对比**：BLISS依赖复杂的代理模型预测和计算密集型优化，而LASP专注于轻量级设计（适合资源受限的边缘设备）。这种对比凸显了两种技术路线的优劣（如BLISS的精度优势 vs. LASP的资源效率）。  \n   - **实验验证需求**：作者通过分析BLISS与LASP在CPU/内存占用上的差异（在MAXN和5W两种功耗模式下），证明LASP更适合边缘场景的动态性需求，从而强化了论文的贡献——轻量化自适应调优的实用性。  \n\n**补充说明**：  \n论文虽未明确列出其他经典基线（如随机搜索、遗传算法等），但通过强调与BLISS的对比，集中体现了其创新点（轻量化与边缘适应性）。若存在其他隐含基线（如默认配置），作者主要通过性能增益（\\(P G_{best}\\)）间接对比，但未列为显式基线方法。",
+        "source_sections": "['实验评价', '相关工作']",
+        "topics": "['自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)']",
+        "score": 1.0817148685455322,
+        "summary_type": "baseline"
+      },
+      {
+        "paper_id": "HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach",
+        "summary_text": "### Baseline选取总结：\n\n1. **对比方法**:  \n   - BLISS（Bayesian Learning-based Iterative Software System）\n\n2. **选取理由**:  \n   - **SOTA代表性**：BLISS是当前最先进的（SOTA）基于机器学习的优化方法，采用贝叶斯优化（BO）来减少调优开销，并通过构建多样化的简化模型池加速收敛。选择它能够直接对比LASP与前沿方法的性能差异。  \n   - **技术路线对比**：BLISS依赖复杂的代理模型预测和计算密集型优化，而LASP专注于轻量级设计（适合资源受限的边缘设备）。这种对比凸显了两种技术路线的优劣（如BLISS的精度优势 vs. LASP的资源效率）。  \n   - **实验验证需求**：作者通过分析BLISS与LASP在CPU/内存占用上的差异（在MAXN和5W两种功耗模式下），证明LASP更适合边缘场景的动态性需求，从而强化了论文的贡献——轻量化自适应调优的实用性。  \n\n**补充说明**：  \n论文虽未明确列出其他经典基线（如随机搜索、遗传算法等），但通过强调与BLISS的对比，集中体现了其创新点（轻量化与边缘适应性）。若存在其他隐含基线（如默认配置），作者主要通过性能增益（\\(P G_{best}\\)）间接对比，但未列为显式基线方法。",
+        "source_sections": "['实验评价', '相关工作']",
+        "topics": "['自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)']",
+        "score": 1.0817148685455322,
+        "summary_type": "baseline"
+      },
+      {
+        "paper_id": "3688609",
+        "summary_text": "### Baseline选取总结：\n\n1. **对比方法**:\n   - **ResNet18**\n   - **MobileNet V1**\n   - **MobileNet V2**\n   - **VGG-16** (CIFAR-10数据集)\n   - **DenseNet161**\n   - **EfficientNetB0**\n   - **ResNet50** (ImageNet数据集)\n\n2. **选取理由**:\n   - **技术路线覆盖性**: 选择的模型涵盖了不同的神经网络架构设计路线（如残差连接、深度可分离卷积、密集连接等），能够代表主流的图像分类模型技术。\n     - *经典大型模型*: ResNet18/VGG-16（CIFAR-10）和ResNet50/DenseNet161（ImageNet）作为参数较多的基准。\n     - *轻量化模型*: MobileNet V1/V2和EfficientNetB0作为资源高效型设计的代表。\n   - **SOTA与经典结合**: \n     - 包含长期广泛验证的经典架构（如VGG、ResNet）\n     - 也纳入新型高效架构（如EfficientNetB0，作者特别指出其虽参数少但精度高）\n   - **跨数据集适配性**:\n     - CIFAR-10选用较小模型（如ResNet18）\n     - ImageNet选用更大规模模型（如ResNet50）\n   - **压缩敏感性分析需求**:\n     作者明确说明选择不同规模模型是为了观察压缩技术对参数量差异模型的差异化影响（如5.1.1节指出MobileNets因参数少对剪枝更敏感）\n\n补充说明：论文虽然没有显式列出\"baseline\"标题，但通过实验设计可以看出这些模型是作为未压缩的基准模型（dense models）与其他优化技术对比，例如：\n- 表3/4中报告的\"dense\"精度作为基准值\n- 图4/5中所有优化技术的性能均与原始模型对比\n- 第5章多次提到\"baseline (dense) top-1 accuracy\"的对比",
+        "source_sections": "['实验评价', '相关工作']",
+        "topics": "['代码生成 (Code Generation)', '自动调优 (Autotuning)', '强化学习 (Reinforcement Learning)', '优化算法 (Optimization Algorithms)', '自动调优 (Auto-tuning)']",
+        "score": 1.0881009101867676,
+        "summary_type": "baseline"
+      }
+    ]
+  },
+  "statistics": {
+    "total_summaries": 50,
+    "types_found": 10,
+    "type_counts": {
+      "expedesign": 5,
+      "innovations": 5,
+      "relatedwork": 5,
+      "challenges": 5,
+      "methodology": 5,
+      "conclusion": 5,
+      "metric": 5,
+      "background": 5,
+      "resultanalysis": 5,
+      "baseline": 5
+    },
+    "unique_papers": 13,
+    "average_score_by_type": {
+      "expedesign": 1.019766139984131,
+      "innovations": 1.0346413612365724,
+      "relatedwork": 1.000748872756958,
+      "challenges": 1.0507689237594604,
+      "methodology": 1.0362568140029906,
+      "conclusion": 1.0507728576660156,
+      "metric": 1.069651484489441,
+      "background": 0.9432093381881714,
+      "resultanalysis": 1.077878737449646,
+      "baseline": 1.0695775032043457
+    }
+  }
+}

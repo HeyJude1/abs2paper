@@ -222,6 +222,8 @@
       "metric_type": "L2"
     },
     "conclude_aspects": {
+      "_description": "定义10个总结方面及其对应的论文章节",
+      "_used_by": ["section_conclude.py", "conclusion_ingestor.py"],
       "Background": ["引言"],
       "RelatedWork": ["相关工作"],
       "Challenges": ["引言", "相关工作"],
@@ -234,6 +236,8 @@
       "Conclusion": ["总结"]
     },
     "paper_section_summary_mapping": {
+      "_description": "定义每个论文章节需要哪些类型的总结",
+      "_used_by": ["context_builder.py", "summary_retriever.py"],
       "引言": ["Background", "Challenges", "Innovations", "Methodology"],
       "相关工作": ["RelatedWork", "Challenges", "Baseline"],
       "方法": ["Methodology"],
@@ -241,11 +245,76 @@
       "总结": ["Conclusion", "ResultAnalysis", "Innovations"]
     },
     "context_info_requirements": {
+      "_description": "定义每个章节需要哪些类型的信息（总结、趋势、原文）",
+      "_used_by": ["context_builder.py", "source_text_retriever.py"],
       "引言": {"need_summaries": true, "need_trends": true, "need_source": false},
       "相关工作": {"need_summaries": true, "need_trends": true, "need_source": false},
       "方法": {"need_summaries": true, "need_trends": true, "need_source": true},
       "实验评价": {"need_summaries": true, "need_trends": true, "need_source": true},
       "总结": {"need_summaries": true, "need_trends": true, "need_source": false}
+    },
+    "generation_order": {
+      "_description": "定义论文生成的顺序和依赖关系",
+      "_used_by": ["paper_generator.py"],
+      "steps": [
+      {
+        "section": "引言",
+        "dependencies": [],
+        "context_sources": ["Background", "Challenges", "Innovations"],
+        "include_source_text": false,
+        "previous_context_needed": false,
+        "used_by": ["paper_generator.py"]
+      },
+      {
+        "section": "相关工作", 
+        "dependencies": ["引言"],
+        "context_sources": ["RelatedWork", "Challenges"],
+        "include_source_text": false,
+        "previous_context_needed": true,
+        "previous_context_type": "概述",
+        "used_by": ["paper_generator.py"]
+      },
+      {
+        "section": "方法",
+        "dependencies": ["引言", "相关工作"],
+        "context_sources": ["Methodology"],
+        "include_source_text": true,
+        "previous_context_needed": true,
+        "previous_context_type": "概述",
+        "used_by": ["paper_generator.py"]
+      },
+      {
+        "section": "实验评价",
+        "dependencies": ["方法"],
+        "context_sources": ["ExpeDesign", "Baseline", "Metric", "ResultAnalysis"],
+        "include_source_text": true,
+        "previous_context_needed": true,
+        "previous_context_type": "详细"
+      },
+      {
+        "section": "总结",
+        "dependencies": ["引言", "相关工作", "方法", "实验评价"],
+        "context_sources": ["Conclusion", "ResultAnalysis", "Innovations"],
+        "include_source_text": false,
+        "previous_context_needed": true,
+        "previous_context_type": "概述"
+      }
+    ]
+    },
+    "prompt_files": {
+      "_description": "定义提示词文件的映射关系",
+      "_used_by": ["paper_generator.py"],
+      "section_prompts": {
+        "引言": "Introduction_prompt",
+        "相关工作": "RelatedWork_prompt", 
+        "方法": "Methodology_prompt",
+        "实验评价": "Experiments_prompt",
+        "总结": "Conclusion_prompt"
+      },
+      "utility_prompts": {
+        "section_summary": "SectionSummary_prompt",
+        "paper_polish": "PaperPolish_prompt"
+      }
     }
   }
 } 

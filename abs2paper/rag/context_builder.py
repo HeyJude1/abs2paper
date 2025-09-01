@@ -14,8 +14,12 @@ class ContextBuilder:
         self.config = self._load_config()
         
         # 从配置文件读取映射关系和需求配置
-        self.paper_section_summary_mapping = self.config["paper"]["paper_section_summary_mapping"]
-        self.context_info_requirements = self.config["paper"]["context_info_requirements"]
+        paper_section_summary_mapping_config = self.config["paper"]["paper_section_summary_mapping"]
+        context_info_requirements_config = self.config["paper"]["context_info_requirements"]
+        
+        # 过滤掉以_开头的元数据字段
+        self.paper_section_summary_mapping = {k: v for k, v in paper_section_summary_mapping_config.items() if not k.startswith('_')}
+        self.context_info_requirements = {k: v for k, v in context_info_requirements_config.items() if not k.startswith('_')}
     
     def _load_config(self):
         """加载配置文件"""

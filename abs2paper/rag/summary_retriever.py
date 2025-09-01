@@ -59,23 +59,22 @@ class SummaryRetriever:
             # 执行搜索
             results = self.db_client.search(
                 collection_name=collection_name,
-                query_vectors=[query_embedding],
-                anns_field="embedding",
-                param=search_params,
-                limit=top_k,
-                output_fields=output_fields
+                query_vector=query_embedding,
+                output_fields=output_fields,
+                top_n=top_k,
+                params=search_params
             )
             
             # 处理搜索结果
             processed_results = []
             if results and len(results) > 0:
-                for hit in results[0]:  # results是嵌套列表
+                for hit in results:  # results是字典列表
                     processed_results.append({
-                        "paper_id": hit.entity.get("paper_id"),
-                        "summary_text": hit.entity.get("summary_text"),
-                        "source_sections": hit.entity.get("source_sections", []),
-                        "topics": hit.entity.get("topics", []),
-                        "score": float(hit.distance),
+                        "paper_id": hit.get("paper_id"),
+                        "summary_text": hit.get("summary_text"),
+                        "source_sections": hit.get("source_sections", []),
+                        "topics": hit.get("topics", []),
+                        "score": float(hit.get("score", 0)),
                         "summary_type": summary_type
                     })
             

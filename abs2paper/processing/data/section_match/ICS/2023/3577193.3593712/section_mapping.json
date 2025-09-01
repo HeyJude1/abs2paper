@@ -1,14 +1,12 @@
 {
   "paper_path": "ICS/2023/3577193.3593712",
   "section_mapping": {
-    "1 INTRODUCTION": "引言",
-    "2 BACKGROUND": "引言",
-    "2.1 Autotuning": "方法",
-    "3 PROPOSED FRAMEWORK": "方法",
-    "4 EXPERIMENT DESIGN": "实验评价",
+    "2 BACKGROUND 2.1 Autotuning": "引言",
     "5 RESULTS": "实验评价",
-    "6 RELATED WORK": "相关工作",
-    "2 BACKGROUND 2.1 Autotuning": "方法"
+    "4 EXPERIMENT DESIGN": "实验评价",
+    "1 INTRODUCTION": "引言",
+    "3 PROPOSED FRAMEWORK": "方法",
+    "6 RELATED WORK": "相关工作"
   },
   "standard_sections": [
     "引言",
@@ -17,5 +15,5 @@
     "实验评价",
     "总结"
   ],
-  "total_sections": 8
+  "total_sections": 6
 }

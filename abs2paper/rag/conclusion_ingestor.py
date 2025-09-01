@@ -126,7 +126,9 @@ class ConclusionIngestor:
     
     def _get_source_sections_from_conclude_aspects(self, summary_type: str) -> List[str]:
         """基于CONCLUDE_ASPECTS获取总结类型对应的源章节"""
-        conclude_aspects = self.config["paper"]["conclude_aspects"]
+        conclude_aspects_config = self.config["paper"]["conclude_aspects"]
+        # 过滤掉以_开头的元数据字段
+        conclude_aspects = {k: v for k, v in conclude_aspects_config.items() if not k.startswith('_')}
         return conclude_aspects.get(summary_type, [])
     
     def _extract_topics_from_original_paper(self, paper_id: str) -> List[str]:

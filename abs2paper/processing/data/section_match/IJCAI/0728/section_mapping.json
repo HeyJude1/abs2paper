@@ -1,11 +1,11 @@
 {
   "paper_path": "IJCAI/0728",
   "section_mapping": {
-    "1 Introduction": "引言",
-    "2 Decoding Strategies for LLMs": "方法",
     "3 Method": "方法",
+    "1 Introduction": "引言",
+    "5 Conclusion": "总结",
     "4 Experiments": "实验评价",
-    "5 Conclusion": "总结"
+    "2 Decoding Strategies for LLMs": "方法"
   },
   "standard_sections": [
     "引言",
