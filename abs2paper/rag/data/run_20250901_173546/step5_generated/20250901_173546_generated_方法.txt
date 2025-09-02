@@ -1,0 +1,28 @@
+【方法】
+================================================================================
+### 3.1 PipeGen框架设计
+采用三层转换架构：
+1. ISA语义层：通过有限状态机(FSM)建模x86/ARM差异
+2.微架构适配层：自动插入内存屏障和重放缓冲区
+3.验证层：采用LTL模型检测确保MCM合规性
+
+关键算法：
+```python
+def pipeline_transform(orig_pipeline, target_mcm):
+    barriers = identify_barrier_points(orig_pipeline)
+    replay_buffers = insert_replay_mechanism(barriers)
+    verify_with_LTL(replay_buffers, target_mcm)
+    return optimized_pipeline
+```
+
+### 3.2 FIVES仿真框架
+创新性采用复合存储服务(CSS)模型：
+```
+Bandwidth = BW_max × (1/(C + logN)) 
+其中C为校准参数，N为并发I/O数
+```
+
+参数自动校准流程：
+1. 贝叶斯优化初始化17维参数空间
+2. 并行仿真评估候选参数集
+3. GPU加速的参数重要性分析

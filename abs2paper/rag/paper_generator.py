@@ -87,9 +87,9 @@ class PaperGenerator:
             logging.error(error_msg)
             raise ValueError(error_msg)
         
-        # 构建完整的提示词
+        # 构建完整的提示词，使用占位符替换
         base_prompt = self.paper_prompts[prompt_key]
-        full_prompt = f"{base_prompt}\n\n{context}"
+        full_prompt = base_prompt.replace("{CONTEXT_CONTENT}", context)
         
         return self.llm_client.get_completion(full_prompt)
     
@@ -224,6 +224,10 @@ class PaperGenerator:
         """
         logging.info("开始顺序化论文生成流程")
         
+        # 添加调试信息
+        logging.info(f"📋 生成顺序: {[step['section'] for step in self.generation_order]}")
+        logging.info(f"📋 可用上下文: {list(paper_section_contexts.keys())}")
+        
         generated_sections = {}
         section_summaries = {}  # 存储各部分的概述，供后续部分使用
         
@@ -231,31 +235,49 @@ class PaperGenerator:
             section_name = step["section"]
             logging.info(f"🔄 生成论文{section_name}部分...")
             
-            # 构建当前部分的完整上下文
-            full_context = self._build_full_context_for_section(
-                section_name=section_name,
-                base_context=paper_section_contexts[section_name],
-                previous_sections=generated_sections,
-                section_summaries=section_summaries,
-                step_config=step,
-                user_requirement=user_requirement
-            )
-            
-            # 生成当前部分
-            generated_content = self._generate_section_content(
-                section_name=section_name,
-                context=full_context,
-                user_requirement=user_requirement
-            )
-            
-            generated_sections[section_name] = generated_content
-            logging.info(f"✅ {section_name}部分生成完成")
-            
-            # 生成当前部分的概述，供后续部分使用
-            section_summary = self._generate_section_summary(
-                section_name, generated_content
-            )
-            section_summaries[section_name] = section_summary
+            try:
+                # 检查是否存在对应的上下文
+                if section_name not in paper_section_contexts:
+                    logging.error(f"❌ 缺少 {section_name} 部分的上下文，跳过生成")
+                    continue
+                
+                # 构建当前部分的完整上下文
+                full_context = self._build_full_context_for_section(
+                    section_name=section_name,
+                    base_context=paper_section_contexts[section_name],
+                    previous_sections=generated_sections,
+                    section_summaries=section_summaries,
+                    step_config=step,
+                    user_requirement=user_requirement
+                )
+                
+                # 生成当前部分
+                generated_content = self._generate_section_content(
+                    section_name=section_name,
+                    context=full_context,
+                    user_requirement=user_requirement
+                )
+                
+                generated_sections[section_name] = generated_content
+                logging.info(f"✅ {section_name}部分生成完成")
+                
+                # 生成当前部分的概述，供后续部分使用
+                try:
+                    section_summary = self._generate_section_summary(
+                        section_name, generated_content
+                    )
+                    section_summaries[section_name] = section_summary
+                except Exception as e:
+                    logging.warning(f"⚠️ 生成 {section_name} 部分概述失败: {e}")
+                    # 使用简化的概述作为备选
+                    section_summaries[section_name] = f"{section_name}部分已生成，主要内容包括相关研究和方法介绍。"
+                    
+            except Exception as e:
+                logging.error(f"❌ 生成 {section_name} 部分时出错: {e}")
+                logging.error(f"错误详情: {type(e).__name__}: {str(e)}")
+                import traceback
+                logging.error(f"堆栈信息: {traceback.format_exc()}")
+                continue
         
         # 最后进行全文统一润色
         logging.info("🎨 开始全文统一润色...")

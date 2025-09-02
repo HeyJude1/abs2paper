@@ -1,0 +1,21 @@
+{
+  "user_input": "测试完整的统计信息功能",
+  "analysis_result": "{\n  \"standardized_requirement\": \"研究如何测试和验证完整的统计信息功能\",\n  \"research_field\": \"软件测试\",\n  \"key_topics\": [\"统计信息功能\", \"功能测试\", \"完整性验证\"],\n  \"technical_approach\": \"软件测试方法\",\n  \"focus_areas\": [\"测试覆盖率\", \"功能完整性\"],\n  \"application_domain\": \"软件开发与质量保证\"\n}",
+  "parsed_result": {
+    "standardized_requirement": "研究如何测试和验证完整的统计信息功能",
+    "research_field": "软件测试",
+    "key_topics": [
+      "统计信息功能",
+      "功能测试",
+      "完整性验证"
+    ],
+    "technical_approach": "软件测试方法",
+    "focus_areas": [
+      "测试覆盖率",
+      "功能完整性"
+    ],
+    "application_domain": "软件开发与质量保证"
+  },
+  "standardized_requirement": "研究如何测试和验证完整的统计信息功能",
+  "analysis_timestamp": "20250902_172703"
+}

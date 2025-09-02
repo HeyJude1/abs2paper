@@ -1,0 +1,220 @@
+结构化RAG上下文
+================================================================================
+【实验评价 部分的上下文】
+--------------------------------------------------
+上下文长度：7559 字符
+
+上下文内容：
+### ExpeDesign 总结
+**总结1** (来源: 3701997):
+### 实验设计总结：
+
+1. **核心目标**:  
+   - 验证BTSearch方法在模型推理过程中的内存优化效果（Section 4.2）。  
+   - 评估GenEFlow算法在无内存约束下的推理延迟优化性能（Section 4.3）。  
+   - 分析不同内存限制条件下各方法的优化效果（Section 4.4）。  
+   - 测试GenEFlow在异构设备配置下的推理延迟表现（Section 4.5）。  
+   - 在真实环境中比较GenEFlow与其他基线方法的推理加速效果（Section 4.6）。  
+
+2. **数据集**:  
+   - **模型数据集**：VGG13、ResNet50、InceptionV3、MobileNetV3、SqueezeNet、GoogLeNet、RegNet（来自PyTorch.hub的预训练模型，转换为.onnx格式）。  
+   - **大语言模型（LLMs）**：BERT、GPT-2、Qwen2。  
+   - **输入数据形状**：CNN模型为固定形状，LLMs为动态形状。  
+
+3. **关键设置**:  
+   -...
+
+**总结2** (来源: 3701997):
+### 实验设计总结：
+
+1. **核心目标**:  
+   - 验证BTSearch方法在模型推理过程中的内存优化效果（Section 4.2）。  
+   - 评估GenEFlow算法在无内存约束下的推理延迟优化性能（Section 4.3）。  
+   - 分析不同内存限制条件下各方法的优化效果（Section 4.4）。  
+   - 测试GenEFlow在异构设备配置下的推理延迟表现（Section 4.5）。  
+   - 在真实环境中比较GenEFlow与其他基线方法的推理加速效果（Section 4.6）。  
+
+2. **数据集**:  
+   - **模型数据集**：VGG13、ResNet50、InceptionV3、MobileNetV3、SqueezeNet、GoogLeNet、RegNet（来自PyTorch.hub的预训练模型，转换为.onnx格式）。  
+   - **大语言模型（LLMs）**：BERT、GPT-2、Qwen2。  
+   - **输入数据形状**：CNN模型为固定形状，LLMs为动态形状。  
+
+3. **关键设置**:  
+   -...
+
+**总结3** (来源: Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization):
+实验设计总结：  
+
+1、**核心目标**:  
+- 验证提出的动态预测函数（OBF和ODF）在推理性能上是否优于现有方案（XGBoost、LightGBM、Scikit-Learn、ONNX Runtime等）。  
+- 分析不同并行化策略（SIMD向量化、多线程）对推理延迟的影响，尤其是小批量（short batch sizes）场景下的优化效果。  
+- 评估模型参数（树数量、深度）、批处理大小（batch size）和硬件配置（AVX2/AVX-512指令集）对性能的交互作用。  
+
+2、**数据集**:  
+- **公开分类与回归数据集**：具体名称未在片段中列出，但提及包括常用于基准测试的数据集（如`epsilon`和`HIGGS`），覆盖不同规模和特征维度。  
+- **Covertype数据集**：因测试样本量有限，最大批处理大小被调整。  
+
+3、**关键设置**:  
+- **模型训练**：使用XGBoost 1.7.4、LightGBM 3.3.5和Scikit-Learn 1.2.2训练梯度提升树和随机森林，参数包括树数量（T）、深度（d）和线程数（thr）。 ...
+
+### Baseline 总结
+**总结1** (来源: 3656019.3676889):
+根据论文内容，以下是Baseline选取策略的总结：
+
+---
+
+### Baseline选取总结  
+1. **对比方法**:  
+   - **PipeCheck**（基于𝜇spec的流水线验证工具）  
+   - **Herd**（内存一致性模型验证工具）  
+   - **传统硬件描述语言（HDL）方法**（如Verilog、VHDL、Chisel、Bluespec的手动实现）  
+   - **微架构描述语言**（如Teapot、PDL等领域专用语言）  
+
+2. **选取理由**:  
+   - **PipeCheck和Herd**：作为当前主流的**验证工具**，它们通过形式化方法或litmus测试验证现有流水线是否符合目标内存一致性模型（MCM），但均属于“事后验证”而非“正确性构造生成”。作者选择它们作为Baseline以凸显PipeGen的**主动生成优势**。  
+   - **传统HDL方法**：代表工业界实际开发流程中的手动实现方式，用于对比自动化工具（PipeGen）在减少人工错误和提升效率方面的价值。  
+   - **微架构描述语言**（如PDL）：与P...
+
+**总结2** (来源: 3656019.3676889):
+根据论文内容，以下是Baseline选取策略的总结：
+
+---
+
+### Baseline选取总结  
+1. **对比方法**:  
+   - **PipeCheck**（基于𝜇spec的流水线验证工具）  
+   - **Herd**（内存一致性模型验证工具）  
+   - **传统硬件描述语言（HDL）方法**（如Verilog、VHDL、Chisel、Bluespec的手动实现）  
+   - **微架构描述语言**（如Teapot、PDL等领域专用语言）  
+
+2. **选取理由**:  
+   - **PipeCheck和Herd**：作为当前主流的**验证工具**，它们通过形式化方法或litmus测试验证现有流水线是否符合目标内存一致性模型（MCM），但均属于“事后验证”而非“正确性构造生成”。作者选择它们作为Baseline以凸显PipeGen的**主动生成优势**。  
+   - **传统HDL方法**：代表工业界实际开发流程中的手动实现方式，用于对比自动化工具（PipeGen）在减少人工错误和提升效率方面的价值。  
+   - **微架构描述语言**（如PDL）：与P...
+
+**总结3** (来源: HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach):
+### Baseline选取总结：
+
+1. **对比方法**:  
+   - BLISS（Bayesian Learning-based Iterative Software System）
+
+2. **选取理由**:  
+   - **SOTA代表性**：BLISS是当前最先进的（SOTA）基于机器学习的优化方法，采用贝叶斯优化（BO）来减少调优开销，并通过构建多样化的简化模型池加速收敛。选择它能够直接对比LASP与前沿方法的性能差异。  
+   - **技术路线对比**：BLISS依赖复杂的代理模型预测和计算密集型优化，而LASP专注于轻量级设计（适合资源受限的边缘设备）。这种对比凸显了两种技术路线的优劣（如BLISS的精度优势 vs. LASP的资源效率）。  
+   - **实验验证需求**：作者通过分析BLISS与LASP在CPU/内存占用上的差异（在MAXN和5W两种功耗模式下），证明LASP更适合边缘场景的动态性需求，从而强化了论文的贡献——轻量化自适应调优的实用性。  
+
+**补充说明**：  
+论文虽未明确列出其他经典基线（如随机搜索、遗传算法等），但通过强调与BLI...
+
+### Metric 总结
+**总结1** (来源: 3577193.3593710):
+### 度量指标总结：
+
+#### 1. 评估指标：
+- **Speedup (加速比)**：衡量优化后的方法相对于基线方法（如scikit-learn、Hummingbird等）的性能提升倍数，用于量化计算效率的提升。
+- **Latency (延迟)**：在混合部署实验中（如单次查询场景），记录模型推理的响应时间（毫秒级），衡量实时性表现。
+- **Accuracy (准确度)**：通过输出结果与基线框架的差异（<1×10⁻⁵）验证优化后模型的数值一致性，确保优化不影响模型精度。
+- **Model Support (模型支持度)**：统计支持的算法数量（如14种CML算法中优于基线的比例）及跨硬件兼容性（如IoT设备上的可执行性）。
+
+#### 2. 选取理由：
+- **性能与效率导向**：  
+  - **Speedup**直接反映编译优化（如ECG重写、TVM优化）带来的计算效率提升，适用于多硬件平台（CPU/GPU/IoT）对比。  
+  - **Latency**针对实际应用场景（如推荐系统、实时分类）的需求，验证低延迟部署的可行性。
+- **精度保障**：  
+  - ...
+
+**总结2** (来源: 3577193.3593710):
+### 度量指标总结：
+
+#### 1. 评估指标：
+- **Speedup (加速比)**：衡量优化后的方法相对于基线方法（如scikit-learn、Hummingbird等）的性能提升倍数，用于量化计算效率的提升。
+- **Latency (延迟)**：在混合部署实验中（如单次查询场景），记录模型推理的响应时间（毫秒级），衡量实时性表现。
+- **Accuracy (准确度)**：通过输出结果与基线框架的差异（<1×10⁻⁵）验证优化后模型的数值一致性，确保优化不影响模型精度。
+- **Model Support (模型支持度)**：统计支持的算法数量（如14种CML算法中优于基线的比例）及跨硬件兼容性（如IoT设备上的可执行性）。
+
+#### 2. 选取理由：
+- **性能与效率导向**：  
+  - **Speedup**直接反映编译优化（如ECG重写、TVM优化）带来的计算效率提升，适用于多硬件平台（CPU/GPU/IoT）对比。  
+  - **Latency**针对实际应用场景（如推荐系统、实时分类）的需求，验证低延迟部署的可行性。
+- **精度保障**：  
+  - ...
+
+**总结3** (来源: 3701993):
+### 度量指标总结：
+
+#### 1、评估指标:
+- **Runtime (运行时间)**: 衡量算法执行的实际时间，用于比较不同方法或工具的性能效率。
+- **Speedup (加速比)**: 衡量并行化或优化后的性能提升倍数（如手动并行版本与自动并行版本的对比）。
+- **Problem Size Scalability (问题规模可扩展性)**: 通过改变问题规模（如PBKDF2的块数量或HPCCG的矩阵大小）评估性能变化的趋势。
+- **Parallelization Coverage (并行化覆盖率)**: 统计被成功并行化的循环或代码段的比例（如HPCCG中所有5个循环均被并行化）。
+- **Baseline Comparison (基线对比)**: 与原始实现（如OpenSSL PBKDF2的串行版本）或手工优化版本（如HPCCG的手动OpenMP版本）的性能对比。
+
+#### 2、选取理由:
+论文选择的指标全面覆盖了性能评估的核心维度：
+1. **Runtime**和**Speedup**直接量化了优化前后的计算效率，是衡量并行化效果的金标准。
+2. **Proble...
+
+### ResultAnalysis 总结
+**总结1** (来源: 3577193.3593710):
+实验结果分析总结：
+
+1、主要发现:
+- 在CPU上，与sklearn相比，未经优化的方法实现了1.31x-2.54x的加速；通过dtype重写和稀疏算子替换优化后，树模型达到1.84x-4.44x加速，线性模型达到1.06x-1.14x加速。
+- 在IoT设备上（Raspberrypi4b），由于sklearn支持有限，未经优化的方法作为基线。优化后树模型实现1.49x-2.53x加速，线性模型实现1.95x-1.98x加速。
+- 在整体性能对比中（14种算法），在CPU上优于12/14算法（相比sklearn加速1.02x-10.57x）；GPU上优于11/14算法（相比hummingbird加速1.11x-3.31x）；IoT设备上优于13/14算法（加速1.28x-5.09x）。
+- 混合部署案例中，CML与DL联合优化在服务器CPU上实现1.67x-3.04x加速，并成功支持了原本无法在IoT设备运行的模型。
+
+2、消融研究结论:
+- 关键优化组件包括：
+  a) dtype重写（DR）：为树模型带来1x-1.21x（CPU）/1.01x-1.33x（IoT）独立加速
+  b...
+
+**总结2** (来源: 3577193.3593710):
+实验结果分析总结：
+
+1、主要发现:
+- 在CPU上，与sklearn相比，未经优化的方法实现了1.31x-2.54x的加速；通过dtype重写和稀疏算子替换优化后，树模型达到1.84x-4.44x加速，线性模型达到1.06x-1.14x加速。
+- 在IoT设备上（Raspberrypi4b），由于sklearn支持有限，未经优化的方法作为基线。优化后树模型实现1.49x-2.53x加速，线性模型实现1.95x-1.98x加速。
+- 在整体性能对比中（14种算法），在CPU上优于12/14算法（相比sklearn加速1.02x-10.57x）；GPU上优于11/14算法（相比hummingbird加速1.11x-3.31x）；IoT设备上优于13/14算法（加速1.28x-5.09x）。
+- 混合部署案例中，CML与DL联合优化在服务器CPU上实现1.67x-3.04x加速，并成功支持了原本无法在IoT设备运行的模型。
+
+2、消融研究结论:
+- 关键优化组件包括：
+  a) dtype重写（DR）：为树模型带来1x-1.21x（CPU）/1.01x-1.33x（IoT）独立加速
+  b...
+
+**总结3** (来源: UWOmppro_UWOmp_with_Point-to-Point_Synchronization_Reduction_and_Schedules):
+实验结果分析总结：
+
+1、主要发现:  
+论文未提供具体的性能指标对比数据（如速度提升百分比、吞吐量变化等），但通过技术描述可推断以下核心优势：  
+- 提出的**mUWOmp_pro**转换方法通过代码简化步骤（如函数封装、递归转换、并行区域优化）显著提升了OpenMP代码的兼容性和执行效率。  
+- **静态调度优化**采用工作列表（worklist）和双索引管理，降低了内存开销并简化了同步操作维护。  
+- **线程ID一致性保证**通过闭包存储机制解决了跨线程执行的迭代中线程ID不一致问题，满足UW模型的约束条件。  
+
+2、消融研究结论:  
+论文未明确列出消融实验，但从方法描述中可提炼关键组件的必要性：  
+- **代码转换步骤（Step 1-3）**是核心：移除并行循环中的串行部分、递归化内部循环、隔离并行区域语句，这些步骤缺一不可，否则无法生成有效的mUWOmp_pro代码。  
+- **基于postbox的运行时子系统**对信号/等待函数的支持至关重要，其设计直接影响同步效率和死锁避免能力。  
+
+3、其他分析洞察:  
+- **死锁风险分析**：指出UWOmp_pr...
+
+
+### 研究趋势分析
+**ExpeDesign 趋势**:
+- 技术趋势: 数据集技术广泛应用, 基准测试技术广泛应用, 对比实验技术广泛应用
+- 研究模式:  在49/5篇论文中被提及(980.0%), '在40/5篇论文中被提及(800.0%), t在32/5篇论文中被提及(640.0%)
+
+**Metric 趋势**:
+- 研究模式:  在56/5篇论文中被提及(1120.0%), '在46/5篇论文中被提及(920.0%), t在40/5篇论文中被提及(800.0%)
+
+
+### 参考原文
+**论文 3701997 - 实验评价 章节**:
+片段1: 4 Evaluation
+This section mainly presents the experimental results and analysis of the previously mentioned methods, divided into six parts. In Section 4.1, we introduce the configurations and settings of both the simulated and real environments. In Section 4.2, we select multiple DNN models and lar...
+片段2: In Section 4.3, we compare the inference latency optimization of GenEFlow with other methods under the same configuration. The experiments assess the model inference efficiency of these methods without considering memory constraints. In Section 4.4, we set different device memory limitations to vali...
+
+
+

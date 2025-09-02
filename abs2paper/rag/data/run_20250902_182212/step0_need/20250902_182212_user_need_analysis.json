@@ -1,0 +1,7 @@
+{
+  "user_input": "**联邦学习中的隐私保护机制**",
+  "analysis_result": "```json\n{\n  \"standardized_requirement\": \"研究联邦学习中的隐私保护机制\",\n  \"research_field\": \"机器学习/隐私计算\",\n  \"key_topics\": [\"联邦学习\", \"隐私保护\", \"数据安全\"],\n  \"technical_approach\": \"分布式机器学习与加密技术\",\n  \"focus_areas\": [\"隐私泄露风险\", \"保护机制有效性\"],\n  \"application_domain\": \"跨机构数据协作场景\"\n}\n```",
+  "parsed_result": {},
+  "standardized_requirement": "**联邦学习中的隐私保护机制**",
+  "analysis_timestamp": "20250902_182212"
+}

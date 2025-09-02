@@ -129,9 +129,8 @@ class ContextBuilder:
         for paper_section in ["引言", "相关工作", "方法", "实验评价", "总结"]:
             logging.info(f"构建 {paper_section} 部分的上下文")
             
+            # 简化的上下文内容
             context_parts = []
-            context_parts.append(f"# 生成论文{paper_section}部分的参考资料")
-            context_parts.append("")
             
             # 获取该部分的信息需求
             requirements = self.context_info_requirements[paper_section]
@@ -157,16 +156,7 @@ class ContextBuilder:
                     context_parts.append(source_context)
                     context_parts.append("")
             
-            # 4. 添加写作指导
-            context_parts.extend([
-                "### 写作要求",
-                f"1. 基于以上参考资料生成论文的{paper_section}部分",
-                "2. 保持学术论文的严谨性和专业性",
-                "3. 确保内容逻辑清晰，表达准确",
-                "4. 字数控制在800-1200字之间",
-                "5. 使用规范的学术写作格式",
-                ""
-            ])
+            # 移除重复的写作要求，这些将在prompt模板中统一处理
             
             paper_section_contexts[paper_section] = "\n".join(context_parts)
             

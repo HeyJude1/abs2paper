@@ -1,0 +1,21 @@
+{
+  "user_input": "我想研究关于计算机视觉中的目标检测算法，特别是YOLO系列模型的优化和改进",
+  "analysis_result": "{\n  \"standardized_requirement\": \"研究计算机视觉领域中基于YOLO系列模型的目标检测算法优化与改进\",\n  \"research_field\": \"计算机视觉\",\n  \"key_topics\": [\"目标检测\", \"YOLO模型\", \"算法优化\"],\n  \"technical_approach\": \"深度学习模型改进\",\n  \"focus_areas\": [\"YOLO系列模型优化\", \"目标检测性能提升\"],\n  \"application_domain\": \"计算机视觉应用\"\n}",
+  "parsed_result": {
+    "standardized_requirement": "研究计算机视觉领域中基于YOLO系列模型的目标检测算法优化与改进",
+    "research_field": "计算机视觉",
+    "key_topics": [
+      "目标检测",
+      "YOLO模型",
+      "算法优化"
+    ],
+    "technical_approach": "深度学习模型改进",
+    "focus_areas": [
+      "YOLO系列模型优化",
+      "目标检测性能提升"
+    ],
+    "application_domain": "计算机视觉应用"
+  },
+  "standardized_requirement": "研究计算机视觉领域中基于YOLO系列模型的目标检测算法优化与改进",
+  "analysis_timestamp": "20250902_170711"
+}

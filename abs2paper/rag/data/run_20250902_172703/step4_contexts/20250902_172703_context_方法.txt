@@ -1,0 +1,72 @@
+结构化RAG上下文
+================================================================================
+【方法 部分的上下文】
+--------------------------------------------------
+上下文长度：2577 字符
+
+上下文内容：
+### Methodology 总结
+**总结1** (来源: Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs):
+方法概述：  
+1、方法名称: **大规模HPC性能分析工具评估框架**  
+
+2、核心思想:  
+通过系统化的实验设计和多维度的评估标准，对主流高性能计算（HPC）性能分析工具（HPCToolkit、TAU、Scalasca）进行横向对比，揭示其在数据收集（采样与插桩）和分析能力（热点、可扩展性、性能方差）上的优劣，为工具选择提供实证依据。  
+
+3、主要流程/组件:  
+**组件/步骤一：实验平台构建**  
+- 搭建包含32个计算节点的HPC集群，配置统一硬件（36核CPU/384GB内存/100Gbps网络）和软件环境（GCC 9.4.0 + OpenMPI 4.0.7）。  
+- 选择标准化测试集（NAS Parallel Benchmarks和LULESH应用），固定输入规模以控制变量。  
+
+**组件/步骤二：工具配置与数据收集**  
+- **HPCToolkit**: 采用300Hz默认采样率，启用实时跟踪和PAPI指令计数。  
+- **TAU**: 分两种模式——TAU-P（自动阈值过滤的高频调用）和TAU-T（仅收集MPI函数跟踪）。  
+- **Scalasc...
+
+**总结2** (来源: Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs):
+方法概述：  
+1、方法名称: **大规模HPC性能分析工具评估框架**  
+
+2、核心思想:  
+通过系统化的实验设计和多维度的评估标准，对主流高性能计算（HPC）性能分析工具（HPCToolkit、TAU、Scalasca）进行横向对比，揭示其在数据收集（采样与插桩）和分析能力（热点、可扩展性、性能方差）上的优劣，为工具选择提供实证依据。  
+
+3、主要流程/组件:  
+**组件/步骤一：实验平台构建**  
+- 搭建包含32个计算节点的HPC集群，配置统一硬件（36核CPU/384GB内存/100Gbps网络）和软件环境（GCC 9.4.0 + OpenMPI 4.0.7）。  
+- 选择标准化测试集（NAS Parallel Benchmarks和LULESH应用），固定输入规模以控制变量。  
+
+**组件/步骤二：工具配置与数据收集**  
+- **HPCToolkit**: 采用300Hz默认采样率，启用实时跟踪和PAPI指令计数。  
+- **TAU**: 分两种模式——TAU-P（自动阈值过滤的高频调用）和TAU-T（仅收集MPI函数跟踪）。  
+- **Scalasc...
+
+**总结3** (来源: 2406.15763v2):
+方法概述：
+1、方法名称: AllMatch  
+2、核心思想: 通过动态调整类别特异性阈值（CAT）和引入二元分类一致性约束（BCC），解决半监督学习中伪标签质量与数量之间的权衡问题，实现对所有未标记数据的高效利用。  
+3、主要流程/组件  
+- **类别特异性自适应阈值（CAT）**  
+  - **全局估计**：基于未标记数据的平均置信度动态调整全局阈值，反映模型整体学习状态（早期低阈值吸收更多伪标签，后期高阈值过滤噪声）。  
+  - **局部调整**：利用分类器权重的L2范数评估各类别的学习状态，降低欠拟合类别的阈值，使其获得更多关注。  
+
+- **二元分类一致性约束（BCC）**  
+  - **候选-负类划分**：将每个未标记样本的预测分为候选类（top-k预测）和负类，动态调整k值以匹配样本特异性与全局学习状态。  
+  - **一致性监督**：强制不同增强视图的候选-负类划分一致，利用低置信度伪标签排除错误选项。  
+
+- **整体目标函数**  
+  - 结合有监督损失（\(L_s\)）、伪标签一致性损失（\(L_u\)）和BCC损失（\(L_b\)），通过加权...
+
+
+### 研究趋势分析
+**Methodology 趋势**:
+- 研究模式:  在30/5篇论文中被提及(600.0%), '在24/5篇论文中被提及(480.0%), o在19/5篇论文中被提及(380.0%)
+
+
+### 参考原文
+**论文 Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs - 方法 章节**:
+片段1: III. METHODOLOGY
+Although there are widely adopted performance tools in large-scale HPC systems, there is no existing work that provides a comprehensive study of the existing performance analysis tools for performance analysis of large-scale HPC programs according to our knowledge. In this section, ...
+片段2: We evaluate a homebuilt cluster with hardware and software configuration as shown in Table . Specifically, the cluster consists of 32 computing nodes. Each node is equipped with one 36-core Intel Golden 6240 processor running at 2.60 GHz frequency. There is 384 GB of memory for each node. All nodes ...
+
+
+

@@ -147,6 +147,11 @@
       "path": "/data/section_prompt",
       "description": "章节匹配提示词模板目录",
       "used_by": ["section_match.py (输入)"]
+    },
+    "rag_data_base": {
+      "path": "/abs2paper/rag/data",
+      "description": "RAG系统数据存放基础目录",
+      "used_by": ["gen_paper.py (输出)", "summary_retriever.py", "crossPaper_analyzer.py", "sourceText_retriever.py", "context_builder.py", "paper_generator.py"]
     }
   },
   "paper": {
@@ -313,7 +318,8 @@
       },
       "utility_prompts": {
         "section_summary": "SectionSummary_prompt",
-        "paper_polish": "PaperPolish_prompt"
+        "paper_polish": "PaperPolish_prompt",
+        "user_need_analysis": "userNeed_prompt"
       }
     }
   }

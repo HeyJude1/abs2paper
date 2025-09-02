@@ -23,7 +23,7 @@ def simple_qa_example():
     print("\n注意：此示例正在迁移到新的utils接口")
     print("完整功能请使用主RAG系统")
     
-    return
+        return
 
 if __name__ == "__main__":
-    simple_qa_example()
+        simple_qa_example()

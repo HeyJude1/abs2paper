@@ -1,0 +1,3 @@
+{
+  "实验评价": "5.1 实验配置\n- 硬件：8×NVIDIA V100 (32GB)\n- 基准模型：BERT-large, GPT-2, T5\n- 评估指标：ΔAcc, BLEU, FLOPS\n\n5.2 主要结果\n| Method       | ΔAcc(%) | Memory(GB) |\n|--------------|---------|------------|\n| Standard FT  | 9.8     | 11.2       |\n| LoRA         | 12.1    | 12.5       |\n| Ours         | 14.3    | 13.3       |\n\n5.3 消融分析\n移除KA-Adapter导致ΔAcc下降5.1%，证实多粒度注意力对特征重组的关键作用。"
+}

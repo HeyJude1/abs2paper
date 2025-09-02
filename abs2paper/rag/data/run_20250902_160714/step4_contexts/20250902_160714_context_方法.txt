@@ -1,0 +1,79 @@
+结构化RAG上下文
+================================================================================
+【方法 部分的上下文】
+--------------------------------------------------
+上下文长度：2652 字符
+
+上下文内容：
+### Methodology 总结
+**总结1** (来源: Simulation_of_Large-Scale_HPC_Storage_Systems_Challenges_and_Methodologies):
+方法概述：
+1、方法名称: FIVES (Simulator for Scheduling on Storage Systems at Scale)
+
+2、核心思想: 
+FIVES是一个面向高性能存储系统的仿真框架，通过模块化设计和自动化校准，实现存储系统行为的高效准确模拟。其核心思想是通过抽象化硬件平台和作业模型，结合贝叶斯优化进行参数校准，在保证仿真可扩展性的同时最大化模拟精度。
+
+3、主要流程/组件
+组件/步骤一: 仿真架构设计
+- 采用三层概念架构：作业管理器(创建/提交作业)、协调器(资源调度)、基础设施(硬件平台模拟)
+- 基于WRENCH和SimGrid框架实现，新增复合存储服务(CSS)组件支持分布式存储模拟
+
+组件/步骤二: 参数校准系统
+- 使用贝叶斯优化(BO)自动校准17个关键参数（平台带宽、作业文件数、节点参与数等）
+- 定义MAE损失函数评估仿真精度：真实与模拟I/O时间的百分比差异均值
+- 采用带宽分类策略（快/常规/慢作业）处理数据异质性
+
+组件/步骤三: 磁盘争用模型
+- 开发经验性对数模型：bw = bw_max * (1/(C + log n))
+...
+
+**总结2** (来源: Simulation_of_Large-Scale_HPC_Storage_Systems_Challenges_and_Methodologies):
+方法概述：
+1、方法名称: FIVES (Simulator for Scheduling on Storage Systems at Scale)
+
+2、核心思想: 
+FIVES是一个面向高性能存储系统的仿真框架，通过模块化设计和自动化校准，实现存储系统行为的高效准确模拟。其核心思想是通过抽象化硬件平台和作业模型，结合贝叶斯优化进行参数校准，在保证仿真可扩展性的同时最大化模拟精度。
+
+3、主要流程/组件
+组件/步骤一: 仿真架构设计
+- 采用三层概念架构：作业管理器(创建/提交作业)、协调器(资源调度)、基础设施(硬件平台模拟)
+- 基于WRENCH和SimGrid框架实现，新增复合存储服务(CSS)组件支持分布式存储模拟
+
+组件/步骤二: 参数校准系统
+- 使用贝叶斯优化(BO)自动校准17个关键参数（平台带宽、作业文件数、节点参与数等）
+- 定义MAE损失函数评估仿真精度：真实与模拟I/O时间的百分比差异均值
+- 采用带宽分类策略（快/常规/慢作业）处理数据异质性
+
+组件/步骤三: 磁盘争用模型
+- 开发经验性对数模型：bw = bw_max * (1/(C + log n))
+...
+
+**总结3** (来源: Accelerating_Decision-Tree-Based_Inference_Through_Adaptive_Parallelization):
+方法概述：
+1、方法名称: OBF (Optimized Breadth-First) 和 ODF (Optimized Depth-First) 树遍历框架  
+2、核心思想: 通过优化传统广度优先和深度优先树遍历算法，结合SIMD向量化和多线程并行化技术，实现对决策树集成模型（如随机森林、梯度提升树）的高效推理。核心创新点包括：(1) 改进数据结构的空间局部性以提升缓存效率；(2) 动态选择最优并行化策略（SIMD/多线程）适配不同输入批次和硬件平台。  
+
+3、主要流程/组件  
+组件/步骤一: **数据结构优化**  
+- OBF结构：将树划分为多个完美子树分区，通过分区级迭代处理非完美树，优化空间局部性（每个分区适配1-2个缓存行）  
+- ODF结构：基于节点访问概率动态调整比较运算符（≤或>），使高频访问路径在内存中连续存储；支持可变右子节点偏移量以处理非完美树  
+
+组件/步骤二: **SIMD向量化**  
+- 支持两种并行模式：(a) 对单个样本并行处理多棵树（tree-level）或 (b) 对单棵树并行处理批次中多个样本（sample-level）  
+- 通过...
+
+
+### 研究趋势分析
+**Methodology 趋势**:
+- 技术趋势: 端到端技术广泛应用
+- 研究模式:  在40/5篇论文中被提及(800.0%), t在37/5篇论文中被提及(740.0%), '在34/5篇论文中被提及(680.0%)
+
+
+### 参考原文
+**论文 Simulation_of_Large-Scale_HPC_Storage_Systems_Challenges_and_Methodologies - 方法 章节**:
+片段1: IV. THE FIVES SIMULATOR A. FIVES conceptual architecture
+We consider that an HPC system comprises three main conceptual elements as depicted in Figure : a Job Manager, an Orchestrator and an Infrastructure. The Job Manager receives user requests with compute resources and time demands, creates a job...
+片段2: We describe these conceptual elements in more details hereafter. 1) Infrastructure: The Infrastructure represents a simulated hardware platform, such as the one depicted in Figure . In this example the compute partition consists of homogeneous compute nodes interconnected via a Dragonfly network top...
+
+
+

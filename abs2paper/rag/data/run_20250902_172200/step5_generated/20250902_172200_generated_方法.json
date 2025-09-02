@@ -1,0 +1,3 @@
+{
+  "方法": "3.1 问题形式化\n给定预训练模型M_p和微调数据集D={(x_i,y_i)}^n_{i=1}，定义知识迁移优化目标：\nmin_θ L_task + λ_1L_KL(K_p,K_f) + λ_2||M^TM-I||_F\n\n3.2 框架架构\nDynaMem-Tune包含三级处理流程：\n1) KA-Adapter提取分层语义特征\n2) DynaMem实现知识存储与检索\n3) 混合损失函数指导定向迁移\n\n3.3 核心算法\n知识向量生成：\nk_t = MultiHeadAttn(h_t; W_Q,W_K,W_V)\n记忆更新：\nM_t = GRU(k_t, M_{t-1})\n损失函数：\nL_total = αL_task + βL_KL + γL_ortho"
+}

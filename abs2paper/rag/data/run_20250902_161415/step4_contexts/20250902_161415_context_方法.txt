@@ -1,0 +1,75 @@
+结构化RAG上下文
+================================================================================
+【方法 部分的上下文】
+--------------------------------------------------
+上下文长度：2644 字符
+
+上下文内容：
+### Methodology 总结
+**总结1** (来源: Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs):
+方法概述：  
+1、方法名称: **大规模HPC性能分析工具评估框架**  
+
+2、核心思想:  
+通过系统化的实验设计和多维度的评估标准，对主流高性能计算（HPC）性能分析工具（HPCToolkit、TAU、Scalasca）进行横向对比，揭示其在数据收集（采样与插桩）和分析能力（热点、可扩展性、性能方差）上的优劣，为工具选择提供实证依据。  
+
+3、主要流程/组件:  
+**组件/步骤一：实验平台构建**  
+- 搭建包含32个计算节点的HPC集群，配置统一硬件（36核CPU/384GB内存/100Gbps网络）和软件环境（GCC 9.4.0 + OpenMPI 4.0.7）。  
+- 选择标准化测试集（NAS Parallel Benchmarks和LULESH应用），固定输入规模以控制变量。  
+
+**组件/步骤二：工具配置与数据收集**  
+- **HPCToolkit**: 采用300Hz默认采样率，启用实时跟踪和PAPI指令计数。  
+- **TAU**: 分两种模式——TAU-P（自动阈值过滤的高频调用）和TAU-T（仅收集MPI函数跟踪）。  
+- **Scalasc...
+
+**总结2** (来源: Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs):
+方法概述：  
+1、方法名称: **大规模HPC性能分析工具评估框架**  
+
+2、核心思想:  
+通过系统化的实验设计和多维度的评估标准，对主流高性能计算（HPC）性能分析工具（HPCToolkit、TAU、Scalasca）进行横向对比，揭示其在数据收集（采样与插桩）和分析能力（热点、可扩展性、性能方差）上的优劣，为工具选择提供实证依据。  
+
+3、主要流程/组件:  
+**组件/步骤一：实验平台构建**  
+- 搭建包含32个计算节点的HPC集群，配置统一硬件（36核CPU/384GB内存/100Gbps网络）和软件环境（GCC 9.4.0 + OpenMPI 4.0.7）。  
+- 选择标准化测试集（NAS Parallel Benchmarks和LULESH应用），固定输入规模以控制变量。  
+
+**组件/步骤二：工具配置与数据收集**  
+- **HPCToolkit**: 采用300Hz默认采样率，启用实时跟踪和PAPI指令计数。  
+- **TAU**: 分两种模式——TAU-P（自动阈值过滤的高频调用）和TAU-T（仅收集MPI函数跟踪）。  
+- **Scalasc...
+
+**总结3** (来源: HPC_Application_Parameter_Autotuning_on_Edge_Devices_A_Bandit_Learning_Approach):
+方法概述：
+1、方法名称: LASP (Lightweight Autotuning of Scientific Application Parameters)
+2、核心思想: 通过多臂老虎机（MAB）框架，在资源受限的边缘设备上实现轻量级在线参数自动调优，动态平衡执行时间和功耗优化，并利用低保真度边缘计算作为高保真HPC系统的代理调优。
+
+3、主要流程/组件
+组件/步骤一: 搜索空间定义与配置采样
+- 将应用参数组合定义为有限动作空间（χ），每个配置对应MAB的一个"臂"
+- 通过低保真度（q < q_max）边缘设备运行快速评估配置性能
+
+组件/步骤二: 加权奖励函数设计
+- 采用MinMax归一化处理执行时间（τ）和功耗（ρ）
+- 用户自定义权重α（执行时间）和β（功耗）实现优化目标平衡
+- 奖励函数f_reward(x) = α×(1/μ(τ_x)) + β×(1/μ(ρ_x))，与性能指标成反比
+
+组件/步骤三: UCB决策机制
+- 基于置信上限策略（UCB）动态平衡探索与利用
+- UCB(x,t) = R_x + √(2ln t/N_x)，其中R_x为加权奖励，N_x为选择...
+
+
+### 研究趋势分析
+**Methodology 趋势**:
+- 研究模式:  在31/5篇论文中被提及(620.0%), '在26/5篇论文中被提及(520.0%), i在24/5篇论文中被提及(480.0%)
+
+
+### 参考原文
+**论文 Retrospection_on_the_Performance_Analysis_Tools_for_Large-Scale_HPC_Programs - 方法 章节**:
+片段1: III. METHODOLOGY
+Although there are widely adopted performance tools in large-scale HPC systems, there is no existing work that provides a comprehensive study of the existing performance analysis tools for performance analysis of large-scale HPC programs according to our knowledge. In this section, ...
+片段2: We evaluate a homebuilt cluster with hardware and software configuration as shown in Table . Specifically, the cluster consists of 32 computing nodes. Each node is equipped with one 36-core Intel Golden 6240 processor running at 2.60 GHz frequency. There is 384 GB of memory for each node. All nodes ...
+
+
+

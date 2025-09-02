@@ -1,0 +1,3 @@
+{
+  "实验评价": "### 4.1 实验配置\n- 硬件平台：双路Xeon Gold 6248R (48核/节点)\n- 基准测试：SPEC CPU2017 + STREAM Triad\n- 对比方案：Gem5 (v21.0)、DineroIV\n\n### 4.2 MCM转换效果\n| Metric        | PipeGen | Handcraft | Improvement |\n|---------------|---------|-----------|-------------|\n| TSO Compliance| 100%    | 98.2%     | +1.8%       |\n| IPC Ratio     | 0.97    | Baseline  | -3%         |\n| Area Overhead | 12%     | Manual(8%)| +4%         |\n\n### 4.3 FIVES仿真精度\n在Cori超算实测数据对比中：\n- I/O吞吐量误差<5%（vs.Gem5的32%）\n- Job完成时间预测准确率达92.4%\n- 参数校准"
+}
